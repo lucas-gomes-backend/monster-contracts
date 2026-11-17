@@ -43,7 +43,20 @@ func executar(linha: String) -> String:
 		return ""
 	var comando := partes[0].to_lower()
 	var args := partes.slice(1)
+	var de_leitura := ["ajuda", "?", "contrato", "hora", "pistas", "depoimentos", "hipoteses", "bestiario", "caracteristicas", "sair", "resultado"]
+	if sessao.encerrado() and not comando in de_leitura:
+		return "O caso já foi encerrado. Use 'resultado' ou 'sair'."
 	match comando:
+		"moradores":
+			return _moradores()
+		"testes":
+			return _testes()
+		"testar":
+			return _testar(args)
+		"agir":
+			return _agir(args)
+		"resultado":
+			return _resultado()
 		"ajuda", "?":
 			return _ajuda()
 		"contrato":
@@ -115,6 +128,12 @@ func _ajuda() -> String:
 		"  circular <espécie>       circular o suspeito principal",
 		"  modo <assistido|padrao|puro>",
 		"  responder <o_que|quem|por_que> <resposta>",
+		"  moradores                todos os moradores do bairro (m1, m2...)",
+		"  testes                   testes de campo (t1, t2...)",
+		"  testar <tN> <mN|lN|hN>   fazer um teste numa pessoa ou lugar (espera até a manhã do resultado)",
+		"  agir <resolução> <espécie> [mN]   ENCERRA o caso: matar, banir, prender, curar,",
+		"                           apaziguar, negociar, expor ou abandonar",
+		"  resultado                o desfecho, depois de agir",
 		"  sair",
 	])
 
@@ -199,9 +218,102 @@ func _aqui() -> String:
 	return "\n".join(linhas)
 
 
+func _ids_moradores() -> Array:
+	var ids: Array = []
+	for n in sessao.caso["npcs"]:
+		ids.append(n["id"])
+	return ids
+
+
+func _moradores() -> String:
+	var linhas: Array = ["Moradores do bairro:"]
+	var ids := _ids_moradores()
+	for i in ids.size():
+		var n: Dictionary = sessao.npc(ids[i])
+		linhas.append("  m%d  %s — %s" % [i + 1, _descrever_pessoa(n), _nome_local(n["casa"])])
+	return "\n".join(linhas)
+
+
+func _testes() -> String:
+	var linhas: Array = ["Testes de campo:"]
+	var testes: Array = sessao.testes_disponiveis()
+	for i in testes.size():
+		linhas.append("  t%d  %s (em %s): %s" % [i + 1, testes[i]["nome"], "uma pessoa" if testes[i]["alvo"] == "pessoa" else "um lugar", testes[i]["descricao"]])
+	return "\n".join(linhas)
+
+
+func _testar(args: Array) -> String:
+	if args.size() < 2:
+		return "Use: testar <tN> <mN|lN|hN>."
+	var ids_testes: Array = []
+	for t in sessao.testes_disponiveis():
+		ids_testes.append(t["id"])
+	var teste_id := _resolver(args[0], "t", ids_testes)
+	if teste_id.is_empty():
+		return "Teste desconhecido: %s." % args[0]
+	var alvo := _resolver_pessoa(args[1])
+	if alvo.is_empty():
+		alvo = _resolver(args[1], "l", sessao.locais())
+	if alvo.is_empty():
+		alvo = _resolver(args[1], "h", _ids_casas())
+	if alvo.is_empty():
+		return "Alvo desconhecido: %s." % args[1]
+	var r: Dictionary = sessao.aplicar_teste(teste_id, alvo)
+	if not r["ok"]:
+		return "Não deu: %s." % r["erro"]
+	var nome_alvo := _nome(alvo) if not sessao.npc(alvo).is_empty() else _nome_local(alvo)
+	var texto: String = r["teste"]["positivo" if r["positivo"] else "negativo"]
+	var linhas: Array = ["%s (%s). Agora: %s." % [r["teste"]["nome"], _duracao(int(r["minutos"])), _data(sessao.minuto)], texto.replace("{alvo}", nome_alvo)]
+	if r["percebeu"]:
+		linhas.append("Você tem a sensação de que foi observado. A criatura pode ter percebido o teste.")
+	return "\n".join(linhas)
+
+
+func _agir(args: Array) -> String:
+	if args.is_empty():
+		return "Use: agir <resolução> <espécie> [mN], ou 'agir abandonar'."
+	var resolucao: String = args[0]
+	var especie: String = args[1] if args.size() > 1 else ""
+	var alvo := _resolver_pessoa(args[2]) if args.size() > 2 else ""
+	var r: Dictionary = sessao.agir(resolucao, especie, alvo)
+	if not r["ok"]:
+		return "Não deu: %s." % r["erro"]
+	return "Caso encerrado.\n" + _resultado()
+
+
+func _resultado() -> String:
+	var r: Dictionary = sessao.desfecho
+	if r.is_empty():
+		return "O caso ainda está aberto. Para encerrar: 'agir <resolução> <espécie> [mN]'."
+	var verdade: Dictionary = sessao.caso["verdade"]
+	var linhas: Array = []
+	if r["resolucao"] == "abandonar":
+		linhas.append("Você abandonou o caso.")
+	else:
+		linhas.append("%s: %s" % ["SUCESSO" if r["sucesso"] else "FRACASSO", r["motivo"]])
+		linhas.append("Você apostou em: %s." % _criaturas[r["especie"]]["nome"])
+	linhas.append("A verdade: era %s%s." % [_criaturas[verdade["especie"]]["nome"], " (%s)" % _nome(verdade["hospedeiro"]) if not str(verdade["hospedeiro"]).is_empty() else ""])
+	if r.get("prazo_estourado", false):
+		linhas.append("O prazo do cliente tinha acabado quando você agiu: ele já tinha desistido e não pagou.")
+	if r.get("amaldicoado_morto", false):
+		linhas.append("Quem morreu era uma pessoa amaldiçoada, que podia ter sido curada.")
+	if not str(r.get("inocente_prejudicado", "")).is_empty():
+		linhas.append("%s era inocente e foi prejudicado(a) pela sua ação." % _nome(r["inocente_prejudicado"]))
+	linhas.append("Recompensa: R$ %d. Suspeita no bairro: %d." % [int(r["recompensa"]), sessao.suspeita])
+	return "\n".join(linhas)
+
+
+func _duracao(minutos: int) -> String:
+	return "%dh%02d" % [minutos / 60, minutos % 60]
+
+
 func _resolver_pessoa(ref: String) -> String:
 	if ref == "cliente":
 		return sessao.caso["contrato"]["cliente"]
+	if ref.begins_with("m"):
+		var morador := _resolver(ref, "m", _ids_moradores())
+		if not morador.is_empty():
+			return morador
 	var id := _resolver(ref, "n", sessao.pessoas_aqui())
 	return id if not id.is_empty() else (ref if not sessao.npc(ref).is_empty() else "")
 

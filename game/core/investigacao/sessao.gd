@@ -16,6 +16,7 @@ const Bairro := preload("res://core/mundo/bairro.gd")
 const Rotina := preload("res://core/npcs/rotina.gd")
 const Rng := preload("res://core/rng.gd")
 const Catalogo := preload("res://core/dados/catalogo.gd")
+const RegrasDeCampo := preload("res://core/investigacao/regras_de_campo.gd")
 
 var caso: Dictionary
 var caderno: RefCounted
@@ -30,6 +31,16 @@ var _rotina: RefCounted
 var _npcs: Dictionary = {}
 var _fechados: Dictionary = {}       # npc -> true: não fala mais com o caçador
 var _entrevistados: Dictionary = {}  # npc -> true
+## A criatura percebeu que está sendo testada (docs/03, "Reação ao caçador").
+var criatura_alertada := false
+## Resultado final do caso, depois de agir (vazio enquanto a investigação continua).
+var desfecho: Dictionary = {}
+
+var _fichas: Dictionary = {}
+var _ficha_verdade: Dictionary
+var _cfg_testes: Dictionary
+var _cfg_criaturas: Dictionary
+var _testes_feitos := 0
 
 
 func _init(caso_gerado: Dictionary, criaturas: Dictionary, dados_bairro: Dictionary, config_investigacao: Dictionary) -> void:
@@ -46,6 +57,60 @@ func _init(caso_gerado: Dictionary, criaturas: Dictionary, dados_bairro: Diction
 	_rotina = Rotina.new(Catalogo.carregar_config_populacao()["dados"], Rng.new(int(caso["sub_semente"])), bairro)
 	for npc in caso["npcs"]:
 		_npcs[npc["id"]] = npc
+	_fichas = fichas
+	_cfg_testes = Catalogo.carregar_config_testes()["dados"]
+	_cfg_criaturas = Catalogo.carregar_config_criaturas()["dados"]
+	_ficha_verdade = criaturas[caso["verdade"]["especie"]]
+
+
+func encerrado() -> bool:
+	return not desfecho.is_empty()
+
+
+func testes_disponiveis() -> Array:
+	return _cfg_testes["testes"]
+
+
+## Faz um teste de campo num alvo (pessoa ou lugar). O tempo avança até a manhã do resultado.
+## {"ok", "erro", "positivo", "teste", "alvo", "percebeu", "reacao", "minutos"}
+func aplicar_teste(teste_id: String, alvo: String) -> Dictionary:
+	var teste: Dictionary = {}
+	for t in _cfg_testes["testes"]:
+		if t["id"] == teste_id:
+			teste = t
+	if teste.is_empty():
+		return {"ok": false, "erro": "teste desconhecido"}
+	if teste["alvo"] == "pessoa" and not _npcs.has(alvo):
+		return {"ok": false, "erro": "esse teste é feito numa pessoa"}
+	if teste["alvo"] == "local" and not bairro.existe(alvo):
+		return {"ok": false, "erro": "esse teste é feito num lugar"}
+	var antes := minuto
+	minuto = RegrasDeCampo.minuto_do_resultado(teste, minuto, _ficha_verdade, _cfg_criaturas, _cfg_testes)
+	_testes_feitos += 1
+	var percebeu := RegrasDeCampo.percebeu(_ficha_verdade, _cfg_testes, int(caso["sub_semente"]), _testes_feitos)
+	if percebeu:
+		criatura_alertada = true
+	return {
+		"ok": true,
+		"erro": "",
+		"teste": teste,
+		"alvo": alvo,
+		"positivo": RegrasDeCampo.positivo(teste, _ficha_verdade, caso["verdade"], alvo),
+		"percebeu": percebeu,
+		"reacao": _cfg_criaturas["reacao_por_inteligencia"][_ficha_verdade["inteligencia"]] if percebeu else "",
+		"minutos": minuto - antes,
+	}
+
+
+## Encerra o caso agindo (docs/05, "Decisão"). Depois disso, a investigação acaba.
+func agir(resolucao: String, especie: String, alvo: String = "") -> Dictionary:
+	if encerrado():
+		return {"ok": false, "erro": "o caso já foi encerrado"}
+	var todas: Dictionary = Catalogo.carregar_criaturas()["criaturas"]
+	var resultado := RegrasDeCampo.decidir(resolucao, especie, alvo, caso, todas, _cfg_testes, minuto)
+	if resultado["ok"]:
+		desfecho = resultado
+	return resultado
 
 
 ## Lugares que dá para visitar (todos menos as casas), em ordem.

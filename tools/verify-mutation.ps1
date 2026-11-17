@@ -73,7 +73,11 @@ $mutants += @(
     @{ name = 'qualquer prova desmente'; path = 'game/core/investigacao/sessao.gd';
        find = 'if desmente(prova, dep):'; replace = 'if true:' },
     @{ name = 'entrevista quem não está aqui'; path = 'game/core/investigacao/sessao.gd';
-       find = 'return {"ok": false, "erro": "essa pessoa não está aqui agora", "novos": [], "minutos": 0}'; replace = 'pass' }
+       find = 'return {"ok": false, "erro": "essa pessoa não está aqui agora", "novos": [], "minutos": 0}'; replace = 'pass' },
+    @{ name = 'ferimento revela qualquer pessoa'; path = 'game/core/investigacao/regras_de_campo.gd';
+       find = 'return not alvo.is_empty() and alvo == verdade["hospedeiro"]'; replace = 'return true' },
+    @{ name = 'desfecho ignora a pessoa'; path = 'game/core/investigacao/regras_de_campo.gd';
+       find = 'base["quem_certo"] = not precisa_quem or alvo == verdade["hospedeiro"]'; replace = 'base["quem_certo"] = true' }
 )
 
 $survivors = @()

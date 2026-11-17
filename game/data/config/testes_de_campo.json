@@ -1,0 +1,54 @@
+{
+  "$comment": "Testes de campo (docs/05) e desfecho do caso (docs/06), resolvidos por regras na Fase 1. O resultado vem das FRAQUEZAS da ficha da criatura verdadeira: o teste usa um item, e dá positivo quando a criatura tem uma fraqueza com esse item e um dos efeitos listados.",
+  "testes": [
+    {
+      "id": "ferimento_revelador",
+      "nome": "Ferimento revelador",
+      "alvo": "pessoa",
+      "itens": ["arma_branca_benzida", "ferimento_leve_que_sangra"],
+      "efeitos_positivos": ["revela", "cura", "fere"],
+      "espera": "proxima_janela_da_criatura",
+      "descricao": "Na noite em que a criatura age, ferir a fera de leve e procurar o suspeito no dia seguinte.",
+      "positivo": "No dia seguinte, {alvo} aparece com um ferimento recente, igual ao que você fez na fera.",
+      "negativo": "No dia seguinte, {alvo} está sem nenhum ferimento."
+    },
+    {
+      "id": "linha_de_sal",
+      "nome": "Linha de sal",
+      "alvo": "local",
+      "itens": ["sal_grosso"],
+      "efeitos_positivos": ["prende", "afasta"],
+      "espera": "uma_noite",
+      "descricao": "Fechar a passagem de um lugar com sal grosso e conferir de manhã.",
+      "positivo": "De manhã, a linha de sal em {alvo} está intacta, mas há marcas de algo que andou de um lado para o outro diante dela, sem atravessar.",
+      "negativo": "De manhã, a linha de sal em {alvo} está do mesmo jeito. Nada parece ter chegado perto."
+    },
+    {
+      "id": "agua_benta",
+      "nome": "Água benta",
+      "alvo": "local",
+      "itens": ["agua_benta"],
+      "efeitos_positivos": ["afasta", "revela"],
+      "espera": "uma_noite",
+      "descricao": "Aspergir água benta num lugar e observar a noite.",
+      "positivo": "Durante a noite, perto de {alvo}, você ouve algo recuar, e o cheiro ruim some de repente.",
+      "negativo": "A noite em {alvo} passa sem nada de diferente."
+    },
+    {
+      "id": "oferenda",
+      "nome": "Oferenda",
+      "alvo": "local",
+      "itens": ["oferenda_fumo_e_cachaca"],
+      "efeitos_positivos": ["apazigua"],
+      "espera": "uma_noite",
+      "descricao": "Deixar fumo e cachaça num lugar e voltar de manhã.",
+      "positivo": "De manhã, a oferenda em {alvo} sumiu, e há um assobio fino vindo do mato.",
+      "negativo": "De manhã, a oferenda em {alvo} continua lá."
+    }
+  ],
+  "hora_do_resultado": 8,
+  "espera_maxima_dias": 14,
+  "chance_de_perceber": {"instintiva": 0.0, "astuta": 0.3, "ardilosa": 0.6},
+  "resolucoes_que_exigem_quem": ["curar", "prender", "expor"],
+  "resolucoes_que_encerram_os_ataques": ["matar", "banir", "prender", "curar", "apaziguar", "negociar", "expor"]
+}

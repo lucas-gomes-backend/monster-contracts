@@ -1,0 +1,43 @@
+{
+  "$comment": "Testes de campo e desfecho (game/data/config/testes_de_campo.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["testes", "hora_do_resultado", "espera_maxima_dias", "chance_de_perceber", "resolucoes_que_exigem_quem", "resolucoes_que_encerram_os_ataques"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "testes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nome", "alvo", "itens", "efeitos_positivos", "espera", "descricao", "positivo", "negativo"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z_]+$"},
+          "nome": {"type": "string"},
+          "alvo": {"enum": ["pessoa", "local"]},
+          "itens": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
+          "efeitos_positivos": {"type": "array", "minItems": 1, "items": {"enum": ["afasta", "fere", "revela", "prende", "destroi", "cura", "apazigua", "distrai", "bane"]}},
+          "espera": {"enum": ["proxima_janela_da_criatura", "uma_noite"]},
+          "descricao": {"type": "string"},
+          "positivo": {"type": "string"},
+          "negativo": {"type": "string"}
+        }
+      }
+    },
+    "hora_do_resultado": {"type": "integer", "minimum": 0, "maximum": 23},
+    "espera_maxima_dias": {"type": "integer", "minimum": 1},
+    "chance_de_perceber": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["instintiva", "astuta", "ardilosa"],
+      "properties": {
+        "instintiva": {"type": "number", "minimum": 0, "maximum": 1},
+        "astuta": {"type": "number", "minimum": 0, "maximum": 1},
+        "ardilosa": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "resolucoes_que_exigem_quem": {"type": "array", "items": {"enum": ["matar", "banir", "prender", "curar", "apaziguar", "negociar", "expor"]}},
+    "resolucoes_que_encerram_os_ataques": {"type": "array", "items": {"enum": ["matar", "banir", "prender", "curar", "apaziguar", "negociar", "expor"]}}
+  }
+}
