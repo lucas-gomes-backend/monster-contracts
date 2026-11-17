@@ -39,7 +39,7 @@ Todo caso tem três perguntas. Responder mais delas libera **resoluções melhor
 
 ### 1. Local
 
-- Escolhe a cidade, montada com módulos ([07](07-mundo-cidades-e-npcs.md)), e o **bairro** onde o caso acontece.
+- Escolhe o **bairro** da cidade onde o caso acontece ([07](07-mundo-cidade-e-npcs.md)).
 - O **tipo de bairro** define as criaturas possíveis, mais as coringas ([03](03-sistema-de-criaturas.md)).
 - A cidade já tem a população de NPCs, com rotinas, casas e relações.
 
@@ -91,7 +91,7 @@ Gera o **cliente** e o pedido:
 | **O que pede** | Matar, descobrir, proteger, expulsar, provar que não é nada |
 | **O que sabe** | Parte da verdade, gerada a partir das memórias dele |
 | **O que esconde** | E por quê: culpa, vergonha, proteger alguém, dinheiro |
-| **Recompensa** | Pelo perigo, pela região e pela reputação do jogador |
+| **Recompensa** | Pelo perigo, pelo bairro (bairros ricos pagam mais) e pela reputação do jogador |
 | **Prazo** | Quanto tempo antes de o cliente desistir ou a situação piorar |
 
 ### 7. Ruído
@@ -193,7 +193,7 @@ O gerador tem botões que sobem com a reputação e o progresso:
 | **Ruído** | Pouco | Muitas pistas irrelevantes e parecidas |
 | **Inteligência da criatura** | Instintiva | Ardilosa, que planta pistas falsas |
 | **Validade das pistas** | Longa | Curta, com chuva e polícia agindo rápido |
-| **Espécies parecidas na região** | Poucas | Várias com marcas em comum |
+| **Espécies parecidas no bairro** | Poucas | Várias com marcas em comum |
 | **Cliente** | Honesto | Mentiroso ou parte do problema |
 | **Estrutura** | Caça simples | Criatura errada ou culpado humano |
 | **Pistas avançadas** | Raras | Mais pistas que exigem equipamento melhor, **mas sempre como caminho extra, nunca o único** |
@@ -208,7 +208,7 @@ O resultado de cada caso **fica no mundo** e pode **gerar casos futuros**:
 - Uma criatura poupada aparece depois para cobrar ou ajudar.
 - Um caçador rival que viu algo começa um **caso reverso** contra você.
 - Um culpado humano que escapou causa outro problema.
-- A reputação regional e a suspeita da polícia mudam ([08](08-economia-e-progressao.md)).
+- A reputação no bairro e a suspeita da polícia mudam ([08](08-economia-e-progressao.md)).
 
 ### Cartas e presentes
 
@@ -254,7 +254,7 @@ Falhar custa reputação e gera cartas, mas o mundo segue em frente.
 
 ## Exemplo completo
 
-**Cidade:** Santa Cruz do Alto, interior do Brasil (fictícia).
+**Bairro:** Alto da Grota, um bairro de mata na periferia da cidade, com chácaras e fazendas pequenas (fictício).
 
 **Verdade (estrutura "Culpado humano" + "Cliente mentiroso"):**
 - Valdomiro, fazendeiro, está desmatando ilegalmente a grota há 3 semanas.

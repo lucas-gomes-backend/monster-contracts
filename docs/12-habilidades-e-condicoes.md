@@ -141,7 +141,7 @@ Cada condição tem estágios. Quanto mais fundo, **mais poder e mais custo**.
 - **Reações:** desconfiança, recusa de serviço, medo, chamar a polícia, chamar caçadores.
 - Disfarces, maquiagem e amuletos de ocultação **reduzem os sinais**, mas não os eliminam.
 - **Reputação dupla:** a condição reduz a reputação **entre humanos** e abre reputação **entre o sobrenatural**, com mercados ocultos, contratos vindos de monstros e aliados inesperados.
-- **Cultura regional:** algumas culturas temem, outras respeitam ou toleram certas condições.
+- **Comunidades da cidade:** algumas comunidades e bairros temem, outros respeitam ou toleram certas condições.
 
 ### Caçada (outros caçadores te perseguem)
 
@@ -153,7 +153,7 @@ Funciona como um **nível de procurado sobrenatural**.
   - Vídeos e fotos.
   - Corpos deixados para trás.
   - Rumores.
-- **Diminui com:** tempo, discrição, mudar de região, eliminar evidências.
+- **Diminui com:** tempo, discrição, evitar os bairros onde foi visto, mudar de base, eliminar evidências.
 - **A grande ideia: o caso vira contra você.** Caçadores rivais são gerados com **o mesmo sistema de casos**. Eles investigam os seus rastros, juntam pistas e tentam deduzir **o que você é**.
   - Se identificarem certo, chegam preparados contra as suas fraquezas.
   - Se identificarem errado (por exemplo, se você plantou pistas falsas), chegam com o equipamento errado.

@@ -9,6 +9,8 @@ Você é um caçador que aceita contratos para resolver casos sobrenaturais. Cad
 - **Perspectiva:** 3D, terceira pessoa.
 - **Estética:** PlayStation 1 (poucos polígonos, texturas tremidas, névoa). Ver [09 — Direção de arte](09-direcao-de-arte-camera-e-personagem.md).
 - **Personagem:** customizável, e a aparência muda com a idade, as cicatrizes e a condição.
+- **Mundo:** **uma única cidade** procedural, dividida em **bairros**. O tipo de bairro define as criaturas que vivem nele. Ver [07 — Mundo](07-mundo-cidade-e-npcs.md).
+  - **Proposta (a confirmar):** uma grande cidade fictícia brasileira com **comunidades de imigrantes** (japonesa, árabe, europeia, entre outras). Isso explica, dentro do mundo, por que criaturas do folclore do mundo inteiro aparecem na mesma cidade.
 - **Jogadores:** single-player.
 - **Tom:** meio-termo entre terror e aventura — tensão real, com espaço para humor e personagens.
 - **Equipe:** desenvolvedor solo.
@@ -26,7 +28,7 @@ Você é um caçador que aceita contratos para resolver casos sobrenaturais. Cad
 
 - Falsos positivos: golpes humanos, criaturas parecidas, clientes mentirosos.
 - Contratos de negociação, proteção e expulsão — não apenas de caça.
-- Regionalização: a mesma ameaça muda de nome, ritual e fraqueza conforme a cultura.
+- Bairros com identidade: o tipo de bairro define as criaturas, e variantes culturais da mesma ameaça (lobisomem brasileiro e europeu) são espécies diferentes, com regras diferentes.
 - Condições paranormais: o caçador pode virar o que caça (vampiro, lobisomem, pacto) — com poderes, fraquezas, estigma social e outros caçadores investigando **você** com o mesmo sistema de casos.
 - Carreira com fim: o tempo passa, o caçador envelhece e o jogo termina na **aposentadoria**, com epílogo montado a partir da carreira. Morrer leva ao **limbo**, onde as criaturas que você matou voltam em hordas.
 

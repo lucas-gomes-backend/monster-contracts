@@ -10,7 +10,7 @@ A estética de PS1 combina com o projeto por três motivos:
 
 1. **Clima:** o visual "imperfeito" do PS1 já é associado a terror e mistério (*Silent Hill*, *Resident Evil*, a cena atual de terror PSX). Ele esconde detalhes e deixa a imaginação do jogador trabalhar.
 2. **Escopo:** modelos de baixa contagem de polígonos e texturas pequenas são **muito mais rápidos de produzir** para um dev solo.
-3. **Procedural:** módulos simples e texturas pequenas facilitam montar cidades e variações proceduralmente sem que a falta de detalhe pareça erro.
+3. **Procedural:** módulos simples e texturas pequenas facilitam montar a cidade e os bairros proceduralmente sem que a falta de detalhe pareça erro.
 
 ---
 
@@ -23,7 +23,7 @@ A estética de PS1 combina com o projeto por três motivos:
 - **Ângulos fixos:** câmeras fixas cinematográficas aparecem de duas formas:
   - **Momentos roteirizados:** o jogo usa ângulos fixos em cenas de tensão e em interiores marcantes, como o necrotério ou a casa do caso.
   - **Opção do jogador:** nos interiores, o jogador pode ligar o modo de câmeras fixas no estilo *Resident Evil* clássico.
-  - Como as cidades são montadas com módulos, **cada módulo de interior já vem com os seus pontos de câmera fixa**, então o modo funciona também em lugares gerados proceduralmente.
+  - Como a cidade é montada com módulos, **cada módulo de interior já vem com os seus pontos de câmera fixa**, então o modo funciona também em lugares gerados proceduralmente.
 
 ---
 
@@ -59,7 +59,7 @@ Todos os efeitos fortes podem ser **reduzidos ou desligados**: tremor de vértic
 | **Cabelo e barba** | Cortes, cores, barba e bigode |
 | **Marcas** | Tatuagens (inclusive **tatuagem de proteção contra possessão**, que tem efeito no jogo), pintas, marcas de nascença |
 | **Voz** | Conjuntos de **sons** (grunhidos, respiração, reações de dor e susto), no estilo da época. **Sem falas dubladas.** Os diálogos são em texto. |
-| **Origem** (opcional) | Região de origem: afeta conhecimento inicial de folclore e algumas reações de NPCs |
+| **Origem** (opcional) | Comunidade de origem: afeta o conhecimento inicial do folclore daquela cultura e algumas reações de NPCs |
 
 ### O corpo conta a história
 
@@ -84,14 +84,14 @@ Tudo o que o jogador veste e carrega **aparece no modelo**:
 - **Esqueleto único** compartilhado por todos os corpos, e roupas como **malhas modulares** encaixadas nele.
 - **Sliders por blend shapes** (morph targets) e escala de ossos. Em modelos de poucos polígonos isso é barato, e as roupas precisam acompanhar as mesmas formas.
 - **Troca de paleta e textura** para variar cores e materiais com poucos arquivos.
-- O **mesmo sistema monta os NPCs** proceduralmente, para gerar a população das cidades com variedade e quase sem custo extra.
+- O **mesmo sistema monta os NPCs** proceduralmente, para gerar a população da cidade com variedade e quase sem custo extra.
 
 ---
 
 ## Tom visual
 
 - **Meio-termo:** o horror vem da névoa, dos sons e do que não se vê com clareza. O humor e o calor humano vêm de personagens, diálogos, do carro e das músicas no rádio.
-- **Paleta por região:** cada região tem cores, luz e névoa próprias, como o interior brasileiro quente e alaranjado, uma cidade japonesa úmida e azulada, ou a floresta do norte fria e cinza.
+- **Paleta por bairro:** cada tipo de bairro tem cores, luz e névoa próprias, como a mata verde-escura e úmida, o centro com neon e luz de poste alaranjada, o bairro antigo cinza e desbotado, ou a orla azulada e enevoada.
 - **Noite é perigosa e bonita:** luz de poste, faróis do carro, lanterna e lua.
 
 ## Interface
@@ -104,7 +104,7 @@ Tudo o que o jogador veste e carrega **aparece no modelo**:
 ## Áudio
 
 - **Amostras de baixa taxa** e reverb pesado nos ambientes, no estilo da época.
-- **Trilha:** ambiente sintetizado nos momentos de tensão e **rádio do carro** com músicas por região (rock na estrada, músicas regionais) para a parte calorosa do tom.
+- **Trilha:** ambiente sintetizado nos momentos de tensão e **rádio do carro** com estações da cidade (rock, música brasileira, rádios das comunidades) para a parte calorosa do tom.
 - **O som é pista:** barulhos distantes, vozes, arranhões. Os fones de ouvido fazem parte da investigação.
 
 ---

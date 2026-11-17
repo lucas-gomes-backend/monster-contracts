@@ -20,14 +20,14 @@ O pilar "dedução justa" continua valendo: **nenhum equipamento resolve o caso 
 
 | Recurso | Para que serve | Como ganha | Como perde |
 |---|---|---|---|
-| **Dinheiro** | Comprar e manter equipamento, viajar, subornar, pagar base | Contratos, bônus, venda de materiais | Compras, manutenção, multas, tratamento médico |
-| **Reputação** (por região) | Desbloqueia contratos melhores, fornecedores e contatos | Casos bem resolvidos, discrição | Erros, mortes de civis, chamar atenção da polícia |
+| **Dinheiro** | Comprar e manter equipamento, se deslocar, subornar, pagar base | Contratos, bônus, venda de materiais | Compras, manutenção, multas, tratamento médico |
+| **Reputação** (por bairro) | Desbloqueia contratos melhores, fornecedores e contatos | Casos bem resolvidos, discrição | Erros, mortes de civis, chamar atenção da polícia |
 | **Conhecimento** | Receitas rituais, entradas do bestiário, pesquisa mais rápida | Resolver casos, livros, mentores, criaturas negociadas | Não se perde |
 | **Suspeita** (polícia e público) | Recurso negativo: alta suspeita fecha portas | Invadir, mentir mal, deixar rastros | Tempo, disfarces, contatos |
 
 ## Fontes de renda
 
-- **Pagamento do contrato:** valor base definido pelo risco e pela região.
+- **Pagamento do contrato:** valor base definido pelo risco e pelo bairro.
 - **Bônus de desempenho:**
   - Identificação correta na primeira tentativa.
   - Sem vítimas civis.
@@ -43,7 +43,7 @@ Sem gastos recorrentes o dinheiro acumula e a progressão perde graça. Gastos p
 
 - **Consumíveis:** munição especial, sal, ervas, velas, oferendas.
 - **Manutenção:** o veículo quebra e consome combustível, e as armas desgastam.
-- **Viagem:** combustível, hospedagem, pedágios, passagens para outras regiões.
+- **Deslocamento:** combustível, estacionamento, táxi ou ônibus quando o carro está quebrado.
 - **Informação:** suborno de legistas, compra de registros, pagamento a informantes.
 - **Consequências:** multas, fiança, hospital, conserto de danos.
 - **Base:** aluguel, ampliações, segurança.
@@ -97,8 +97,8 @@ O carro é o seu **lar móvel**, como no seriado.
 - **Inicial:** sedã velho. Quebra, porta-malas pequeno, chama pouca atenção.
 - **Caminhos de evolução:**
   - **Porta-malas arsenal:** mais equipamento levado ao campo.
-  - **Motor e confiabilidade:** viagens mais rápidas e menos quebras.
-  - **Off-road:** acesso a áreas rurais e isoladas (fazendas, matas, montanhas).
+  - **Motor e confiabilidade:** deslocamento mais rápido e menos quebras.
+  - **Off-road:** acesso às partes isoladas dos bairros de mata e da periferia (chácaras, trilhas, estradas de terra).
   - **Rádio da polícia:** descobre casos antes de virarem contrato e sabe quando a polícia está chegando.
   - **Discrição:** placas trocáveis e pintura neutra, para reduzir a suspeita.
 - **Troca de veículo:** van (mais carga, mais chamativa), picape (off-road), moto (rápida, pouca carga).
@@ -139,7 +139,7 @@ A base evolui junto com o jogador e libera serviços:
 
 ## Desbloqueios por reputação
 
-Reputação regional funciona como "nível" da relação com cada lugar:
+A reputação é **por bairro** e funciona como "nível" da relação com cada parte da cidade:
 
 | Reputação | Desbloqueia |
 |---|---|
@@ -152,11 +152,11 @@ Reputação regional funciona como "nível" da relação com cada lugar:
 
 1. **Começo:** sedã velho, espingarda de sal, lanterna, caderno, quarto de motel. Cada caso é apertado e o dinheiro é contado.
 2. **Meio:** van ou picape, EMF e UV, terno de agente, casa com biblioteca. Casos maiores e escolha de especialização.
-3. **Fim:** base completa, arsenal variado, reputação em várias regiões, itens lendários de casos marcantes. O desafio vem de criaturas mais complexas e casos com várias camadas, não de números maiores.
+3. **Fim:** base completa, arsenal variado, reputação em vários bairros, itens lendários de casos marcantes. O desafio vem de criaturas mais complexas e casos com várias camadas, não de números maiores.
 
 ## Moedas e câmbio
 
-- **Moeda por região:** cada região do mundo tem a sua (real, dólar, iene, euro e outras). Viajar exige **câmbio**, com taxa e cotação que variam.
+- **Moeda única:** no mundo humano, a cidade inteira usa o mesmo dinheiro.
 - **Mercado negro por espécie:** o mercado oculto não aceita dinheiro humano em tudo. Cada comunidade sobrenatural tem a sua "moeda":
 
   | Comunidade | Moeda (exemplos) |
@@ -228,4 +228,4 @@ O equipamento sofre **as duas coisas**:
 ## Escopo no roadmap
 
 - **Corte vertical:** dinheiro, 1 reputação, 3 níveis de qualidade, poucos itens por categoria, veículo fixo, motel. O suficiente para testar se a progressão é gostosa.
-- **Fase 5 (meta-jogo):** todas as categorias, base completa, crafting e reputação por região.
+- **Fase 5 (meta-jogo):** todas as categorias, base completa, crafting e reputação por bairro.

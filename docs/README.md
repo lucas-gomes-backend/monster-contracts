@@ -10,7 +10,7 @@ A documentação é escrita por partes. Cada parte é um arquivo próprio.
 | 04 | [Geração de casos e pistas](04-geracao-de-casos.md) | Rascunho |
 | 05 | Investigação e dedução (caderno / bestiário) | A fazer |
 | 06 | Confronto e rituais | A fazer |
-| 07 | Mundo, cidades e NPCs | A fazer |
+| 07 | Mundo: a cidade, bairros e NPCs | A fazer |
 | 08 | [Economia, progressão e equipamentos](08-economia-e-progressao.md) | Rascunho |
 | 09 | [Direção de arte, câmera e personagem](09-direcao-de-arte-camera-e-personagem.md) | Rascunho |
 | 10 | Tecnologia e arquitetura | A fazer |

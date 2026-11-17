@@ -15,7 +15,7 @@ Dar à carreira do caçador **começo, meio e fim**. O tempo passa, o corpo enve
 
   | Ação | Tempo gasto |
   |---|---|
-  | Viajar | Horas ou dias, conforme a distância e o veículo |
+  | Deslocar-se pela cidade | Minutos ou horas, conforme a distância, o trânsito e o veículo |
   | Investigar uma cena | Horas |
   | Pesquisar na biblioteca | Horas |
   | Recuperar ferimentos | Dias ou semanas |
@@ -28,7 +28,7 @@ Dar à carreira do caçador **começo, meio e fim**. O tempo passa, o corpo enve
 - **Dia e noite:** criaturas noturnas, vampirismo, horário de funcionamento de lojas e repartições.
 - **Fases da lua:** licantropia, rituais e criaturas lunares.
 - **Estações:** clima, colheitas e criaturas sazonais.
-- **Datas regionais:** Dia de Finados, Sexta-feira 13, Obon, Samhain, Quaresma. Mudam o comportamento de criaturas e NPCs e geram contratos especiais.
+- **Datas das comunidades da cidade:** Dia de Finados, Sexta-feira 13, Obon, Samhain, Quaresma. Mudam o comportamento de criaturas e NPCs e geram contratos especiais.
 
 ---
 
@@ -39,7 +39,7 @@ O caçador **sempre começa com 20 anos** e envelhece com o calendário.
 ### Duração da carreira
 
 - **Uma carreira humana completa dura cerca de 10 horas de jogo**, dos 20 anos até a aposentadoria forçada pela idade.
-- Para isso, o tempo é **comprimido entre os casos**: durante um caso o relógio anda em horas e dias, e entre um caso e outro podem se passar **semanas ou meses** (descanso, recuperação, viagem, treino).
+- Para isso, o tempo é **comprimido entre os casos**: durante um caso o relógio anda em horas e dias, e entre um caso e outro podem se passar **semanas ou meses** (descanso, recuperação, treino, pesquisa).
 - Referência: uma carreira de cerca de 45 anos (dos 20 aos 65) em 10 horas dá **cerca de 4,5 anos de calendário por hora de jogo**, ou algo como 20 a 30 casos por carreira. (Valores a calibrar em playtest.)
 - Criaturas **imortais** não têm aposentadoria forçada, então a carreira delas pode passar das 10 horas.
 
@@ -47,7 +47,8 @@ O caçador **sempre começa com 20 anos** e envelhece com o calendário.
 
 Com 10 horas por carreira, o jogo funciona melhor como **várias carreiras no mesmo mundo**, e não como uma única campanha longa:
 
-- Cada carreira explora uma **condição, região e estilo** diferentes.
+- Cada carreira explora uma **condição, bairros e estilo** diferentes.
+- A **mesma cidade** continua de uma carreira para a outra, anos depois, mudada pelo que o caçador anterior fez.
 - O **legado** (Parte D) liga uma carreira à outra: base, aliados, rumores, bestiário.
 - Isso **aproveita o mundo e os casos procedurais**, que são feitos para serem rejogados.
 

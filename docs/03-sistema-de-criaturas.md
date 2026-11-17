@@ -28,7 +28,8 @@ Definir **o formato de regras** que descreve qualquer criatura do jogo. Esse for
 | Campo | Descrição | Exemplo (Lobisomem brasileiro) |
 |---|---|---|
 | **Nome** | Nome local e nomes alternativos | Lobisomem, lobisome |
-| **Região** | Origem cultural | Brasil (interior) |
+| **Origem** | Cultura de onde vem o folclore | Brasil (interior) |
+| **Bairros** | Tipos de bairro onde pode aparecer, ou `coringa` | Coringa |
 | **Família** | Arquétipo que define comportamentos padrão (ver "Famílias") | Amaldiçoado / Metamorfo |
 | **Natureza** | Corpórea, espiritual ou híbrida | Corpórea |
 | **Inteligência** | Instintiva, astuta ou ardilosa | Instintiva (transformado), astuta (humano) |
@@ -151,10 +152,10 @@ Cada ficha lista **quais resoluções existem** para aquela espécie e **o que c
 
 - Se a criatura pode **transformar o jogador**, e como ([12](12-habilidades-e-condicoes.md)).
 
-### 14. Variantes regionais
+### 14. Variantes culturais
 
-- A mesma família pode ter regras diferentes por região. O **lobisomem brasileiro** (sétimo filho, sexta-feira, encruzilhada, chiqueiro) e o **lobisomem europeu** (mordida transmite, prata, lua cheia) são **espécies separadas** no bestiário.
-- O jogador precisa considerar **onde** está o caso.
+- A mesma família pode ter regras diferentes conforme a cultura de origem. O **lobisomem brasileiro** (sétimo filho, sexta-feira, encruzilhada, chiqueiro) e o **lobisomem europeu** (mordida transmite, prata, lua cheia) são **espécies separadas** no bestiário.
+- Como as duas podem aparecer na mesma cidade, o jogador precisa descobrir **qual variante** está agindo antes de se preparar.
 
 ### 15. Pesquisa e fontes
 
@@ -224,9 +225,9 @@ Algumas criaturas **podem aparecer em qualquer bairro**: são as **coringas**.
 - Cada tipo de bairro deve ter **3 a 4 criaturas típicas**, mais as **2 a 3 coringas** possíveis.
 - Assim, todo caso começa com **pelo menos 5 candidatos plausíveis**.
 
-### Campo novo na ficha
+### Campo na ficha
 
-A ficha ganha o campo **Bairros**: os tipos de bairro onde a criatura pode aparecer, ou `coringa`.
+O campo **Bairros** da ficha (ver "Identidade") lista os tipos de bairro onde a criatura pode aparecer, ou `coringa`.
 
 ---
 
@@ -246,7 +247,7 @@ Cada criatura gerada recebe uma **semente** que define o que pode variar **sem q
 
 ## Matriz de distinção (validação)
 
-Para garantir o pilar da **dedução justa**, um teste automático compara todas as espécies de uma região:
+Para garantir o pilar da **dedução justa**, um teste automático compara todas as espécies possíveis em cada tipo de bairro, **incluindo as coringas**:
 
 - Para cada par de espécies parecidas, deve haver **pelo menos 2 marcas** que uma tem e a outra não, ou que aparecem de forma diferente.
 - Pelo menos uma dessas marcas precisa ser **detectável com equipamento inicial**, para o jogo não exigir upgrade para resolver um caso básico.
@@ -276,7 +277,7 @@ Cada campo da ficha (marcas, fraquezas, tabus, resoluções) tem um nível para 
 | **Computador / internet** (lan house, notebook) | Rápida | **Baixa**: fóruns e lendas misturadas, com informação errada | Barato |
 | **Biblioteca** (pública, da igreja, da universidade, da base) | Lenta | Alta | Tempo, às vezes acesso |
 | **Outros caçadores** | Média | Alta, **se forem honestos** | Dinheiro, favores ou troca de informação |
-| **Folclore local** (benzedeira, padre, idosos) | Média | Alta sobre criaturas da região, baixa sobre as de fora | Conversa, oferenda, favor |
+| **Folclore local** (benzedeira, padre, idosos) | Média | Alta sobre criaturas da tradição dela, baixa sobre as de outras culturas | Conversa, oferenda, favor |
 | **Experiência em campo** | Só durante os casos | Total | Risco |
 
 - A **pesquisa faz parte da investigação**: no meio de um caso, ir à biblioteca ou ligar para um caçador consome tempo, enquanto a criatura continua agindo.
@@ -347,9 +348,9 @@ Cada campo da ficha (marcas, fraquezas, tabus, resoluções) tem um nível para 
 
 ## Bestiário inicial proposto
 
-### Corte vertical (3 a 4 criaturas, uma região)
+### Corte vertical (3 a 4 criaturas, 2 bairros)
 
-Para a primeira cidade, **brasileira**, com contraste entre famílias:
+Um pedaço da cidade com **um bairro de mata** e **um bairro antigo/residencial**, com contraste entre famílias:
 
 1. **Lobisomem (Brasil):** amaldiçoado, com resolução por cura.
 2. **Curupira:** entidade da natureza, com resolução não letal e culpado humano.
@@ -374,7 +375,8 @@ As fichas ficam em **arquivos de dados** (JSON ou recursos do Godot), não em c�
 {
   "id": "lobisomem_br",
   "nome": "Lobisomem",
-  "regiao": "brasil_interior",
+  "origem": "brasil",
+  "bairros": ["coringa"],
   "familia": ["amaldicoado", "metamorfo"],
   "natureza": "corporea",
   "inteligencia": "instintiva",
