@@ -20,10 +20,10 @@ A estética de PS1 combina com o projeto por três motivos:
 - **Controles modernos** (andar relativo à câmera). *Tank controls* ficam como **opção** para quem quiser a sensação clássica.
 - **Modo de mira e inspeção:** a câmera aproxima por cima do ombro para mirar, fotografar ou usar equipamento (UV, câmera térmica).
 - **Inspeção de pistas:** ao pegar um objeto, ele aparece em close e pode ser girado, como em *Resident Evil*.
-- **Ângulos fixos (opcional):** interiores marcantes, como o necrotério ou a casa do caso, podem usar câmeras fixas cinematográficas em momentos específicos. É uma ferramenta de clima, não a regra.
-
-### Questão em aberto
-- Ângulos fixos só em momentos roteirizados ou também como opção do jogador em interiores?
+- **Ângulos fixos:** câmeras fixas cinematográficas aparecem de duas formas:
+  - **Momentos roteirizados:** o jogo usa ângulos fixos em cenas de tensão e em interiores marcantes, como o necrotério ou a casa do caso.
+  - **Opção do jogador:** nos interiores, o jogador pode ligar o modo de câmeras fixas no estilo *Resident Evil* clássico.
+  - Como as cidades são montadas com módulos, **cada módulo de interior já vem com os seus pontos de câmera fixa**, então o modo funciona também em lugares gerados proceduralmente.
 
 ---
 
@@ -53,12 +53,12 @@ Todos os efeitos fortes podem ser **reduzidos ou desligados**: tremor de vértic
 
 | Categoria | Opções |
 |---|---|
-| **Corpo** | Tipo de corpo, altura, compleição |
-| **Rosto** | Formatos pré-definidos combinados com texturas de rosto (olhos, nariz, boca), no estilo PS1, com troca de texturas em vez de sliders finos |
+| **Corpo** | Sliders de tipo de corpo, altura, compleição e proporções |
+| **Rosto** | Sliders de formato (mandíbula, nariz, olhos, testa, boca) combinados com texturas de rosto no estilo PS1 |
 | **Pele** | Tons de pele variados |
 | **Cabelo e barba** | Cortes, cores, barba e bigode |
 | **Marcas** | Tatuagens (inclusive **tatuagem de proteção contra possessão**, que tem efeito no jogo), pintas, marcas de nascença |
-| **Voz** | Algumas vozes curtas (grunhidos e falas de ação), no estilo da época |
+| **Voz** | Conjuntos de **sons** (grunhidos, respiração, reações de dor e susto), no estilo da época. **Sem falas dubladas.** Os diálogos são em texto. |
 | **Origem** (opcional) | Região de origem: afeta conhecimento inicial de folclore e algumas reações de NPCs |
 
 ### O corpo conta a história
@@ -82,6 +82,7 @@ Tudo o que o jogador veste e carrega **aparece no modelo**:
 ### Técnica
 
 - **Esqueleto único** compartilhado por todos os corpos, e roupas como **malhas modulares** encaixadas nele.
+- **Sliders por blend shapes** (morph targets) e escala de ossos. Em modelos de poucos polígonos isso é barato, e as roupas precisam acompanhar as mesmas formas.
 - **Troca de paleta e textura** para variar cores e materiais com poucos arquivos.
 - O **mesmo sistema monta os NPCs** proceduralmente, para gerar a população das cidades com variedade e quase sem custo extra.
 
@@ -115,8 +116,8 @@ Tudo o que o jogador veste e carrega **aparece no modelo**:
 - **Fase 4 e 5:** envelhecimento visual, cicatrizes, sinais de condição e roupas em quantidade.
 - **Godot** tem vários shaders PSX de código aberto como ponto de partida.
 
-## Questões em aberto
+## Decisões
 
-- Ângulos fixos de câmera: só em momentos roteirizados ou também como opção?
-- Vozes do personagem: só sons curtos ou falas dubladas em momentos-chave?
-- Nível de liberdade da customização: presets combinados (mais fácil e mais "PS1") ou sliders?
+- **Câmeras fixas:** em momentos roteirizados e também como opção do jogador nos interiores.
+- **Voz:** só sons, sem falas dubladas.
+- **Customização:** por sliders.

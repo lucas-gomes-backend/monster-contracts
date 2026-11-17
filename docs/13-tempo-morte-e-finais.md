@@ -34,7 +34,22 @@ Dar à carreira do caçador **começo, meio e fim**. O tempo passa, o corpo enve
 
 ## Parte B — Idade
 
-O caçador **começa jovem** (idade inicial em aberto, algo entre 20 e 30 anos) e envelhece com o calendário.
+O caçador **sempre começa com 20 anos** e envelhece com o calendário.
+
+### Duração da carreira
+
+- **Uma carreira humana completa dura cerca de 10 horas de jogo**, dos 20 anos até a aposentadoria forçada pela idade.
+- Para isso, o tempo é **comprimido entre os casos**: durante um caso o relógio anda em horas e dias, e entre um caso e outro podem se passar **semanas ou meses** (descanso, recuperação, viagem, treino).
+- Referência: uma carreira de cerca de 45 anos (dos 20 aos 65) em 10 horas dá **cerca de 4,5 anos de calendário por hora de jogo**, ou algo como 20 a 30 casos por carreira. (Valores a calibrar em playtest.)
+- Criaturas **imortais** não têm aposentadoria forçada, então a carreira delas pode passar das 10 horas.
+
+### Consequência de design: uma carreira é uma "run"
+
+Com 10 horas por carreira, o jogo funciona melhor como **várias carreiras no mesmo mundo**, e não como uma única campanha longa:
+
+- Cada carreira explora uma **condição, região e estilo** diferentes.
+- O **legado** (Parte D) liga uma carreira à outra: base, aliados, rumores, bestiário.
+- Isso **aproveita o mundo e os casos procedurais**, que são feitos para serem rejogados.
 
 ### Efeitos da idade (humanos)
 
@@ -70,11 +85,15 @@ A idade é uma **troca**, não só uma perda:
 Quando o caçador morre, ele **desperta no limbo**. É uma arena entre mundos onde **as criaturas que ele matou ao longo da carreira** voltam em **hordas**. A referência de sensação é o combate físico e brutal de *Half Sword*.
 
 1. **Entrada:** o jogador chega com o equipamento que carregava na hora da morte, desgastado.
-2. **Hordas:** ondas formadas **pelas criaturas que você matou**, com as mesmas fraquezas de sempre.
+2. **Hordas:** formadas **pelas criaturas que você matou**, com as mesmas fraquezas de sempre.
+   - **Total de inimigos = o seu histórico:** cada criatura (e humano) que você matou aparece **uma vez**.
+   - **Ritmo:** surge **uma criatura a cada 10 segundos**.
+   - **Limite:** no máximo **5 criaturas ao mesmo tempo**. Enquanto houver 5 vivas, as próximas esperam.
    - O conhecimento do bestiário ajuda aqui também: saber as fraquezas é o que permite sobreviver.
 3. **Saída:**
-   - **Sobreviveu:** volta à vida, mas com custo (ver abaixo).
+   - **Derrotou todas:** volta à vida, mas com custo (ver abaixo).
    - **Caiu no limbo:** é a **morte definitiva** e leva a um final (ver Parte D).
+4. **Sem limite de voltas:** dá para voltar do limbo quantas vezes conseguir. Cada volta deixa o custo acumulado mais pesado, e cada nova morte num caso aumenta o histórico.
 
 ### O que o limbo cria no design
 
@@ -145,9 +164,14 @@ A ideia é que um **novo jogo** possa começar no mesmo mundo, anos depois. A ba
 
 ---
 
+## Decisões
+
+- **Idade inicial:** fixa em 20 anos.
+- **Duração da carreira:** cerca de 10 horas de jogo, com tempo comprimido entre os casos.
+- **Hordas do limbo:** dependem do histórico. Uma criatura a cada 10 segundos, no máximo 5 ao mesmo tempo.
+- **Voltas do limbo:** sem limite.
+
 ## Questões em aberto
 
-- Idade inicial fixa ou escolhida pelo jogador?
-- Duração-alvo de uma carreira completa, em horas de jogo e em anos de calendário.
-- O limbo tem um número fixo de hordas ou depende do tamanho do seu histórico?
-- Limite de vezes que dá para voltar do limbo?
+- Com um histórico grande (por exemplo, 60 mortes), o limbo fica longo demais? Pode ser preciso agrupar criaturas fracas ou mostrar um contador de progresso.
+- Quantos anos de calendário exatamente por hora de jogo? Precisa de playtest.
