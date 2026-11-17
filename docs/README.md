@@ -13,7 +13,7 @@ A documentação é escrita por partes. Cada parte é um arquivo próprio.
 | 07 | [Mundo: a cidade, bairros e NPCs](07-mundo-cidade-e-npcs.md) | Rascunho |
 | 08 | [Economia, progressão e equipamentos](08-economia-e-progressao.md) | Rascunho |
 | 09 | [Direção de arte, câmera e personagem](09-direcao-de-arte-camera-e-personagem.md) | Rascunho |
-| 10 | Tecnologia e arquitetura | A fazer |
+| 10 | [Tecnologia e arquitetura](10-tecnologia-e-arquitetura.md) | Rascunho |
 | 11 | Roadmap | A fazer |
 | 12 | [Habilidades humanas e condições paranormais](12-habilidades-e-condicoes.md) | Rascunho |
 | 13 | [Tempo, idade, morte (limbo) e finais](13-tempo-morte-e-finais.md) | Rascunho |
