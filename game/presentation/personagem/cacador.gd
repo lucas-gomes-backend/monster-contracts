@@ -18,6 +18,7 @@ const ACOES := {
 	"soltar_mouse": [KEY_ESCAPE],
 	"lanterna": [KEY_F],
 	"examinar": [KEY_E],
+	"caderno": [KEY_TAB],
 }
 const ACOES_MOUSE := {
 	"mirar": MOUSE_BUTTON_RIGHT,
