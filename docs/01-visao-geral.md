@@ -18,6 +18,7 @@ Você é um caçador que aceita contratos para resolver casos sobrenaturais. Cad
 3. **Preparação vence força.** O confronto é um clímax ritual; identificar errado custa caro.
 4. **Folclore do mundo inteiro, tratado com respeito.** Criaturas de várias culturas — com destaque para o folclore brasileiro — pesquisadas e apresentadas com cuidado.
 5. **Cinza moral.** Nem todo monstro deve morrer; nem todo cliente diz a verdade; às vezes o culpado é humano.
+6. **Sensação de evolução.** De caçador improvisado a profissional respeitado: economia, armas, equipamentos, veículo, roupas e base evoluem — ampliando opções, nunca substituindo o raciocínio. Ver [08 — Economia e progressão](08-economia-e-progressao.md).
 
 ## Diferenciais
 

@@ -11,7 +11,7 @@ A documentação é escrita por partes. Cada parte é um arquivo próprio.
 | 05 | Investigação e dedução (caderno / bestiário) | A fazer |
 | 06 | Confronto e rituais | A fazer |
 | 07 | Mundo, cidades e NPCs | A fazer |
-| 08 | Contratos, reputação e economia | A fazer |
+| 08 | [Economia, progressão e equipamentos](08-economia-e-progressao.md) | Rascunho |
 | 09 | Direção de arte, tom e áudio | A fazer |
 | 10 | Tecnologia e arquitetura | A fazer |
 | 11 | Roadmap | A fazer |
