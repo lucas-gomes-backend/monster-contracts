@@ -54,8 +54,10 @@ func _ready() -> void:
 	if is_inside_tree():
 		var janela := get_window()
 		janela.content_scale_mode = Window.CONTENT_SCALE_MODE_DISABLED
-		janela.size = Vector2i(1400, 860)
 		janela.title = "Monster Contracts — investigação (Fase 1)"
+		# Cabe em qualquer monitor: ocupa a área útil da tela (sem a barra de tarefas).
+		janela.min_size = Vector2i(900, 600)
+		janela.mode = Window.MODE_MAXIMIZED
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--semente="):
 			semente = arg.trim_prefix("--semente=").to_int()
@@ -122,7 +124,7 @@ func montar() -> void:
 	meio.add_child(_coluna("Hipóteses", 1.2, _montar_hipoteses()))
 
 	_diario = RichTextLabel.new()
-	_diario.custom_minimum_size = Vector2(0, 170)
+	_diario.custom_minimum_size = Vector2(0, 130)
 	_diario.scroll_following = true
 	_diario.selection_enabled = true
 	_diario.add_theme_color_override("default_color", COR_PAPEL)
