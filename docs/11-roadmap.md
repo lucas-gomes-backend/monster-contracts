@@ -12,6 +12,10 @@ Transformar tudo o que foi decidido nas outras partes em **fases realistas para 
 4. **Arte por último.** Até o corte vertical, tudo é cinza com o shader PS1.
 5. **Mostrar cedo.** A página na Steam entra logo depois do corte vertical.
 
+## Acompanhamento
+
+O progresso do roadmap é acompanhado no **Diário do Caçador**, uma página com as fases, as tarefas para riscar e as anotações de cada avanço: <https://claude.ai/artifact/BvVCtFK57qGZSTRzpKa3Qi> (privada). O código da página fica em `artifacts/diario-do-cacador.html`. A página é atualizada a cada nova decisão de design e a cada tarefa ou fase concluída.
+
 ## Sobre as estimativas
 
 - As durações supõem **meio período** (cerca de 20 horas por semana). Em tempo integral, o prazo cai para perto da metade.
