@@ -293,9 +293,9 @@ Cada campo da ficha (marcas, fraquezas, tabus, resoluções) tem um nível para 
 | Campo | Valor |
 |---|---|
 | Família | Amaldiçoado / Metamorfo |
-| Ciclo | Meia-noite de sexta-feira, mais forte na lua cheia |
-| Gatilho | Maldição de nascença (sétimo filho homem) ou de família |
-| Necessidade | Correr sete cemitérios ou encruzilhadas, atacar animais; escala para pessoas |
+| Ciclo | Noite de quinta para sexta, à meia-noite, mais forte na lua cheia |
+| Gatilho | Maldição de nascença (sétimo filho homem, sem o irmão mais velho como padrinho) |
+| Necessidade | Correr sete cemitérios ou encruzilhadas antes do terceiro canto do galo (se não completar, fica fera); ataca animais e escala para pessoas |
 | Disfarce | Morador comum: pálido, magro, some toda sexta à noite |
 | Marcas | Chiqueiros e galinheiros revirados, pegadas de cão grande, pelos, animais mortos, testemunha de "cachorro enorme" |
 | Fraquezas | Ferir a fera faz o humano aparecer ferido (revela e cura) |
@@ -327,7 +327,7 @@ Cada campo da ficha (marcas, fraquezas, tabus, resoluções) tem um nível para 
 | Necessidade | Proteger o território. Pune os infratores e pode aceitar oferendas |
 | Disfarce | Raramente visto; só os efeitos aparecem |
 | Marcas | **Pegadas ao contrário**, pessoas perdidas andando em círculos, assobios, caçadores desorientados ou sumidos |
-| Fraquezas | Não é para ser morto. Oferenda (fumo, cachaça) apazigua, e novelo emaranhado distrai |
+| Fraquezas | Não é para ser morto. Oferenda (fumo, cachaça) apazigua, e uma trança de pano ou palha deixada numa pedra distrai |
 | Resoluções | **Apaziguar**, **negociar** (pode dar a Marca da Mata), expor quem está destruindo a mata |
 | Disposição | Protetora. **O verdadeiro culpado do caso costuma ser humano.** |
 

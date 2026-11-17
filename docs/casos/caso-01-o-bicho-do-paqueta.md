@@ -187,6 +187,10 @@ Candidatos plausíveis no início (bairro antigo, mais coringas):
 - A **ligação entre dois bairros** (a criatura mora num e ataca no outro) deve aparecer em muitos casos de coringas.
 - O **por quê** depende de **registros antigos** (batismo) e **folclore local** (benzedeira): o gerador precisa criar esse histórico de família na criação dos NPCs.
 
-## Fontes de folclore (a pesquisar)
+## Folclore
 
-- A lenda do sétimo filho e do padrinho, a corrida de sexta-feira por cemitérios e encruzilhadas, e a cura pelo ferimento são versões populares do lobisomem brasileiro. Confirmar variações regionais (litoral paulista) na pesquisa de folclore da Fase 0.
+Ver a [pesquisa de folclore do corte vertical](../pesquisa/folclore-corte-vertical.md).
+
+- **Confirmado nas fontes:** sétimo filho, regra do padrinho, corrida por sete cemitérios ou encruzilhadas antes do terceiro canto do galo, ataques a galinheiros, cura quando alguém fere a fera.
+- **Invenção do jogo:** a arma precisar ser **benzida**.
+- **A confirmar:** variações do litoral paulista.

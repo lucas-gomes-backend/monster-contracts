@@ -23,3 +23,7 @@ A documentação é escrita por partes. Cada parte é um arquivo próprio.
 Casos escritos à mão que servem de gabarito para o gerador.
 
 - [Caso 01 — O bicho do Paquetá](casos/caso-01-o-bicho-do-paqueta.md) (lobisomem brasileiro, Paquetá e Morro São Bento)
+
+## Pesquisa
+
+- [Folclore das criaturas do corte vertical](pesquisa/folclore-corte-vertical.md) (lobisomem, Curupira, corpo-seco, mula sem cabeça)
