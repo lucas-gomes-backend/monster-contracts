@@ -254,7 +254,7 @@ Falhar custa reputação e gera cartas, mas o mundo segue em frente.
 
 ## Exemplo completo
 
-**Bairro:** Alto da Grota, um bairro de mata na periferia da cidade, com chácaras e fazendas pequenas (fictício).
+**Bairro:** Caruara, na área continental de Santos, com sítios, mata e rios. (Pessoas e fazenda fictícias.)
 
 **Verdade (estrutura "Culpado humano" + "Cliente mentiroso"):**
 - Valdomiro, fazendeiro, está desmatando ilegalmente a grota há 3 semanas.

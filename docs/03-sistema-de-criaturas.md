@@ -212,6 +212,7 @@ A cidade é dividida em **bairros**, e **o tipo de bairro define quais criaturas
 | **Antigo / religioso** | Cemitério, igrejas, casarões, terreiros | Corpo-seco, assombrações, onryō, mula sem cabeça |
 | **Orla / rio / porto** | Água, pescadores, galpões | Iara, rusalka, kappa, afogados |
 | **Industrial / abandonado** | Fábricas, galpões vazios, trilhos | Bestas, criptídeos, espíritos de acidentes |
+| **Subterrâneo** (esgotos e galerias) | Escuro, água, túneis, ligado a vários bairros | Ghouls, bestas, criptídeos, espíritos de afogados, lendas urbanas |
 
 ### Criaturas coringa
 
