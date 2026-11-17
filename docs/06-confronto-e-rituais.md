@@ -65,9 +65,18 @@ Usar algo que **não é fraqueza** da criatura não tem efeito, ou piora: ela fi
 
 ### Ferimentos
 
-- **Sem barra de vida tradicional.** O jogador acumula **ferimentos**: leve, grave e crítico.
-  - Ferimentos graves reduzem velocidade e mira.
-  - Um ferimento crítico sem tratamento leva à **morte** e ao **limbo**.
+- **Sem barra de vida tradicional.** O jogador acumula **ferimentos localizados**, cada um com gravidade **leve, grave ou crítica**.
+
+| Parte do corpo | Efeito de ferimento grave |
+|---|---|
+| **Cabeça** | Visão turva, tontura, medo sobe mais rápido |
+| **Tronco** | Fôlego curto: corre menos, cansa mais rápido |
+| **Braço** (cada um) | Mira oscila, recarga lenta, **passos de ritual mais difíceis**. Braço dominante ferido pesa mais |
+| **Perna** (cada uma) | Anda mais devagar, manca, a fuga fica difícil |
+
+- Um ferimento **crítico** em qualquer parte, sem tratamento, leva à **morte** e ao **limbo**. Na cabeça ou no tronco, o crítico é muito mais rápido.
+- **Tratamento em campo:** bandagens e talas estabilizam um ferimento (de crítico para grave, de grave para leve), com a habilidade de **Primeiros socorros** ([12](12-habilidades-e-condicoes.md)). A cura completa só vem com tempo e descanso no interlúdio.
+- O local do ferimento define onde aparece a **cicatriz ou sequela** no modelo do personagem ([09](09-direcao-de-arte-camera-e-personagem.md)), como mancar depois de uma perna mal curada.
 - Ferimentos de criaturas que transmitem condição (mordida de vampiro, de lobisomem) têm chance de **transformar** o jogador ([12](12-habilidades-e-condicoes.md)).
 - Depois do caso, os ferimentos viram tempo de recuperação e, às vezes, **cicatrizes** ([13](13-tempo-morte-e-finais.md)).
 
@@ -114,7 +123,12 @@ Muitas resoluções são **rituais**: banir um espírito, quebrar uma maldição
    - Acender velas e mantê-las acesas.
    - Recitar as palavras **na ordem certa**, escolhendo do caderno.
    - Fazer o gesto ou golpe final no momento certo.
-4. **Sob pressão:** enquanto isso, a criatura resiste, tenta interromper, e o medo sobe.
+4. **Teste de reflexo em cada passo:** além da ordem e da posição, cada passo tem um **teste de tempo**: apertar no momento certo, segurar firme, traçar o símbolo sem sair da linha.
+   - O **medo** e os **braços feridos** fazem a janela de acerto **tremer e diminuir**.
+   - A habilidade **Ocultismo** e o **Sangue-frio** **aumentam** a janela.
+   - Errar o teste **perde o passo**: ele precisa ser repetido, gastando tempo enquanto a criatura pressiona.
+   - Opção de acessibilidade: deixar os testes mais lentos ou automáticos.
+5. **Sob pressão:** enquanto isso, a criatura resiste, tenta interromper, e o medo sobe.
 
 ### Erros no ritual
 
@@ -163,7 +177,7 @@ Muitas resoluções são **rituais**: banir um espírito, quebrar uma maldição
 
 - **Dedução errada:** as fraquezas não funcionam. O jogador percebe na **Revelação** e precisa decidir entre **recuar e investigar mais** ou **improvisar**.
 - **Fuga:**
-  - Para o **carro** (a criatura pode perseguir e danificar o veículo).
+  - Para o **carro**. Por enquanto **não há perseguição jogável**: chegar ao carro e dar a partida é escapar. Mas a criatura pode **danificar o veículo** antes da partida, e um carro avariado pode não pegar.
   - Para uma **zona protegida**: igreja, terreiro, círculo preparado.
   - Esperar a **luz do dia**, para criaturas noturnas.
 - **Recuar não encerra o caso:** o jogador pode voltar a investigar, mas a criatura agora **sabe** que está sendo caçada ([03](03-sistema-de-criaturas.md)).
@@ -222,10 +236,10 @@ O limbo **reaproveita** o sistema de fraquezas e estados deste documento, mas ac
   - Sistema de ritual com 2 ou 3 rituais.
   - Negociação e apaziguamento com o Curupira.
   - Confrontos com lobisomem, Curupira, corpo-seco ou mula sem cabeça, e com o golpista humano.
-- **Depois:** prender e transportar, perseguições de carro, mais rituais.
+- **Depois:** prender e transportar, mais rituais. Perseguição de carro jogável pode ser reavaliada no futuro.
 
-## Questões em aberto
+## Decisões
 
-- Ferimentos são **localizados** (braço, perna) ou gerais?
-- A fuga de carro tem **perseguição jogável** ou é resolvida de forma simples?
-- O ritual usa algum tipo de **teste de reflexo** nos passos, ou é só ordem e posição?
+- **Ferimentos:** localizados (cabeça, tronco, braços, pernas).
+- **Fuga de carro:** sem perseguição jogável por enquanto.
+- **Rituais:** cada passo tem teste de reflexo, além da ordem e da posição.
