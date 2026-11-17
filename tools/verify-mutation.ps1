@@ -89,7 +89,9 @@ $mutants += @(
     @{ name = 'foto ignora o alcance'; path = 'game/presentation/inspecao/mira.gd';
        find = 'if origem.distance_to(ponto) <= alcance and angulo_ate'; replace = 'if angulo_ate' },
     @{ name = 'filme nunca acaba'; path = 'game/presentation/inspecao/album.gd';
-       find = 'if restantes() <= 0:'; replace = 'if false:' }
+       find = 'if restantes() <= 0:'; replace = 'if false:' },
+    @{ name = 'caçador não sobe degrau'; path = 'game/presentation/personagem/cacador.gd';
+       find = '	_subir_degrau(delta)'; replace = '	pass' }
 )
 
 $survivors = @()

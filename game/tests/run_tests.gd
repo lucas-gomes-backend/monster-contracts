@@ -19,12 +19,26 @@ const REPORT_PATH := "user://test_report.json"
 
 var _metric_gate := DEFAULT_METRIC_GATE
 var _filter := ""
+var _rodou := false
+var _quadros := 0
+const QUADROS_ANTES_DE_RODAR := 3
 
 
 func _initialize() -> void:
 	_parse_args()
-	var exit_code := _run()
-	quit(exit_code)
+
+
+## Os testes rodam no primeiro quadro de física com delta, com a árvore de cenas já montada: assim um
+## teste pode pôr uma cena na árvore e andar com move_and_slide (que usa o delta da física).
+## Ver tests/unit/test_fisica_cacador.gd.
+func _physics_process(_delta: float) -> bool:
+	# Nos primeiros quadros o delta que os nós enxergam ainda é 0 (e move_and_slide não
+	# anda): espera alguns quadros de física antes de rodar.
+	_quadros += 1
+	if not _rodou and _quadros >= QUADROS_ANTES_DE_RODAR:
+		_rodou = true
+		quit(_run())
+	return false
 
 
 func _parse_args() -> void:

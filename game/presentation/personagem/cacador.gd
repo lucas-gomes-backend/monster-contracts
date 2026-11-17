@@ -88,6 +88,7 @@ func montar(cfg: Dictionary = {}, cfg_inspecao: Dictionary = {}) -> void:
 	braco.position.x = config["camera_ombro"]
 	braco.margin = 0.1
 	braco.add_excluded_object(get_rid())
+	floor_snap_length = float(config["altura_degrau"]) + 0.05
 	inclinacao.add_child(braco)
 	camera = Camera3D.new()
 	camera.fov = FOV_NORMAL
@@ -200,19 +201,43 @@ func _unhandled_input(evento: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
-func _physics_process(delta: float) -> void:
-	var entrada := Vector2.ZERO
-	if not bloqueado:
-		entrada = Input.get_vector("mover_esquerda", "mover_direita", "mover_tras", "mover_frente")
-	mirando = not bloqueado and Input.is_action_pressed("mirar")
-	var correndo := Input.is_action_pressed("correr") and not mirando
+## Um passo de física: acelera, cai, sobe degrau baixo (meio-fio) e anda.
+## Separado do _physics_process para os testes andarem o caçador sem teclado.
+func passo(entrada: Vector2, correndo: bool, delta: float) -> void:
 	var alvo := velocidade_alvo(entrada, yaw, correndo, config)
 	velocity = acelerar(velocity, alvo, config["aceleracao"], delta)
 	if is_on_floor():
 		velocity.y = 0.0
 	else:
 		velocity.y -= float(config["gravidade"]) * delta
+	_subir_degrau(delta)
 	move_and_slide()
+
+
+## O corpo de física trata um degrau como parede. Se o caminho à frente está bloqueado,
+## mas logo acima (até altura_degrau) está livre, o caçador sobe; o encaixe no chão
+## (floor_snap_length) assenta ele no degrau.
+func _subir_degrau(delta: float) -> void:
+	var avanco := Vector3(velocity.x, 0.0, velocity.z) * delta
+	if avanco.length() < 0.0001 or not is_on_floor():
+		return
+	if not test_move(global_transform, avanco):
+		return
+	var subida := Vector3(0.0, float(config["altura_degrau"]), 0.0)
+	if test_move(global_transform, subida):
+		return
+	if test_move(global_transform.translated(subida), avanco):
+		return
+	global_position += subida
+
+
+func _physics_process(delta: float) -> void:
+	var entrada := Vector2.ZERO
+	if not bloqueado:
+		entrada = Input.get_vector("mover_esquerda", "mover_direita", "mover_tras", "mover_frente")
+	mirando = not bloqueado and Input.is_action_pressed("mirar")
+	var correndo := Input.is_action_pressed("correr") and not mirando
+	passo(entrada, correndo, delta)
 	# O corpo vira, suave, para onde está andando (ou para onde mira); a câmera não gira junto.
 	var plano := Vector2(velocity.x, velocity.z)
 	var giro := minf(1.0, float(config["giro_do_corpo"]) * delta)

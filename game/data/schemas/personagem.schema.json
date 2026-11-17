@@ -2,7 +2,7 @@
   "$comment": "Movimento e câmera (game/data/config/personagem.json).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["velocidade_andar", "velocidade_correr", "aceleracao", "gravidade", "giro_do_corpo", "sensibilidade_mouse", "inclinacao_minima", "inclinacao_maxima", "camera_distancia", "camera_ombro", "camera_altura", "altura_do_corpo", "raio_do_corpo"],
+  "required": ["velocidade_andar", "velocidade_correr", "aceleracao", "gravidade", "giro_do_corpo", "sensibilidade_mouse", "inclinacao_minima", "inclinacao_maxima", "camera_distancia", "camera_ombro", "camera_altura", "altura_do_corpo", "raio_do_corpo", "altura_degrau"],
   "properties": {
     "$comment": {"type": "string"},
     "velocidade_andar": {"type": "number", "minimum": 0},
@@ -17,6 +17,7 @@
     "camera_ombro": {"type": "number"},
     "camera_altura": {"type": "number", "minimum": 0},
     "altura_do_corpo": {"type": "number", "minimum": 0.5},
-    "raio_do_corpo": {"type": "number", "minimum": 0.1}
+    "raio_do_corpo": {"type": "number", "minimum": 0.1},
+    "altura_degrau": {"type": "number", "minimum": 0, "maximum": 0.6}
   }
 }

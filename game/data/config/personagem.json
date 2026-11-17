@@ -1,5 +1,5 @@
 {
-  "$comment": "Movimento do caçador e câmera por cima do ombro (docs/09, 'Câmera e controles'). Distâncias em metros, ângulos em graus.",
+  "$comment": "Movimento do caçador e câmera por cima do ombro (docs/09, 'Câmera e controles'). Distâncias em metros, ângulos em graus. altura_degrau: o maior degrau que ele sobe andando (meio-fio 0,15; passarela do esgoto 0,4).",
   "velocidade_andar": 2.6,
   "velocidade_correr": 5.0,
   "aceleracao": 14.0,
@@ -12,5 +12,6 @@
   "camera_ombro": 0.75,
   "camera_altura": 1.65,
   "altura_do_corpo": 1.75,
-  "raio_do_corpo": 0.3
+  "raio_do_corpo": 0.3,
+  "altura_degrau": 0.45
 }
