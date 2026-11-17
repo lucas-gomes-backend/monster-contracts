@@ -1,0 +1,8 @@
+{
+  "$comment": "Custos de tempo da investigação em texto (docs/05, 'Tempo e pressão').",
+  "minutos_ir_ao_local": 20,
+  "minutos_examinar_local": 30,
+  "minutos_pesquisar_registros": 150,
+  "deteccao_inicial": ["olho_nu", "entrevista", "pesquisa"],
+  "modo_padrao": "padrao"
+}

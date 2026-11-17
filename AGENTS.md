@@ -43,6 +43,7 @@
 | Portão completo | `.\tools\verify.ps1` |
 | Só os testes | `.\tools\run_tests.ps1 [-Filter nome]` |
 | Provar que o portão reprova | `.\tools\verify-mutation.ps1` |
+| Jogar um caso em texto | `.\tools\jogar.ps1 -Semente 7 [-Comandos roteiro.txt]` |
 | Estatísticas do gerador de casos | `.\tools\lote.ps1 [-Casos 500]` |
 | Gerador mudou de propósito | `.\tools\lote.ps1 -AtualizarReferencia` (e explique no commit) |
 | Abrir o editor | `godot --path game --editor` |

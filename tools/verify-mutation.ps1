@@ -61,7 +61,15 @@ $mutants += @(
     @{ name = 'um boletim vira padrão'; path = 'game/core/casos/solucionador.gd';
        find = 'const MINIMO_BOLETINS_PADRAO := 2'; replace = 'const MINIMO_BOLETINS_PADRAO := 1' },
     @{ name = 'gerador muda sem atualizar a referência'; path = 'game/data/config/casos.json';
-       find = '"chance_boletim": 0.5'; replace = '"chance_boletim": 0.9' }
+       find = '"chance_boletim": 0.5'; replace = '"chance_boletim": 0.9' },
+    @{ name = 'sessão acha pista vencida'; path = 'game/core/investigacao/sessao.gd';
+       find = 'if not _detectavel(pista) or not Pistas.disponivel(pista, minuto):'; replace = 'if not _detectavel(pista):' },
+    @{ name = 'sessão acha pista de outro lugar'; path = 'game/core/investigacao/sessao.gd';
+       find = 'if pista["tipo"] != "marca" or pista["local"] != local:'; replace = 'if pista["tipo"] != "marca":' },
+    @{ name = 'caderno não filtra as compatíveis'; path = 'game/core/caderno/caderno.gd';
+       find = 'if not _especies[id].has(tag):'; replace = 'if false:' },
+    @{ name = 'caderno liga evidência que não tem'; path = 'game/core/caderno/caderno.gd';
+       find = 'if not _pistas.has(fonte) and not _depoimentos.has(fonte):'; replace = 'if false:' }
 )
 
 $survivors = @()

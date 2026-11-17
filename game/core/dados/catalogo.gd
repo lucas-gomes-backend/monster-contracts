@@ -47,6 +47,21 @@ static func carregar_config_testemunhas() -> Dictionary:
 	return carregar_validado("res://data/config/testemunhas.json", "res://data/schemas/testemunhas.schema.json")
 
 
+## Custos de tempo da investigação, validados.
+static func carregar_config_investigacao() -> Dictionary:
+	return carregar_validado("res://data/config/investigacao.json", "res://data/schemas/investigacao.schema.json")
+
+
+## Textos das marcas: {tag: {"pista": ..., "caracteristica": ...}}.
+static func carregar_textos_marcas() -> Dictionary:
+	var dados: Variant = ler_json("res://data/textos/marcas.json")
+	if not dados is Dictionary:
+		return {"dados": {}, "erros": ["res://data/textos/marcas.json: ausente ou inválido"] as Array[String]}
+	var textos: Dictionary = dados.duplicate()
+	textos.erase("$comment")
+	return {"dados": textos, "erros": [] as Array[String]}
+
+
 ## Um bairro abstrato pelo id (res://data/neighborhoods/<id>.json), validado.
 static func carregar_bairro(id_bairro: String) -> Dictionary:
 	var resultado := carregar_validado("res://data/neighborhoods/%s.json" % id_bairro, "res://data/schemas/bairro.schema.json")
