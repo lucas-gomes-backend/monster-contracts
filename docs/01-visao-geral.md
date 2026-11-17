@@ -25,6 +25,7 @@ Você é um caçador que aceita contratos para resolver casos sobrenaturais. Cad
 - Falsos positivos: golpes humanos, criaturas parecidas, clientes mentirosos.
 - Contratos de negociação, proteção e expulsão — não apenas de caça.
 - Regionalização: a mesma ameaça muda de nome, ritual e fraqueza conforme a cultura.
+- Condições paranormais: o caçador pode virar o que caça (vampiro, lobisomem, pacto) — com poderes, fraquezas, estigma social e outros caçadores investigando **você** com o mesmo sistema de casos.
 
 ## Fora do escopo (por enquanto)
 

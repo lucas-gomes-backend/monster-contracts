@@ -10,10 +10,11 @@ O pilar "dedução justa" continua valendo: **nenhum equipamento resolve o caso 
 
 - **Investigação:** equipamento melhor coleta pistas **mais rápido, mais longe ou de tipos novos**, mas quem deduz é sempre o jogador.
 - **Confronto:** armas melhores dão **mais margem de erro e mais opções**, como mais munição, munições especiais e maior confiabilidade. Arma lendária contra a criatura errada continua falhando.
-- **Sem níveis de personagem:** o caçador não ganha "pontos de força". A evolução vem de três fontes:
+- **Sem níveis genéricos:** o caçador não ganha "pontos de força". A evolução vem de quatro fontes:
   1. **Equipamento**: o que você carrega.
   2. **Reputação**: quem confia em você e que contratos você recebe.
   3. **Conhecimento**: o que o seu bestiário e os seus livros sabem.
+  4. **Habilidades e condições**: técnicas humanas aprendidas e transformações paranormais. Ver [12 — Habilidades e condições](12-habilidades-e-condicoes.md).
 
 ## Recursos
 
