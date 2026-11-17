@@ -6,7 +6,11 @@ Inspirações: *Supernatural* (tom e premissa), *Shadow of Doubt* (simulação e
 
 ## Status
 
-Pré-produção — montando a documentação de design.
+Pré-produção. A primeira versão da documentação de design está completa (partes 01 a 13). Próximo passo: Fase 0 do [roadmap](docs/11-roadmap.md).
+
+- **Cenário:** Santos (SP), numa versão sobrenatural.
+- **Motor:** Godot 4 (GDScript).
+- **Estética:** PlayStation 1, terceira pessoa.
 
 ## Documentação
 
