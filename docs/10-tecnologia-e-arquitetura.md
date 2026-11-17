@@ -245,26 +245,31 @@ O GDScript não tem `try/catch`. Um erro de execução dentro de um teste aparec
 
 ---
 
-## Estrutura de pastas (proposta)
+## Estrutura de pastas
 
 ```
 monster-contracts/
+├── AGENTS.md, CLAUDE.md   # índice para agentes de código
+├── rules/                 # regras verificáveis (testes, determinismo, critérios, implementação)
 ├── docs/                  # documentação de design
-├── tools/                 # ferramentas offline em Python (importador do mapa, validadores)
-├── data/                  # conteúdo em JSON
-│   ├── creatures/         # fichas de criaturas
-│   ├── neighborhoods/     # bairros importados de Santos
-│   ├── items/             # armas, equipamentos, roupas
-│   ├── rituals/           # rituais e testes de campo
-│   └── schemas/           # esquemas de validação
+├── tools/                 # portão (verify.ps1), testes, mutação; ferramentas em Python
+├── artifacts/             # código da página do Diário do Caçador
 ├── game/                  # projeto Godot
-│   ├── core/              # NÚCLEO: simulação, sem cenas
+│   ├── data/              # conteúdo em JSON (dentro do projeto, para o Godot ler por res://)
+│   │   ├── creatures/     # fichas de criaturas
+│   │   ├── neighborhoods/ # bairros importados de Santos
+│   │   ├── items/         # armas, equipamentos, roupas
+│   │   ├── rituals/       # rituais e testes de campo
+│   │   └── schemas/       # esquemas de validação
+│   ├── core/              # NÚCLEO: simulação, sem cenas (rng, dados, criaturas…)
 │   ├── presentation/      # cenas 3D, câmera, personagens, shaders
 │   ├── ui/                # caderno, menus, mochila
 │   ├── assets/            # modelos, texturas, áudio (Git LFS)
-│   └── tests/             # framework, executor e testes (unit/, gates/)
+│   └── tests/             # framework, executor, testes (unit/, arch/, gates/) e baselines/
 └── README.md
 ```
+
+A pasta `data/` fica **dentro** de `game/` porque o Godot só lê arquivos do próprio projeto (`res://`). Ao exportar o jogo, incluir `*.json` no filtro de exportação.
 
 ---
 

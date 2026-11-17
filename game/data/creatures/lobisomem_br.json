@@ -1,0 +1,55 @@
+{
+  "id": "lobisomem_br",
+  "nome": "Lobisomem",
+  "nomes_alternativos": ["lobisome", "lobisomem brasileiro"],
+  "origem": "brasil",
+  "bairros": ["coringa"],
+  "familia": ["amaldicoado", "metamorfo"],
+  "natureza": "corporea",
+  "inteligencia": "instintiva",
+  "disposicao": "hostil",
+  "perigo": 3,
+  "ciclo": {
+    "horario": "meia_noite",
+    "dias": ["quinta", "sexta"],
+    "lua": "cheia_bonus",
+    "limite": "terceiro canto do galo"
+  },
+  "gatilhos": ["setimo_filho_homem", "padrinho_nao_e_o_irmao_mais_velho"],
+  "necessidade": {
+    "tipo": "corrida_por_sete_cemiterios_ou_encruzilhadas",
+    "frequencia": "semanal",
+    "escalada": "passa de galinheiros e animais para pessoas sozinhas na rua"
+  },
+  "caca": {
+    "vitimas": ["galinheiros", "chiqueiros", "animais", "pessoas_sozinhas"],
+    "metodo": "ataque rapido durante a corrida noturna",
+    "territorio_m": 3000
+  },
+  "covil": ["terreno_baldio_perto_de_casa"],
+  "disfarce": {
+    "tipo": "forma_humana",
+    "sinais": ["palido_e_magro", "cansado_aos_sabados", "arranhoes", "some_na_noite_de_quinta_para_sexta"]
+  },
+  "marcas": [
+    {"tag": "pegadas_cao_grande", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
+    {"tag": "galinheiro_atacado", "onde": "cena", "freq": "comum", "detectar": "olho_nu"},
+    {"tag": "pelos_escuros_grossos", "onde": "cena", "freq": "comum", "detectar": "laboratorio"},
+    {"tag": "mordida_arcada_grande", "onde": "corpo", "freq": "comum", "detectar": "laboratorio"},
+    {"tag": "corrida_em_cemiterio", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
+    {"tag": "ataques_noite_quinta_sexta", "onde": "registro", "freq": "sempre", "detectar": "pesquisa"},
+    {"tag": "morador_some_noite_quinta_sexta", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
+    {"tag": "roupas_rasgadas_escondidas", "onde": "covil", "freq": "rara", "detectar": "olho_nu"}
+  ],
+  "fraquezas": [
+    {"item": "arma_branca_benzida", "efeito": ["fere", "revela", "cura"]},
+    {"item": "figa_e_arruda", "efeito": ["afasta"]},
+    {"item": "correntes", "efeito": ["prende"]}
+  ],
+  "tabus": ["precisa completar a corrida antes do terceiro canto do galo, senao fica fera"],
+  "resolucoes": ["curar", "prender", "matar"],
+  "condicao_transmitida": null,
+  "fontes": ["docs/pesquisa/folclore-corte-vertical.md#1-lobisomem-versão-brasileira"],
+  "invencoes_do_jogo": ["a arma que cura precisa ser benzida", "roupas rasgadas escondidas perto de casa"],
+  "a_confirmar": ["variacoes do litoral paulista"]
+}

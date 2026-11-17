@@ -18,7 +18,3 @@ const CASOS_POR_LOTE := 100
 
 func test_casos_gerados_passam_na_validacao() -> void:
 	skip("o gerador de casos chega na Fase 1")
-
-
-func test_matriz_de_distincao_das_criaturas() -> void:
-	skip("as fichas de criaturas chegam na Fase 1")

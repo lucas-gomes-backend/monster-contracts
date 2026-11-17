@@ -15,8 +15,11 @@
 
 ## Conteúdo é dado
 
-- Criaturas, itens, rituais, bairros e testes de campo ficam em `data/` como JSON,
-  validados por esquema em `data/schemas/`. Nunca como `enum` ou constante no código.
+- Criaturas, itens, rituais, bairros e testes de campo ficam em `game/data/` como JSON,
+  validados por esquema em `game/data/schemas/` (`core/dados/esquema.gd`).
+  Nunca como `enum` ou constante no código.
+- Fatos de folclore que não vieram das fontes ficam em `invencoes_do_jogo` na ficha;
+  dúvidas ficam em `a_confirmar`. Honestidade sobre o que é inventado.
 - Adicionar uma criatura não pode exigir mudar código do núcleo.
 
 ## Docs e regras

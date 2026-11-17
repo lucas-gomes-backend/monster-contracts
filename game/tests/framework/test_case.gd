@@ -68,7 +68,7 @@ func assert_has(collection: Variant, item: Variant, message: String = "") -> voi
 
 ## Falha o teste na hora, com uma mensagem.
 func fail(message: String) -> void:
-	_fail("falha explícita", message)
+	_failures.append(message)
 
 
 ## Marca o teste como pulado. Testes pulados não contam no portão.

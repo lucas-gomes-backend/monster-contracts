@@ -10,7 +10,7 @@
 - Antes de dizer "pronto" ou de commitar: `.\tools\verify.ps1` precisa sair 0.
   Quem decide se está pronto é o portão, não quem escreveu o código.
 - Toda aleatoriedade do núcleo vem de `game/core/rng.gd`. Ver `rules/determinismo.md`.
-- Conteúdo é dado: criaturas, itens, bairros e rituais em `data/` (JSON), nunca fixos no código.
+- Conteúdo é dado: criaturas, itens, bairros e rituais em `game/data/` (JSON), nunca fixos no código.
 - Arquivos de `rules/`, `AGENTS.md` e `CLAUDE.md`: no máximo 100 linhas.
 - Escreva docs e mensagens em português do Brasil.
 - Atualize o Diário do Caçador (roadmap interativo) a cada decisão nova e a cada tarefa concluída.
@@ -66,7 +66,7 @@
 | `rules/*.md` | Regras verificáveis, lidas sob demanda |
 | `tools/*.ps1` | Comandos repetíveis (portão, testes, mutação) |
 | `docs/` | Design do jogo (humanos) |
-| `data/` | Conteúdo em JSON |
+| `game/data/` | Conteúdo em JSON (criaturas, esquemas) |
 | `game/core/` | Núcleo de simulação (sem nós, sem cenas) |
 | `game/tests/` | Framework, executor, testes e referências (`baselines/`) |
 | `artifacts/` | Código da página do Diário do Caçador |

@@ -1,0 +1,48 @@
+{
+  "id": "golpe_humano",
+  "nome": "Golpe humano",
+  "nomes_alternativos": ["assombracao falsa", "fraude"],
+  "origem": "humana",
+  "bairros": ["coringa"],
+  "familia": ["humano"],
+  "natureza": "corporea",
+  "inteligencia": "ardilosa",
+  "disposicao": "neutra",
+  "perigo": 1,
+  "ciclo": {
+    "horario": "noite",
+    "lua": "independe"
+  },
+  "gatilhos": ["heranca_em_disputa", "querer_vender_ou_desvalorizar_imovel", "esconder_outro_crime"],
+  "necessidade": {
+    "tipo": "convencer_que_ha_algo_sobrenatural",
+    "frequencia": "quando_provocada",
+    "escalada": "cria efeitos mais ousados quando alguem comeca a duvidar"
+  },
+  "caca": {
+    "vitimas": ["moradores", "herdeiros", "compradores"],
+    "metodo": "efeitos encenados: barulhos, vultos, objetos que mexem",
+    "territorio_m": 200
+  },
+  "covil": ["sotao_ou_porao_com_equipamento"],
+  "disfarce": {
+    "tipo": "forma_humana",
+    "sinais": ["interesse_financeiro", "sempre_presente_quando_acontece"]
+  },
+  "marcas": [
+    {"tag": "pegadas_de_sapato", "onde": "cena", "freq": "comum", "detectar": "olho_nu"},
+    {"tag": "equipamento_de_efeito_escondido", "onde": "covil", "freq": "comum", "detectar": "olho_nu"},
+    {"tag": "relatos_de_uma_unica_fonte", "onde": "testemunha", "freq": "sempre", "detectar": "entrevista"},
+    {"tag": "beneficio_financeiro_registrado", "onde": "registro", "freq": "sempre", "detectar": "pesquisa"},
+    {"tag": "contradicoes_no_relato", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"}
+  ],
+  "fraquezas": [
+    {"item": "provas_documentais", "efeito": ["revela"]}
+  ],
+  "tabus": [],
+  "resolucoes": ["expor"],
+  "condicao_transmitida": null,
+  "fontes": ["docs/04-geracao-de-casos.md (estrutura Golpe)"],
+  "invencoes_do_jogo": ["ficha inteira: nao e uma criatura do folclore"],
+  "a_confirmar": []
+}

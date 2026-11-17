@@ -1,0 +1,92 @@
+{
+  "$comment": "Ficha de criatura (docs/03-sistema-de-criaturas.md). Validada por core/dados/esquema.gd, que entende um subconjunto de JSON Schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "nome", "origem", "bairros", "familia", "natureza", "inteligencia", "disposicao", "perigo", "ciclo", "gatilhos", "necessidade", "caca", "disfarce", "marcas", "fraquezas", "resolucoes", "fontes"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "nome": {"type": "string", "minLength": 1},
+    "nomes_alternativos": {"type": "array", "items": {"type": "string"}},
+    "origem": {"type": "string", "minLength": 1},
+    "bairros": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/tipo_bairro"}},
+    "familia": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["morto_vivo", "metamorfo", "amaldicoado", "espirito", "natureza", "trapaceiro", "demonio", "besta", "humano"]}},
+    "natureza": {"enum": ["corporea", "espiritual", "hibrida"]},
+    "inteligencia": {"enum": ["instintiva", "astuta", "ardilosa"]},
+    "disposicao": {"enum": ["hostil", "neutra", "protetora", "ressentida"]},
+    "perigo": {"type": "integer", "minimum": 1, "maximum": 5},
+    "ciclo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["horario"],
+      "properties": {
+        "horario": {"enum": ["noite", "dia", "crepusculo", "qualquer", "meia_noite", "hora_do_boi"]},
+        "dias": {"type": "array", "uniqueItems": true, "items": {"enum": ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"]}},
+        "lua": {"enum": ["cheia", "nova", "cheia_bonus", "independe"]},
+        "limite": {"type": "string"},
+        "datas": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "gatilhos": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "necessidade": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tipo", "frequencia", "escalada"],
+      "properties": {
+        "tipo": {"type": "string"},
+        "frequencia": {"enum": ["diaria", "semanal", "ciclo_lunar", "quando_provocada", "continua"]},
+        "escalada": {"type": "string"}
+      }
+    },
+    "caca": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["vitimas", "metodo"],
+      "properties": {
+        "vitimas": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "metodo": {"type": "string"},
+        "territorio_m": {"type": "integer", "minimum": 0}
+      }
+    },
+    "covil": {"type": "array", "items": {"type": "string"}},
+    "disfarce": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tipo"],
+      "properties": {
+        "tipo": {"enum": ["forma_humana", "possessao", "invisivel", "animal_ou_objeto", "nenhum"]},
+        "sinais": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "marcas": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/marca"}},
+    "fraquezas": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fraqueza"}},
+    "tabus": {"type": "array", "items": {"type": "string"}},
+    "resolucoes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["matar", "banir", "prender", "curar", "apaziguar", "negociar", "expor"]}},
+    "condicao_transmitida": {"type": ["string", "null"]},
+    "fontes": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "invencoes_do_jogo": {"type": "array", "items": {"type": "string"}},
+    "a_confirmar": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "tipo_bairro": {"enum": ["mata", "residencial_denso", "centro", "antigo_religioso", "orla", "industrial", "subterraneo", "coringa"]},
+    "marca": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tag", "onde", "freq", "detectar"],
+      "properties": {
+        "tag": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "onde": {"enum": ["cena", "corpo", "testemunha", "ambiente", "registro", "covil"]},
+        "freq": {"enum": ["sempre", "comum", "rara"]},
+        "detectar": {"enum": ["olho_nu", "entrevista", "pesquisa", "uv", "emf", "termica", "laboratorio", "habilidade"]}
+      }
+    },
+    "fraqueza": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["item", "efeito"],
+      "properties": {
+        "item": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+        "efeito": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["afasta", "fere", "revela", "prende", "destroi", "cura", "apazigua", "distrai", "bane"]}}
+      }
+    }
+  }
+}

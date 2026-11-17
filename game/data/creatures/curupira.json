@@ -1,0 +1,49 @@
+{
+  "id": "curupira",
+  "nome": "Curupira",
+  "nomes_alternativos": ["currupira"],
+  "origem": "brasil_tupi",
+  "bairros": ["mata"],
+  "familia": ["natureza"],
+  "natureza": "hibrida",
+  "inteligencia": "astuta",
+  "disposicao": "protetora",
+  "perigo": 3,
+  "ciclo": {
+    "horario": "qualquer",
+    "lua": "independe"
+  },
+  "gatilhos": ["desmatamento", "caca_por_crueldade", "matar_femea_com_filhotes"],
+  "necessidade": {
+    "tipo": "proteger_a_mata_e_os_animais",
+    "frequencia": "quando_provocada",
+    "escalada": "de confundir e assustar para fazer o infrator sumir na mata"
+  },
+  "caca": {
+    "vitimas": ["desmatadores", "cacadores_cruéis"],
+    "metodo": "despista com pegadas invertidas, assobios e vozes ate a pessoa se perder",
+    "territorio_m": 2000
+  },
+  "covil": ["mata_fechada"],
+  "disfarce": {
+    "tipo": "invisivel",
+    "sinais": ["assobios", "vozes_imitadas", "caca_que_some"]
+  },
+  "marcas": [
+    {"tag": "pegadas_invertidas", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
+    {"tag": "pessoas_perdidas_andando_em_circulo", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
+    {"tag": "assobios_na_mata", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
+    {"tag": "desmatamento_ou_caca_predatoria", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
+    {"tag": "armadilhas_desarmadas", "onde": "cena", "freq": "rara", "detectar": "olho_nu"}
+  ],
+  "fraquezas": [
+    {"item": "oferenda_fumo_e_cachaca", "efeito": ["apazigua"]},
+    {"item": "tranca_de_pano_ou_palha", "efeito": ["distrai"]}
+  ],
+  "tabus": ["tolera a caca para comer", "nao perdoa crueldade nem destruicao da mata"],
+  "resolucoes": ["apaziguar", "negociar"],
+  "condicao_transmitida": "marca_da_mata",
+  "fontes": ["docs/pesquisa/folclore-corte-vertical.md#2-curupira"],
+  "invencoes_do_jogo": ["armadilhas desarmadas como pista", "a Marca da Mata como condicao do jogador"],
+  "a_confirmar": []
+}

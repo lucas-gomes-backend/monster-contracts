@@ -17,6 +17,10 @@ $mutants = @(
        body = "extends Node`n" },
     @{ name = 'erro de parse em teste';      path = 'game/tests/unit/test_mutante.gd';
        body = "extends `"res://tests/framework/test_case.gd`"`nfunc test_mutante_quebrado() -> void`n`tassert_true(true)`n" },
+    @{ name = 'ficha de criatura inválida';   path = 'game/data/creatures/mutante.json';
+       body = "{`"id`": `"mutante`", `"nome`": `"Sem o resto da ficha`"}" },
+    @{ name = 'duas criaturas indistinguíveis'; path = 'game/data/creatures/lobisomem_clone.json';
+       body = ([IO.File]::ReadAllText((Join-Path $root 'game/data/creatures/lobisomem_br.json'), [Text.Encoding]::UTF8) -replace '"id": "lobisomem_br"', '"id": "lobisomem_clone"') },
     @{ name = 'regra com mais de 100 linhas'; path = 'rules/mutante.md';
        body = (("linha`n") * 150) }
 )

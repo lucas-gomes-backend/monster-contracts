@@ -1,0 +1,50 @@
+{
+  "id": "corpo_seco",
+  "nome": "Corpo-seco",
+  "nomes_alternativos": ["corpo seco"],
+  "origem": "brasil_tradicao_portuguesa",
+  "bairros": ["antigo_religioso"],
+  "familia": ["morto_vivo"],
+  "natureza": "corporea",
+  "inteligencia": "astuta",
+  "disposicao": "ressentida",
+  "perigo": 4,
+  "ciclo": {
+    "horario": "noite",
+    "lua": "independe"
+  },
+  "gatilhos": ["cova_perturbada", "aniversario_da_morte"],
+  "necessidade": {
+    "tipo": "vagar_e_assustar_quem_lembra_a_familia_que_feriu",
+    "frequencia": "semanal",
+    "escalada": "de assustar para atacar parentes e vizinhos da familia"
+  },
+  "caca": {
+    "vitimas": ["parentes_da_familia", "quem_passa_no_cemiterio_a_noite"],
+    "metodo": "aparece como vulto magro e ataca por tras",
+    "territorio_m": 1000
+  },
+  "covil": ["cova_antiga", "casa_abandonada_da_familia"],
+  "disfarce": {
+    "tipo": "nenhum",
+    "sinais": ["vulto_magro_e_ressecado"]
+  },
+  "marcas": [
+    {"tag": "cova_revirada", "onde": "cena", "freq": "comum", "detectar": "olho_nu"},
+    {"tag": "cadaver_sem_decomposicao", "onde": "covil", "freq": "comum", "detectar": "olho_nu"},
+    {"tag": "cheiro_de_podre", "onde": "ambiente", "freq": "comum", "detectar": "olho_nu"},
+    {"tag": "vulto_magro_avistado", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
+    {"tag": "historico_de_violencia_familiar", "onde": "registro", "freq": "sempre", "detectar": "pesquisa"}
+  ],
+  "fraquezas": [
+    {"item": "agua_benta", "efeito": ["afasta"]},
+    {"item": "ritual_de_sepultamento", "efeito": ["bane"]},
+    {"item": "sal_grosso", "efeito": ["prende"]}
+  ],
+  "tabus": ["a terra rejeita o corpo"],
+  "resolucoes": ["banir", "prender"],
+  "condicao_transmitida": null,
+  "fontes": ["docs/pesquisa/folclore-corte-vertical.md#3-corpo-seco"],
+  "invencoes_do_jogo": ["todas as resolucoes (as fontes nao dizem como resolver)", "cheiro de podre e covil na casa abandonada"],
+  "a_confirmar": ["imagem do corpo preso a uma arvore", "como a lenda resolve o corpo-seco"]
+}
