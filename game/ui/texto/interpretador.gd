@@ -26,6 +26,36 @@ func _init(sessao_investigacao: RefCounted, criaturas: Dictionary, textos_marcas
 		_npcs[npc["id"]] = npc
 
 
+# --- Textos usados também pela janela (ui/jogo.gd) ---
+
+func texto_pista(pista: Dictionary) -> String:
+	return _texto_pista(pista)
+
+
+func texto_depoimento(dep: Dictionary) -> String:
+	return _texto_depoimento(dep)
+
+
+func texto_caracteristica(tag: String) -> String:
+	return _textos.get(tag, {}).get("caracteristica", tag)
+
+
+func data(minuto: int) -> String:
+	return _data(minuto)
+
+
+func nome_local(local: String) -> String:
+	return _nome_local(local)
+
+
+func nome(npc_id: String) -> String:
+	return _nome(npc_id)
+
+
+func descrever_pessoa(npc: Dictionary) -> String:
+	return _descrever_pessoa(npc)
+
+
 func abertura() -> String:
 	return "\n".join([
 		"MONSTER CONTRACTS — investigação em texto (Fase 1)",
