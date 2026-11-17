@@ -39,7 +39,8 @@ Todo caso tem três perguntas. Responder mais delas libera **resoluções melhor
 
 ### 1. Local
 
-- Escolhe a região e a cidade, montada com módulos ([07](07-mundo-cidades-e-npcs.md)).
+- Escolhe a cidade, montada com módulos ([07](07-mundo-cidades-e-npcs.md)), e o **bairro** onde o caso acontece.
+- O **tipo de bairro** define as criaturas possíveis, mais as coringas ([03](03-sistema-de-criaturas.md)).
 - A cidade já tem a população de NPCs, com rotinas, casas e relações.
 
 ### 2. A verdade
@@ -59,7 +60,7 @@ Casos com **duas criaturas** ao mesmo tempo ficam para depois do corte vertical.
 
 ### 3. Instância da criatura
 
-- Escolhe a espécie no **bestiário da região** e gera a semente: idade, personalidade, preferências.
+- Escolhe a espécie entre as **criaturas do tipo de bairro** e as **coringas**, e gera a semente: idade, personalidade, preferências.
 - Escolhe a **identidade humana** entre os NPCs da cidade, se a espécie tiver disfarce.
 - Escolhe o **covil** num local coerente com a ficha.
 
@@ -72,7 +73,7 @@ Casos com **duas criaturas** ao mesmo tempo ficam para depois do corte vertical.
 
 ### 5. Pré-simulação
 
-- Roda a simulação por **N dias antes do contrato**. N depende da dificuldade e da escalada desejada.
+- Roda a simulação por **10 dias antes do contrato**.
 - Cada evento (ataque, avistamento, alimentação, mudança de covil) **deposita marcas**:
   - **Objetos e vestígios** na cena: pegadas, pelos, sangue, objetos fora do lugar.
   - **Ferimentos** nas vítimas, que o legista ou o hospital registram.
@@ -209,6 +210,46 @@ O resultado de cada caso **fica no mundo** e pode **gerar casos futuros**:
 - Um culpado humano que escapou causa outro problema.
 - A reputação regional e a suspeita da polícia mudam ([08](08-economia-e-progressao.md)).
 
+### Cartas e presentes
+
+Depois do caso, **chegam cartas e presentes na casa do jogador** (motel, casa ou base). É a forma mais direta de mostrar o peso das escolhas.
+
+| Resultado do caso | O que chega |
+|---|---|
+| **Pessoas salvas** | Cartas de agradecimento, desenhos de crianças, comida caseira, pequenos presentes (às vezes itens úteis), dinheiro extra |
+| **Criatura poupada ou apaziguada** | Um "presente" estranho deixado na porta: penas, objetos antigos, oferendas, um material raro |
+| **Vítimas morreram por demora** | Cartas tristes de familiares, perguntando por que você não chegou antes |
+| **Inocente morto** (humano acusado errado, criatura inofensiva, amaldiçoado que podia ser curado) | Cartas de culpa, com **xingamentos, raiva e luto**, contando quem era a pessoa e o que ela deixou para trás |
+| **Cliente enganado ou exposto** | Ameaças, processos, cartas de advogado |
+
+- As cartas são **geradas a partir do caso**: citam nomes, lugares e o que aconteceu de verdade.
+- Ficam guardadas na casa, num **mural ou numa caixa** que o jogador pode reler.
+- Algumas cartas **iniciam casos futuros**: um pedido de ajuda, uma ameaça de vingança.
+- O conjunto de cartas entra no **epílogo** da aposentadoria ([13](13-tempo-morte-e-finais.md)).
+
+---
+
+## Recusa e falha do caso
+
+### Recusar um contrato já começado
+
+O jogador pode **abandonar** um caso a qualquer momento, com custo:
+
+- Perde a recompensa e parte da **reputação**.
+- A criatura **continua agindo**: as vítimas seguintes viram cartas tristes e podem gerar um caso pior depois.
+- O cliente pode **contratar outro caçador** ou virar inimigo.
+
+### O caso pode falhar sozinho
+
+O caso **falha sem o jogador** quando:
+
+- **O prazo acaba** e o cliente desiste.
+- **O cliente morre** ou foge.
+- **Outro caçador resolve primeiro**, e talvez do jeito errado.
+- **A criatura muda de bairro** ou some, e pode reaparecer depois em outro caso.
+
+Falhar custa reputação e gera cartas, mas o mundo segue em frente.
+
 ---
 
 ## Exemplo completo
@@ -247,9 +288,10 @@ O resultado de cada caso **fica no mundo** e pode **gerar casos futuros**:
 
 ---
 
-## Questões em aberto
+## Decisões
 
-- Quantos dias de pré-simulação por caso? Sugestão: entre 3 e 21 dias, conforme a dificuldade.
-- O jogador pode **recusar** um contrato depois de começar a investigar? Com que custo?
-- O caso pode **falhar sozinho** (o prazo acabou, o cliente morreu, outro caçador resolveu)?
-- Quanto tempo de jogo, em média, um caso deve durar? Com a carreira de 10 h e 20 a 30 casos, a referência é de **20 a 30 minutos por caso**.
+- **Pré-simulação:** 10 dias antes do contrato.
+- **Recusar caso começado:** sim, com custo.
+- **Falha sozinha:** sim.
+- **Duração de um caso:** 20 a 30 minutos de jogo.
+- **Consequências:** cartas e presentes, ou cartas de culpa, chegam na casa do jogador.

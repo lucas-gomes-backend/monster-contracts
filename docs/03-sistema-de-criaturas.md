@@ -197,6 +197,39 @@ Dormente ──(gatilho)──► Ativa ──► Caçando ──► Alimentada 
 
 ---
 
+## Distribuição por bairro
+
+A cidade é dividida em **bairros**, e **o tipo de bairro define quais criaturas podem aparecer nele**. O que decide onde uma criatura vive é o **ambiente**, não a origem cultural dela: um vampiro europeu pode morar no centro de uma cidade brasileira.
+
+### Tipos de bairro (exemplos)
+
+| Tipo de bairro | Características | Criaturas típicas |
+|---|---|---|
+| **Mata / periferia verde** | Árvores, mato, chácaras, trilhas, rios pequenos | Curupira, Boitatá, Saci, Mapinguari |
+| **Residencial denso** | Muita gente, casas coladas, prédios, movimento à noite | Vampiros, ghouls, metamorfos disfarçados |
+| **Centro / vida noturna** | Bares, comércio, hotéis, gente de passagem | Vampiros, súcubos, djinn, trapaceiros |
+| **Antigo / religioso** | Cemitério, igrejas, casarões, terreiros | Corpo-seco, assombrações, onryō, mula sem cabeça |
+| **Orla / rio / porto** | Água, pescadores, galpões | Iara, rusalka, kappa, afogados |
+| **Industrial / abandonado** | Fábricas, galpões vazios, trilhos | Bestas, criptídeos, espíritos de acidentes |
+
+### Criaturas coringa
+
+Algumas criaturas **podem aparecer em qualquer bairro**: são as **coringas**.
+
+- Exemplos: **lobisomem** (vive como morador comum em qualquer lugar), **espíritos vingativos** (vão aonde está a pessoa), **demônios de pacto** (vão aonde está quem fez o pacto).
+- As coringas são o que **impede a dedução de ficar óbvia**: saber o bairro reduz as opções, mas nunca resolve sozinho.
+
+### Quantas criaturas por bairro
+
+- Cada tipo de bairro deve ter **3 a 4 criaturas típicas**, mais as **2 a 3 coringas** possíveis.
+- Assim, todo caso começa com **pelo menos 5 candidatos plausíveis**.
+
+### Campo novo na ficha
+
+A ficha ganha o campo **Bairros**: os tipos de bairro onde a criatura pode aparecer, ou `coringa`.
+
+---
+
 ## Variação individual
 
 Cada criatura gerada recebe uma **semente** que define o que pode variar **sem quebrar as regras da espécie**:
@@ -218,6 +251,36 @@ Para garantir o pilar da **dedução justa**, um teste automático compara todas
 - Para cada par de espécies parecidas, deve haver **pelo menos 2 marcas** que uma tem e a outra não, ou que aparecem de forma diferente.
 - Pelo menos uma dessas marcas precisa ser **detectável com equipamento inicial**, para o jogo não exigir upgrade para resolver um caso básico.
 - Se uma nova criatura falha nesse teste, a ficha dela precisa ser ajustada.
+
+---
+
+## Conhecimento do jogador (bestiário)
+
+O jogador **não começa sabendo a ficha**. O bestiário começa só com o **senso comum** e é preenchido com **pesquisa no mundo**.
+
+### Níveis de conhecimento
+
+Cada campo da ficha (marcas, fraquezas, tabus, resoluções) tem um nível para o jogador:
+
+| Nível | O que o jogador tem |
+|---|---|
+| **Desconhecido** | Nada. O campo aparece em branco |
+| **Senso comum** | O que "todo mundo sabe": vampiro tem medo de alho, lobisomem aparece na lua cheia. **Pode estar incompleto ou errado** |
+| **Pesquisado** | Informação de uma fonte, com a confiabilidade dela |
+| **Confirmado** | Visto em campo pelo próprio jogador |
+
+### Fontes de pesquisa
+
+| Fonte | Velocidade | Confiabilidade | Custo |
+|---|---|---|---|
+| **Computador / internet** (lan house, notebook) | Rápida | **Baixa**: fóruns e lendas misturadas, com informação errada | Barato |
+| **Biblioteca** (pública, da igreja, da universidade, da base) | Lenta | Alta | Tempo, às vezes acesso |
+| **Outros caçadores** | Média | Alta, **se forem honestos** | Dinheiro, favores ou troca de informação |
+| **Folclore local** (benzedeira, padre, idosos) | Média | Alta sobre criaturas da região, baixa sobre as de fora | Conversa, oferenda, favor |
+| **Experiência em campo** | Só durante os casos | Total | Risco |
+
+- A **pesquisa faz parte da investigação**: no meio de um caso, ir à biblioteca ou ligar para um caçador consome tempo, enquanto a criatura continua agindo.
+- O conhecimento **se acumula entre os casos** e passa para a próxima carreira pelo **legado** ([13](13-tempo-morte-e-finais.md)).
 
 ---
 
@@ -336,8 +399,8 @@ As fichas ficam em **arquivos de dados** (JSON ou recursos do Godot), não em c�
 
 ---
 
-## Questões em aberto
+## Decisões
 
-- Quantas criaturas por região o jogo precisa ter para a dedução não ficar óbvia? Sugestão: pelo menos 6 por região na versão completa.
-- Criaturas de regiões diferentes podem aparecer fora da sua região (um strigoi no Brasil)? Isso aumenta a dificuldade.
-- Quanto da ficha o jogador vê no bestiário desde o início, e quanto precisa descobrir jogando?
+- **Criaturas por área:** a cidade tem bairros, e cada tipo de bairro tem 3 a 4 criaturas típicas, mais as coringas que aparecem em qualquer lugar. Ver "Distribuição por bairro".
+- **Fora da região de origem:** sim. O que define onde a criatura aparece é o tipo de bairro, não a origem cultural.
+- **Bestiário inicial:** só o senso comum. Os detalhes vêm de pesquisa no mundo: computadores, bibliotecas, outros caçadores e folclore local.

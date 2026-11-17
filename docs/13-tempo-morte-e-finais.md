@@ -149,6 +149,7 @@ O final é montado a partir da carreira inteira:
 | **Contagem do limbo** | Quantas vezes voltou e quantas criaturas matou |
 | **Cicatrizes** | Histórias que o caçador conta, caso a caso |
 | **Casos marcantes** | Os casos mais difíceis, estranhos ou dolorosos da carreira |
+| **Cartas recebidas** | As cartas de agradecimento e de culpa guardadas ao longo da carreira ([04](04-geracao-de-casos.md)) |
 
 ### Tipos de final (exemplos)
 
