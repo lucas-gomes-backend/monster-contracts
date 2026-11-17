@@ -15,7 +15,9 @@ máquina. Sem isso não existe caso reproduzível, teste estável nem bug que d�
 
 ## Tempo
 
-- O tempo vem do **relógio do mundo** (calendário do jogo), nunca do relógio da máquina.
+- O tempo vem do **relógio do mundo** (`game/core/tempo/relogio.gd`), nunca do relógio da
+  máquina. Minutos inteiros desde 1970-01-01, horário de Santos; calendário, noite e lua
+  calculados só com inteiros.
 - Proibido no núcleo: `Time.get_*` e `OS.get_unix_time/ticks/...`.
 
 ## Ordem
@@ -31,8 +33,11 @@ máquina. Sem isso não existe caso reproduzível, teste estável nem bug que d�
 
 ## Registro de eventos
 
-- Todo evento que muda o mundo vai para o registro de eventos com o momento em que ocorreu
-  (`docs/10-tecnologia-e-arquitetura.md`). Pistas, testemunhos e relatório saem dele.
+- Todo evento que muda o mundo vai para o registro (`core/eventos/registro.gd`) com o momento
+  em que ocorreu. Pistas, testemunhos e relatório saem dele. Evento no passado é recusado.
+- Sistemas publicam pelo barramento (`core/eventos/barramento.gd`): registra primeiro, entrega
+  depois, na ordem de assinatura. Ao descartar um barramento, chame `encerrar()` (evita ciclo).
+- `registro.hash_canonico()` é a impressão digital do mundo para testes de determinismo.
 
 ## Teste obrigatório de todo sistema novo
 

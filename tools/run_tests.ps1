@@ -24,7 +24,8 @@ $output = & $exe --headless --path $project -s res://tests/run_tests.gd -- @user
 $code = $LASTEXITCODE
 $output | Where-Object { $_.Trim() -ne '' } | ForEach-Object { Write-Host $_ }
 
-$engineErrors = $output | Where-Object { $_ -match 'SCRIPT ERROR|Parse Error|Failed to load script|Compile Error' }
+# Também reprova vazamento (ex.: ciclo de referências entre objetos do núcleo).
+$engineErrors = $output | Where-Object { $_ -match 'SCRIPT ERROR|Parse Error|Failed to load script|Compile Error|resources still in use at exit' }
 if ($engineErrors) {
     Write-Host ""
     Write-Host "TESTES: erro de script da engine no log (reprova o portão):"
