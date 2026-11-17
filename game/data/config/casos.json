@@ -14,6 +14,7 @@
   "ruidos": [
     {
       "id": "furto_de_galinhas",
+      "observavel": {"forma": "homem magro de chinelo", "tamanho": "medio", "som": "galinhas cacarejando"},
       "tipo_local": "galinheiro",
       "noturno": true,
       "marcas": [
@@ -23,6 +24,7 @@
     },
     {
       "id": "caes_de_rua",
+      "observavel": {"forma": "cachorros soltos", "tamanho": "medio", "som": "latidos"},
       "tipo_local": "praca",
       "noturno": true,
       "marcas": [
@@ -32,6 +34,7 @@
     },
     {
       "id": "briga_de_bar",
+      "observavel": {"forma": "dois homens brigando", "tamanho": "medio", "som": "gritos e vidro quebrando"},
       "tipo_local": "bar",
       "noturno": true,
       "marcas": [

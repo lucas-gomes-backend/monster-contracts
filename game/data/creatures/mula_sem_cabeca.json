@@ -32,13 +32,14 @@
     "sinais": ["mulher_some_na_noite_de_quinta_para_sexta", "exausta_na_sexta"]
   },
   "hospedeiro": {"genero": "feminino", "idade_min": 18, "idade_max": 60},
+  "observavel": {"forma": "mula escura sem cabeça", "tamanho": "grande", "som": "galope e relincho"},
   "marcas": [
     {"tag": "marcas_de_cascos", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
-    {"tag": "relinchos_e_galope_noturno", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
+    {"tag": "relinchos_e_galope_noturno", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "evento"},
     {"tag": "rastro_por_varios_bairros", "onde": "registro", "freq": "comum", "detectar": "pesquisa"},
     {"tag": "ataques_noite_quinta_sexta", "onde": "registro", "freq": "sempre", "detectar": "pesquisa"},
-    {"tag": "mulher_some_noite_quinta_sexta", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
-    {"tag": "relacao_secreta_com_padre", "onde": "testemunha", "freq": "rara", "detectar": "entrevista"}
+    {"tag": "mulher_some_noite_quinta_sexta", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "hospedeiro"},
+    {"tag": "relacao_secreta_com_padre", "onde": "testemunha", "freq": "rara", "detectar": "entrevista", "sobre": "historia"}
   ],
   "fraquezas": [
     {"item": "tirar_o_freio_de_ferro", "efeito": ["cura"]},

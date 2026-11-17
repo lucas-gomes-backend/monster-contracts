@@ -68,6 +68,7 @@
         "idade_max": {"type": "integer", "minimum": 0}
       }
     },
+    "observavel": {"$ref": "#/$defs/observavel"},
     "marcas": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/marca"}},
     "fraquezas": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fraqueza"}},
     "tabus": {"type": "array", "items": {"type": "string"}},
@@ -87,7 +88,20 @@
         "tag": {"type": "string", "pattern": "^[a-z0-9_]+$"},
         "onde": {"enum": ["cena", "corpo", "testemunha", "ambiente", "registro", "covil"]},
         "freq": {"enum": ["sempre", "comum", "rara"]},
-        "detectar": {"enum": ["olho_nu", "entrevista", "pesquisa", "uv", "emf", "termica", "laboratorio", "habilidade"]}
+        "detectar": {"enum": ["olho_nu", "entrevista", "pesquisa", "uv", "emf", "termica", "laboratorio", "habilidade"]},
+        "sobre": {"$comment": "Para marcas de testemunha: o que a pessoa conta. evento = o ataque; hospedeiro = o sumiço do morador; historia = fofoca antiga.", "enum": ["evento", "hospedeiro", "historia", "caso"]}
+      }
+    },
+    "observavel": {
+      "$comment": "O que uma testemunha consegue perceber (docs/04, filtro de percepção).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forma", "tamanho", "som"],
+      "properties": {
+        "forma": {"type": "string", "minLength": 1},
+        "tamanho": {"enum": ["pequeno", "medio", "grande", "enorme", "gigante"]},
+        "som": {"type": "string", "minLength": 1},
+        "cheiro": {"type": "string"}
       }
     },
     "fraqueza": {

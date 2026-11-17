@@ -35,6 +35,16 @@ static func derivar(registro: RefCounted, validade_horas: Dictionary, chuva_em: 
 					"onde": "testemunha",
 					"detectar": "entrevista",
 				}
+			"npc.notou_ausencia":
+				pista = {
+					"tipo": "testemunho",
+					"npc": evento["ator"],
+					"modo": "notou_ausencia",
+					"sobre": evento["dados"]["quem"],
+					"tag": evento["dados"]["tag"],
+					"onde": "testemunha",
+					"detectar": "entrevista",
+				}
 			"registro.boletim":
 				pista = {"tipo": "registro", "onde": "registro", "detectar": "pesquisa"}
 			_:

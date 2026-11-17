@@ -29,10 +29,11 @@
     "tipo": "invisivel",
     "sinais": ["assobios", "vozes_imitadas", "caca_que_some"]
   },
+  "observavel": {"forma": "menino pequeno de cabelo vermelho", "tamanho": "pequeno", "som": "assobio agudo na mata"},
   "marcas": [
     {"tag": "pegadas_invertidas", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
-    {"tag": "pessoas_perdidas_andando_em_circulo", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
-    {"tag": "assobios_na_mata", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
+    {"tag": "pessoas_perdidas_andando_em_circulo", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "evento"},
+    {"tag": "assobios_na_mata", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "evento"},
     {"tag": "desmatamento_ou_caca_predatoria", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
     {"tag": "armadilhas_desarmadas", "onde": "cena", "freq": "rara", "detectar": "olho_nu"}
   ],

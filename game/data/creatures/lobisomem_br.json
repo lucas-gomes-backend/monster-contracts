@@ -32,14 +32,15 @@
     "sinais": ["palido_e_magro", "cansado_aos_sabados", "arranhoes", "some_na_noite_de_quinta_para_sexta"]
   },
   "hospedeiro": {"genero": "masculino", "idade_min": 18, "idade_max": 60},
+  "observavel": {"forma": "cachorro enorme e escuro, às vezes de pé", "tamanho": "grande", "som": "uivo e rosnado", "cheiro": "cheiro de bicho molhado"},
   "marcas": [
     {"tag": "pegadas_cao_grande", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
     {"tag": "galinheiro_atacado", "onde": "cena", "freq": "comum", "detectar": "olho_nu"},
     {"tag": "pelos_escuros_grossos", "onde": "cena", "freq": "comum", "detectar": "laboratorio"},
     {"tag": "mordida_arcada_grande", "onde": "corpo", "freq": "comum", "detectar": "laboratorio"},
-    {"tag": "corrida_em_cemiterio", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
+    {"tag": "corrida_em_cemiterio", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "evento"},
     {"tag": "ataques_noite_quinta_sexta", "onde": "registro", "freq": "sempre", "detectar": "pesquisa"},
-    {"tag": "morador_some_noite_quinta_sexta", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},
+    {"tag": "morador_some_noite_quinta_sexta", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "hospedeiro"},
     {"tag": "roupas_rasgadas_escondidas", "onde": "covil", "freq": "rara", "detectar": "olho_nu"}
   ],
   "fraquezas": [

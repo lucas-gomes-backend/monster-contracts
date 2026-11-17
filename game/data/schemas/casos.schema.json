@@ -40,11 +40,12 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "tipo_local", "noturno", "marcas"],
+        "required": ["id", "tipo_local", "noturno", "observavel", "marcas"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z_]+$"},
           "tipo_local": {"type": "string"},
           "noturno": {"type": "boolean"},
+          "observavel": {"type": "object", "required": ["forma", "tamanho", "som"], "properties": {"forma": {"type": "string"}, "tamanho": {"enum": ["pequeno", "medio", "grande", "enorme", "gigante"]}, "som": {"type": "string"}, "cheiro": {"type": "string"}}},
           "marcas": {
             "type": "array",
             "minItems": 1,

@@ -1,0 +1,41 @@
+{
+  "$comment": "Parâmetros das testemunhas (game/data/config/testemunhas.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["escala_tamanho", "forma_vaga", "som_de_quem_ouviu", "chance_vago_a_noite", "chance_bebado_trocar_forma", "erro_hora_bebado", "erro_hora_sono", "chance_marca_de_testemunha", "interpretacoes", "interpretacoes_ceticas", "chance_interpretar", "segredos_que_fazem_mentir", "minutos_antes_do_ataque_para_sair"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "escala_tamanho": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+    "forma_vaga": {"type": "string"},
+    "som_de_quem_ouviu": {"type": "string"},
+    "chance_vago_a_noite": {"$ref": "#/$defs/chance"},
+    "chance_bebado_trocar_forma": {"$ref": "#/$defs/chance"},
+    "erro_hora_bebado": {"$ref": "#/$defs/faixa"},
+    "erro_hora_sono": {"$ref": "#/$defs/faixa"},
+    "chance_marca_de_testemunha": {
+      "type": "object",
+      "required": ["sempre", "comum", "rara"],
+      "properties": {
+        "sempre": {"$ref": "#/$defs/chance"},
+        "comum": {"$ref": "#/$defs/chance"},
+        "rara": {"$ref": "#/$defs/chance"}
+      }
+    },
+    "interpretacoes": {"type": "object", "required": ["brasileira"]},
+    "interpretacoes_ceticas": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "chance_interpretar": {
+      "type": "object",
+      "required": ["religioso", "padrao"],
+      "properties": {
+        "religioso": {"$ref": "#/$defs/chance"},
+        "padrao": {"$ref": "#/$defs/chance"}
+      }
+    },
+    "segredos_que_fazem_mentir": {"type": "array", "items": {"type": "string"}},
+    "minutos_antes_do_ataque_para_sair": {"type": "integer", "minimum": 1}
+  },
+  "$defs": {
+    "chance": {"type": "number", "minimum": 0, "maximum": 1},
+    "faixa": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0}}
+  }
+}

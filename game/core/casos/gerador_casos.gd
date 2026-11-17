@@ -24,6 +24,7 @@ const Rotina := preload("res://core/npcs/rotina.gd")
 const Presenca := preload("res://core/npcs/presenca.gd")
 const Criatura := preload("res://core/criaturas/criatura.gd")
 const Pistas := preload("res://core/casos/pistas.gd")
+const Testemunhas := preload("res://core/casos/testemunhas.gd")
 
 const TIPOS_PRESENCIAVEIS := ["criatura.ataque", "ruido.ocorreu"]
 const MINUTOS_POR_DIA := 1440
@@ -52,7 +53,8 @@ static func carregar_dados(id_bairro: String) -> Dictionary:
 	var populacao := Catalogo.carregar_config_populacao()
 	var bairro := Catalogo.carregar_bairro(id_bairro)
 	var casos := Catalogo.carregar_config_casos()
-	for r in [criaturas, config_criaturas, populacao, bairro, casos]:
+	var testemunhas := Catalogo.carregar_config_testemunhas()
+	for r in [criaturas, config_criaturas, populacao, bairro, casos, testemunhas]:
 		erros.append_array(r["erros"])
 	return {
 		"erros": erros,
@@ -61,6 +63,7 @@ static func carregar_dados(id_bairro: String) -> Dictionary:
 		"populacao": populacao["dados"],
 		"bairro": bairro["dados"],
 		"casos": casos["dados"],
+		"testemunhas": testemunhas["dados"],
 	}
 
 
@@ -98,9 +101,14 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 	var rotina := Rotina.new(d["populacao"], rng, bairro)
 	if not hospedeiro.is_empty():
 		hospedeiro["ausencias"] = []
+		var antes := int(d["testemunhas"]["minutos_antes_do_ataque_para_sair"])
+		var tag_sumico := _tag_de_testemunha(ficha, "hospedeiro")
 		barramento.assinar("criatura.ataque", func(e: Dictionary) -> void:
-			if e["ator"] == instancia:
-				hospedeiro["ausencias"].append([e["minuto"] - 60, e["minuto"] + 60, e["local"]]))
+			if e["ator"] != instancia:
+				return
+			var saida: int = e["minuto"] - antes
+			hospedeiro["ausencias"].append([saida, e["minuto"] + 60, e["local"]])
+			_registrar_quem_notou(npcs, hospedeiro, rotina, bairro, barramento, e, saida, tag_sumico))
 	var _presenca := Presenca.new(npcs, rotina, bairro, barramento, TIPOS_PRESENCIAVEIS)
 	var criatura := Criatura.new(ficha, instancia, rng, barramento, d["config_criaturas"], locais)
 
@@ -173,9 +181,39 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 		"npcs": npcs,
 		"registro": registro,
 		"pistas": Pistas.derivar(registro, cfg["validade_horas"], chuva_em),
+		"depoimentos": Testemunhas.gerar(registro, npcs, rotina, bairro, d["criaturas"], cfg["ruidos"], d["testemunhas"], hospedeiro, rng.stream("testemunhas")),
 	}
 	caso["hash"] = ("%s|%s|%s" % [JSON.stringify(verdade, "", true), JSON.stringify(contrato, "", true), registro.hash_canonico()]).sha256_text()
 	return caso
+
+
+## Vizinhos de rua (e a família) acordados na hora em que o hospedeiro saiu de casa
+## notam o sumiço. Vira o evento "npc.notou_ausencia", ligado ao ataque.
+static func _registrar_quem_notou(npcs: Array[Dictionary], hospedeiro: Dictionary, rotina: RefCounted, bairro: RefCounted, barramento: RefCounted, ataque: Dictionary, saida: int, tag: String) -> void:
+	var rua_casa: String = bairro.rua_de(hospedeiro["casa"])
+	for npc in npcs:
+		if npc["id"] == hospedeiro["id"]:
+			continue
+		var posicao: Dictionary = rotina.onde_esta(npc, saida)
+		if posicao["atividade"] in ["dormindo", "transformado"]:
+			continue
+		if bairro.rua_de(posicao["local"]) != rua_casa:
+			continue
+		barramento.publicar(ataque["minuto"], "npc.notou_ausencia", npc["id"], posicao["local"], {
+			"quem": hospedeiro["id"],
+			"saida_minuto": saida,
+			"familia": npc["familia"] == hospedeiro["familia"],
+			"tag": tag,
+			"evento_origem": ataque["id"],
+		})
+
+
+## Primeira marca de testemunha da ficha sobre um assunto ("evento", "hospedeiro"...).
+static func _tag_de_testemunha(ficha: Dictionary, sobre: String) -> String:
+	for marca in ficha["marcas"]:
+		if marca["onde"] == "testemunha" and marca.get("sobre", "evento") == sobre:
+			return marca["tag"]
+	return ""
 
 
 static func _escolher_especie(estrutura: String, bairro: RefCounted, criaturas: Dictionary, g: RandomNumberGenerator) -> String:

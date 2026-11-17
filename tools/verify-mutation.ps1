@@ -47,7 +47,13 @@ $mutants += @(
     @{ name = 'chuva não apaga pegadas'; path = 'game/core/casos/pistas.gd';
        find = 'if onde == "cena" and chuva_em >= 0 and chuva_em > minuto:'; replace = 'if false:' },
     @{ name = 'hospedeiro não some durante o ataque'; path = 'game/core/casos/gerador_casos.gd';
-       find = 'hospedeiro["ausencias"].append([e["minuto"] - 60, e["minuto"] + 60, e["local"]])'; replace = 'pass' }
+       find = 'hospedeiro["ausencias"].append([saida, e["minuto"] + 60, e["local"]])'; replace = 'pass' },
+    @{ name = 'mentira sem ninguém para desmentir'; path = 'game/core/casos/testemunhas.gd';
+       find = 'posicao["atividade"] == "lazer" and not viu_pessoas.is_empty()'; replace = 'posicao["local"] != npc["casa"]' },
+    @{ name = 'família entrega o sumiço'; path = 'game/core/casos/testemunhas.gd';
+       find = 'continue  # a família não conta'; replace = 'pass  # a família não conta' },
+    @{ name = 'medroso não exagera'; path = 'game/core/casos/testemunhas.gd';
+       find = 'if i < 0 or not medroso:'; replace = 'if true:' }
 )
 
 $survivors = @()

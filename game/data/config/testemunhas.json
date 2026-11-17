@@ -1,0 +1,21 @@
+{
+  "$comment": "Filtro de percepção e mentiras das testemunhas (docs/04, 'Testemunhas').",
+  "escala_tamanho": ["pequeno", "medio", "grande", "enorme", "gigante"],
+  "forma_vaga": "um vulto",
+  "som_de_quem_ouviu": "um barulho estranho",
+  "chance_vago_a_noite": 0.5,
+  "chance_bebado_trocar_forma": 0.4,
+  "erro_hora_bebado": [1, 3],
+  "erro_hora_sono": [0, 2],
+  "chance_marca_de_testemunha": {"sempre": 1.0, "comum": 0.6, "rara": 0.15},
+  "interpretacoes": {
+    "brasileira": ["lobisomem", "saci", "mula sem cabeça", "alma penada", "corpo-seco"],
+    "portuguesa": ["lobisomem", "bruxa", "alma penada"],
+    "japonesa": ["yurei", "fantasma", "bicho estranho"],
+    "arabe": ["djinn", "fantasma", "bicho estranho"]
+  },
+  "interpretacoes_ceticas": ["cachorro grande", "ladrão", "bêbado fazendo arruaça", "nada demais"],
+  "chance_interpretar": {"religioso": 0.9, "padrao": 0.5},
+  "segredos_que_fazem_mentir": ["caso_extraconjugal", "furtos", "crime_antigo"],
+  "minutos_antes_do_ataque_para_sair": 60
+}
