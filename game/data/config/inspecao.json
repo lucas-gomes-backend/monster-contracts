@@ -1,0 +1,15 @@
+{
+  "$comment": "Lanterna, mira, exame de pistas e câmera fotográfica no 3D (docs/05 'Examinar' e 'Fotografar', docs/09 'Modo de mira e inspeção'). Distâncias em metros, ângulos em graus.",
+  "lanterna_alcance": 14.0,
+  "lanterna_angulo": 28.0,
+  "lanterna_energia": 7.0,
+  "lanterna_inclinacao": -12.0,
+  "mira_distancia": 1.3,
+  "mira_fov": 45.0,
+  "mira_velocidade": 8.0,
+  "examinar_alcance": 2.2,
+  "examinar_angulo": 25.0,
+  "girar_sensibilidade": 0.5,
+  "foto_alcance": 8.0,
+  "filme": 24
+}

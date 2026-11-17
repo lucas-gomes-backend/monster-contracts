@@ -2,10 +2,17 @@ extends Node3D
 ## Greybox da Fase 2: uma rua noturna de Santos em blocos cinza, para andar com o caçador.
 ## Rua, calçadas, casas baixas dos dois lados, um canal no fim, postes com luz e névoa.
 ## Tudo é montado em código (sem sorteio): o mesmo resultado toda vez.
-## Argumento opcional: --captura=caminho.png salva uma imagem depois de alguns quadros e fecha.
+## Pistas de exemplo (game/data/greybox/rua.json) para examinar, pegar, girar e fotografar.
+## Argumentos opcionais: --captura=caminho.png salva uma imagem depois de alguns quadros e fecha;
+## --lanterna começa com a lanterna ligada; --inclinar=G inclina a câmera G graus; --exame=N abre o exame da pista N (para conferir o visual).
 
 const Cacador := preload("res://presentation/personagem/cacador.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
+const Catalogo := preload("res://core/dados/catalogo.gd")
+const Mira := preload("res://presentation/inspecao/mira.gd")
+const Album := preload("res://presentation/inspecao/album.gd")
+const Pista3D := preload("res://presentation/inspecao/pista_3d.gd")
+const Exame := preload("res://presentation/inspecao/exame.gd")
 
 const COMPRIMENTO := 60.0
 const LARGURA_RUA := 7.0
@@ -13,6 +20,7 @@ const LARGURA_CALCADA := 2.5
 const ALTURA_CALCADA := 0.15
 const DISTANCIA_POSTES := 12.0
 const QUADROS_ANTES_DA_CAPTURA := 30
+const DURACAO_DO_FLASH := 0.15
 
 ## Casas de um lado da rua: [largura, altura, fundo, cor]. Sem sorteio: sempre igual.
 const CASAS := [
@@ -29,6 +37,16 @@ var cacador: CharacterBody3D
 var ambiente: WorldEnvironment
 var filtro: ColorRect
 var postes: Array[OmniLight3D] = []
+var pistas: Array[Node3D] = []
+var album: RefCounted
+var exame: CanvasLayer
+var config_inspecao: Dictionary = {}
+var aviso: Label
+var contador_fotos: Label
+var mensagem: Label
+var flash: ColorRect
+var _alvo := -1
+var _tempo_da_mensagem := 0.0
 var _captura := ""
 var _quadros := 0
 
@@ -39,6 +57,13 @@ func _ready() -> void:
 	for argumento in OS.get_cmdline_user_args():
 		if argumento.begins_with("--captura="):
 			_captura = argumento.trim_prefix("--captura=")
+		elif argumento == "--lanterna":
+			cacador.alternar_lanterna()
+		elif argumento.begins_with("--inclinar="):
+			var graus := float(argumento.trim_prefix("--inclinar="))
+			cacador.olhar(Vector2(0.0, -graus / float(cacador.config["sensibilidade_mouse"])))
+		elif argumento.begins_with("--exame="):
+			examinar(int(argumento.trim_prefix("--exame=")))
 
 
 ## Monta a cena inteira. Pode ser chamado sem estar na árvore (testes).
@@ -59,25 +84,156 @@ func montar() -> void:
 	_bloco(Vector3(meia_total * 2.0, 3.0, 0.4), Vector3(0, 1.5, COMPRIMENTO / 2.0), Color(0.4, 0.4, 0.42), 4.0)
 	_postes(meia_rua)
 
+	config_inspecao = Catalogo.carregar_config_inspecao()["dados"]
 	cacador = Cacador.new()
 	cacador.name = "Cacador"
-	cacador.montar()
+	cacador.montar({}, config_inspecao)
 	cacador.position = Vector3(1.0, 0.1, COMPRIMENTO / 2.0 - 4.0)
 	add_child(cacador)
+	_colocar_pistas()
+	album = Album.new(int(config_inspecao["filme"]))
 
-	var camada := CanvasLayer.new()
-	add_child(camada)
+	exame = Exame.new()
+	exame.montar(config_inspecao["girar_sensibilidade"])
+	add_child(exame)
+	# O filtro PS1 fica por cima da cena e do exame; os textos de ajuda, por cima dele.
+	var camada_filtro := CanvasLayer.new()
+	camada_filtro.layer = 10
+	add_child(camada_filtro)
 	filtro = ColorRect.new()
 	filtro.set_anchors_preset(Control.PRESET_FULL_RECT)
 	filtro.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	filtro.material = Materiais.tela()
-	camada.add_child(filtro)
-	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift correr · mouse olhar · Esc solta o mouse"
-	ajuda.position = Vector2(8, 6)
-	ajuda.add_theme_font_size_override("font_size", 12)
+	camada_filtro.add_child(filtro)
+	_montar_interface()
+
+
+func _colocar_pistas() -> void:
+	var textos: Dictionary = Catalogo.carregar_textos_marcas()["dados"]
+	for dados in Catalogo.carregar_greybox("rua")["dados"]["pistas"]:
+		var pista := Pista3D.new()
+		pista.montar(dados, textos)
+		add_child(pista)
+		pistas.append(pista)
+
+
+func _montar_interface() -> void:
+	var camada := CanvasLayer.new()
+	camada.layer = 11
+	add_child(camada)
+	flash = ColorRect.new()
+	flash.color = Color(1, 1, 1, 0)
+	flash.set_anchors_preset(Control.PRESET_FULL_RECT)
+	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	camada.add_child(flash)
+	var ajuda := _rotulo(camada, Vector2(8, 6), 11)
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E examinar · Esc solta o mouse
+botão direito: mira · esquerdo (mirando): fotografa"
 	ajuda.modulate = Color(0.85, 0.8, 0.6, 0.8)
-	camada.add_child(ajuda)
+	aviso = _rotulo(camada, Vector2(0, 300), 13)
+	aviso.size = Vector2(640, 20)
+	aviso.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	contador_fotos = _rotulo(camada, Vector2(540, 456), 12)
+	mensagem = _rotulo(camada, Vector2(20, 420), 12)
+	mensagem.size = Vector2(600, 30)
+	mensagem.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_atualizar_interface()
+
+
+func _rotulo(pai: Node, posicao: Vector2, tamanho_fonte: int) -> Label:
+	var rotulo := Label.new()
+	rotulo.position = posicao
+	rotulo.add_theme_font_size_override("font_size", tamanho_fonte)
+	pai.add_child(rotulo)
+	return rotulo
+
+
+func _atualizar_interface() -> void:
+	contador_fotos.text = "filme: %d/%d" % [album.restantes(), album.filme]
+	aviso.text = ""
+	if _alvo >= 0 and not exame.aberto:
+		var pista: Node3D = pistas[_alvo]
+		aviso.text = "[E] pegar e examinar" if pista.pegavel else "[E] examinar"
+
+
+func _avisar(texto: String) -> void:
+	mensagem.text = texto
+	_tempo_da_mensagem = 4.0
+
+
+## Posições das pistas no mundo.
+func _pontos_das_pistas() -> Array:
+	var pontos: Array = []
+	for pista in pistas:
+		pontos.append(pista.position)
+	return pontos
+
+
+## Índice da pista na mira agora, ou -1. Olho e frente vêm da câmera; o alcance conta do corpo.
+func alvo_na_mira(olho: Vector3, frente: Vector3) -> int:
+	var corpo := cacador.position + Vector3(0, 0.9, 0)
+	return Mira.escolher_alvo(olho, frente, corpo, _pontos_das_pistas(),
+		config_inspecao["examinar_alcance"], config_inspecao["examinar_angulo"])
+
+
+## Abre o exame de uma pista: o caçador para e o mouse fica solto para girar.
+func examinar(indice: int) -> void:
+	if indice < 0 or indice >= pistas.size() or exame.aberto:
+		return
+	exame.abrir(pistas[indice])
+	cacador.bloqueado = true
+	if is_inside_tree():
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_atualizar_interface()
+
+
+func fechar_exame() -> void:
+	exame.fechar()
+	cacador.bloqueado = false
+	if is_inside_tree():
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_atualizar_interface()
+
+
+## Tira uma foto do que a câmera vê. Devolve a foto, ou {} sem filme.
+func fotografar(olho: Vector3, frente: Vector3, fov: float) -> Dictionary:
+	var marcas: Array = []
+	for i in Mira.no_quadro(olho, frente, _pontos_das_pistas(), config_inspecao["foto_alcance"], fov):
+		if pistas[i].visible:
+			marcas.append(pistas[i].marca)
+	var imagem: Image = null
+	if is_inside_tree():
+		imagem = get_viewport().get_texture().get_image()
+	var foto: Dictionary = album.fotografar(marcas, imagem)
+	if foto.is_empty():
+		_avisar("O filme acabou.")
+	elif foto["marcas"].is_empty():
+		_avisar("Foto %d: nada que pareça uma pista." % foto["numero"])
+	else:
+		var nomes: Array[String] = []
+		for pista in pistas:
+			if foto["marcas"].has(pista.marca):
+				nomes.append(pista.texto)
+		_avisar("Foto %d: %s" % [foto["numero"], " ".join(nomes)])
+	if not foto.is_empty():
+		flash.color.a = 0.9
+	_atualizar_interface()
+	return foto
+
+
+func _unhandled_input(evento: InputEvent) -> void:
+	if exame.aberto:
+		if evento.is_action_pressed("examinar") or evento.is_action_pressed("soltar_mouse"):
+			fechar_exame()
+			get_viewport().set_input_as_handled()
+		return
+	if evento.is_action_pressed("examinar") and _alvo >= 0:
+		examinar(_alvo)
+		get_viewport().set_input_as_handled()
+	elif evento.is_action_pressed("fotografar") and cacador.mirando:
+		var camera: Camera3D = cacador.camera
+		fotografar(camera.global_position, -camera.global_basis.z, camera.fov)
+		get_viewport().set_input_as_handled()
 
 
 func _montar_ambiente() -> void:
@@ -183,7 +339,18 @@ func _bloco(tamanho: Vector3, posicao: Vector3, cor: Color, escala_uv: float, co
 	add_child(corpo)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if not exame.aberto:
+		var camera: Camera3D = cacador.camera
+		var alvo := alvo_na_mira(camera.global_position, -camera.global_basis.z)
+		if alvo != _alvo:
+			_alvo = alvo
+			_atualizar_interface()
+	flash.color.a = maxf(0.0, flash.color.a - delta / DURACAO_DO_FLASH)
+	if _tempo_da_mensagem > 0.0:
+		_tempo_da_mensagem -= delta
+		if _tempo_da_mensagem <= 0.0:
+			mensagem.text = ""
 	if _captura.is_empty():
 		return
 	_quadros += 1

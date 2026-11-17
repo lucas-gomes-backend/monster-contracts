@@ -1,0 +1,26 @@
+{
+  "$comment": "Pistas colocadas à mão numa cena cinza da Fase 2 (game/data/greybox/*.json). A marca precisa existir em game/data/textos/marcas.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "pistas"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "id": {"type": "string", "pattern": "^[a-z_]+$"},
+    "pistas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["marca", "forma", "posicao", "tamanho", "cor", "pegavel"],
+        "properties": {
+          "marca": {"type": "string", "pattern": "^[a-z_]+$"},
+          "forma": {"enum": ["caixa", "plano", "esfera"]},
+          "posicao": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+          "tamanho": {"type": "array", "items": {"type": "number", "minimum": 0}, "minItems": 3, "maxItems": 3},
+          "cor": {"type": "string", "pattern": "^#[0-9a-f]{6}$"},
+          "pegavel": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}

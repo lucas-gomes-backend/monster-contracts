@@ -67,6 +67,24 @@ static func carregar_config_personagem() -> Dictionary:
 	return carregar_validado("res://data/config/personagem.json", "res://data/schemas/personagem.schema.json")
 
 
+## Lanterna, mira, exame e câmera fotográfica, validados.
+static func carregar_config_inspecao() -> Dictionary:
+	return carregar_validado("res://data/config/inspecao.json", "res://data/schemas/inspecao.schema.json")
+
+
+## Pistas colocadas numa cena cinza (res://data/greybox/<id>.json), validadas.
+## Toda marca precisa ter texto em res://data/textos/marcas.json.
+static func carregar_greybox(id_cena: String) -> Dictionary:
+	var resultado := carregar_validado("res://data/greybox/%s.json" % id_cena, "res://data/schemas/greybox.schema.json")
+	if not resultado["dados"] is Dictionary:
+		return resultado
+	var textos: Dictionary = carregar_textos_marcas()["dados"]
+	for pista in resultado["dados"].get("pistas", []):
+		if not textos.has(pista.get("marca", "")):
+			resultado["erros"].append("%s.json: marca sem texto \"%s\"" % [id_cena, pista.get("marca", "")])
+	return resultado
+
+
 ## Testes de campo e regras de desfecho, validados.
 static func carregar_config_testes() -> Dictionary:
 	return carregar_validado("res://data/config/testes_de_campo.json", "res://data/schemas/testes_de_campo.schema.json")

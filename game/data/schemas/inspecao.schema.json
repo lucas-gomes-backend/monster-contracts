@@ -1,0 +1,21 @@
+{
+  "$comment": "Lanterna, mira, exame e câmera fotográfica (game/data/config/inspecao.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["lanterna_alcance", "lanterna_angulo", "lanterna_energia", "lanterna_inclinacao", "mira_distancia", "mira_fov", "mira_velocidade", "examinar_alcance", "examinar_angulo", "girar_sensibilidade", "foto_alcance", "filme"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "lanterna_alcance": {"type": "number", "minimum": 0},
+    "lanterna_angulo": {"type": "number", "minimum": 1, "maximum": 89},
+    "lanterna_energia": {"type": "number", "minimum": 0},
+    "lanterna_inclinacao": {"type": "number", "minimum": -45, "maximum": 0},
+    "mira_distancia": {"type": "number", "minimum": 0},
+    "mira_fov": {"type": "number", "minimum": 10, "maximum": 120},
+    "mira_velocidade": {"type": "number", "minimum": 0},
+    "examinar_alcance": {"type": "number", "minimum": 0},
+    "examinar_angulo": {"type": "number", "minimum": 1, "maximum": 89},
+    "girar_sensibilidade": {"type": "number", "minimum": 0},
+    "foto_alcance": {"type": "number", "minimum": 0},
+    "filme": {"type": "integer", "minimum": 1}
+  }
+}

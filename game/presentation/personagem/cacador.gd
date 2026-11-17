@@ -5,6 +5,9 @@ extends CharacterBody3D
 
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
+const Mira := preload("res://presentation/inspecao/mira.gd")
+
+const FOV_NORMAL := 65.0
 
 const ACOES := {
 	"mover_frente": [KEY_W, KEY_UP],
@@ -13,9 +16,21 @@ const ACOES := {
 	"mover_direita": [KEY_D, KEY_RIGHT],
 	"correr": [KEY_SHIFT],
 	"soltar_mouse": [KEY_ESCAPE],
+	"lanterna": [KEY_F],
+	"examinar": [KEY_E],
+}
+const ACOES_MOUSE := {
+	"mirar": MOUSE_BUTTON_RIGHT,
+	"fotografar": MOUSE_BUTTON_LEFT,
 }
 
 var config: Dictionary = {}
+var config_inspecao: Dictionary = {}
+var lanterna: SpotLight3D
+## Mira: botão direito segurado. A câmera aproxima e fecha o campo de visão.
+var mirando: bool = false
+## Bloqueado enquanto examina uma pista: não anda nem gira a câmera.
+var bloqueado: bool = false
 var corpo: Node3D
 var pivo: Node3D
 var inclinacao: Node3D
@@ -32,8 +47,9 @@ func _ready() -> void:
 
 
 ## Monta o corpo, a colisão e a câmera. Pode ser chamado sem estar na árvore (testes).
-func montar(cfg: Dictionary = {}) -> void:
+func montar(cfg: Dictionary = {}, cfg_inspecao: Dictionary = {}) -> void:
 	config = cfg if not cfg.is_empty() else Catalogo.carregar_config_personagem()["dados"]
+	config_inspecao = cfg_inspecao if not cfg_inspecao.is_empty() else Catalogo.carregar_config_inspecao()["dados"]
 	garantir_acoes()
 	var altura: float = config["altura_do_corpo"]
 	var raio: float = config["raio_do_corpo"]
@@ -73,9 +89,21 @@ func montar(cfg: Dictionary = {}) -> void:
 	braco.add_excluded_object(get_rid())
 	inclinacao.add_child(braco)
 	camera = Camera3D.new()
-	camera.fov = 65.0
+	camera.fov = FOV_NORMAL
 	camera.current = true
 	braco.add_child(camera)
+	# A lanterna sai do ombro, na frente do corpo, e aponta para onde a câmera olha
+	# (gira junto com a inclinação). Começa desligada.
+	lanterna = SpotLight3D.new()
+	lanterna.name = "Lanterna"
+	lanterna.spot_range = config_inspecao["lanterna_alcance"]
+	lanterna.spot_angle = config_inspecao["lanterna_angulo"]
+	lanterna.light_energy = config_inspecao["lanterna_energia"]
+	lanterna.light_color = Color(1.0, 0.95, 0.82)
+	lanterna.visible = false
+	lanterna.position = Vector3(config["camera_ombro"] * 0.5, 0.0, -config["raio_do_corpo"] - 0.2)
+	lanterna.rotation_degrees.x = config_inspecao["lanterna_inclinacao"]
+	inclinacao.add_child(lanterna)
 
 
 func _peca(malha: Mesh, posicao: Vector3, cor: Color) -> void:
@@ -96,6 +124,13 @@ static func garantir_acoes() -> void:
 			var evento := InputEventKey.new()
 			evento.physical_keycode = tecla
 			InputMap.action_add_event(acao, evento)
+	for acao in ACOES_MOUSE:
+		if InputMap.has_action(acao):
+			continue
+		InputMap.add_action(acao)
+		var clique := InputEventMouseButton.new()
+		clique.button_index = ACOES_MOUSE[acao]
+		InputMap.action_add_event(acao, clique)
 
 
 ## Direção no chão para uma entrada (x = direita, y = frente) com a câmera virada em yaw.
@@ -124,6 +159,17 @@ static func limitar_inclinacao(graus: float, cfg: Dictionary) -> float:
 	return clampf(graus, cfg["inclinacao_minima"], cfg["inclinacao_maxima"])
 
 
+## Distância e campo de visão que a câmera procura ter: (distância, fov).
+static func camera_alvo(mira: bool, cfg: Dictionary, cfg_inspecao: Dictionary) -> Vector2:
+	if mira:
+		return Vector2(cfg_inspecao["mira_distancia"], cfg_inspecao["mira_fov"])
+	return Vector2(cfg["camera_distancia"], FOV_NORMAL)
+
+
+func alternar_lanterna() -> void:
+	lanterna.visible = not lanterna.visible
+
+
 ## Gira a câmera pelo movimento do mouse (em pixels).
 func olhar(movimento: Vector2) -> void:
 	var sensibilidade: float = config["sensibilidade_mouse"]
@@ -134,7 +180,11 @@ func olhar(movimento: Vector2) -> void:
 
 
 func _unhandled_input(evento: InputEvent) -> void:
-	if evento is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+	if bloqueado:
+		return
+	if evento.is_action_pressed("lanterna"):
+		alternar_lanterna()
+	elif evento is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		olhar(evento.relative)
 	elif evento is InputEventMouseButton and evento.pressed:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -143,16 +193,26 @@ func _unhandled_input(evento: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var entrada := Input.get_vector("mover_esquerda", "mover_direita", "mover_tras", "mover_frente")
-	var alvo := velocidade_alvo(entrada, yaw, Input.is_action_pressed("correr"), config)
+	var entrada := Vector2.ZERO
+	if not bloqueado:
+		entrada = Input.get_vector("mover_esquerda", "mover_direita", "mover_tras", "mover_frente")
+	mirando = not bloqueado and Input.is_action_pressed("mirar")
+	var correndo := Input.is_action_pressed("correr") and not mirando
+	var alvo := velocidade_alvo(entrada, yaw, correndo, config)
 	velocity = acelerar(velocity, alvo, config["aceleracao"], delta)
 	if is_on_floor():
 		velocity.y = 0.0
 	else:
 		velocity.y -= float(config["gravidade"]) * delta
 	move_and_slide()
-	# O corpo vira, suave, para onde está andando; a câmera não gira junto.
+	# O corpo vira, suave, para onde está andando (ou para onde mira); a câmera não gira junto.
 	var plano := Vector2(velocity.x, velocity.z)
-	if plano.length() > 0.2:
-		var destino := atan2(-velocity.x, -velocity.z)
-		corpo.rotation.y = lerp_angle(corpo.rotation.y, destino, minf(1.0, float(config["giro_do_corpo"]) * delta))
+	var giro := minf(1.0, float(config["giro_do_corpo"]) * delta)
+	if mirando:
+		corpo.rotation.y = lerp_angle(corpo.rotation.y, yaw, giro)
+	elif plano.length() > 0.2:
+		corpo.rotation.y = lerp_angle(corpo.rotation.y, atan2(-velocity.x, -velocity.z), giro)
+	var desejo := camera_alvo(mirando, config, config_inspecao)
+	var rapidez: float = config_inspecao["mira_velocidade"]
+	braco.spring_length = Mira.suavizar(braco.spring_length, desejo.x, rapidez, delta)
+	camera.fov = Mira.suavizar(camera.fov, desejo.y, rapidez, delta)

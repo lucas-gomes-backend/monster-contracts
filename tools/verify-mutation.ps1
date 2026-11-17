@@ -85,7 +85,11 @@ $mutants += @(
     @{ name = 'caçador anda sem olhar para a câmera'; path = 'game/presentation/personagem/cacador.gd';
        find = 'var frente := Vector3(-sin(yaw_rad), 0.0, -cos(yaw_rad))'; replace = 'var frente := Vector3(0.0, 0.0, -1.0)' },
     @{ name = 'câmera sem limite de inclinação'; path = 'game/presentation/personagem/cacador.gd';
-       find = 'return clampf(graus, cfg["inclinacao_minima"], cfg["inclinacao_maxima"])'; replace = 'return graus' }
+       find = 'return clampf(graus, cfg["inclinacao_minima"], cfg["inclinacao_maxima"])'; replace = 'return graus' },
+    @{ name = 'foto ignora o alcance'; path = 'game/presentation/inspecao/mira.gd';
+       find = 'if origem.distance_to(ponto) <= alcance and angulo_ate'; replace = 'if angulo_ate' },
+    @{ name = 'filme nunca acaba'; path = 'game/presentation/inspecao/album.gd';
+       find = 'if restantes() <= 0:'; replace = 'if false:' }
 )
 
 $survivors = @()
