@@ -44,11 +44,12 @@ O progresso do roadmap é acompanhado no **Diário do Caçador**, uma página co
 ## Fase 0 — Pré-produção (2 a 4 semanas)
 
 - [x] Documentação de design (partes 01 a 13).
-- [ ] Criar o projeto Godot 4 e a estrutura de pastas ([10](10-tecnologia-e-arquitetura.md)).
-- [ ] Configurar o Git LFS.
-- [ ] Escrever **um caso completo à mão** (verdade, pistas, testemunhas, desfecho). Ele vira o gabarito do gerador.
-- [ ] Pesquisar o folclore das criaturas do corte vertical (lobisomem brasileiro, Curupira, corpo-seco ou mula sem cabeça).
-- [ ] Verificar se os dados do OpenStreetMap de Santos estão completos ([07](07-mundo-cidade-e-npcs.md)).
+- [x] Criar o projeto Godot 4 e a estrutura de pastas ([10](10-tecnologia-e-arquitetura.md)).
+- [x] Configurar o Git LFS.
+- [x] Escrever **um caso completo à mão** (verdade, pistas, testemunhas, desfecho). Ele vira o gabarito do gerador.
+- [x] Pesquisar o folclore das criaturas do corte vertical (lobisomem brasileiro, Curupira, corpo-seco ou mula sem cabeça).
+- [x] Verificar se os dados do OpenStreetMap de Santos estão completos ([07](07-mundo-cidade-e-npcs.md)).
+- [x] Estrutura de testes com **portão de 95%** e CI no GitHub Actions ([10](10-tecnologia-e-arquitetura.md)).
 
 **Portão:** projeto criado, caso escrito à mão e dados do mapa verificados.
 
@@ -74,7 +75,8 @@ O teste de fogo: **o jogo inteiro sem 3D**, só com texto e botões.
 - [ ] Relatório do caso.
 
 **Portão (o mais importante do projeto):**
-- O gerador produz 100 casos e **pelo menos 90%** passam na validação.
+- O gerador produz 100 casos e **pelo menos 95%** passam na validação (teste de portão em `game/tests/gates/`).
+- A suíte de testes passa no **portão de 95%** no CI.
 - Jogar 10 casos em texto é **divertido**: dá vontade de jogar o próximo.
 - **Se não for divertido**, o problema está no coração do jogo. Ajustar aqui é barato; depois fica caríssimo.
 

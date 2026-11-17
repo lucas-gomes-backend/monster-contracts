@@ -15,7 +15,7 @@ Escolher as ferramentas e definir **como o código se organiza**, para que um de
 | **Ferramentas offline** | **Python** | Importador do mapa de Santos (OpenStreetMap e relevo), validação de dados, scripts de lote |
 | **Dados de conteúdo** | **JSON** com validação por esquema | Fácil de editar em massa, de comparar no git e de gerar por script |
 | **Controle de versão** | **Git + GitHub**, com **Git LFS** para arquivos binários | Modelos, texturas e áudio não incham o repositório |
-| **Testes** | **GUT** (Godot Unit Test) e testes em modo headless | Testar a simulação, o gerador e o solucionador sem abrir o jogo |
+| **Testes** | **Executor próprio** em GDScript, em modo headless, com **portão de 95%** e CI no GitHub Actions (ver "Testes e portão de qualidade") | Testar a simulação, o gerador e o solucionador sem abrir o jogo, sem depender de plugins |
 | **Plataforma** | **PC** (Windows e Linux) na Steam | Público de jogos de investigação e terror PSX está lá |
 | **Controles** | Teclado e mouse, e controle | Terceira pessoa funciona bem nos dois |
 | **Idiomas** | **Português (Brasil)** primeiro, **inglês** depois | Sistema de tradução do Godot (arquivos PO ou CSV) desde o começo |
@@ -193,6 +193,46 @@ Ver [07](07-mundo-cidade-e-npcs.md).
 
 ---
 
+## Testes e portão de qualidade
+
+O projeto tem um **executor de testes próprio**, sem plugins, que roda o Godot em modo headless.
+
+### Estrutura
+
+```
+game/tests/
+├── framework/test_case.gd   # base dos testes: asserções, skip(), record_metric()
+├── run_tests.gd             # executor com o portão
+├── unit/                    # testes de unidade (test_*.gd)
+└── gates/                   # testes de portão por fase (ex.: gerador de casos)
+```
+
+- Cada arquivo `test_*.gd` estende `test_case.gd`. Cada método `test_*` é um teste, executado numa instância nova.
+- `skip("motivo")` marca testes de sistemas que ainda não existem. **Pulados não contam** no portão.
+- `record_metric("nome", taxa)` registra uma taxa de 0 a 1, como a fração de casos gerados que passam na validação.
+
+### O portão de 95%
+
+A suíte só passa se as três regras valerem:
+
+1. **Pelo menos 95%** dos testes executados passam.
+2. **Toda métrica** registrada fica em pelo menos 95%.
+3. **Pelo menos um** teste foi executado.
+
+Se alguma regra falhar, o executor sai com código 1, e o CI fica vermelho. Um relatório em JSON é salvo em `user://test_report.json`.
+
+### Como rodar
+
+- **No computador:** `.\tools\run_tests.ps1` (aceita `-Gate 0.95` e `-Filter nome`).
+- **Direto no Godot:** `godot --headless --path game -s res://tests/run_tests.gd -- --gate=0.95`
+- **No GitHub:** o workflow `.github/workflows/testes.yml` roda em todo push na `main` e em todo pull request.
+
+### Limitação conhecida
+
+O GDScript não tem `try/catch`. Se um teste tiver um **erro de execução** (não uma asserção que falha), o Godot mostra o erro no console, mas o teste pode ser contado como aprovado. Por isso, o CI também deve ser lido pelo log, e testes devem preferir asserções explícitas.
+
+---
+
 ## Estrutura de pastas (proposta)
 
 ```
@@ -210,7 +250,7 @@ monster-contracts/
 │   ├── presentation/      # cenas 3D, câmera, personagens, shaders
 │   ├── ui/                # caderno, menus, mochila
 │   ├── assets/            # modelos, texturas, áudio (Git LFS)
-│   └── tests/             # testes GUT
+│   └── tests/             # framework, executor e testes (unit/, gates/)
 └── README.md
 ```
 
