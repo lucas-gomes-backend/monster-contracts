@@ -39,13 +39,36 @@ if ($LASTEXITCODE -ne 0) {
     exit 2
 }
 
+# Mutantes que ALTERAM código existente (trocam um trecho e depois restauram o arquivo).
+$mutants += @(
+    @{ name = 'lobisomem ignora o dia da semana'; path = 'game/core/criaturas/criatura.gd';
+       find = 'return nome_dia == dias[0]'; replace = 'return true' },
+    @{ name = 'marca sem ligação com o ataque'; path = 'game/core/criaturas/criatura.gd';
+       find = '"evento_origem": ataque["id"],'; replace = '"evento_origem": -1,' },
+    @{ name = 'registro aceita evento no passado'; path = 'game/core/eventos/registro.gd';
+       find = 'minuto < _eventos[-1]["minuto"]'; replace = 'false' }
+)
+
 $survivors = @()
 foreach ($m in $mutants) {
     $full = Join-Path $root $m.path
-    Set-Content -Path $full -Value $m.body -Encoding UTF8 -NoNewline
-    & $verify *> $null
-    $code = $LASTEXITCODE
-    Remove-Item "$full*" -Force -ErrorAction SilentlyContinue
+    if ($m.ContainsKey('find')) {
+        $original = [IO.File]::ReadAllText($full, [Text.Encoding]::UTF8)
+        if (-not $original.Contains($m.find)) {
+            Write-Host ("MUTANTE INVÁLIDO (trecho não encontrado): {0}" -f $m.name)
+            $survivors += $m.name
+            continue
+        }
+        [IO.File]::WriteAllText($full, $original.Replace($m.find, $m.replace), (New-Object Text.UTF8Encoding($false)))
+        & $verify *> $null
+        $code = $LASTEXITCODE
+        [IO.File]::WriteAllText($full, $original, (New-Object Text.UTF8Encoding($false)))
+    } else {
+        Set-Content -Path $full -Value $m.body -Encoding UTF8 -NoNewline
+        & $verify *> $null
+        $code = $LASTEXITCODE
+        Remove-Item "$full*" -Force -ErrorAction SilentlyContinue
+    }
     if ($code -eq 0) {
         Write-Host ("MUTANTE SOBREVIVEU: {0}" -f $m.name)
         $survivors += $m.name

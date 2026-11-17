@@ -6,6 +6,30 @@ const Esquema := preload("res://core/dados/esquema.gd")
 
 const PASTA_CRIATURAS := "res://data/creatures"
 const ESQUEMA_CRIATURA := "res://data/schemas/criatura.schema.json"
+const CONFIG_SIM_CRIATURAS := "res://data/config/simulacao_criaturas.json"
+const ESQUEMA_SIM_CRIATURAS := "res://data/schemas/simulacao_criaturas.schema.json"
+
+
+## Lê um JSON e valida contra um esquema. Devolve {"dados": ..., "erros": [...]}.
+static func carregar_validado(caminho: String, caminho_esquema: String) -> Dictionary:
+	var resultado := {"dados": null, "erros": [] as Array[String]}
+	var esquema_dados: Variant = ler_json(caminho_esquema)
+	if not esquema_dados is Dictionary:
+		resultado["erros"].append("%s: esquema ausente ou inválido" % caminho_esquema)
+		return resultado
+	var dados: Variant = ler_json(caminho)
+	if dados == null:
+		resultado["erros"].append("%s: ausente ou não é JSON válido" % caminho)
+		return resultado
+	for erro in Esquema.new(esquema_dados).validate(dados):
+		resultado["erros"].append("%s: %s" % [caminho.get_file(), erro])
+	resultado["dados"] = dados
+	return resultado
+
+
+## Parâmetros da simulação de criaturas, validados.
+static func carregar_config_criaturas() -> Dictionary:
+	return carregar_validado(CONFIG_SIM_CRIATURAS, ESQUEMA_SIM_CRIATURAS)
 
 
 ## Lê um arquivo JSON. Devolve null se não existir ou se não for JSON válido.

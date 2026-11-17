@@ -52,9 +52,11 @@ func _run() -> int:
 	for path in files:
 		var script: Script = load(path)
 		if script == null or not script.can_instantiate():
+			# Arquivo de teste que não carrega esconde todos os testes dele: é falha obrigatória.
 			failed += 1
 			failures.append("%s: não foi possível carregar o script" % path)
-			print("  [ERRO] %s" % path)
+			mandatory_failures.append(path)
+			print("  [ERRO] %s (OBRIGATÓRIO: o arquivo não carrega)" % path)
 			continue
 
 		var mandatory: bool = path.begins_with(TESTS_ROOT.path_join("arch")) or script.get_script_constant_map().get("OBRIGATORIO", false) == true

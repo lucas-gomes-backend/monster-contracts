@@ -38,5 +38,10 @@ func test_scanner_gerador_permitido_so_no_rng() -> void:
 	assert_eq(scanner.scan_source(line, "res://core/outro.gd").size(), 1, "proibido no resto do núcleo")
 
 
+func test_scanner_sorteio_num_stream_do_mundo_nao_conta() -> void:
+	var source := "var a := _rng.randi_range(0, 3)\nvar b := gerador.randf()"
+	assert_eq(CodeScanner.new().scan_source(source, "res://core/x.gd").size(), 0)
+
+
 func test_scanner_metodo_seed_de_objeto_nao_conta() -> void:
 	assert_eq(CodeScanner.new().scan_source("generator.seed = 3", "res://core/x.gd").size(), 0)

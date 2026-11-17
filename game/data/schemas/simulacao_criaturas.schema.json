@@ -1,0 +1,59 @@
+{
+  "$comment": "Parâmetros da simulação de criaturas (game/data/config/simulacao_criaturas.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["chance_ataque_por_hora", "bonus_lua_cheia", "chance_marca", "escalada_maxima", "janelas", "periodo_necessidade_horas", "onde_deposita_marca", "reacao_por_inteligencia"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "chance_ataque_por_hora": {"type": "number", "minimum": 0, "maximum": 1},
+    "bonus_lua_cheia": {"type": "number", "minimum": 0, "maximum": 1},
+    "chance_marca": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sempre", "comum", "rara"],
+      "properties": {
+        "sempre": {"type": "number", "minimum": 0, "maximum": 1},
+        "comum": {"type": "number", "minimum": 0, "maximum": 1},
+        "rara": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "escalada_maxima": {"type": "integer", "minimum": 0, "maximum": 10},
+    "janelas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["noite", "meia_noite", "hora_do_boi", "dia", "crepusculo", "qualquer"],
+      "properties": {
+        "noite": {"$ref": "#/$defs/janela"},
+        "meia_noite": {"$ref": "#/$defs/janela"},
+        "hora_do_boi": {"$ref": "#/$defs/janela"},
+        "dia": {"$ref": "#/$defs/janela"},
+        "crepusculo": {"$ref": "#/$defs/janela"},
+        "qualquer": {"$ref": "#/$defs/janela"}
+      }
+    },
+    "periodo_necessidade_horas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["diaria", "semanal", "ciclo_lunar"],
+      "properties": {
+        "diaria": {"type": "integer", "minimum": 1},
+        "semanal": {"type": "integer", "minimum": 1},
+        "ciclo_lunar": {"type": "integer", "minimum": 1}
+      }
+    },
+    "onde_deposita_marca": {"type": "array", "minItems": 1, "items": {"enum": ["cena", "corpo", "testemunha", "ambiente", "registro", "covil"]}},
+    "reacao_por_inteligencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["instintiva", "astuta", "ardilosa"],
+      "properties": {
+        "instintiva": {"type": "string"},
+        "astuta": {"type": "string"},
+        "ardilosa": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "janela": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0, "maximum": 24}}
+  }
+}

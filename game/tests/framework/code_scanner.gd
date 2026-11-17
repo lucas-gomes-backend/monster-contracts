@@ -3,9 +3,10 @@ extends RefCounted
 ## rules/implementacao.md). Usado pelos testes de arquitetura.
 
 const RULES := [
-	{"pattern": "\\brandi(_range)?\\s*\\(", "why": "aleatoriedade global sem semente; use core/rng.gd"},
-	{"pattern": "\\brandf(_range|n)?\\s*\\(", "why": "aleatoriedade global sem semente; use core/rng.gd"},
-	{"pattern": "\\brandomize\\s*\\(", "why": "aleatoriedade global sem semente; use core/rng.gd"},
+	# Só as funções GLOBAIS: "gerador.randi()" num stream do core/rng.gd é permitido.
+	{"pattern": "(^|[^.\\w])randi(_range)?\\s*\\(", "why": "aleatoriedade global sem semente; use core/rng.gd"},
+	{"pattern": "(^|[^.\\w])randf(_range|n)?\\s*\\(", "why": "aleatoriedade global sem semente; use core/rng.gd"},
+	{"pattern": "(^|[^.\\w])randomize\\s*\\(", "why": "aleatoriedade global sem semente; use core/rng.gd"},
 	{"pattern": "(^|[^.\\w])seed\\s*\\(", "why": "semente global; use core/rng.gd"},
 	{"pattern": "RandomNumberGenerator\\.new\\s*\\(", "why": "gerador solto; use core/rng.gd", "allow": ["res://core/rng.gd"]},
 	{"pattern": "\\bTime\\.get_", "why": "relógio da máquina; use o relógio do mundo"},
