@@ -116,7 +116,7 @@ A carreira dura cerca de **10 horas** e **20 a 30 casos**, dos 20 anos até a ap
 
 | Fase | Idade aproximada | Como é jogar |
 |---|---|---|
-| **Começo** | 20 a 25 | Motel, carro velho, espingarda de sal. Bestiário só com senso comum. Casos simples em 1 ou 2 bairros. Muito erro e aprendizado |
+| **Começo** | 20 a 25 | Motel, carro velho (ou o carro herdado), espingarda de sal. Bestiário só com senso comum (ou herdado). Casos simples em 1 ou 2 bairros. Muito erro e aprendizado |
 | **Ascensão** | 25 a 35 | Casa ou base pequena, primeiros disfarces e equipamento profissional. Mais bairros abertos. Primeira condição, por escolha ou por falha |
 | **Auge** | 35 a 50 | Base completa, reputação em vários bairros, casos com várias camadas, caçadores rivais, decisões morais pesadas |
 | **Declínio** | 50+ | O corpo cansa, a mente está no máximo. Casos de investigação pura, papel de mentor, preparação da aposentadoria |
@@ -131,11 +131,15 @@ A carreira dura cerca de **10 horas** e **20 a 30 casos**, dos 20 anos até a ap
 ### Primeira hora (introdução)
 
 1. **Criação do personagem** aos 20 anos ([09](09-direcao-de-arte-camera-e-personagem.md)).
-2. **Caso tutorial** com um **mentor**, um caçador veterano que ensina o caderno, a coleta e um teste de campo.
+2. **Caso tutorial** com um **mentor**, um caçador veterano **gerado aleatoriamente**, que ensina o caderno, a coleta e um teste de campo.
 3. **Primeiro caso sozinho** num bairro, com estrutura simples e equipamento improvisado.
 4. **Primeiro interlúdio:** cartas, loja e o primeiro pulo de tempo.
 
-Na segunda carreira em diante, o **mentor pode ser o caçador aposentado da carreira anterior** (legado).
+**Regra do mentor:**
+
+- **Primeira carreira:** mentor aleatório.
+- **Se a carreira anterior terminou em aposentadoria:** o mentor da carreira seguinte é **o seu personagem anterior**, já velho, com a aparência, as cicatrizes e as histórias que ele acumulou.
+- **Na carreira depois dessa** (ou se a anterior terminou em morte definitiva): o mentor volta a ser aleatório.
 
 ---
 
@@ -144,12 +148,11 @@ Na segunda carreira em diante, o **mentor pode ser o caçador aposentado da carr
 Quando a carreira termina (aposentadoria ou morte definitiva), o jogador pode **começar outra na mesma cidade, anos depois** ([13](13-tempo-morte-e-finais.md)):
 
 - A cidade **mudou** com o que o caçador anterior fez: bairros mais seguros ou mais perigosos, criaturas poupadas que agora têm histórias, inimigos que lembram.
-- **O que passa adiante** (a definir em detalhe):
-  - Parte do **bestiário** (anotações do caçador anterior).
-  - A **base**, se ainda existir.
-  - **Aliados e mentores**, incluindo o próprio caçador anterior, se estiver vivo.
-  - **Rumores e reputação** do nome do caçador anterior.
-- **O que não passa:** dinheiro, habilidades, condição, a maior parte do equipamento. O novo caçador começa por baixo.
+- **O que passa adiante:** só duas coisas.
+  - **O carro**, com os upgrades e as marcas que ele acumulou.
+  - **O bestiário**, com as anotações e confirmações do caçador anterior.
+- **O que não passa:** dinheiro, base, equipamento, habilidades, condição e reputação. O novo caçador começa por baixo, mas com o carro do antecessor e o caderno dele.
+- O caçador anterior, se se aposentou, aparece como **mentor** (ver "Regra do mentor").
 
 ---
 
@@ -185,9 +188,9 @@ tensão
 
 ---
 
-## Questões em aberto
+## Decisões
 
-- Um caso por vez mesmo, ou o jogador pode manter 2 casos abertos para casos mais longos?
-- O pulo de tempo é **livre** (o jogador escolhe quanto) ou em **opções fixas** (curto, médio, longo)?
-- O mentor do caso tutorial é sempre o mesmo personagem na primeira carreira?
-- Detalhar o que passa no legado.
+- **Casos abertos:** um por vez.
+- **Pulo de tempo:** opções fixas (curto, médio, longo).
+- **Mentor:** aleatório; se a carreira anterior terminou em aposentadoria, o mentor seguinte é o personagem anterior, e depois volta a ser aleatório.
+- **Legado:** passam só o carro e o bestiário.

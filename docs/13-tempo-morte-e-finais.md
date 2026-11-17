@@ -49,7 +49,7 @@ Com 10 horas por carreira, o jogo funciona melhor como **várias carreiras no me
 
 - Cada carreira explora uma **condição, bairros e estilo** diferentes.
 - A **mesma cidade** continua de uma carreira para a outra, anos depois, mudada pelo que o caçador anterior fez.
-- O **legado** (Parte D) liga uma carreira à outra: base, aliados, rumores, bestiário.
+- O **legado** (Parte D) liga uma carreira à outra: o carro e o bestiário passam adiante, e o caçador aposentado vira mentor.
 - Isso **aproveita o mundo e os casos procedurais**, que são feitos para serem rejogados.
 
 ### Efeitos da idade (humanos)
@@ -160,9 +160,9 @@ O final é montado a partir da carreira inteira:
 - **O Devedor:** portador de pacto que paga a dívida, ou que consegue quebrá-la.
 - **O Esquecido:** morte definitiva no limbo. O mundo segue sem você.
 
-### Legado (em aberto)
+### Legado
 
-A ideia é que um **novo jogo** possa começar no mesmo mundo, anos depois. A base, os aliados e os rumores do caçador anterior continuariam existindo.
+Um **novo jogo** começa na mesma cidade, anos depois. Passam adiante **só o carro e o bestiário**. Se a carreira anterior terminou em aposentadoria, o caçador anterior é o **mentor** da próxima. Ver [02 — Loop de jogo](02-loop-de-jogo.md).
 
 ---
 
