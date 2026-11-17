@@ -3,6 +3,8 @@
   "minutos_ir_ao_local": 20,
   "minutos_examinar_local": 30,
   "minutos_pesquisar_registros": 150,
+  "minutos_entrevista": 20,
+  "minutos_confronto": 10,
   "deteccao_inicial": ["olho_nu", "entrevista", "pesquisa"],
   "modo_padrao": "padrao"
 }

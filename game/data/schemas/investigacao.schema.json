@@ -2,12 +2,14 @@
   "$comment": "Custos da investigação (game/data/config/investigacao.json).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["minutos_ir_ao_local", "minutos_examinar_local", "minutos_pesquisar_registros", "deteccao_inicial", "modo_padrao"],
+  "required": ["minutos_ir_ao_local", "minutos_examinar_local", "minutos_pesquisar_registros", "minutos_entrevista", "minutos_confronto", "deteccao_inicial", "modo_padrao"],
   "properties": {
     "$comment": {"type": "string"},
     "minutos_ir_ao_local": {"type": "integer", "minimum": 0},
     "minutos_examinar_local": {"type": "integer", "minimum": 0},
     "minutos_pesquisar_registros": {"type": "integer", "minimum": 0},
+    "minutos_entrevista": {"type": "integer", "minimum": 0},
+    "minutos_confronto": {"type": "integer", "minimum": 0},
     "deteccao_inicial": {"type": "array", "minItems": 1, "items": {"enum": ["olho_nu", "entrevista", "pesquisa", "uv", "emf", "termica", "laboratorio", "habilidade"]}},
     "modo_padrao": {"enum": ["assistido", "padrao", "puro"]}
   }

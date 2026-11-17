@@ -56,6 +56,16 @@ func executar(linha: String) -> String:
 			return _ir(args)
 		"pesquisar":
 			return _pesquisar()
+		"casas":
+			return _casas()
+		"aqui", "pessoas":
+			return _aqui()
+		"entrevistar":
+			return _entrevistar(args)
+		"depoimentos":
+			return _depoimentos()
+		"confrontar":
+			return _confrontar(args)
 		"pistas":
 			return _pistas()
 		"bestiario":
@@ -88,13 +98,18 @@ func _ajuda() -> String:
 		"  contrato                 o que o cliente pediu",
 		"  hora                     dia e hora agora",
 		"  locais                   lugares do bairro (l1, l2...)",
-		"  ir <lN>                  ir até um lugar e examinar (gasta tempo)",
+		"  casas                    casas do bairro (h1, h2...)",
+		"  ir <lN|hN>               ir até um lugar ou casa e examinar (gasta tempo)",
 		"  pesquisar                boletins e registros antigos (gasta tempo)",
+		"  aqui                     quem está acordado aqui agora (n1, n2...)",
+		"  entrevistar <nN|cliente> ouvir alguém (gasta tempo)",
+		"  depoimentos              o que as pessoas contaram (d1, d2...)",
+		"  confrontar <nN|cliente> <pN|dN>  mostrar uma prova que desmente a pessoa",
 		"  pistas                   o que você já anotou (p1, p2...)",
 		"  bestiario [espécie]      espécies e o que cada uma deixa",
 		"  caracteristicas          características do bestiário (c1, c2...)",
-		"  ligar <pN> <cN>          ligar uma pista a uma característica",
-		"  desligar <pN> <cN>       desfazer uma ligação",
+		"  ligar <pN|dN> <cN>       ligar uma pista ou depoimento a uma característica",
+		"  desligar <pN|dN> <cN>    desfazer uma ligação",
 		"  hipoteses                ligações, espécies compatíveis, riscadas, circulada",
 		"  riscar <espécie>         riscar uma espécie",
 		"  circular <espécie>       circular o suspeito principal",
@@ -128,6 +143,8 @@ func _ir(args: Array) -> String:
 		return "Ir para onde? Use 'locais' e depois 'ir l1'."
 	var local := _resolver(args[0], "l", sessao.locais())
 	if local.is_empty():
+		local = _resolver(args[0], "h", _ids_casas())
+	if local.is_empty():
 		return "Lugar desconhecido: %s." % args[0]
 	var r: Dictionary = sessao.ir(local)
 	var linhas: Array = ["Você foi até %s e examinou o lugar (%d min). Agora: %s." % [_nome_local(local), int(r["minutos"]), _data(sessao.minuto)]]
@@ -151,6 +168,148 @@ func _linhas_novas(novas: Array) -> Array:
 		if todas[i]["id"] in novas:
 			linhas.append("  p%d  %s" % [i + 1, _texto_pista(todas[i])])
 	return linhas
+
+
+func _ids_casas() -> Array:
+	var ids: Array = []
+	for casa in sessao.casas():
+		ids.append(casa["local"])
+	return ids
+
+
+func _casas() -> String:
+	var linhas: Array = ["Casas:"]
+	var lista: Array = sessao.casas()
+	for i in lista.size():
+		var familia: String = lista[i]["familia"]
+		linhas.append("  h%d  %s%s" % [i + 1, _nome_local(lista[i]["local"]), " (família %s)" % familia if not familia.is_empty() else " (vazia)"])
+	return "\n".join(linhas)
+
+
+func _aqui() -> String:
+	if sessao.local_atual().is_empty():
+		return "Você ainda não foi a lugar nenhum. O cliente atende sempre: 'entrevistar cliente'."
+	var pessoas: Array = sessao.pessoas_aqui()
+	var linhas: Array = ["Em %s agora (%s):" % [_nome_local(sessao.local_atual()), _data(sessao.minuto)]]
+	if pessoas.is_empty():
+		linhas.append("  Ninguém acordado por aqui.")
+	for i in pessoas.size():
+		var n: Dictionary = sessao.npc(pessoas[i])
+		linhas.append("  n%d  %s%s" % [i + 1, _descrever_pessoa(n), " (não quer falar)" if sessao.fechado(n["id"]) else ""])
+	return "\n".join(linhas)
+
+
+func _resolver_pessoa(ref: String) -> String:
+	if ref == "cliente":
+		return sessao.caso["contrato"]["cliente"]
+	var id := _resolver(ref, "n", sessao.pessoas_aqui())
+	return id if not id.is_empty() else (ref if not sessao.npc(ref).is_empty() else "")
+
+
+func _entrevistar(args: Array) -> String:
+	if args.is_empty():
+		return "Entrevistar quem? Use 'aqui' para ver quem está por perto, ou 'entrevistar cliente'."
+	var id := _resolver_pessoa(args[0])
+	if id.is_empty():
+		return "Pessoa desconhecida: %s." % args[0]
+	var r: Dictionary = sessao.entrevistar(id)
+	if not r["ok"]:
+		return "Não deu: %s." % r["erro"]
+	var linhas: Array = ["Você conversou com %s (%d min)." % [_nome(id), int(r["minutos"])]]
+	if r["novos"].is_empty():
+		linhas.append("Não viu nem ouviu nada de diferente.")
+	else:
+		linhas.append_array(_linhas_depoimentos(r["novos"]))
+	return "\n".join(linhas)
+
+
+func _depoimentos() -> String:
+	var todos: Array = sessao.caderno.depoimentos()
+	if todos.is_empty():
+		return "Ninguém contou nada ainda. Use 'aqui' e 'entrevistar'."
+	var ids: Array = []
+	for d in todos:
+		ids.append(d["id"])
+	return "Depoimentos:\n" + "\n".join(_linhas_depoimentos(ids))
+
+
+func _linhas_depoimentos(ids: Array) -> Array:
+	var linhas: Array = []
+	var todos: Array = sessao.caderno.depoimentos()
+	for i in todos.size():
+		if todos[i]["id"] in ids:
+			linhas.append("  d%d  %s" % [i + 1, _texto_depoimento(todos[i])])
+	return linhas
+
+
+func _confrontar(args: Array) -> String:
+	if args.size() < 2:
+		return "Use: confrontar <nN|cliente> <pN|dN>."
+	var id := _resolver_pessoa(args[0])
+	if id.is_empty():
+		return "Pessoa desconhecida: %s." % args[0]
+	var prova := _resolver_evidencia(args[1])
+	if prova.is_empty():
+		return "Prova desconhecida: %s." % args[1]
+	var r: Dictionary = sessao.confrontar(id, prova)
+	if not r["ok"]:
+		return "Não deu: %s." % r["erro"]
+	if r["cedeu"]:
+		var linhas: Array = ["%s fica em silêncio, depois cede e conta a verdade:" % _nome(id)]
+		linhas.append_array(_linhas_depoimentos([r["revelado"]]))
+		return "\n".join(linhas)
+	return "%s se ofende e encerra a conversa. A notícia corre: você está chamando atenção (suspeita %d)." % [_nome(id), sessao.suspeita]
+
+
+func _texto_depoimento(dep: Dictionary) -> String:
+	var quem := _nome(dep["npc"])
+	var causa: Dictionary = sessao.caso["registro"].obter(int(dep["causa"]))
+	# Só o dia: a hora é a que a testemunha declara, que pode estar errada.
+	var quando := _dia(int(causa.get("minuto", 0)) - 6 * 60)
+	match dep["tipo"]:
+		"ausencia":
+			return "%s viu %s saindo de casa por volta das %02dh (noite de %s)." % [quem, _nome(dep["relato"]["quem_saiu"]), int(dep["relato"]["hora_declarada"]), quando]
+		"alibi":
+			return "%s jura que %s ficou em casa a noite toda (noite de %s)." % [quem, _nome(dep["relato"]["sobre"]), quando]
+	var r: Dictionary = dep["relato"]
+	var partes: Array = []
+	if dep.has("confissao"):
+		partes.append("Admite que estava em %s." % _nome_local(dep["local_declarado"]))
+	else:
+		partes.append("%s diz que estava em %s por volta das %02dh (noite de %s)." % [quem, _nome_local(dep["local_declarado"]), int(r["hora_declarada"]), quando])
+	if r.has("forma"):
+		partes.append("Viu %s (%s)." % [r["forma"], r["tamanho"]])
+	partes.append("Ouviu %s." % r["som"])
+	if not str(dep["interpretacao"]).is_empty():
+		partes.append("Acha que era: %s." % dep["interpretacao"])
+	for tag in dep["tags"]:
+		partes.append(_textos.get(tag, {}).get("pista", ""))
+	if not dep["viu_pessoas"].is_empty():
+		var nomes: Array = []
+		for outro in dep["viu_pessoas"]:
+			nomes.append(_nome(outro))
+		partes.append("Estavam lá também: %s." % ", ".join(nomes))
+	return " ".join(partes)
+
+
+func _resolver_evidencia(ref: String) -> String:
+	var pistas: Array = []
+	for p in sessao.caderno.pistas():
+		pistas.append(p["id"])
+	var deps: Array = []
+	for d in sessao.caderno.depoimentos():
+		deps.append(d["id"])
+	var id := _resolver(ref, "p", pistas)
+	return id if not id.is_empty() else _resolver(ref, "d", deps)
+
+
+func _descrever_pessoa(n: Dictionary) -> String:
+	return "%s %s, %d anos, %s" % [n["nome"], n["sobrenome"], int(n["idade"]), str(n["ocupacao"].get("id", "")).replace("_", " ")]
+
+
+func _nome(npc_id: String) -> String:
+	var n: Dictionary = sessao.npc(npc_id)
+	return "%s %s" % [n["nome"], n["sobrenome"]] if not n.is_empty() else npc_id
 
 
 func _pistas() -> String:
@@ -193,13 +352,10 @@ func _caracteristicas() -> String:
 func _ligar(args: Array, ligar: bool) -> String:
 	if args.size() < 2:
 		return "Use: %s <pN> <cN>." % ("ligar" if ligar else "desligar")
-	var ids_pistas: Array = []
-	for p in sessao.caderno.pistas():
-		ids_pistas.append(p["id"])
-	var fonte := _resolver(args[0], "p", ids_pistas)
+	var fonte := _resolver_evidencia(args[0])
 	var tag := _resolver(args[1], "c", sessao.caderno.vocabulario())
 	if fonte.is_empty():
-		return "Pista desconhecida: %s." % args[0]
+		return "Pista ou depoimento desconhecido: %s." % args[0]
 	if tag.is_empty():
 		return "Característica desconhecida: %s." % args[1]
 	if not ligar:
@@ -211,9 +367,6 @@ func _ligar(args: Array, ligar: bool) -> String:
 
 func _hipoteses() -> String:
 	var caderno: RefCounted = sessao.caderno
-	var ids_pistas: Array = []
-	for p in caderno.pistas():
-		ids_pistas.append(p["id"])
 	var vocab: Array = caderno.vocabulario()
 	var linhas: Array = ["Hipóteses (modo %s):" % caderno.modo]
 	var ligacoes: Dictionary = caderno.ligacoes()
@@ -221,15 +374,28 @@ func _hipoteses() -> String:
 		linhas.append("  Nenhuma ligação ainda.")
 	for fonte in ligacoes:
 		for tag in ligacoes[fonte]:
-			linhas.append("  p%d -> c%d  %s" % [ids_pistas.find(fonte) + 1, vocab.find(tag) + 1, _textos.get(tag, {}).get("caracteristica", tag)])
+			linhas.append("  %s -> c%d  %s" % [_ref(fonte), vocab.find(tag) + 1, _textos.get(tag, {}).get("caracteristica", tag)])
 	linhas.append("Compatíveis: %s" % _nomes(caderno.compativeis()))
 	linhas.append("Riscadas: %s" % _nomes(caderno.riscadas()))
 	linhas.append("Circulada: %s" % (_criaturas[caderno.circulada()]["nome"] if not caderno.circulada().is_empty() else "-"))
 	for pergunta in PERGUNTAS:
 		linhas.append("%s %s" % [PERGUNTAS[pergunta], caderno.respostas()[pergunta] if not caderno.respostas()[pergunta].is_empty() else "-"])
 	for s in caderno.sugestoes():
-		linhas.append("  Sugestão: ligar p%d a c%d." % [ids_pistas.find(s["fonte"]) + 1, vocab.find(s["tag"]) + 1])
+		linhas.append("  Sugestão: ligar %s a c%d." % [_ref(s["fonte"]), vocab.find(s["tag"]) + 1])
 	return "\n".join(linhas)
+
+
+## Referência curta (p3, d2) de uma pista ou depoimento do caderno.
+func _ref(id: String) -> String:
+	var pistas: Array = sessao.caderno.pistas()
+	for i in pistas.size():
+		if pistas[i]["id"] == id:
+			return "p%d" % (i + 1)
+	var deps: Array = sessao.caderno.depoimentos()
+	for i in deps.size():
+		if deps[i]["id"] == id:
+			return "d%d" % (i + 1)
+	return id
 
 
 func _marcar_especie(args: Array, acao: String) -> String:
@@ -276,6 +442,12 @@ func _nomes(ids: Array) -> String:
 	for id in ids:
 		nomes.append(_criaturas[id]["nome"])
 	return ", ".join(nomes) if not nomes.is_empty() else "-"
+
+
+## "Quinta, 07/05/2015" (sem a hora).
+func _dia(minuto: int) -> String:
+	var d := Relogio.data_de(minuto)
+	return "%s, %02d/%02d/%d" % [NOMES_DIA[d["nome_dia"]], d["dia"], d["mes"], d["ano"]]
 
 
 func _data(minuto: int) -> String:

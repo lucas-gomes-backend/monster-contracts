@@ -187,6 +187,7 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 	var caso := {
 		"valido": true,
 		"semente": semente,
+		"sub_semente": sub_semente,
 		"tentativa": tentativa,
 		"bairro": bairro.id,
 		"estrutura": estrutura,

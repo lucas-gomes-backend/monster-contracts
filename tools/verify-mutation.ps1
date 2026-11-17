@@ -69,7 +69,11 @@ $mutants += @(
     @{ name = 'caderno não filtra as compatíveis'; path = 'game/core/caderno/caderno.gd';
        find = 'if not _especies[id].has(tag):'; replace = 'if false:' },
     @{ name = 'caderno liga evidência que não tem'; path = 'game/core/caderno/caderno.gd';
-       find = 'if not _pistas.has(fonte) and not _depoimentos.has(fonte):'; replace = 'if false:' }
+       find = 'if not _pistas.has(fonte) and not _depoimentos.has(fonte):'; replace = 'if false:' },
+    @{ name = 'qualquer prova desmente'; path = 'game/core/investigacao/sessao.gd';
+       find = 'if desmente(prova, dep):'; replace = 'if true:' },
+    @{ name = 'entrevista quem não está aqui'; path = 'game/core/investigacao/sessao.gd';
+       find = 'return {"ok": false, "erro": "essa pessoa não está aqui agora", "novos": [], "minutos": 0}'; replace = 'pass' }
 )
 
 $survivors = @()
