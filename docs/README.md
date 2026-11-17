@@ -9,7 +9,7 @@ A documentação é escrita por partes. Cada parte é um arquivo próprio.
 | 03 | [Sistema de criaturas](03-sistema-de-criaturas.md) | Rascunho |
 | 04 | [Geração de casos e pistas](04-geracao-de-casos.md) | Rascunho |
 | 05 | [Investigação e dedução](05-investigacao-e-deducao.md) | Rascunho |
-| 06 | Confronto e rituais | A fazer |
+| 06 | [Confronto e rituais](06-confronto-e-rituais.md) | Rascunho |
 | 07 | Mundo: a cidade, bairros e NPCs | A fazer |
 | 08 | [Economia, progressão e equipamentos](08-economia-e-progressao.md) | Rascunho |
 | 09 | [Direção de arte, câmera e personagem](09-direcao-de-arte-camera-e-personagem.md) | Rascunho |
