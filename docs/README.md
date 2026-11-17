@@ -5,7 +5,7 @@ A documentação é escrita por partes. Cada parte é um arquivo próprio.
 | # | Parte | Status |
 |---|-------|--------|
 | 01 | [Visão geral e pilares](01-visao-geral.md) | Rascunho |
-| 02 | Loop de jogo | A fazer |
+| 02 | [Loop de jogo](02-loop-de-jogo.md) | Rascunho |
 | 03 | [Sistema de criaturas](03-sistema-de-criaturas.md) | Rascunho |
 | 04 | [Geração de casos e pistas](04-geracao-de-casos.md) | Rascunho |
 | 05 | [Investigação e dedução](05-investigacao-e-deducao.md) | Rascunho |
