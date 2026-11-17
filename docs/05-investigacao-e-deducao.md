@@ -72,7 +72,7 @@ O caderno é a **interface central** da investigação. Ele tem o visual de um c
 
 É onde a dedução acontece:
 
-1. O jogador **liga uma pista a uma característica** do bestiário.
+1. O jogador **arrasta uma pista** e **solta numa característica** do bestiário para ligar as duas.
    - Exemplo: liga a pista "pegadas com o calcanhar na frente" à característica "pés virados para trás".
 2. O quadro mostra **quais candidatos são compatíveis** com todas as ligações feitas.
 3. O jogador **risca** os candidatos que descartou e **circula** o suspeito principal.
@@ -154,7 +154,7 @@ O caso termina quando o jogador **age**. Não há tela de resposta. Algumas form
 
 ### O relatório do caso
 
-Depois do desfecho, o jogo mostra um **relatório** comparando **o que o jogador acreditava** com **o que era verdade**:
+Depois do desfecho, o jogo mostra um **relatório** comparando **o que o jogador acreditava** com **o que era verdade**. O relatório revela **toda a verdade** do caso:
 
 - Qual era a criatura, quem era, por quê.
 - Quais pistas o jogador encontrou e quais **perdeu ou interpretou errado**.
@@ -242,11 +242,12 @@ Elas abrem **novos jeitos de coletar**, nunca a resposta ([12](12-habilidades-e-
 ## Escopo no roadmap
 
 - **Fase 1 (só texto):** o caderno com Pistas, Pessoas e Hipóteses, mais entrevistas. É o teste de fogo.
-- **Corte vertical:** caderno completo menos o quadro de cortiça, 2 ou 3 testes de campo, confrontar com provas, relatório do caso.
-- **Depois:** quadro de cortiça, vigília e perseguição mais elaboradas, todos os testes.
+- **Corte vertical:** caderno completo menos o quadro de cortiça, **todos os testes de campo**, confrontar com provas, relatório do caso.
+  - Alguns testes servem para criaturas que ainda não estarão no corte vertical (grãos para o strigoi, espelho para vampiros). Eles entram mesmo assim, porque **um teste negativo também é informação**: descarta suspeitas e ensina o jogador a testar.
+- **Depois:** quadro de cortiça, vigília e perseguição mais elaboradas.
 
-## Questões em aberto
+## Decisões
 
-- Ligar pistas a características: arrastar e soltar no caderno, ou um menu de opções?
-- O relatório do caso mostra **toda** a verdade, ou só parte, para manter algum mistério?
-- Quais testes de campo entram no corte vertical?
+- **Ligar pistas:** arrastar e soltar no caderno.
+- **Relatório do caso:** mostra toda a verdade.
+- **Testes de campo no corte vertical:** todos.
