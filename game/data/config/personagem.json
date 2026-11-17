@@ -1,0 +1,16 @@
+{
+  "$comment": "Movimento do caçador e câmera por cima do ombro (docs/09, 'Câmera e controles'). Distâncias em metros, ângulos em graus.",
+  "velocidade_andar": 2.6,
+  "velocidade_correr": 5.0,
+  "aceleracao": 14.0,
+  "gravidade": 9.8,
+  "giro_do_corpo": 10.0,
+  "sensibilidade_mouse": 0.15,
+  "inclinacao_minima": -55.0,
+  "inclinacao_maxima": 35.0,
+  "camera_distancia": 2.9,
+  "camera_ombro": 0.75,
+  "camera_altura": 1.65,
+  "altura_do_corpo": 1.75,
+  "raio_do_corpo": 0.3
+}

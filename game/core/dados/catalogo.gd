@@ -62,6 +62,11 @@ static func carregar_textos_gatilhos() -> Dictionary:
 	return {"dados": textos, "erros": [] as Array[String]}
 
 
+## Movimento do caçador e câmera, validados.
+static func carregar_config_personagem() -> Dictionary:
+	return carregar_validado("res://data/config/personagem.json", "res://data/schemas/personagem.schema.json")
+
+
 ## Testes de campo e regras de desfecho, validados.
 static func carregar_config_testes() -> Dictionary:
 	return carregar_validado("res://data/config/testes_de_campo.json", "res://data/schemas/testes_de_campo.schema.json")

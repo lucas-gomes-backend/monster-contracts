@@ -81,7 +81,11 @@ $mutants += @(
     @{ name = 'relatório ignora os lugares visitados'; path = 'game/core/investigacao/relatorio.gd';
        find = 'if not sessao.visitas.has(pista["local"]):'; replace = 'if false:' },
     @{ name = 'relatório troca certas por erradas'; path = 'game/core/investigacao/relatorio.gd';
-       find = '(certas if tag in marcas_da_fonte.get(fonte, []) else erradas)'; replace = '(erradas if tag in marcas_da_fonte.get(fonte, []) else certas)' }
+       find = '(certas if tag in marcas_da_fonte.get(fonte, []) else erradas)'; replace = '(erradas if tag in marcas_da_fonte.get(fonte, []) else certas)' },
+    @{ name = 'caçador anda sem olhar para a câmera'; path = 'game/presentation/personagem/cacador.gd';
+       find = 'var frente := Vector3(-sin(yaw_rad), 0.0, -cos(yaw_rad))'; replace = 'var frente := Vector3(0.0, 0.0, -1.0)' },
+    @{ name = 'câmera sem limite de inclinação'; path = 'game/presentation/personagem/cacador.gd';
+       find = 'return clampf(graus, cfg["inclinacao_minima"], cfg["inclinacao_maxima"])'; replace = 'return graus' }
 )
 
 $survivors = @()
