@@ -21,13 +21,41 @@ O jogo se passa em **Santos (SP)**, uma versão sobrenatural da cidade real.
 
 | O que é **fixo** (igual para todos os jogadores) | O que é **procedural** (gerado pela semente de cada mundo) |
 |---|---|
-| A lista de bairros, com nome real | O traçado das ruas e quarteirões de cada bairro |
-| A zona de cada bairro e quais bairros são vizinhos | Os módulos de casas, prédios, lojas e interiores |
-| O tipo e a identidade de cada bairro | A população de NPCs, rotinas e relações |
-| Os marcos principais (porto, orla, canais, Monte Serrat, cemitérios históricos) | A posição dos pontos-chave menores |
+| O **traçado real das ruas**, em escala reduzida (ver "Mapa real em escala reduzida") | Os prédios de cada lote, com módulos de casas, prédios, lojas e terrenos |
+| A lista de bairros, com nome e **limites reais** | Os interiores |
+| A zona de cada bairro e quais bairros são vizinhos | A população de NPCs, rotinas e relações |
+| Os marcos e pontos históricos reais (porto, orla, canais, Monte Serrat, cemitérios históricos) | A posição dos pontos-chave menores |
+| O relevo dos morros | Os túneis do subterrâneo (seguindo as ruas) |
 | As comunidades e o folclore de cada zona | Os casos, as criaturas e os segredos |
 
-O jogador reconhece **Santos**, mas cada mundo tem **ruas, pessoas e histórias diferentes**. A cidade gerada **persiste** entre as carreiras do legado.
+O jogador reconhece **as ruas de Santos**, mas cada mundo tem **prédios, pessoas e histórias diferentes**. A cidade gerada **persiste** entre as carreiras do legado.
+
+### Mapa real em escala reduzida
+
+O traçado da cidade vem do **mapa real**, importado de dados abertos (OpenStreetMap), e **reduzido em escala**.
+
+- **Escala: 1:3.** A ilha passa de cerca de 39 km² para cerca de **4,3 km²**. Um bairro médio fica com cerca de **280 m de lado**, uns 3 a 4 minutos a pé de ponta a ponta.
+- **Só as distâncias encolhem.** Ruas, calçadas, casas e pessoas continuam em tamanho humano. Por isso o mapa é **simplificado**: ficam as avenidas, os canais, a orla e as ruas importantes, e as ruas menores são fundidas ou removidas.
+- **Relevo:** os morros usam dados públicos de altitude. A altura é reduzida **menos** que as distâncias, para os morros continuarem parecendo morros.
+- **Área continental:** é quase toda mata. Entram só os núcleos habitados (como Caruara, Monte Cabrão e Ilha Diana), bem mais comprimidos, com mata entre eles.
+- **Desempenho:** os dados do mapa ocupam poucos MB. Com bairros carregados separadamente e a estética PS1, o custo de desempenho é baixo.
+
+#### Ferramenta de importação
+
+Uma ferramenta feita uma vez (estimativa: **3 a 6 semanas**) que:
+
+1. Lê os dados de ruas, limites de bairro, canais e pontos históricos.
+2. Simplifica o traçado e aplica a escala.
+3. Gera ruas, calçadas, canais e o relevo no Godot.
+4. Marca os **lotes vazios** onde o gerador procedural coloca os prédios.
+5. Corta a cidade nos **limites de cada bairro**, transformando as ruas que cruzam o limite em saídas para o bairro vizinho.
+
+Depois disso, cada bairro precisa de um **ajuste manual** curto (meio dia a um dia).
+
+#### Licença
+
+- Os dados do OpenStreetMap usam a licença **ODbL**. O jogo precisa dar o crédito "© colaboradores do OpenStreetMap". Confirmar os detalhes da licença antes de publicar.
+- Se os limites de bairro estiverem incompletos no OpenStreetMap, usar os mapas da prefeitura ou traçar os limites à mão.
 
 ### Cuidado com a cidade real
 
@@ -56,14 +84,15 @@ A versão completa usa **os bairros de Santos**. A referência é a [lista de ba
 **66 bairros é muita coisa para um dev solo.** Para tornar isso possível:
 
 - **Bairros como áreas separadas** (decidido): cada bairro é uma área compacta, e o jogador se desloca entre eles pelo mapa.
-- **Modelos por zona:** bairros da mesma zona compartilham módulos, plantas e paleta. Os 16 morros, por exemplo, usam o mesmo kit de módulos com variações.
+- **Mapa real importado:** o traçado das ruas vem pronto dos dados abertos, então não é preciso desenhar plantas.
+- **Kits por zona:** bairros da mesma zona compartilham módulos e paleta. Os 16 morros, por exemplo, usam o mesmo kit de módulos com variações.
 - **Bairros principais e secundários:** cerca de 15 a 20 bairros **principais** recebem marcos e pontos-chave próprios. Os outros são **secundários**, montados só com o kit da zona.
 - **Abertura por zona:** a cidade abre zona por zona ao longo da carreira ([02](02-loop-de-jogo.md)), e o desenvolvimento também pode ser feito zona por zona.
 
 ### Como um bairro é montado
 
-1. **Planta:** um layout de ruas gerado a partir dos modelos da zona.
-2. **Quarteirões:** preenchidos com **módulos** feitos à mão (casas, prédios, lojas, terrenos, mata) e combinados proceduralmente.
+1. **Planta:** o traçado real das ruas do bairro, importado e reduzido (ver "Mapa real em escala reduzida").
+2. **Lotes:** preenchidos com **módulos** feitos à mão (casas, prédios, lojas, terrenos, mata) e combinados proceduralmente, usando o kit da zona.
 3. **Marcos:** os marcos fixos do bairro (ex.: o Monte Serrat, um canal, o cais) são encaixados em lugares reservados.
 4. **Pontos-chave:** delegacia, igreja, biblioteca e outros (ver abaixo), conforme o bairro.
 5. **Variação:** cores, placas, objetos de rua, pichações, vegetação e conservação mudam pela semente.
@@ -106,6 +135,7 @@ Por baixo da cidade existe uma **segunda camada**: esgotos, galerias de águas p
 - **Uma área subterrânea por bairro**, ligada às dos bairros vizinhos.
 - **Entradas:** bueiros, bocas de lobo, saídas dos canais, porões de casarões, galpões do porto.
 - **Montagem procedural** com módulos de túnel: retas, cruzamentos, câmaras, escadas, comportas, desmoronamentos.
+- **Os túneis seguem as ruas reais**, como acontece na vida real. Assim, quem conhece a superfície consegue se orientar embaixo.
 - **Visual PS1 claustrofóbico:** escuridão total fora da lanterna, água até o joelho, eco, goteiras ([09](09-direcao-de-arte-camera-e-personagem.md)).
 
 ### Para que serve
@@ -256,7 +286,7 @@ Lanterna forte, botas de borracha, máscara de gás, corda, mapa das galerias (c
 - **Nome da cidade:** Santos (SP).
 - **Bairros:** áreas separadas, com mapa.
 - **Quantidade:** os bairros reais de Santos (cerca de 66 pela lista de referência, a confirmar).
-- **Mesma cidade para todos,** com estrutura procedural (ruas, módulos, NPCs e casos gerados por semente).
+- **Mesma cidade para todos:** traçado real das ruas, limites de bairro e pontos históricos, em escala 1:3. Prédios, interiores, NPCs e casos são gerados por semente.
 - **Esgotos e subterrâneo:** incluídos como segunda camada da cidade.
 
 ## Questões em aberto
@@ -264,3 +294,4 @@ Lanterna forte, botas de borracha, máscara de gás, corda, mapa das galerias (c
 - Quais bairros são **principais** e quais são **secundários**?
 - Os setores do **porto** contam como bairros jogáveis separados ou como uma área portuária só?
 - A **área continental** entra desde o começo ou só mais tarde na carreira?
+- Os dados do OpenStreetMap para Santos (ruas e limites de bairro) estão completos? Verificar antes de construir a ferramenta.

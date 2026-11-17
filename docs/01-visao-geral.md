@@ -10,7 +10,7 @@ Você é um caçador que aceita contratos para resolver casos sobrenaturais. Cad
 - **Estética:** PlayStation 1 (poucos polígonos, texturas tremidas, névoa). Ver [09 — Direção de arte](09-direcao-de-arte-camera-e-personagem.md).
 - **Personagem:** customizável, e a aparência muda com a idade, as cicatrizes e a condição.
 - **Mundo:** **uma única cidade** procedural, dividida em **bairros**. O tipo de bairro define as criaturas que vivem nele. Ver [07 — Mundo](07-mundo-cidade-e-npcs.md).
-  - **Ambientação:** **Santos (SP)**, numa versão sobrenatural. Cidade portuária e porta de entrada de imigrantes, com **comunidades** de várias origens. Isso explica, dentro do mundo, por que criaturas do folclore do mundo inteiro aparecem na mesma cidade. Os bairros são os reais; ruas, NPCs e casos são procedurais.
+  - **Ambientação:** **Santos (SP)**, numa versão sobrenatural. Cidade portuária e porta de entrada de imigrantes, com **comunidades** de várias origens. Isso explica, dentro do mundo, por que criaturas do folclore do mundo inteiro aparecem na mesma cidade. Ruas, bairros e pontos históricos vêm do mapa real, em escala 1:3; prédios, interiores, NPCs e casos são procedurais.
   - **Subterrâneo:** esgotos e galerias formam uma segunda camada da cidade, com covis, atalhos e inundações com a maré.
 - **Jogadores:** single-player.
 - **Tom:** meio-termo entre terror e aventura — tensão real, com espaço para humor e personagens.
