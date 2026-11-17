@@ -77,7 +77,11 @@ $mutants += @(
     @{ name = 'ferimento revela qualquer pessoa'; path = 'game/core/investigacao/regras_de_campo.gd';
        find = 'return not alvo.is_empty() and alvo == verdade["hospedeiro"]'; replace = 'return true' },
     @{ name = 'desfecho ignora a pessoa'; path = 'game/core/investigacao/regras_de_campo.gd';
-       find = 'base["quem_certo"] = not precisa_quem or alvo == verdade["hospedeiro"]'; replace = 'base["quem_certo"] = true' }
+       find = 'base["quem_certo"] = not precisa_quem or alvo == verdade["hospedeiro"]'; replace = 'base["quem_certo"] = true' },
+    @{ name = 'relatório ignora os lugares visitados'; path = 'game/core/investigacao/relatorio.gd';
+       find = 'if not sessao.visitas.has(pista["local"]):'; replace = 'if false:' },
+    @{ name = 'relatório troca certas por erradas'; path = 'game/core/investigacao/relatorio.gd';
+       find = '(certas if tag in marcas_da_fonte.get(fonte, []) else erradas)'; replace = '(erradas if tag in marcas_da_fonte.get(fonte, []) else certas)' }
 )
 
 $survivors = @()

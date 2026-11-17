@@ -6,6 +6,8 @@ extends RefCounted
 
 const Relogio := preload("res://core/tempo/relogio.gd")
 const Pistas := preload("res://core/casos/pistas.gd")
+const Relatorio := preload("res://core/investigacao/relatorio.gd")
+const Catalogo := preload("res://core/dados/catalogo.gd")
 
 const NOMES_DIA := {"domingo": "Domingo", "segunda": "Segunda", "terca": "Terça", "quarta": "Quarta", "quinta": "Quinta", "sexta": "Sexta", "sabado": "Sábado"}
 const PERGUNTAS := {"o_que": "O quê?", "quem": "Quem?", "por_que": "Por quê?"}
@@ -15,6 +17,7 @@ var terminou := false
 
 var _criaturas: Dictionary
 var _textos: Dictionary
+var _gatilhos: Dictionary
 var _npcs: Dictionary = {}
 
 
@@ -22,6 +25,7 @@ func _init(sessao_investigacao: RefCounted, criaturas: Dictionary, textos_marcas
 	sessao = sessao_investigacao
 	_criaturas = criaturas
 	_textos = textos_marcas
+	_gatilhos = Catalogo.carregar_textos_gatilhos()["dados"]
 	for npc in sessao.caso["npcs"]:
 		_npcs[npc["id"]] = npc
 
@@ -73,7 +77,7 @@ func executar(linha: String) -> String:
 		return ""
 	var comando := partes[0].to_lower()
 	var args := partes.slice(1)
-	var de_leitura := ["ajuda", "?", "contrato", "hora", "pistas", "depoimentos", "hipoteses", "bestiario", "caracteristicas", "sair", "resultado"]
+	var de_leitura := ["ajuda", "?", "contrato", "hora", "pistas", "depoimentos", "hipoteses", "bestiario", "caracteristicas", "sair", "resultado", "relatorio"]
 	if sessao.encerrado() and not comando in de_leitura:
 		return "O caso já foi encerrado. Use 'resultado' ou 'sair'."
 	match comando:
@@ -87,6 +91,8 @@ func executar(linha: String) -> String:
 			return _agir(args)
 		"resultado":
 			return _resultado()
+		"relatorio":
+			return _relatorio()
 		"ajuda", "?":
 			return _ajuda()
 		"contrato":
@@ -164,6 +170,7 @@ func _ajuda() -> String:
 		"  agir <resolução> <espécie> [mN]   ENCERRA o caso: matar, banir, prender, curar,",
 		"                           apaziguar, negociar, expor ou abandonar",
 		"  resultado                o desfecho, depois de agir",
+		"  relatorio                toda a verdade: pistas perdidas, ligações erradas, mentiras, ruído",
 		"  sair",
 	])
 
@@ -308,7 +315,7 @@ func _agir(args: Array) -> String:
 	var r: Dictionary = sessao.agir(resolucao, especie, alvo)
 	if not r["ok"]:
 		return "Não deu: %s." % r["erro"]
-	return "Caso encerrado.\n" + _resultado()
+	return "Caso encerrado.\n" + _resultado() + "\nUse 'relatorio' para ver toda a verdade."
 
 
 func _resultado() -> String:
@@ -322,7 +329,10 @@ func _resultado() -> String:
 	else:
 		linhas.append("%s: %s" % ["SUCESSO" if r["sucesso"] else "FRACASSO", r["motivo"]])
 		linhas.append("Você apostou em: %s." % _criaturas[r["especie"]]["nome"])
-	linhas.append("A verdade: era %s%s." % [_criaturas[verdade["especie"]]["nome"], " (%s)" % _nome(verdade["hospedeiro"]) if not str(verdade["hospedeiro"]).is_empty() else ""])
+	if sessao.caso["estrutura"] == "golpe":
+		linhas.append("A verdade: não havia criatura. Era um golpe de %s." % _nome(verdade["hospedeiro"]))
+	else:
+		linhas.append("A verdade: era %s%s." % [_criaturas[verdade["especie"]]["nome"], " (%s)" % _nome(verdade["hospedeiro"]) if not str(verdade["hospedeiro"]).is_empty() else ""])
 	if r.get("prazo_estourado", false):
 		linhas.append("O prazo do cliente tinha acabado quando você agiu: ele já tinha desistido e não pagou.")
 	if r.get("amaldicoado_morto", false):
@@ -331,6 +341,77 @@ func _resultado() -> String:
 		linhas.append("%s era inocente e foi prejudicado(a) pela sua ação." % _nome(r["inocente_prejudicado"]))
 	linhas.append("Recompensa: R$ %d. Suspeita no bairro: %d." % [int(r["recompensa"]), sessao.suspeita])
 	return "\n".join(linhas)
+
+
+const TEXTO_SEGREDO := {"caso_extraconjugal": "esconder um caso extraconjugal", "furtos": "esconder uns furtos", "crime_antigo": "esconder um crime antigo", "familia": "proteger a família"}
+const TEXTO_RUIDO := {"furto_de_galinhas": "Um vizinho furtando galinhas", "caes_de_rua": "Cães de rua revirando o lixo", "briga_de_bar": "Uma briga de bar"}
+
+
+func _relatorio() -> String:
+	if not sessao.encerrado():
+		return "O relatório sai quando o caso for encerrado ('agir')."
+	var r: Dictionary = Relatorio.gerar(sessao, _criaturas, _gatilhos)
+	var v: Dictionary = r["verdade"]
+	var linhas: Array = ["RELATÓRIO DO CASO Nº %d" % int(sessao.caso["semente"]), "", _resultado(), ""]
+
+	linhas.append("POR QUÊ")
+	linhas.append("  %s%s" % [v["por_que"], " (%s)" % _nome(v["npc_ligado"]) if not str(v["npc_ligado"]).is_empty() and v["hospedeiro"] != v["npc_ligado"] else ""])
+	var horas := int(r["tempo"]["minutos_gastos"]) / 60
+	linhas.append("  Você levou %d horas desde o contrato%s." % [horas, ", e passou do prazo" if r["tempo"]["passou_do_prazo"] else ", dentro do prazo"])
+	linhas.append("")
+
+	var encontradas: int = r["pistas"]["encontradas"].size()
+	var perdidas: Array = r["pistas"]["perdidas"]
+	var de_quem := "DO CULPADO" if v["estrutura"] == "golpe" else "DA CRIATURA"
+	linhas.append("PISTAS %s: você achou %d de %d" % [de_quem, encontradas, encontradas + perdidas.size()])
+	var por_id := {}
+	for p in sessao.caso["pistas"]:
+		por_id[p["id"]] = p
+	for perdida in perdidas:
+		var p: Dictionary = por_id[perdida["id"]]
+		linhas.append("  - %s [%s]: %s." % [_texto_pista(p), _nome_local(p["local"]) if not str(p["local"]).is_empty() else "registros", perdida["motivo"]])
+	linhas.append("")
+
+	var certas: Array = r["ligacoes"]["certas"]
+	var erradas: Array = r["ligacoes"]["erradas"]
+	linhas.append("SUAS LIGAÇÕES NO CADERNO: %d certas, %d erradas" % [certas.size(), erradas.size()])
+	for e in erradas:
+		linhas.append("  - \"%s\" não era \"%s\"." % [_resumo(e["fonte"]).trim_suffix("."), texto_caracteristica(e["tag"]).trim_suffix(".")])
+	linhas.append("")
+
+	linhas.append("QUEM MENTIU")
+	if r["mentiras"].is_empty():
+		linhas.append("  Ninguém mentiu neste caso.")
+	for m in r["mentiras"]:
+		var situacao := "você descobriu" if m["descoberta"] else ("você ouviu e acreditou" if m["ouvida"] else "você não chegou a ouvir")
+		var verdade_txt := ""
+		if m["tipo"] == "onde_estava":
+			verdade_txt = "estava em %s, não em casa" % _nome_local(m["verdade"])
+		else:
+			verdade_txt = "%s %s" % [_nome(m["sobre"]), str(m["verdade"]).replace("saiu_as_", "saiu de casa às ")]
+		linhas.append("  - %s mentiu para %s. A verdade: %s. (%s)" % [_nome(m["npc"]), TEXTO_SEGREDO.get(m["motivo"], m["motivo"]), verdade_txt, situacao])
+	linhas.append("")
+
+	linhas.append("RUÍDO (coisas normais que confundem)")
+	for ru in r["ruido"]:
+		linhas.append("  - %s em %s, %s. Você anotou %d pista(s) disso." % [TEXTO_RUIDO.get(ru["ruido"], ru["ruido"]), _nome_local(ru["local"]), _dia(int(ru["minuto"])), int(ru["pistas_anotadas"])])
+	linhas.append("")
+
+	var d: Dictionary = r["depoimentos"]
+	linhas.append("DEPOIMENTOS: você ouviu %d de %d." % [int(d["ouvidos"]), int(d["total"])])
+	if int(d["sobre_o_hospedeiro_nao_ouvidos"]) > 0:
+		linhas.append("  %d vizinho(s) tinham visto alguém sair de casa na noite do ataque, e você não conversou com eles." % int(d["sobre_o_hospedeiro_nao_ouvidos"]))
+	return "\n".join(linhas)
+
+
+func _resumo(id: String) -> String:
+	for p in sessao.caderno.pistas():
+		if p["id"] == id:
+			return _texto_pista(p)
+	for d in sessao.caderno.depoimentos():
+		if d["id"] == id:
+			return _texto_depoimento(d).left(70) + "…"
+	return id
 
 
 func _duracao(minutos: int) -> String:

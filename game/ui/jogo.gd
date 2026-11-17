@@ -47,6 +47,7 @@ var _resolucao_opcao: OptionButton
 var _especie_opcao: OptionButton
 var _pessoa_opcao: OptionButton
 var _dialogo: AcceptDialog
+var _relatorio_texto: RichTextLabel
 var _lixo: Array = []
 
 
@@ -131,8 +132,11 @@ func montar() -> void:
 	raiz.add_child(_painel(_diario, COR_PAINEL))
 
 	_dialogo = AcceptDialog.new()
-	_dialogo.title = "Desfecho do caso"
-	_dialogo.dialog_autowrap = true
+	_dialogo.title = "Relatório do caso"
+	_relatorio_texto = RichTextLabel.new()
+	_relatorio_texto.custom_minimum_size = Vector2(760, 520)
+	_relatorio_texto.selection_enabled = true
+	_dialogo.add_child(_relatorio_texto)
 	add_child(_dialogo)
 
 
@@ -219,6 +223,11 @@ func _montar_caderno() -> Control:
 	var agir := _botao("Agir e encerrar o caso", _agir)
 	agir.add_theme_color_override("font_color", COR_VERMELHO)
 	encerrar.add_child(agir)
+	encerrar.add_child(_botao("Ver o relatório (depois de encerrar)", func() -> void:
+		if sessao.encerrado():
+			mostrar_relatorio()
+		else:
+			_escrever("O relatório sai quando o caso for encerrado.")))
 	abas.add_child(encerrar)
 	return abas
 
@@ -254,9 +263,14 @@ func atualizar() -> void:
 	_atualizar_acoes()
 	if sessao.encerrado() and not _resultado_mostrado:
 		_resultado_mostrado = true
-		_dialogo.dialog_text = fmt.executar("resultado")
-		if _dialogo.is_inside_tree():
-			_dialogo.popup_centered(Vector2i(560, 260))
+		mostrar_relatorio()
+
+
+## Abre a caixa com o relatório completo do caso (só depois de encerrar).
+func mostrar_relatorio() -> void:
+	_relatorio_texto.text = fmt.executar("relatorio")
+	if _dialogo.is_inside_tree():
+		_dialogo.popup_centered(Vector2i(820, 620))
 
 
 func _atualizar_lugares() -> void:

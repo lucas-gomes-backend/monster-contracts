@@ -59,20 +59,21 @@ O progresso do roadmap é acompanhado no **Diário do Caçador**, uma página co
 
 O teste de fogo: **o jogo inteiro sem 3D**, só com texto e botões.
 
-- [ ] Esquemas de dados e validador.
-- [ ] Fichas de 3 a 4 criaturas e do golpe humano ([03](03-sistema-de-criaturas.md)).
-- [ ] Tempo: calendário, dia e noite, lua.
-- [ ] Um bairro abstrato com locais e cerca de 30 NPCs com rotinas, traços e memórias.
-- [ ] Registro de eventos e barramento de eventos.
-- [ ] Máquina de estados das criaturas.
-- [ ] Gerador de casos com pré-simulação de 10 dias, ruído e validade das pistas ([04](04-geracao-de-casos.md)).
-- [ ] Testemunhas com filtro de percepção e mentiras.
-- [ ] Solucionador automático e matriz de distinção.
-- [ ] Gerador em lote com estatísticas.
-- [ ] Caderno em texto: pistas, pessoas, hipóteses (ligar pistas a características).
-- [ ] Entrevistas e confronto com provas.
-- [ ] Testes de campo e confronto **resolvidos por regras**.
-- [ ] Relatório do caso.
+- [x] Esquemas de dados e validador.
+- [x] Fichas de 3 a 4 criaturas e do golpe humano ([03](03-sistema-de-criaturas.md)).
+- [x] Tempo: calendário, dia e noite, lua.
+- [x] Um bairro abstrato com locais e cerca de 30 NPCs com rotinas, traços e memórias.
+- [x] Registro de eventos e barramento de eventos.
+- [x] Máquina de estados das criaturas.
+- [x] Gerador de casos com pré-simulação de 10 dias, ruído e validade das pistas ([04](04-geracao-de-casos.md)).
+- [x] Testemunhas com filtro de percepção e mentiras.
+- [x] Solucionador automático e matriz de distinção.
+- [x] Gerador em lote com estatísticas.
+- [x] Caderno em texto: pistas, pessoas, hipóteses (ligar pistas a características).
+- [x] Entrevistas e confronto com provas.
+- [x] Testes de campo e confronto **resolvidos por regras**.
+- [x] Relatório do caso.
+- [x] Janela clicável da investigação (retorno de playtest: comandos no terminal eram cansativos).
 
 **Portão (o mais importante do projeto):**
 - O gerador produz 100 casos e **pelo menos 95%** passam na validação (teste de portão em `game/tests/gates/`).

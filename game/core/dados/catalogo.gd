@@ -52,6 +52,16 @@ static func carregar_config_investigacao() -> Dictionary:
 	return carregar_validado("res://data/config/investigacao.json", "res://data/schemas/investigacao.schema.json")
 
 
+## Textos dos gatilhos (o "por quê" do caso): {gatilho: frase}.
+static func carregar_textos_gatilhos() -> Dictionary:
+	var dados: Variant = ler_json("res://data/textos/gatilhos.json")
+	if not dados is Dictionary:
+		return {"dados": {}, "erros": ["res://data/textos/gatilhos.json: ausente ou inválido"] as Array[String]}
+	var textos: Dictionary = dados.duplicate()
+	textos.erase("$comment")
+	return {"dados": textos, "erros": [] as Array[String]}
+
+
 ## Testes de campo e regras de desfecho, validados.
 static func carregar_config_testes() -> Dictionary:
 	return carregar_validado("res://data/config/testes_de_campo.json", "res://data/schemas/testes_de_campo.schema.json")

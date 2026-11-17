@@ -41,6 +41,9 @@ var _ficha_verdade: Dictionary
 var _cfg_testes: Dictionary
 var _cfg_criaturas: Dictionary
 var _testes_feitos := 0
+## Para o relatório: primeira visita a cada lugar (minuto) e se os registros foram pesquisados.
+var visitas: Dictionary = {}
+var pesquisou := false
 
 
 func _init(caso_gerado: Dictionary, criaturas: Dictionary, dados_bairro: Dictionary, config_investigacao: Dictionary) -> void:
@@ -135,6 +138,8 @@ func ir(local: String) -> Dictionary:
 		custo += int(_cfg["minutos_ir_ao_local"])
 	minuto += custo
 	_local_atual = local
+	if not visitas.has(local):
+		visitas[local] = minuto
 	var novas: Array = []
 	for pista in caso["pistas"]:
 		if pista["tipo"] != "marca" or pista["local"] != local:
@@ -150,6 +155,7 @@ func ir(local: String) -> Dictionary:
 func pesquisar() -> Dictionary:
 	var custo := int(_cfg["minutos_pesquisar_registros"])
 	minuto += custo
+	pesquisou = true
 	var novas: Array = []
 	for pista in caso["pistas"]:
 		if pista["tipo"] != "registro" or int(pista["minuto"]) > minuto:
