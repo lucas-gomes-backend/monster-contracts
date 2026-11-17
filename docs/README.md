@@ -6,7 +6,7 @@ A documentação é escrita por partes. Cada parte é um arquivo próprio.
 |---|-------|--------|
 | 01 | [Visão geral e pilares](01-visao-geral.md) | Rascunho |
 | 02 | Loop de jogo | A fazer |
-| 03 | Sistema de criaturas | A fazer |
+| 03 | [Sistema de criaturas](03-sistema-de-criaturas.md) | Rascunho |
 | 04 | Geração de casos e pistas | A fazer |
 | 05 | Investigação e dedução (caderno / bestiário) | A fazer |
 | 06 | Confronto e rituais | A fazer |
