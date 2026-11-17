@@ -16,3 +16,4 @@ A documentação é escrita por partes. Cada parte é um arquivo próprio.
 | 10 | Tecnologia e arquitetura | A fazer |
 | 11 | Roadmap | A fazer |
 | 12 | [Habilidades humanas e condições paranormais](12-habilidades-e-condicoes.md) | Rascunho |
+| 13 | [Tempo, idade, morte (limbo) e finais](13-tempo-morte-e-finais.md) | Rascunho |

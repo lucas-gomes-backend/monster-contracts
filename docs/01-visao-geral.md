@@ -26,9 +26,10 @@ Você é um caçador que aceita contratos para resolver casos sobrenaturais. Cad
 - Contratos de negociação, proteção e expulsão — não apenas de caça.
 - Regionalização: a mesma ameaça muda de nome, ritual e fraqueza conforme a cultura.
 - Condições paranormais: o caçador pode virar o que caça (vampiro, lobisomem, pacto) — com poderes, fraquezas, estigma social e outros caçadores investigando **você** com o mesmo sistema de casos.
+- Carreira com fim: o tempo passa, o caçador envelhece e o jogo termina na **aposentadoria**, com epílogo montado a partir da carreira. Morrer leva ao **limbo**, onde as criaturas que você matou voltam em hordas.
 
 ## Fora do escopo (por enquanto)
 
 - Multiplayer / co-op.
-- Combate complexo.
+- Combate complexo durante os casos (o confronto é um clímax ritual). O **limbo** é a exceção: um modo próprio com combate físico, planejado para depois do corte vertical.
 - Geometria de mundo 100% procedural (usaremos módulos feitos à mão combinados proceduralmente).

@@ -172,16 +172,17 @@ Funciona como um **nível de procurado sobrenatural**.
 ## Regras de design
 
 - **Toda condição precisa ser uma troca real:** um jogador deveria hesitar antes de aceitar.
-- **Uma condição maior por vez:** vampiro e lobisomem não se acumulam. Condições leves, como Sensitivo e Marca da Mata, podem ser combinadas com cuidado. (Em aberto.)
+- **Uma condição por vez, sem exceção:** condições **não se acumulam**. Se um vampiro é mordido por um lobisomem, ou um sensitivo faz um pacto, a nova condição **entra em conflito** com a atual. O resultado pode ser rejeitar a nova, substituir a antiga, ou um evento perigoso. (Detalhes a definir.)
+- **Condições podem ser impostas por falha:** o jogador nem sempre escolhe. Um confronto mal preparado pode terminar numa mordida, numa maldição ou numa possessão.
 - **Poderes alimentam a investigação, não a substituem:** o faro de lobisomem acha o rastro, mas não diz de quem é.
 - **As fraquezas precisam aparecer no jogo:** o sol, o convite e a lua cheia devem mudar a rotina do jogador.
 
-## Questões em aberto
+## Decisões
 
-- A condição pode ser imposta **sem o jogador escolher** (por falha), ou sempre deve haver escolha?
-- Pode acumular **mais de uma condição**? Quais combinações fazem sentido?
-- O que acontece na morte: fim de jogo, ou a condição oferece "outra chance" com custo?
-- Haverá **finais diferentes** conforme a condição do personagem?
+- **Imposta por falha:** sim. Confrontos mal preparados podem transformar o jogador.
+- **Acumular condições:** não. Uma condição por vez.
+- **Morte:** o jogador vai para o **limbo** e enfrenta em hordas as criaturas que matou. Ver [13 — Tempo, morte e finais](13-tempo-morte-e-finais.md).
+- **Finais:** sim, diferentes por condição. O final é a **aposentadoria**, e criaturas imortais se aposentam quando quiserem. Ver [13](13-tempo-morte-e-finais.md).
 
 ## Escopo no roadmap
 

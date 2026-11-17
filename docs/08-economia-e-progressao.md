@@ -154,12 +154,76 @@ Reputação regional funciona como "nível" da relação com cada lugar:
 2. **Meio:** van ou picape, EMF e UV, terno de agente, casa com biblioteca. Casos maiores e escolha de especialização.
 3. **Fim:** base completa, arsenal variado, reputação em várias regiões, itens lendários de casos marcantes. O desafio vem de criaturas mais complexas e casos com várias camadas, não de números maiores.
 
-## Questões em aberto
+## Moedas e câmbio
 
-- Haverá risco de **perder equipamento** (roubo, quebra permanente) ou só desgaste?
-- Moeda **única** ou câmbio entre regiões do mundo?
-- Quantos **slots de inventário** levar a campo, para forçar escolhas de preparação?
-- O veículo pode ser **danificado ou destruído** em confrontos?
+- **Moeda por região:** cada região do mundo tem a sua (real, dólar, iene, euro e outras). Viajar exige **câmbio**, com taxa e cotação que variam.
+- **Mercado negro por espécie:** o mercado oculto não aceita dinheiro humano em tudo. Cada comunidade sobrenatural tem a sua "moeda":
+
+  | Comunidade | Moeda (exemplos) |
+  |---|---|
+  | Vampiros | Frascos de sangue, por qualidade e origem |
+  | Fadas e encantados | Ouro encantado, nomes verdadeiros, promessas |
+  | Demônios | Contratos, favores, anos de vida |
+  | Espíritos e entidades da mata | Oferendas (fumo, cachaça, mel, alimentos) |
+  | Yokai | Objetos antigos com história, oferendas |
+
+- Algumas trocas só acontecem **nessas moedas**. Isso cria motivo para guardar materiais, fazer acordos e fazer câmbio com intermediários (que cobram caro).
+- Condições paranormais dão acesso mais barato a certos mercados: um vampiro negocia melhor com vampiros.
+
+## Mochila e inventário
+
+Levar tudo para o campo não é possível. **Escolher o que levar faz parte da preparação.**
+
+### Camadas de armazenamento
+
+| Camada | Acesso | Capacidade |
+|---|---|---|
+| **Mãos e coldres** | Instantâneo | 1 ou 2 armas e 1 item em mãos |
+| **Bolsos e cinto** (dependem da roupa) | Rápido, por menu radial | Poucos itens pequenos: munição, sal, amuletos, lanterna |
+| **Mochila** | Lento: precisa parar e abrir | Grade de espaços, onde cada item ocupa um formato |
+| **Porta-malas do veículo** | Só perto do carro | Grade grande, que funciona como arsenal de campo |
+| **Base** | Só na base | Ilimitado ou bem grande |
+
+### Regras da mochila
+
+- **Grade + peso:** os itens têm formato na grade (como em *Resident Evil 4*) e peso.
+- **Peso afeta o jogo:** mochila pesada faz mais **barulho**, cansa mais rápido e deixa você mais lento para fugir.
+- **Abrir a mochila leva tempo** e é perigoso no meio de um confronto. O que importa vai nos bolsos.
+- **Itens frágeis:** frascos, relíquias e amostras podem **quebrar** em quedas ou combate.
+- **Evolução:** mochilas melhores seguem os níveis de qualidade:
+  - Mais espaço.
+  - Compartimentos protegidos para itens frágeis.
+  - Compartimento selado para itens amaldiçoados, que se não ficarem selados afetam o portador.
+  - Menos ruído.
+
+## Desgaste e perda de equipamento
+
+O equipamento sofre **as duas coisas**:
+
+- **Desgaste:** o uso reduz a condição do item, que fica menos confiável. Conserto na oficina, com habilidade de Técnica ou num ferreiro.
+- **Perda definitiva:**
+  - **Destruído** em confronto (uma arma que a criatura quebrou).
+  - **Roubado** (no motel, no carro, por NPCs ou criaturas).
+  - **Apreendido** pela polícia, quando a suspeita está alta.
+  - **Esquecido na cena:** e ainda vira **pista contra você**, inclusive para caçadores rivais.
+  - **Deixado no limbo** ao voltar da morte (ver [13](13-tempo-morte-e-finais.md)).
+- **Itens lendários** perdidos podem ser **recuperados por um caso próprio**, mas nunca recomprados.
+
+## Danos ao veículo
+
+- **Modelo de dano por partes:** motor, pneus, carroceria, vidros, porta-malas.
+
+  | Parte danificada | Efeito |
+  |---|---|
+  | Motor | Mais lento, pode morrer no caminho |
+  | Pneus | Não anda até trocar |
+  | Porta-malas | Itens dentro podem ser perdidos |
+  | Carroceria e vidros | Chama atenção e aumenta a suspeita |
+
+- **Causas:** acidentes, estradas ruins, ataques de criaturas, sabotagem por caçadores rivais.
+- **Destruição total:** o veículo pode ser destruído. Parte do conteúdo do porta-malas se perde, e é preciso comprar outro.
+- **Apreensão:** com suspeita alta, a polícia pode **rebocar** o carro. Recuperar custa multa, e o que estava no porta-malas pode virar evidência.
+- **Conserto:** oficina da base, mecânicos da cidade (caro, e fazem perguntas) ou habilidade de Mecânica em campo (remendo temporário).
 
 ## Escopo no roadmap
 
