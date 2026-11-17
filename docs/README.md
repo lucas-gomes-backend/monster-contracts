@@ -17,3 +17,9 @@ A documentação é escrita por partes. Cada parte é um arquivo próprio.
 | 11 | [Roadmap](11-roadmap.md) | Rascunho |
 | 12 | [Habilidades humanas e condições paranormais](12-habilidades-e-condicoes.md) | Rascunho |
 | 13 | [Tempo, idade, morte (limbo) e finais](13-tempo-morte-e-finais.md) | Rascunho |
+
+## Casos de referência
+
+Casos escritos à mão que servem de gabarito para o gerador.
+
+- [Caso 01 — O bicho do Paquetá](casos/caso-01-o-bicho-do-paqueta.md) (lobisomem brasileiro, Paquetá e Morro São Bento)

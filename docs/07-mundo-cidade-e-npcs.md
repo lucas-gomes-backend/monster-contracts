@@ -294,4 +294,9 @@ Lanterna forte, botas de borracha, máscara de gás, corda, mapa das galerias (c
 - Quais bairros são **principais** e quais são **secundários**?
 - Os setores do **porto** contam como bairros jogáveis separados ou como uma área portuária só?
 - A **área continental** entra desde o começo ou só mais tarde na carreira?
-- Os dados do OpenStreetMap para Santos (ruas e limites de bairro) estão completos? Verificar antes de construir a ferramenta.
+- **Dados do OpenStreetMap (verificados em 17/11/2026):**
+  - **Ruas:** cerca de 6.200 trechos, 1.100 deles avenidas e ruas principais. Suficiente para o traçado.
+  - **Canais:** cerca de 216 trechos mapeados. **Pontos históricos:** 66.
+  - **Limites de bairro:** só cerca de **36 dos 66 bairros** têm polígono (16 como limite administrativo, cerca de 20 como área de "place"). Faltam a maioria dos **morros**, os **setores do porto** e boa parte da **área continental**. Os outros existem só como ponto com o nome.
+  - **Edifícios:** cerca de 2.800, incompletos. Não importa, porque os prédios são procedurais.
+  - **Conclusão:** usar o OpenStreetMap para ruas, canais e marcos. Para os limites que faltam, buscar os mapas da prefeitura ou traçar à mão a partir dos pontos com nome.
