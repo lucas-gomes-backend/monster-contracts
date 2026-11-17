@@ -81,6 +81,8 @@ O teste de fogo: **o jogo inteiro sem 3D**, só com texto e botões.
 - Jogar 10 casos em texto é **divertido**: dá vontade de jogar o próximo.
 - **Se não for divertido**, o problema está no coração do jogo. Ajustar aqui é barato; depois fica caríssimo.
 
+**Resultado (18/11/2026): portão APROVADO.** 100% dos 100 casos gerados são justos, o CI exige 100% dos testes, e o playtest foi divertido. Retorno do playtest: digitar comandos no terminal era cansativo, o que levou à janela clicável ainda na Fase 1.
+
 ---
 
 ## Fase 2 — Greybox 3D (2 meses)
