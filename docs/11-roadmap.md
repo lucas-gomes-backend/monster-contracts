@@ -90,7 +90,7 @@ O teste de fogo: **o jogo inteiro sem 3D**, só com texto e botões.
 - [x] Personagem em terceira pessoa, câmera por cima do ombro.
 - [x] **Shader PS1** desde já ([09](09-direcao-de-arte-camera-e-personagem.md)).
 - [x] Modo de inspeção, lanterna, fotografar, pegar e girar objetos.
-- [ ] Interface de diálogo.
+- [x] Interface de diálogo.
 - [ ] Caderno com **arrastar e soltar**.
 - [ ] Uma rua, uma casa e um trecho de esgoto em módulos cinza. *(a rua já existe: `tools/greybox.ps1`; faltam a casa e o esgoto.)*
 - [ ] Ligar o núcleo às cenas: as pistas do caso aparecem no lugar certo.

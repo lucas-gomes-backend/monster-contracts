@@ -3,6 +3,8 @@ extends Node3D
 ## Rua, calçadas, casas baixas dos dois lados, um canal no fim, postes com luz e névoa.
 ## Tudo é montado em código (sem sorteio): o mesmo resultado toda vez.
 ## Pistas de exemplo (game/data/greybox/rua.json) para examinar, pegar, girar e fotografar.
+## Um caso de verdade é gerado (--semente=N, padrão 12) e o cliente espera na calçada para
+## conversar; a conversa usa a sessão de investigação do núcleo.
 ## Argumentos opcionais: --captura=caminho.png salva uma imagem depois de alguns quadros e fecha;
 ## --lanterna começa com a lanterna ligada; --inclinar=G inclina a câmera G graus; --exame=N abre o exame da pista N (para conferir o visual).
 
@@ -13,6 +15,15 @@ const Mira := preload("res://presentation/inspecao/mira.gd")
 const Album := preload("res://presentation/inspecao/album.gd")
 const Pista3D := preload("res://presentation/inspecao/pista_3d.gd")
 const Exame := preload("res://presentation/inspecao/exame.gd")
+const Gerador := preload("res://core/casos/gerador_casos.gd")
+const Sessao := preload("res://core/investigacao/sessao.gd")
+const Interpretador := preload("res://ui/texto/interpretador.gd")
+const Conversa := preload("res://presentation/dialogo/conversa.gd")
+const JanelaDialogo := preload("res://presentation/dialogo/janela_dialogo.gd")
+const Morador := preload("res://presentation/personagem/morador.gd")
+
+const SEMENTE_PADRAO := 12
+const LUGAR_DO_CLIENTE := Vector3(4.6, 0.15, 19.0)
 
 const COMPRIMENTO := 60.0
 const LARGURA_RUA := 7.0
@@ -45,6 +56,12 @@ var aviso: Label
 var contador_fotos: Label
 var mensagem: Label
 var flash: ColorRect
+var sessao: RefCounted
+var fmt: RefCounted
+var conversa: RefCounted
+var dialogo: CanvasLayer
+var moradores: Array[Node3D] = []
+var relogio: Label
 var _alvo := -1
 var _tempo_da_mensagem := 0.0
 var _captura := ""
@@ -52,10 +69,16 @@ var _quadros := 0
 
 
 func _ready() -> void:
-	if cacador == null:
-		montar()
+	var semente := SEMENTE_PADRAO
 	for argumento in OS.get_cmdline_user_args():
-		if argumento.begins_with("--captura="):
+		if argumento.begins_with("--semente="):
+			semente = int(argumento.trim_prefix("--semente="))
+	if cacador == null:
+		montar(semente)
+	for argumento in OS.get_cmdline_user_args():
+		if argumento.begins_with("--conversa"):
+			conversar(moradores[0])
+		elif argumento.begins_with("--captura="):
 			_captura = argumento.trim_prefix("--captura=")
 		elif argumento == "--lanterna":
 			cacador.alternar_lanterna()
@@ -66,8 +89,8 @@ func _ready() -> void:
 			examinar(int(argumento.trim_prefix("--exame=")))
 
 
-## Monta a cena inteira. Pode ser chamado sem estar na árvore (testes).
-func montar() -> void:
+## Monta a cena inteira para o caso da semente. Pode ser chamado sem estar na árvore (testes).
+func montar(semente: int = SEMENTE_PADRAO) -> void:
 	_montar_ambiente()
 	var meia_rua := LARGURA_RUA / 2.0
 	var meia_total := meia_rua + LARGURA_CALCADA
@@ -96,6 +119,12 @@ func montar() -> void:
 	exame = Exame.new()
 	exame.montar(config_inspecao["girar_sensibilidade"])
 	add_child(exame)
+	_comecar_caso(semente)
+	dialogo = JanelaDialogo.new()
+	dialogo.montar()
+	dialogo.escolheu.connect(_ao_escolher)
+	dialogo.fechou.connect(_ao_fechar_dialogo)
+	add_child(dialogo)
 	# O filtro PS1 fica por cima da cena e do exame; os textos de ajuda, por cima dele.
 	var camada_filtro := CanvasLayer.new()
 	camada_filtro.layer = 10
@@ -106,6 +135,24 @@ func montar() -> void:
 	filtro.material = Materiais.tela()
 	camada_filtro.add_child(filtro)
 	_montar_interface()
+
+
+## Gera o caso, abre a sessão de investigação e põe o cliente na calçada.
+func _comecar_caso(semente: int) -> void:
+	var caso := Gerador.gerar(semente)
+	var criaturas: Dictionary = Catalogo.carregar_criaturas()["criaturas"]
+	var textos: Dictionary = Catalogo.carregar_textos_marcas()["dados"]
+	sessao = Sessao.new(caso, criaturas, Catalogo.carregar_bairro(caso["bairro"])["dados"],
+		Catalogo.carregar_config_investigacao()["dados"])
+	fmt = Interpretador.new(sessao, criaturas, textos)
+	conversa = Conversa.new(sessao, fmt)
+	var cliente: String = caso["contrato"]["cliente"]
+	var morador := Morador.new()
+	morador.montar(cliente, fmt.nome(cliente))
+	morador.position = LUGAR_DO_CLIENTE
+	morador.rotation.y = -PI / 2.0
+	add_child(morador)
+	moradores.append(morador)
 
 
 func _colocar_pistas() -> void:
@@ -127,13 +174,13 @@ func _montar_interface() -> void:
 	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	camada.add_child(flash)
 	var ajuda := _rotulo(camada, Vector2(8, 6), 11)
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E examinar · Esc solta o mouse
-botão direito: mira · esquerdo (mirando): fotografa"
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E examinar ou conversar\nbotão direito: mira · esquerdo (mirando): fotografa · Esc solta o mouse"
 	ajuda.modulate = Color(0.85, 0.8, 0.6, 0.8)
 	aviso = _rotulo(camada, Vector2(0, 300), 13)
 	aviso.size = Vector2(640, 20)
 	aviso.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	contador_fotos = _rotulo(camada, Vector2(540, 456), 12)
+	relogio = _rotulo(camada, Vector2(8, 456), 12)
 	mensagem = _rotulo(camada, Vector2(20, 420), 12)
 	mensagem.size = Vector2(600, 30)
 	mensagem.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -150,10 +197,20 @@ func _rotulo(pai: Node, posicao: Vector2, tamanho_fonte: int) -> Label:
 
 func _atualizar_interface() -> void:
 	contador_fotos.text = "filme: %d/%d" % [album.restantes(), album.filme]
+	relogio.text = fmt.data(sessao.minuto)
 	aviso.text = ""
-	if _alvo >= 0 and not exame.aberto:
-		var pista: Node3D = pistas[_alvo]
-		aviso.text = "[E] pegar e examinar" if pista.pegavel else "[E] examinar"
+	if _alvo < 0 or ocupado():
+		return
+	if _alvo >= pistas.size():
+		aviso.text = "[E] conversar com %s" % moradores[_alvo - pistas.size()].nome
+		return
+	var pista: Node3D = pistas[_alvo]
+	aviso.text = "[E] pegar e examinar" if pista.pegavel else "[E] examinar"
+
+
+## Examinando ou conversando: o caçador não anda e o mundo não reage à mira.
+func ocupado() -> bool:
+	return exame.aberto or dialogo.aberta
 
 
 func _avisar(texto: String) -> void:
@@ -169,16 +226,43 @@ func _pontos_das_pistas() -> Array:
 	return pontos
 
 
-## Índice da pista na mira agora, ou -1. Olho e frente vêm da câmera; o alcance conta do corpo.
+## O que está na mira agora, ou -1. Os índices começam pelas pistas e seguem pelas pessoas.
+## Olho e frente vêm da câmera; o alcance conta do corpo.
 func alvo_na_mira(olho: Vector3, frente: Vector3) -> int:
 	var corpo := cacador.position + Vector3(0, 0.9, 0)
-	return Mira.escolher_alvo(olho, frente, corpo, _pontos_das_pistas(),
+	var pontos := _pontos_das_pistas()
+	for morador in moradores:
+		pontos.append(morador.ponto_de_conversa())
+	return Mira.escolher_alvo(olho, frente, corpo, pontos,
 		config_inspecao["examinar_alcance"], config_inspecao["examinar_angulo"])
+
+
+## Começa a conversa com uma pessoa: o caçador para e o mouse fica solto para as opções.
+func conversar(morador: Node3D) -> void:
+	if ocupado():
+		return
+	dialogo.mostrar(conversa.abrir(morador.npc_id))
+	cacador.bloqueado = true
+	if is_inside_tree():
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_atualizar_interface()
+
+
+func _ao_escolher(opcao: String) -> void:
+	dialogo.mostrar(conversa.escolher(opcao))
+	_atualizar_interface()
+
+
+func _ao_fechar_dialogo() -> void:
+	cacador.bloqueado = false
+	if is_inside_tree():
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_atualizar_interface()
 
 
 ## Abre o exame de uma pista: o caçador para e o mouse fica solto para girar.
 func examinar(indice: int) -> void:
-	if indice < 0 or indice >= pistas.size() or exame.aberto:
+	if indice < 0 or indice >= pistas.size() or ocupado():
 		return
 	exame.abrir(pistas[indice])
 	cacador.bloqueado = true
@@ -222,13 +306,21 @@ func fotografar(olho: Vector3, frente: Vector3, fov: float) -> Dictionary:
 
 
 func _unhandled_input(evento: InputEvent) -> void:
+	if dialogo.aberta:
+		if evento.is_action_pressed("soltar_mouse"):
+			dialogo.fechar()
+			get_viewport().set_input_as_handled()
+		return
 	if exame.aberto:
 		if evento.is_action_pressed("examinar") or evento.is_action_pressed("soltar_mouse"):
 			fechar_exame()
 			get_viewport().set_input_as_handled()
 		return
 	if evento.is_action_pressed("examinar") and _alvo >= 0:
-		examinar(_alvo)
+		if _alvo >= pistas.size():
+			conversar(moradores[_alvo - pistas.size()])
+		else:
+			examinar(_alvo)
 		get_viewport().set_input_as_handled()
 	elif evento.is_action_pressed("fotografar") and cacador.mirando:
 		var camera: Camera3D = cacador.camera
@@ -340,7 +432,7 @@ func _bloco(tamanho: Vector3, posicao: Vector3, cor: Color, escala_uv: float, co
 
 
 func _process(delta: float) -> void:
-	if not exame.aberto:
+	if not ocupado():
 		var camera: Camera3D = cacador.camera
 		var alvo := alvo_na_mira(camera.global_position, -camera.global_basis.z)
 		if alvo != _alvo:
