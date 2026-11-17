@@ -1,0 +1,7 @@
+{
+  "_sobre": "Valores de referência do core/rng.gd, gerados no Windows e conferidos no CI (Linux). Só mude com um commit explícito: mudar estes valores muda todos os mundos já gerados.",
+  "world_seed": 42,
+  "stream": "criaturas",
+  "derive_seed": "289124874491568433",
+  "first_randi": [2615894847, 3050705944, 3439594162]
+}

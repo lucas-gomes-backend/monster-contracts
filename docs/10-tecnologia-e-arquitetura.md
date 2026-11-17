@@ -213,23 +213,35 @@ game/tests/
 
 ### O portão de 95%
 
-A suíte só passa se as três regras valerem:
+A suíte só passa se todas as regras valerem:
 
 1. **Pelo menos 95%** dos testes executados passam.
 2. **Toda métrica** registrada fica em pelo menos 95%.
 3. **Pelo menos um** teste foi executado.
+4. **Testes obrigatórios não falham nenhuma vez:** tudo em `tests/arch/` (regras do núcleo) e todo arquivo com `const OBRIGATORIO := true` (como o determinismo do RNG).
+5. **Nenhum erro de script ou de parse** aparece no log.
 
-Se alguma regra falhar, o executor sai com código 1, e o CI fica vermelho. Um relatório em JSON é salvo em `user://test_report.json`.
+Se alguma regra falhar, o processo sai com código 1, e o CI fica vermelho. Um relatório em JSON é salvo em `user://test_report.json`.
+
+### Portão único e regras de qualidade
+
+Inspirado nas regras de qualidade do projeto [LivingWorld](https://github.com/AlanEdward19/LivingWorld):
+
+- **`tools/verify.ps1`** é o portão único: confere o tamanho dos arquivos de regras (até 100 linhas) e roda os testes. Precisa sair 0 antes de qualquer commit.
+- **`tools/verify-mutation.ps1`** prova que o portão reprova de verdade: cria falhas de propósito (teste quebrado, `randi()` no núcleo, núcleo dependendo de cena, erro de parse, métrica baixa, regra longa demais) e exige que o portão fique vermelho em todas.
+- **Regras do núcleo verificadas por teste** (`tests/arch/`): nada de aleatoriedade sem semente, relógio da máquina, nós, cenas ou referências à apresentação dentro de `game/core/`.
+- **`game/core/rng.gd`** é a única fonte de aleatoriedade, com streams independentes por nome. Os valores de referência em `tests/baselines/rng.json` são conferidos no CI (Linux), o que garante o mesmo resultado em Windows e Linux.
+- **`AGENTS.md` e `rules/`** guardam as regras para agentes de código, lidas sob demanda.
 
 ### Como rodar
 
-- **No computador:** `.\tools\run_tests.ps1` (aceita `-Gate 0.95` e `-Filter nome`).
-- **Direto no Godot:** `godot --headless --path game -s res://tests/run_tests.gd -- --gate=0.95`
-- **No GitHub:** o workflow `.github/workflows/testes.yml` roda em todo push na `main` e em todo pull request.
+- **Portão completo:** `.\tools\verify.ps1`
+- **Só os testes:** `.\tools\run_tests.ps1` (aceita `-Gate 0.95` e `-Filter nome`).
+- **No GitHub:** o workflow `.github/workflows/testes.yml` roda o `verify.ps1` em todo push na `main` e em todo pull request.
 
 ### Limitação conhecida
 
-O GDScript não tem `try/catch`. Se um teste tiver um **erro de execução** (não uma asserção que falha), o Godot mostra o erro no console, mas o teste pode ser contado como aprovado. Por isso, o CI também deve ser lido pelo log, e testes devem preferir asserções explícitas.
+O GDScript não tem `try/catch`. Um erro de execução dentro de um teste aparece no log como `SCRIPT ERROR`, e o `run_tests.ps1` reprova a suíte quando encontra essa marca.
 
 ---
 

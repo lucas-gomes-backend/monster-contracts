@@ -9,6 +9,8 @@ extends SceneTree
 ##   1. A taxa de testes aprovados (sem contar os pulados) precisa ser >= ao portão.
 ##   2. Toda métrica registrada com record_metric() precisa ser >= ao portão.
 ##   3. Precisa existir pelo menos um teste executado.
+##   4. Testes OBRIGATÓRIOS não podem falhar nenhuma vez: tudo em res://tests/arch/
+##      e todo arquivo que declara `const OBRIGATORIO := true` (ex.: determinismo).
 ## Se alguma regra falhar, o processo termina com código 1 (o CI fica vermelho).
 
 const DEFAULT_GATE := 0.95
@@ -41,6 +43,7 @@ func _run() -> int:
 	var failed := 0
 	var skipped := 0
 	var failures: Array[String] = []
+	var mandatory_failures: Array[String] = []
 	var metrics: Dictionary = {}
 
 	print("")
@@ -53,6 +56,8 @@ func _run() -> int:
 			failures.append("%s: não foi possível carregar o script" % path)
 			print("  [ERRO] %s" % path)
 			continue
+
+		var mandatory: bool = path.begins_with(TESTS_ROOT.path_join("arch")) or script.get_script_constant_map().get("OBRIGATORIO", false) == true
 
 		for test_name in _test_methods(script):
 			var label := "%s::%s" % [path.get_file().get_basename(), test_name]
@@ -75,10 +80,12 @@ func _run() -> int:
 				print("  [OK]     %s" % label)
 			else:
 				failed += 1
-				print("  [FALHA]  %s" % label)
+				print("  [FALHA]  %s%s" % [label, " (OBRIGATÓRIO)" if mandatory else ""])
 				for f in test._failures:
 					print("           - %s" % f)
 					failures.append("%s: %s" % [label, f])
+				if mandatory:
+					mandatory_failures.append(label)
 
 	var executed := passed + failed
 	var pass_rate := (float(passed) / executed) if executed > 0 else 0.0
@@ -90,6 +97,9 @@ func _run() -> int:
 	var gate_ok := executed > 0 and pass_rate >= _gate
 	if executed == 0:
 		print("PORTÃO: nenhum teste foi executado.")
+	if not mandatory_failures.is_empty():
+		gate_ok = false
+		print("Testes obrigatórios com falha: %d (não podem falhar nenhuma vez)" % mandatory_failures.size())
 
 	for metric_label in metrics:
 		var value: float = metrics[metric_label]
