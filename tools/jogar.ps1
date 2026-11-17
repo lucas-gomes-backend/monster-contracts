@@ -14,6 +14,9 @@ if (-not $exe) {
     exit 2
 }
 $project = Join-Path (Split-Path -Parent $PSScriptRoot) 'game'
+# O jogo fala em UTF-8 (acentos). Sem isso, o console do Windows embaralha "ã", "ç", "é".
+[Console]::OutputEncoding = [Text.Encoding]::UTF8
+[Console]::InputEncoding = [Text.Encoding]::UTF8
 & $exe --headless --path $project --import *> $null
 
 $userArgs = @("--semente=$Semente")

@@ -42,9 +42,21 @@ func _initialize() -> void:
 		quit(0)
 		return
 
+	# A leitura pode trazer várias linhas de uma vez (pipe) e devolve "" no fim da entrada.
+	var pendentes: Array = []
+	var leituras_vazias := 0
 	while not jogo.terminou:
-		printraw("\n> ")
-		var linha := OS.read_string_from_stdin().strip_edges()
+		if pendentes.is_empty():
+			printraw("\n> ")
+			var bruto := OS.read_string_from_stdin(4096)
+			if bruto.is_empty():
+				leituras_vazias += 1
+				if leituras_vazias >= 3:
+					break  # fim da entrada
+				continue
+			leituras_vazias = 0
+			pendentes.assign(bruto.replace("\r", "").split("\n"))
+		var linha: String = str(pendentes.pop_front()).strip_edges()
 		if linha.is_empty():
 			continue
 		print(jogo.executar(linha))
