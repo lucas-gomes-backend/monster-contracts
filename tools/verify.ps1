@@ -1,6 +1,6 @@
 ﻿# PORTÃO ÚNICO do projeto. Precisa sair 0 antes de dizer "pronto" e antes de cada commit.
 # Uso (na raiz do repositório):  .\tools\verify.ps1
-# Etapas: tamanho dos arquivos de regras -> testes do Godot (portão de 95%, inclui arquitetura e determinismo).
+# Etapas: tamanho dos arquivos de regras -> testes do Godot (100% dos testes, métricas >= 95%; inclui arquitetura e determinismo).
 param([double]$Gate = 0.95)
 
 $failed = @()

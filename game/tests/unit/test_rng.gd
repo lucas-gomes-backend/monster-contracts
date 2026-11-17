@@ -1,8 +1,6 @@
 extends "res://tests/framework/test_case.gd"
 ## Determinismo do gerador aleatório do mundo (rules/determinismo.md).
-## Obrigatório: nenhuma falha é tolerada pelo portão.
 
-const OBRIGATORIO := true
 
 const Rng := preload("res://core/rng.gd")
 const BASELINE_PATH := "res://tests/baselines/rng.json"

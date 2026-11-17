@@ -4,18 +4,9 @@
 $root = Split-Path -Parent $PSScriptRoot
 $verify = Join-Path $PSScriptRoot 'verify.ps1'
 
-# Quantas falhas comuns derrubam a taxa abaixo de 95%: depende do tamanho da suíte.
-$testCount = (Get-ChildItem (Join-Path $root 'game/tests') -Recurse -Filter 'test_*.gd' |
-    Select-String -Pattern '^func test_' | Measure-Object).Count
-$failCount = [math]::Max(3, [math]::Ceiling($testCount * 0.06) + 1)
-$failBody = "extends `"res://tests/framework/test_case.gd`"`n"
-for ($i = 0; $i -lt $failCount; $i++) { $failBody += "func test_mutante_$i() -> void:`n`tassert_eq(1, 2)`n" }
-
 $mutants = @(
-    @{ name = "falhas comuns abaixo de 95% ($failCount de ~$testCount)"; path = 'game/tests/unit/test_mutante.gd';
-       body = $failBody },
-    @{ name = 'um teste obrigatório que falha'; path = 'game/tests/unit/test_mutante.gd';
-       body = "extends `"res://tests/framework/test_case.gd`"`nconst OBRIGATORIO := true`nfunc test_mutante_obrigatorio() -> void:`n`tassert_eq(1, 2)`n" },
+    @{ name = 'um único teste que falha';    path = 'game/tests/unit/test_mutante.gd';
+       body = "extends `"res://tests/framework/test_case.gd`"`nfunc test_mutante_falha() -> void:`n`tassert_eq(1, 2)`n" },
     @{ name = 'métrica abaixo do portão';    path = 'game/tests/unit/test_mutante.gd';
        body = "extends `"res://tests/framework/test_case.gd`"`nfunc test_mutante_metrica() -> void:`n`trecord_metric(`"casos_validos`", 0.5)`n" },
     @{ name = 'randi() no núcleo';           path = 'game/core/mutante.gd';

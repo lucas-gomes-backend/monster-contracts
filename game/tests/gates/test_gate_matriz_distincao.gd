@@ -1,8 +1,7 @@
 extends "res://tests/framework/test_case.gd"
 ## Portão da Fase 1: todas as espécies do catálogo são distinguíveis entre si
-## (docs/03, "Matriz de distinção"). Obrigatório: é a garantia de dedução justa.
+## (docs/03, "Matriz de distinção"). É a garantia de dedução justa.
 
-const OBRIGATORIO := true
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const Matriz := preload("res://core/criaturas/matriz_distincao.gd")
 

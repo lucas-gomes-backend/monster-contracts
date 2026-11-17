@@ -1,4 +1,4 @@
-﻿# Roda a suíte de testes do Godot com o portão de 95%.
+﻿# Roda a suíte de testes do Godot: todo teste precisa passar; métricas >= 95% (-Gate).
 # Uso (na raiz do repositório):  .\tools\run_tests.ps1 [-Gate 0.95] [-Filter nome]
 # Erros de script ou de parse no log reprovam a suíte, mesmo que o executor diga APROVADO.
 param(

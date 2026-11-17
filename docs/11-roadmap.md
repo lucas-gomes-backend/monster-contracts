@@ -76,7 +76,7 @@ O teste de fogo: **o jogo inteiro sem 3D**, só com texto e botões.
 
 **Portão (o mais importante do projeto):**
 - O gerador produz 100 casos e **pelo menos 95%** passam na validação (teste de portão em `game/tests/gates/`).
-- A suíte de testes passa no **portão de 95%** no CI.
+- A suíte de testes passa no portão do CI: **100% dos testes** e **métricas em pelo menos 95%**.
 - Jogar 10 casos em texto é **divertido**: dá vontade de jogar o próximo.
 - **Se não for divertido**, o problema está no coração do jogo. Ajustar aqui é barato; depois fica caríssimo.
 

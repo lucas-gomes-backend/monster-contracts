@@ -18,8 +18,8 @@ jogo), com o invariante checado **a cada passo**. Horizontes longos ficam fora d
 
 - Limiares vêm de **parâmetros do jogo** ou de **referências medidas** em `game/tests/baselines/`
   a partir de **20 sementes**, atualizadas só por commit explícito.
-- **Exceção decidida (produto):** o portão de **95%** (testes aprovados e métricas como
-  "casos válidos") é uma decisão do projeto, não um número mágico.
+- **Exceção decidida (produto):** o portão de **95% para métricas** (ex.: "casos válidos")
+  é uma decisão do projeto, não um número mágico. Testes comuns precisam de 100%.
 > Ruim: "o caso tem em média 11 pistas". Bom: "a média de pistas fica dentro da faixa
 > medida nas 20 sementes de referência".
 

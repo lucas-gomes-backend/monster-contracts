@@ -6,18 +6,18 @@ extends SceneTree
 ##   godot --headless --path game -s res://tests/run_tests.gd -- --gate=0.95 --filter=gerador
 ##
 ## Regras do portão:
-##   1. A taxa de testes aprovados (sem contar os pulados) precisa ser >= ao portão.
-##   2. Toda métrica registrada com record_metric() precisa ser >= ao portão.
+##   1. TODO teste executado precisa passar (100%). Pulados não contam.
+##   2. Toda métrica registrada com record_metric() precisa ser >= ao portão de
+##      métricas (--gate, 95% por padrão). Ex.: fração de casos gerados válidos.
 ##   3. Precisa existir pelo menos um teste executado.
-##   4. Testes OBRIGATÓRIOS não podem falhar nenhuma vez: tudo em res://tests/arch/
-##      e todo arquivo que declara `const OBRIGATORIO := true` (ex.: determinismo).
+##   4. Arquivo de teste que não carrega é falha.
 ## Se alguma regra falhar, o processo termina com código 1 (o CI fica vermelho).
 
-const DEFAULT_GATE := 0.95
+const DEFAULT_METRIC_GATE := 0.95
 const TESTS_ROOT := "res://tests"
 const REPORT_PATH := "user://test_report.json"
 
-var _gate := DEFAULT_GATE
+var _metric_gate := DEFAULT_METRIC_GATE
 var _filter := ""
 
 
@@ -30,7 +30,7 @@ func _initialize() -> void:
 func _parse_args() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--gate="):
-			_gate = clampf(arg.trim_prefix("--gate=").to_float(), 0.0, 1.0)
+			_metric_gate = clampf(arg.trim_prefix("--gate=").to_float(), 0.0, 1.0)
 		elif arg.begins_with("--filter="):
 			_filter = arg.trim_prefix("--filter=").to_lower()
 
@@ -43,23 +43,18 @@ func _run() -> int:
 	var failed := 0
 	var skipped := 0
 	var failures: Array[String] = []
-	var mandatory_failures: Array[String] = []
 	var metrics: Dictionary = {}
 
 	print("")
-	print("== Testes (portão de %d%%) ==" % roundi(_gate * 100.0))
+	print("== Testes (todos precisam passar; métricas >= %d%%) ==" % roundi(_metric_gate * 100.0))
 
 	for path in files:
 		var script: Script = load(path)
 		if script == null or not script.can_instantiate():
-			# Arquivo de teste que não carrega esconde todos os testes dele: é falha obrigatória.
 			failed += 1
-			failures.append("%s: não foi possível carregar o script" % path)
-			mandatory_failures.append(path)
-			print("  [ERRO] %s (OBRIGATÓRIO: o arquivo não carrega)" % path)
+			failures.append("%s: o arquivo não carrega" % path)
+			print("  [ERRO]   %s (o arquivo não carrega)" % path)
 			continue
-
-		var mandatory: bool = path.begins_with(TESTS_ROOT.path_join("arch")) or script.get_script_constant_map().get("OBRIGATORIO", false) == true
 
 		for test_name in _test_methods(script):
 			var label := "%s::%s" % [path.get_file().get_basename(), test_name]
@@ -82,35 +77,27 @@ func _run() -> int:
 				print("  [OK]     %s" % label)
 			else:
 				failed += 1
-				print("  [FALHA]  %s%s" % [label, " (OBRIGATÓRIO)" if mandatory else ""])
+				print("  [FALHA]  %s" % label)
 				for f in test._failures:
 					print("           - %s" % f)
 					failures.append("%s: %s" % [label, f])
-				if mandatory:
-					mandatory_failures.append(label)
 
 	var executed := passed + failed
-	var pass_rate := (float(passed) / executed) if executed > 0 else 0.0
-
 	print("")
 	print("Aprovados: %d  Falhas: %d  Pulados: %d" % [passed, failed, skipped])
-	print("Taxa de aprovação: %.1f%% (portão: %.1f%%)" % [pass_rate * 100.0, _gate * 100.0])
 
-	var gate_ok := executed > 0 and pass_rate >= _gate
+	var gate_ok := executed > 0 and failed == 0
 	if executed == 0:
 		print("PORTÃO: nenhum teste foi executado.")
-	if not mandatory_failures.is_empty():
-		gate_ok = false
-		print("Testes obrigatórios com falha: %d (não podem falhar nenhuma vez)" % mandatory_failures.size())
 
 	for metric_label in metrics:
 		var value: float = metrics[metric_label]
-		var ok := value >= _gate
+		var ok := value >= _metric_gate
 		print("Métrica %s: %.1f%% %s" % [metric_label, value * 100.0, "OK" if ok else "ABAIXO DO PORTÃO"])
 		if not ok:
 			gate_ok = false
 
-	_write_report(passed, failed, skipped, pass_rate, metrics, failures, gate_ok)
+	_write_report(passed, failed, skipped, metrics, failures, gate_ok)
 
 	print("PORTÃO: %s" % ("APROVADO" if gate_ok else "REPROVADO"))
 	print("")
@@ -145,13 +132,12 @@ func _test_methods(script: Script) -> Array[String]:
 	return names
 
 
-func _write_report(passed: int, failed: int, skipped: int, pass_rate: float, metrics: Dictionary, failures: Array[String], gate_ok: bool) -> void:
+func _write_report(passed: int, failed: int, skipped: int, metrics: Dictionary, failures: Array[String], gate_ok: bool) -> void:
 	var report := {
-		"gate": _gate,
+		"metric_gate": _metric_gate,
 		"passed": passed,
 		"failed": failed,
 		"skipped": skipped,
-		"pass_rate": pass_rate,
 		"metrics": metrics,
 		"failures": failures,
 		"gate_ok": gate_ok,

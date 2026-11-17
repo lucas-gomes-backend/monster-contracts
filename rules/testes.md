@@ -27,9 +27,9 @@ Quem decide "pronto" é o portão (`.\tools\verify.ps1`), não quem escreveu o c
 - `skip("motivo")` para sistema que ainda não existe. Pulado não conta no portão.
 - `record_metric("nome", taxa)` registra uma taxa de 0 a 1 que precisa ficar no portão.
 - `assert_eq` compara tipo também: `1` e `1.0` são diferentes.
-- **Obrigatórios:** tudo em `tests/arch/` e todo arquivo com `const OBRIGATORIO := true`
-  não pode falhar nenhuma vez. O portão de 95% vale só para os demais testes e métricas.
-  Marque como obrigatório o que protege uma regra (determinismo, separação núcleo/visual).
+- **Todo teste precisa passar (100%).** Nenhuma falha é tolerada.
+- O **portão de 95%** vale só para **métricas** (`record_metric`), como a fração de casos
+  gerados válidos, que varia de semente para semente.
 
 ## Testes de propriedade (gerador de casos, simulação)
 

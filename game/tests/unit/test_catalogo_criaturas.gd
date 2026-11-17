@@ -1,8 +1,6 @@
 extends "res://tests/framework/test_case.gd"
 ## O conteúdo de criaturas em res://data/creatures (docs/03).
-## Obrigatório: ficha inválida quebra o jogo, então nenhuma falha é tolerada.
 
-const OBRIGATORIO := true
 const Catalogo := preload("res://core/dados/catalogo.gd")
 
 ## Criaturas do corte vertical (docs/11-roadmap.md, Fase 1).

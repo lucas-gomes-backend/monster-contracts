@@ -1,7 +1,6 @@
 extends "res://tests/framework/test_case.gd"
-## Determinismo da simulação de criaturas (rules/determinismo.md). Obrigatório.
+## Determinismo da simulação de criaturas (rules/determinismo.md).
 
-const OBRIGATORIO := true
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const Criatura := preload("res://core/criaturas/criatura.gd")
 const Rng := preload("res://core/rng.gd")

@@ -211,15 +211,16 @@ game/tests/
 - `skip("motivo")` marca testes de sistemas que ainda não existem. **Pulados não contam** no portão.
 - `record_metric("nome", taxa)` registra uma taxa de 0 a 1, como a fração de casos gerados que passam na validação.
 
-### O portão de 95%
+### O portão: 100% dos testes, 95% das métricas
 
 A suíte só passa se todas as regras valerem:
 
-1. **Pelo menos 95%** dos testes executados passam.
-2. **Toda métrica** registrada fica em pelo menos 95%.
-3. **Pelo menos um** teste foi executado.
-4. **Testes obrigatórios não falham nenhuma vez:** tudo em `tests/arch/` (regras do núcleo) e todo arquivo com `const OBRIGATORIO := true` (como o determinismo do RNG).
-5. **Nenhum erro de script ou de parse** aparece no log.
+1. **Todo teste executado passa (100%).** Pulados não contam.
+2. **Toda métrica** registrada (ex.: fração de casos gerados válidos) fica em **pelo menos 95%**.
+3. **Pelo menos um** teste foi executado, e todo arquivo de teste carrega.
+4. **Nenhum erro de script, de parse ou vazamento de recursos** aparece no log.
+
+**Por que 100% nos testes:** com o portão de 95% aplicado aos testes, a prova de mutação mostrou que bugs reais de comportamento passavam. O lobisomem ignorando o dia da semana derrubava 3 de 76 testes (96,1%) e mesmo assim era aprovado. Os 95% ficaram só para as métricas, que variam de semente para semente.
 
 Se alguma regra falhar, o processo sai com código 1, e o CI fica vermelho. Um relatório em JSON é salvo em `user://test_report.json`.
 
@@ -228,7 +229,7 @@ Se alguma regra falhar, o processo sai com código 1, e o CI fica vermelho. Um r
 Inspirado nas regras de qualidade do projeto [LivingWorld](https://github.com/AlanEdward19/LivingWorld):
 
 - **`tools/verify.ps1`** é o portão único: confere o tamanho dos arquivos de regras (até 100 linhas) e roda os testes. Precisa sair 0 antes de qualquer commit.
-- **`tools/verify-mutation.ps1`** prova que o portão reprova de verdade: cria falhas de propósito (teste quebrado, `randi()` no núcleo, núcleo dependendo de cena, erro de parse, métrica baixa, regra longa demais) e exige que o portão fique vermelho em todas.
+- **`tools/verify-mutation.ps1`** prova que o portão reprova de verdade: cria falhas de propósito e exige que o portão fique vermelho em todas. Há mutantes que **criam arquivos** (teste quebrado, `randi()` no núcleo, núcleo dependendo de cena, erro de parse, métrica baixa, ficha inválida, criaturas indistinguíveis, regra longa demais) e mutantes que **alteram código existente** (lobisomem ignorando o dia, marca sem origem, registro aceitando evento no passado).
 - **Regras do núcleo verificadas por teste** (`tests/arch/`): nada de aleatoriedade sem semente, relógio da máquina, nós, cenas ou referências à apresentação dentro de `game/core/`.
 - **`game/core/rng.gd`** é a única fonte de aleatoriedade, com streams independentes por nome. Os valores de referência em `tests/baselines/rng.json` são conferidos no CI (Linux), o que garante o mesmo resultado em Windows e Linux.
 - **`AGENTS.md` e `rules/`** guardam as regras para agentes de código, lidas sob demanda.

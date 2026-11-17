@@ -1,7 +1,6 @@
 extends "res://tests/framework/test_case.gd"
-## Relógio do mundo (core/tempo/relogio.gd). Obrigatório: tempo errado quebra o determinismo.
+## Relógio do mundo (core/tempo/relogio.gd).
 
-const OBRIGATORIO := true
 const Relogio := preload("res://core/tempo/relogio.gd")
 
 

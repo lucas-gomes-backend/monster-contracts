@@ -1,7 +1,6 @@
 extends "res://tests/framework/test_case.gd"
-## Registro e barramento de eventos (core/eventos). Obrigatório: é a fonte da verdade.
+## Registro e barramento de eventos (core/eventos). É a fonte da verdade.
 
-const OBRIGATORIO := true
 const Registro := preload("res://core/eventos/registro.gd")
 const Barramento := preload("res://core/eventos/barramento.gd")
 
