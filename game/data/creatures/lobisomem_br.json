@@ -39,7 +39,7 @@
     {"tag": "pelos_escuros_grossos", "onde": "cena", "freq": "comum", "detectar": "laboratorio"},
     {"tag": "mordida_arcada_grande", "onde": "corpo", "freq": "comum", "detectar": "laboratorio"},
     {"tag": "corrida_em_cemiterio", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "evento"},
-    {"tag": "ataques_noite_quinta_sexta", "onde": "registro", "freq": "sempre", "detectar": "pesquisa"},
+    {"tag": "ataques_noite_quinta_sexta", "onde": "registro", "freq": "sempre", "detectar": "pesquisa", "sobre": "evento"},
     {"tag": "morador_some_noite_quinta_sexta", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "hospedeiro"},
     {"tag": "roupas_rasgadas_escondidas", "onde": "covil", "freq": "rara", "detectar": "olho_nu"}
   ],

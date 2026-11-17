@@ -35,7 +35,7 @@
     {"tag": "pegadas_de_sapato", "onde": "cena", "freq": "comum", "detectar": "olho_nu"},
     {"tag": "equipamento_de_efeito_escondido", "onde": "covil", "freq": "comum", "detectar": "olho_nu"},
     {"tag": "relatos_de_uma_unica_fonte", "onde": "testemunha", "freq": "sempre", "detectar": "entrevista", "sobre": "caso"},
-    {"tag": "beneficio_financeiro_registrado", "onde": "registro", "freq": "sempre", "detectar": "pesquisa"},
+    {"tag": "beneficio_financeiro_registrado", "onde": "registro", "freq": "sempre", "detectar": "pesquisa", "sobre": "historia"},
     {"tag": "contradicoes_no_relato", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "caso"}
   ],
   "fraquezas": [

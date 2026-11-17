@@ -25,6 +25,7 @@ const Presenca := preload("res://core/npcs/presenca.gd")
 const Criatura := preload("res://core/criaturas/criatura.gd")
 const Pistas := preload("res://core/casos/pistas.gd")
 const Testemunhas := preload("res://core/casos/testemunhas.gd")
+const Solucionador := preload("res://core/casos/solucionador.gd")
 
 const TIPOS_PRESENCIAVEIS := ["criatura.ataque", "ruido.ocorreu"]
 const MINUTOS_POR_DIA := 1440
@@ -37,12 +38,19 @@ static func gerar(semente: int, id_bairro: String = "paqueta") -> Dictionary:
 	if not dados["erros"].is_empty():
 		return {"valido": false, "semente": semente, "erros": dados["erros"]}
 	var tentativas := int(dados["casos"]["tentativas_maximas"])
+	var ultimos_motivos: Array = ["nenhuma tentativa produziu um incidente"]
 	for tentativa in tentativas:
 		var sub_semente := semente if tentativa == 0 else Rng.derive_seed(semente, "tentativa:%d" % tentativa)
 		var caso := _gerar_tentativa(semente, sub_semente, tentativa, dados)
-		if caso.get("valido", false):
+		if not caso.get("valido", false):
+			continue
+		# Passo 8: o solucionador joga o caso como um iniciante. Caso injusto é descartado.
+		var validacao := Solucionador.validar(caso, dados["criaturas"], dados["bairro"]["tipo"])
+		caso["validacao"] = validacao
+		if validacao["valido"]:
 			return caso
-	return {"valido": false, "semente": semente, "erros": ["nenhuma das %d tentativas produziu um incidente" % tentativas]}
+		ultimos_motivos = validacao["motivos"]
+	return {"valido": false, "semente": semente, "erros": ["nenhuma das %d tentativas gerou um caso justo" % tentativas], "motivos": ultimos_motivos}
 
 
 ## Carrega e valida tudo o que o gerador usa. {"erros": [...], ...dados}
@@ -122,7 +130,13 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 	# 3. História
 	var gatilho: String = ficha["gatilhos"][g.randi_range(0, ficha["gatilhos"].size() - 1)]
 	var ligado: String = hospedeiro["id"] if not hospedeiro.is_empty() else _adulto_qualquer(npcs, g)
-	barramento.publicar(inicio, "historia.gatilho", instancia, "", {"gatilho": gatilho, "npc_ligado": ligado, "especie": especie})
+	var historia: Dictionary = barramento.publicar(inicio, "historia.gatilho", instancia, "", {"gatilho": gatilho, "npc_ligado": ligado, "especie": especie})
+	# Registros antigos (cartório, jornal, igreja) que a história da criatura deixou.
+	var g_historia: RandomNumberGenerator = rng.stream("historia")
+	for marca in ficha["marcas"]:
+		if marca["onde"] == "registro" and marca.get("sobre", "historia") == "historia":
+			if g_historia.randf() < float(d["config_criaturas"]["chance_marca"][marca["freq"]]):
+				barramento.publicar(inicio, "historia.registro", instancia, "", {"tag": marca["tag"], "evento_origem": historia["id"]})
 	if ficha["necessidade"]["frequencia"] == "quando_provocada":
 		criatura.provocar(inicio, gatilho)
 	else:

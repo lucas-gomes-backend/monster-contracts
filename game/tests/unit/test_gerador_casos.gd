@@ -94,8 +94,8 @@ func test_casos_toda_pista_tem_proveniencia_coerente() -> void:
 			if evento.is_empty() or causa.is_empty():
 				fail("semente %d: %s sem evento ou causa" % [semente, pista["id"]])
 				continue
-			var esperado := "criatura.ataque" if pista["origem"] == "criatura" else "ruido.ocorreu"
-			if causa["tipo"] != esperado:
+			var esperado: Array = ["criatura.ataque", "historia.gatilho"] if pista["origem"] == "criatura" else ["ruido.ocorreu"]
+			if not causa["tipo"] in esperado:
 				fail("semente %d: %s com causa %s" % [semente, pista["id"], causa["tipo"]])
 			if pista["tipo"] != "registro" and causa["minuto"] != pista["minuto"]:
 				fail("semente %d: %s em momento diferente da causa" % [semente, pista["id"]])

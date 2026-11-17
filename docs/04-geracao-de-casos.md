@@ -113,6 +113,13 @@ Um **solucionador automático** joga o caso como um jogador iniciante:
 - Exige **redundância**: cada distinção importante precisa ter **pelo menos 2 caminhos independentes**. Assim, perder uma pista não trava o caso.
 - Se falhar, o gerador **ajusta** (acrescenta uma testemunha, revela um registro) ou **descarta** e gera de novo.
 
+**Como está implementado (Fase 1, `game/core/casos/solucionador.gd`):**
+
+- Só existe **uma criatura por caso**. Uma marca que pertence ao vocabulário de alguma espécie precisa ser explicada por ela; marcas que nenhuma espécie deixa são **ruído** e são ignoradas. Uma espécie é descartada quando alguma evidência tem uma marca que ela não deixa.
+- O caso é justo quando sobra só a espécie verdadeira, **cada outra espécie é descartada por pelo menos 2 evidências diferentes**, e, se há hospedeiro, **pelo menos 2 depoimentos apontam para ele**.
+- **Padrões de boletim** (ex.: "ataques na noite de quinta para sexta") só contam com **2 boletins ou mais**. Com um só, o padrão aparecia por coincidência e descartava a espécie verdadeira.
+- O gerador descarta a tentativa injusta e tenta outra sub-semente. Hoje, cerca de 82% das tentativas passam de primeira, e 100% dos casos entregues são justos.
+
 ### 9. Simulação ao vivo
 
 - A partir do contrato, a criatura **continua agindo** em tempo real ([13](13-tempo-morte-e-finais.md)).

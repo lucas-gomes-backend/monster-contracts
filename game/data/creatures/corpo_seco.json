@@ -35,7 +35,7 @@
     {"tag": "cadaver_sem_decomposicao", "onde": "covil", "freq": "comum", "detectar": "olho_nu"},
     {"tag": "cheiro_de_podre", "onde": "ambiente", "freq": "comum", "detectar": "olho_nu"},
     {"tag": "vulto_magro_avistado", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "evento"},
-    {"tag": "historico_de_violencia_familiar", "onde": "registro", "freq": "sempre", "detectar": "pesquisa"}
+    {"tag": "historico_de_violencia_familiar", "onde": "registro", "freq": "sempre", "detectar": "pesquisa", "sobre": "historia"}
   ],
   "fraquezas": [
     {"item": "agua_benta", "efeito": ["afasta"]},

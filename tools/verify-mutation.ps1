@@ -53,7 +53,13 @@ $mutants += @(
     @{ name = 'família entrega o sumiço'; path = 'game/core/casos/testemunhas.gd';
        find = 'continue  # a família não conta'; replace = 'pass  # a família não conta' },
     @{ name = 'medroso não exagera'; path = 'game/core/casos/testemunhas.gd';
-       find = 'if i < 0 or not medroso:'; replace = 'if true:' }
+       find = 'if i < 0 or not medroso:'; replace = 'if true:' },
+    @{ name = 'solucionador aceita uma só evidência'; path = 'game/core/casos/solucionador.gd';
+       find = 'const MINIMO_EVIDENCIAS := 2'; replace = 'const MINIMO_EVIDENCIAS := 1' },
+    @{ name = 'ruído descarta espécies'; path = 'game/core/casos/solucionador.gd';
+       find = 'if vocabulario.has(ev["tag"]) and not tags_especie.has(ev["tag"]):'; replace = 'if not tags_especie.has(ev["tag"]):' },
+    @{ name = 'um boletim vira padrão'; path = 'game/core/casos/solucionador.gd';
+       find = 'const MINIMO_BOLETINS_PADRAO := 2'; replace = 'const MINIMO_BOLETINS_PADRAO := 1' }
 )
 
 $survivors = @()

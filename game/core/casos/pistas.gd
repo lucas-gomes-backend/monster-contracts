@@ -47,13 +47,15 @@ static func derivar(registro: RefCounted, validade_horas: Dictionary, chuva_em: 
 				}
 			"registro.boletim":
 				pista = {"tipo": "registro", "onde": "registro", "detectar": "pesquisa"}
+			"historia.registro":
+				pista = {"tipo": "registro", "tag": evento["dados"]["tag"], "onde": "registro", "detectar": "pesquisa"}
 			_:
 				continue
 		var causa: Dictionary = registro.obter(int(evento["dados"]["evento_origem"]))
 		pista["id"] = "pista_%03d" % pistas.size()
 		pista["evento"] = evento["id"]
 		pista["causa"] = causa.get("id", -1)
-		pista["origem"] = "criatura" if causa.get("tipo", "") == "criatura.ataque" else "ruido"
+		pista["origem"] = "criatura" if causa.get("tipo", "") in ["criatura.ataque", "historia.gatilho"] else "ruido"
 		pista["local"] = evento["local"]
 		pista["minuto"] = evento["minuto"]
 		pista["valida_ate"] = validade(pista["onde"], evento["minuto"], validade_horas, chuva_em)
