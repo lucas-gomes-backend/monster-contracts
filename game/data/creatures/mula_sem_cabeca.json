@@ -31,6 +31,7 @@
     "tipo": "forma_humana",
     "sinais": ["mulher_some_na_noite_de_quinta_para_sexta", "exausta_na_sexta"]
   },
+  "hospedeiro": {"genero": "feminino", "idade_min": 18, "idade_max": 60},
   "marcas": [
     {"tag": "marcas_de_cascos", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
     {"tag": "relinchos_e_galope_noturno", "onde": "testemunha", "freq": "comum", "detectar": "entrevista"},

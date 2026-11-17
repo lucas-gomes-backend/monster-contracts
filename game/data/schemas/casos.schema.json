@@ -1,0 +1,90 @@
+{
+  "$comment": "Parâmetros do gerador de casos (game/data/config/casos.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["estruturas", "pre_simulacao_dias", "tentativas_maximas", "data_base", "dias_de_variacao_da_data", "hora_do_contrato", "locais_de_ataque", "ruidos_por_caso", "ruidos", "chance_boletim", "hora_do_boletim", "validade_horas", "chance_chuva", "janela_chuva_horas", "prazo_dias", "recompensa_por_perigo", "pedidos"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "estruturas": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "peso"],
+        "properties": {
+          "id": {"enum": ["caca_simples", "golpe", "culpado_humano", "cliente_mentiroso", "criatura_errada"]},
+          "peso": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "pre_simulacao_dias": {"type": "integer", "minimum": 1, "maximum": 60},
+    "tentativas_maximas": {"type": "integer", "minimum": 1},
+    "data_base": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ano", "mes", "dia"],
+      "properties": {
+        "ano": {"type": "integer"},
+        "mes": {"type": "integer", "minimum": 1, "maximum": 12},
+        "dia": {"type": "integer", "minimum": 1, "maximum": 31}
+      }
+    },
+    "dias_de_variacao_da_data": {"type": "integer", "minimum": 0},
+    "hora_do_contrato": {"type": "integer", "minimum": 0, "maximum": 23},
+    "locais_de_ataque": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "ruidos_por_caso": {"$ref": "#/$defs/faixa"},
+    "ruidos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "tipo_local", "noturno", "marcas"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z_]+$"},
+          "tipo_local": {"type": "string"},
+          "noturno": {"type": "boolean"},
+          "marcas": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["tag", "onde", "detectar"],
+              "properties": {
+                "tag": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+                "onde": {"enum": ["cena", "corpo", "ambiente", "covil"]},
+                "detectar": {"enum": ["olho_nu", "entrevista", "pesquisa", "uv", "emf", "termica", "laboratorio", "habilidade"]}
+              }
+            }
+          }
+        }
+      }
+    },
+    "chance_boletim": {"$ref": "#/$defs/chance"},
+    "hora_do_boletim": {"type": "integer", "minimum": 0, "maximum": 23},
+    "validade_horas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cena", "corpo", "ambiente", "covil", "testemunha", "registro"],
+      "properties": {
+        "cena": {"type": "integer"},
+        "corpo": {"type": "integer"},
+        "ambiente": {"type": "integer"},
+        "covil": {"type": "integer"},
+        "testemunha": {"type": "integer"},
+        "registro": {"type": "integer"}
+      }
+    },
+    "chance_chuva": {"$ref": "#/$defs/chance"},
+    "janela_chuva_horas": {"$ref": "#/$defs/faixa"},
+    "prazo_dias": {"type": "integer", "minimum": 1},
+    "recompensa_por_perigo": {"type": "integer", "minimum": 0},
+    "pedidos": {"type": "object"}
+  },
+  "$defs": {
+    "chance": {"type": "number", "minimum": 0, "maximum": 1},
+    "faixa": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0}}
+  }
+}

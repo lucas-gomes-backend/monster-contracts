@@ -22,8 +22,15 @@ func _init(config_populacao: Dictionary, rng_mundo: RefCounted, bairro: RefCount
 	_bairro = bairro
 
 
-## {"local": id completo ou "fora_do_bairro", "atividade": "trabalhando" | "dormindo" | "lazer" | "em_casa"}
+## {"local": id completo ou "fora_do_bairro", "atividade": "transformado" | "trabalhando" | "dormindo" | "lazer" | "em_casa"}
+##
+## "ausencias" (opcional no NPC): lista de [inicio, fim, local] em que ele estava agindo
+## como a criatura do caso. Isso vem antes de tudo: é por isso que "o morador some".
 func onde_esta(npc: Dictionary, minuto: int) -> Dictionary:
+	for ausencia in npc.get("ausencias", []):
+		if minuto >= int(ausencia[0]) and minuto <= int(ausencia[1]):
+			return {"local": ausencia[2], "atividade": "transformado"}
+
 	var ocupacao: Dictionary = npc.get("ocupacao", {})
 	if not npc.get("trabalho", "").is_empty() and Janela.dentro(minuto, int(ocupacao["inicio"]), int(ocupacao["fim"]), ocupacao["dias"]):
 		return {"local": npc["trabalho"], "atividade": "trabalhando"}

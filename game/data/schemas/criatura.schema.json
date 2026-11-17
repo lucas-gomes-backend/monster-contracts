@@ -57,6 +57,17 @@
         "sinais": {"type": "array", "items": {"type": "string"}}
       }
     },
+    "hospedeiro": {
+      "$comment": "Quem pode ser a forma humana da criatura (disfarce forma_humana).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["idade_min", "idade_max"],
+      "properties": {
+        "genero": {"enum": ["masculino", "feminino"]},
+        "idade_min": {"type": "integer", "minimum": 0},
+        "idade_max": {"type": "integer", "minimum": 0}
+      }
+    },
     "marcas": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/marca"}},
     "fraquezas": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fraqueza"}},
     "tabus": {"type": "array", "items": {"type": "string"}},

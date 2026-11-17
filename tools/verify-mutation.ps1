@@ -43,7 +43,11 @@ $mutants += @(
     @{ name = 'quem dorme pesado também ouve'; path = 'game/core/npcs/presenca.gd';
        find = '(acordado or "sono_leve" in npc["tracos"])'; replace = 'true' },
     @{ name = 'amizade só de um lado'; path = 'game/core/npcs/gerador_populacao.gd';
-       find = 'b["relacoes"].append({"com": a["id"], "tipo": tipo})'; replace = 'pass' }
+       find = 'b["relacoes"].append({"com": a["id"], "tipo": tipo})'; replace = 'pass' },
+    @{ name = 'chuva não apaga pegadas'; path = 'game/core/casos/pistas.gd';
+       find = 'if onde == "cena" and chuva_em >= 0 and chuva_em > minuto:'; replace = 'if false:' },
+    @{ name = 'hospedeiro não some durante o ataque'; path = 'game/core/casos/gerador_casos.gd';
+       find = 'hospedeiro["ausencias"].append([e["minuto"] - 60, e["minuto"] + 60, e["local"]])'; replace = 'pass' }
 )
 
 $survivors = @()

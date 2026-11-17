@@ -31,6 +31,7 @@
     "tipo": "forma_humana",
     "sinais": ["palido_e_magro", "cansado_aos_sabados", "arranhoes", "some_na_noite_de_quinta_para_sexta"]
   },
+  "hospedeiro": {"genero": "masculino", "idade_min": 18, "idade_max": 60},
   "marcas": [
     {"tag": "pegadas_cao_grande", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
     {"tag": "galinheiro_atacado", "onde": "cena", "freq": "comum", "detectar": "olho_nu"},

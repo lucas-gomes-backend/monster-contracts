@@ -29,6 +29,7 @@
     "tipo": "forma_humana",
     "sinais": ["interesse_financeiro", "sempre_presente_quando_acontece"]
   },
+  "hospedeiro": {"idade_min": 25, "idade_max": 80},
   "marcas": [
     {"tag": "pegadas_de_sapato", "onde": "cena", "freq": "comum", "detectar": "olho_nu"},
     {"tag": "equipamento_de_efeito_escondido", "onde": "covil", "freq": "comum", "detectar": "olho_nu"},

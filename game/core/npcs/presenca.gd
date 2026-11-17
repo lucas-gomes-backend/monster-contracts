@@ -36,6 +36,8 @@ func _ao_evento(evento: Dictionary) -> void:
 		return
 	for npc in _npcs:
 		var posicao: Dictionary = _rotina.onde_esta(npc, evento["minuto"])
+		if posicao["atividade"] == "transformado":
+			continue  # é a própria criatura: não é testemunha do que ela mesma fez
 		var acordado: bool = posicao["atividade"] != "dormindo"
 		var modo := ""
 		if posicao["local"] == evento["local"] and acordado:

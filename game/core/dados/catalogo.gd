@@ -37,6 +37,11 @@ static func carregar_config_populacao() -> Dictionary:
 	return carregar_validado("res://data/config/populacao.json", "res://data/schemas/populacao.schema.json")
 
 
+## Parâmetros do gerador de casos, validados.
+static func carregar_config_casos() -> Dictionary:
+	return carregar_validado("res://data/config/casos.json", "res://data/schemas/casos.schema.json")
+
+
 ## Um bairro abstrato pelo id (res://data/neighborhoods/<id>.json), validado.
 static func carregar_bairro(id_bairro: String) -> Dictionary:
 	var resultado := carregar_validado("res://data/neighborhoods/%s.json" % id_bairro, "res://data/schemas/bairro.schema.json")
