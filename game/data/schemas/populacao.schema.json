@@ -1,0 +1,85 @@
+{
+  "$comment": "Parâmetros de geração de população (game/data/config/populacao.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["nomes", "tamanho_familia", "chance_conjuge", "idade_responsavel", "idade_filho", "idade_estudante", "idade_aposentado", "ocupacoes", "ocupacao_estudante", "tracos", "tracos_por_pessoa", "segredos", "chance_segredo", "chance_amizade", "chance_desafeto", "sono", "lazer"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "nomes": {
+      "type": "object",
+      "required": ["brasileira"],
+      "properties": {
+        "brasileira": {"$ref": "#/$defs/nomes"},
+        "portuguesa": {"$ref": "#/$defs/nomes"},
+        "japonesa": {"$ref": "#/$defs/nomes"},
+        "arabe": {"$ref": "#/$defs/nomes"}
+      }
+    },
+    "tamanho_familia": {"$ref": "#/$defs/faixa"},
+    "chance_conjuge": {"$ref": "#/$defs/chance"},
+    "idade_responsavel": {"$ref": "#/$defs/faixa"},
+    "idade_filho": {"$ref": "#/$defs/faixa"},
+    "idade_estudante": {"$ref": "#/$defs/faixa"},
+    "idade_aposentado": {"type": "integer", "minimum": 1},
+    "ocupacoes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/ocupacao"}},
+    "ocupacao_estudante": {"$ref": "#/$defs/ocupacao"},
+    "tracos": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z_]+$"}},
+    "tracos_por_pessoa": {"$ref": "#/$defs/faixa"},
+    "segredos": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[a-z_]+$"}},
+    "chance_segredo": {"$ref": "#/$defs/chance"},
+    "chance_amizade": {"$ref": "#/$defs/chance"},
+    "chance_desafeto": {"$ref": "#/$defs/chance"},
+    "sono": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["padrao", "aposentado", "notivago", "crianca"],
+      "properties": {
+        "padrao": {"$ref": "#/$defs/horas"},
+        "aposentado": {"$ref": "#/$defs/horas"},
+        "notivago": {"$ref": "#/$defs/horas"},
+        "crianca": {"$ref": "#/$defs/horas"}
+      }
+    },
+    "lazer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["janela", "chance", "por_traco", "padrao"],
+      "properties": {
+        "janela": {"$ref": "#/$defs/horas"},
+        "chance": {"$ref": "#/$defs/chance"},
+        "por_traco": {"type": "object"},
+        "padrao": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "chance": {"type": "number", "minimum": 0, "maximum": 1},
+    "faixa": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0}},
+    "horas": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0, "maximum": 24}},
+    "nomes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["masculinos", "femininos", "sobrenomes"],
+      "properties": {
+        "masculinos": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "femininos": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "sobrenomes": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "ocupacao": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "local", "dono", "inicio", "fim", "dias", "maximo"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z_]+$"},
+        "local": {"type": "string", "pattern": "^[a-z_0-9]+$"},
+        "dono": {"type": "boolean"},
+        "inicio": {"type": "integer", "minimum": 0, "maximum": 24},
+        "fim": {"type": "integer", "minimum": 0, "maximum": 24},
+        "dias": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"]}},
+        "maximo": {"type": "integer", "minimum": 1},
+        "sono": {"$ref": "#/$defs/horas"}
+      }
+    }
+  }
+}

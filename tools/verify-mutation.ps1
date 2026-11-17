@@ -37,7 +37,13 @@ $mutants += @(
     @{ name = 'marca sem ligação com o ataque'; path = 'game/core/criaturas/criatura.gd';
        find = '"evento_origem": ataque["id"],'; replace = '"evento_origem": -1,' },
     @{ name = 'registro aceita evento no passado'; path = 'game/core/eventos/registro.gd';
-       find = 'minuto < _eventos[-1]["minuto"]'; replace = 'false' }
+       find = 'minuto < _eventos[-1]["minuto"]'; replace = 'false' },
+    @{ name = 'NPC trabalha em casa em vez do trabalho'; path = 'game/core/npcs/rotina.gd';
+       find = 'return {"local": npc["trabalho"], "atividade": "trabalhando"}'; replace = 'return {"local": npc["casa"], "atividade": "trabalhando"}' },
+    @{ name = 'quem dorme pesado também ouve'; path = 'game/core/npcs/presenca.gd';
+       find = '(acordado or "sono_leve" in npc["tracos"])'; replace = 'true' },
+    @{ name = 'amizade só de um lado'; path = 'game/core/npcs/gerador_populacao.gd';
+       find = 'b["relacoes"].append({"com": a["id"], "tipo": tipo})'; replace = 'pass' }
 )
 
 $survivors = @()

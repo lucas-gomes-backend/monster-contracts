@@ -32,6 +32,19 @@ static func carregar_config_criaturas() -> Dictionary:
 	return carregar_validado(CONFIG_SIM_CRIATURAS, ESQUEMA_SIM_CRIATURAS)
 
 
+## Parâmetros de geração de população, validados.
+static func carregar_config_populacao() -> Dictionary:
+	return carregar_validado("res://data/config/populacao.json", "res://data/schemas/populacao.schema.json")
+
+
+## Um bairro abstrato pelo id (res://data/neighborhoods/<id>.json), validado.
+static func carregar_bairro(id_bairro: String) -> Dictionary:
+	var resultado := carregar_validado("res://data/neighborhoods/%s.json" % id_bairro, "res://data/schemas/bairro.schema.json")
+	if resultado["dados"] is Dictionary and resultado["dados"].get("id", "") != id_bairro:
+		resultado["erros"].append("%s.json: o id precisa ser igual ao nome do arquivo" % id_bairro)
+	return resultado
+
+
 ## Lê um arquivo JSON. Devolve null se não existir ou se não for JSON válido.
 static func ler_json(caminho: String) -> Variant:
 	if not FileAccess.file_exists(caminho):

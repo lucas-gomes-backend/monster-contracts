@@ -1,0 +1,26 @@
+{
+  "$comment": "Bairro abstrato do corte vertical (docs/07). Lugares públicos reais; estabelecimentos e pessoas fictícios. As casas são geradas a partir de 'casas'.",
+  "id": "paqueta",
+  "nome": "Paquetá",
+  "zona": "central_portuaria",
+  "tipo": "antigo_religioso",
+  "populacao_alvo": 30,
+  "casas": 14,
+  "ruas": ["rua_1", "rua_2", "rua_3", "rua_do_cemiterio"],
+  "comunidades": [
+    {"id": "brasileira", "peso": 6},
+    {"id": "portuguesa", "peso": 2},
+    {"id": "arabe", "peso": 1},
+    {"id": "japonesa", "peso": 1}
+  ],
+  "locais": [
+    {"id": "cemiterio", "tipo": "cemiterio", "rua": "rua_do_cemiterio", "nome": "Cemitério do Paquetá"},
+    {"id": "igreja", "tipo": "igreja", "rua": "rua_1", "nome": "Igreja do bairro"},
+    {"id": "praca", "tipo": "praca", "rua": "rua_1", "nome": "Praça"},
+    {"id": "padaria", "tipo": "padaria", "rua": "rua_2", "nome": "Padaria Estrela"},
+    {"id": "escola", "tipo": "escola", "rua": "rua_2", "nome": "Escola municipal"},
+    {"id": "bar", "tipo": "bar", "rua": "rua_3", "nome": "Bar da esquina"},
+    {"id": "galinheiro_1", "tipo": "galinheiro", "rua": "rua_do_cemiterio", "nome": "Galinheiro de um quintal"},
+    {"id": "galinheiro_2", "tipo": "galinheiro", "rua": "rua_3", "nome": "Galinheiro de outro quintal"}
+  ]
+}

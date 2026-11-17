@@ -1,0 +1,57 @@
+{
+  "$comment": "Parâmetros para gerar a população dos bairros (docs/07). Nomes comuns por comunidade; todas as pessoas geradas são fictícias.",
+  "nomes": {
+    "brasileira": {
+      "masculinos": ["João", "José", "Antônio", "Carlos", "Paulo", "Luiz", "Marcos", "Rafael", "Diego", "Lucas", "Sebastião", "Valdir", "Osvaldo", "Manoel", "Tião"],
+      "femininos": ["Maria", "Ana", "Francisca", "Antônia", "Joana", "Celeste", "Lurdes", "Zica", "Juliana", "Patrícia", "Aline", "Sandra", "Rosa", "Fátima"],
+      "sobrenomes": ["Silva", "Santos", "Oliveira", "Souza", "Lima", "Pereira", "Ferreira", "Costa", "Ribeiro", "Nunes", "Almeida", "Rocha"]
+    },
+    "portuguesa": {
+      "masculinos": ["Joaquim", "Manuel", "Fernando", "Augusto", "Albano", "António"],
+      "femininos": ["Conceição", "Glória", "Amélia", "Graça", "Rosário", "Fátima"],
+      "sobrenomes": ["Gonçalves", "Fernandes", "Teixeira", "Pinto", "Carvalho", "Moura"]
+    },
+    "japonesa": {
+      "masculinos": ["Hiroshi", "Kenji", "Takeshi", "Paulo", "Jorge", "Mário"],
+      "femininos": ["Yoko", "Keiko", "Emiko", "Cristina", "Helena", "Akemi"],
+      "sobrenomes": ["Tanaka", "Suzuki", "Yamamoto", "Nakamura", "Watanabe", "Sato"]
+    },
+    "arabe": {
+      "masculinos": ["Jorge", "Elias", "Michel", "Salim", "Nagib", "Farid"],
+      "femininos": ["Samira", "Leila", "Jamile", "Nádia", "Laila", "Soraia"],
+      "sobrenomes": ["Haddad", "Abdalla", "Nassar", "Maluf", "Jafet", "Salomão"]
+    }
+  },
+  "tamanho_familia": [1, 4],
+  "chance_conjuge": 0.7,
+  "idade_responsavel": [22, 82],
+  "idade_filho": [0, 30],
+  "idade_estudante": [6, 17],
+  "idade_aposentado": 65,
+  "ocupacoes": [
+    {"id": "padeiro", "local": "padaria", "dono": true, "inicio": 4, "fim": 13, "dias": ["segunda", "terca", "quarta", "quinta", "sexta", "sabado"], "maximo": 1},
+    {"id": "balconista", "local": "padaria", "dono": false, "inicio": 6, "fim": 14, "dias": ["segunda", "terca", "quarta", "quinta", "sexta", "sabado"], "maximo": 2},
+    {"id": "dono_de_bar", "local": "bar", "dono": true, "inicio": 16, "fim": 1, "dias": ["terca", "quarta", "quinta", "sexta", "sabado", "domingo"], "maximo": 1, "sono": [3, 10]},
+    {"id": "vigia_noturno", "local": "cemiterio", "dono": false, "inicio": 20, "fim": 6, "dias": ["segunda", "terca", "quarta", "quinta", "sexta", "sabado", "domingo"], "maximo": 1, "sono": [8, 15]},
+    {"id": "padre", "local": "igreja", "dono": true, "inicio": 7, "fim": 19, "dias": ["segunda", "terca", "quarta", "quinta", "sexta", "sabado", "domingo"], "maximo": 1},
+    {"id": "professor", "local": "escola", "dono": false, "inicio": 7, "fim": 17, "dias": ["segunda", "terca", "quarta", "quinta", "sexta"], "maximo": 2},
+    {"id": "benzedeira", "local": "casa", "dono": false, "inicio": 8, "fim": 17, "dias": ["segunda", "terca", "quarta", "quinta", "sexta", "sabado"], "maximo": 1},
+    {"id": "estivador", "local": "fora_do_bairro", "dono": false, "inicio": 6, "fim": 14, "dias": ["segunda", "terca", "quarta", "quinta", "sexta", "sabado"], "maximo": 99},
+    {"id": "comerciario", "local": "fora_do_bairro", "dono": false, "inicio": 8, "fim": 18, "dias": ["segunda", "terca", "quarta", "quinta", "sexta", "sabado"], "maximo": 99},
+    {"id": "do_lar", "local": "casa", "dono": false, "inicio": 8, "fim": 12, "dias": ["segunda", "terca", "quarta", "quinta", "sexta", "sabado"], "maximo": 99}
+  ],
+  "ocupacao_estudante": {"id": "estudante", "local": "escola", "dono": false, "inicio": 7, "fim": 12, "dias": ["segunda", "terca", "quarta", "quinta", "sexta"], "maximo": 999},
+  "tracos": ["observador", "medroso", "fofoqueiro", "cetico", "religioso", "bebe_muito", "sono_leve", "notivago"],
+  "tracos_por_pessoa": [1, 2],
+  "segredos": ["divida", "caso_extraconjugal", "furtos", "crime_antigo", "esconde_parente"],
+  "chance_segredo": 0.3,
+  "chance_amizade": 0.6,
+  "chance_desafeto": 0.25,
+  "sono": {"padrao": [23, 6], "aposentado": [22, 6], "notivago": [2, 10], "crianca": [21, 7]},
+  "lazer": {
+    "janela": [18, 22],
+    "chance": 0.4,
+    "por_traco": {"bebe_muito": "bar", "fofoqueiro": "bar", "religioso": "igreja"},
+    "padrao": "praca"
+  }
+}
