@@ -38,19 +38,21 @@ static func gerar(semente: int, id_bairro: String = "paqueta") -> Dictionary:
 	if not dados["erros"].is_empty():
 		return {"valido": false, "semente": semente, "erros": dados["erros"]}
 	var tentativas := int(dados["casos"]["tentativas_maximas"])
-	var ultimos_motivos: Array = ["nenhuma tentativa produziu um incidente"]
+	var descartes: Array = []  # [{tentativa, motivos}] das tentativas jogadas fora
 	for tentativa in tentativas:
 		var sub_semente := semente if tentativa == 0 else Rng.derive_seed(semente, "tentativa:%d" % tentativa)
 		var caso := _gerar_tentativa(semente, sub_semente, tentativa, dados)
 		if not caso.get("valido", false):
+			descartes.append({"tentativa": tentativa, "motivos": ["sem incidente na pré-simulação"]})
 			continue
 		# Passo 8: o solucionador joga o caso como um iniciante. Caso injusto é descartado.
 		var validacao := Solucionador.validar(caso, dados["criaturas"], dados["bairro"]["tipo"])
 		caso["validacao"] = validacao
 		if validacao["valido"]:
+			caso["descartes"] = descartes
 			return caso
-		ultimos_motivos = validacao["motivos"]
-	return {"valido": false, "semente": semente, "erros": ["nenhuma das %d tentativas gerou um caso justo" % tentativas], "motivos": ultimos_motivos}
+		descartes.append({"tentativa": tentativa, "motivos": validacao["motivos"]})
+	return {"valido": false, "semente": semente, "erros": ["nenhuma das %d tentativas gerou um caso justo" % tentativas], "descartes": descartes}
 
 
 ## Carrega e valida tudo o que o gerador usa. {"erros": [...], ...dados}

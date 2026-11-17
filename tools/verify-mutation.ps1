@@ -59,7 +59,9 @@ $mutants += @(
     @{ name = 'ruído descarta espécies'; path = 'game/core/casos/solucionador.gd';
        find = 'if vocabulario.has(ev["tag"]) and not tags_especie.has(ev["tag"]):'; replace = 'if not tags_especie.has(ev["tag"]):' },
     @{ name = 'um boletim vira padrão'; path = 'game/core/casos/solucionador.gd';
-       find = 'const MINIMO_BOLETINS_PADRAO := 2'; replace = 'const MINIMO_BOLETINS_PADRAO := 1' }
+       find = 'const MINIMO_BOLETINS_PADRAO := 2'; replace = 'const MINIMO_BOLETINS_PADRAO := 1' },
+    @{ name = 'gerador muda sem atualizar a referência'; path = 'game/data/config/casos.json';
+       find = '"chance_boletim": 0.5'; replace = '"chance_boletim": 0.9' }
 )
 
 $survivors = @()
