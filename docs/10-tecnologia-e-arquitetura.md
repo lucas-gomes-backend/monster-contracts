@@ -216,9 +216,12 @@ monster-contracts/
 
 ---
 
+## Decisões
+
+- **Motor:** Godot 4.
+- **Linguagem:** GDScript. Partes lentas podem ir para C# ou GDExtension depois, se for preciso.
+- **Conteúdo:** JSON com validação por esquema.
+
 ## Questões em aberto
 
-- Confirmar o **Godot 4** como motor.
-- **GDScript** para tudo no começo, ou **C#** desde já para o núcleo de simulação?
-- Conteúdo em **JSON** (recomendado) ou em recursos do Godot (`.tres`)?
 - O GitHub tem limite de armazenamento para **Git LFS** no plano gratuito. Avaliar o espaço necessário quando os assets começarem a entrar.
