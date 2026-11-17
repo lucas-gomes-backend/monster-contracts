@@ -1,0 +1,122 @@
+# 09 — Direção de arte, câmera e personagem
+
+## Resumo
+
+- **Câmera:** terceira pessoa.
+- **Estética:** **PlayStation 1**: poucos polígonos, texturas tremidas, névoa, sons comprimidos.
+- **Personagem:** totalmente customizável, e o corpo **conta a história da carreira** (idade, cicatrizes, condição, roupas).
+
+A estética de PS1 combina com o projeto por três motivos:
+
+1. **Clima:** o visual "imperfeito" do PS1 já é associado a terror e mistério (*Silent Hill*, *Resident Evil*, a cena atual de terror PSX). Ele esconde detalhes e deixa a imaginação do jogador trabalhar.
+2. **Escopo:** modelos de baixa contagem de polígonos e texturas pequenas são **muito mais rápidos de produzir** para um dev solo.
+3. **Procedural:** módulos simples e texturas pequenas facilitam montar cidades e variações proceduralmente sem que a falta de detalhe pareça erro.
+
+---
+
+## Câmera e controles
+
+- **Câmera de terceira pessoa por cima do ombro**, livre, com colisão para não atravessar paredes.
+- **Controles modernos** (andar relativo à câmera). *Tank controls* ficam como **opção** para quem quiser a sensação clássica.
+- **Modo de mira e inspeção:** a câmera aproxima por cima do ombro para mirar, fotografar ou usar equipamento (UV, câmera térmica).
+- **Inspeção de pistas:** ao pegar um objeto, ele aparece em close e pode ser girado, como em *Resident Evil*.
+- **Ângulos fixos (opcional):** interiores marcantes, como o necrotério ou a casa do caso, podem usar câmeras fixas cinematográficas em momentos específicos. É uma ferramenta de clima, não a regra.
+
+### Questão em aberto
+- Ângulos fixos só em momentos roteirizados ou também como opção do jogador em interiores?
+
+---
+
+## Especificação visual PS1
+
+| Elemento | Regra |
+|---|---|
+| **Resolução interna** | Baixa (por volta de 320×240 a 640×480), escalada sem suavização. Opção no menu. |
+| **Vértices** | *Vertex snapping*: os vértices "pulam" para uma grade, gerando o tremor característico. |
+| **Texturas** | Mapeamento afim (distorção da textura), filtro *nearest* (sem suavizar), tamanhos de 64 a 256 px. |
+| **Cor** | Paleta reduzida com *dithering*. |
+| **Iluminação** | Por vértice, com poucas luzes dinâmicas. Sombras simples (*blob shadows*) ou nenhuma. |
+| **Névoa** | Névoa e escuridão para limitar a distância de visão. **É um recurso de clima**, não só de desempenho. |
+| **Polígonos** | Personagens com cerca de 500 a 1500 triângulos. Cenários simples, com detalhe nas texturas. |
+| **Animação** | Poucos quadros-chave, sem *blending* exagerado, para dar a sensação "dura" da época. |
+| **Pós-processamento** | Filtro CRT/scanlines **opcional**, ruído e leve aberração. |
+
+### Acessibilidade
+
+Todos os efeitos fortes podem ser **reduzidos ou desligados**: tremor de vértice, distorção de textura, filtro CRT e *dithering*. Isso evita enjoo e cansaço visual.
+
+---
+
+## Customização do personagem
+
+### Criação
+
+| Categoria | Opções |
+|---|---|
+| **Corpo** | Tipo de corpo, altura, compleição |
+| **Rosto** | Formatos pré-definidos combinados com texturas de rosto (olhos, nariz, boca), no estilo PS1, com troca de texturas em vez de sliders finos |
+| **Pele** | Tons de pele variados |
+| **Cabelo e barba** | Cortes, cores, barba e bigode |
+| **Marcas** | Tatuagens (inclusive **tatuagem de proteção contra possessão**, que tem efeito no jogo), pintas, marcas de nascença |
+| **Voz** | Algumas vozes curtas (grunhidos e falas de ação), no estilo da época |
+| **Origem** (opcional) | Região de origem: afeta conhecimento inicial de folclore e algumas reações de NPCs |
+
+### O corpo conta a história
+
+A aparência **muda sozinha** ao longo da carreira, ligada aos sistemas das outras partes:
+
+- **Idade** ([13](13-tempo-morte-e-finais.md)): cabelo grisalho, rugas, postura. Por ser PS1, isso se faz trocando texturas e alguns ajustes de modelo.
+- **Cicatrizes e sequelas** ([13](13-tempo-morte-e-finais.md)): aparecem no corpo e no rosto, e é possível ver de qual caso veio cada uma.
+- **Condição** ([12](12-habilidades-e-condicoes.md)): palidez e olhos de vampiro, pelos e olhar animal do lobisomem, marcas do pacto, a marca do limbo.
+  - Os **sinais podem ser escondidos** com maquiagem, lentes, roupas e amuletos, ligados ao sistema de estigma.
+
+### Roupas e equipamento visíveis
+
+Tudo o que o jogador veste e carrega **aparece no modelo**:
+
+- **Partes de roupa:** cabeça, rosto (óculos, máscara), tronco, jaqueta ou casaco, mãos, pernas, pés.
+- **Acessórios:** amuletos, coldres, cinto e **mochila visível**, cujo tamanho reflete a mochila equipada ([08](08-economia-e-progressao.md)).
+- **Disfarces** (terno de agente, jaleco, macacão) mudam a silhueta e são **lidos pelos NPCs**: a aparência faz parte da credibilidade.
+- **Desgaste visual:** roupas sujas, rasgadas ou ensanguentadas depois de um confronto **chamam atenção** e aumentam a suspeita até você se trocar.
+
+### Técnica
+
+- **Esqueleto único** compartilhado por todos os corpos, e roupas como **malhas modulares** encaixadas nele.
+- **Troca de paleta e textura** para variar cores e materiais com poucos arquivos.
+- O **mesmo sistema monta os NPCs** proceduralmente, para gerar a população das cidades com variedade e quase sem custo extra.
+
+---
+
+## Tom visual
+
+- **Meio-termo:** o horror vem da névoa, dos sons e do que não se vê com clareza. O humor e o calor humano vêm de personagens, diálogos, do carro e das músicas no rádio.
+- **Paleta por região:** cada região tem cores, luz e névoa próprias, como o interior brasileiro quente e alaranjado, uma cidade japonesa úmida e azulada, ou a floresta do norte fria e cinza.
+- **Noite é perigosa e bonita:** luz de poste, faróis do carro, lanterna e lua.
+
+## Interface
+
+- **Menus com visual da época:** fontes pixeladas, transições simples e sons de menu marcantes.
+- **Caderno do caçador:** o caderno de pistas e o bestiário são desenhados como um caderno físico, com recortes de jornal, fotos de câmera de baixa resolução e anotações à mão.
+- **Salvar o jogo:** salva no motel, no carro ou na base, com uma apresentação temática (escrever no diário).
+- **Mínimo de interface na tela** durante a exploração.
+
+## Áudio
+
+- **Amostras de baixa taxa** e reverb pesado nos ambientes, no estilo da época.
+- **Trilha:** ambiente sintetizado nos momentos de tensão e **rádio do carro** com músicas por região (rock na estrada, músicas regionais) para a parte calorosa do tom.
+- **O som é pista:** barulhos distantes, vozes, arranhões. Os fones de ouvido fazem parte da investigação.
+
+---
+
+## Escopo e roadmap
+
+- **Fase 2 (greybox):** o shader PS1 entra **cedo**. Ele é barato e o greybox já fica com cara de jogo.
+- **Corte vertical:** criação de personagem simples (corpo, rosto, pele, cabelo) e 1 ou 2 roupas por parte, com disfarce de agente.
+- **Fase 4 e 5:** envelhecimento visual, cicatrizes, sinais de condição e roupas em quantidade.
+- **Godot** tem vários shaders PSX de código aberto como ponto de partida.
+
+## Questões em aberto
+
+- Ângulos fixos de câmera: só em momentos roteirizados ou também como opção?
+- Vozes do personagem: só sons curtos ou falas dubladas em momentos-chave?
+- Nível de liberdade da customização: presets combinados (mais fácil e mais "PS1") ou sliders?

@@ -6,7 +6,9 @@ Você é um caçador que aceita contratos para resolver casos sobrenaturais. Cad
 
 ## Definições do projeto
 
-- **Perspectiva:** 3D, primeira pessoa.
+- **Perspectiva:** 3D, terceira pessoa.
+- **Estética:** PlayStation 1 (poucos polígonos, texturas tremidas, névoa). Ver [09 — Direção de arte](09-direcao-de-arte-camera-e-personagem.md).
+- **Personagem:** customizável, e a aparência muda com a idade, as cicatrizes e a condição.
 - **Jogadores:** single-player.
 - **Tom:** meio-termo entre terror e aventura — tensão real, com espaço para humor e personagens.
 - **Equipe:** desenvolvedor solo.
