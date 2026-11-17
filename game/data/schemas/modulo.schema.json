@@ -1,0 +1,54 @@
+{
+  "$comment": "Módulo cinza de cenário (game/data/modulos/*.json): casa, trecho de esgoto. Coordenadas em metros, no espaço do módulo. Trechos de túnel crescem em +z e têm 'comprimento', para serem encaixados em sequência (docs/07, 'Esgotos e subterrâneo').",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "tipo", "blocos"],
+  "$defs": {
+    "vetor": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+    "ponto": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "posicao"],
+      "properties": {"id": {"type": "string", "pattern": "^[a-z_]+$"}, "posicao": {"$ref": "#/$defs/vetor"}}
+    }
+  },
+  "properties": {
+    "$comment": {"type": "string"},
+    "id": {"type": "string", "pattern": "^[a-z_]+$"},
+    "tipo": {"enum": ["interior", "tunel"]},
+    "comprimento": {"type": "number", "minimum": 0},
+    "blocos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tamanho", "posicao", "cor"],
+        "properties": {
+          "tamanho": {"$ref": "#/$defs/vetor"},
+          "posicao": {"$ref": "#/$defs/vetor"},
+          "cor": {"type": "string", "pattern": "^#[0-9a-f]{6}$"},
+          "escala_uv": {"type": "number", "minimum": 0},
+          "colide": {"type": "boolean"},
+          "nota": {"type": "string"}
+        }
+      }
+    },
+    "luzes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["posicao", "cor", "energia", "alcance"],
+        "properties": {
+          "posicao": {"$ref": "#/$defs/vetor"},
+          "cor": {"type": "string", "pattern": "^#[0-9a-f]{6}$"},
+          "energia": {"type": "number", "minimum": 0},
+          "alcance": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "pontos_de_pista": {"type": "array", "items": {"$ref": "#/$defs/ponto"}},
+    "passagens": {"type": "array", "items": {"$ref": "#/$defs/ponto"}}
+  }
+}

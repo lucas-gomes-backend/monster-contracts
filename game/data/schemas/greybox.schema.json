@@ -2,10 +2,30 @@
   "$comment": "Pistas colocadas à mão numa cena cinza da Fase 2 (game/data/greybox/*.json). A marca precisa existir em game/data/textos/marcas.json.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "pistas"],
+  "required": ["id", "pistas", "casa", "bueiro", "esgoto"],
   "properties": {
     "$comment": {"type": "string"},
     "id": {"type": "string", "pattern": "^[a-z_]+$"},
+    "casa": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modulo", "posicao", "giro"],
+      "properties": {
+        "modulo": {"type": "string", "pattern": "^[a-z_]+$"},
+        "posicao": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+        "giro": {"type": "number"}
+      }
+    },
+    "bueiro": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+    "esgoto": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origem", "trechos"],
+      "properties": {
+        "origem": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+        "trechos": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[a-z_]+$"}}
+      }
+    },
     "pistas": {
       "type": "array",
       "items": {

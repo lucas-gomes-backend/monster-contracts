@@ -1,0 +1,25 @@
+{
+  "$comment": "Câmara de encontro de galerias, 8 m, mais larga e mais alta, com pilares. Bom lugar para um covil. Fecha o fundo com uma parede. Cresce em +z.",
+  "id": "esgoto_camara",
+  "tipo": "tunel",
+  "comprimento": 8,
+  "blocos": [
+    {"nota": "fundo alagado", "tamanho": [8, 0.2, 8], "posicao": [0, -0.5, 4], "cor": "#2e3328", "escala_uv": 4},
+    {"nota": "água", "tamanho": [8, 0.05, 8], "posicao": [0, -0.1, 4], "cor": "#1c2a22", "escala_uv": 4, "colide": false},
+    {"nota": "plataforma", "tamanho": [3, 0.6, 3], "posicao": [-2, -0.3, 5.5], "cor": "#4a4a44", "escala_uv": 2},
+    {"nota": "parede", "tamanho": [0.3, 4, 8], "posicao": [-4.15, 1.5, 4], "cor": "#3e3f38", "escala_uv": 3},
+    {"nota": "parede", "tamanho": [0.3, 4, 8], "posicao": [4.15, 1.5, 4], "cor": "#3e3f38", "escala_uv": 3},
+    {"nota": "parede da entrada", "tamanho": [1.85, 4, 0.3], "posicao": [-3.075, 1.5, 0], "cor": "#3e3f38", "escala_uv": 2},
+    {"nota": "parede da entrada", "tamanho": [1.85, 4, 0.3], "posicao": [3.075, 1.5, 0], "cor": "#3e3f38", "escala_uv": 2},
+    {"nota": "parede do fundo", "tamanho": [8.6, 4, 0.3], "posicao": [0, 1.5, 8.15], "cor": "#3e3f38", "escala_uv": 3},
+    {"nota": "teto", "tamanho": [8.6, 0.3, 8.6], "posicao": [0, 3.6, 4], "cor": "#33342e", "escala_uv": 4},
+    {"nota": "pilar", "tamanho": [0.6, 4, 0.6], "posicao": [-1.5, 1.5, 3], "cor": "#4f5048", "escala_uv": 1},
+    {"nota": "pilar", "tamanho": [0.6, 4, 0.6], "posicao": [1.5, 1.5, 5], "cor": "#4f5048", "escala_uv": 1},
+    {"nota": "entulho", "tamanho": [1.2, 0.5, 0.8], "posicao": [2.6, -0.15, 6.8], "cor": "#55504a", "escala_uv": 1}
+  ],
+  "pontos_de_pista": [
+    {"id": "plataforma", "posicao": [-2, 0.01, 5.5]},
+    {"id": "entulho", "posicao": [2.6, 0.11, 6.8]},
+    {"id": "fundo", "posicao": [0, -0.08, 7.5]}
+  ]
+}

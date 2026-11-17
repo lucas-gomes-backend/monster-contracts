@@ -1,0 +1,31 @@
+{
+  "$comment": "Começo da galeria embaixo de um bueiro: parede atrás, degraus de ferro na parede e o poço para cima. A passagem 'subida' leva de volta à rua. Cresce em +z.",
+  "id": "esgoto_escada",
+  "tipo": "tunel",
+  "comprimento": 4,
+  "blocos": [
+    {"nota": "fundo do canal", "tamanho": [2, 0.2, 4], "posicao": [0, -0.5, 2], "cor": "#2e3328", "escala_uv": 2},
+    {"nota": "água", "tamanho": [2, 0.05, 4], "posicao": [0, -0.1, 2], "cor": "#1c2a22", "escala_uv": 2, "colide": false},
+    {"nota": "passarela", "tamanho": [1, 0.6, 4], "posicao": [-1.5, -0.3, 2], "cor": "#4a4a44", "escala_uv": 2},
+    {"nota": "passarela", "tamanho": [1, 0.6, 4], "posicao": [1.5, -0.3, 2], "cor": "#4a4a44", "escala_uv": 2},
+    {"nota": "parede", "tamanho": [0.3, 3, 4], "posicao": [-2.15, 1, 2], "cor": "#3e3f38", "escala_uv": 2},
+    {"nota": "parede", "tamanho": [0.3, 3, 4], "posicao": [2.15, 1, 2], "cor": "#3e3f38", "escala_uv": 2},
+    {"nota": "parede do começo", "tamanho": [4.6, 3, 0.3], "posicao": [0, 1, -0.15], "cor": "#3e3f38", "escala_uv": 2},
+    {"nota": "teto com o poço", "tamanho": [4.6, 0.3, 2.8], "posicao": [0, 2.6, 2.6], "cor": "#33342e", "escala_uv": 2},
+    {"nota": "teto", "tamanho": [1.4, 0.3, 1.2], "posicao": [-1.6, 2.6, 0.6], "cor": "#33342e", "escala_uv": 1},
+    {"nota": "teto", "tamanho": [2.4, 0.3, 1.2], "posicao": [1.1, 2.6, 0.6], "cor": "#33342e", "escala_uv": 1},
+    {"nota": "poço", "tamanho": [1, 3, 0.15], "posicao": [-0.4, 4.2, 0.0], "cor": "#3a3a34", "escala_uv": 1, "colide": false},
+    {"nota": "degrau", "tamanho": [0.5, 0.05, 0.15], "posicao": [-0.4, 0.5, 0.08], "cor": "#6a4a30", "escala_uv": 1, "colide": false},
+    {"nota": "degrau", "tamanho": [0.5, 0.05, 0.15], "posicao": [-0.4, 0.9, 0.08], "cor": "#6a4a30", "escala_uv": 1, "colide": false},
+    {"nota": "degrau", "tamanho": [0.5, 0.05, 0.15], "posicao": [-0.4, 1.3, 0.08], "cor": "#6a4a30", "escala_uv": 1, "colide": false},
+    {"nota": "degrau", "tamanho": [0.5, 0.05, 0.15], "posicao": [-0.4, 1.7, 0.08], "cor": "#6a4a30", "escala_uv": 1, "colide": false},
+    {"nota": "degrau", "tamanho": [0.5, 0.05, 0.15], "posicao": [-0.4, 2.1, 0.08], "cor": "#6a4a30", "escala_uv": 1, "colide": false}
+  ],
+  "luzes": [
+    {"posicao": [-0.4, 3.5, 0.6], "cor": "#8899aa", "energia": 0.4, "alcance": 4}
+  ],
+  "passagens": [
+    {"id": "subida", "posicao": [-0.4, 1.3, 0.3]},
+    {"id": "chegada", "posicao": [-1.5, 0.05, 1.2]}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$comment": "Trecho reto de galeria, 4 m. Canal no meio com água até o joelho (sem colisão: o caçador anda dentro dela) e passarelas dos lados. Cresce em +z.",
+  "id": "esgoto_reta",
+  "tipo": "tunel",
+  "comprimento": 4,
+  "blocos": [
+    {"nota": "fundo do canal", "tamanho": [2, 0.2, 4], "posicao": [0, -0.5, 2], "cor": "#2e3328", "escala_uv": 2},
+    {"nota": "água", "tamanho": [2, 0.05, 4], "posicao": [0, -0.1, 2], "cor": "#1c2a22", "escala_uv": 2, "colide": false},
+    {"nota": "passarela", "tamanho": [1, 0.6, 4], "posicao": [-1.5, -0.3, 2], "cor": "#4a4a44", "escala_uv": 2},
+    {"nota": "passarela", "tamanho": [1, 0.6, 4], "posicao": [1.5, -0.3, 2], "cor": "#4a4a44", "escala_uv": 2},
+    {"nota": "parede", "tamanho": [0.3, 3, 4], "posicao": [-2.15, 1, 2], "cor": "#3e3f38", "escala_uv": 2},
+    {"nota": "parede", "tamanho": [0.3, 3, 4], "posicao": [2.15, 1, 2], "cor": "#3e3f38", "escala_uv": 2},
+    {"nota": "teto", "tamanho": [4.6, 0.3, 4], "posicao": [0, 2.6, 2], "cor": "#33342e", "escala_uv": 2}
+  ],
+  "pontos_de_pista": [
+    {"id": "passarela", "posicao": [1.4, 0.01, 2]},
+    {"id": "parede", "posicao": [-1.95, 1.2, 2]}
+  ]
+}

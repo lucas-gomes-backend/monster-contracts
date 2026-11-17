@@ -82,6 +82,21 @@ static func carregar_greybox(id_cena: String) -> Dictionary:
 	for pista in resultado["dados"].get("pistas", []):
 		if not textos.has(pista.get("marca", "")):
 			resultado["erros"].append("%s.json: marca sem texto \"%s\"" % [id_cena, pista.get("marca", "")])
+	var modulos: Array = resultado["dados"].get("esgoto", {}).get("trechos", []).duplicate()
+	modulos.append(resultado["dados"].get("casa", {}).get("modulo", ""))
+	for id_modulo in modulos:
+		if not FileAccess.file_exists("res://data/modulos/%s.json" % id_modulo):
+			resultado["erros"].append("%s.json: módulo inexistente \"%s\"" % [id_cena, id_modulo])
+	return resultado
+
+
+## Um módulo de cenário (res://data/modulos/<id>.json), validado.
+static func carregar_modulo(id_modulo: String) -> Dictionary:
+	var resultado := carregar_validado("res://data/modulos/%s.json" % id_modulo, "res://data/schemas/modulo.schema.json")
+	if resultado["dados"] is Dictionary and resultado["dados"].get("id", "") != id_modulo:
+		resultado["erros"].append("%s.json: o id precisa ser igual ao nome do arquivo" % id_modulo)
+	if resultado["dados"] is Dictionary and resultado["dados"].get("tipo", "") == "tunel" and not resultado["dados"].has("comprimento"):
+		resultado["erros"].append("%s.json: trecho de túnel precisa de comprimento" % id_modulo)
 	return resultado
 
 

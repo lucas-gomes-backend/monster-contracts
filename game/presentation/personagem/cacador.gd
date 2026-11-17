@@ -171,6 +171,13 @@ func alternar_lanterna() -> void:
 	lanterna.visible = not lanterna.visible
 
 
+## Vira a câmera (e o corpo) para um giro absoluto, em radianos. Usado ao passar por portas e bueiros.
+func virar_para(giro: float) -> void:
+	yaw = wrapf(giro, -PI, PI)
+	pivo.rotation.y = yaw
+	corpo.rotation.y = yaw
+
+
 ## Gira a câmera pelo movimento do mouse (em pixels).
 func olhar(movimento: Vector2) -> void:
 	var sensibilidade: float = config["sensibilidade_mouse"]

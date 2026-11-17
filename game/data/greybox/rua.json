@@ -1,6 +1,9 @@
 {
-  "$comment": "Pistas de exemplo na rua cinza, para testar exame, pegar e fotografar. Ainda não vêm de um caso gerado (isso é a tarefa 'ligar o núcleo às cenas').",
+  "$comment": "A rua cinza: a casa térrea num lote (giro em graus), o bueiro e a galeria embaixo (trechos de game/data/modulos em sequência), e pistas de exemplo, para testar exame, pegar e fotografar. Ainda não vêm de um caso gerado (isso é a tarefa 'ligar o núcleo às cenas').",
   "id": "rua",
+  "casa": {"modulo": "casa_terrea", "posicao": [-6.0, 0.15, 12.0], "giro": 180},
+  "bueiro": [0.0, 0.0, 6.0],
+  "esgoto": {"origem": [0.0, -30.0, 6.0], "trechos": ["esgoto_escada", "esgoto_reta", "esgoto_reta", "esgoto_reta", "esgoto_reta", "esgoto_camara"]},
   "pistas": [
     {"marca": "pegadas_cao_grande", "forma": "plano", "posicao": [-4.6, 0.16, 14.0], "tamanho": [0.5, 0.0, 1.6], "cor": "#3a2a1c", "pegavel": false},
     {"marca": "sangue_na_calcada", "forma": "plano", "posicao": [4.4, 0.16, 6.0], "tamanho": [0.9, 0.0, 0.7], "cor": "#5a0f0c", "pegavel": false},

@@ -5,8 +5,10 @@ extends Node3D
 ## Pistas de exemplo (game/data/greybox/rua.json) para examinar, pegar, girar e fotografar.
 ## Um caso de verdade é gerado (--semente=N, padrão 12) e o cliente espera na calçada para
 ## conversar; a conversa usa a sessão de investigação do núcleo.
+## Uma casa térrea num dos lotes (dá para entrar) e, embaixo da rua, um trecho de esgoto
+## montado com módulos de túnel em sequência; desce-se pelo bueiro.
 ## Argumentos opcionais: --captura=caminho.png salva uma imagem depois de alguns quadros e fecha;
-## --lanterna começa com a lanterna ligada; --inclinar=G inclina a câmera G graus; --exame=N abre o exame da pista N (para conferir o visual).
+## --lanterna começa com a lanterna ligada; --casa entra na casa; --esgoto desce pelo bueiro; --inclinar=G inclina a câmera G graus; --exame=N abre o exame da pista N (para conferir o visual).
 
 const Cacador := preload("res://presentation/personagem/cacador.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
@@ -22,6 +24,7 @@ const Conversa := preload("res://presentation/dialogo/conversa.gd")
 const JanelaDialogo := preload("res://presentation/dialogo/janela_dialogo.gd")
 const Morador := preload("res://presentation/personagem/morador.gd")
 const CadernoTela := preload("res://presentation/caderno/caderno_tela.gd")
+const Blocos := preload("res://presentation/greybox/blocos.gd")
 
 const SEMENTE_PADRAO := 12
 const LUGAR_DO_CLIENTE := Vector3(4.6, 0.15, 19.0)
@@ -66,6 +69,14 @@ var caderno: CanvasLayer
 var _criaturas: Dictionary = {}
 var relogio: Label
 var camada_interface: CanvasLayer
+var casa: Node3D
+var esgoto: Node3D
+var lua: DirectionalLight3D
+## "rua" ou "esgoto": o esgoto é escuro, só a lanterna ilumina (docs/07).
+var zona: String = "rua"
+## Passagens que o caçador usa com E: [{"id", "ponto", "texto"}].
+var passagens: Array = []
+var _cena: Dictionary = {}
 var _alvo := -1
 var _tempo_da_mensagem := 0.0
 var _captura := ""
@@ -94,12 +105,19 @@ func _ready() -> void:
 		elif argumento.begins_with("--inclinar="):
 			var graus := float(argumento.trim_prefix("--inclinar="))
 			cacador.olhar(Vector2(0.0, -graus / float(cacador.config["sensibilidade_mouse"])))
+		elif argumento == "--esgoto":
+			usar_passagem("bueiro")
+		elif argumento == "--casa":
+			# Logo depois da porta, olhando para dentro da casa.
+			cacador.position = posicao_no_mundo(casa) + Vector3(1.5, 0.05, 0.0).rotated(Vector3.UP, casa.rotation.y)
+			cacador.olhar(Vector2(-90.0 / float(cacador.config["sensibilidade_mouse"]), 0.0))
 		elif argumento.begins_with("--exame="):
 			examinar(int(argumento.trim_prefix("--exame=")))
 
 
 ## Monta a cena inteira para o caso da semente. Pode ser chamado sem estar na árvore (testes).
 func montar(semente: int = SEMENTE_PADRAO) -> void:
+	_cena = Catalogo.carregar_greybox("rua")["dados"]
 	_montar_ambiente()
 	var meia_rua := LARGURA_RUA / 2.0
 	var meia_total := meia_rua + LARGURA_CALCADA
@@ -115,6 +133,8 @@ func montar(semente: int = SEMENTE_PADRAO) -> void:
 	# Muros nas pontas, para não cair do mundo.
 	_bloco(Vector3(meia_total * 2.0, 3.0, 0.4), Vector3(0, 1.5, COMPRIMENTO / 2.0), Color(0.4, 0.4, 0.42), 4.0)
 	_postes(meia_rua)
+	_montar_casa()
+	_montar_esgoto()
 
 	config_inspecao = Catalogo.carregar_config_inspecao()["dados"]
 	cacador = Cacador.new()
@@ -218,6 +238,9 @@ func _atualizar_interface() -> void:
 	aviso.text = ""
 	if _alvo < 0 or ocupado():
 		return
+	if _alvo >= pistas.size() + moradores.size():
+		aviso.text = passagens[_alvo - pistas.size() - moradores.size()]["texto"]
+		return
 	if _alvo >= pistas.size():
 		aviso.text = "[E] conversar com %s" % moradores[_alvo - pistas.size()].nome
 		return
@@ -278,6 +301,8 @@ func alvo_na_mira(olho: Vector3, frente: Vector3) -> int:
 	var pontos := _pontos_das_pistas()
 	for morador in moradores:
 		pontos.append(morador.ponto_de_conversa())
+	for passagem in passagens:
+		pontos.append(passagem["ponto"])
 	return Mira.escolher_alvo(olho, frente, corpo, pontos,
 		config_inspecao["examinar_alcance"], config_inspecao["examinar_angulo"])
 
@@ -358,7 +383,10 @@ func _unhandled_input(evento: InputEvent) -> void:
 		abrir_caderno()
 		get_viewport().set_input_as_handled()
 	elif evento.is_action_pressed("examinar") and _alvo >= 0:
-		if _alvo >= pistas.size():
+		var depois_das_pessoas: int = pistas.size() + moradores.size()
+		if _alvo >= depois_das_pessoas:
+			usar_passagem(passagens[_alvo - depois_das_pessoas]["id"])
+		elif _alvo >= pistas.size():
 			conversar(moradores[_alvo - pistas.size()])
 		else:
 			examinar(_alvo)
@@ -383,7 +411,7 @@ func _montar_ambiente() -> void:
 	ambiente.environment = env
 	add_child(ambiente)
 	# Lua fraca, azulada.
-	var lua := DirectionalLight3D.new()
+	lua = DirectionalLight3D.new()
 	lua.light_color = Color(0.55, 0.6, 0.85)
 	lua.light_energy = 0.25
 	lua.rotation_degrees = Vector3(-50, 30, 0)
@@ -393,6 +421,8 @@ func _montar_ambiente() -> void:
 func _fileira_de_casas(lado: float, inicio_x: float) -> void:
 	var z := -COMPRIMENTO / 2.0 + 1.0
 	var i := 0
+	# O lote da casa de verdade fica livre (o módulo entra no lugar dele).
+	var lote_casa := _lote_da_casa()
 	# Um lado começa a lista pelo meio, para as duas fileiras não ficarem iguais.
 	if lado > 0.0:
 		i = 3
@@ -401,6 +431,9 @@ func _fileira_de_casas(lado: float, inicio_x: float) -> void:
 		var largura: float = casa[0]
 		if z + largura > COMPRIMENTO / 2.0 - 0.5:
 			break
+		if signf(lote_casa.x) == lado and z + largura > lote_casa.y and z < lote_casa.z:
+			z = lote_casa.z + 0.4
+			continue
 		var altura: float = casa[1]
 		var fundo: float = casa[2]
 		var x: float = lado * (inicio_x + fundo / 2.0)
@@ -414,6 +447,84 @@ func _fileira_de_casas(lado: float, inicio_x: float) -> void:
 
 
 ## Um canal de Santos atravessando o fim da rua, com uma ponte baixa.
+## (lado, começo do lote, fim do lote) da casa de verdade, em z.
+func _lote_da_casa() -> Vector3:
+	var p: Array = _cena["casa"]["posicao"]
+	return Vector3(signf(p[0]), float(p[2]) - 4.0, float(p[2]) + 4.0)
+
+
+func _montar_casa() -> void:
+	var dados: Dictionary = Catalogo.carregar_modulo(_cena["casa"]["modulo"])["dados"]
+	casa = Blocos.montar_modulo(dados)
+	casa.position = Blocos.vetor(_cena["casa"]["posicao"])
+	casa.rotation_degrees.y = _cena["casa"]["giro"]
+	add_child(casa)
+
+
+## Trechos de túnel em sequência, embaixo da rua, e o bueiro que desce até o primeiro.
+func _montar_esgoto() -> void:
+	esgoto = Node3D.new()
+	esgoto.name = "Esgoto"
+	esgoto.position = Blocos.vetor(_cena["esgoto"]["origem"])
+	add_child(esgoto)
+	var z := 0.0
+	for id_trecho in _cena["esgoto"]["trechos"]:
+		var dados: Dictionary = Catalogo.carregar_modulo(id_trecho)["dados"]
+		var trecho := Blocos.montar_modulo(dados)
+		trecho.name = "Trecho_%d_%s" % [esgoto.get_child_count(), id_trecho]
+		trecho.position.z = z
+		esgoto.add_child(trecho)
+		z += float(dados["comprimento"])
+	var bueiro := Blocos.vetor(_cena["bueiro"])
+	Blocos.bloco(self, Vector3(0.9, 0.02, 0.9), bueiro + Vector3(0, 0.01, 0), Color(0.12, 0.12, 0.12), 1.0, false)
+	passagens.append({"id": "bueiro", "ponto": bueiro, "texto": "[E] descer pelo bueiro"})
+	for marcador in Blocos.marcadores(esgoto.get_child(0), "Passagem_subida"):
+		passagens.append({"id": "subida", "ponto": posicao_no_mundo(marcador), "texto": "[E] subir para a rua"})
+
+
+## Posição de um nó em relação à rua, mesmo fora da árvore (testes).
+func posicao_no_mundo(no: Node3D) -> Vector3:
+	var t := Transform3D.IDENTITY
+	var atual: Node = no
+	while atual != null and atual != self:
+		t = (atual as Node3D).transform * t
+		atual = atual.get_parent()
+	return t.origin
+
+
+## Pontos de pista de um módulo montado (casa ou trecho), já na posição da rua.
+func pontos_de_pista(modulo: Node3D) -> Array[Vector3]:
+	var pontos: Array[Vector3] = []
+	for marcador in Blocos.marcadores(modulo, "Pista_"):
+		pontos.append(posicao_no_mundo(marcador))
+	return pontos
+
+
+## Usa uma passagem: desce pelo bueiro ou sobe de volta para a rua.
+func usar_passagem(id: String) -> void:
+	if id == "bueiro":
+		var chegada: Marker3D = Blocos.marcadores(esgoto.get_child(0), "Passagem_chegada")[0]
+		_mudar_zona("esgoto", posicao_no_mundo(chegada))
+		cacador.virar_para(PI)  # de frente para a galeria (que cresce em +z)
+	elif id == "subida":
+		_mudar_zona("rua", Blocos.vetor(_cena["bueiro"]) + Vector3(1.0, 0.1, 0.0))
+
+
+func _mudar_zona(nova: String, onde: Vector3) -> void:
+	zona = nova
+	cacador.position = onde
+	cacador.velocity = Vector3.ZERO
+	var env: Environment = ambiente.environment
+	var embaixo := nova == "esgoto"
+	lua.visible = not embaixo
+	env.ambient_light_energy = 0.03 if embaixo else 0.8
+	env.background_color = Color(0, 0, 0) if embaixo else Color(0.05, 0.06, 0.09)
+	env.fog_light_color = Color(0.01, 0.01, 0.01) if embaixo else Color(0.07, 0.08, 0.11)
+	env.fog_density = 0.12 if embaixo else 0.06
+	_avisar("Você desce pela escada de ferro. Breu, cheiro de podre, água até o joelho. (F liga a lanterna)" if embaixo else "Você sobe de volta para a rua.")
+	_atualizar_interface()
+
+
 func _canal(meia_total: float) -> void:
 	var z := -COMPRIMENTO / 2.0 - 2.5
 	var largura_total := meia_total * 2.0 + 30.0
@@ -452,24 +563,7 @@ func _postes(meia_rua: float) -> void:
 
 ## Um bloco cinza com colisão (ou só visual, com colide = false).
 func _bloco(tamanho: Vector3, posicao: Vector3, cor: Color, escala_uv: float, colide: bool = true) -> void:
-	var malha := BoxMesh.new()
-	malha.size = tamanho
-	var visual := MeshInstance3D.new()
-	visual.mesh = malha
-	visual.material_override = Materiais.objeto(cor, escala_uv)
-	if not colide:
-		visual.position = posicao
-		add_child(visual)
-		return
-	var corpo := StaticBody3D.new()
-	corpo.position = posicao
-	var forma := BoxShape3D.new()
-	forma.size = tamanho
-	var colisao := CollisionShape3D.new()
-	colisao.shape = forma
-	corpo.add_child(colisao)
-	corpo.add_child(visual)
-	add_child(corpo)
+	Blocos.bloco(self, tamanho, posicao, cor, escala_uv, colide)
 
 
 func _process(delta: float) -> void:
