@@ -16,3 +16,4 @@ desktop.ini
 .vscode/
 *.tmp
 tools/.mutante_pendente.json
+__pycache__/

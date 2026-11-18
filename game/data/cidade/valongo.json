@@ -1,0 +1,1504 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "valongo",
+ "nome": "Valongo",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 47005.3,
+ "caixa": [
+  -476.54,
+  -189.96,
+  -136.38,
+  38.54
+ ],
+ "limite": [
+  [
+   -136.38,
+   -118.31
+  ],
+  [
+   -209.2,
+   -156.24
+  ],
+  [
+   -218.52,
+   -153.06
+  ],
+  [
+   -238.88,
+   -156.46
+  ],
+  [
+   -249.04,
+   -153.55
+  ],
+  [
+   -255.43,
+   -147.77
+  ],
+  [
+   -265.14,
+   -122.72
+  ],
+  [
+   -360.64,
+   -158.43
+  ],
+  [
+   -433.73,
+   -189.96
+  ],
+  [
+   -443.51,
+   -181.24
+  ],
+  [
+   -450.38,
+   -180.02
+  ],
+  [
+   -447.28,
+   -172.18
+  ],
+  [
+   -444.33,
+   -139.85
+  ],
+  [
+   -461.02,
+   -105.67
+  ],
+  [
+   -472.85,
+   -87.51
+  ],
+  [
+   -476.54,
+   -75.59
+  ],
+  [
+   -466.39,
+   -43.82
+  ],
+  [
+   -450.88,
+   -37.92
+  ],
+  [
+   -432.94,
+   -13.04
+  ],
+  [
+   -434.87,
+   -3.32
+  ],
+  [
+   -428.66,
+   1.55
+  ],
+  [
+   -422.36,
+   12.23
+  ],
+  [
+   -425.0,
+   21.44
+  ],
+  [
+   -421.41,
+   38.54
+  ],
+  [
+   -411.4,
+   34.5
+  ],
+  [
+   -403.28,
+   35.54
+  ],
+  [
+   -374.17,
+   27.71
+  ],
+  [
+   -354.12,
+   28.89
+  ],
+  [
+   -320.4,
+   21.56
+  ],
+  [
+   -317.2,
+   10.86
+  ],
+  [
+   -304.1,
+   2.19
+  ],
+  [
+   -269.89,
+   -13.66
+  ],
+  [
+   -265.82,
+   -13.64
+  ],
+  [
+   -243.24,
+   2.14
+  ],
+  [
+   -221.35,
+   0.23
+  ],
+  [
+   -216.55,
+   2.54
+  ],
+  [
+   -208.83,
+   -0.23
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 48459421,
+   "nome": "Rua Marquês de Herval",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -265.14,
+     -122.72
+    ],
+    [
+     -214.68,
+     -104.21
+    ]
+   ]
+  },
+  {
+   "osm": 48488887,
+   "nome": "Rua Mansueto Pierotti",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -239.71,
+     -60.77
+    ],
+    [
+     -255.67,
+     -35.76
+    ]
+   ]
+  },
+  {
+   "osm": 48488889,
+   "nome": "Travessa Comendador João Cardoso",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -349.1,
+     -123.75
+    ],
+    [
+     -336.24,
+     -149.28
+    ]
+   ]
+  },
+  {
+   "osm": 124524593,
+   "nome": "Rua 8",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -401.46,
+     -36.17
+    ],
+    [
+     -391.77,
+     -46.0
+    ],
+    [
+     -382.87,
+     -39.59
+    ],
+    [
+     -412.65,
+     -8.74
+    ]
+   ]
+  },
+  {
+   "osm": 188607208,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -411.4,
+     34.5
+    ],
+    [
+     -406.15,
+     35.63
+    ]
+   ]
+  },
+  {
+   "osm": 188607208,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -383.43,
+     29.83
+    ],
+    [
+     -374.17,
+     27.71
+    ]
+   ]
+  },
+  {
+   "osm": 188607208,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -363.74,
+     26.83
+    ],
+    [
+     -351.3,
+     28.19
+    ]
+   ]
+  },
+  {
+   "osm": 188607208,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -342.11,
+     25.25
+    ],
+    [
+     -335.88,
+     25.59
+    ]
+   ]
+  },
+  {
+   "osm": 215583958,
+   "nome": "Rua Alexandre Gusmão",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -311.94,
+     -100.37
+    ],
+    [
+     -302.06,
+     -136.73
+    ]
+   ]
+  },
+  {
+   "osm": 215583959,
+   "nome": "Rua Senador Christiano Ottoni",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -297.63,
+     -35.75
+    ],
+    [
+     -288.08,
+     -60.11
+    ]
+   ]
+  },
+  {
+   "osm": 317528465,
+   "nome": "Elevado Aristides Bastos Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -223.77,
+     0.3
+    ],
+    [
+     -248.53,
+     -24.45
+    ]
+   ]
+  },
+  {
+   "osm": 317528466,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -349.1,
+     -123.75
+    ],
+    [
+     -434.27,
+     -169.33
+    ],
+    [
+     -447.28,
+     -172.18
+    ]
+   ]
+  },
+  {
+   "osm": 359171889,
+   "nome": "Avenida Presidente Getúlio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -314.72,
+     -86.27
+    ],
+    [
+     -288.08,
+     -60.11
+    ]
+   ]
+  },
+  {
+   "osm": 359171890,
+   "nome": "Praça Lions Clube",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -311.94,
+     -100.37
+    ],
+    [
+     -349.1,
+     -123.75
+    ]
+   ]
+  },
+  {
+   "osm": 359171892,
+   "nome": "Rua Visconde de Embaré",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -348.86,
+     -118.47
+    ],
+    [
+     -339.95,
+     -99.7
+    ],
+    [
+     -316.64,
+     -76.1
+    ],
+    [
+     -303.75,
+     -40.68
+    ],
+    [
+     -243.24,
+     2.14
+    ]
+   ]
+  },
+  {
+   "osm": 359184034,
+   "nome": "Praça Manoel de Almeida",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -265.82,
+     -13.64
+    ],
+    [
+     -257.03,
+     -28.55
+    ]
+   ]
+  },
+  {
+   "osm": 359184037,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -216.55,
+     2.54
+    ],
+    [
+     -221.35,
+     0.23
+    ],
+    [
+     -255.67,
+     -35.76
+    ],
+    [
+     -263.71,
+     -40.06
+    ]
+   ]
+  },
+  {
+   "osm": 359184039,
+   "nome": "Rua São Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -188.5,
+     -34.27
+    ],
+    [
+     -194.0,
+     -30.89
+    ],
+    [
+     -213.02,
+     0.81
+    ]
+   ]
+  },
+  {
+   "osm": 359184902,
+   "nome": "Avenida Presidente Getúlio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -263.71,
+     -40.06
+    ],
+    [
+     -286.84,
+     -63.51
+    ]
+   ]
+  },
+  {
+   "osm": 359368566,
+   "nome": "Rua 4",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -474.6,
+     -68.05
+    ],
+    [
+     -469.05,
+     -48.76
+    ]
+   ]
+  },
+  {
+   "osm": 359368567,
+   "nome": "Rua 3",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -474.6,
+     -68.05
+    ],
+    [
+     -476.54,
+     -75.59
+    ],
+    [
+     -474.35,
+     -83.94
+    ],
+    [
+     -461.02,
+     -105.67
+    ]
+   ]
+  },
+  {
+   "osm": 360562727,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -378.22,
+     28.68
+    ],
+    [
+     -385.5,
+     24.84
+    ],
+    [
+     -386.52,
+     21.56
+    ]
+   ]
+  },
+  {
+   "osm": 360731669,
+   "nome": "Rua Professora Maria Neusa Cunha",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -424.85,
+     -159.29
+    ],
+    [
+     -440.89,
+     -128.37
+    ],
+    [
+     -431.64,
+     -112.03
+    ],
+    [
+     -424.42,
+     -107.49
+    ]
+   ]
+  },
+  {
+   "osm": 360731670,
+   "nome": "Rua H",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     -440.89,
+     -128.37
+    ],
+    [
+     -432.96,
+     -109.07
+    ]
+   ]
+  },
+  {
+   "osm": 360731671,
+   "nome": "Rua Brigadeiro Newton Braga",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -398.9,
+     -145.66
+    ],
+    [
+     -413.67,
+     -108.49
+    ],
+    [
+     -424.42,
+     -107.49
+    ]
+   ]
+  },
+  {
+   "osm": 360731672,
+   "nome": "Largo Aprovado 1165",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -437.27,
+     -135.05
+    ],
+    [
+     -444.33,
+     -139.85
+    ]
+   ]
+  },
+  {
+   "osm": 440203337,
+   "nome": "Rua São Bento",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     -151.82,
+     -97.37
+    ],
+    [
+     -149.64,
+     -96.93
+    ]
+   ]
+  },
+  {
+   "osm": 462453365,
+   "nome": "Rua São Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -153.6,
+     -90.63
+    ],
+    [
+     -155.66,
+     -87.23
+    ]
+   ]
+  },
+  {
+   "osm": 462454068,
+   "nome": "Rua Mansueto Pierotti",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -239.71,
+     -60.77
+    ],
+    [
+     -214.68,
+     -104.21
+    ]
+   ]
+  },
+  {
+   "osm": 476415958,
+   "nome": "Avenida Getúlio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -288.08,
+     -60.11
+    ],
+    [
+     -228.35,
+     0.44
+    ]
+   ]
+  },
+  {
+   "osm": 476415959,
+   "nome": "Rua Senador Christiano Ottoni",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -288.08,
+     -60.11
+    ],
+    [
+     -286.84,
+     -63.51
+    ]
+   ]
+  },
+  {
+   "osm": 476416134,
+   "nome": "Avenida Presidente Getúlio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -308.83,
+     -86.41
+    ],
+    [
+     -311.15,
+     -96.56
+    ]
+   ]
+  },
+  {
+   "osm": 476416135,
+   "nome": "Rua Senador Christiano Ottoni",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -286.84,
+     -63.51
+    ],
+    [
+     -256.91,
+     -144.91
+    ],
+    [
+     -251.47,
+     -152.05
+    ],
+    [
+     -245.59,
+     -155.22
+    ]
+   ]
+  },
+  {
+   "osm": 476416135,
+   "nome": "Rua Senador Christiano Ottoni",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -242.2,
+     -156.01
+    ],
+    [
+     -235.16,
+     -156.1
+    ]
+   ]
+  },
+  {
+   "osm": 476416135,
+   "nome": "Rua Senador Christiano Ottoni",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -218.52,
+     -153.06
+    ],
+    [
+     -209.2,
+     -156.24
+    ]
+   ]
+  },
+  {
+   "osm": 501782900,
+   "nome": "Avenida Visconde de São Leopoldo",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -188.5,
+     -34.27
+    ],
+    [
+     -311.94,
+     -100.37
+    ]
+   ]
+  },
+  {
+   "osm": 513692269,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -447.59,
+     -167.78
+    ],
+    [
+     -435.41,
+     -164.82
+    ],
+    [
+     -373.55,
+     -133.37
+    ],
+    [
+     -347.14,
+     -117.05
+    ]
+   ]
+  },
+  {
+   "osm": 620721382,
+   "nome": "Rua 10",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -412.65,
+     -8.74
+    ],
+    [
+     -417.92,
+     3.15
+    ],
+    [
+     -414.54,
+     19.54
+    ]
+   ]
+  },
+  {
+   "osm": 620721385,
+   "nome": "Rua Santo Orlando",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -411.4,
+     34.5
+    ],
+    [
+     -413.99,
+     35.55
+    ]
+   ]
+  },
+  {
+   "osm": 620721387,
+   "nome": "Rua Santo Orlando",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -414.54,
+     19.54
+    ],
+    [
+     -411.4,
+     34.5
+    ]
+   ]
+  },
+  {
+   "osm": 620976289,
+   "nome": "Rua 7",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -470.46,
+     -54.0
+    ],
+    [
+     -453.55,
+     -61.94
+    ],
+    [
+     -447.93,
+     -60.74
+    ]
+   ]
+  },
+  {
+   "osm": 620976290,
+   "nome": "Rua 8",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -447.93,
+     -60.74
+    ],
+    [
+     -443.57,
+     -63.51
+    ],
+    [
+     -444.08,
+     -71.39
+    ],
+    [
+     -434.47,
+     -92.47
+    ]
+   ]
+  },
+  {
+   "osm": 620976291,
+   "nome": "Rua 2",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -474.6,
+     -68.05
+    ],
+    [
+     -468.74,
+     -73.56
+    ],
+    [
+     -466.28,
+     -84.87
+    ],
+    [
+     -454.29,
+     -94.63
+    ],
+    [
+     -447.93,
+     -104.72
+    ]
+   ]
+  },
+  {
+   "osm": 736579881,
+   "nome": "Rua São Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -188.5,
+     -34.27
+    ],
+    [
+     -183.24,
+     -42.75
+    ]
+   ]
+  },
+  {
+   "osm": 879516600,
+   "nome": "Elevado Aristides Bastos Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -248.53,
+     -24.45
+    ],
+    [
+     -263.71,
+     -40.06
+    ]
+   ]
+  },
+  {
+   "osm": 965829731,
+   "nome": "Avenida Presidente Getúlio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -311.15,
+     -96.56
+    ],
+    [
+     -311.94,
+     -100.37
+    ]
+   ]
+  },
+  {
+   "osm": 1113283524,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -386.52,
+     21.56
+    ],
+    [
+     -381.61,
+     16.34
+    ],
+    [
+     -377.63,
+     3.77
+    ],
+    [
+     -368.59,
+     1.81
+    ],
+    [
+     -360.07,
+     -12.0
+    ]
+   ]
+  },
+  {
+   "osm": 1113283525,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -335.88,
+     25.59
+    ],
+    [
+     -337.85,
+     15.25
+    ],
+    [
+     -323.62,
+     10.73
+    ],
+    [
+     -321.72,
+     7.72
+    ],
+    [
+     -328.84,
+     5.08
+    ],
+    [
+     -340.3,
+     -11.25
+    ]
+   ]
+  },
+  {
+   "osm": 1113283526,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -340.3,
+     -11.25
+    ],
+    [
+     -334.51,
+     -12.9
+    ],
+    [
+     -311.44,
+     -5.19
+    ]
+   ]
+  },
+  {
+   "osm": 1113283527,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -334.51,
+     -12.9
+    ],
+    [
+     -337.79,
+     -21.07
+    ],
+    [
+     -336.93,
+     -24.8
+    ]
+   ]
+  },
+  {
+   "osm": 1113283528,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -340.3,
+     -11.25
+    ],
+    [
+     -350.63,
+     -11.77
+    ],
+    [
+     -348.37,
+     -7.33
+    ],
+    [
+     -351.61,
+     -6.43
+    ],
+    [
+     -369.52,
+     -17.3
+    ]
+   ]
+  },
+  {
+   "osm": 1113283529,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -366.41,
+     -15.44
+    ],
+    [
+     -357.94,
+     -35.38
+    ]
+   ]
+  },
+  {
+   "osm": 1113284790,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -467.67,
+     -79.32
+    ],
+    [
+     -456.07,
+     -80.21
+    ],
+    [
+     -453.43,
+     -76.54
+    ],
+    [
+     -442.33,
+     -74.71
+    ]
+   ]
+  },
+  {
+   "osm": 1313471943,
+   "nome": "Rua Marquês de Herval",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -214.68,
+     -104.21
+    ],
+    [
+     -163.03,
+     -75.33
+    ]
+   ]
+  },
+  {
+   "osm": 1318815433,
+   "nome": "Rua São Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -151.82,
+     -97.37
+    ],
+    [
+     -153.6,
+     -90.63
+    ]
+   ]
+  },
+  {
+   "osm": 1344641031,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -347.14,
+     -117.05
+    ],
+    [
+     -314.72,
+     -86.27
+    ]
+   ]
+  },
+  {
+   "osm": 1344883631,
+   "nome": "Avenida Presidente Getúlio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -286.84,
+     -63.51
+    ],
+    [
+     -308.83,
+     -86.41
+    ]
+   ]
+  }
+ ],
+ "canais": [],
+ "marcos": [
+  {
+   "osm": "node/2069249442",
+   "nome": "Igreja do Valongo",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    -166.29,
+    -98.52
+   ]
+  },
+  {
+   "osm": "way/1221638850",
+   "nome": "Santuário Santo Antônio do Valongo",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    -170.81,
+    -101.45
+   ]
+  },
+  {
+   "osm": "way/1365398221",
+   "nome": "",
+   "tipo": "tourism=museum",
+   "posicao": [
+    -198.43,
+    -112.33
+   ]
+  },
+  {
+   "osm": "way/28910467",
+   "nome": "Antiga Estação Ferroviária Valongo - Santos",
+   "tipo": "historic=building",
+   "posicao": [
+    -153.28,
+    -109.86
+   ]
+  },
+  {
+   "osm": "way/292797666",
+   "nome": "Museu Pelé",
+   "tipo": "tourism=museum",
+   "posicao": [
+    -142.08,
+    -95.88
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Rua 4",
+   "osm": 359368566,
+   "posicao": [
+    -469.05,
+    -48.76
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Martins Fontes",
+   "osm": 513692269,
+   "posicao": [
+    -447.59,
+    -167.78
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Martins Fontes",
+   "osm": 317528466,
+   "posicao": [
+    -447.28,
+    -172.18
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Santo Orlando",
+   "osm": 620721385,
+   "posicao": [
+    -413.99,
+    35.55
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 188607208,
+   "posicao": [
+    -406.15,
+    35.63
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 188607208,
+   "posicao": [
+    -383.43,
+    29.83
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 188607208,
+   "posicao": [
+    -374.17,
+    27.71
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 188607208,
+   "posicao": [
+    -363.74,
+    26.83
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 188607208,
+   "posicao": [
+    -351.3,
+    28.19
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 188607208,
+   "posicao": [
+    -342.11,
+    25.25
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Marquês de Herval",
+   "osm": 48459421,
+   "posicao": [
+    -265.14,
+    -122.72
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Senador Christiano Ottoni",
+   "osm": 476416135,
+   "posicao": [
+    -245.59,
+    -155.22
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Senador Christiano Ottoni",
+   "osm": 476416135,
+   "posicao": [
+    -242.2,
+    -156.01
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Senador Christiano Ottoni",
+   "osm": 476416135,
+   "posicao": [
+    -235.16,
+    -156.1
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Getúlio Dornelles Vargas",
+   "osm": 476415958,
+   "posicao": [
+    -228.35,
+    0.44
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Elevado Aristides Bastos Machado",
+   "osm": 317528465,
+   "posicao": [
+    -223.77,
+    0.3
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Senador Christiano Ottoni",
+   "osm": 476416135,
+   "posicao": [
+    -218.52,
+    -153.06
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 359184037,
+   "posicao": [
+    -216.55,
+    2.54
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Senador Christiano Ottoni",
+   "osm": 476416135,
+   "posicao": [
+    -209.2,
+    -156.24
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua São Bento",
+   "osm": 736579881,
+   "posicao": [
+    -183.24,
+    -42.75
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Marquês de Herval",
+   "osm": 1313471943,
+   "posicao": [
+    -163.03,
+    -75.33
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua São Bento",
+   "osm": 462453365,
+   "posicao": [
+    -155.66,
+    -87.23
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua do Comércio",
+   "osm": 196611586,
+   "posicao": [
+    -153.56,
+    -90.61
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua São Bento",
+   "osm": 440203337,
+   "posicao": [
+    -149.64,
+    -96.93
+   ],
+   "para": ""
+  }
+ ]
+}

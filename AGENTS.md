@@ -47,6 +47,7 @@
 | Estatísticas do gerador de casos | `.\tools\lote.ps1 [-Casos 500]` |
 | Gerador mudou de propósito | `.\tools\lote.ps1 -AtualizarReferencia` (e explique no commit) |
 | Abrir o editor | `godot --path game --editor` |
+| Reimportar os bairros do mapa real | `python tools/cidade/importar.py` (baixar de novo: `baixar.py`) |
 
 ## Referência rápida: abra só a linha da tarefa
 

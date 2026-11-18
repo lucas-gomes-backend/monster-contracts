@@ -1,0 +1,32 @@
+{
+  "$comment": "Importador da cidade (docs/07, 'Mapa real em escala reduzida'). A origem é fixa para a cidade toda: assim bairros vizinhos se encaixam. x = leste, z = sul (como no Godot), em metros já reduzidos pela escala.",
+  "origem": {"lat": -23.9340, "lon": -46.3290},
+  "escala": 3.0,
+  "tolerancia_simplificacao": 1.5,
+  "margem_download_m": 150,
+  "ruas": {
+    "primary": {"largura": 10.0},
+    "secondary": {"largura": 9.0},
+    "tertiary": {"largura": 8.0},
+    "residential": {"largura": 7.0},
+    "unclassified": {"largura": 7.0},
+    "living_street": {"largura": 6.0},
+    "pedestrian": {"largura": 5.0},
+    "service": {"largura": 4.0, "so_com_nome": true},
+    "steps": {"largura": 2.5},
+    "footway": {"largura": 2.0, "so_com_nome": true}
+  },
+  "canais": ["canal", "drain", "ditch", "stream", "river"],
+  "marcos": [
+    {"chave": "natural", "valor": "peak"},
+    {"chave": "railway", "valor": "funicular"},
+    {"chave": "historic"},
+    {"chave": "amenity", "valor": "place_of_worship"},
+    {"chave": "tourism", "valor": "attraction"},
+    {"chave": "tourism", "valor": "museum"}
+  ],
+  "bairros": [
+    {"id": "valongo", "nome": "Valongo", "zona": "central_portuaria", "limite_osm": "way/1223318887"},
+    {"id": "monte_serrat", "nome": "Monte Serrat", "zona": "morros", "limite_osm": "way/196615801", "nota": "sem limite de bairro no OpenStreetMap: usa a área protegida do morro"}
+  ]
+}

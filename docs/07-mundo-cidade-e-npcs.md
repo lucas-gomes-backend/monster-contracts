@@ -287,6 +287,8 @@ Lanterna forte, botas de borracha, máscara de gás, corda, mapa das galerias (c
 - **Bairros:** áreas separadas, com mapa.
 - **Quantidade:** os bairros reais de Santos (cerca de 66 pela lista de referência, a confirmar).
 - **Mesma cidade para todos:** traçado real das ruas, limites de bairro e pontos históricos, em escala 1:3. Prédios, interiores, NPCs e casos são gerados por semente.
+- **Importador sem dependências (17/11/2026):** Python puro (biblioteca padrão). Projeção, simplificação e recorte são escritos à mão e testados. O recorte bruto do OpenStreetMap fica versionado em `tools/cidade/osm/`, para a importação dar sempre o mesmo resultado.
+- **Bairros do portão da Fase 3 (17/11/2026):** **Valongo** e **Monte Serrat**. O Valongo tem polígono de bairro no OpenStreetMap. O Monte Serrat não tem: o limite usado é o da área protegida do morro, que também está no mapa.
 - **Esgotos e subterrâneo:** incluídos como segunda camada da cidade.
 
 ## Questões em aberto

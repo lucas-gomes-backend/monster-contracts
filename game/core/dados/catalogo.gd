@@ -105,6 +105,22 @@ static func carregar_aparencia_marcas() -> Dictionary:
 	return resultado
 
 
+## Um bairro do mapa real (res://data/cidade/<id>.json, gerado por tools/cidade/importar.py), validado.
+static func carregar_bairro_real(id_bairro: String) -> Dictionary:
+	var resultado := carregar_validado("res://data/cidade/%s.json" % id_bairro, "res://data/schemas/cidade_bairro.schema.json")
+	if resultado["dados"] is Dictionary and resultado["dados"].get("id", "") != id_bairro:
+		resultado["erros"].append("%s.json: o id precisa ser igual ao nome do arquivo" % id_bairro)
+	return resultado
+
+
+## Ids dos bairros do mapa real que já foram importados, em ordem.
+static func bairros_reais() -> Array[String]:
+	var ids: Array[String] = []
+	for caminho in _listar_json("res://data/cidade"):
+		ids.append(caminho.get_file().get_basename())
+	return ids
+
+
 ## Um módulo de cenário (res://data/modulos/<id>.json), validado.
 static func carregar_modulo(id_modulo: String) -> Dictionary:
 	var resultado := carregar_validado("res://data/modulos/%s.json" % id_modulo, "res://data/schemas/modulo.schema.json")
