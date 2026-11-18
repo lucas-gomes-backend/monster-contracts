@@ -120,7 +120,11 @@ $mutants += @(
     @{ name = 'pistas de outros lugares aparecem aqui'; path = 'game/core/investigacao/sessao.gd';
        find = 'if pista["tipo"] != "marca" or pista["local"] != _local_atual:'; replace = 'if pista["tipo"] != "marca":' },
     @{ name = 'lote invade a rua'; path = 'game/core/cidade/lotes.gd';
-       find = 'if distancia_segmento_poligono(pontos[s], pontos[s + 1], meus) < folga:'; replace = 'if false:' }
+       find = 'if distancia_segmento_poligono(pontos[s], pontos[s + 1], meus) < folga:'; replace = 'if false:' },
+    @{ name = 'galeria sem parede'; path = 'game/presentation/cidade/bairro_3d.gd';
+       find = 'subterraneo.add_child(corpo)'; replace = 'pass' },
+    @{ name = 'parede corta o cruzamento'; path = 'game/core/cidade/subterraneo.gd';
+       find = 'return dentro_da_galeria(meio + normal, corredores) != dentro_da_galeria(meio - normal, corredores)'; replace = 'return true' }
 )
 
 if ($Somente.Count -gt 0) {

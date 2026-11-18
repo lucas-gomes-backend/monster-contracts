@@ -1,0 +1,16 @@
+{
+  "$comment": "Subterrâneo dos bairros do mapa real (game/data/config/subterraneo.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["largura", "altura", "profundidade", "agua", "espessura_parede", "distancia_entre_bueiros", "ruas_sem_galeria"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "largura": {"type": "number", "minimum": 1.5},
+    "altura": {"type": "number", "minimum": 2.0},
+    "profundidade": {"type": "number", "minimum": 3.0},
+    "agua": {"type": "number", "minimum": 0},
+    "espessura_parede": {"type": "number", "minimum": 0.05},
+    "distancia_entre_bueiros": {"type": "array", "items": {"type": "number", "minimum": 1}, "minItems": 2, "maxItems": 2},
+    "ruas_sem_galeria": {"type": "array", "items": {"type": "string"}}
+  }
+}

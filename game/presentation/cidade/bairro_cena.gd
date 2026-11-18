@@ -1,12 +1,17 @@
 extends Node3D
 ## Cena para andar num bairro do mapa real (Fase 3): cidade plana, de dia, com névoa
-## esbranquiçada (como Silent Hill), e o caçador.
+## esbranquiçada (como Silent Hill), e o caçador. E desce pelo bueiro para as galerias
+## (escuras: só a lanterna) e sobe de volta pela escada.
 ## Argumentos: --bairro=<id> (padrão valongo), --semente=N (padrão 1),
 ## --captura=caminho.png, --lanterna, --inclinar=G, --virar=G, --vista=cima (para conferir o visual).
 
 const Bairro3D := preload("res://presentation/cidade/bairro_3d.gd")
 const Cacador := preload("res://presentation/personagem/cacador.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
+const Mira := preload("res://presentation/inspecao/mira.gd")
+
+const ALCANCE_DO_BUEIRO := 2.5
+const ANGULO_DO_BUEIRO := 35.0
 
 const QUADROS_ANTES_DA_CAPTURA := 40
 const COR_DA_NEVOA := Color(0.72, 0.73, 0.74)
@@ -14,6 +19,11 @@ const COR_DA_NEVOA := Color(0.72, 0.73, 0.74)
 var bairro: Node3D
 var cacador: CharacterBody3D
 var ambiente: WorldEnvironment
+var sol: DirectionalLight3D
+## "rua" ou "esgoto".
+var zona: String = "rua"
+var aviso: Label
+var _alvo := -1
 var _captura := ""
 var _quadros := 0
 
@@ -47,6 +57,8 @@ func _ready() -> void:
 			vista.rotation_degrees = Vector3(-90, 0, 0)
 			vista.current = true
 			ambiente.environment.fog_enabled = false
+		elif argumento == "--esgoto" and not bairro.bueiros.is_empty():
+			usar_bueiro(0)
 		elif argumento.begins_with("--virar="):
 			cacador.virar_para(deg_to_rad(float(argumento.trim_prefix("--virar="))))
 
@@ -66,7 +78,7 @@ func montar(id_bairro: String, semente: int) -> void:
 	ambiente = WorldEnvironment.new()
 	ambiente.environment = env
 	add_child(ambiente)
-	var sol := DirectionalLight3D.new()
+	sol = DirectionalLight3D.new()
 	sol.name = "Sol"
 	sol.light_color = Color(1.0, 0.97, 0.9)
 	sol.light_energy = 0.9
@@ -103,9 +115,59 @@ func montar(id_bairro: String, semente: int) -> void:
 	credito.add_theme_font_size_override("font_size", 9)
 	credito.modulate = Color(0.2, 0.2, 0.2, 0.8)
 	camada.add_child(credito)
+	aviso = Label.new()
+	aviso.position = Vector2(0, 300)
+	aviso.size = Vector2(640, 20)
+	aviso.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	aviso.add_theme_font_size_override("font_size", 13)
+	camada.add_child(aviso)
+
+
+## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
+func usar_bueiro(i: int) -> void:
+	var p: Vector3 = bairro.bueiros[i]
+	var env: Environment = ambiente.environment
+	if zona == "rua":
+		zona = "esgoto"
+		cacador.position = p + Vector3(0.8, -bairro.profundidade + 0.1, 0)
+		sol.visible = false
+		env.background_color = Color.BLACK
+		env.ambient_light_energy = 0.1
+		env.fog_light_color = Color(0.01, 0.01, 0.01)
+		env.fog_density = 0.1
+	else:
+		zona = "rua"
+		cacador.position = p + Vector3(1.2, 0.3, 0)
+		sol.visible = true
+		env.background_color = COR_DA_NEVOA
+		env.ambient_light_energy = 0.55
+		env.fog_light_color = COR_DA_NEVOA
+		env.fog_density = 0.035
+	cacador.velocity = Vector3.ZERO
+
+
+## Bueiro na mira, ou -1. Na rua, o bueiro no chão; embaixo, a escada logo abaixo dele.
+func bueiro_na_mira(olho: Vector3, frente: Vector3) -> int:
+	var pontos: Array = []
+	for p in bairro.bueiros:
+		pontos.append(p if zona == "rua" else p + Vector3(0, -bairro.profundidade + 1.2, 0))
+	return Mira.escolher_alvo(olho, frente, cacador.position + Vector3(0, 0.9, 0), pontos, ALCANCE_DO_BUEIRO, ANGULO_DO_BUEIRO)
+
+
+func _unhandled_input(evento: InputEvent) -> void:
+	if evento.is_action_pressed("examinar") and _alvo >= 0:
+		usar_bueiro(_alvo)
+		get_viewport().set_input_as_handled()
 
 
 func _process(_delta: float) -> void:
+	var camera: Camera3D = cacador.camera
+	_alvo = bueiro_na_mira(camera.global_position, -camera.global_basis.z)
+	if _alvo < 0:
+		aviso.text = ""
+	else:
+		aviso.text = "[E] descer pelo bueiro" if zona == "rua" else "[E] subir para a rua"
+	aviso.modulate = Color(0.1, 0.1, 0.1) if zona == "rua" else Color(0.9, 0.85, 0.7)
 	if _captura.is_empty():
 		return
 	_quadros += 1

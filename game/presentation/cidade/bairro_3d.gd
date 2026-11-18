@@ -1,13 +1,15 @@
 extends Node3D
 ## Um bairro do mapa real em 3D cinza (docs/07, "Como um bairro é montado"):
 ##   chão plano (decisão: a cidade é plana, o clima vem da névoa), ruas e calçadas,
-##   prédios nos lotes gerados (core/cidade/lotes.gd), mata nos morros, marcos e saídas.
+##   prédios nos lotes gerados (core/cidade/lotes.gd), mata nos morros, marcos e saídas,
+##   e o subterrâneo embaixo das ruas (core/cidade/subterraneo.gd), com bueiros.
 ## Os dados vêm de game/data/cidade/<id>.json; o sorteio, do rng do mundo (mesma semente,
 ## mesmo bairro).
 
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const Rng := preload("res://core/rng.gd")
 const Lotes := preload("res://core/cidade/lotes.gd")
+const Sub := preload("res://core/cidade/subterraneo.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
 const Blocos := preload("res://presentation/greybox/blocos.gd")
 
@@ -36,6 +38,11 @@ var saidas: Array[Dictionary] = []
 var chao: StaticBody3D
 ## Para onde o caçador olha ao chegar (o sentido da rua da chegada).
 var giro_chegada: float = 0.0
+## Subterrâneo: o nó, a geração do núcleo, a profundidade e os bueiros (na rua).
+var subterraneo: Node3D
+var galerias: Dictionary = {}
+var profundidade: float = 0.0
+var bueiros: Array[Vector3] = []
 
 
 ## Monta o bairro. Pode ser chamado sem estar na árvore (testes).
@@ -53,6 +60,7 @@ func montar(id_bairro: String, semente: int) -> void:
 	_montar_mata(rng.stream("mata:%s" % id_bairro), cfg)
 	for marco in dados["marcos"]:
 		_montar_marco(marco)
+	_montar_subterraneo(rng)
 	for s in dados["saidas"]:
 		var ponto := Vector3(float(s["posicao"][0]), 0.0, float(s["posicao"][1]))
 		saidas.append({"rua": s["rua"], "para": s["para"], "ponto": ponto})
@@ -217,6 +225,64 @@ func _montar_marco(marco: Dictionary) -> void:
 				_faixa(marco["pontos"], 1.6, 0.06, Color(0.3, 0.25, 0.2), "Bondinho")
 		_:
 			Blocos.bloco(self, Vector3(1.2, 2.4, 1.2), Vector3(p.x, 1.2, p.y), Color(0.75, 0.68, 0.55), 1.0)
+
+
+## As galerias embaixo das ruas: piso, teto e paredes no contorno do traçado, água até o
+## joelho e um bueiro na rua para cada ponto de descida. Sem luz: só a lanterna.
+func _montar_subterraneo(rng: RefCounted) -> void:
+	var cfg: Dictionary = Catalogo.carregar_config_subterraneo()["dados"]
+	galerias = Sub.gerar(dados, cfg, rng)
+	profundidade = cfg["profundidade"]
+	var altura: float = cfg["altura"]
+	subterraneo = Node3D.new()
+	subterraneo.name = "Subterraneo"
+	subterraneo.position.y = -profundidade
+	add_child(subterraneo)
+	if galerias["corredores"].is_empty():
+		return
+	var caixa: Array = dados["caixa"]
+	var tamanho := Vector3(float(caixa[2]) - float(caixa[0]) + 20.0, 0.5, float(caixa[3]) - float(caixa[1]) + 20.0)
+	var centro := Vector3((float(caixa[0]) + float(caixa[2])) / 2.0, 0.0, (float(caixa[1]) + float(caixa[3])) / 2.0)
+	Blocos.bloco(subterraneo, tamanho, centro + Vector3(0, -0.25, 0), Color(0.18, 0.2, 0.16), tamanho.x / 6.0)
+	Blocos.bloco(subterraneo, tamanho, centro + Vector3(0, altura + 0.25, 0), Color(0.16, 0.16, 0.15), tamanho.x / 6.0)
+	Blocos.bloco(subterraneo, Vector3(tamanho.x, 0.02, tamanho.z), centro + Vector3(0, float(cfg["agua"]), 0),
+		Color(0.1, 0.16, 0.13), tamanho.x / 6.0, false)
+	# Paredes: um quadrado de pé por trecho do contorno, dos dois lados, numa malha só.
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for parede in galerias["paredes"]:
+		for i in parede.size() - 1:
+			var a: Vector2 = parede[i]
+			var b: Vector2 = parede[i + 1]
+			var v := [Vector3(a.x, 0, a.y), Vector3(b.x, 0, b.y), Vector3(b.x, altura, b.y), Vector3(a.x, altura, a.y)]
+			var u := a.distance_to(b) / 2.0
+			var uvs := [Vector2(0, 0), Vector2(u, 0), Vector2(u, altura / 2.0), Vector2(0, altura / 2.0)]
+			for idx in [0, 1, 2, 0, 2, 3, 0, 2, 1, 0, 3, 2]:
+				st.set_uv(uvs[idx])
+				st.add_vertex(v[idx])
+	st.generate_normals()
+	var malha := st.commit()
+	var visual := MeshInstance3D.new()
+	visual.name = "Paredes"
+	visual.mesh = malha
+	visual.material_override = Materiais.objeto(Color(0.3, 0.31, 0.27), 1.0)
+	var corpo := StaticBody3D.new()
+	corpo.name = "Paredes"
+	var forma := ConcavePolygonShape3D.new()
+	forma.set_faces(malha.get_faces())
+	forma.backface_collision = true
+	var colisao := CollisionShape3D.new()
+	colisao.shape = forma
+	corpo.add_child(colisao)
+	corpo.add_child(visual)
+	subterraneo.add_child(corpo)
+	for p in galerias["bueiros"]:
+		var em_cima := Vector3(p.x, 0.0, p.y)
+		bueiros.append(em_cima)
+		Blocos.bloco(self, Vector3(0.9, 0.02, 0.9), em_cima + Vector3(0, ACIMA_DO_CHAO_RUA + 0.02, 0), Color(0.1, 0.1, 0.1), 1.0, false)
+		# Escada de ferro: degraus do piso ao teto, embaixo do bueiro.
+		for degrau in int(altura / 0.4):
+			Blocos.bloco(subterraneo, Vector3(0.5, 0.05, 0.08), Vector3(p.x, 0.4 + degrau * 0.4, p.y), Color(0.42, 0.3, 0.2), 1.0, false)
 
 
 static func _v2(p: Array) -> Vector2:

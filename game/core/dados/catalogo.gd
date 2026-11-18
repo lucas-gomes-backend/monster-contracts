@@ -113,6 +113,11 @@ static func carregar_bairro_real(id_bairro: String) -> Dictionary:
 	return resultado
 
 
+## Medidas do subterrâneo dos bairros do mapa real, validadas.
+static func carregar_config_subterraneo() -> Dictionary:
+	return carregar_validado("res://data/config/subterraneo.json", "res://data/schemas/subterraneo.schema.json")
+
+
 ## Opções de visual (efeito PS1 ligado ou não), validadas.
 static func carregar_config_visual() -> Dictionary:
 	return carregar_validado("res://data/config/visual.json", "res://data/schemas/visual.schema.json")

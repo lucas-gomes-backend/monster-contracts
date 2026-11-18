@@ -1,0 +1,10 @@
+{
+  "$comment": "Subterrâneo dos bairros do mapa real (docs/07, 'Esgotos e subterrâneo'): galerias embaixo das ruas comuns, juntas num traçado só, com bueiros sorteados ao longo delas. Medidas em metros (escala do jogo).",
+  "largura": 4.0,
+  "altura": 3.0,
+  "profundidade": 10.0,
+  "agua": 0.35,
+  "espessura_parede": 0.3,
+  "distancia_entre_bueiros": [50.0, 90.0],
+  "ruas_sem_galeria": ["steps", "footway", "pedestrian", "service"]
+}
