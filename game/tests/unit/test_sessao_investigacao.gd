@@ -120,3 +120,51 @@ func test_interpretador_comandos_principais_respondem() -> void:
 	assert_has(jogo.executar("comando_inexistente"), "Não entendi")
 	jogo.executar("sair")
 	assert_true(jogo.terminou)
+
+
+## Primeiro lugar com pista física na semente, ou "".
+func _lugar_com_pista(s: RefCounted) -> String:
+	for local in s.bairro.ids_locais():
+		for pista in s.caso["pistas"]:
+			if pista["tipo"] == "marca" and pista["local"] == local and s._detectavel(pista) and Pistas.disponivel(pista, s.minuto + 60):
+				return local
+	return ""
+
+
+func test_sessao_chegar_gasta_o_mesmo_tempo_que_ir_mas_nao_anota_nada() -> void:
+	var s := _sessao(1)
+	var local := _lugar_com_pista(s)
+	assert_false(local.is_empty(), "achou um lugar com pista")
+	var antes: int = s.minuto
+	var r: Dictionary = s.chegar(local)
+	assert_true(r["ok"])
+	assert_eq(s.minuto - antes, int(_cfg()["minutos_ir_ao_local"]) + int(_cfg()["minutos_examinar_local"]))
+	assert_eq(s.caderno.pistas().size(), 0, "nada anotado só por chegar")
+	assert_true(s.visitas.has(local), "a visita conta para o relatório")
+	assert_gte(s.pistas_no_local().size(), 1, "as pistas estão lá para achar")
+
+
+func test_sessao_examinar_pista_anota_so_a_que_esta_no_lugar() -> void:
+	var s := _sessao(1)
+	var local := _lugar_com_pista(s)
+	s.chegar(local)
+	var pista: Dictionary = s.pistas_no_local()[0]
+	var r: Dictionary = s.examinar_pista(pista["id"])
+	assert_true(r["ok"] and r["nova"], "anotou")
+	assert_false(s.examinar_pista(pista["id"])["nova"], "a mesma pista não entra duas vezes")
+	assert_eq(s.caderno.pistas().size(), 1, "só a examinada")
+	var de_outro_lugar := ""
+	for p in s.caso["pistas"]:
+		if p["tipo"] == "marca" and p["local"] != local:
+			de_outro_lugar = p["id"]
+	if not de_outro_lugar.is_empty():
+		assert_false(s.examinar_pista(de_outro_lugar)["ok"], "pista de outro lugar não se examina daqui")
+
+
+func test_sessao_ir_continua_anotando_tudo_que_chegar_mostra() -> void:
+	var a := _sessao(1)
+	var b := _sessao(1)
+	var local := _lugar_com_pista(a)
+	a.ir(local)
+	b.chegar(local)
+	assert_eq(a.caderno.pistas().size(), b.pistas_no_local().size(), "ir = chegar + examinar tudo")

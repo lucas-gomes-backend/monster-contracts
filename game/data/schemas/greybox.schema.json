@@ -1,45 +1,151 @@
 {
-  "$comment": "Pistas colocadas à mão numa cena cinza da Fase 2 (game/data/greybox/*.json). A marca precisa existir em game/data/textos/marcas.json.",
+  "$comment": "Cena cinza da Fase 2 (game/data/greybox/*.json): o cenário, a casa, o esgoto e onde as pistas e as pessoas do caso aparecem.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "pistas", "casa", "bueiro", "esgoto"],
+  "required": [
+    "id",
+    "cenas",
+    "chegada",
+    "casa",
+    "bueiro",
+    "esgoto",
+    "pontos_de_pista",
+    "pontos_de_pessoa"
+  ],
   "properties": {
-    "$comment": {"type": "string"},
-    "id": {"type": "string", "pattern": "^[a-z_]+$"},
+    "$comment": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z_]+$"
+    },
     "casa": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["modulo", "posicao", "giro"],
+      "required": [
+        "modulo",
+        "posicao",
+        "giro"
+      ],
       "properties": {
-        "modulo": {"type": "string", "pattern": "^[a-z_]+$"},
-        "posicao": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
-        "giro": {"type": "number"}
+        "modulo": {
+          "type": "string",
+          "pattern": "^[a-z_]+$"
+        },
+        "posicao": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "giro": {
+          "type": "number"
+        }
       }
     },
-    "bueiro": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+    "bueiro": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
     "esgoto": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["origem", "trechos"],
+      "required": [
+        "origem",
+        "trechos"
+      ],
       "properties": {
-        "origem": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
-        "trechos": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[a-z_]+$"}}
+        "origem": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "trechos": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z_]+$"
+          }
+        }
       }
     },
-    "pistas": {
+    "cenas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "casa",
+        "padrao"
+      ],
+      "properties": {
+        "casa": {
+          "enum": [
+            "casa",
+            "rua"
+          ]
+        },
+        "padrao": {
+          "enum": [
+            "casa",
+            "rua"
+          ]
+        }
+      }
+    },
+    "chegada": {
       "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "pontos_de_pista": {
+      "type": "array",
+      "minItems": 1,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["marca", "forma", "posicao", "tamanho", "cor", "pegavel"],
+        "required": [
+          "id",
+          "posicao"
+        ],
         "properties": {
-          "marca": {"type": "string", "pattern": "^[a-z_]+$"},
-          "forma": {"enum": ["caixa", "plano", "esfera"]},
-          "posicao": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
-          "tamanho": {"type": "array", "items": {"type": "number", "minimum": 0}, "minItems": 3, "maxItems": 3},
-          "cor": {"type": "string", "pattern": "^#[0-9a-f]{6}$"},
-          "pegavel": {"type": "boolean"}
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z_]+$"
+          },
+          "posicao": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          }
         }
+      }
+    },
+    "pontos_de_pessoa": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 3,
+        "maxItems": 3
       }
     }
   }

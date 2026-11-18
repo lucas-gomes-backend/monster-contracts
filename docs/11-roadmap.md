@@ -93,7 +93,7 @@ O teste de fogo: **o jogo inteiro sem 3D**, só com texto e botões.
 - [x] Interface de diálogo.
 - [x] Caderno com **arrastar e soltar**.
 - [x] Uma rua, uma casa e um trecho de esgoto em módulos cinza (`tools/greybox.ps1`).
-- [ ] Ligar o núcleo às cenas: as pistas do caso aparecem no lugar certo.
+- [x] Ligar o núcleo às cenas: as pistas do caso aparecem no lugar certo (mapa do bairro, tecla M).
 
 **Portão:** um caso gerado, jogado do contrato ao relatório, em 3D cinza.
 

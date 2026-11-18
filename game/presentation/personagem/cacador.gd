@@ -19,6 +19,7 @@ const ACOES := {
 	"lanterna": [KEY_F],
 	"examinar": [KEY_E],
 	"caderno": [KEY_TAB],
+	"mapa": [KEY_M],
 }
 const ACOES_MOUSE := {
 	"mirar": MOUSE_BUTTON_RIGHT,

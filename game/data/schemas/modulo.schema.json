@@ -49,6 +49,7 @@
       }
     },
     "pontos_de_pista": {"type": "array", "items": {"$ref": "#/$defs/ponto"}},
-    "passagens": {"type": "array", "items": {"$ref": "#/$defs/ponto"}}
+    "passagens": {"type": "array", "items": {"$ref": "#/$defs/ponto"}},
+    "pontos_de_pessoa": {"type": "array", "items": {"$ref": "#/$defs/ponto"}}
   }
 }

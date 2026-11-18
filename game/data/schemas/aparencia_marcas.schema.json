@@ -1,0 +1,57 @@
+{
+  "$comment": "Aparência das marcas no mundo cinza (game/data/greybox/aparencia_marcas.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "padrao",
+    "marcas"
+  ],
+  "$defs": {
+    "aparencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "forma",
+        "tamanho",
+        "cor",
+        "pegavel"
+      ],
+      "properties": {
+        "forma": {
+          "enum": [
+            "caixa",
+            "plano",
+            "esfera"
+          ]
+        },
+        "tamanho": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "cor": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "pegavel": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "properties": {
+    "$comment": {
+      "type": "string"
+    },
+    "padrao": {
+      "$ref": "#/$defs/aparencia"
+    },
+    "marcas": {
+      "type": "object"
+    }
+  }
+}

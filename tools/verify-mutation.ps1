@@ -1,8 +1,33 @@
 ﻿# Prova que o portão reprova de verdade. Cria um "mutante" por vez, roda o verify.ps1
 # e exige que ele FALHE. Depois apaga o mutante. Rode quando mudar o portão ou as regras.
-# Uso (na raiz do repositório):  .\tools\verify-mutation.ps1
+# Uso (na raiz do repositório):
+#   .\tools\verify-mutation.ps1                                  # todos (pesado: 40+ rodadas do portão)
+#   .\tools\verify-mutation.ps1 -Somente degrau,filme -Pausa 60  # só os que têm esse texto no nome,
+#                                                               # esperando 60 s entre um e outro
+#   -SemConferencia pula a rodada inicial sem mutantes (para lotes seguidos, já conferidos).
+# Se o PC desligar no meio, o arquivo alterado fica guardado em tools/.mutante_pendente.json
+# e é restaurado na próxima vez que este script rodar.
+param(
+    [string[]]$Somente = @(),
+    [int]$Pausa = 0,
+    [switch]$SemConferencia
+)
 $root = Split-Path -Parent $PSScriptRoot
 $verify = Join-Path $PSScriptRoot 'verify.ps1'
+$pendente = Join-Path $PSScriptRoot '.mutante_pendente.json'
+
+# Restaura o que uma execução interrompida (desligamento, Ctrl+C) deixou alterado.
+if (Test-Path $pendente) {
+    $p = Get-Content $pendente -Raw -Encoding UTF8 | ConvertFrom-Json
+    $alvo = Join-Path $root $p.path
+    if ($null -ne $p.original) {
+        [IO.File]::WriteAllText($alvo, $p.original, (New-Object Text.UTF8Encoding($false)))
+    } else {
+        Remove-Item "$alvo*" -Force -ErrorAction SilentlyContinue
+    }
+    Remove-Item $pendente -Force
+    Write-Host ("Restaurado o arquivo deixado por uma execução interrompida: {0}" -f $p.path)
+}
 
 $mutants = @(
     @{ name = 'um único teste que falha';    path = 'game/tests/unit/test_mutante.gd';
@@ -24,10 +49,12 @@ $mutants = @(
 )
 
 # Sem mutante, o portão precisa estar verde. Senão "mutante morto" não prova nada.
-& $verify *> $null
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "VERIFY-MUTATION: o verify.ps1 já falha sem mutantes. Corrija o projeto antes."
-    exit 2
+if (-not $SemConferencia) {
+    & $verify *> $null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "VERIFY-MUTATION: o verify.ps1 já falha sem mutantes. Corrija o projeto antes."
+        exit 2
+    }
 }
 
 # Mutantes que ALTERAM código existente (trocam um trecho e depois restauram o arquivo).
@@ -63,9 +90,7 @@ $mutants += @(
     @{ name = 'gerador muda sem atualizar a referência'; path = 'game/data/config/casos.json';
        find = '"chance_boletim": 0.5'; replace = '"chance_boletim": 0.9' },
     @{ name = 'sessão acha pista vencida'; path = 'game/core/investigacao/sessao.gd';
-       find = 'if not _detectavel(pista) or not Pistas.disponivel(pista, minuto):'; replace = 'if not _detectavel(pista):' },
-    @{ name = 'sessão acha pista de outro lugar'; path = 'game/core/investigacao/sessao.gd';
-       find = 'if pista["tipo"] != "marca" or pista["local"] != local:'; replace = 'if pista["tipo"] != "marca":' },
+       find = 'if _detectavel(pista) and Pistas.disponivel(pista, minuto):'; replace = 'if _detectavel(pista):' },
     @{ name = 'caderno não filtra as compatíveis'; path = 'game/core/caderno/caderno.gd';
        find = 'if not _especies[id].has(tag):'; replace = 'if false:' },
     @{ name = 'caderno liga evidência que não tem'; path = 'game/core/caderno/caderno.gd';
@@ -91,11 +116,21 @@ $mutants += @(
     @{ name = 'filme nunca acaba'; path = 'game/presentation/inspecao/album.gd';
        find = 'if restantes() <= 0:'; replace = 'if false:' },
     @{ name = 'caçador não sobe degrau'; path = 'game/presentation/personagem/cacador.gd';
-       find = '	_subir_degrau(delta)'; replace = '	pass' }
+       find = '	_subir_degrau(delta)'; replace = '	pass' },
+    @{ name = 'pistas de outros lugares aparecem aqui'; path = 'game/core/investigacao/sessao.gd';
+       find = 'if pista["tipo"] != "marca" or pista["local"] != _local_atual:'; replace = 'if pista["tipo"] != "marca":' }
 )
 
+if ($Somente.Count -gt 0) {
+    $mutants = @($mutants | Where-Object { $nome = $_.name; @($Somente | Where-Object { $nome -like "*$_*" }).Count -gt 0 })
+    Write-Host ("Rodando {0} mutante(s): {1}" -f $mutants.Count, (($mutants | ForEach-Object { $_.name }) -join '; '))
+}
+
 $survivors = @()
+$primeiro = $true
 foreach ($m in $mutants) {
+    if (-not $primeiro -and $Pausa -gt 0) { Start-Sleep -Seconds $Pausa }
+    $primeiro = $false
     $full = Join-Path $root $m.path
     if ($m.ContainsKey('find')) {
         $original = [IO.File]::ReadAllText($full, [Text.Encoding]::UTF8)
@@ -104,15 +139,19 @@ foreach ($m in $mutants) {
             $survivors += $m.name
             continue
         }
+        @{ path = $m.path; original = $original } | ConvertTo-Json | Set-Content $pendente -Encoding UTF8
         [IO.File]::WriteAllText($full, $original.Replace($m.find, $m.replace), (New-Object Text.UTF8Encoding($false)))
         & $verify *> $null
         $code = $LASTEXITCODE
         [IO.File]::WriteAllText($full, $original, (New-Object Text.UTF8Encoding($false)))
+        Remove-Item $pendente -Force
     } else {
+        @{ path = $m.path; original = $null } | ConvertTo-Json | Set-Content $pendente -Encoding UTF8
         Set-Content -Path $full -Value $m.body -Encoding UTF8 -NoNewline
         & $verify *> $null
         $code = $LASTEXITCODE
         Remove-Item "$full*" -Force -ErrorAction SilentlyContinue
+        Remove-Item $pendente -Force
     }
     if ($code -eq 0) {
         Write-Host ("MUTANTE SOBREVIVEU: {0}" -f $m.name)

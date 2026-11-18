@@ -72,21 +72,36 @@ static func carregar_config_inspecao() -> Dictionary:
 	return carregar_validado("res://data/config/inspecao.json", "res://data/schemas/inspecao.schema.json")
 
 
-## Pistas colocadas numa cena cinza (res://data/greybox/<id>.json), validadas.
-## Toda marca precisa ter texto em res://data/textos/marcas.json.
+## Uma cena cinza (res://data/greybox/<id>.json), validada; os módulos citados precisam existir.
 static func carregar_greybox(id_cena: String) -> Dictionary:
 	var resultado := carregar_validado("res://data/greybox/%s.json" % id_cena, "res://data/schemas/greybox.schema.json")
 	if not resultado["dados"] is Dictionary:
 		return resultado
-	var textos: Dictionary = carregar_textos_marcas()["dados"]
-	for pista in resultado["dados"].get("pistas", []):
-		if not textos.has(pista.get("marca", "")):
-			resultado["erros"].append("%s.json: marca sem texto \"%s\"" % [id_cena, pista.get("marca", "")])
 	var modulos: Array = resultado["dados"].get("esgoto", {}).get("trechos", []).duplicate()
 	modulos.append(resultado["dados"].get("casa", {}).get("modulo", ""))
 	for id_modulo in modulos:
 		if not FileAccess.file_exists("res://data/modulos/%s.json" % id_modulo):
 			resultado["erros"].append("%s.json: módulo inexistente \"%s\"" % [id_cena, id_modulo])
+	return resultado
+
+
+## Aparência das marcas no mundo cinza, validada: cada entrada no formato do esquema e
+## toda marca com texto em res://data/textos/marcas.json.
+static func carregar_aparencia_marcas() -> Dictionary:
+	var caminho := "res://data/greybox/aparencia_marcas.json"
+	var caminho_esquema := "res://data/schemas/aparencia_marcas.schema.json"
+	var resultado := carregar_validado(caminho, caminho_esquema)
+	if not resultado["dados"] is Dictionary:
+		return resultado
+	var esquema_raiz: Variant = ler_json(caminho_esquema)
+	var de_uma := Esquema.new(esquema_raiz["$defs"]["aparencia"])
+	var textos: Dictionary = carregar_textos_marcas()["dados"]
+	var marcas: Dictionary = resultado["dados"].get("marcas", {})
+	for tag in marcas:
+		for erro in de_uma.validate(marcas[tag]):
+			resultado["erros"].append("aparencia_marcas.json: %s: %s" % [tag, erro])
+		if not textos.has(tag):
+			resultado["erros"].append("aparencia_marcas.json: marca sem texto \"%s\"" % tag)
 	return resultado
 
 

@@ -5,6 +5,8 @@ extends Node3D
 const Materiais := preload("res://presentation/ps1/materiais.gd")
 
 var marca: String = ""
+## Id da pista no caso (core/casos), para anotar no caderno ao examinar ou fotografar.
+var pista_id: String = ""
 var texto: String = ""
 var pegavel: bool = false
 var malha: Mesh

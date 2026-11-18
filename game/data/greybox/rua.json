@@ -1,14 +1,43 @@
 {
-  "$comment": "A rua cinza: a casa térrea num lote (giro em graus), o bueiro e a galeria embaixo (trechos de game/data/modulos em sequência), e pistas de exemplo, para testar exame, pegar e fotografar. Ainda não vêm de um caso gerado (isso é a tarefa 'ligar o núcleo às cenas').",
+  "$comment": "A rua cinza e o que ela representa no caso. 'cenas': qual cenário cada tipo de lugar do bairro usa (casa = interior da casa térrea; o resto, a rua). 'pontos_de_pista' e 'pontos_de_pessoa': onde, na rua, ficam as pistas e as pessoas do lugar visitado. A casa usa os pontos do módulo. 'chegada': onde o caçador aparece na rua.",
   "id": "rua",
-  "casa": {"modulo": "casa_terrea", "posicao": [-6.0, 0.15, 12.0], "giro": 180},
+  "cenas": {
+    "casa": "casa",
+    "padrao": "rua"
+  },
+  "chegada": [1.0, 0.1, 26.0],
+  "casa": {
+    "modulo": "casa_terrea",
+    "posicao": [-6.0, 0.15, 12.0],
+    "giro": 180
+  },
   "bueiro": [0.0, 0.0, 6.0],
-  "esgoto": {"origem": [0.0, -30.0, 6.0], "trechos": ["esgoto_escada", "esgoto_reta", "esgoto_reta", "esgoto_reta", "esgoto_reta", "esgoto_camara"]},
-  "pistas": [
-    {"marca": "pegadas_cao_grande", "forma": "plano", "posicao": [-4.6, 0.16, 14.0], "tamanho": [0.5, 0.0, 1.6], "cor": "#3a2a1c", "pegavel": false},
-    {"marca": "sangue_na_calcada", "forma": "plano", "posicao": [4.4, 0.16, 6.0], "tamanho": [0.9, 0.0, 0.7], "cor": "#5a0f0c", "pegavel": false},
-    {"marca": "pelos_escuros_grossos", "forma": "esfera", "posicao": [-4.2, 0.22, 2.0], "tamanho": [0.12, 0.12, 0.12], "cor": "#1c1814", "pegavel": true},
-    {"marca": "vidro_quebrado", "forma": "caixa", "posicao": [1.8, 0.03, -6.0], "tamanho": [0.3, 0.02, 0.25], "cor": "#8fb5b8", "pegavel": true},
-    {"marca": "roupas_rasgadas_escondidas", "forma": "caixa", "posicao": [-5.5, 0.27, -14.0], "tamanho": [0.5, 0.2, 0.4], "cor": "#3d4a5c", "pegavel": true}
+  "esgoto": {
+    "origem": [0.0, -30.0, 6.0],
+    "trechos": [
+      "esgoto_escada",
+      "esgoto_reta",
+      "esgoto_reta",
+      "esgoto_reta",
+      "esgoto_reta",
+      "esgoto_camara"
+    ]
+  },
+  "pontos_de_pista": [
+    {"id": "calcada_esquerda", "posicao": [-4.6, 0.16, 14.0]},
+    {"id": "calcada_direita", "posicao": [4.4, 0.16, 6.0]},
+    {"id": "perto_do_poste", "posicao": [-4.2, 0.16, 2.0]},
+    {"id": "meio_da_rua", "posicao": [1.8, 0.01, -6.0]},
+    {"id": "junto_a_fachada", "posicao": [-5.5, 0.16, -14.0]},
+    {"id": "perto_da_ponte", "posicao": [2.6, 0.01, -24.0]},
+    {"id": "calcada_do_fundo", "posicao": [4.8, 0.16, -18.0]}
+  ],
+  "pontos_de_pessoa": [
+    [4.6, 0.15, 19.0],
+    [-4.4, 0.15, 8.0],
+    [4.6, 0.15, -2.0],
+    [-4.6, 0.15, -10.0],
+    [4.6, 0.15, -22.0],
+    [-4.6, 0.15, 20.0]
   ]
 }

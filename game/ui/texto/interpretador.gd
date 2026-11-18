@@ -32,6 +32,16 @@ func _init(sessao_investigacao: RefCounted, criaturas: Dictionary, textos_marcas
 
 # --- Textos usados também pela janela (ui/jogo.gd) ---
 
+## O desfecho do caso, depois de agir (usado também no mapa 3D).
+func texto_resultado() -> String:
+	return _resultado()
+
+
+## O relatório com toda a verdade, depois de agir (usado também no mapa 3D).
+func texto_relatorio() -> String:
+	return _relatorio()
+
+
 func texto_pista(pista: Dictionary) -> String:
 	return _texto_pista(pista)
 
@@ -295,9 +305,14 @@ func _testar(args: Array) -> String:
 		alvo = _resolver(args[1], "h", _ids_casas())
 	if alvo.is_empty():
 		return "Alvo desconhecido: %s." % args[1]
-	var r: Dictionary = sessao.aplicar_teste(teste_id, alvo)
+	return texto_teste(sessao.aplicar_teste(teste_id, alvo))
+
+
+## Texto do resultado de um teste de campo (sessao.aplicar_teste). Usado também no mapa 3D.
+func texto_teste(r: Dictionary) -> String:
 	if not r["ok"]:
 		return "Não deu: %s." % r["erro"]
+	var alvo: String = r["alvo"]
 	var nome_alvo := _nome(alvo) if not sessao.npc(alvo).is_empty() else _nome_local(alvo)
 	var texto: String = r["teste"]["positivo" if r["positivo"] else "negativo"]
 	var linhas: Array = ["%s (%s). Agora: %s." % [r["teste"]["nome"], _duracao(int(r["minutos"])), _data(sessao.minuto)], texto.replace("{alvo}", nome_alvo)]

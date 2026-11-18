@@ -37,5 +37,10 @@
   ],
   "passagens": [
     {"id": "porta_da_frente", "posicao": [0, 0, 0]}
+  ],
+  "pontos_de_pessoa": [
+    {"id": "sala", "posicao": [3, 0, 1]},
+    {"id": "cozinha", "posicao": [6.3, 0, 2.6]},
+    {"id": "quarto", "posicao": [5.8, 0, -1.8]}
   ]
 }

@@ -2,13 +2,14 @@ extends Node3D
 ## Greybox da Fase 2: uma rua noturna de Santos em blocos cinza, para andar com o caçador.
 ## Rua, calçadas, casas baixas dos dois lados, um canal no fim, postes com luz e névoa.
 ## Tudo é montado em código (sem sorteio): o mesmo resultado toda vez.
-## Pistas de exemplo (game/data/greybox/rua.json) para examinar, pegar, girar e fotografar.
-## Um caso de verdade é gerado (--semente=N, padrão 12) e o cliente espera na calçada para
-## conversar; a conversa usa a sessão de investigação do núcleo.
+## Um caso de verdade é gerado (--semente=N, padrão 12). No mapa (M) o caçador vai aos lugares
+## do caso: casas viram o interior da casa térrea; os outros lugares, a rua. As pistas do caso
+## naquele lugar e naquela hora aparecem nos pontos de pista do cenário, e quem está lá aparece
+## para conversar. Examinar ou fotografar anota no caderno; o mapa faz testes e encerra o caso.
 ## Uma casa térrea num dos lotes (dá para entrar) e, embaixo da rua, um trecho de esgoto
 ## montado com módulos de túnel em sequência; desce-se pelo bueiro.
 ## Argumentos opcionais: --captura=caminho.png salva uma imagem depois de alguns quadros e fecha;
-## --lanterna começa com a lanterna ligada; --casa entra na casa; --esgoto desce pelo bueiro; --inclinar=G inclina a câmera G graus; --exame=N abre o exame da pista N (para conferir o visual).
+## --lugar=ID vai a um lugar do caso; --lanterna começa com a lanterna ligada; --casa entra na casa; --esgoto desce pelo bueiro; --inclinar=G inclina a câmera G graus; --exame=N abre o exame da pista N (para conferir o visual).
 
 const Cacador := preload("res://presentation/personagem/cacador.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
@@ -25,6 +26,7 @@ const JanelaDialogo := preload("res://presentation/dialogo/janela_dialogo.gd")
 const Morador := preload("res://presentation/personagem/morador.gd")
 const CadernoTela := preload("res://presentation/caderno/caderno_tela.gd")
 const Blocos := preload("res://presentation/greybox/blocos.gd")
+const MapaTela := preload("res://presentation/mapa/mapa_tela.gd")
 
 const SEMENTE_PADRAO := 12
 const LUGAR_DO_CLIENTE := Vector3(4.6, 0.15, 19.0)
@@ -77,6 +79,11 @@ var zona: String = "rua"
 ## Passagens que o caçador usa com E: [{"id", "ponto", "texto"}].
 var passagens: Array = []
 var _cena: Dictionary = {}
+var mapa: CanvasLayer
+## "rua" ou "casa": o cenário do lugar onde o caçador está.
+var cenario: String = "rua"
+var _textos: Dictionary = {}
+var _aparencia: Dictionary = {}
 var _alvo := -1
 var _tempo_da_mensagem := 0.0
 var _captura := ""
@@ -93,10 +100,13 @@ func _ready() -> void:
 	for argumento in OS.get_cmdline_user_args():
 		if argumento.begins_with("--conversa"):
 			conversar(moradores[0])
+		elif argumento.begins_with("--lugar="):
+			ir_para(argumento.trim_prefix("--lugar="))
+		elif argumento == "--mapa":
+			abrir_mapa()
 		elif argumento == "--caderno":
 			for pista in pistas:
-				anotar_pista_da_rua(pista.marca)
-			sessao.caderno.ligar("rua_pegadas_cao_grande", "pegadas_cao_grande")
+				sessao.examinar_pista(pista.pista_id)
 			abrir_caderno()
 		elif argumento.begins_with("--captura="):
 			_captura = argumento.trim_prefix("--captura=")
@@ -140,9 +150,8 @@ func montar(semente: int = SEMENTE_PADRAO) -> void:
 	cacador = Cacador.new()
 	cacador.name = "Cacador"
 	cacador.montar({}, config_inspecao)
-	cacador.position = Vector3(1.0, 0.1, COMPRIMENTO / 2.0 - 4.0)
+	cacador.position = Blocos.vetor(_cena["chegada"])
 	add_child(cacador)
-	_colocar_pistas()
 	album = Album.new(int(config_inspecao["filme"]))
 
 	exame = Exame.new()
@@ -158,6 +167,12 @@ func montar(semente: int = SEMENTE_PADRAO) -> void:
 	caderno.montar(sessao, fmt, _criaturas)
 	caderno.fechou.connect(_destravar)
 	add_child(caderno)
+	mapa = MapaTela.new()
+	mapa.montar(sessao, fmt, _criaturas)
+	mapa.fechou.connect(_destravar)
+	mapa.foi_para.connect(ir_para)
+	mapa.ligou_cliente.connect(_ligar_para_o_cliente)
+	add_child(mapa)
 	# O filtro PS1 fica por cima da cena e do exame; os textos de ajuda, por cima dele.
 	var camada_filtro := CanvasLayer.new()
 	camada_filtro.layer = 10
@@ -176,6 +191,8 @@ func _comecar_caso(semente: int) -> void:
 	var criaturas: Dictionary = Catalogo.carregar_criaturas()["criaturas"]
 	_criaturas = criaturas
 	var textos: Dictionary = Catalogo.carregar_textos_marcas()["dados"]
+	_textos = textos
+	_aparencia = Catalogo.carregar_aparencia_marcas()["dados"]
 	sessao = Sessao.new(caso, criaturas, Catalogo.carregar_bairro(caso["bairro"])["dados"],
 		Catalogo.carregar_config_investigacao()["dados"])
 	fmt = Interpretador.new(sessao, criaturas, textos)
@@ -189,13 +206,76 @@ func _comecar_caso(semente: int) -> void:
 	moradores.append(morador)
 
 
-func _colocar_pistas() -> void:
-	var textos: Dictionary = Catalogo.carregar_textos_marcas()["dados"]
-	for dados in Catalogo.carregar_greybox("rua")["dados"]["pistas"]:
-		var pista := Pista3D.new()
-		pista.montar(dados, textos)
-		add_child(pista)
-		pistas.append(pista)
+## Vai a um lugar do caso: o tempo passa (sessão do núcleo), o cenário certo recebe as
+## pistas e as pessoas que estão lá agora, e o caçador aparece na chegada.
+func ir_para(local: String) -> void:
+	var r: Dictionary = sessao.chegar(local)
+	if not r["ok"]:
+		_avisar("Não deu: %s." % r["erro"])
+		return
+	_repovoar()
+	var nome: String = fmt.nome_local(local)
+	_avisar("Você chega em %s (%d min). Procure pistas e converse com quem estiver por aqui." % [nome, int(r["minutos"])])
+	_atualizar_interface()
+
+
+func _repovoar() -> void:
+	for no in pistas + moradores:
+		remove_child(no)
+		no.queue_free()
+	pistas.clear()
+	moradores.clear()
+	var tipo: String = sessao.bairro.local(sessao.local_atual())["tipo"]
+	cenario = _cena["cenas"].get(tipo, _cena["cenas"]["padrao"])
+	var pontos: Array = []
+	var vagas: Array = []
+	if cenario == "casa":
+		pontos = pontos_de_pista(casa)
+		for marcador in Blocos.marcadores(casa, "Pessoa_"):
+			vagas.append(posicao_no_mundo(marcador))
+	else:
+		for p in _cena["pontos_de_pista"]:
+			pontos.append(Blocos.vetor(p["posicao"]))
+		for p in _cena["pontos_de_pessoa"]:
+			vagas.append(Blocos.vetor(p))
+	var no_local: Array = sessao.pistas_no_local()
+	for i in no_local.size():
+		# Mais pistas que pontos: as de sobra ficam ao lado das primeiras.
+		var ponto: Vector3 = pontos[i % pontos.size()] + Vector3(0.6 * float(i / pontos.size()), 0, 0)
+		_colocar_pista(no_local[i], ponto)
+	var quem: Array[String] = sessao.pessoas_aqui()
+	for i in quem.size():
+		var morador := Morador.new()
+		morador.montar(quem[i], fmt.nome(quem[i]))
+		morador.position = vagas[i % vagas.size()] + Vector3(0, 0, 0.8 * float(i / vagas.size()))
+		add_child(morador)
+		moradores.append(morador)
+	_aplicar_zona("rua")
+	if cenario == "casa":
+		# Logo depois da porta, olhando para dentro da casa.
+		cacador.position = posicao_no_mundo(casa) + Vector3(1.5, 0.05, 0.0).rotated(Vector3.UP, casa.rotation.y)
+		cacador.virar_para(casa.rotation.y - PI / 2.0)
+	else:
+		cacador.position = Blocos.vetor(_cena["chegada"])
+		cacador.virar_para(0.0)
+	cacador.velocity = Vector3.ZERO
+
+
+func _colocar_pista(pista: Dictionary, ponto: Vector3) -> void:
+	var visual: Dictionary = _aparencia["marcas"].get(pista["tag"], _aparencia["padrao"])
+	var dados := {"marca": pista["tag"], "forma": visual["forma"], "tamanho": visual["tamanho"],
+		"cor": visual["cor"], "pegavel": visual["pegavel"], "posicao": [ponto.x, ponto.y, ponto.z]}
+	var no := Pista3D.new()
+	no.montar(dados, _textos)
+	no.pista_id = pista["id"]
+	no.name = "Pista_" + str(pista["id"])
+	add_child(no)
+	pistas.append(no)
+
+
+func _ligar_para_o_cliente() -> void:
+	mapa.fechar()
+	conversar_com(sessao.caso["contrato"]["cliente"])
 
 
 func _montar_interface() -> void:
@@ -209,7 +289,7 @@ func _montar_interface() -> void:
 	flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	camada.add_child(flash)
 	var ajuda := _rotulo(camada, Vector2(8, 6), 11)
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E examinar ou conversar · Tab caderno\nbotão direito: mira · esquerdo (mirando): fotografa · Esc solta o mouse"
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E examinar ou conversar · Tab caderno · M mapa\nbotão direito: mira · esquerdo (mirando): fotografa · Esc solta o mouse"
 	ajuda.modulate = Color(0.85, 0.8, 0.6, 0.8)
 	aviso = _rotulo(camada, Vector2(0, 300), 13)
 	aviso.size = Vector2(640, 20)
@@ -234,7 +314,7 @@ func _atualizar_interface() -> void:
 	contador_fotos.text = "filme: %d/%d" % [album.restantes(), album.filme]
 	relogio.text = fmt.data(sessao.minuto)
 	# O caderno ocupa a tela toda: a ajuda, o relógio e o filme da rua saem da frente.
-	camada_interface.visible = not caderno.aberto
+	camada_interface.visible = not caderno.aberto and not mapa.aberto
 	aviso.text = ""
 	if _alvo < 0 or ocupado():
 		return
@@ -250,7 +330,14 @@ func _atualizar_interface() -> void:
 
 ## Examinando, conversando ou com o caderno aberto: o caçador não anda e o mundo não reage à mira.
 func ocupado() -> bool:
-	return exame.aberto or dialogo.aberta or caderno.aberto
+	return exame.aberto or dialogo.aberta or caderno.aberto or mapa.aberto
+
+
+func abrir_mapa() -> void:
+	if ocupado():
+		return
+	mapa.abrir()
+	_travar()
 
 
 func abrir_caderno() -> void:
@@ -272,13 +359,6 @@ func _destravar() -> void:
 	if is_inside_tree():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_atualizar_interface()
-
-
-## Provisório até as pistas do caso irem para a rua (tarefa "ligar o núcleo às cenas"):
-## as pistas de exemplo examinadas ou fotografadas entram no caderno como pistas da rua.
-func anotar_pista_da_rua(marca: String) -> void:
-	sessao.caderno.anotar_pista({"id": "rua_" + marca, "tipo": "marca", "tag": marca, "local": "",
-		"onde": "Rua (exemplo)", "minuto": sessao.minuto, "valida_ate": -1, "detectar": "olho_nu"})
 
 
 func _avisar(texto: String) -> void:
@@ -309,9 +389,13 @@ func alvo_na_mira(olho: Vector3, frente: Vector3) -> int:
 
 ## Começa a conversa com uma pessoa: o caçador para e o mouse fica solto para as opções.
 func conversar(morador: Node3D) -> void:
+	conversar_com(morador.npc_id)
+
+
+func conversar_com(npc_id: String) -> void:
 	if ocupado():
 		return
-	dialogo.mostrar(conversa.abrir(morador.npc_id))
+	dialogo.mostrar(conversa.abrir(npc_id))
 	_travar()
 
 
@@ -329,7 +413,8 @@ func examinar(indice: int) -> void:
 	if indice < 0 or indice >= pistas.size() or ocupado():
 		return
 	exame.abrir(pistas[indice])
-	anotar_pista_da_rua(pistas[indice].marca)
+	if sessao.examinar_pista(pistas[indice].pista_id)["nova"]:
+		_avisar("Anotado no caderno.")
 	_travar()
 
 
@@ -344,12 +429,12 @@ func fotografar(olho: Vector3, frente: Vector3, fov: float) -> Dictionary:
 	for i in Mira.no_quadro(olho, frente, _pontos_das_pistas(), config_inspecao["foto_alcance"], fov):
 		if pistas[i].visible:
 			marcas.append(pistas[i].marca)
+			if not album.restantes() <= 0:
+				sessao.examinar_pista(pistas[i].pista_id)
 	var imagem: Image = null
 	if is_inside_tree():
 		imagem = get_viewport().get_texture().get_image()
 	var foto: Dictionary = album.fotografar(marcas, imagem)
-	for marca in foto.get("marcas", []):
-		anotar_pista_da_rua(marca)
 	if foto.is_empty():
 		_avisar("O filme acabou.")
 	elif foto["marcas"].is_empty():
@@ -367,7 +452,7 @@ func fotografar(olho: Vector3, frente: Vector3, fov: float) -> Dictionary:
 
 
 func _unhandled_input(evento: InputEvent) -> void:
-	if caderno.aberto:
+	if caderno.aberto or mapa.aberto:
 		return
 	if dialogo.aberta:
 		if evento.is_action_pressed("soltar_mouse"):
@@ -381,6 +466,9 @@ func _unhandled_input(evento: InputEvent) -> void:
 		return
 	if evento.is_action_pressed("caderno"):
 		abrir_caderno()
+		get_viewport().set_input_as_handled()
+	elif evento.is_action_pressed("mapa"):
+		abrir_mapa()
 		get_viewport().set_input_as_handled()
 	elif evento.is_action_pressed("examinar") and _alvo >= 0:
 		var depois_das_pessoas: int = pistas.size() + moradores.size()
@@ -446,7 +534,6 @@ func _fileira_de_casas(lado: float, inicio_x: float) -> void:
 		i += 1
 
 
-## Um canal de Santos atravessando o fim da rua, com uma ponte baixa.
 ## (lado, começo do lote, fim do lote) da casa de verdade, em z.
 func _lote_da_casa() -> Vector3:
 	var p: Array = _cena["casa"]["posicao"]
@@ -511,9 +598,16 @@ func usar_passagem(id: String) -> void:
 
 
 func _mudar_zona(nova: String, onde: Vector3) -> void:
-	zona = nova
+	_aplicar_zona(nova)
 	cacador.position = onde
 	cacador.velocity = Vector3.ZERO
+	_avisar("Você desce pela escada de ferro. Breu, cheiro de podre, água até o joelho. (F liga a lanterna)" if nova == "esgoto" else "Você sobe de volta para a rua.")
+	_atualizar_interface()
+
+
+## Luz e névoa da zona: no esgoto não há lua nem luz ambiente, só a lanterna.
+func _aplicar_zona(nova: String) -> void:
+	zona = nova
 	var env: Environment = ambiente.environment
 	var embaixo := nova == "esgoto"
 	lua.visible = not embaixo
@@ -521,10 +615,9 @@ func _mudar_zona(nova: String, onde: Vector3) -> void:
 	env.background_color = Color(0, 0, 0) if embaixo else Color(0.05, 0.06, 0.09)
 	env.fog_light_color = Color(0.01, 0.01, 0.01) if embaixo else Color(0.07, 0.08, 0.11)
 	env.fog_density = 0.12 if embaixo else 0.06
-	_avisar("Você desce pela escada de ferro. Breu, cheiro de podre, água até o joelho. (F liga a lanterna)" if embaixo else "Você sobe de volta para a rua.")
-	_atualizar_interface()
 
 
+## Um canal de Santos atravessando o fim da rua, com uma ponte baixa.
 func _canal(meia_total: float) -> void:
 	var z := -COMPRIMENTO / 2.0 - 2.5
 	var largura_total := meia_total * 2.0 + 30.0

@@ -1,0 +1,83 @@
+{
+  "$comment": "Como cada marca aparece no mundo cinza (forma, tamanho em metros, cor) e se dá para pegar e girar. Marca sem entrada usa 'padrao'. Só aparência: o que a pista significa está em textos/marcas.json e nas fichas.",
+  "padrao": {
+    "forma": "plano",
+    "tamanho": [0.6, 0, 0.6],
+    "cor": "#4a3a2a",
+    "pegavel": false
+  },
+  "marcas": {
+    "pegadas_cao_grande": {
+      "forma": "plano", "tamanho": [  0.5,   0,   1.6
+      ], "cor": "#3a2a1c", "pegavel": false
+    },
+    "pegadas_invertidas": {
+      "forma": "plano", "tamanho": [  0.4,   0,   1.4
+      ], "cor": "#3a2f1c", "pegavel": false
+    },
+    "pegadas_de_sapato": {
+      "forma": "plano", "tamanho": [  0.4,   0,   1.4
+      ], "cor": "#2f2f2f", "pegavel": false
+    },
+    "pegadas_de_chinelo": {
+      "forma": "plano", "tamanho": [  0.4,   0,   1.2
+      ], "cor": "#3a3530", "pegavel": false
+    },
+    "marcas_de_cascos": {
+      "forma": "plano", "tamanho": [  0.5,   0,   1.8
+      ], "cor": "#2a2218", "pegavel": false
+    },
+    "sangue_na_calcada": {
+      "forma": "plano", "tamanho": [  0.9,   0,   0.7
+      ], "cor": "#5a0f0c", "pegavel": false
+    },
+    "galinheiro_atacado": {
+      "forma": "caixa", "tamanho": [  1.2,   0.8,   1.0
+      ], "cor": "#6b5236", "pegavel": false
+    },
+    "galinhas_sumidas_sem_sangue": {
+      "forma": "caixa", "tamanho": [  1.2,   0.8,   1.0
+      ], "cor": "#7a6446", "pegavel": false
+    },
+    "cova_revirada": {
+      "forma": "caixa", "tamanho": [  1.0,   0.3,   2.0
+      ], "cor": "#3a2c1e", "pegavel": false
+    },
+    "cadaver_sem_decomposicao": {
+      "forma": "caixa", "tamanho": [  0.5,   0.3,   1.7
+      ], "cor": "#8a8070", "pegavel": false
+    },
+    "cheiro_de_podre": {
+      "forma": "plano", "tamanho": [  1.2,   0,   1.2
+      ], "cor": "#3c4a2a", "pegavel": false
+    },
+    "lixo_revirado": {
+      "forma": "caixa", "tamanho": [  0.8,   0.3,   0.6
+      ], "cor": "#3e4a3a", "pegavel": false
+    },
+    "pelos_escuros_grossos": {
+      "forma": "esfera", "tamanho": [  0.12,   0.12,   0.12
+      ], "cor": "#1c1814", "pegavel": true
+    },
+    "roupas_rasgadas_escondidas": {
+      "forma": "caixa", "tamanho": [  0.5,   0.2,   0.4
+      ], "cor": "#3d4a5c", "pegavel": true
+    },
+    "vidro_quebrado": {
+      "forma": "caixa", "tamanho": [  0.3,   0.02,   0.25
+      ], "cor": "#8fb5b8", "pegavel": true
+    },
+    "mordidas_pequenas_em_sacos": {
+      "forma": "caixa", "tamanho": [  0.4,   0.3,   0.3
+      ], "cor": "#5a5a50", "pegavel": true
+    },
+    "armadilhas_desarmadas": {
+      "forma": "caixa", "tamanho": [  0.4,   0.1,   0.3
+      ], "cor": "#6a6a60", "pegavel": true
+    },
+    "equipamento_de_efeito_escondido": {
+      "forma": "caixa", "tamanho": [  0.35,   0.25,   0.25
+      ], "cor": "#2a2a30", "pegavel": true
+    }
+  }
+}

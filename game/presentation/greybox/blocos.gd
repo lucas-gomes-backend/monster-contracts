@@ -58,6 +58,11 @@ static func montar_modulo(dados: Dictionary) -> Node3D:
 		marcador.name = "Passagem_" + str(p["id"])
 		marcador.position = vetor(p["posicao"])
 		raiz.add_child(marcador)
+	for p in dados.get("pontos_de_pessoa", []):
+		var marcador := Marker3D.new()
+		marcador.name = "Pessoa_" + str(p["id"])
+		marcador.position = vetor(p["posicao"])
+		raiz.add_child(marcador)
 	return raiz
 
 

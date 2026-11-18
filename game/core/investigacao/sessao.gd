@@ -129,10 +129,24 @@ func local_atual() -> String:
 	return _local_atual
 
 
-## Vai a um lugar e examina. Devolve {"ok", "erro", "novas": [ids], "minutos"}.
+## Vai a um lugar e examina tudo de uma vez (interface em texto).
+## Devolve {"ok", "erro", "novas": [ids], "minutos"}.
 func ir(local: String) -> Dictionary:
+	var r := chegar(local)
+	var novas: Array = []
+	if r["ok"]:
+		for pista in pistas_no_local():
+			if caderno.anotar_pista(pista):
+				novas.append(pista["id"])
+	return {"ok": r["ok"], "erro": r["erro"], "novas": novas, "minutos": r["minutos"]}
+
+
+## Vai a um lugar e gasta o tempo de ir e de olhar em volta, mas não anota nada:
+## no 3D as pistas ficam no lugar e o jogador precisa achar cada uma (examinar_pista).
+## Devolve {"ok", "erro", "minutos"}.
+func chegar(local: String) -> Dictionary:
 	if not bairro.existe(local):
-		return {"ok": false, "erro": "lugar desconhecido", "novas": [], "minutos": 0}
+		return {"ok": false, "erro": "lugar desconhecido", "minutos": 0}
 	var custo := int(_cfg["minutos_examinar_local"])
 	if local != _local_atual:
 		custo += int(_cfg["minutos_ir_ao_local"])
@@ -140,15 +154,31 @@ func ir(local: String) -> Dictionary:
 	_local_atual = local
 	if not visitas.has(local):
 		visitas[local] = minuto
-	var novas: Array = []
+	return {"ok": true, "erro": "", "minutos": custo}
+
+
+## Pistas físicas do lugar atual, agora: marcas deste lugar, ainda válidas e que o
+## equipamento do caçador consegue detectar. Em ordem de id (sempre a mesma).
+func pistas_no_local() -> Array:
+	var lista: Array = []
+	if _local_atual.is_empty():
+		return lista
 	for pista in caso["pistas"]:
-		if pista["tipo"] != "marca" or pista["local"] != local:
+		if pista["tipo"] != "marca" or pista["local"] != _local_atual:
 			continue
-		if not _detectavel(pista) or not Pistas.disponivel(pista, minuto):
-			continue
-		if caderno.anotar_pista(pista):
-			novas.append(pista["id"])
-	return {"ok": true, "erro": "", "novas": novas, "minutos": custo}
+		if _detectavel(pista) and Pistas.disponivel(pista, minuto):
+			lista.append(pista)
+	lista.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return str(a["id"]) < str(b["id"]))
+	return lista
+
+
+## Examina uma pista que está no lugar atual e anota no caderno.
+## Devolve {"ok", "erro", "nova": bool}.
+func examinar_pista(pista_id: String) -> Dictionary:
+	for pista in pistas_no_local():
+		if pista["id"] == pista_id:
+			return {"ok": true, "erro": "", "nova": caderno.anotar_pista(pista)}
+	return {"ok": false, "erro": "essa pista não está aqui (ou já sumiu)", "nova": false}
 
 
 ## Pesquisa boletins e registros antigos (delegacia, cartório, jornal).

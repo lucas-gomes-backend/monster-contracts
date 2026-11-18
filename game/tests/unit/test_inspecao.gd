@@ -15,6 +15,14 @@ func before_each() -> void:
 	_cfg = Catalogo.carregar_config_inspecao()["dados"]
 
 
+## A rua montada para a semente 12, no bar: lá há um caco de vidro (pega) e sangue (não pega).
+func _rua_no_bar() -> Node3D:
+	var rua := Rua.new()
+	rua.montar(12)
+	rua.ir_para("paqueta/bar")
+	return rua
+
+
 func _indice(rua: Node3D, pegavel: bool) -> int:
 	for i in rua.pistas.size():
 		if rua.pistas[i].pegavel == pegavel:
@@ -22,11 +30,13 @@ func _indice(rua: Node3D, pegavel: bool) -> int:
 	return -1
 
 
-func test_inspecao_config_e_pistas_da_rua_sao_validas() -> void:
+func test_inspecao_config_rua_e_aparencia_das_marcas_sao_validas() -> void:
 	assert_eq(Catalogo.carregar_config_inspecao()["erros"].size(), 0)
 	var rua := Catalogo.carregar_greybox("rua")
 	assert_eq(rua["erros"].size(), 0, str(rua["erros"]))
-	assert_gte(rua["dados"]["pistas"].size(), 2, "há pistas para examinar")
+	assert_gte(rua["dados"]["pontos_de_pista"].size(), 3, "há onde pôr as pistas na rua")
+	var aparencia := Catalogo.carregar_aparencia_marcas()
+	assert_eq(aparencia["erros"].size(), 0, str(aparencia["erros"]))
 
 
 func test_mira_escolhe_a_pista_mais_perto_do_centro() -> void:
@@ -96,20 +106,20 @@ func test_mira_aproxima_a_camera_e_fecha_o_campo() -> void:
 	assert_true(mirando.y < normal.y, "o campo de visão fecha")
 
 
-func test_rua_cada_pista_do_json_esta_no_mundo_com_o_texto_da_marca() -> void:
-	var rua := Rua.new()
-	rua.montar()
-	var dados: Array = Catalogo.carregar_greybox("rua")["dados"]["pistas"]
+func test_rua_cada_pista_do_caso_no_lugar_esta_no_mundo_com_o_texto_da_marca() -> void:
+	var rua := _rua_no_bar()
+	var no_local: Array = rua.sessao.pistas_no_local()
 	var textos: Dictionary = Catalogo.carregar_textos_marcas()["dados"]
-	assert_eq(rua.pistas.size(), dados.size())
-	for pista in rua.pistas:
-		assert_eq(pista.texto, textos[pista.marca]["pista"], "texto da marca %s" % pista.marca)
+	assert_gte(no_local.size(), 2, "o bar da semente 12 tem pistas")
+	assert_eq(rua.pistas.size(), no_local.size(), "uma pista no mundo para cada pista do caso no lugar")
+	for i in no_local.size():
+		assert_eq(rua.pistas[i].pista_id, no_local[i]["id"])
+		assert_eq(rua.pistas[i].texto, textos[no_local[i]["tag"]]["pista"], "texto da marca %s" % no_local[i]["tag"])
 	rua.free()
 
 
 func test_rua_pegar_pista_abre_o_exame_trava_o_cacador_e_soltar_devolve() -> void:
-	var rua := Rua.new()
-	rua.montar()
+	var rua := _rua_no_bar()
 	var i := _indice(rua, true)
 	var pista: Node3D = rua.pistas[i]
 	rua.examinar(i)
@@ -129,8 +139,7 @@ func test_rua_pegar_pista_abre_o_exame_trava_o_cacador_e_soltar_devolve() -> voi
 
 
 func test_rua_pista_do_chao_e_examinada_no_lugar() -> void:
-	var rua := Rua.new()
-	rua.montar()
+	var rua := _rua_no_bar()
 	var i := _indice(rua, false)
 	rua.examinar(i)
 	assert_true(rua.exame.aberto)
@@ -141,8 +150,7 @@ func test_rua_pista_do_chao_e_examinada_no_lugar() -> void:
 
 
 func test_rua_pista_ao_alcance_e_na_mira_vira_alvo() -> void:
-	var rua := Rua.new()
-	rua.montar()
+	var rua := _rua_no_bar()
 	var pista: Node3D = rua.pistas[0]
 	rua.cacador.position = pista.position + Vector3(0, 0, 1.0)
 	var olho: Vector3 = pista.position + Vector3(0, 1.8, 3.5)
@@ -154,8 +162,7 @@ func test_rua_pista_ao_alcance_e_na_mira_vira_alvo() -> void:
 
 
 func test_rua_foto_registra_a_pista_enquadrada_e_gasta_filme() -> void:
-	var rua := Rua.new()
-	rua.montar()
+	var rua := _rua_no_bar()
 	var pista: Node3D = rua.pistas[0]
 	var olho: Vector3 = pista.position + Vector3(0, 1.5, 3.0)
 	var foto: Dictionary = rua.fotografar(olho, (pista.position - olho).normalized(), 45.0)
