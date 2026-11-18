@@ -11,12 +11,39 @@
       "nome": "Sepultamento do corpo-seco",
       "item": "ritual_de_sepultamento",
       "exige_estado": "contida",
-      "materiais": [{"item": "vela", "quantidade": 2}, {"item": "sal_grosso", "quantidade": 1}],
+      "materiais": [
+        {
+          "item": "vela",
+          "quantidade": 2
+        },
+        {
+          "item": "sal_grosso",
+          "quantidade": 1
+        }
+      ],
       "passos": [
-        {"tipo": "apertar", "texto": "Acender as velas na cabeceira"},
-        {"tipo": "segurar", "texto": "Traçar a cruz de sal sobre o corpo"},
-        {"tipo": "palavra", "texto": "Encomendar a alma", "opcoes": ["Que a terra te receba", "Que o fogo te leve", "Que a água te lave"], "certa": 0},
-        {"tipo": "apertar", "texto": "Jogar a primeira pá de terra"}
+        {
+          "tipo": "apertar",
+          "texto": "Acender as velas na cabeceira"
+        },
+        {
+          "tipo": "segurar",
+          "texto": "Traçar a cruz de sal sobre o corpo"
+        },
+        {
+          "tipo": "palavra",
+          "texto": "Encomendar a alma",
+          "opcoes": [
+            "Que a terra te receba",
+            "Que o fogo te leve",
+            "Que a água te lave"
+          ],
+          "certa": 0
+        },
+        {
+          "tipo": "apertar",
+          "texto": "Jogar a primeira pá de terra"
+        }
       ]
     },
     {
@@ -24,12 +51,151 @@
       "nome": "Tirar o freio da mula",
       "item": "tirar_o_freio_de_ferro",
       "exige_estado": "contida",
-      "materiais": [{"item": "agua_benta", "quantidade": 1}],
+      "materiais": [
+        {
+          "item": "agua_benta",
+          "quantidade": 1
+        }
+      ],
       "passos": [
-        {"tipo": "segurar", "texto": "Chegar perto sem assustar"},
-        {"tipo": "apertar", "texto": "Agarrar o freio de ferro"},
-        {"tipo": "palavra", "texto": "Chamar pelo nome", "opcoes": ["O nome de batismo dela", "Mula, sai daqui", "O nome do padre"], "certa": 0},
-        {"tipo": "segurar", "texto": "Puxar o freio de uma vez"}
+        {
+          "tipo": "segurar",
+          "texto": "Chegar perto sem assustar"
+        },
+        {
+          "tipo": "apertar",
+          "texto": "Agarrar o freio de ferro"
+        },
+        {
+          "tipo": "palavra",
+          "texto": "Chamar pelo nome",
+          "opcoes": [
+            "O nome de batismo dela",
+            "Mula, sai daqui",
+            "O nome do padre"
+          ],
+          "certa": 0
+        },
+        {
+          "tipo": "segurar",
+          "texto": "Puxar o freio de uma vez"
+        }
+      ]
+    },
+    {
+      "id": "purificacao",
+      "nome": "Purificação do onryō",
+      "item": "ritual_de_purificacao",
+      "exige_estado": "livre",
+      "materiais": [
+        {
+          "item": "ofuda",
+          "quantidade": 1
+        },
+        {
+          "item": "sal_grosso",
+          "quantidade": 1
+        }
+      ],
+      "passos": [
+        {
+          "tipo": "segurar",
+          "texto": "Acender o incenso e esperar a fumaça"
+        },
+        {
+          "tipo": "palavra",
+          "texto": "Chamar o espírito",
+          "opcoes": [
+            "O nome dela, em voz baixa",
+            "Vá embora, espírito!",
+            "Um nome qualquer"
+          ],
+          "certa": 0
+        },
+        {
+          "tipo": "apertar",
+          "texto": "Colar a ofuda e fechar o sal"
+        },
+        {
+          "tipo": "segurar",
+          "texto": "Rezar até o frio passar"
+        }
+      ]
+    },
+    {
+      "id": "queimar_o_contrato",
+      "nome": "Queimar o contrato",
+      "item": "queimar_o_contrato",
+      "exige_estado": "contida",
+      "materiais": [
+        {
+          "item": "vela",
+          "quantidade": 1
+        },
+        {
+          "item": "sal_grosso",
+          "quantidade": 1
+        }
+      ],
+      "passos": [
+        {
+          "tipo": "segurar",
+          "texto": "Abrir o contrato sem tirar o olho do bode"
+        },
+        {
+          "tipo": "palavra",
+          "texto": "Achar a cláusula",
+          "opcoes": [
+            "Rasgar sem ler",
+            "Ler em voz alta a cláusula do prazo",
+            "Pedir mais tempo"
+          ],
+          "certa": 1
+        },
+        {
+          "tipo": "apertar",
+          "texto": "Acender a vela"
+        },
+        {
+          "tipo": "segurar",
+          "texto": "Queimar o contrato no meio da encruzilhada"
+        }
+      ]
+    },
+    {
+      "id": "tirar_o_cinto",
+      "nome": "Tirar o cinto de pele",
+      "item": "tirar_o_cinto_de_pele",
+      "exige_estado": "contida",
+      "materiais": [
+        {
+          "item": "aconito",
+          "quantidade": 1
+        }
+      ],
+      "passos": [
+        {
+          "tipo": "segurar",
+          "texto": "Chegar perto da fera presa"
+        },
+        {
+          "tipo": "apertar",
+          "texto": "Achar a fivela do cinto"
+        },
+        {
+          "tipo": "palavra",
+          "texto": "Chamar pelo nome",
+          "opcoes": [
+            "O nome de batismo dele",
+            "Lobo, sai daí!",
+            "Calma, bicho"
+          ],
+          "certa": 0
+        },
+        {
+          "tipo": "segurar",
+          "texto": "Arrancar o cinto de uma vez"
+        }
       ]
     }
   ]

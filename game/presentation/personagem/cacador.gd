@@ -28,6 +28,8 @@ const ACOES := {
 	"arma_1": [KEY_1],
 	"arma_2": [KEY_2],
 	"arma_3": [KEY_3],
+	"arma_4": [KEY_4],
+	"arma_5": [KEY_5],
 	"ritual": [KEY_T],
 	"conversar": [KEY_N],
 	"mochila": [KEY_I],

@@ -247,3 +247,14 @@ O limbo **reaproveita** o sistema de fraquezas e estados deste documento, mas ac
 - **Rituais:** cada passo tem teste de reflexo, além da ordem e da posição.
 - **Negociação e apaziguamento (18/11/2026):** `config/negociacao.json`. Negocia quem é astuta ou ardilosa e neutra ou protetora, e não é humano. A personalidade (orgulhosa, faminta, ressentida, curiosa) sai da semente. Cada oferta agrada (satisfação +1), ofende (paciência -2) ou não serve (paciência -1); paciência 3. Acordo: prometer o que atende o gatilho do caso depois de agradar uma vez; o termo do acordo é o custo (fazer o culpado parar). Criatura ardilosa pode trair depois (a traição fica guardada para o relatório e para casos futuros). Recusa: ela se solta mais agressiva. Conversando, a criatura escuta e não ataca. A oferenda só apazigua com agressividade até 1: atirar antes estraga o apaziguamento.
 - **Dois rituais no corte vertical (18/11/2026):** `config/rituais.json`. Sepultamento do corpo-seco (velas e sal; bane) e tirar o freio da mula (água benta; cura), os dois com a criatura contida. Passos de três tipos: apertar quando o marcador passa na faixa, segurar e soltar na faixa, e escolher a palavra certa (errada faz o ritual falhar e os materiais se perdem). Errar o tempo ou ser atacado perde o passo. A faixa encolhe e treme com o medo e com o braço ferido. Ritual que não é fraqueza da criatura tem efeito contrário: ela se liberta e se enfurece. Ocultismo e o modo acessível ficam para as habilidades.
+
+---
+
+## Decisões da Fase 5 (18/11/2026)
+
+- **Rituais novos:** purificação do Onryō (bane; ofuda e sal; com a criatura livre), queimar o contrato do demônio da encruzilhada (bane; vela e sal; com ele contido) e tirar o cinto de pele do lobisomem europeu (cura; acônito; com ele contido). Teclas 1 a 5 escolhem o ritual.
+- **Armas novas:** facão benzido (como a faca, com mais alcance) e estaca (só de perto) precisam estar na mochila; a faca vai sempre na bota. O revólver carrega primeiro as **balas de prata** que houver na mochila, e cada tiro entrega o item da bala que saiu.
+- **Itens:** todas as fraquezas que são coisa de levar viraram item (alho, ofuda, acônito, água de mina, mandioca e mel, cruz de sal, peneira, garrafa com cruz, trança de palha), à venda na loja do motel.
+- **Bolsos:** continuam com até 8 lugares; um bolso vazio é reaproveitado, e o botão direito no menu radial devolve o bolso apontado para a mochila.
+- **Disfarces:** legista (jaleco: quem vê desconfia um pouco menos; o acesso aos corpos vem com os interiores) e estivador (macacão: só nos bairros industriais e no cais, quem vê desconfia bem menos).
+

@@ -175,7 +175,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [x] Variantes culturais (lobisomem brasileiro e europeu): espécies separadas, com regras próprias.
 - [x] Estruturas de caso restantes: cliente mentiroso (o cliente é o culpado humano; no fim, expor ou calar) e criatura errada (o Saci leva a culpa só na fofoca).
 - [x] Condições **Vampirismo** e **Licantropia**, com estigma básico ([12](12-habilidades-e-condicoes.md)): pegas por mordida (ferimento grave ou crítico do Strigoi ou do Lobisomem europeu, 35%, com aviso); vampiro enxerga no escuro e o sol fere; lobisomem fareja; quem vê de perto desconfia. Sede de sangue e lua cheia ficam para depois.
-- [ ] Mais rituais, armas e roupas.
+- [x] Mais rituais, armas e roupas: rituais de purificação (Onryō), queimar o contrato (demônio) e tirar o cinto (lobisomem europeu); balas de prata, estaca e facão benzido; itens de todas as fraquezas na loja do motel; disfarces de legista (jaleco) e de estivador (vale no cais).
 
 **Portão:** a cidade e o bestiário principal prontos; casos variados em todas as zonas.
 

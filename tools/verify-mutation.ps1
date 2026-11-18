@@ -210,7 +210,11 @@ $mutants += @(
     @{ name = 'arranhao leve passa condicao'; path = 'game/core/condicoes/condicao.gd';
        find = '	if not gravidade in ["grave", "critico"]:'; replace = '	if gravidade == "nenhum":' },
     @{ name = 'estigma nao soma'; path = 'game/core/mundo/suspeita.gd';
-       find = '	if fator <= 0.0:'; replace = '	if true:' }
+       find = '	if fator <= 0.0:'; replace = '	if true:' },
+    @{ name = 'prata sai como bala comum'; path = 'game/core/confronto/arsenal.gd';
+       find = '			item = str(tiros.pop_front())'; replace = '			tiros.pop_front()' },
+    @{ name = 'bolsos sem limite'; path = 'game/core/confronto/bolsos.gd';
+       find = '	if itens.size() >= LUGARES:'; replace = '	if false:' }
 )
 
 if ($Somente.Count -gt 0) {

@@ -471,7 +471,7 @@ func _montar_interface() -> void:
 	camada.layer = 11
 	add_child(camada)
 	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift liga/desliga corrida · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar · E carro e motel · H habilidades · Esc pausa"
+	ajuda.text = "WASD andar · Shift liga/desliga corrida · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-5 arma\nQ bolsos (botão direito devolve) · T ritual · N conversar · E carro e motel · H habilidades · Esc pausa"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
 	ajuda.add_theme_color_override("font_color", Color(0.95, 0.93, 0.88))
@@ -647,8 +647,8 @@ func _unhandled_input(evento: InputEvent) -> void:
 		atirar()
 	elif evento.is_action_pressed("recarregar"):
 		recarregar_da_mochila()
-	elif evento.is_action_pressed("arma_1") or evento.is_action_pressed("arma_2") or evento.is_action_pressed("arma_3"):
-		for i in 3:
+	elif _tecla_de_numero(evento) >= 0:
+		for i in 5:
 			if evento.is_action_pressed("arma_%d" % (i + 1)) and i < arsenal.ordem.size():
 				equipar(arsenal.ordem[i])
 
@@ -736,16 +736,26 @@ func _input(evento: InputEvent) -> void:
 		if menu.escolhida >= 0:
 			usar_bolso(menu.escolhida)
 		get_viewport().set_input_as_handled()
+	elif menu.visible and evento is InputEventMouseButton and evento.pressed and evento.button_index == MOUSE_BUTTON_RIGHT:
+		# Botão direito no menu: o bolso apontado volta para a mochila.
+		if menu.escolhida >= 0:
+			guardar_bolso_na_mochila(menu.escolhida)
+		get_viewport().set_input_as_handled()
 	elif menu.visible and evento is InputEventMouseMotion:
 		menu.mover(evento.relative)
 		get_viewport().set_input_as_handled()
 
 
-func _input_do_ritual(evento: InputEvent) -> void:
-	var numero := -1
-	for i in 3:
+## Qual das teclas 1 a 5 foi apertada (0 a 4), ou -1.
+func _tecla_de_numero(evento: InputEvent) -> int:
+	for i in 5:
 		if evento.is_action_pressed("arma_%d" % (i + 1)):
-			numero = i
+			return i
+	return -1
+
+
+func _input_do_ritual(evento: InputEvent) -> void:
+	var numero := _tecla_de_numero(evento)
 	if evento.is_action_pressed("soltar_mouse") or (ritual == null and evento.is_action_pressed("ritual")):
 		fechar_ritual()
 	elif ritual == null and numero >= 0:
@@ -893,8 +903,9 @@ func organizar() -> void:
 
 
 ## Arma só é usada se estiver na mochila (como na maleta). A faca fica no cinto.
+## A arma está à mão? A faca vai sempre na bota; as outras (com item próprio) na mochila.
 func arma_na_mochila(id: String) -> bool:
-	return int(arsenal.arma_de(id)["capacidade"]) == 0 or mochila.quantidade(id) > 0
+	return not itens.has(id) or mochila.quantidade(id) > 0
 
 
 func equipar(id: String) -> bool:
@@ -908,8 +919,9 @@ func equipar(id: String) -> bool:
 func _conferir_arma_equipada() -> void:
 	if not arma_na_mochila(arsenal.equipada):
 		for id in arsenal.ordem:
-			if int(arsenal.arma_de(id)["capacidade"]) == 0:
+			if int(arsenal.arma_de(id)["capacidade"]) == 0 and arma_na_mochila(id):
 				arsenal.equipar(id)
+				return
 
 
 ## Espaço: pega o item do cursor, ou solta o da mão ali (pode ser na outra grade).
@@ -946,21 +958,43 @@ func por_no_bolso() -> bool:
 	var e: Dictionary = grade_aberta().em(cursor.x, cursor.y)
 	if e.is_empty():
 		return false
-	for b in bolsos.itens:
-		if b["item"] == e["item"]:
-			grade_aberta().retirar(e["item"], 1)
-			b["quantidade"] = int(b["quantidade"]) + 1
-			_avisar("%s no bolso (%d)." % [b["nome"], int(b["quantidade"])])
-			return true
-	_avisar("Não tem bolso para isso.")
-	return false
+	if itens.get(e["item"], {}).has("arma"):
+		_avisar("Arma não vai no bolso.")
+		return false
+	if not bolsos.guardar(e["item"], str(itens[e["item"]]["nome"])):
+		_avisar("Bolsos cheios: no confronto, botão direito no menu (Q) devolve um bolso para a mochila.")
+		return false
+	grade_aberta().retirar(e["item"], 1)
+	_avisar("%s no bolso (%d)." % [itens[e["item"]]["nome"], bolsos.quantidade(e["item"])])
+	return true
 
 
-## R fora da mochila: recarrega com a munição da mochila.
+## Devolve o bolso i inteiro para a mochila (o que não couber fica no bolso).
+func guardar_bolso_na_mochila(i: int) -> bool:
+	var tirado: Dictionary = bolsos.esvaziar(i)
+	if tirado.is_empty():
+		return false
+	var sobra: int = mochila.adicionar(tirado["item"], int(tirado["quantidade"]))
+	if sobra > 0:
+		bolsos.guardar(tirado["item"], str(itens.get(tirado["item"], {}).get("nome", tirado["item"])), sobra)
+	_avisar("%s volta para a mochila." % str(itens.get(tirado["item"], {}).get("nome", tirado["item"])))
+	return true
+
+
+## R fora da mochila: recarrega com a munição da mochila. A munição especial (balas de
+## prata do revólver) entra primeiro, se houver.
 func recarregar_da_mochila() -> bool:
 	var item: String = _cfg_inventario["municao_das_armas"].get(arsenal.equipada, "")
 	if item.is_empty():
 		return false
+	var especial: Dictionary = arsenal.arma().get("municao_especial", {})
+	if not especial.is_empty() and mochila.quantidade(especial["item"]) > 0 and arsenal.faltam() > 0:
+		var vao: int = mini(mochila.quantidade(especial["item"]), arsenal.faltam())
+		if arsenal.recarregar(vao, str(especial["entrega"])):
+			mochila.retirar(especial["item"], vao)
+			_avisar("Recarregando com %s..." % str(itens[especial["item"]]["nome"]).to_lower())
+			praticar("recarga")
+			return true
 	var tem: int = mochila.quantidade(item)
 	if tem <= 0:
 		_avisar("Sem %s na mochila." % str(itens[item]["nome"]).to_lower())
@@ -1984,14 +2018,33 @@ func _um_minuto() -> void:
 	suspeita.passar_minutos(1)
 	if zona == "rua" and suspeita.sujo(minuto) and alguem_ve_o_cacador():
 		# Disfarce (terno de agente): quem vê desconfia menos.
-		suspeita.visto(id, minuto, cacador.aparencia.efeito("suspeita_de_quem_ve"))
+		suspeita.visto(id, minuto, _fator_do_disfarce())
 	elif zona == "rua" and condicao.fator_de_estigma() > 0.0 and alguem_ve_o_cacador():
 		# Estigma básico da condição: quem vê de perto desconfia, mesmo limpo.
-		suspeita.visto_com_estigma(id, minuto, condicao.fator_de_estigma() * cacador.aparencia.efeito("suspeita_de_quem_ve"))
+		suspeita.visto_com_estigma(id, minuto, condicao.fator_de_estigma() * _fator_do_disfarce())
 	_sol()
 	if suspeita.nivel(id) != policia.nivel:
 		policia.atualizar(suspeita.nivel(id))
 	subterraneo.nivel_da_agua(mare.fracao(minuto))
+
+
+## Quanto o disfarce vestido faz quem vê desconfiar (1 = nada muda). O de estivador só vale
+## nos bairros industriais (o cais).
+func _fator_do_disfarce() -> float:
+	var f: float = cacador.aparencia.efeito("suspeita_de_quem_ve")
+	if _tipo_do_bairro(str(bairro.dados["id"])) == "industrial":
+		f *= cacador.aparencia.efeito("suspeita_no_porto")
+	return f
+
+
+var _tipos_de_bairro: Dictionary = {}
+
+
+## O tipo do bairro (data/neighborhoods), guardado depois da primeira leitura.
+func _tipo_do_bairro(id: String) -> String:
+	if not _tipos_de_bairro.has(id):
+		_tipos_de_bairro[id] = str(Catalogo.carregar_bairro(id)["dados"].get("tipo", "")) if Catalogo.tem_bairro_abstrato(id) else ""
+	return _tipos_de_bairro[id]
 
 
 ## Vampirismo: na rua, de dia, o sol fere de tempos em tempos.

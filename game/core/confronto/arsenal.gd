@@ -7,10 +7,13 @@ extends RefCounted
 var armas: Dictionary = {}  # id -> dados da arma
 var ordem: Array[String] = []
 var municao: Dictionary = {}  # id -> tiros na arma
+## O que cada tiro na arma entrega, na ordem em que sai (balas de prata entram primeiro).
+var carregadas: Dictionary = {}  # id -> Array[String]
 var equipada: String = ""
 var recarregando: float = 0.0
 ## Quantos tiros entram quando a recarga terminar.
 var _entra := 0
+var _entra_item := ""
 ## Qualidade de cada arma (core/progressao/progresso.gd): {id: {"dispersao", "recarga"}}.
 var qualidade: Dictionary = {}
 ## Habilidades do caçador (core/progressao/habilidades.gd): {"dispersao", "recarga"}.
@@ -26,6 +29,10 @@ func _init(cfg_armas: Dictionary, g: RandomNumberGenerator) -> void:
 		armas[arma["id"]] = arma
 		ordem.append(arma["id"])
 		municao[arma["id"]] = int(arma["capacidade"])
+		var tiros: Array[String] = []
+		for i in int(arma["capacidade"]):
+			tiros.append(str(arma["item"]))
+		carregadas[arma["id"]] = tiros
 	equipada = ordem[0]
 
 
@@ -54,12 +61,14 @@ func faltam() -> int:
 	return maxi(0, int(arma()["capacidade"]) - int(municao[equipada]))
 
 
-## Começa a recarregar com até "disponivel" tiros (-1 = munição à vontade). Devolve se começou.
-func recarregar(disponivel: int = -1) -> bool:
+## Começa a recarregar com até "disponivel" tiros (-1 = munição à vontade). "entrega": o que
+## esses tiros entregam ("" = o item normal da arma; ex.: "prata"). Devolve se começou.
+func recarregar(disponivel: int = -1, entrega: String = "") -> bool:
 	var a := arma()
 	if int(a["capacidade"]) == 0 or recarregando > 0.0 or faltam() == 0 or disponivel == 0:
 		return false
 	_entra = faltam() if disponivel < 0 else mini(disponivel, faltam())
+	_entra_item = entrega if not entrega.is_empty() else str(a["item"])
 	recarregando = float(a["recarga"]) * float(qualidade.get(equipada, {}).get("recarga", 1.0)) * float(habilidade["recarga"])
 	return true
 
@@ -72,6 +81,12 @@ func passar(segundos: float, lentidao: float = 1.0) -> void:
 	if recarregando <= 0.0:
 		recarregando = 0.0
 		municao[equipada] = int(municao[equipada]) + _entra
+		# As que entram agora saem primeiro (ficam na frente do tambor).
+		var novas: Array[String] = []
+		for i in _entra:
+			novas.append(_entra_item)
+		novas.append_array(carregadas[equipada])
+		carregadas[equipada] = novas
 		_entra = 0
 
 
@@ -85,8 +100,12 @@ func disparar(direcao: Vector3, para_o_alvo: Vector3, raio_do_alvo: float, tremo
 	if sem_municao():
 		return {"ok": false, "motivo": "sem munição", "acertou": false, "item": "", "barulho": 0.0}
 	var a := arma()
+	var item := str(a["item"])
 	if int(a["capacidade"]) > 0:
 		municao[equipada] = int(municao[equipada]) - 1
+		var tiros: Array = carregadas[equipada]
+		if not tiros.is_empty():
+			item = str(tiros.pop_front())
 	var acertou := false
 	var distancia := para_o_alvo.length()
 	if distancia > 0.001 and distancia <= float(a["alcance"]) + raio_do_alvo:
@@ -97,7 +116,7 @@ func disparar(direcao: Vector3, para_o_alvo: Vector3, raio_do_alvo: float, tremo
 		var sorteio := 0.0 if int(a["capacidade"]) == 0 else _g.randf() * dispersao
 		var limite := abertura + (dispersao if int(a["capacidade"]) == 0 else 0.0)
 		acertou = desvio_da_mira + sorteio <= limite
-	return {"ok": true, "motivo": "", "acertou": acertou, "item": a["item"], "barulho": float(a["barulho_metros"])}
+	return {"ok": true, "motivo": "", "acertou": acertou, "item": item, "barulho": float(a["barulho_metros"])}
 
 
 func texto() -> String:

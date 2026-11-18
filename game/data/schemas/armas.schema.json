@@ -20,7 +20,12 @@
           "recarga": {"type": "number", "minimum": 0},
           "alcance": {"type": "number", "minimum": 0},
           "dispersao_graus": {"type": "number", "minimum": 0},
-          "barulho_metros": {"type": "number", "minimum": 0}
+          "barulho_metros": {"type": "number", "minimum": 0},
+          "municao_especial": {
+            "$comment": "Munição que, se houver na mochila, entra primeiro; o tiro entrega 'entrega' em vez de 'item'.",
+            "type": "object", "additionalProperties": false, "required": ["item", "entrega"],
+            "properties": {"item": {"type": "string"}, "entrega": {"type": "string"}}
+          }
         }
       }
     },

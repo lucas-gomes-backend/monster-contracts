@@ -2,6 +2,7 @@ extends RefCounted
 ## Bolsos e cinto (docs/06, "Itens de acesso rápido"): até 8 itens no menu radial. O que vai
 ## nos bolsos é decisão de preparação; abrir a mochila no confronto fica para depois.
 
+const LUGARES := 8
 var itens: Array[Dictionary] = []  # [{"item", "nome", "quantidade"}], na ordem do menu
 
 
@@ -16,6 +17,35 @@ func usar(i: int) -> String:
 		return ""
 	itens[i]["quantidade"] = int(itens[i]["quantidade"]) - 1
 	return itens[i]["item"]
+
+
+## Guarda unidades de um item: no bolso dele, num bolso vazio ou num lugar livre (até 8).
+## Devolve se coube.
+func guardar(item: String, nome: String, quantas: int = 1) -> bool:
+	for b in itens:
+		if b["item"] == item:
+			b["quantidade"] = int(b["quantidade"]) + quantas
+			return true
+	for b in itens:
+		if int(b["quantidade"]) <= 0:
+			b["item"] = item
+			b["nome"] = nome
+			b["quantidade"] = quantas
+			return true
+	if itens.size() >= LUGARES:
+		return false
+	itens.append({"item": item, "nome": nome, "quantidade": quantas})
+	return true
+
+
+## Esvazia o bolso i (para voltar à mochila). Devolve {"item", "quantidade"} ou {}.
+func esvaziar(i: int) -> Dictionary:
+	if i < 0 or i >= itens.size() or int(itens[i]["quantidade"]) <= 0:
+		return {}
+	var b: Dictionary = itens[i]
+	var tirado := {"item": b["item"], "quantidade": int(b["quantidade"])}
+	b["quantidade"] = 0
+	return tirado
 
 
 func quantidade(item: String) -> int:

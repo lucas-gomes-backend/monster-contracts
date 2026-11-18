@@ -1,23 +1,68 @@
 {
   "$comment": "Progressão do corte vertical (docs/08): dinheiro (reais inteiros), uma reputação, 3 níveis de qualidade, motel e carro fixo. Ajustar aqui, nunca no código.",
   "dinheiro_inicial": 400,
-  "regioes_liberadas": ["valongo", "centro", "paqueta", "vila_belmiro", "macuco", "campo_grande", "encruzilhada", "estuario", "jabaquara", "marape", "saboo", "vila_mathias", "vila_nova", "porto"],
+  "regioes_liberadas": [
+    "valongo",
+    "centro",
+    "paqueta",
+    "vila_belmiro",
+    "macuco",
+    "campo_grande",
+    "encruzilhada",
+    "estuario",
+    "jabaquara",
+    "marape",
+    "saboo",
+    "vila_mathias",
+    "vila_nova",
+    "porto"
+  ],
   "idade_inicial_anos": 20,
   "interludio": {
     "$comment": "O tempo entre um caso e outro (docs/02, 'Interlúdio'). Pulo curto: pega o próximo caso rápido, mas quase não sara nem treina. Médio: sara e treina. Longo: cura tudo e treina muito, mas envelhece mais. Paga a diária do motel por dia. cura_graus: quantos graus cada ferimento melhora; treino_xp: experiência na árvore escolhida.",
     "pulos": [
-      {"id": "curto", "nome": "Curto", "dias": 3, "cura_graus": 1, "treino_xp": 5},
-      {"id": "medio", "nome": "Médio", "dias": 21, "cura_graus": 3, "treino_xp": 20},
-      {"id": "longo", "nome": "Longo", "dias": 120, "cura_graus": 3, "treino_xp": 60}
+      {
+        "id": "curto",
+        "nome": "Curto",
+        "dias": 3,
+        "cura_graus": 1,
+        "treino_xp": 5
+      },
+      {
+        "id": "medio",
+        "nome": "Médio",
+        "dias": 21,
+        "cura_graus": 3,
+        "treino_xp": 20
+      },
+      {
+        "id": "longo",
+        "nome": "Longo",
+        "dias": 120,
+        "cura_graus": 3,
+        "treino_xp": 60
+      }
     ],
     "diaria_no_interludio": 10
   },
   "reputacao": {
     "niveis": [
-      {"nome": "Desconhecido", "a_partir_de": 0},
-      {"nome": "Conhecido", "a_partir_de": 20},
-      {"nome": "Respeitado", "a_partir_de": 60},
-      {"nome": "Lenda", "a_partir_de": 150}
+      {
+        "nome": "Desconhecido",
+        "a_partir_de": 0
+      },
+      {
+        "nome": "Conhecido",
+        "a_partir_de": 20
+      },
+      {
+        "nome": "Respeitado",
+        "a_partir_de": 60
+      },
+      {
+        "nome": "Lenda",
+        "a_partir_de": 150
+      }
     ],
     "caso_resolvido": 10,
     "no_prazo": 3,
@@ -27,29 +72,241 @@
     "inocente_prejudicado": -15,
     "cliente_exposto": 8
   },
-  "bonus": {"no_prazo": 0.2, "sem_inocentes": 0.15},
-  "qualidade": {
-    "niveis": ["Improvisado", "Comum", "Profissional"],
-    "armas": {"dispersao": [1.3, 1.0, 0.75], "recarga": [1.25, 1.0, 0.8]},
-    "mochila": [[6, 4], [8, 5], [9, 6]]
+  "bonus": {
+    "no_prazo": 0.2,
+    "sem_inocentes": 0.15
   },
-  "nivel_inicial": {"espingarda_de_sal": 1, "revolver": 2, "mochila": 2},
-  "motel": {"diaria": 60, "horas_de_sono": 8, "guarda": [6, 3], "alcance": 3.0, "abastece_ate_metros": 30.0},
-  "carro": {"tanque_litros": 40.0, "litros_iniciais": 25.0, "km_por_litro": 8.0, "preco_do_litro": 6, "velocidade_maxima": 16.0, "re_maxima": 5.0, "aceleracao": 7.0, "freio": 14.0, "giro": 1.8, "alcance_da_porta": 2.8,
-    "viagem_rapida": {"velocidade_media_kmh": 25.0, "desvio_das_ruas": 1.3}},
+  "qualidade": {
+    "niveis": [
+      "Improvisado",
+      "Comum",
+      "Profissional"
+    ],
+    "armas": {
+      "dispersao": [
+        1.3,
+        1.0,
+        0.75
+      ],
+      "recarga": [
+        1.25,
+        1.0,
+        0.8
+      ]
+    },
+    "mochila": [
+      [
+        6,
+        4
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        9,
+        6
+      ]
+    ]
+  },
+  "nivel_inicial": {
+    "espingarda_de_sal": 1,
+    "revolver": 2,
+    "mochila": 2
+  },
+  "motel": {
+    "diaria": 60,
+    "horas_de_sono": 8,
+    "guarda": [
+      6,
+      3
+    ],
+    "alcance": 3.0,
+    "abastece_ate_metros": 30.0
+  },
+  "carro": {
+    "tanque_litros": 40.0,
+    "litros_iniciais": 25.0,
+    "km_por_litro": 8.0,
+    "preco_do_litro": 6,
+    "velocidade_maxima": 16.0,
+    "re_maxima": 5.0,
+    "aceleracao": 7.0,
+    "freio": 14.0,
+    "giro": 1.8,
+    "alcance_da_porta": 2.8,
+    "viagem_rapida": {
+      "velocidade_media_kmh": 25.0,
+      "desvio_das_ruas": 1.3
+    }
+  },
   "loja": [
-    {"id": "cartucho_de_sal", "nome": "Cartuchos de sal (8)", "item": "cartucho_de_sal", "quantidade": 8, "preco": 40},
-    {"id": "bala_38", "nome": "Balas .38 (12)", "item": "bala_38", "quantidade": 12, "preco": 55},
-    {"id": "sal_grosso", "nome": "Sal grosso (3)", "item": "sal_grosso", "quantidade": 3, "preco": 15},
-    {"id": "vela", "nome": "Velas (4)", "item": "vela", "quantidade": 4, "preco": 12},
-    {"id": "agua_benta", "nome": "Água benta", "item": "agua_benta", "quantidade": 1, "preco": 30},
-    {"id": "bandagem", "nome": "Bandagens (3)", "item": "bandagem", "quantidade": 3, "preco": 25},
-    {"id": "oferenda", "nome": "Fumo e cachaça", "item": "oferenda_fumo_e_cachaca", "quantidade": 1, "preco": 35}
+    {
+      "id": "cartucho_de_sal",
+      "nome": "Cartuchos de sal (8)",
+      "item": "cartucho_de_sal",
+      "quantidade": 8,
+      "preco": 40
+    },
+    {
+      "id": "bala_38",
+      "nome": "Balas .38 (12)",
+      "item": "bala_38",
+      "quantidade": 12,
+      "preco": 55
+    },
+    {
+      "id": "sal_grosso",
+      "nome": "Sal grosso (3)",
+      "item": "sal_grosso",
+      "quantidade": 3,
+      "preco": 15
+    },
+    {
+      "id": "vela",
+      "nome": "Velas (4)",
+      "item": "vela",
+      "quantidade": 4,
+      "preco": 12
+    },
+    {
+      "id": "agua_benta",
+      "nome": "Água benta",
+      "item": "agua_benta",
+      "quantidade": 1,
+      "preco": 30
+    },
+    {
+      "id": "bandagem",
+      "nome": "Bandagens (3)",
+      "item": "bandagem",
+      "quantidade": 3,
+      "preco": 25
+    },
+    {
+      "id": "oferenda",
+      "nome": "Fumo e cachaça",
+      "item": "oferenda_fumo_e_cachaca",
+      "quantidade": 1,
+      "preco": 35
+    },
+    {
+      "id": "alho",
+      "nome": "Alho (3)",
+      "item": "alho",
+      "quantidade": 3,
+      "preco": 10
+    },
+    {
+      "id": "ofuda",
+      "nome": "Ofudas (5)",
+      "item": "ofuda",
+      "quantidade": 5,
+      "preco": 35
+    },
+    {
+      "id": "aconito",
+      "nome": "Acônito (3)",
+      "item": "aconito",
+      "quantidade": 3,
+      "preco": 30
+    },
+    {
+      "id": "agua_de_mina",
+      "nome": "Água de mina",
+      "item": "agua_de_mina",
+      "quantidade": 1,
+      "preco": 8
+    },
+    {
+      "id": "oferenda_de_mandioca_e_mel",
+      "nome": "Mandioca e mel",
+      "item": "oferenda_de_mandioca_e_mel",
+      "quantidade": 1,
+      "preco": 15
+    },
+    {
+      "id": "cruz_de_sal",
+      "nome": "Cruzes de sal (2)",
+      "item": "cruz_de_sal",
+      "quantidade": 2,
+      "preco": 20
+    },
+    {
+      "id": "peneira",
+      "nome": "Peneira",
+      "item": "peneira",
+      "quantidade": 1,
+      "preco": 12
+    },
+    {
+      "id": "garrafa_com_cruz_na_rolha",
+      "nome": "Garrafa com cruz na rolha",
+      "item": "garrafa_com_cruz_na_rolha",
+      "quantidade": 1,
+      "preco": 10
+    },
+    {
+      "id": "tranca_de_pano_ou_palha",
+      "nome": "Tranças de palha (2)",
+      "item": "tranca_de_pano_ou_palha",
+      "quantidade": 2,
+      "preco": 6
+    },
+    {
+      "id": "bala_de_prata",
+      "nome": "Balas de prata (6)",
+      "item": "bala_de_prata",
+      "quantidade": 6,
+      "preco": 180
+    },
+    {
+      "id": "estaca",
+      "nome": "Estaca de madeira",
+      "item": "estaca",
+      "quantidade": 1,
+      "preco": 25
+    },
+    {
+      "id": "facao",
+      "nome": "Facão benzido",
+      "item": "facao",
+      "quantidade": 1,
+      "preco": 90
+    }
   ],
   "melhorias": [
-    {"id": "espingarda_comum", "nome": "Espingarda de sal comum", "categoria": "espingarda_de_sal", "nivel": 2, "preco": 350, "reputacao": "Desconhecido"},
-    {"id": "espingarda_profissional", "nome": "Espingarda de sal profissional", "categoria": "espingarda_de_sal", "nivel": 3, "preco": 900, "reputacao": "Respeitado"},
-    {"id": "revolver_profissional", "nome": "Revólver profissional", "categoria": "revolver", "nivel": 3, "preco": 800, "reputacao": "Respeitado"},
-    {"id": "mochila_profissional", "nome": "Mochila profissional (9x6)", "categoria": "mochila", "nivel": 3, "preco": 600, "reputacao": "Conhecido"}
+    {
+      "id": "espingarda_comum",
+      "nome": "Espingarda de sal comum",
+      "categoria": "espingarda_de_sal",
+      "nivel": 2,
+      "preco": 350,
+      "reputacao": "Desconhecido"
+    },
+    {
+      "id": "espingarda_profissional",
+      "nome": "Espingarda de sal profissional",
+      "categoria": "espingarda_de_sal",
+      "nivel": 3,
+      "preco": 900,
+      "reputacao": "Respeitado"
+    },
+    {
+      "id": "revolver_profissional",
+      "nome": "Revólver profissional",
+      "categoria": "revolver",
+      "nivel": 3,
+      "preco": 800,
+      "reputacao": "Respeitado"
+    },
+    {
+      "id": "mochila_profissional",
+      "nome": "Mochila profissional (9x6)",
+      "categoria": "mochila",
+      "nivel": 3,
+      "preco": 600,
+      "reputacao": "Conhecido"
+    }
   ]
 }
