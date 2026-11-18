@@ -3,7 +3,7 @@ extends SceneTree
 ## estatísticas (core/casos/estatisticas.gd). Não faz parte do jogo.
 ##
 ## Uso:
-##   godot --headless --path game -s res://ferramentas/lote.gd -- --casos=100 --inicio=1 --saida=C:/caminho/lote.json
+##   godot --headless --path game -s res://ferramentas/lote.gd -- --casos=100 --inicio=1 [--bairro=valongo] --saida=C:/caminho/lote.json
 ## Prefira o atalho: .\tools\lote.ps1
 
 const Gerador := preload("res://core/casos/gerador_casos.gd")
@@ -14,6 +14,7 @@ func _initialize() -> void:
 	var quantidade := 100
 	var inicio := 1
 	var saida := ""
+	var id_bairro := "paqueta"
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--casos="):
 			quantidade = maxi(1, arg.trim_prefix("--casos=").to_int())
@@ -21,13 +22,16 @@ func _initialize() -> void:
 			inicio = arg.trim_prefix("--inicio=").to_int()
 		elif arg.begins_with("--saida="):
 			saida = arg.trim_prefix("--saida=")
+		elif arg.begins_with("--bairro="):
+			id_bairro = arg.trim_prefix("--bairro=")
 
 	var casos: Array = []
 	for semente in range(inicio, inicio + quantidade):
-		var caso := Gerador.gerar(semente)
+		var caso := Gerador.gerar(semente, id_bairro)
 		casos.append(caso)
 		# O registro não vira JSON; o resto do caso não precisa sair daqui.
 	var resumo := Estatisticas.resumir(casos)
+	print("Bairro: %s" % id_bairro)
 	_imprimir(resumo, inicio, quantidade)
 	if not saida.is_empty():
 		var arquivo := FileAccess.open(saida, FileAccess.WRITE)
