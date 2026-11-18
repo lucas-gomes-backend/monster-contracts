@@ -252,6 +252,25 @@ func test_mapa_de_viagem_so_abre_dentro_do_carro() -> void:
 	cena.free()
 
 
+func test_zoom_do_mapa_de_viagem_fica_dentro_do_quadro() -> void:
+	var cena := _cena_na_arvore()
+	cena.entrar_no_carro()
+	cena.abrir_mapa_de_viagem()
+	var tela: Control = cena.viagem_tela
+	tela.perto = false
+	var longe: Rect2 = tela.enquadrar()["area"]
+	tela.perto = true
+	var e: Dictionary = tela.enquadrar()
+	assert_true(e["area"].get_area() < longe.get_area(), "perto mostra menos que a cidade inteira")
+	tela.ajustar_quadro()
+	assert_true(tela.quadro.clip_contents, "o quadro corta o que passa da borda")
+	var r: Rect2 = tela.quadro.get_rect()
+	assert_eq(r, e["mapa"], "o quadro é o retângulo do mapa")
+	assert_true(r.end.x <= 364.0, "o mapa não invade a lista de destinos")
+	cena.fechar_mapa_de_viagem()
+	_soltar(cena)
+
+
 func test_destinos_sao_os_bairros_carregados_e_os_pontos_chave() -> void:
 	var cena := _cena()
 	cena.entrar_no_carro()
