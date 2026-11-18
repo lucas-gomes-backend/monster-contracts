@@ -194,7 +194,9 @@ $mutants += @(
     @{ name = 'disfarce não muda a suspeita'; path = 'game/presentation/cidade/bairro_cena.gd';
        find = 'suspeita.visto(id, minuto, cacador.aparencia.efeito("suspeita_de_quem_ve"))'; replace = 'suspeita.visto(id, minuto)' },
     @{ name = 'postes não acendem'; path = 'game/presentation/cidade/bairro_cena.gd';
-       find = '	var acesos := noite > 0.5 and zona == "rua"'; replace = '	var acesos := false' }
+       find = '	var acesos := noite > 0.5 and zona == "rua"'; replace = '	var acesos := false' },
+    @{ name = 'tutorial pula o teste de campo'; path = 'game/core/investigacao/tutorial.gd';
+       find = '			return sessao._testes_feitos > 0'; replace = '			return true' }
 )
 
 if ($Somente.Count -gt 0) {

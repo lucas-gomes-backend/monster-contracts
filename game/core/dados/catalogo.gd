@@ -143,6 +143,11 @@ static func carregar_itens() -> Dictionary:
 	return {"dados": por_id, "erros": r["erros"]}
 
 
+## Caso tutorial com mentor (docs/02), validado.
+static func carregar_config_tutorial() -> Dictionary:
+	return carregar_validado("res://data/config/tutorial.json", "res://data/schemas/tutorial.schema.json")
+
+
 ## Arte e áudio gerados por código (docs/09), validados.
 static func carregar_config_arte_e_audio() -> Dictionary:
 	return carregar_validado("res://data/config/arte_e_audio.json", "res://data/schemas/arte_e_audio.schema.json")

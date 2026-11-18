@@ -13,6 +13,8 @@ const CRIACAO := "res://presentation/personagem/criacao.tscn"
 static var bairro_inicial := "valongo"
 ## A aparência feita na criação de personagem ({} = a padrão).
 static var aparencia_escolhida: Dictionary = {}
+## O jogador pediu o caso tutorial (lido e apagado por ui/jogo.gd).
+static var tutorial_pedido := false
 
 
 func _ready() -> void:
@@ -38,6 +40,7 @@ func _ready() -> void:
 	sub.add_theme_color_override("font_color", Color(0.75, 0.7, 0.6))
 	coluna.add_child(sub)
 	coluna.add_child(_botao("Criar o caçador", func(): get_tree().change_scene_to_file(CRIACAO)))
+	coluna.add_child(_botao("Caso tutorial (com um mentor)", func(): tutorial_pedido = true; get_tree().change_scene_to_file(CASO)))
 	coluna.add_child(_botao("Andar pela cidade: Valongo", func(): abrir_cidade("valongo")))
 	coluna.add_child(_botao("Andar pela cidade: Centro", func(): abrir_cidade("centro")))
 	coluna.add_child(_botao("Investigar um caso (caderno)", func(): get_tree().change_scene_to_file(CASO)))

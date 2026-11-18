@@ -137,6 +137,8 @@ A carreira dura cerca de **10 horas** e **20 a 30 casos**, dos 20 anos até a ap
 3. **Primeiro caso sozinho** num bairro, com estrutura simples e equipamento improvisado.
 4. **Primeiro interlúdio:** cartas, loja e o primeiro pulo de tempo.
 
+**Caso tutorial no corte vertical (18/11/2026):** `config/tutorial.json`. O caso é gerado como qualquer outro, mas escolhido entre os de caça simples com corpo-seco que ainda têm pista no lugar do último ataque (para a coleta ter o que achar e a linha de sal, o teste ensinado, funcionar). O mentor é sorteado pela semente: nome de uma das comunidades, 58 a 74 anos, jeito rabugento, paciente ou supersticioso. Ele fala o passo da vez no diário (ir ao lugar, anotar pista, conversar, ligar no caderno, fazer o teste, agir) e só lê a investigação: os passos podem ser feitos fora de ordem. Ensina o processo, nunca a resposta.
+
 **Regra do mentor:**
 
 - **Primeira carreira:** mentor aleatório.

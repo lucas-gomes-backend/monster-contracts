@@ -1,0 +1,24 @@
+{
+  "$comment": "Caso tutorial com mentor (docs/02, 'Primeira hora'): um caçador veterano gerado aleatoriamente ensina o caderno, a coleta e um teste de campo. O caso é gerado como qualquer outro, escolhido entre os que têm a espécie e o teste deste arquivo. O mentor ensina o PROCESSO e nunca diz qual é a criatura. Cada passo termina quando a condição dele acontece na investigação. {mentor}, {local}, {cliente} e {teste} são trocados pelo caso.",
+  "especie": "corpo_seco",
+  "teste": "linha_de_sal",
+  "mentor": {
+    "idade": [58, 74],
+    "comunidades": ["brasileira", "portuguesa", "japonesa", "arabe"],
+    "jeitos": ["rabugento", "paciente", "supersticioso"],
+    "apresentacao": {
+      "rabugento": "{mentor} aqui. Trinta anos nisso e ainda me mandam babá. Presta atenção que eu não repito.",
+      "paciente": "Prazer, sou {mentor}. Vamos com calma: caso bem feito é caso sem pressa.",
+      "supersticioso": "{mentor}. Antes de tudo: nunca entre num caso sem sal no bolso. Agora, vamos trabalhar."
+    }
+  },
+  "passos": [
+    {"id": "ir_ao_local", "objetivo": "Vá ao lugar do ataque", "fala": "O {cliente} falou do {local}. Comece pelo lugar onde aconteceu: o que tem lá some com o tempo."},
+    {"id": "anotar_pista", "objetivo": "Examine e anote uma pista", "fala": "Olhe com calma. Marca no chão, coisa fora do lugar: anote no caderno. Pista que você não anota, você esquece."},
+    {"id": "ouvir_testemunha", "objetivo": "Converse com alguém", "fala": "Agora gente. Quem mora perto viu ou ouviu alguma coisa. E todo mundo mente um pouco, então desconfie."},
+    {"id": "ligar", "objetivo": "Ligue uma pista a uma característica", "fala": "No caderno, ligue o que você achou ao que o bestiário diz. Cada ligação certa corta uma suspeita."},
+    {"id": "teste_de_campo", "objetivo": "Faça um teste de campo ({teste})", "fala": "Desconfiou? Teste. {teste} num lugar que a coisa frequenta: a regra dela é fixa, ela não escapa da própria regra."},
+    {"id": "agir", "objetivo": "Encerre o caso agindo", "fala": "Quando tiver certeza, aja. Criatura certa, jeito certo. Errar aqui custa caro, e eu não vou estar sempre do lado."},
+    {"id": "fim", "objetivo": "Tutorial completo", "fala": "Fez o seu primeiro. Leia o relatório: o que você perdeu ensina mais do que o que achou. Daqui pra frente é com você."}
+  ]
+}

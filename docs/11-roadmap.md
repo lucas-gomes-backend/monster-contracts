@@ -150,7 +150,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [x] Primeira passada de arte e áudio nos 2 bairros: tudo gerado por código (fachadas com janelas, asfalto, calçada portuguesa, postes, ciclo de dia e noite, paleta por bairro e sons sintetizados em baixa taxa).
 
 **Introdução**
-- [ ] Caso tutorial com mentor aleatório.
+- [x] Caso tutorial com mentor aleatório: "Caso tutorial (com um mentor)" na tela inicial; o mentor (nome, idade e jeito pela semente) acompanha lugar, pista, testemunha, caderno, teste de campo e agir, sem nunca dizer a criatura.
 
 **Morte**
 - [ ] Versão simples: volta com custo, **sem a arena do limbo**.

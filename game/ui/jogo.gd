@@ -11,6 +11,8 @@ const Gerador := preload("res://core/casos/gerador_casos.gd")
 const Sessao := preload("res://core/investigacao/sessao.gd")
 const Interpretador := preload("res://ui/texto/interpretador.gd")
 const Catalogo := preload("res://core/dados/catalogo.gd")
+const Tutorial := preload("res://core/investigacao/tutorial.gd")
+const COR_MENTOR := Color("#2f3b2a")
 
 const RESOLUCOES := ["matar", "banir", "prender", "curar", "apaziguar", "negociar", "expor", "abandonar"]
 
@@ -49,6 +51,13 @@ var _pessoa_opcao: OptionButton
 var _dialogo: AcceptDialog
 var _relatorio_texto: RichTextLabel
 var _lixo: Array = []
+## Caso tutorial (docs/02): o mentor e o passo da vez. Vazio fora do tutorial.
+var tutorial := false
+var mentor: Dictionary = {}
+var _cfg_tutorial: Dictionary
+var _passo_do_mentor := ""
+var _mentor_painel: PanelContainer
+var _mentor_texto: Label
 
 
 func _ready() -> void:
@@ -62,8 +71,51 @@ func _ready() -> void:
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--semente="):
 			semente = arg.trim_prefix("--semente=").to_int()
+		elif arg == "--tutorial":
+			tutorial = true
+	if load("res://ui/inicio.gd").tutorial_pedido:
+		tutorial = true
+		load("res://ui/inicio.gd").tutorial_pedido = false
 	montar()
-	novo_caso(semente)
+	if tutorial:
+		comecar_tutorial()
+	else:
+		novo_caso(semente)
+
+
+## Caso tutorial: um caso escolhido para ensinar (espécie e teste do config) e um mentor
+## aleatório que fala o passo da vez.
+func comecar_tutorial() -> void:
+	tutorial = true
+	_cfg_tutorial = Catalogo.carregar_config_tutorial()["dados"]
+	var s := Tutorial.semente_do_caso(_cfg_tutorial)
+	mentor = Tutorial.gerar_mentor(s, _cfg_tutorial, Catalogo.carregar_config_populacao()["dados"])
+	_passo_do_mentor = ""
+	novo_caso(s)
+	_escrever("[MENTOR] %s (%d anos): %s" % [mentor["nome"], int(mentor["idade"]), mentor["apresentacao"]])
+	atualizar()
+
+
+func _nome_do_teste() -> String:
+	for t in sessao.testes_disponiveis():
+		if t["id"] == _cfg_tutorial["teste"]:
+			return t["nome"]
+	return str(_cfg_tutorial["teste"])
+
+
+## O mentor acompanha: quando o passo da vez muda, ele fala no diário; o painel mostra o objetivo.
+func _atualizar_mentor() -> void:
+	if _mentor_painel == null:
+		return
+	_mentor_painel.visible = tutorial
+	if not tutorial or sessao == null:
+		return
+	var passo: Dictionary = Tutorial.passo_atual(_cfg_tutorial, sessao)
+	var teste := _nome_do_teste()
+	_mentor_texto.text = "MENTOR · %s, %d anos · Objetivo: %s" % [mentor["nome"], int(mentor["idade"]), Tutorial.objetivo(passo, teste)]
+	if passo["id"] != _passo_do_mentor:
+		_passo_do_mentor = passo["id"]
+		_escrever("[MENTOR] " + Tutorial.fala(passo, sessao, _cfg_tutorial, teste))
 
 
 ## Gera um caso e reinicia a investigação.
@@ -123,6 +175,13 @@ func montar() -> void:
 	meio.add_child(_coluna("Bairro", 1.0, _montar_bairro()))
 	meio.add_child(_coluna("Caderno", 2.2, _montar_caderno()))
 	meio.add_child(_coluna("Hipóteses", 1.2, _montar_hipoteses()))
+
+	_mentor_texto = Label.new()
+	_mentor_texto.autowrap_mode = TextServer.AUTOWRAP_WORD
+	_mentor_texto.add_theme_color_override("font_color", COR_PAPEL)
+	_mentor_painel = _painel(_mentor_texto, COR_MENTOR)
+	_mentor_painel.visible = false
+	raiz.add_child(_mentor_painel)
 
 	_diario = RichTextLabel.new()
 	_diario.custom_minimum_size = Vector2(0, 130)
@@ -261,6 +320,7 @@ func atualizar() -> void:
 	_atualizar_depoimentos()
 	_atualizar_hipoteses()
 	_atualizar_acoes()
+	_atualizar_mentor()
 	if sessao.encerrado() and not _resultado_mostrado:
 		_resultado_mostrado = true
 		mostrar_relatorio()
