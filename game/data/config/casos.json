@@ -2,7 +2,7 @@
   "$comment": "Parâmetros do gerador de casos (docs/04). Ajustar aqui, nunca no código.",
   "estruturas": [
     {"id": "caca_simples", "peso": 3},
-    {"id": "golpe", "peso": 1}
+    {"id": "golpe", "peso": 1}, {"id": "culpado_humano", "peso": 1}
   ],
   "pre_simulacao_dias": 10,
   "tentativas_maximas": 20,
@@ -42,6 +42,19 @@
         {"tag": "sangue_na_calcada", "onde": "cena", "detectar": "olho_nu"}
       ]
     }
+  ],
+  "crimes_por_caso": [2, 3],
+  "crimes": [
+    {"id": "desmatamento", "gatilho": "desmatamento", "tipo_local": "area_verde", "noturno": true,
+     "observavel": {"forma": "homem com uma motosserra", "tamanho": "medio", "som": "motosserra de madrugada"},
+     "tag_de_quem_notou": "saiu_de_madrugada_com_ferramentas",
+     "marcas": [{"tag": "toras_recem_cortadas", "onde": "cena", "detectar": "olho_nu"},
+                {"tag": "serragem_e_oleo_de_motosserra", "onde": "cena", "detectar": "olho_nu"}]},
+    {"id": "caca_cruel", "gatilho": "caca_por_crueldade", "tipo_local": "area_verde", "noturno": true,
+     "observavel": {"forma": "homem com uma espingarda e lanterna", "tamanho": "medio", "som": "tiros na mata"},
+     "tag_de_quem_notou": "saiu_de_noite_com_espingarda",
+     "marcas": [{"tag": "armadilhas_com_bichos_mortos", "onde": "cena", "detectar": "olho_nu"},
+                {"tag": "cartuchos_no_chao", "onde": "cena", "detectar": "olho_nu"}]}
   ],
   "chance_boletim": 0.5,
   "hora_do_boletim": 9,

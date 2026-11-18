@@ -2,7 +2,7 @@
   "$comment": "Parâmetros do gerador de casos (game/data/config/casos.json).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["estruturas", "pre_simulacao_dias", "tentativas_maximas", "data_base", "dias_de_variacao_da_data", "hora_do_contrato", "locais_de_ataque", "ruidos_por_caso", "ruidos", "chance_boletim", "hora_do_boletim", "validade_horas", "chance_chuva", "janela_chuva_horas", "prazo_dias", "recompensa_por_perigo", "pedidos"],
+  "required": ["estruturas", "pre_simulacao_dias", "tentativas_maximas", "data_base", "dias_de_variacao_da_data", "hora_do_contrato", "locais_de_ataque", "ruidos_por_caso", "ruidos", "crimes_por_caso", "crimes", "chance_boletim", "hora_do_boletim", "validade_horas", "chance_chuva", "janela_chuva_horas", "prazo_dias", "recompensa_por_perigo", "pedidos"],
   "properties": {
     "$comment": {"type": "string"},
     "estruturas": {
@@ -60,6 +60,25 @@
               }
             }
           }
+        }
+      }
+    },
+    "crimes_por_caso": {"$ref": "#/$defs/faixa"},
+    "crimes": {
+      "$comment": "Estrutura culpado_humano: o crime de um morador que provoca a criatura (mesmo formato dos ruídos, mais o gatilho que ele dispara e o que os vizinhos notam).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "gatilho", "tipo_local", "noturno", "observavel", "tag_de_quem_notou", "marcas"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z_]+$"},
+          "gatilho": {"type": "string", "pattern": "^[a-z_]+$"},
+          "tipo_local": {"type": "string"},
+          "noturno": {"type": "boolean"},
+          "observavel": {"type": "object", "required": ["forma", "tamanho", "som"], "properties": {"forma": {"type": "string"}, "tamanho": {"enum": ["pequeno", "medio", "grande", "enorme", "gigante"]}, "som": {"type": "string"}, "cheiro": {"type": "string"}}},
+          "tag_de_quem_notou": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "marcas": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["tag", "onde", "detectar"], "properties": {"tag": {"type": "string", "pattern": "^[a-z0-9_]+$"}, "onde": {"enum": ["cena", "corpo", "ambiente", "covil"]}, "detectar": {"enum": ["olho_nu", "entrevista", "pesquisa", "uv", "emf", "termica", "laboratorio", "habilidade"]}}}}
         }
       }
     },

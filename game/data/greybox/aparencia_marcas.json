@@ -19,6 +19,10 @@
       "forma": "plano", "tamanho": [  0.4,   0,   1.4
       ], "cor": "#2f2f2f", "pegavel": false
     },
+    "toras_recem_cortadas": {"forma": "caixa", "tamanho": [1.6, 0.35, 0.4], "cor": "#6b4a2b", "pegavel": false},
+    "serragem_e_oleo_de_motosserra": {"forma": "plano", "tamanho": [0.9, 0, 0.9], "cor": "#b08a55", "pegavel": false},
+    "armadilhas_com_bichos_mortos": {"forma": "caixa", "tamanho": [0.4, 0.15, 0.4], "cor": "#5a4a3a", "pegavel": true},
+    "cartuchos_no_chao": {"forma": "caixa", "tamanho": [0.08, 0.08, 0.2], "cor": "#8a1f1f", "pegavel": true},
     "pegadas_de_chinelo": {
       "forma": "plano", "tamanho": [  0.4,   0,   1.2
       ], "cor": "#3a3530", "pegavel": false

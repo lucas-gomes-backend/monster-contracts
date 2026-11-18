@@ -93,6 +93,16 @@ static func validar(caso: Dictionary, criaturas: Dictionary, tipo_bairro: String
 		if apontam < MINIMO_EVIDENCIAS:
 			motivos.append("só %d depoimento(s) apontam para o hospedeiro" % apontam)
 
+	# Culpado humano: o crime precisa de quem viu o culpado sair de casa naquelas noites.
+	var culpado: String = caso["verdade"].get("culpado", "")
+	if not culpado.is_empty():
+		var contra := 0
+		for dep in caso["depoimentos"]:
+			if dep["tipo"] == "ausencia" and dep["relato"].get("quem_saiu", "") == culpado:
+				contra += 1
+		if contra < MINIMO_EVIDENCIAS:
+			motivos.append("só %d depoimento(s) apontam para o culpado" % contra)
+
 	return {"valido": motivos.is_empty(), "motivos": motivos, "candidatos": restantes, "evidencias": evidencias}
 
 

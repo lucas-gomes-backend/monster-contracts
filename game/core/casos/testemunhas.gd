@@ -161,6 +161,8 @@ static func _observavel(causa: Dictionary, criaturas: Dictionary, ruidos: Dictio
 		return criaturas.get(causa["dados"].get("especie", ""), {}).get("observavel", {})
 	if causa["tipo"] == "ruido.ocorreu":
 		return ruidos.get(causa["dados"].get("ruido", ""), {}).get("observavel", {})
+	if causa["tipo"] == "humano.crime":
+		return ruidos.get(causa["dados"].get("crime", ""), {}).get("observavel", {})
 	return {}
 
 

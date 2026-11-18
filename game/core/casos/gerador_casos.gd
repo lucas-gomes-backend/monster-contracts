@@ -27,7 +27,7 @@ const Pistas := preload("res://core/casos/pistas.gd")
 const Testemunhas := preload("res://core/casos/testemunhas.gd")
 const Solucionador := preload("res://core/casos/solucionador.gd")
 
-const TIPOS_PRESENCIAVEIS := ["criatura.ataque", "ruido.ocorreu"]
+const TIPOS_PRESENCIAVEIS := ["criatura.ataque", "ruido.ocorreu", "humano.crime"]
 const MINUTOS_POR_DIA := 1440
 
 
@@ -85,8 +85,8 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 	var npcs := GeradorPopulacao.gerar(bairro, d["populacao"], rng)
 
 	# 2. Verdade
-	var estrutura := _sortear_por_peso(cfg["estruturas"], g)
-	var especie := _escolher_especie(estrutura, bairro, d["criaturas"], g)
+	var estrutura := _sortear_por_peso(_estruturas_possiveis(cfg, bairro, d["criaturas"]), g)
+	var especie := _escolher_especie(estrutura, bairro, d["criaturas"], g, cfg)
 	if especie.is_empty():
 		return {"valido": false}
 	var ficha: Dictionary = d["criaturas"][especie]
@@ -94,6 +94,16 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 	var hospedeiro := _escolher_hospedeiro(ficha, npcs, g)
 	if ficha["disfarce"]["tipo"] == "forma_humana" and hospedeiro.is_empty():
 		return {"valido": false}
+	# Culpado humano: um morador comete o crime que provoca a criatura.
+	var crime := {}
+	var culpado := {}
+	var g_crime: RandomNumberGenerator = rng.stream("crime")
+	if estrutura == "culpado_humano":
+		var crimes := _crimes_possiveis(cfg, ficha, bairro)
+		crime = crimes[g_crime.randi_range(0, crimes.size() - 1)]
+		culpado = _escolher_culpado(npcs, hospedeiro, g_crime)
+		if culpado.is_empty():
+			return {"valido": false}
 
 	# Datas
 	var base: Dictionary = cfg["data_base"]
@@ -119,6 +129,13 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 			var saida: int = e["minuto"] - antes
 			hospedeiro["ausencias"].append([saida, e["minuto"] + 60, e["local"]])
 			_registrar_quem_notou(npcs, hospedeiro, rotina, bairro, barramento, e, saida, tag_sumico))
+	if not culpado.is_empty():
+		culpado["ausencias"] = []
+		var antes_do_crime := int(d["testemunhas"]["minutos_antes_do_ataque_para_sair"])
+		barramento.assinar("humano.crime", func(e: Dictionary) -> void:
+			var saida: int = e["minuto"] - antes_do_crime
+			culpado["ausencias"].append([saida, e["minuto"] + 60, e["local"]])
+			_registrar_quem_notou(npcs, culpado, rotina, bairro, barramento, e, saida, crime["tag_de_quem_notou"]))
 	var _presenca := Presenca.new(npcs, rotina, bairro, barramento, TIPOS_PRESENCIAVEIS)
 	var criatura := Criatura.new(ficha, instancia, rng, barramento, d["config_criaturas"], locais)
 
@@ -132,6 +149,9 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 	# 3. História
 	var gatilho: String = ficha["gatilhos"][g.randi_range(0, ficha["gatilhos"].size() - 1)]
 	var ligado: String = hospedeiro["id"] if not hospedeiro.is_empty() else _adulto_qualquer(npcs, g)
+	if not crime.is_empty():
+		gatilho = crime["gatilho"]
+		ligado = culpado["id"]
 	var historia: Dictionary = barramento.publicar(inicio, "historia.gatilho", instancia, "", {"gatilho": gatilho, "npc_ligado": ligado, "especie": especie})
 	# Registros antigos (cartório, jornal, igreja) que a história da criatura deixou.
 	var g_historia: RandomNumberGenerator = rng.stream("historia")
@@ -155,6 +175,11 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 
 	# 4. Pré-simulação
 	var agenda := _agendar_ruidos(cfg, bairro, inicio, rng.stream("ruido"))
+	if not crime.is_empty():
+		var crimes_agendados := _agendar_crimes(cfg, crime, culpado, bairro, inicio + hora_da_provocacao * 60, inicio, g_crime)
+		agenda.append_array(crimes_agendados)
+		# A provocação é o último crime: a criatura reage logo depois.
+		hora_da_provocacao = (int(crimes_agendados[-1]["minuto"]) - inicio) / 60 + 1
 	for hora in total_horas:
 		var minuto := inicio + hora * 60
 		if hora == hora_da_provocacao:
@@ -170,7 +195,7 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 		return {"valido": false}
 
 	# 5. Contrato
-	var cliente := _escolher_cliente(npcs, ataques, hospedeiro, bairro, g)
+	var cliente := _escolher_cliente(npcs, ataques, hospedeiro if not hospedeiro.is_empty() else culpado, bairro, g)
 	var pedidos: Array = cfg["pedidos"].get(estrutura, ["descobrir"])
 	var contrato := {
 		"minuto": contrato_min,
@@ -195,6 +220,9 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 		"npc_ligado": ligado,
 		"locais": locais,
 	}
+	if not crime.is_empty():
+		verdade["culpado"] = culpado["id"]
+		verdade["crime"] = crime["id"]
 	var caso := {
 		"valido": true,
 		"semente": semente,
@@ -209,7 +237,7 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 		"npcs": npcs,
 		"registro": registro,
 		"pistas": Pistas.derivar(registro, cfg["validade_horas"], chuva_em),
-		"depoimentos": Testemunhas.gerar(registro, npcs, rotina, bairro, d["criaturas"], cfg["ruidos"], d["testemunhas"], hospedeiro, rng.stream("testemunhas")),
+		"depoimentos": Testemunhas.gerar(registro, npcs, rotina, bairro, d["criaturas"], cfg["ruidos"] + ([crime] if not crime.is_empty() else []), d["testemunhas"], hospedeiro, rng.stream("testemunhas")),
 	}
 	caso["hash"] = ("%s|%s|%s" % [JSON.stringify(verdade, "", true), JSON.stringify(contrato, "", true), registro.hash_canonico()]).sha256_text()
 	return caso
@@ -244,7 +272,16 @@ static func _tag_de_testemunha(ficha: Dictionary, sobre: String) -> String:
 	return ""
 
 
-static func _escolher_especie(estrutura: String, bairro: RefCounted, criaturas: Dictionary, g: RandomNumberGenerator) -> String:
+static func _escolher_especie(estrutura: String, bairro: RefCounted, criaturas: Dictionary, g: RandomNumberGenerator, cfg: Dictionary) -> String:
+	var candidatas := _especies_da_estrutura(estrutura, bairro, criaturas, cfg)
+	if candidatas.is_empty():
+		return ""
+	return candidatas[g.randi_range(0, candidatas.size() - 1)]
+
+
+## Espécies possíveis para a estrutura neste bairro. Golpe: só humanas. Culpado humano:
+## criaturas que um crime de morador provoca (gatilho de um dos "crimes" com lugar no bairro).
+static func _especies_da_estrutura(estrutura: String, bairro: RefCounted, criaturas: Dictionary, cfg: Dictionary) -> Array:
 	var candidatas: Array = []
 	var ids := criaturas.keys()
 	ids.sort()
@@ -253,11 +290,56 @@ static func _escolher_especie(estrutura: String, bairro: RefCounted, criaturas: 
 		var humano: bool = "humano" in ficha["familia"]
 		if (estrutura == "golpe") != humano:
 			continue
-		if Solucionador.vive_no_bairro(ficha, bairro.dados["tipo"], Solucionador.tipos_de_locais(bairro.dados)):
-			candidatas.append(id)
-	if candidatas.is_empty():
-		return ""
-	return candidatas[g.randi_range(0, candidatas.size() - 1)]
+		if not Solucionador.vive_no_bairro(ficha, bairro.dados["tipo"], Solucionador.tipos_de_locais(bairro.dados)):
+			continue
+		if estrutura == "culpado_humano" and _crimes_possiveis(cfg, ficha, bairro).is_empty():
+			continue
+		candidatas.append(id)
+	return candidatas
+
+
+## Só sorteia estruturas que têm alguma espécie possível no bairro.
+static func _estruturas_possiveis(cfg: Dictionary, bairro: RefCounted, criaturas: Dictionary) -> Array:
+	var possiveis: Array = []
+	for e in cfg["estruturas"]:
+		if not _especies_da_estrutura(e["id"], bairro, criaturas, cfg).is_empty():
+			possiveis.append(e)
+	return possiveis if not possiveis.is_empty() else cfg["estruturas"]
+
+
+## Crimes que provocam esta criatura e têm onde acontecer neste bairro.
+static func _crimes_possiveis(cfg: Dictionary, ficha: Dictionary, bairro: RefCounted) -> Array:
+	var crimes: Array = []
+	for c in cfg.get("crimes", []):
+		if c["gatilho"] in ficha["gatilhos"] and not bairro.locais_do_tipo(c["tipo_local"]).is_empty():
+			crimes.append(c)
+	return crimes
+
+
+## O culpado: um adulto que não é o hospedeiro da criatura.
+static func _escolher_culpado(npcs: Array[Dictionary], hospedeiro: Dictionary, g: RandomNumberGenerator) -> Dictionary:
+	var adultos: Array[Dictionary] = []
+	for npc in npcs:
+		if int(npc["idade"]) >= 18 and npc["id"] != hospedeiro.get("id", ""):
+			adultos.append(npc)
+	return adultos[g.randi_range(0, adultos.size() - 1)] if not adultos.is_empty() else {}
+
+
+## Os crimes do culpado: o último perto da provocação ("ate"), os outros nas noites
+## anteriores, todos no mesmo lugar.
+static func _agendar_crimes(cfg: Dictionary, crime: Dictionary, culpado: Dictionary, bairro: RefCounted, ate: int, inicio: int, g: RandomNumberGenerator) -> Array:
+	var faixa: Array = cfg["crimes_por_caso"]
+	var quantidade := g.randi_range(int(faixa[0]), int(faixa[1]))
+	var locais: Array[String] = bairro.locais_do_tipo(crime["tipo_local"])
+	var local: String = locais[g.randi_range(0, locais.size() - 1)]
+	var ultimo_dia: int = ate / MINUTOS_POR_DIA
+	var agenda: Array = []
+	for i in quantidade:
+		var dia: int = maxi(ultimo_dia - (quantidade - 1 - i) * g.randi_range(1, 2), inicio / MINUTOS_POR_DIA + 1)
+		var hora := g.randi_range(21, 23) if crime["noturno"] else g.randi_range(8, 18)
+		agenda.append({"minuto": dia * MINUTOS_POR_DIA + hora * 60, "tipo": "crime", "crime": crime, "culpado": culpado["id"], "local": local})
+	agenda.sort_custom(func(a, b): return int(a["minuto"]) < int(b["minuto"]))
+	return agenda
 
 
 static func _escolher_hospedeiro(ficha: Dictionary, npcs: Array[Dictionary], g: RandomNumberGenerator) -> Dictionary:
@@ -343,6 +425,14 @@ static func _emitir_pendentes(agenda: Array, boletins: Array, ate: int, barramen
 	for item in pendentes:
 		if item["tipo"] == "boletim":
 			barramento.publicar(item["minuto"], "registro.boletim", "delegacia", item["local"], {"evento_origem": item["ataque"]})
+			continue
+		if item["tipo"] == "crime":
+			var c: Dictionary = item["crime"]
+			var feito: Dictionary = barramento.publicar(item["minuto"], "humano.crime", item["culpado"], item["local"], {"crime": c["id"]})
+			for marca in c["marcas"]:
+				barramento.publicar(item["minuto"], "marca.depositada", item["culpado"], item["local"], {
+					"tag": marca["tag"], "onde": marca["onde"], "detectar": marca["detectar"], "freq": "comum", "evento_origem": feito["id"],
+				})
 			continue
 		var ruido: Dictionary = item["ruido"]
 		var evento: Dictionary = barramento.publicar(item["minuto"], "ruido.ocorreu", "ruido:%s" % ruido["id"], item["local"], {"ruido": ruido["id"]})

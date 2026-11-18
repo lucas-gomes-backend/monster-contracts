@@ -55,7 +55,7 @@ static func derivar(registro: RefCounted, validade_horas: Dictionary, chuva_em: 
 		pista["id"] = "pista_%03d" % pistas.size()
 		pista["evento"] = evento["id"]
 		pista["causa"] = causa.get("id", -1)
-		pista["origem"] = "criatura" if causa.get("tipo", "") in ["criatura.ataque", "historia.gatilho"] else "ruido"
+		pista["origem"] = "criatura" if causa.get("tipo", "") in ["criatura.ataque", "historia.gatilho"] else ("crime" if causa.get("tipo", "") == "humano.crime" else "ruido")
 		pista["local"] = evento["local"]
 		pista["minuto"] = evento["minuto"]
 		pista["valida_ate"] = validade(pista["onde"], evento["minuto"], validade_horas, chuva_em)

@@ -128,7 +128,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 
 **Casos**
 - [x] 3 a 4 criaturas e o golpe humano: casos justos no Valongo (corpo-seco, lobisomem, mula sem cabeça, golpe) e no Centro (lobisomem, mula, golpe). O Curupira mora nas áreas verdes dos dois bairros.
-- [ ] Estruturas: caça simples, culpado humano, golpe.
+- [x] Estruturas: caça simples, culpado humano, golpe. No culpado humano, um morador desmata ou caça com crueldade numa área verde, os vizinhos o veem sair à noite e o Curupira reage.
 - [ ] **Todos os testes de campo** ([05](05-investigacao-e-deducao.md)).
 - [ ] Cartas e presentes depois do caso.
 

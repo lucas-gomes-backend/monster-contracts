@@ -146,7 +146,11 @@ $mutants += @(
     @{ name = 'covil não conta para o bairro'; path = 'game/core/casos/solucionador.gd';
        find = '		if covil in tipos_de_locais:'; replace = '		if false:' },
     @{ name = 'provocado no início da pré-simulação'; path = 'game/core/casos/gerador_casos.gd';
-       find = 'hora_da_provocacao = total_horas - '; replace = 'hora_da_provocacao = 0 * total_horas - ' }
+       find = 'hora_da_provocacao = total_horas - '; replace = 'hora_da_provocacao = 0 * total_horas - ' },
+    @{ name = 'ninguém nota o culpado sair'; path = 'game/core/casos/gerador_casos.gd';
+       find = '_registrar_quem_notou(npcs, culpado, rotina'; replace = '_registrar_quem_notou([] as Array[Dictionary], culpado, rotina' },
+    @{ name = 'crime não deixa marca'; path = 'game/core/casos/gerador_casos.gd';
+       find = '			for marca in c["marcas"]:'; replace = '			for marca in []:' }
 )
 
 if ($Somente.Count -gt 0) {
