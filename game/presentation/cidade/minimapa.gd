@@ -1,8 +1,9 @@
 extends Control
 ## Minimapa no canto superior direito, como em GTA: centrado no caçador e girando com a
 ## câmera (para a frente é sempre para cima). Desenha, a partir dos dados dos bairros
-## carregados, as ruas, os prédios, o limite do bairro atual (como a linha no chão) e os
-## vizinhos. Lá embaixo, mostra as galerias. Não renderiza a cena de novo: só linhas.
+## carregados, as ruas, os prédios, o limite do bairro atual (como a linha no chão), os
+## vizinhos e as pessoas à vista. Lá embaixo, mostra as galerias. Não renderiza a cena de
+## novo: só linhas.
 
 const Lotes := preload("res://core/cidade/lotes.gd")
 
@@ -19,6 +20,7 @@ const COR_BORDA := Color(0.95, 0.85, 0.45)
 const COR_VIZINHO := Color(0.6, 0.6, 0.6, 0.6)
 const COR_GALERIA := Color(0.25, 0.4, 0.3)
 const COR_SETA := Color(1.0, 0.35, 0.25)
+const COR_PESSOA := Color(0.95, 0.95, 0.95)
 
 ## A cena da cidade (bairro_cena.gd): de onde vêm bairros, caçador e zona.
 var cena: Node3D
@@ -63,6 +65,13 @@ func _draw() -> void:
 			if b != cena.bairro:
 				draw_polyline(_anel(b, centro, giro), COR_VIZINHO, 1.0)
 		draw_polyline(_anel(cena.bairro, centro, giro), COR_BORDA, 2.0)
+		# As pessoas à vista, como pontinhos.
+		for id in cena.populacoes:
+			var gente: Node3D = cena.populacoes[id]
+			for npc_id in gente.pessoas:
+				var no: Node3D = gente.pessoas[npc_id]["no"]
+				if no.visible:
+					draw_circle(para_minimapa(Vector2(no.position.x, no.position.z), centro, giro), 2.0, COR_PESSOA)
 	# A seta do caçador: sempre no meio, apontando para cima (para onde a câmera olha).
 	var meio := size / 2.0
 	draw_colored_polygon(PackedVector2Array([meio + Vector2(0, -7), meio + Vector2(5, 5), meio + Vector2(-5, 5)]), COR_SETA)

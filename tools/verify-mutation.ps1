@@ -130,7 +130,11 @@ $mutants += @(
     @{ name = 'minimapa não gira'; path = 'game/presentation/cidade/minimapa.gd';
        find = '(ponto - centro_mundo).rotated(giro) * ESCALA'; replace = '(ponto - centro_mundo) * ESCALA' },
     @{ name = 'esgoto de cada bairro separado'; path = 'game/presentation/cidade/bairro_cena.gd';
-       find = 'subterraneo.montar(Sub.gerar_rede(dados, cfg, Rng.new(semente)), cfg, area.grow(10.0))'; replace = 'subterraneo.montar(Sub.gerar_rede([dados[0]], cfg, Rng.new(semente)), cfg, area.grow(10.0))' }
+       find = 'subterraneo.montar(Sub.gerar_rede(dados, cfg, Rng.new(semente)), cfg, area.grow(10.0))'; replace = 'subterraneo.montar(Sub.gerar_rede([dados[0]], cfg, Rng.new(semente)), cfg, area.grow(10.0))' },
+    @{ name = 'gente atravessa os prédios'; path = 'game/presentation/cidade/populacao_3d.gd';
+       find = 'p["rota"] = _caminhos.caminho(de, para)'; replace = 'p["rota"] = PackedVector2Array([de, para])' },
+    @{ name = 'gente fora da rotina'; path = 'game/presentation/cidade/populacao_3d.gd';
+       find = 'var estado: Dictionary = _rotina.onde_esta(npc, minuto)'; replace = 'var estado: Dictionary = _rotina.onde_esta(npc, 0)' }
 )
 
 if ($Somente.Count -gt 0) {

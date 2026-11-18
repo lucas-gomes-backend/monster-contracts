@@ -1,0 +1,18 @@
+{
+  "$comment": "Centro, bairro do corte vertical (Fase 4). Lugares públicos reais (catedral, Praça Mauá); estabelecimentos e pessoas fictícios. As ruas são as reais do mapa (nome sem acento, em minúsculas): cada lugar vai para um lote na rua dele (core/cidade/lugares_reais.gd).",
+  "id": "centro",
+  "nome": "Centro",
+  "zona": "central_portuaria",
+  "tipo": "centro",
+  "populacao_alvo": 30,
+  "casas": 12,
+  "ruas": ["avenida_sao_francisco", "rua_amador_bueno", "rua_joao_pessoa", "rua_general_camara", "rua_martim_affonso", "rua_tuiuti", "rua_braz_cubas", "rua_frei_gaspar"],
+  "comunidades": [{"id": "brasileira", "peso": 6}, {"id": "portuguesa", "peso": 2}, {"id": "arabe", "peso": 1}, {"id": "japonesa", "peso": 1}],
+  "locais": [
+    {"id": "catedral", "tipo": "igreja", "rua": "rua_general_camara", "nome": "Catedral de Santos"},
+    {"id": "praca_maua", "tipo": "praca", "rua": "rua_joao_pessoa", "nome": "Praça Mauá"},
+    {"id": "padaria", "tipo": "padaria", "rua": "rua_amador_bueno", "nome": "Padaria Grão de Ouro"},
+    {"id": "bar", "tipo": "bar", "rua": "avenida_sao_francisco", "nome": "Bar Boêmio"},
+    {"id": "escola", "tipo": "escola", "rua": "rua_tuiuti", "nome": "Escola estadual"}
+  ]
+}

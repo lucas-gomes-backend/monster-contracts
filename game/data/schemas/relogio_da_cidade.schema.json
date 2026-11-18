@@ -1,0 +1,23 @@
+{
+  "$comment": "Tempo na cidade 3D (game/data/config/relogio_da_cidade.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["inicio", "minutos_por_segundo", "velocidade_a_pe"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "inicio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ano", "mes", "dia", "hora", "minuto"],
+      "properties": {
+        "ano": {"type": "integer", "minimum": 1970},
+        "mes": {"type": "integer", "minimum": 1, "maximum": 12},
+        "dia": {"type": "integer", "minimum": 1, "maximum": 31},
+        "hora": {"type": "integer", "minimum": 0, "maximum": 23},
+        "minuto": {"type": "integer", "minimum": 0, "maximum": 59}
+      }
+    },
+    "minutos_por_segundo": {"type": "number", "minimum": 0},
+    "velocidade_a_pe": {"type": "number", "minimum": 0.1}
+  }
+}

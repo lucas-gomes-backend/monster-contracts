@@ -1,0 +1,19 @@
+{
+  "$comment": "Valongo, bairro do corte vertical (Fase 4). Lugares públicos reais (igreja, largo); estabelecimentos e pessoas fictícios. As ruas são as reais do mapa (nome sem acento, em minúsculas): cada lugar vai para um lote na rua dele (core/cidade/lugares_reais.gd).",
+  "id": "valongo",
+  "nome": "Valongo",
+  "zona": "central_portuaria",
+  "tipo": "antigo_religioso",
+  "populacao_alvo": 30,
+  "casas": 14,
+  "ruas": ["avenida_martins_fontes", "rua_visconde_de_embare", "rua_senador_christiano_ottoni", "avenida_visconde_de_sao_leopoldo", "rua_marques_de_herval", "rua_sao_bento"],
+  "comunidades": [{"id": "brasileira", "peso": 6}, {"id": "portuguesa", "peso": 3}, {"id": "arabe", "peso": 1}],
+  "locais": [
+    {"id": "igreja", "tipo": "igreja", "rua": "rua_sao_bento", "nome": "Igreja do Valongo"},
+    {"id": "largo", "tipo": "praca", "rua": "avenida_visconde_de_sao_leopoldo", "nome": "Largo da antiga estação"},
+    {"id": "padaria", "tipo": "padaria", "rua": "rua_visconde_de_embare", "nome": "Padaria Trilhos"},
+    {"id": "bar", "tipo": "bar", "rua": "avenida_martins_fontes", "nome": "Bar do Estivador"},
+    {"id": "escola", "tipo": "escola", "rua": "rua_senador_christiano_ottoni", "nome": "Escola municipal"},
+    {"id": "galinheiro_1", "tipo": "galinheiro", "rua": "rua_marques_de_herval", "nome": "Galinheiro de um quintal"}
+  ]
+}

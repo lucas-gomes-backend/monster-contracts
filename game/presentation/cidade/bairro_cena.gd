@@ -8,6 +8,8 @@ extends Node3D
 ## O nome do bairro aparece na tela. As galerias são uma rede só para todos os bairros
 ## carregados: por baixo da terra, o esgoto liga um bairro ao outro.
 ## E desce pelo bueiro (escuro: só a lanterna) e sobe pela escada. Minimapa no canto.
+## Um relógio corre na cidade, e os moradores dos bairros (com dados em data/neighborhoods)
+## seguem a rotina: aparecem nas portas dos lugares e andam pelas ruas (populacao_3d.gd).
 ##
 ## Argumentos: --bairro=<id> (padrão valongo), --semente=N (padrão 1), --captura=caminho.png,
 ## --lanterna, --inclinar=G, --virar=G, --vista=cima, --esgoto, --ir=<id> (para conferir o visual).
@@ -23,6 +25,8 @@ const Minimapa := preload("res://presentation/cidade/minimapa.gd")
 const Sub := preload("res://core/cidade/subterraneo.gd")
 const Subterraneo3D := preload("res://presentation/cidade/subterraneo_3d.gd")
 const Rng := preload("res://core/rng.gd")
+const Relogio := preload("res://core/tempo/relogio.gd")
+const Populacao3D := preload("res://presentation/cidade/populacao_3d.gd")
 
 const ALCANCE_DO_BUEIRO := 2.5
 const ANGULO_DO_BUEIRO := 35.0
@@ -30,6 +34,8 @@ const QUADROS_ANTES_DA_CAPTURA := 40
 const COR_DA_NEVOA := Color(0.72, 0.73, 0.74)
 const MARGEM_DO_CHAO := 60.0
 const TEMPO_DO_NOME := 3.0
+const NOMES_DOS_DIAS := {"domingo": "Domingo", "segunda": "Segunda", "terca": "Terça", "quarta": "Quarta",
+	"quinta": "Quinta", "sexta": "Sexta", "sabado": "Sábado"}
 
 ## O bairro atual (onde o caçador está).
 var bairro: Node3D
@@ -42,6 +48,12 @@ var semente: int = 1
 ## As galerias dos bairros carregados, numa rede só (Subterraneo3D).
 var subterraneo: Node3D
 var _ids_da_rede: Array = []
+## Relógio da cidade (minutos do mundo) e a gente de cada bairro carregado.
+var minuto: int = 0
+var minutos_por_segundo: float = 1.0
+var populacoes: Dictionary = {}
+var relogio: Label
+var _sobra_de_minuto := 0.0
 var cacador: CharacterBody3D
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
@@ -91,6 +103,10 @@ func _ready() -> void:
 ## Monta a cidade começando no bairro pedido. Pode ser chamado sem estar na árvore (testes).
 func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	semente = semente_do_mundo
+	var cfg_relogio: Dictionary = Catalogo.carregar_config_relogio_da_cidade()["dados"]
+	var inicio: Dictionary = cfg_relogio["inicio"]
+	minuto = Relogio.minutos_de(int(inicio["ano"]), int(inicio["mes"]), int(inicio["dia"]), int(inicio["hora"]), int(inicio["minuto"]))
+	minutos_por_segundo = cfg_relogio["minutos_por_segundo"]
 	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -146,6 +162,7 @@ func entrar_em(id: String) -> void:
 		if not velho in queridos:
 			var no: Node3D = carregados[velho]
 			carregados.erase(velho)
+			populacoes.erase(velho)
 			remove_child(no)
 			no.queue_free()
 	_montar_rede()
@@ -184,6 +201,12 @@ func _carregar(id: String) -> Node3D:
 		novo.montar(id, semente, {"chao": false, "subterraneo": false})
 		add_child(novo)
 		carregados[id] = novo
+		if Catalogo.tem_bairro_abstrato(id):
+			var gente := Populacao3D.new()
+			gente.montar(id, novo.dados, novo.lotes, semente)
+			novo.add_child(gente)
+			gente.atualizar(minuto)
+			populacoes[id] = gente
 	return carregados[id]
 
 
@@ -242,6 +265,13 @@ func _montar_interface() -> void:
 	aviso.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	aviso.add_theme_font_size_override("font_size", 13)
 	camada.add_child(aviso)
+	relogio = Label.new()
+	relogio.position = Vector2(498, 150)
+	relogio.size = Vector2(134, 16)
+	relogio.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	relogio.add_theme_font_size_override("font_size", 11)
+	relogio.add_theme_color_override("font_color", Color(0.12, 0.1, 0.08))
+	camada.add_child(relogio)
 	nome_do_lugar = Label.new()
 	nome_do_lugar.position = Vector2(0, 120)
 	nome_do_lugar.size = Vector2(640, 40)
@@ -311,7 +341,27 @@ func _physics_process(_delta: float) -> void:
 	verificar_fronteira()
 
 
+## O relógio da cidade anda; a cada minuto novo, todo mundo confere a rotina.
+func passar_tempo(segundos: float) -> void:
+	_sobra_de_minuto += segundos * minutos_por_segundo
+	while _sobra_de_minuto >= 1.0:
+		_sobra_de_minuto -= 1.0
+		minuto += 1
+		for id in populacoes:
+			populacoes[id].atualizar(minuto)
+	for id in populacoes:
+		populacoes[id].andar(segundos)
+
+
+## "Quarta, 08:05"
+func texto_do_relogio() -> String:
+	var d: Dictionary = Relogio.data_de(minuto)
+	return "%s, %02d:%02d" % [NOMES_DOS_DIAS[d["nome_dia"]], int(d["hora"]), int(d["minuto"])]
+
+
 func _process(delta: float) -> void:
+	passar_tempo(delta)
+	relogio.text = texto_do_relogio()
 	var camera: Camera3D = cacador.camera
 	_alvo = bueiro_na_mira(camera.global_position, -camera.global_basis.z)
 	if _alvo < 0:

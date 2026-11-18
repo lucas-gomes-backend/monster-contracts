@@ -1,0 +1,6 @@
+{
+  "$comment": "Tempo na cidade 3D (Fase 4): quando o dia começa, quantos minutos do jogo passam por segundo real e a que velocidade as pessoas andam (m/s). Com 1 minuto por segundo, um dia leva 24 minutos reais.",
+  "inicio": {"ano": 2026, "mes": 11, "dia": 18, "hora": 8, "minuto": 0},
+  "minutos_por_segundo": 1.0,
+  "velocidade_a_pe": 1.6
+}
