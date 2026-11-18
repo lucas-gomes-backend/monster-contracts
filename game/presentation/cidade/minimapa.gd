@@ -49,7 +49,7 @@ func _draw() -> void:
 	var giro: float = cena.cacador.yaw
 	draw_rect(Rect2(Vector2.ZERO, size), COR_FUNDO)
 	if cena.zona == "esgoto":
-		for corredor in cena.bairro.galerias.get("corredores", []):
+		for corredor in cena.subterraneo.galerias.get("corredores", []):
 			draw_colored_polygon(_na_tela(corredor, centro, giro), COR_GALERIA)
 	else:
 		for id in cena.carregados:

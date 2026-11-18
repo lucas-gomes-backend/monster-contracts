@@ -128,7 +128,9 @@ $mutants += @(
     @{ name = 'cruzar a linha não troca o bairro'; path = 'game/presentation/cidade/bairro_cena.gd';
        find = 'entrar_em(onde)'; replace = 'pass' },
     @{ name = 'minimapa não gira'; path = 'game/presentation/cidade/minimapa.gd';
-       find = '(ponto - centro_mundo).rotated(giro) * ESCALA'; replace = '(ponto - centro_mundo) * ESCALA' }
+       find = '(ponto - centro_mundo).rotated(giro) * ESCALA'; replace = '(ponto - centro_mundo) * ESCALA' },
+    @{ name = 'esgoto de cada bairro separado'; path = 'game/presentation/cidade/bairro_cena.gd';
+       find = 'subterraneo.montar(Sub.gerar_rede(dados, cfg, Rng.new(semente)), cfg, area.grow(10.0))'; replace = 'subterraneo.montar(Sub.gerar_rede([dados[0]], cfg, Rng.new(semente)), cfg, area.grow(10.0))' }
 )
 
 if ($Somente.Count -gt 0) {

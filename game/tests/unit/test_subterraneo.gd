@@ -81,3 +81,38 @@ func test_subterraneo_bueiros_ficam_na_galeria_e_dentro_do_bairro() -> void:
 func test_subterraneo_mesma_semente_mesmos_bueiros_e_outra_semente_outros() -> void:
 	assert_eq(str(_gerar("valongo", 4)["bueiros"]), str(_gerar("valongo", 4)["bueiros"]))
 	assert_ne(str(_gerar("valongo", 4)["bueiros"]), str(_gerar("valongo", 5)["bueiros"]))
+
+
+func test_subterraneo_liga_valongo_e_centro_por_baixo() -> void:
+	var bairros: Array = [Catalogo.carregar_bairro_real("valongo")["dados"], Catalogo.carregar_bairro_real("centro")["dados"]]
+	var rede := Sub.gerar_rede(bairros, _cfg, Rng.new(1))
+	var ligou := false
+	for grupo in Sub.grupos_ligados(rede["corredores"]):
+		var de := {}
+		for i in grupo:
+			de[rede["corredores_de"][i]] = true
+		if de.has("valongo") and de.has("centro"):
+			ligou = true
+	assert_true(ligou, "dá para ir do Valongo ao Centro pelas galerias")
+
+
+func test_subterraneo_bueiros_de_cada_bairro_nao_mudam_com_os_vizinhos() -> void:
+	var valongo: Dictionary = Catalogo.carregar_bairro_real("valongo")["dados"]
+	var sozinho := Sub.gerar_rede([valongo], _cfg, Rng.new(3))
+	var junto := Sub.gerar_rede([valongo, Catalogo.carregar_bairro_real("centro")["dados"]], _cfg, Rng.new(3))
+	var do_valongo: Array = []
+	for i in junto["bueiros"].size():
+		if junto["bueiros_de"][i] == "valongo":
+			do_valongo.append(junto["bueiros"][i])
+	assert_eq(str(do_valongo), str(Array(sozinho["bueiros"])))
+
+
+func test_subterraneo_bairros_separados_nao_se_ligam() -> void:
+	# Valongo e Paquetá não fazem divisa: nenhuma galeria liga os dois.
+	var bairros: Array = [Catalogo.carregar_bairro_real("valongo")["dados"], Catalogo.carregar_bairro_real("paqueta")["dados"]]
+	var rede := Sub.gerar_rede(bairros, _cfg, Rng.new(1))
+	for grupo in Sub.grupos_ligados(rede["corredores"]):
+		var de := {}
+		for i in grupo:
+			de[rede["corredores_de"][i]] = true
+		assert_false(de.has("valongo") and de.has("paqueta"))

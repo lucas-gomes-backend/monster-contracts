@@ -78,10 +78,10 @@ func test_bairro_chegada_e_um_ponto_de_verdade_em_todo_bairro() -> void:
 
 func test_subterraneo_fica_embaixo_com_um_bueiro_por_ponto_de_descida() -> void:
 	_montar("valongo")
-	var b: Node3D = _cena.bairro
-	assert_true(b.subterraneo.position.y < -2.0, "as galerias ficam embaixo da rua")
-	assert_eq(b.bueiros.size(), b.galerias["bueiros"].size())
-	assert_gte(b.bueiros.size(), 1)
+	var s: Node3D = _cena.subterraneo
+	assert_true(s.position.y < -2.0, "as galerias ficam embaixo da rua")
+	assert_eq(s.bueiros.size(), s.galerias["bueiros"].size())
+	assert_gte(s.bueiros.size(), 1)
 
 
 func test_bueiro_desce_para_a_galeria_escura_e_a_escada_sobe() -> void:
@@ -92,7 +92,7 @@ func test_bueiro_desce_para_a_galeria_escura_e_a_escada_sobe() -> void:
 	_andar(Vector2.ZERO, 1.0)
 	var p: Vector3 = _cena.cacador.position
 	assert_true(_cena.cacador.is_on_floor(), "pisa no piso da galeria")
-	assert_almost_eq(p.y, -_cena.bairro.profundidade, 0.1, "no fundo (y %.2f)" % p.y)
+	assert_almost_eq(p.y, -_cena.subterraneo.profundidade, 0.1, "no fundo (y %.2f)" % p.y)
 	_cena.usar_bueiro(0)
 	assert_eq(_cena.zona, "rua")
 	assert_true(_cena.sol.visible)
@@ -107,5 +107,5 @@ func test_paredes_da_galeria_seguram_o_cacador() -> void:
 	for direcao in [Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0), Vector2(0, -1), Vector2(1, 1)]:
 		_andar(direcao, 2.0)
 		var p: Vector3 = _cena.cacador.position
-		assert_true(Sub.dentro_da_galeria(Vector2(p.x, p.z), _cena.bairro.galerias["corredores"]), "atravessou a parede em %s" % p)
-		assert_true(p.y > -_cena.bairro.profundidade - 0.5, "não caiu do piso")
+		assert_true(Sub.dentro_da_galeria(Vector2(p.x, p.z), _cena.subterraneo.galerias["corredores"]), "atravessou a parede em %s" % p)
+		assert_true(p.y > -_cena.subterraneo.profundidade - 0.5, "não caiu do piso")

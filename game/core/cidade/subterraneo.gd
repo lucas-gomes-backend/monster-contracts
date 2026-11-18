@@ -1,6 +1,7 @@
 extends RefCounted
-## Subterrâneo de um bairro do mapa real (docs/07, "Esgotos e subterrâneo"): galerias que
-## seguem as ruas comuns, juntas num traçado só, e bueiros ao longo delas.
+## Subterrâneo dos bairros do mapa real (docs/07, "Esgotos e subterrâneo"): galerias que
+## seguem as ruas comuns, juntas num traçado só, e bueiros ao longo delas. Vários bairros
+## vizinhos podem formar uma rede só (gerar_rede): o esgoto liga um ao outro por baixo.
 ##
 ## Cada trecho de rua vira um corredor (retângulo da largura da galeria, com as pontas
 ## estendidas para cobrir as curvas). As paredes são as bordas dos corredores menos o que
@@ -12,20 +13,31 @@ extends RefCounted
 
 
 static func gerar(bairro: Dictionary, cfg: Dictionary, rng: RefCounted) -> Dictionary:
-	var gerador: RandomNumberGenerator = rng.stream("subterraneo:%s" % bairro["id"])
+	return gerar_rede([bairro], cfg, rng)
+
+
+## Uma rede só para vários bairros vizinhos: as galerias das ruas que cruzam a divisa
+## continuam do outro lado, sem parede no meio (o esgoto liga os bairros por baixo).
+## Os bueiros de cada bairro vêm do stream dele, então não mudam com os vizinhos.
+## Além das chaves acima: "corredores_de" e "bueiros_de" (o bairro de cada um).
+static func gerar_rede(bairros: Array, cfg: Dictionary, rng: RefCounted) -> Dictionary:
 	var meia: float = float(cfg["largura"]) / 2.0
-	var limite := _pontos(bairro["limite"])
 	var corredores: Array[PackedVector2Array] = []
-	var eixos: Array = []  # [a, b] de cada corredor, para os bueiros
-	for rua in bairro["ruas"]:
-		if rua["tipo"] in cfg["ruas_sem_galeria"]:
-			continue
-		var p := _pontos(rua["pontos"])
-		for i in p.size() - 1:
-			if p[i].distance_to(p[i + 1]) < 0.05:
+	var corredores_de: Array[String] = []
+	var eixos_por_bairro := {}  # id -> [[a, b], ...], para os bueiros
+	for bairro in bairros:
+		var eixos: Array = []
+		for rua in bairro["ruas"]:
+			if rua["tipo"] in cfg["ruas_sem_galeria"]:
 				continue
-			corredores.append(retangulo(p[i], p[i + 1], meia))
-			eixos.append([p[i], p[i + 1]])
+			var p := _pontos(rua["pontos"])
+			for i in p.size() - 1:
+				if p[i].distance_to(p[i + 1]) < 0.05:
+					continue
+				corredores.append(retangulo(p[i], p[i + 1], meia))
+				corredores_de.append(str(bairro["id"]))
+				eixos.append([p[i], p[i + 1]])
+		eixos_por_bairro[bairro["id"]] = eixos
 
 	var caixas: Array[Rect2] = []
 	for c in corredores:
@@ -50,6 +62,19 @@ static func gerar(bairro: Dictionary, cfg: Dictionary, rng: RefCounted) -> Dicti
 					paredes.append(pedaco)
 
 	var bueiros: Array[Vector2] = []
+	var bueiros_de: Array[String] = []
+	for bairro in bairros:
+		for ponto in _bueiros(bairro, eixos_por_bairro[bairro["id"]], cfg, rng):
+			bueiros.append(ponto)
+			bueiros_de.append(str(bairro["id"]))
+	return {"corredores": corredores, "corredores_de": corredores_de, "paredes": paredes,
+		"bueiros": bueiros, "bueiros_de": bueiros_de}
+
+
+static func _bueiros(bairro: Dictionary, eixos: Array, cfg: Dictionary, rng: RefCounted) -> Array[Vector2]:
+	var gerador: RandomNumberGenerator = rng.stream("subterraneo:%s" % bairro["id"])
+	var limite := _pontos(bairro["limite"])
+	var bueiros: Array[Vector2] = []
 	var minimo: float = cfg["distancia_entre_bueiros"][0]
 	var maximo: float = cfg["distancia_entre_bueiros"][1]
 	var falta := gerador.randf_range(minimo, maximo) / 2.0
@@ -72,7 +97,37 @@ static func gerar(bairro: Dictionary, cfg: Dictionary, rng: RefCounted) -> Dicti
 			if Geometry2D.is_point_in_polygon(meio, limite):
 				bueiros.append(meio)
 				break
-	return {"corredores": corredores, "paredes": paredes, "bueiros": bueiros}
+	return bueiros
+
+
+## Corredores ligados entre si (se sobrepõem): grupos de índices. Serve para conferir se
+## dá para ir de um bairro a outro por baixo da terra.
+static func grupos_ligados(corredores: Array) -> Array:
+	var n := corredores.size()
+	var grupo := []
+	grupo.resize(n)
+	grupo.fill(-1)
+	var caixas: Array[Rect2] = []
+	for c in corredores:
+		caixas.append(_caixa(c).grow(0.01))
+	var grupos: Array = []
+	for inicio in n:
+		if grupo[inicio] >= 0:
+			continue
+		var atual: Array = [inicio]
+		grupo[inicio] = grupos.size()
+		var fila: Array = [inicio]
+		while not fila.is_empty():
+			var i: int = fila.pop_back()
+			for j in n:
+				if grupo[j] >= 0 or not caixas[i].intersects(caixas[j]):
+					continue
+				if Geometry2D.intersect_polygons(corredores[i], corredores[j]).size() > 0:
+					grupo[j] = grupos.size()
+					atual.append(j)
+					fila.append(j)
+		grupos.append(atual)
+	return grupos
 
 
 ## Retângulo de largura 2*meia em volta do segmento a-b, com as pontas estendidas em meia.

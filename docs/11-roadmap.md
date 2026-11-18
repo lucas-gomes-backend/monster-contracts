@@ -121,7 +121,7 @@ Pode ser feita **em paralelo** com o fim da Fase 2.
 Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de fora.
 
 **Mundo**
-- [ ] 2 bairros com o subterrâneo ligando os dois.
+- [x] 2 bairros com o subterrâneo ligando os dois: **Valongo e Centro** (decisão em [07](07-mundo-cidade-e-npcs.md)); as galerias dos bairros carregados formam uma rede só.
 - [ ] Cerca de 30 NPCs com rotina em cada bairro.
 - [ ] Pontos-chave: delegacia, biblioteca, igreja, benzedeira, cemitério, motel, mecânico, lan house.
 - [ ] Suspeita e polícia básicas, maré básica.

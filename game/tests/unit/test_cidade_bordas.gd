@@ -23,6 +23,15 @@ func _ids() -> Array:
 	return ids
 
 
+func _bairros_da_rede() -> Array:
+	var ids := {}
+	for id in _cena.subterraneo.galerias["corredores_de"]:
+		ids[id] = true
+	var lista: Array = ids.keys()
+	lista.sort()
+	return lista
+
+
 func _cruzar_para(id: String) -> void:
 	_cena.cacador.position = _cena.carregados[id].chegada()
 	_cena.verificar_fronteira()
@@ -33,8 +42,7 @@ func test_comeca_no_bairro_com_o_vizinho_carregado_do_outro_lado() -> void:
 	assert_eq(_ids(), ["centro", "valongo"], "o vizinho já está à vista")
 	assert_true(_cena.carregados["valongo"].borda.visible, "a linha marca o bairro atual")
 	assert_false(_cena.carregados["centro"].borda.visible, "a do vizinho não")
-	assert_true(_cena.carregados["valongo"].subterraneo != null, "galerias só no atual")
-	assert_true(_cena.carregados["centro"].subterraneo == null)
+	assert_eq(_bairros_da_rede(), ["centro", "valongo"], "as galerias cobrem o atual e o vizinho, numa rede só")
 	assert_eq(_cena.nome_do_lugar.text, "Valongo")
 
 
@@ -44,8 +52,8 @@ func test_cruzar_a_linha_troca_o_bairro_e_carrega_os_vizinhos_dele() -> void:
 	assert_eq(_ids(), ["centro", "monte_serrat", "paqueta", "valongo"])
 	assert_true(_cena.carregados["centro"].borda.visible)
 	assert_false(_cena.carregados["valongo"].borda.visible)
-	assert_true(_cena.carregados["valongo"].subterraneo == null, "as galerias do Valongo saem")
-	assert_true(_cena.carregados["centro"].subterraneo != null, "as do Centro entram")
+	# O Monte Serrat só tem escadarias e trilhas: não tem galeria embaixo.
+	assert_eq(_bairros_da_rede(), ["centro", "paqueta", "valongo"], "a rede acompanha os bairros carregados")
 	assert_eq(_cena.nome_do_lugar.text, "Centro", "o nome do bairro aparece")
 
 

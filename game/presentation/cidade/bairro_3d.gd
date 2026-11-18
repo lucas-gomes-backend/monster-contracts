@@ -10,6 +10,7 @@ const Catalogo := preload("res://core/dados/catalogo.gd")
 const Rng := preload("res://core/rng.gd")
 const Lotes := preload("res://core/cidade/lotes.gd")
 const Sub := preload("res://core/cidade/subterraneo.gd")
+const Subterraneo3D := preload("res://presentation/cidade/subterraneo_3d.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
 const Blocos := preload("res://presentation/greybox/blocos.gd")
 
@@ -49,7 +50,6 @@ var profundidade: float = 0.0
 var bueiros: Array[Vector3] = []
 ## Linha no chão em volta do bairro (a borda, como em Final Fantasy XII).
 var borda: MeshInstance3D
-var _tampas: Array[Node3D] = []
 var _rng: RefCounted
 
 
@@ -261,76 +261,29 @@ func _montar_marco(marco: Dictionary) -> void:
 			Blocos.bloco(self, Vector3(1.2, 2.4, 1.2), Vector3(p.x, 1.2, p.y), Color(0.75, 0.68, 0.55), 1.0)
 
 
-## As galerias embaixo das ruas: piso, teto e paredes no contorno do traçado, água até o
-## joelho e um bueiro na rua para cada ponto de descida. Sem luz: só a lanterna.
+## As galerias só deste bairro (para ver um bairro sozinho; a cidade monta uma rede só
+## para o bairro atual e os vizinhos).
 func montar_subterraneo() -> void:
 	if subterraneo != null:
 		return
 	var cfg: Dictionary = Catalogo.carregar_config_subterraneo()["dados"]
-	galerias = Sub.gerar(dados, cfg, _rng)
-	profundidade = cfg["profundidade"]
-	var altura: float = cfg["altura"]
-	subterraneo = Node3D.new()
-	subterraneo.name = "Subterraneo"
-	subterraneo.position.y = -profundidade
-	add_child(subterraneo)
-	if galerias["corredores"].is_empty():
-		return
 	var caixa: Array = dados["caixa"]
-	var tamanho := Vector3(float(caixa[2]) - float(caixa[0]) + 20.0, 0.5, float(caixa[3]) - float(caixa[1]) + 20.0)
-	var centro := Vector3((float(caixa[0]) + float(caixa[2])) / 2.0, 0.0, (float(caixa[1]) + float(caixa[3])) / 2.0)
-	Blocos.bloco(subterraneo, tamanho, centro + Vector3(0, -0.25, 0), Color(0.18, 0.2, 0.16), tamanho.x / 6.0)
-	Blocos.bloco(subterraneo, tamanho, centro + Vector3(0, altura + 0.25, 0), Color(0.16, 0.16, 0.15), tamanho.x / 6.0)
-	Blocos.bloco(subterraneo, Vector3(tamanho.x, 0.02, tamanho.z), centro + Vector3(0, float(cfg["agua"]), 0),
-		Color(0.1, 0.16, 0.13), tamanho.x / 6.0, false)
-	# Paredes: um quadrado de pé por trecho do contorno, dos dois lados, numa malha só.
-	var st := SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for parede in galerias["paredes"]:
-		for i in parede.size() - 1:
-			var a: Vector2 = parede[i]
-			var b: Vector2 = parede[i + 1]
-			var v := [Vector3(a.x, 0, a.y), Vector3(b.x, 0, b.y), Vector3(b.x, altura, b.y), Vector3(a.x, altura, a.y)]
-			var u := a.distance_to(b) / 2.0
-			var uvs := [Vector2(0, 0), Vector2(u, 0), Vector2(u, altura / 2.0), Vector2(0, altura / 2.0)]
-			for idx in [0, 1, 2, 0, 2, 3, 0, 2, 1, 0, 3, 2]:
-				st.set_uv(uvs[idx])
-				st.add_vertex(v[idx])
-	st.generate_normals()
-	var malha := st.commit()
-	var visual := MeshInstance3D.new()
-	visual.name = "Paredes"
-	visual.mesh = malha
-	visual.material_override = Materiais.objeto(Color(0.3, 0.31, 0.27), 1.0)
-	var corpo := StaticBody3D.new()
-	corpo.name = "Paredes"
-	var forma := ConcavePolygonShape3D.new()
-	forma.set_faces(malha.get_faces())
-	forma.backface_collision = true
-	var colisao := CollisionShape3D.new()
-	colisao.shape = forma
-	corpo.add_child(colisao)
-	corpo.add_child(visual)
-	subterraneo.add_child(corpo)
-	for p in galerias["bueiros"]:
-		var em_cima := Vector3(p.x, 0.0, p.y)
-		bueiros.append(em_cima)
-		_tampas.append(Blocos.bloco(self, Vector3(0.9, 0.02, 0.9), em_cima + Vector3(0, ACIMA_DO_CHAO_RUA + 0.02, 0), Color(0.1, 0.1, 0.1), 1.0, false))
-		# Escada de ferro: degraus do piso ao teto, embaixo do bueiro.
-		for degrau in int(altura / 0.4):
-			Blocos.bloco(subterraneo, Vector3(0.5, 0.05, 0.08), Vector3(p.x, 0.4 + degrau * 0.4, p.y), Color(0.42, 0.3, 0.2), 1.0, false)
+	var area := Rect2(float(caixa[0]), float(caixa[1]), float(caixa[2]) - float(caixa[0]), float(caixa[3]) - float(caixa[1])).grow(10.0)
+	subterraneo = Subterraneo3D.new()
+	subterraneo.montar(Sub.gerar_rede([dados], cfg, _rng), cfg, area)
+	add_child(subterraneo)
+	galerias = subterraneo.galerias
+	profundidade = subterraneo.profundidade
+	bueiros = subterraneo.bueiros
 
 
-## Tira as galerias e os bueiros (o bairro deixou de ser o atual).
+## Tira as galerias e os bueiros.
 func remover_subterraneo() -> void:
 	if subterraneo == null:
 		return
 	subterraneo.queue_free()
 	subterraneo = null
-	for tampa in _tampas:
-		tampa.queue_free()
-	_tampas.clear()
-	bueiros.clear()
+	bueiros = []
 	galerias = {}
 
 

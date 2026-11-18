@@ -4,8 +4,9 @@ extends Node3D
 ##
 ## Bordas como em Final Fantasy XII: uma linha no chão marca o limite do bairro atual, e os
 ## bairros vizinhos ficam carregados do outro lado, à vista. Quando o caçador cruza a linha,
-## o vizinho vira o atual: ganha as galerias e os bueiros, os vizinhos dele são carregados e
-## quem ficou longe é descarregado. O nome do bairro aparece na tela.
+## o vizinho vira o atual, os vizinhos dele são carregados e quem ficou longe é descarregado.
+## O nome do bairro aparece na tela. As galerias são uma rede só para todos os bairros
+## carregados: por baixo da terra, o esgoto liga um bairro ao outro.
 ## E desce pelo bueiro (escuro: só a lanterna) e sobe pela escada. Minimapa no canto.
 ##
 ## Argumentos: --bairro=<id> (padrão valongo), --semente=N (padrão 1), --captura=caminho.png,
@@ -19,6 +20,9 @@ const Catalogo := preload("res://core/dados/catalogo.gd")
 const Viz := preload("res://core/cidade/vizinhanca.gd")
 const Lotes := preload("res://core/cidade/lotes.gd")
 const Minimapa := preload("res://presentation/cidade/minimapa.gd")
+const Sub := preload("res://core/cidade/subterraneo.gd")
+const Subterraneo3D := preload("res://presentation/cidade/subterraneo_3d.gd")
+const Rng := preload("res://core/rng.gd")
 
 const ALCANCE_DO_BUEIRO := 2.5
 const ANGULO_DO_BUEIRO := 35.0
@@ -35,6 +39,9 @@ var carregados: Dictionary = {}
 var limites: Dictionary = {}
 var vizinhos: Dictionary = {}
 var semente: int = 1
+## As galerias dos bairros carregados, numa rede só (Subterraneo3D).
+var subterraneo: Node3D
+var _ids_da_rede: Array = []
 var cacador: CharacterBody3D
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
@@ -75,7 +82,7 @@ func _ready() -> void:
 				verificar_fronteira()
 		elif argumento == "--vista=cima":
 			_vista_de_cima()
-		elif argumento == "--esgoto" and not bairro.bueiros.is_empty():
+		elif argumento == "--esgoto" and not subterraneo.bueiros.is_empty():
 			usar_bueiro(0)
 		elif argumento.begins_with("--virar="):
 			cacador.virar_para(deg_to_rad(float(argumento.trim_prefix("--virar="))))
@@ -130,10 +137,8 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 func entrar_em(id: String) -> void:
 	if bairro != null:
 		bairro.borda.visible = false
-		bairro.remover_subterraneo()
 	bairro = _carregar(id)
 	bairro.borda.visible = true
-	bairro.montar_subterraneo()
 	var queridos: Array = [id] + vizinhos.get(id, [])
 	for outro in queridos:
 		_carregar(outro)
@@ -143,9 +148,34 @@ func entrar_em(id: String) -> void:
 			carregados.erase(velho)
 			remove_child(no)
 			no.queue_free()
+	_montar_rede()
 	nome_do_lugar.text = bairro.dados["nome"]
 	_tempo_do_nome = TEMPO_DO_NOME
 	minimapa.queue_redraw()
+
+
+## Uma rede de galerias para todos os bairros carregados (só refaz se o conjunto mudou).
+func _montar_rede() -> void:
+	var ids: Array = carregados.keys()
+	ids.sort()
+	if ids == _ids_da_rede and subterraneo != null:
+		return
+	_ids_da_rede = ids
+	if subterraneo != null:
+		remove_child(subterraneo)
+		subterraneo.queue_free()
+	var cfg: Dictionary = Catalogo.carregar_config_subterraneo()["dados"]
+	var dados: Array = []
+	var area := Rect2()
+	for i in ids.size():
+		var d: Dictionary = carregados[ids[i]].dados
+		dados.append(d)
+		var c: Array = d["caixa"]
+		var caixa := Rect2(float(c[0]), float(c[1]), float(c[2]) - float(c[0]), float(c[3]) - float(c[1]))
+		area = caixa if i == 0 else area.merge(caixa)
+	subterraneo = Subterraneo3D.new()
+	subterraneo.montar(Sub.gerar_rede(dados, cfg, Rng.new(semente)), cfg, area.grow(10.0))
+	add_child(subterraneo)
 
 
 func _carregar(id: String) -> Node3D:
@@ -228,11 +258,11 @@ func _montar_interface() -> void:
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
 func usar_bueiro(i: int) -> void:
-	var p: Vector3 = bairro.bueiros[i]
+	var p: Vector3 = subterraneo.bueiros[i]
 	var env: Environment = ambiente.environment
 	if zona == "rua":
 		zona = "esgoto"
-		cacador.position = p + Vector3(0.8, -bairro.profundidade + 0.1, 0)
+		cacador.position = p + Vector3(0.8, -subterraneo.profundidade + 0.1, 0)
 		sol.visible = false
 		env.background_color = Color.BLACK
 		env.ambient_light_energy = 0.1
@@ -253,8 +283,8 @@ func usar_bueiro(i: int) -> void:
 ## Bueiro na mira, ou -1. Na rua, o bueiro no chão; embaixo, a escada logo abaixo dele.
 func bueiro_na_mira(olho: Vector3, frente: Vector3) -> int:
 	var pontos: Array = []
-	for p in bairro.bueiros:
-		pontos.append(p if zona == "rua" else p + Vector3(0, -bairro.profundidade + 1.2, 0))
+	for p in subterraneo.bueiros:
+		pontos.append(p if zona == "rua" else p + Vector3(0, -subterraneo.profundidade + 1.2, 0))
 	return Mira.escolher_alvo(olho, frente, cacador.position + Vector3(0, 0.9, 0), pontos, ALCANCE_DO_BUEIRO, ANGULO_DO_BUEIRO)
 
 
