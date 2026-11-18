@@ -24,7 +24,7 @@ $project = Join-Path (Split-Path -Parent $PSScriptRoot) 'game'
 if (-not $Texto -and -not $Comandos) {
     # Janela: o executável com janela (sem "_console") não prende o terminal.
     $janela = $exe -replace '_console\.exe$', '.exe'
-    & $janela --path $project -- "--semente=$Semente"
+    & $janela --path $project res://ui/jogo.tscn -- "--semente=$Semente"
     exit 0
 }
 

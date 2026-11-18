@@ -169,7 +169,8 @@ var _quadros := 0
 
 
 func _ready() -> void:
-	var id := "valongo"
+	# Aberta pela tela inicial (ui/inicio.gd), começa no bairro escolhido lá.
+	var id: String = load("res://ui/inicio.gd").bairro_inicial
 	var s := 1
 	for argumento in OS.get_cmdline_user_args():
 		if argumento.begins_with("--bairro="):

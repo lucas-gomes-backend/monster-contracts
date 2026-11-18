@@ -8,7 +8,7 @@ config_version=5
 config/name="Monster Contracts"
 config/description="Investigação sobrenatural em Santos (SP), estética PS1."
 config/features=PackedStringArray("4.7", "GL Compatibility")
-run/main_scene="res://ui/jogo.tscn"
+run/main_scene="res://ui/inicio.tscn"
 
 [display]
 

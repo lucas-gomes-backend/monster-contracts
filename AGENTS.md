@@ -49,6 +49,7 @@
 | Abrir o editor | `godot --path game --editor` |
 | Reimportar os bairros do mapa real | `python tools/cidade/importar.py` (baixar de novo: `baixar.py`) |
 | Andar num bairro do mapa real | `.\tools\bairro.ps1 -Bairro valongo [-Semente 3]` |
+| Gerar o .exe para testar | `.\tools\exportar.ps1` (sai em `build/MonsterContracts.zip`) |
 
 ## Referência rápida: abra só a linha da tarefa
 
