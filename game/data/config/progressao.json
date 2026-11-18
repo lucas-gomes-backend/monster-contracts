@@ -1,0 +1,42 @@
+{
+  "$comment": "Progressão do corte vertical (docs/08): dinheiro (reais inteiros), uma reputação, 3 níveis de qualidade, motel e carro fixo. Ajustar aqui, nunca no código.",
+  "dinheiro_inicial": 400,
+  "reputacao": {
+    "niveis": [
+      {"nome": "Desconhecido", "a_partir_de": 0},
+      {"nome": "Conhecido", "a_partir_de": 20},
+      {"nome": "Respeitado", "a_partir_de": 60},
+      {"nome": "Lenda", "a_partir_de": 150}
+    ],
+    "caso_resolvido": 10,
+    "no_prazo": 3,
+    "sem_inocentes": 3,
+    "fracasso": -5,
+    "abandono": -8,
+    "inocente_prejudicado": -15
+  },
+  "bonus": {"no_prazo": 0.2, "sem_inocentes": 0.15},
+  "qualidade": {
+    "niveis": ["Improvisado", "Comum", "Profissional"],
+    "armas": {"dispersao": [1.3, 1.0, 0.75], "recarga": [1.25, 1.0, 0.8]},
+    "mochila": [[6, 4], [8, 5], [9, 6]]
+  },
+  "nivel_inicial": {"espingarda_de_sal": 1, "revolver": 2, "mochila": 2},
+  "motel": {"diaria": 60, "horas_de_sono": 8, "guarda": [6, 3], "alcance": 3.0, "abastece_ate_metros": 30.0},
+  "carro": {"tanque_litros": 40.0, "litros_iniciais": 25.0, "km_por_litro": 8.0, "preco_do_litro": 6, "velocidade_maxima": 16.0, "re_maxima": 5.0, "aceleracao": 7.0, "freio": 14.0, "giro": 1.8, "alcance_da_porta": 2.8},
+  "loja": [
+    {"id": "cartucho_de_sal", "nome": "Cartuchos de sal (8)", "item": "cartucho_de_sal", "quantidade": 8, "preco": 40},
+    {"id": "bala_38", "nome": "Balas .38 (12)", "item": "bala_38", "quantidade": 12, "preco": 55},
+    {"id": "sal_grosso", "nome": "Sal grosso (3)", "item": "sal_grosso", "quantidade": 3, "preco": 15},
+    {"id": "vela", "nome": "Velas (4)", "item": "vela", "quantidade": 4, "preco": 12},
+    {"id": "agua_benta", "nome": "Água benta", "item": "agua_benta", "quantidade": 1, "preco": 30},
+    {"id": "bandagem", "nome": "Bandagens (3)", "item": "bandagem", "quantidade": 3, "preco": 25},
+    {"id": "oferenda", "nome": "Fumo e cachaça", "item": "oferenda_fumo_e_cachaca", "quantidade": 1, "preco": 35}
+  ],
+  "melhorias": [
+    {"id": "espingarda_comum", "nome": "Espingarda de sal comum", "categoria": "espingarda_de_sal", "nivel": 2, "preco": 350, "reputacao": "Desconhecido"},
+    {"id": "espingarda_profissional", "nome": "Espingarda de sal profissional", "categoria": "espingarda_de_sal", "nivel": 3, "preco": 900, "reputacao": "Respeitado"},
+    {"id": "revolver_profissional", "nome": "Revólver profissional", "categoria": "revolver", "nivel": 3, "preco": 800, "reputacao": "Respeitado"},
+    {"id": "mochila_profissional", "nome": "Mochila profissional (9x6)", "categoria": "mochila", "nivel": 3, "preco": 600, "reputacao": "Conhecido"}
+  ]
+}

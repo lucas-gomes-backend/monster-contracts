@@ -2,10 +2,9 @@
   "$comment": "Mochila e porta-malas (game/data/config/inventario.json).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["mochila", "porta_malas", "abrir_mochila_segundos", "alcance_do_porta_malas", "peso", "chance_de_quebrar_fragil", "municao_das_armas", "mochila_inicial", "porta_malas_inicial"],
+  "required": ["porta_malas", "abrir_mochila_segundos", "alcance_do_porta_malas", "peso", "chance_de_quebrar_fragil", "municao_das_armas", "mochila_inicial", "porta_malas_inicial"],
   "properties": {
     "$comment": {"type": "string"},
-    "mochila": {"$ref": "#/$defs/grade"},
     "porta_malas": {"$ref": "#/$defs/grade"},
     "abrir_mochila_segundos": {"type": "number", "minimum": 0},
     "alcance_do_porta_malas": {"type": "number", "minimum": 0},

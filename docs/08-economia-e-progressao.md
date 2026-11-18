@@ -207,6 +207,14 @@ Levar tudo para o campo não é possível. **Escolher o que levar faz parte da p
 - Peso: até 8 kg não pesa; a partir de 14 kg, 80% da velocidade e 65% do fôlego.
 - Golpe grave: cada item frágil da mochila tem 35% de chance de quebrar.
 
+### Decisões da progressão no corte vertical (18/11/2026)
+
+- Números em `config/progressao.json`. Começa com R$ 400 e reputação Desconhecido (uma só, para a cidade toda; por bairro fica para a Fase 5). Níveis: Conhecido a partir de 20 pontos, Respeitado 60, Lenda 150.
+- **Fechar um caso:** pagamento do contrato só dentro do prazo, mais 20% de bônus pelo prazo e 15% se nenhum inocente saiu ferido. Reputação: +10 resolvido, +3 no prazo, +3 sem inocentes; fracasso -5, abandono -8, inocente -15 (nunca abaixo de zero).
+- **3 níveis de qualidade:** Improvisado, Comum, Profissional. Armas: dispersão 1,3/1,0/0,75 e recarga 1,25/1,0/0,8. Mochila: 6x4, 8x5, 9x6 (sempre menor que o porta-malas). Começo: espingarda Improvisada, revólver e mochila Comuns. Profissional exige reputação.
+- **Motel (Centro, Motel Estrela do Porto):** E na porta abre o menu. Descansar 8 h (R$ 60): cura um grau de cada ferimento e zera o medo. Guarda do quarto 6x3, ao lado da mochila. Encomendas por telefone chegam na guarda. Melhorias de equipamento. Abastecer o carro se ele estiver a até 30 m (posto na esquina, R$ 6 o litro).
+- **Carro fixo:** o sedã velho. E perto da porta entra e sai; WASD dirige. Tanque de 40 L, 8 km por litro; sem gasolina, não anda. O porta-malas abre perto dele.
+
 ## Desgaste e perda de equipamento
 
 O equipamento sofre **as duas coisas**:

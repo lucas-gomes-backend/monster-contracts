@@ -9,7 +9,7 @@ const MARGEM := 12.0
 const ESPACO_ENTRE := 22.0
 const TOPO := 34.0
 
-var cena: Node  # bairro_cena: mochila, porta_malas, foco, cursor, na_mao, itens
+var cena: Node  # bairro_cena: mochila, outra_grade(), foco, cursor, na_mao, itens
 
 
 func _process(_delta: float) -> void:
@@ -21,16 +21,17 @@ func _process(_delta: float) -> void:
 func casa() -> float:
 	var colunas: int = cena.mochila.largura
 	var linhas: int = cena.mochila.altura
-	if cena.perto_do_carro():
-		colunas += cena.porta_malas.largura
-		linhas = maxi(linhas, cena.porta_malas.altura)
-	var largura_livre := size.x - MARGEM * 2.0 - (ESPACO_ENTRE if cena.perto_do_carro() else 0.0)
+	var outra: RefCounted = cena.outra_grade()
+	if outra != null:
+		colunas += outra.largura
+		linhas = maxi(linhas, outra.altura)
+	var largura_livre := size.x - MARGEM * 2.0 - (ESPACO_ENTRE if outra != null else 0.0)
 	var altura_livre := size.y - TOPO - 56.0
 	return floorf(minf(minf(largura_livre / colunas, altura_livre / linhas), 40.0))
 
 
 func origem_de(qual: String) -> Vector2:
-	if qual == "porta_malas":
+	if qual == "outra":
 		return Vector2(MARGEM + cena.mochila.largura * casa() + ESPACO_ENTRE, TOPO)
 	return Vector2(MARGEM, TOPO)
 
@@ -39,8 +40,8 @@ func _gui_input(evento: InputEvent) -> void:
 	if cena == null:
 		return
 	if evento is InputEventMouseMotion or (evento is InputEventMouseButton and evento.pressed):
-		for qual in (["mochila", "porta_malas"] if cena.perto_do_carro() else ["mochila"]):
-			var g: RefCounted = cena.mochila if qual == "mochila" else cena.porta_malas
+		for qual in (["mochila", "outra"] if cena.outra_grade() != null else ["mochila"]):
+			var g: RefCounted = cena.mochila if qual == "mochila" else cena.outra_grade()
 			var local: Vector2 = (evento.position - origem_de(qual)) / casa()
 			if local.x >= 0 and local.y >= 0 and local.x < g.largura and local.y < g.altura:
 				cena.apontar(qual, Vector2i(int(local.x), int(local.y)))
@@ -59,11 +60,11 @@ func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0.04, 0.05, 0.04, 0.88))
 	var c := casa()
 	_grade(fonte, "mochila", "MOCHILA  %.1f kg" % (cena.mochila.peso_g() / 1000.0), c)
-	if cena.perto_do_carro():
-		_grade(fonte, "porta_malas", "PORTA-MALAS", c)
+	if cena.outra_grade() != null:
+		_grade(fonte, "outra", cena.nome_da_outra(), c)
 	# O item na mão flutua sobre o cursor.
 	var g: RefCounted = cena.grade_aberta()
-	var o := origem_de(cena.foco if cena.perto_do_carro() else "mochila")
+	var o := origem_de(cena.foco if cena.outra_grade() != null else "mochila")
 	var cur: Vector2i = cena.cursor
 	if cena.na_mao.is_empty():
 		draw_rect(Rect2(o + Vector2(cur) * c, Vector2(c, c)), Color(1, 0.85, 0.3), false, 2.0)
@@ -83,14 +84,14 @@ func _draw() -> void:
 		info = "%s x%d · %.1f kg%s" % [d["nome"], int(embaixo["quantidade"]), int(d["peso_g"]) * int(embaixo["quantidade"]) / 1000.0, " · frágil" if d["fragil"] else ""]
 	draw_string(fonte, Vector2(MARGEM, size.y - 38), info, HORIZONTAL_ALIGNMENT_LEFT, size.x - 24, 12, Color(0.95, 0.92, 0.7))
 	draw_string(fonte, Vector2(MARGEM, size.y - 22), "Setas/mouse: mover · Espaço/clique: pegar e soltar · R/botão direito: girar · O: organizar · B: bolso · I: fechar", HORIZONTAL_ALIGNMENT_LEFT, size.x - 24, 10, Color(0.75, 0.75, 0.7))
-	if cena.perto_do_carro():
-		draw_string(fonte, Vector2(MARGEM, size.y - 8), "Carro perto: passe da borda (ou Tab) para o porta-malas.", HORIZONTAL_ALIGNMENT_LEFT, size.x - 24, 10, Color(0.75, 0.75, 0.7))
+	if cena.outra_grade() != null:
+		draw_string(fonte, Vector2(MARGEM, size.y - 8), "Passe da borda (ou Tab) para o %s." % cena.nome_da_outra().to_lower(), HORIZONTAL_ALIGNMENT_LEFT, size.x - 24, 10, Color(0.75, 0.75, 0.7))
 
 
 func _grade(fonte: Font, qual: String, titulo: String, c: float) -> void:
-	var g: RefCounted = cena.mochila if qual == "mochila" else cena.porta_malas
+	var g: RefCounted = cena.mochila if qual == "mochila" else cena.outra_grade()
 	var o := origem_de(qual)
-	var em_foco: bool = cena.foco == qual or not cena.perto_do_carro()
+	var em_foco: bool = cena.foco == qual or cena.outra_grade() == null
 	draw_string(fonte, o + Vector2(0, -8), titulo, HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(0.95, 0.9, 0.75) if em_foco else Color(0.6, 0.6, 0.55))
 	draw_rect(Rect2(o - Vector2(3, 3), Vector2(g.largura, g.altura) * c + Vector2(6, 6)), Color(0.22, 0.2, 0.16))
 	for y in g.altura:

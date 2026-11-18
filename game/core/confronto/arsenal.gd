@@ -11,6 +11,8 @@ var equipada: String = ""
 var recarregando: float = 0.0
 ## Quantos tiros entram quando a recarga terminar.
 var _entra := 0
+## Qualidade de cada arma (core/progressao/progresso.gd): {id: {"dispersao", "recarga"}}.
+var qualidade: Dictionary = {}
 var _cfg: Dictionary
 var _g: RandomNumberGenerator
 
@@ -56,7 +58,7 @@ func recarregar(disponivel: int = -1) -> bool:
 	if int(a["capacidade"]) == 0 or recarregando > 0.0 or faltam() == 0 or disponivel == 0:
 		return false
 	_entra = faltam() if disponivel < 0 else mini(disponivel, faltam())
-	recarregando = float(a["recarga"])
+	recarregando = float(a["recarga"]) * float(qualidade.get(equipada, {}).get("recarga", 1.0))
 	return true
 
 
@@ -88,7 +90,7 @@ func disparar(direcao: Vector3, para_o_alvo: Vector3, raio_do_alvo: float, tremo
 	if distancia > 0.001 and distancia <= float(a["alcance"]) + raio_do_alvo:
 		var abertura := rad_to_deg(atan2(raio_do_alvo, distancia))
 		var desvio_da_mira := rad_to_deg(direcao.normalized().angle_to(para_o_alvo.normalized()))
-		var dispersao := float(a["dispersao_graus"]) * mira * (1.0 + tremor * float(_cfg["tremor_multiplica_dispersao"]))
+		var dispersao := float(a["dispersao_graus"]) * float(qualidade.get(equipada, {}).get("dispersao", 1.0)) * mira * (1.0 + tremor * float(_cfg["tremor_multiplica_dispersao"]))
 		# Arma branca: a "dispersão" é o arco do golpe; não é sorteada.
 		var sorteio := 0.0 if int(a["capacidade"]) == 0 else _g.randf() * dispersao
 		var limite := abertura + (dispersao if int(a["capacidade"]) == 0 else 0.0)

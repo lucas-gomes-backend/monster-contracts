@@ -129,7 +129,7 @@ func test_recarregar_gasta_a_municao_da_mochila_e_sem_ela_nao_recarrega() -> voi
 	cena.arsenal.municao["espingarda_de_sal"] = 0
 	assert_true(cena.recarregar_da_mochila())
 	assert_eq(cena.mochila.quantidade("cartucho_de_sal"), 6, "tirou 2")
-	cena.passar_tempo(3.0)
+	cena.passar_tempo(4.0)
 	assert_eq(cena.arsenal.municao["espingarda_de_sal"], 2)
 	cena.mochila.retirar("cartucho_de_sal", 99)
 	cena.arsenal.municao["espingarda_de_sal"] = 0
@@ -203,10 +203,10 @@ func test_golpe_grave_pode_quebrar_o_que_e_fragil_na_mochila() -> void:
 # --- Estilo maleta (RE4) ---
 
 func test_mochila_e_sempre_menor_que_o_porta_malas() -> void:
-	var m: Dictionary = _cfg()["mochila"]
 	var p: Dictionary = _cfg()["porta_malas"]
-	assert_true(int(m["largura"]) <= int(p["largura"]) and int(m["altura"]) <= int(p["altura"]), "não passa em nenhum lado")
-	assert_true(int(m["largura"]) * int(m["altura"]) < int(p["largura"]) * int(p["altura"]), "tem menos casas")
+	for m in Catalogo.carregar_config_progressao()["dados"]["qualidade"]["mochila"]:
+		assert_true(int(m[0]) <= int(p["largura"]) and int(m[1]) <= int(p["altura"]), "mochila %s não passa em nenhum lado" % str(m))
+		assert_true(int(m[0]) * int(m[1]) < int(p["largura"]) * int(p["altura"]), "mochila %s tem menos casas" % str(m))
 
 
 func test_armas_ocupam_espaco_na_grade() -> void:
@@ -266,7 +266,8 @@ func test_cursor_passa_da_mochila_para_o_porta_malas_lado_a_lado() -> void:
 	cena.passar_tempo(2.0)
 	cena.cursor = Vector2i(cena.mochila.largura - 1, 2)
 	cena.mover_cursor(Vector2i(1, 0))
-	assert_eq(cena.foco, "porta_malas")
+	assert_eq(cena.foco, "outra")
+	assert_eq(cena.grade_aberta(), cena.porta_malas)
 	assert_eq(cena.cursor, Vector2i(0, 2))
 	cena.mover_cursor(Vector2i(-1, 0))
 	assert_eq(cena.foco, "mochila")

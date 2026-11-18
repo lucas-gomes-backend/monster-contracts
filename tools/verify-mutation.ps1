@@ -176,7 +176,11 @@ $mutants += @(
     @{ name = 'recarga não gasta munição'; path = 'game/presentation/cidade/bairro_cena.gd';
        find = '	mochila.retirar(item, vai)'; replace = '	pass' },
     @{ name = 'arma fora da mochila pode ser usada'; path = 'game/presentation/cidade/bairro_cena.gd';
-       find = '	return int(arsenal.arma_de(id)["capacidade"]) == 0 or mochila.quantidade(id) > 0'; replace = '	return true' }
+       find = '	return int(arsenal.arma_de(id)["capacidade"]) == 0 or mochila.quantidade(id) > 0'; replace = '	return true' },
+    @{ name = 'paga fora do prazo'; path = 'game/core/progressao/progresso.gd';
+       find = '		ganho = int(desfecho.get("recompensa", 0))'; replace = '		ganho = int(contrato.get("recompensa", 0))' },
+    @{ name = 'carro anda sem gasolina'; path = 'game/presentation/cidade/carro_3d.gd';
+       find = '	if litros <= 0.0:'; replace = '	if false:' }
 )
 
 if ($Somente.Count -gt 0) {

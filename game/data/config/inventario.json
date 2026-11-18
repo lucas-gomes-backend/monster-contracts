@@ -1,6 +1,5 @@
 {
-  "$comment": "Mochila e porta-malas no estilo da maleta do Resident Evil 4 (docs/08, 'Mochila e inventário'). A mochila é SEMPRE menor que o porta-malas (o teste confere). Grades em casas; peso em gramas. Mochila pesada deixa mais lento e cansa mais. Abrir a mochila leva tempo e o caçador fica parado. O porta-malas só abre perto do carro. Recarregar tira munição dos bolsos e da mochila.",
-  "mochila": {"largura": 8, "altura": 5},
+  "$comment": "Mochila e porta-malas no estilo da maleta do Resident Evil 4 (docs/08, 'Mochila e inventário'). O tamanho da mochila vem da qualidade dela (config/progressao.json) e é SEMPRE menor que o porta-malas (o teste confere). Grades em casas; peso em gramas. Mochila pesada deixa mais lento e cansa mais. Abrir a mochila leva tempo e o caçador fica parado. O porta-malas só abre perto do carro. Recarregar tira munição dos bolsos e da mochila.",
   "porta_malas": {"largura": 12, "altura": 7},
   "abrir_mochila_segundos": 1.5,
   "alcance_do_porta_malas": 3.0,

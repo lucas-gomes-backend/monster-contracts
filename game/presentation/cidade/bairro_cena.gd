@@ -50,6 +50,9 @@ const ConversaTela := preload("res://presentation/cidade/conversa_tela.gd")
 const TECLAS_DE_OPCAO := [KEY_1, KEY_2, KEY_3, KEY_4, KEY_5]
 const Grade := preload("res://core/inventario/grade.gd")
 const Blocos := preload("res://presentation/greybox/blocos.gd")
+const Progresso := preload("res://core/progressao/progresso.gd")
+const Carro3D := preload("res://presentation/cidade/carro_3d.gd")
+const MotelTela := preload("res://presentation/cidade/motel_tela.gd")
 const MochilaTela := preload("res://presentation/cidade/mochila_tela.gd")
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
@@ -133,12 +136,20 @@ var carro: Node3D
 var mochila_tela: Control
 var cursor := Vector2i.ZERO
 var na_mao: Dictionary = {}
-## Qual grade o cursor está: "mochila" ou "porta_malas" (lado a lado perto do carro).
+## Qual grade o cursor está: "mochila" ou "outra" (porta-malas perto do carro, guarda perto do motel).
 var foco := "mochila"
 var _mouse_antes := Input.MOUSE_MODE_VISIBLE
 var _abrindo_mochila := 0.0
 var _cfg_inventario: Dictionary
 var _g_quebra: RandomNumberGenerator
+## Dinheiro, reputação e qualidade (núcleo); o motel (guarda e menu) e o carro dirigível.
+var progresso: RefCounted
+var guarda_do_motel: RefCounted
+var motel_tela: Control
+var menu_do_motel := "principal"
+var dirigindo := false
+var _camadas_do_cacador := Vector2i(1, 1)
+var _cfg_progressao: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
@@ -170,6 +181,8 @@ func _ready() -> void:
 			cacador.bloqueado = true
 		elif argumento.begins_with("--criatura="):
 			trazer_criatura(argumento.trim_prefix("--criatura="))
+		elif argumento == "--dirigir":
+			entrar_no_carro()
 		elif argumento == "--mochila":
 			abrir_mochila()
 			_mochila_aberta()
@@ -214,7 +227,13 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	_cfg_negociacao = Catalogo.carregar_config_negociacao()["dados"]
 	itens = Catalogo.carregar_itens()["dados"]
 	_cfg_inventario = Catalogo.carregar_config_inventario()["dados"]
-	mochila = Grade.new(int(_cfg_inventario["mochila"]["largura"]), int(_cfg_inventario["mochila"]["altura"]), itens)
+	_cfg_progressao = Catalogo.carregar_config_progressao()["dados"]
+	progresso = Progresso.new(_cfg_progressao)
+	var tamanho: Vector2i = progresso.tamanho_da_mochila()
+	mochila = Grade.new(tamanho.x, tamanho.y, itens)
+	var guarda: Array = _cfg_progressao["motel"]["guarda"]
+	guarda_do_motel = Grade.new(int(guarda[0]), int(guarda[1]), itens)
+	_aplicar_qualidade()
 	porta_malas = Grade.new(int(_cfg_inventario["porta_malas"]["largura"]), int(_cfg_inventario["porta_malas"]["altura"]), itens)
 	for c in _cfg_inventario["mochila_inicial"]:
 		mochila.adicionar(c["item"], int(c["quantidade"]))
@@ -382,7 +401,7 @@ func _montar_interface() -> void:
 	camada.layer = 11
 	add_child(camada)
 	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar"
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar · E carro e motel"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
 	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)
@@ -456,6 +475,12 @@ func _montar_interface() -> void:
 	mochila_tela.size = Vector2(620, 330)
 	mochila_tela.visible = false
 	camada.add_child(mochila_tela)
+	motel_tela = MotelTela.new()
+	motel_tela.cena = self
+	motel_tela.position = Vector2(90, 90)
+	motel_tela.size = Vector2(460, 230)
+	motel_tela.visible = false
+	camada.add_child(motel_tela)
 
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
@@ -509,7 +534,14 @@ func _vista_de_cima() -> void:
 
 
 func _unhandled_input(evento: InputEvent) -> void:
-	if evento.is_action_pressed("examinar") and _alvo >= 0:
+	if evento.is_action_pressed("examinar") and dirigindo:
+		sair_do_carro()
+		get_viewport().set_input_as_handled()
+	elif evento.is_action_pressed("examinar") and entrar_no_carro():
+		get_viewport().set_input_as_handled()
+	elif evento.is_action_pressed("examinar") and _alvo < 0 and abrir_motel():
+		get_viewport().set_input_as_handled()
+	elif evento.is_action_pressed("examinar") and _alvo >= 0:
 		usar_bueiro(_alvo)
 		get_viewport().set_input_as_handled()
 	elif evento.is_action_pressed("atirar") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and not menu.visible:
@@ -535,6 +567,19 @@ func _input(evento: InputEvent) -> void:
 		return
 	if mochila_tela.visible:
 		_input_da_mochila(evento)
+		return
+	if motel_tela.visible:
+		if evento.is_action_pressed("soltar_mouse"):
+			if menu_do_motel == "principal":
+				fechar_motel()
+			else:
+				menu_do_motel = "principal"
+			get_viewport().set_input_as_handled()
+		elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode >= KEY_1 and evento.physical_keycode <= KEY_9:
+			escolher_no_motel(evento.physical_keycode - KEY_1)
+			get_viewport().set_input_as_handled()
+		return
+	if dirigindo:
 		return
 	if evento.is_action_pressed("mochila") and _abrindo_mochila <= 0.0:
 		abrir_mochila()
@@ -654,7 +699,20 @@ func fechar_mochila() -> void:
 
 
 func grade_aberta() -> RefCounted:
-	return porta_malas if foco == "porta_malas" and perto_do_carro() else mochila
+	return outra_grade() if foco == "outra" and outra_grade() != null else mochila
+
+
+## A grade que fica do lado da mochila: o porta-malas perto do carro, ou a guarda perto do motel.
+func outra_grade() -> RefCounted:
+	if perto_do_carro():
+		return porta_malas
+	if perto_do_motel():
+		return guarda_do_motel
+	return null
+
+
+func nome_da_outra() -> String:
+	return "PORTA-MALAS" if perto_do_carro() else "MOTEL"
 
 
 func perto_do_carro() -> bool:
@@ -662,8 +720,8 @@ func perto_do_carro() -> bool:
 
 
 func trocar_grade() -> void:
-	if perto_do_carro():
-		foco = "mochila" if foco == "porta_malas" else "porta_malas"
+	if outra_grade() != null:
+		foco = "mochila" if foco == "outra" else "outra"
 		cursor = Vector2i(0, mini(cursor.y, grade_aberta().altura - 1))
 
 
@@ -672,11 +730,11 @@ func trocar_grade() -> void:
 func mover_cursor(d: Vector2i) -> void:
 	var g: RefCounted = grade_aberta()
 	var x := cursor.x + d.x
-	if perto_do_carro() and foco == "mochila" and x >= g.largura:
-		foco = "porta_malas"
-		cursor = Vector2i(0, mini(cursor.y, porta_malas.altura - 1))
+	if outra_grade() != null and foco == "mochila" and x >= g.largura:
+		foco = "outra"
+		cursor = Vector2i(0, mini(cursor.y, outra_grade().altura - 1))
 		return
-	if perto_do_carro() and foco == "porta_malas" and x < 0:
+	if outra_grade() != null and foco == "outra" and x < 0:
 		foco = "mochila"
 		cursor = Vector2i(mochila.largura - 1, mini(cursor.y, mochila.altura - 1))
 		return
@@ -685,7 +743,7 @@ func mover_cursor(d: Vector2i) -> void:
 
 ## O mouse aponta uma casa de uma das grades.
 func apontar(qual: String, casa: Vector2i) -> void:
-	if qual == "porta_malas" and not perto_do_carro():
+	if qual == "outra" and outra_grade() == null:
 		return
 	foco = qual
 	cursor = casa
@@ -782,14 +840,197 @@ func recarregar_da_mochila() -> bool:
 
 ## O carro parado do caçador (o porta-malas abre perto dele).
 func _estacionar_carro() -> void:
-	carro = Node3D.new()
-	carro.name = "Carro"
+	carro = Carro3D.new()
+	carro.montar(_cfg_progressao["carro"])
 	add_child(carro)
 	var lado := Vector3(cos(cacador.yaw), 0.0, -sin(cacador.yaw))
-	carro.position = Vector3(cacador.position.x, 0.0, cacador.position.z) + lado * 2.6
+	carro.position = Vector3(cacador.position.x, 0.05, cacador.position.z) + lado * 2.6
 	carro.rotation.y = cacador.yaw
-	Blocos.bloco(carro, Vector3(1.8, 1.0, 4.2), Vector3(0, 0.6, 0), Color(0.42, 0.12, 0.1), 1.0)
-	Blocos.bloco(carro, Vector3(1.6, 0.6, 2.0), Vector3(0, 1.4, 0.2), Color(0.3, 0.32, 0.35), 1.0, false)
+
+
+## Qualidade das armas e da mochila (progresso) aplicada no arsenal e na grade.
+func _aplicar_qualidade() -> void:
+	for id in arsenal.ordem:
+		arsenal.qualidade[id] = progresso.multiplicadores_da_arma(id)
+	var tamanho: Vector2i = progresso.tamanho_da_mochila()
+	if tamanho != Vector2i(mochila.largura, mochila.altura):
+		var nova := Grade.new(tamanho.x, tamanho.y, itens)
+		for e in mochila.entradas:
+			var girado: bool = int(e["w"]) != int(itens[e["item"]]["formato"][0])
+			if nova.colocar(e["item"], e["x"], e["y"], girado, int(e["quantidade"])) == 0:
+				nova.adicionar(e["item"], int(e["quantidade"]))
+		mochila = nova
+
+
+## E: entra ou sai do carro.
+func entrar_no_carro() -> bool:
+	if dirigindo or carro == null or zona != "rua":
+		return false
+	if Vector2(carro.position.x, carro.position.z).distance_to(Vector2(cacador.position.x, cacador.position.z)) > float(_cfg_progressao["carro"]["alcance_da_porta"]) + 1.0:
+		return false
+	dirigindo = true
+	cacador.visible = false
+	cacador.process_mode = Node.PROCESS_MODE_DISABLED
+	# Dentro do carro o corpo do caçador não bate em nada (nem no próprio carro).
+	_camadas_do_cacador = Vector2i(cacador.collision_layer, cacador.collision_mask)
+	cacador.collision_layer = 0
+	cacador.collision_mask = 0
+	carro.camera.current = true
+	return true
+
+
+func sair_do_carro() -> void:
+	if not dirigindo:
+		return
+	dirigindo = false
+	carro.velocidade = 0.0
+	cacador.position = carro.lado_da_porta()
+	cacador.velocity = Vector3.ZERO
+	cacador.process_mode = Node.PROCESS_MODE_INHERIT
+	cacador.collision_layer = _camadas_do_cacador.x
+	cacador.collision_mask = _camadas_do_cacador.y
+	cacador.visible = true
+	cacador.camera.current = true
+
+
+## Um passo dirigindo; o caçador vai junto (fronteira, minimapa e mundo seguem o carro).
+func dirigir(entrada: Vector2, delta: float) -> void:
+	carro.dirigir(entrada, delta)
+	cacador.position = carro.position + Vector3(0, 0.3, 0)
+
+
+## O motel do Centro (ponto-chave): a porta mais perto, ou Vector2.INF.
+func porta_do_motel() -> Vector2:
+	var melhor := Vector2.INF
+	var aqui := Vector2(cacador.position.x, cacador.position.z)
+	for b in populacoes:
+		for ponto in populacoes[b].pontos_chave:
+			if ponto["tipo"] == "motel" and (melhor == Vector2.INF or aqui.distance_to(ponto["porta"]) < aqui.distance_to(melhor)):
+				melhor = ponto["porta"]
+	return melhor
+
+
+func perto_do_motel() -> bool:
+	var porta := porta_do_motel()
+	return zona == "rua" and porta != Vector2.INF and porta.distance_to(Vector2(cacador.position.x, cacador.position.z)) <= float(_cfg_progressao["motel"]["alcance"])
+
+
+func abrir_motel() -> bool:
+	if not perto_do_motel():
+		return false
+	menu_do_motel = "principal"
+	motel_tela.visible = true
+	cacador.bloqueado = true
+	return true
+
+
+func fechar_motel() -> void:
+	motel_tela.visible = false
+	if not ferimentos.morto:
+		cacador.bloqueado = false
+
+
+func titulo_do_motel() -> String:
+	return {"principal": "MOTEL ESTRELA DO PORTO", "suprimentos": "ENCOMENDAS (entregues no motel)", "melhorias": "MELHORIAS"}[menu_do_motel]
+
+
+## As opções do menu atual: [{"texto", "acao", "dado"}].
+func opcoes_do_motel() -> Array:
+	var lista: Array = []
+	match menu_do_motel:
+		"principal":
+			var cfg: Dictionary = _cfg_progressao["motel"]
+			lista.append({"texto": "Descansar %d horas (R$ %d)" % [int(cfg["horas_de_sono"]), int(cfg["diaria"])], "acao": "descansar"})
+			lista.append({"texto": "Guardar coisas (mochila e guarda do quarto)", "acao": "guardar"})
+			lista.append({"texto": "Encomendar suprimentos", "acao": "suprimentos"})
+			lista.append({"texto": "Melhorias de equipamento", "acao": "melhorias"})
+			var litros: float = carro.faltam_litros() if carro != null else 0.0
+			lista.append({"texto": "Abastecer o carro (%.0f L, R$ %d)" % [litros, _preco_da_gasolina()], "acao": "abastecer"})
+		"suprimentos":
+			for o in _cfg_progressao["loja"]:
+				lista.append({"texto": "%s · R$ %d" % [o["nome"], int(o["preco"])], "acao": "comprar", "dado": o})
+		"melhorias":
+			for m in _cfg_progressao["melhorias"]:
+				var pode: Dictionary = progresso.pode_comprar(m)
+				lista.append({"texto": "%s · R$ %d%s" % [m["nome"], int(m["preco"]), "" if pode["ok"] else " (%s)" % pode["motivo"]], "acao": "melhorar", "dado": m})
+	return lista
+
+
+func _preco_da_gasolina() -> int:
+	if carro == null:
+		return 0
+	return int(ceil(carro.faltam_litros())) * int(_cfg_progressao["carro"]["preco_do_litro"])
+
+
+## Escolhe a opção i do menu do motel.
+func escolher_no_motel(i: int) -> void:
+	var opcoes := opcoes_do_motel()
+	if i < 0 or i >= opcoes.size():
+		return
+	var o: Dictionary = opcoes[i]
+	match o["acao"]:
+		"descansar":
+			descansar()
+		"guardar":
+			fechar_motel()
+			abrir_mochila()
+			_mochila_aberta()
+			foco = "outra"
+		"suprimentos", "melhorias":
+			menu_do_motel = o["acao"]
+		"comprar":
+			var oferta: Dictionary = o["dado"]
+			if progresso.gastar(int(oferta["preco"]), oferta["nome"]):
+				var sobra: int = guarda_do_motel.adicionar(oferta["item"], int(oferta["quantidade"]))
+				sobra = mochila.adicionar(oferta["item"], sobra) if sobra > 0 else 0
+				_avisar("Entregue no motel: %s." % oferta["nome"] if sobra == 0 else "Não coube tudo: sobraram %d." % sobra)
+			else:
+				_avisar("Falta dinheiro.")
+		"melhorar":
+			var r: Dictionary = progresso.comprar_melhoria(o["dado"])
+			if r["ok"]:
+				_aplicar_qualidade()
+				_avisar("Agora: %s (%s)." % [o["dado"]["nome"], progresso.nome_da_qualidade(o["dado"]["categoria"])])
+			else:
+				_avisar("Não dá: %s." % r["motivo"])
+		"abastecer":
+			abastecer()
+
+
+## Dorme no motel: o tempo passa, os ferimentos melhoram um grau, o medo some; paga a diária.
+func descansar() -> bool:
+	var cfg: Dictionary = _cfg_progressao["motel"]
+	if not progresso.gastar(int(cfg["diaria"]), "diária do motel"):
+		_avisar("Sem dinheiro para a diária.")
+		return false
+	var minutos := int(cfg["horas_de_sono"]) * 60
+	minuto += minutos
+	suspeita.passar_minutos(minutos)
+	for b in populacoes:
+		populacoes[b].atualizar(minuto)
+	for parte in ferimentos.gravidade.keys():
+		ferimentos.tratar(parte)
+	medo.valor = 0.0
+	_avisar("Você dormiu %d horas." % int(cfg["horas_de_sono"]))
+	return true
+
+
+## Enche o tanque, se o carro estiver perto do motel (há um posto na esquina).
+func abastecer() -> bool:
+	var porta := porta_do_motel()
+	if carro == null or porta == Vector2.INF or Vector2(carro.position.x, carro.position.z).distance_to(porta) > float(_cfg_progressao["motel"]["abastece_ate_metros"]):
+		_avisar("Traga o carro para perto do motel.")
+		return false
+	var preco := _preco_da_gasolina()
+	if preco == 0:
+		_avisar("O tanque já está cheio.")
+		return false
+	if not progresso.gastar(preco, "gasolina"):
+		_avisar("Falta dinheiro.")
+		return false
+	carro.litros += carro.faltam_litros()
+	_avisar("Tanque cheio.")
+	return true
 
 
 ## N: começa a conversa, se a criatura negocia e está perto.
@@ -1010,7 +1251,9 @@ func _desenhar_circulo(c: RefCounted) -> void:
 	add_child(anel)
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if dirigindo:
+		dirigir(Input.get_vector("mover_esquerda", "mover_direita", "mover_tras", "mover_frente"), delta)
 	verificar_fronteira()
 
 
@@ -1164,7 +1407,10 @@ func texto_do_painel() -> String:
 
 ## "Espingarda de sal: 2/2" e o estado da criatura, se houver uma no campo.
 func texto_do_hud() -> String:
-	var texto: String = arsenal.texto()
+	var texto: String = "R$ %d · %s\n" % [progresso.dinheiro, progresso.nivel_de_reputacao()]
+	if dirigindo:
+		return texto + "Carro: %.0f km/h · %.1f L" % [absf(carro.velocidade) * 3.6, carro.litros]
+	texto += arsenal.texto()
 	if criatura != null and criatura.visible:
 		var e: RefCounted = criatura.estado
 		texto += "\nCriatura: %s%s" % [e.estado.replace("vulneravel", "vulnerável"), " (recuando)" if e.esta_afastada() else ""]

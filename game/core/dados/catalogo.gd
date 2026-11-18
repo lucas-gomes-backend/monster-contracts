@@ -143,6 +143,11 @@ static func carregar_itens() -> Dictionary:
 	return {"dados": por_id, "erros": r["erros"]}
 
 
+## Progressão: dinheiro, reputação, qualidade, motel, carro e loja (docs/08), validados.
+static func carregar_config_progressao() -> Dictionary:
+	return carregar_validado("res://data/config/progressao.json", "res://data/schemas/progressao.schema.json")
+
+
 ## Mochila e porta-malas (docs/08), validados.
 static func carregar_config_inventario() -> Dictionary:
 	return carregar_validado("res://data/config/inventario.json", "res://data/schemas/inventario.schema.json")
