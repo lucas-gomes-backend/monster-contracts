@@ -1,20 +1,22 @@
 {
-  "$comment": "Itens que vão na mochila, nos bolsos e no porta-malas (docs/08, 'Mochila e inventário'). formato: [largura, altura] na grade; peso em gramas; pilha: quantos cabem num mesmo lugar; fragil: pode quebrar quando o caçador leva um golpe grave.",
+  "$comment": "Itens que vão na mochila, nos bolsos e no porta-malas (docs/08, 'Mochila e inventário'), como a maleta do Resident Evil 4. formato: [largura, altura] na grade; peso em gramas; pilha: quantos cabem num mesmo lugar; fragil: pode quebrar quando o caçador leva um golpe grave; cor: como aparece na grade; arma: o id da arma (config/armas.json) quando o item é uma arma. Arma só pode ser usada se estiver na mochila.",
   "itens": [
-    {"id": "sal_grosso", "nome": "Sal grosso", "formato": [1, 1], "peso_g": 500, "pilha": 3, "fragil": false},
-    {"id": "agua_benta", "nome": "Água benta", "formato": [1, 2], "peso_g": 400, "pilha": 1, "fragil": true},
-    {"id": "figa_e_arruda", "nome": "Figa e arruda", "formato": [1, 1], "peso_g": 50, "pilha": 2, "fragil": false},
-    {"id": "oferenda_fumo_e_cachaca", "nome": "Fumo e cachaça", "formato": [2, 1], "peso_g": 900, "pilha": 1, "fragil": true},
-    {"id": "laco_ate_o_galo_cantar", "nome": "Laço", "formato": [2, 2], "peso_g": 1200, "pilha": 1, "fragil": false},
-    {"id": "correntes", "nome": "Correntes", "formato": [2, 2], "peso_g": 4000, "pilha": 1, "fragil": false},
-    {"id": "vela", "nome": "Velas", "formato": [1, 1], "peso_g": 100, "pilha": 4, "fragil": false},
-    {"id": "graos_ou_sementes", "nome": "Grãos", "formato": [1, 1], "peso_g": 300, "pilha": 2, "fragil": false},
-    {"id": "bandagem", "nome": "Bandagem", "formato": [1, 1], "peso_g": 100, "pilha": 3, "fragil": false},
-    {"id": "cartucho_de_sal", "nome": "Cartuchos de sal", "formato": [1, 1], "peso_g": 40, "pilha": 8, "fragil": false},
-    {"id": "bala_38", "nome": "Balas .38", "formato": [1, 1], "peso_g": 10, "pilha": 12, "fragil": false},
-    {"id": "medidor_emf", "nome": "Medidor EMF", "formato": [1, 2], "peso_g": 300, "pilha": 1, "fragil": true},
-    {"id": "camera_termica", "nome": "Câmera térmica", "formato": [2, 2], "peso_g": 900, "pilha": 1, "fragil": true},
-    {"id": "espelho_ou_camera", "nome": "Câmera e espelho", "formato": [2, 1], "peso_g": 600, "pilha": 1, "fragil": true},
-    {"id": "kit_de_tala", "nome": "Tala", "formato": [1, 2], "peso_g": 300, "pilha": 1, "fragil": false}
+    {"id": "espingarda_de_sal", "nome": "Espingarda de sal", "formato": [5, 2], "peso_g": 3200, "pilha": 1, "fragil": false, "cor": "#5a4632", "arma": "espingarda_de_sal"},
+    {"id": "revolver", "nome": "Revólver .38", "formato": [3, 2], "peso_g": 900, "pilha": 1, "fragil": false, "cor": "#3c3c42", "arma": "revolver"},
+    {"id": "sal_grosso", "nome": "Sal grosso", "formato": [1, 1], "peso_g": 500, "pilha": 3, "fragil": false, "cor": "#d8d4c8"},
+    {"id": "agua_benta", "nome": "Água benta", "formato": [1, 2], "peso_g": 400, "pilha": 1, "fragil": true, "cor": "#6f9fc8"},
+    {"id": "figa_e_arruda", "nome": "Figa e arruda", "formato": [1, 1], "peso_g": 50, "pilha": 2, "fragil": false, "cor": "#5d8a4a"},
+    {"id": "oferenda_fumo_e_cachaca", "nome": "Fumo e cachaça", "formato": [2, 1], "peso_g": 900, "pilha": 1, "fragil": true, "cor": "#8a5a2b"},
+    {"id": "laco_ate_o_galo_cantar", "nome": "Laço", "formato": [2, 2], "peso_g": 1200, "pilha": 1, "fragil": false, "cor": "#a08a5a"},
+    {"id": "correntes", "nome": "Correntes", "formato": [2, 2], "peso_g": 4000, "pilha": 1, "fragil": false, "cor": "#6a6a70"},
+    {"id": "vela", "nome": "Velas", "formato": [1, 1], "peso_g": 100, "pilha": 4, "fragil": false, "cor": "#e8dcb0"},
+    {"id": "graos_ou_sementes", "nome": "Grãos", "formato": [1, 1], "peso_g": 300, "pilha": 2, "fragil": false, "cor": "#b89a4a"},
+    {"id": "bandagem", "nome": "Bandagem", "formato": [1, 1], "peso_g": 100, "pilha": 3, "fragil": false, "cor": "#e0e0e0"},
+    {"id": "cartucho_de_sal", "nome": "Cartuchos de sal", "formato": [1, 1], "peso_g": 40, "pilha": 8, "fragil": false, "cor": "#b03a2e"},
+    {"id": "bala_38", "nome": "Balas .38", "formato": [1, 1], "peso_g": 10, "pilha": 12, "fragil": false, "cor": "#c9a227"},
+    {"id": "medidor_emf", "nome": "Medidor EMF", "formato": [1, 2], "peso_g": 300, "pilha": 1, "fragil": true, "cor": "#3a6a5a"},
+    {"id": "camera_termica", "nome": "Câmera térmica", "formato": [2, 2], "peso_g": 900, "pilha": 1, "fragil": true, "cor": "#4a4a6a"},
+    {"id": "espelho_ou_camera", "nome": "Câmera e espelho", "formato": [2, 1], "peso_g": 600, "pilha": 1, "fragil": true, "cor": "#7a8a9a"},
+    {"id": "kit_de_tala", "nome": "Tala", "formato": [1, 2], "peso_g": 300, "pilha": 1, "fragil": false, "cor": "#9a7a5a"}
   ]
 }

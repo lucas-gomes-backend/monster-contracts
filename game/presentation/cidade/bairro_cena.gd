@@ -133,7 +133,9 @@ var carro: Node3D
 var mochila_tela: Control
 var cursor := Vector2i.ZERO
 var na_mao: Dictionary = {}
-var _no_porta_malas := false
+## Qual grade o cursor está: "mochila" ou "porta_malas" (lado a lado perto do carro).
+var foco := "mochila"
+var _mouse_antes := Input.MOUSE_MODE_VISIBLE
 var _abrindo_mochila := 0.0
 var _cfg_inventario: Dictionary
 var _g_quebra: RandomNumberGenerator
@@ -450,8 +452,8 @@ func _montar_interface() -> void:
 	camada.add_child(conversa_tela)
 	mochila_tela = MochilaTela.new()
 	mochila_tela.cena = self
-	mochila_tela.position = Vector2(110, 70)
-	mochila_tela.size = Vector2(420, 250)
+	mochila_tela.position = Vector2(10, 62)
+	mochila_tela.size = Vector2(620, 330)
 	mochila_tela.visible = false
 	camada.add_child(mochila_tela)
 
@@ -517,7 +519,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 	elif evento.is_action_pressed("arma_1") or evento.is_action_pressed("arma_2") or evento.is_action_pressed("arma_3"):
 		for i in 3:
 			if evento.is_action_pressed("arma_%d" % (i + 1)) and i < arsenal.ordem.size():
-				arsenal.equipar(arsenal.ordem[i])
+				equipar(arsenal.ordem[i])
 
 
 ## O menu radial pega o mouse antes da câmera enquanto está aberto. O ritual pega as
@@ -608,6 +610,10 @@ func _input_da_mochila(evento: InputEvent) -> void:
 		trocar_grade()
 	elif evento is InputEventKey and evento.pressed and evento.physical_keycode == KEY_B:
 		por_no_bolso()
+	elif evento is InputEventKey and evento.pressed and evento.physical_keycode == KEY_O:
+		organizar()
+	elif evento is InputEventKey and evento.pressed and evento.physical_keycode in [KEY_ENTER, KEY_KP_ENTER]:
+		pegar_ou_soltar()
 	else:
 		return
 	get_viewport().set_input_as_handled()
@@ -624,9 +630,11 @@ func abrir_mochila() -> void:
 
 func _mochila_aberta() -> void:
 	_abrindo_mochila = 0.0
+	foco = "mochila"
+	_mouse_antes = Input.mouse_mode
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_tempo_do_nome = 0.0
 	nome_do_lugar.text = ""
-	_no_porta_malas = false
 	cursor = Vector2i.ZERO
 	mochila_tela.visible = true
 
@@ -635,14 +643,18 @@ func fechar_mochila() -> void:
 	if not na_mao.is_empty():
 		grade_aberta().adicionar(na_mao["item"], int(na_mao["quantidade"]))
 		na_mao = {}
+	var estava_aberta: bool = mochila_tela.visible
 	mochila_tela.visible = false
 	_abrindo_mochila = 0.0
+	if estava_aberta:
+		Input.mouse_mode = _mouse_antes
+	_conferir_arma_equipada()
 	if not ferimentos.morto:
 		cacador.bloqueado = false
 
 
 func grade_aberta() -> RefCounted:
-	return porta_malas if _no_porta_malas and perto_do_carro() else mochila
+	return porta_malas if foco == "porta_malas" and perto_do_carro() else mochila
 
 
 func perto_do_carro() -> bool:
@@ -651,13 +663,60 @@ func perto_do_carro() -> bool:
 
 func trocar_grade() -> void:
 	if perto_do_carro():
-		_no_porta_malas = not _no_porta_malas
-		cursor = Vector2i.ZERO
+		foco = "mochila" if foco == "porta_malas" else "porta_malas"
+		cursor = Vector2i(0, mini(cursor.y, grade_aberta().altura - 1))
 
 
+## Setas: anda casa a casa; perto do carro, passa da borda da mochila para o porta-malas
+## (que fica à direita) e volta.
 func mover_cursor(d: Vector2i) -> void:
 	var g: RefCounted = grade_aberta()
-	cursor = Vector2i(clampi(cursor.x + d.x, 0, g.largura - 1), clampi(cursor.y + d.y, 0, g.altura - 1))
+	var x := cursor.x + d.x
+	if perto_do_carro() and foco == "mochila" and x >= g.largura:
+		foco = "porta_malas"
+		cursor = Vector2i(0, mini(cursor.y, porta_malas.altura - 1))
+		return
+	if perto_do_carro() and foco == "porta_malas" and x < 0:
+		foco = "mochila"
+		cursor = Vector2i(mochila.largura - 1, mini(cursor.y, mochila.altura - 1))
+		return
+	cursor = Vector2i(clampi(x, 0, g.largura - 1), clampi(cursor.y + d.y, 0, g.altura - 1))
+
+
+## O mouse aponta uma casa de uma das grades.
+func apontar(qual: String, casa: Vector2i) -> void:
+	if qual == "porta_malas" and not perto_do_carro():
+		return
+	foco = qual
+	cursor = casa
+
+
+## O: organiza a grade em foco.
+func organizar() -> void:
+	if not na_mao.is_empty():
+		return
+	if not grade_aberta().organizar():
+		_avisar("Não deu para organizar.")
+
+
+## Arma só é usada se estiver na mochila (como na maleta). A faca fica no cinto.
+func arma_na_mochila(id: String) -> bool:
+	return int(arsenal.arma_de(id)["capacidade"]) == 0 or mochila.quantidade(id) > 0
+
+
+func equipar(id: String) -> bool:
+	if not arma_na_mochila(id):
+		_avisar("%s não está na mochila." % arsenal.arma_de(id)["nome"])
+		return false
+	return arsenal.equipar(id)
+
+
+## Se a arma na mão saiu da mochila, fica a faca.
+func _conferir_arma_equipada() -> void:
+	if not arma_na_mochila(arsenal.equipada):
+		for id in arsenal.ordem:
+			if int(arsenal.arma_de(id)["capacidade"]) == 0:
+				arsenal.equipar(id)
 
 
 ## Espaço: pega o item do cursor, ou solta o da mão ali (pode ser na outra grade).

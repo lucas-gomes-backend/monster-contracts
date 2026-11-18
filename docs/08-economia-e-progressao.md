@@ -199,11 +199,13 @@ Levar tudo para o campo não é possível. **Escolher o que levar faz parte da p
 ### Decisões da mochila (18/11/2026)
 
 - Itens em `data/items/itens.json`: formato na grade, peso em gramas, pilha e se é frágil. Grades e regras em `config/inventario.json`.
-- Mochila 6x4 e porta-malas 10x5. Abrir a mochila leva 1,5 s e o caçador fica parado; dentro, pega, gira e solta itens, e passa um item para o bolso do mesmo tipo. Perto do carro, troca para o porta-malas e leva itens de um para o outro.
+- **Estilo maleta do Resident Evil 4 (pedido do Lucas, 18/11/2026):** cada item aparece no formato dele, com cor, nome e quantidade; o item na mão flutua por cima, verde onde cabe e vermelho onde não cabe; mouse ou setas; O organiza (os maiores primeiro, no canto).
+- **A mochila é sempre menor que o porta-malas** (nunca maior em nenhum lado e com menos casas; o teste confere, inclusive para mochilas melhores no futuro). Hoje: mochila 8x5, porta-malas 12x7.
+- Abrir a mochila leva 1,5 s e o caçador fica parado. Perto do carro, mochila e porta-malas ficam lado a lado e o cursor passa de um para o outro pela borda. B passa um item para o bolso do mesmo tipo.
+- **Armas ocupam espaço:** espingarda 5x2, revólver 3x2. Só dá para usar a arma que está na mochila; se ela for para o porta-malas, fica a faca (que vai no cinto, fora da grade).
 - Recarregar tira cartuchos e balas da mochila; sem munição na mochila, não recarrega.
-- Peso: até 5 kg não pesa; a partir de 10 kg, 80% da velocidade e 65% do fôlego.
+- Peso: até 8 kg não pesa; a partir de 14 kg, 80% da velocidade e 65% do fôlego.
 - Golpe grave: cada item frágil da mochila tem 35% de chance de quebrar.
-- As armas ficam nas mãos e coldres, fora da grade, por enquanto.
 
 ## Desgaste e perda de equipamento
 

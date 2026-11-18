@@ -29,6 +29,10 @@ func arma() -> Dictionary:
 	return armas[equipada]
 
 
+func arma_de(id: String) -> Dictionary:
+	return armas.get(id, {"nome": id, "capacidade": 0})
+
+
 func equipar(id: String) -> bool:
 	if not armas.has(id) or recarregando > 0.0:
 		return false

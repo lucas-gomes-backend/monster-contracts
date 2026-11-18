@@ -174,7 +174,9 @@ $mutants += @(
     @{ name = 'itens se sobrepõem na grade'; path = 'game/core/inventario/grade.gd';
        find = '		if x < e["x"] + e["w"] and e["x"] < x + w and y < e["y"] + e["h"] and e["y"] < y + h:'; replace = '		if false:' },
     @{ name = 'recarga não gasta munição'; path = 'game/presentation/cidade/bairro_cena.gd';
-       find = '	mochila.retirar(item, vai)'; replace = '	pass' }
+       find = '	mochila.retirar(item, vai)'; replace = '	pass' },
+    @{ name = 'arma fora da mochila pode ser usada'; path = 'game/presentation/cidade/bairro_cena.gd';
+       find = '	return int(arsenal.arma_de(id)["capacidade"]) == 0 or mochila.quantidade(id) > 0'; replace = '	return true' }
 )
 
 if ($Somente.Count -gt 0) {

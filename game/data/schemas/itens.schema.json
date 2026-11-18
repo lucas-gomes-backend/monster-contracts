@@ -11,14 +11,16 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "nome", "formato", "peso_g", "pilha", "fragil"],
+        "required": ["id", "nome", "formato", "peso_g", "pilha", "fragil", "cor"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
           "nome": {"type": "string", "minLength": 1},
-          "formato": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 6}, "minItems": 2, "maxItems": 2},
+          "formato": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 8}, "minItems": 2, "maxItems": 2},
           "peso_g": {"type": "integer", "minimum": 0},
           "pilha": {"type": "integer", "minimum": 1},
-          "fragil": {"type": "boolean"}
+          "fragil": {"type": "boolean"},
+          "cor": {"type": "string", "pattern": "^#[0-9a-f]{6}$"},
+          "arma": {"type": "string", "pattern": "^[a-z_]+$"}
         }
       }
     }

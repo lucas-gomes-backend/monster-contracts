@@ -77,10 +77,10 @@ func test_mover_e_girar_respeitam_a_grade() -> void:
 func test_peso_deixa_lento_e_cansado() -> void:
 	var leve := Grade.efeito_do_peso(1000, _cfg()["peso"])
 	assert_eq(leve["velocidade"], 1.0)
-	var pesado := Grade.efeito_do_peso(20000, _cfg()["peso"])
+	var pesado := Grade.efeito_do_peso(int(_cfg()["peso"]["pesado_a_partir_g"]) + 5000, _cfg()["peso"])
 	assert_almost_eq(pesado["velocidade"], float(_cfg()["peso"]["velocidade_no_pesado"]), 0.001)
 	assert_true(pesado["folego"] < 1.0)
-	var meio := Grade.efeito_do_peso(7500, _cfg()["peso"])
+	var meio := Grade.efeito_do_peso((int(_cfg()["peso"]["leve_ate_g"]) + int(_cfg()["peso"]["pesado_a_partir_g"])) / 2, _cfg()["peso"])
 	assert_true(meio["velocidade"] < 1.0 and meio["velocidade"] > pesado["velocidade"])
 
 
@@ -197,4 +197,101 @@ func test_golpe_grave_pode_quebrar_o_que_e_fragil_na_mochila() -> void:
 		cena.passar_tempo(0.1)
 	assert_eq(cena.mochila.quantidade("agua_benta"), 0, "a água benta quebrou")
 	assert_eq(cena.mochila.quantidade("vela"), 4, "vela não quebra")
+	cena.free()
+
+
+# --- Estilo maleta (RE4) ---
+
+func test_mochila_e_sempre_menor_que_o_porta_malas() -> void:
+	var m: Dictionary = _cfg()["mochila"]
+	var p: Dictionary = _cfg()["porta_malas"]
+	assert_true(int(m["largura"]) <= int(p["largura"]) and int(m["altura"]) <= int(p["altura"]), "não passa em nenhum lado")
+	assert_true(int(m["largura"]) * int(m["altura"]) < int(p["largura"]) * int(p["altura"]), "tem menos casas")
+
+
+func test_armas_ocupam_espaco_na_grade() -> void:
+	var itens := _itens()
+	for id in Catalogo.carregar_config_armas()["dados"]["armas"].map(func(a): return a["id"]):
+		if int(Catalogo.carregar_config_armas()["dados"]["armas"].filter(func(a): return a["id"] == id)[0]["capacidade"]) == 0:
+			continue
+		assert_true(itens.has(id), "%s é item" % id)
+		assert_eq(itens[id]["arma"], id)
+		assert_true(int(itens[id]["formato"][0]) * int(itens[id]["formato"][1]) >= 4, "arma de fogo é grande")
+
+
+func test_organizar_junta_tudo_no_canto() -> void:
+	var g := _grade(8, 5)
+	g.colocar("correntes", 6, 3, false, 1)
+	g.colocar("sal_grosso", 3, 2, false, 1)
+	g.colocar("espingarda_de_sal", 0, 3, false, 1)
+	assert_true(g.organizar())
+	assert_eq(g.em(0, 0)["item"], "espingarda_de_sal", "o maior primeiro")
+	assert_eq(g.quantidade("sal_grosso"), 1)
+	assert_eq(g.quantidade("correntes"), 1)
+	assert_eq(g.ocupado(), 10 + 4 + 1)
+
+
+func test_organizar_que_nao_cabe_deixa_como_estava() -> void:
+	var g := _grade(3, 2)
+	g.colocar("vela", 0, 0, false, 1)
+	g.colocar("correntes", 1, 0, false, 1)
+	var antes: Array = g.entradas.duplicate(true)
+	g._defs = g._defs.duplicate(true)
+	g._defs["vela"] = g._defs["vela"].duplicate()
+	g._defs["vela"]["formato"] = [2, 2]
+	assert_false(g.organizar())
+	assert_eq(g.entradas, antes)
+
+
+func test_arma_no_porta_malas_nao_pode_ser_usada() -> void:
+	var cena := _cena()
+	assert_eq(cena.arsenal.equipada, "espingarda_de_sal")
+	assert_true(cena.equipar("revolver"))
+	var e: Dictionary = {}
+	for x in cena.mochila.entradas:
+		if x["item"] == "revolver":
+			e = x
+	cena.porta_malas.adicionar("revolver", 1)
+	cena.mochila.tirar_entrada(e["n"])
+	cena.fechar_mochila()
+	assert_eq(cena.arsenal.equipada, "faca", "sem o revólver na mochila, fica a faca")
+	assert_false(cena.equipar("revolver"))
+	assert_true(cena.equipar("espingarda_de_sal"))
+	cena.free()
+
+
+func test_cursor_passa_da_mochila_para_o_porta_malas_lado_a_lado() -> void:
+	var cena := _cena()
+	cena.abrir_mochila()
+	cena.passar_tempo(2.0)
+	cena.cursor = Vector2i(cena.mochila.largura - 1, 2)
+	cena.mover_cursor(Vector2i(1, 0))
+	assert_eq(cena.foco, "porta_malas")
+	assert_eq(cena.cursor, Vector2i(0, 2))
+	cena.mover_cursor(Vector2i(-1, 0))
+	assert_eq(cena.foco, "mochila")
+	assert_eq(cena.cursor, Vector2i(cena.mochila.largura - 1, 2))
+	cena.cacador.position += Vector3(30, 0, 0)
+	cena.cursor = Vector2i(cena.mochila.largura - 1, 2)
+	cena.mover_cursor(Vector2i(1, 0))
+	assert_eq(cena.foco, "mochila", "longe do carro, não tem porta-malas")
+	cena.free()
+
+
+func test_item_na_mao_nao_cabe_em_cima_de_outro() -> void:
+	var cena := _cena()
+	cena.abrir_mochila()
+	cena.passar_tempo(2.0)
+	cena.apontar("mochila", Vector2i(0, 0))
+	cena.pegar_ou_soltar()
+	assert_eq(cena.na_mao["item"], "espingarda_de_sal")
+	var r: Dictionary = {}
+	for x in cena.mochila.entradas:
+		if x["item"] == "revolver":
+			r = x
+	cena.apontar("mochila", Vector2i(r["x"], r["y"]))
+	cena.pegar_ou_soltar()
+	assert_eq(cena.na_mao["item"], "espingarda_de_sal", "não soltou em cima do revólver")
+	cena.fechar_mochila()
+	assert_eq(cena.mochila.quantidade("espingarda_de_sal"), 1, "ao fechar, volta para a mochila")
 	cena.free()

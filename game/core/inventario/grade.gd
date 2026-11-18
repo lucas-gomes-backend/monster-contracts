@@ -156,6 +156,36 @@ func quebrar_frageis(chance: float, g: RandomNumberGenerator) -> Array[String]:
 	return quebrados
 
 
+## Organiza a grade (como o "organizar" da maleta): os maiores primeiro, encostados no canto.
+## Se não couber tudo de novo, deixa como estava. Devolve se organizou.
+func organizar() -> bool:
+	var antes: Array[Dictionary] = []
+	for e in entradas:
+		antes.append(e.duplicate())
+	var ordem := entradas.duplicate()
+	ordem.sort_custom(func(a, b):
+		var area_a: int = int(a["w"]) * int(a["h"])
+		var area_b: int = int(b["w"]) * int(b["h"])
+		if area_a != area_b:
+			return area_a > area_b
+		return str(a["item"]) < str(b["item"]) or (a["item"] == b["item"] and int(a["n"]) < int(b["n"])))
+	entradas.clear()
+	for e in ordem:
+		var lugar := achar_lugar(e["item"])
+		if lugar.is_empty() or colocar(e["item"], lugar["x"], lugar["y"], lugar["girado"], int(e["quantidade"])) == 0:
+			entradas.assign(antes)
+			return false
+	return true
+
+
+## Área ocupada (casas).
+func ocupado() -> int:
+	var n := 0
+	for e in entradas:
+		n += int(e["w"]) * int(e["h"])
+	return n
+
+
 ## Multiplicadores do peso: velocidade e fôlego caem entre o leve e o pesado.
 static func efeito_do_peso(peso: int, cfg_peso: Dictionary) -> Dictionary:
 	var leve := int(cfg_peso["leve_ate_g"])

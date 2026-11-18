@@ -139,7 +139,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [x] Negociação e apaziguamento (Curupira): conversa (N) com personalidade sorteada, paciência, acordo com termos e traição possível; recusa vira confronto. A oferenda só apazigua se ele não estiver furioso.
 
 **Progressão**
-- [x] Mochila em grade, porta-malas: itens com formato, peso, pilha e fragilidade (`data/items/itens.json`); abrir a mochila (I) leva tempo; porta-malas perto do carro; recarga gasta a munição da mochila; peso deixa lento; golpe grave pode quebrar o frágil.
+- [x] Mochila em grade, porta-malas, no estilo da maleta do RE4 (mochila sempre menor, armas na grade, lado a lado perto do carro): itens com formato, peso, pilha e fragilidade (`data/items/itens.json`); abrir a mochila (I) leva tempo; porta-malas perto do carro; recarga gasta a munição da mochila; peso deixa lento; golpe grave pode quebrar o frágil.
 - [ ] Dinheiro, uma reputação, 3 níveis de qualidade, motel, carro fixo.
 - [ ] 2 a 3 árvores de habilidades humanas com poucas habilidades.
 - [ ] Condição **Sensitivo** (opcional).
