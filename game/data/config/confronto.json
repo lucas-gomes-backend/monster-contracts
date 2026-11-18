@@ -1,0 +1,33 @@
+{
+  "$comment": "Confronto (docs/06): estados da criatura, ferimentos localizados do caçador e medo. Tempos em segundos reais. Ajustar aqui, nunca no código.",
+  "criatura": {
+    "duracao": {"contida": 20, "vulneravel": 12, "afastada": 8},
+    "efeito_leva_a": {"prende": "contida", "fere": "vulneravel", "revela": "vulneravel", "afasta": "afastada"},
+    "finais": {"destroi": "vulneravel", "cura": "contida", "bane": "contida", "apazigua": "livre"},
+    "agressividade_maxima": 3
+  },
+  "ferimentos": {
+    "partes": ["cabeca", "tronco", "braco_esquerdo", "braco_direito", "perna_esquerda", "perna_direita"],
+    "leves_viram_grave": 2,
+    "graves_viram_critico": 2,
+    "critico_mata_em": {"cabeca": 45, "tronco": 90, "braco_esquerdo": 300, "braco_direito": 300, "perna_esquerda": 300, "perna_direita": 300},
+    "grave": {
+      "cabeca": {"medo": 1.5, "visao_turva": 1.0},
+      "tronco": {"folego": 0.5},
+      "braco": {"mira": 2.0, "ritual": 1.5},
+      "perna": {"velocidade": 0.6}
+    },
+    "peso_do_leve": 0.4,
+    "peso_do_braco_que_nao_e_o_dominante": 0.6
+  },
+  "medo": {
+    "maximo": 100,
+    "sobe_por_segundo": {"criatura_perto": 8.0, "escuro": 0.6, "por_ferimento_grave": 0.5},
+    "desce_por_segundo": {"luz": 1.5, "protecao": 4.0, "calmo": 0.8},
+    "susto": 15,
+    "criatura_perto_metros": 12.0,
+    "niveis": {"tenso": 35, "apavorado": 70},
+    "tremor_a_partir": 35,
+    "lanterna_falha_por_segundo_no_maximo": 0.35
+  }
+}

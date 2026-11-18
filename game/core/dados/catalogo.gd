@@ -128,6 +128,11 @@ static func carregar_config_mare() -> Dictionary:
 	return carregar_validado("res://data/config/mare.json", "res://data/schemas/mare.schema.json")
 
 
+## Confronto: estados da criatura, ferimentos e medo (docs/06), validados.
+static func carregar_config_confronto() -> Dictionary:
+	return carregar_validado("res://data/config/confronto.json", "res://data/schemas/confronto.schema.json")
+
+
 ## Pontos-chave (tipo de lugar -> nome, letra no minimapa, cor), validados um a um.
 static func carregar_pontos_chave() -> Dictionary:
 	var caminho_esquema := "res://data/schemas/pontos_chave.schema.json"

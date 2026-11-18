@@ -154,7 +154,11 @@ $mutants += @(
     @{ name = 'teste não pega pelo que a criatura é'; path = 'game/core/investigacao/regras_de_campo.gd';
        find = 'if not tem_fraqueza and not _pega_pelo_que_e(teste, ficha_verdade):'; replace = 'if not tem_fraqueza:' },
     @{ name = 'carta sem a família de quem morreu'; path = 'game/core/casos/cartas.gd';
-       find = '	if desfecho.get("amaldicoado_morto", false):'; replace = '	if false:' }
+       find = '	if desfecho.get("amaldicoado_morto", false):'; replace = '	if false:' },
+    @{ name = 'contenção não se desgasta'; path = 'game/core/confronto/estado_criatura.gd';
+       find = '		restante -= segundos'; replace = '		restante -= 0.0' },
+    @{ name = 'crítico não mata'; path = 'game/core/confronto/ferimentos.gd';
+       find = '			morto = true'; replace = '			morto = false' }
 )
 
 if ($Somente.Count -gt 0) {

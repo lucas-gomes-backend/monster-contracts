@@ -241,5 +241,6 @@ O limbo **reaproveita** o sistema de fraquezas e estados deste documento, mas ac
 ## Decisões
 
 - **Ferimentos:** localizados (cabeça, tronco, braços, pernas).
+- **Estados, ferimentos e medo em números (18/11/2026):** `config/confronto.json`. Contida dura 20 s, vulnerável 12 s, afastada 8 s. Destruir exige vulnerável; curar e banir exigem pelo menos contida (senão a mula e o corpo-seco, que não têm fraqueza que fere, nunca se resolveriam); apaziguar vale com a criatura solta. Dois leves viram grave e dois graves viram crítico; crítico sem tratamento mata em 45 s na cabeça, 90 s no tronco e 5 min nos membros. O medo vai de 0 a 100: tenso a partir de 35, apavorado a partir de 70; as mãos tremem a partir de 35 e a lanterna falha cada vez mais.
 - **Fuga de carro:** sem perseguição jogável por enquanto.
 - **Rituais:** cada passo tem teste de reflexo, além da ordem e da posição.

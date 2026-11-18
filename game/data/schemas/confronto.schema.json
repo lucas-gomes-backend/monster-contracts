@@ -1,0 +1,81 @@
+{
+  "$comment": "Confronto: estados da criatura, ferimentos e medo (game/data/config/confronto.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["criatura", "ferimentos", "medo"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "criatura": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duracao", "efeito_leva_a", "finais", "agressividade_maxima"],
+      "properties": {
+        "duracao": {
+          "type": "object", "additionalProperties": false, "required": ["contida", "vulneravel", "afastada"],
+          "properties": {"contida": {"type": "number", "minimum": 0}, "vulneravel": {"type": "number", "minimum": 0}, "afastada": {"type": "number", "minimum": 0}}
+        },
+        "efeito_leva_a": {"$comment": "efeito -> contida, vulneravel ou afastada", "type": "object"},
+        "finais": {"$comment": "efeito final -> estado mínimo exigido (livre, contida, vulneravel)", "type": "object"},
+        "agressividade_maxima": {"type": "integer", "minimum": 1}
+      }
+    },
+    "ferimentos": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["partes", "leves_viram_grave", "graves_viram_critico", "critico_mata_em", "grave", "peso_do_leve", "peso_do_braco_que_nao_e_o_dominante"],
+      "properties": {
+        "partes": {"type": "array", "minItems": 1, "items": {"enum": ["cabeca", "tronco", "braco_esquerdo", "braco_direito", "perna_esquerda", "perna_direita"]}},
+        "leves_viram_grave": {"type": "integer", "minimum": 1},
+        "graves_viram_critico": {"type": "integer", "minimum": 1},
+        "critico_mata_em": {"$comment": "parte -> segundos", "type": "object"},
+        "grave": {
+          "type": "object", "additionalProperties": false, "required": ["cabeca", "tronco", "braco", "perna"],
+          "properties": {
+            "cabeca": {"$ref": "#/$defs/efeitos"}, "tronco": {"$ref": "#/$defs/efeitos"},
+            "braco": {"$ref": "#/$defs/efeitos"}, "perna": {"$ref": "#/$defs/efeitos"}
+          }
+        },
+        "peso_do_leve": {"type": "number", "minimum": 0, "maximum": 1},
+        "peso_do_braco_que_nao_e_o_dominante": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "medo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maximo", "sobe_por_segundo", "desce_por_segundo", "susto", "criatura_perto_metros", "niveis", "tremor_a_partir", "lanterna_falha_por_segundo_no_maximo"],
+      "properties": {
+        "maximo": {"type": "number", "minimum": 1},
+        "sobe_por_segundo": {
+          "type": "object", "additionalProperties": false, "required": ["criatura_perto", "escuro", "por_ferimento_grave"],
+          "properties": {"criatura_perto": {"type": "number", "minimum": 0}, "escuro": {"type": "number", "minimum": 0}, "por_ferimento_grave": {"type": "number", "minimum": 0}}
+        },
+        "desce_por_segundo": {
+          "type": "object", "additionalProperties": false, "required": ["luz", "protecao", "calmo"],
+          "properties": {"luz": {"type": "number", "minimum": 0}, "protecao": {"type": "number", "minimum": 0}, "calmo": {"type": "number", "minimum": 0}}
+        },
+        "susto": {"type": "number", "minimum": 0},
+        "criatura_perto_metros": {"type": "number", "minimum": 0},
+        "niveis": {
+          "type": "object", "additionalProperties": false, "required": ["tenso", "apavorado"],
+          "properties": {"tenso": {"type": "number", "minimum": 0}, "apavorado": {"type": "number", "minimum": 0}}
+        },
+        "tremor_a_partir": {"type": "number", "minimum": 0},
+        "lanterna_falha_por_segundo_no_maximo": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    }
+  },
+  "$defs": {
+    "efeitos": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "medo": {"type": "number", "minimum": 0},
+        "visao_turva": {"type": "number", "minimum": 0},
+        "folego": {"type": "number", "minimum": 0},
+        "mira": {"type": "number", "minimum": 0},
+        "ritual": {"type": "number", "minimum": 0},
+        "velocidade": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

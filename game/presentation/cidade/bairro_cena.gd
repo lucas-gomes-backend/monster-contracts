@@ -35,6 +35,10 @@ const Transeuntes3D := preload("res://presentation/cidade/transeuntes_3d.gd")
 const Policia3D := preload("res://presentation/cidade/policia_3d.gd")
 const Suspeita := preload("res://core/mundo/suspeita.gd")
 const Mare := preload("res://core/tempo/mare.gd")
+const Ferimentos := preload("res://core/confronto/ferimentos.gd")
+const Medo := preload("res://core/confronto/medo.gd")
+## Quanto tempo a lanterna fica apagada quando falha de medo (segundos).
+const PISCADA_DA_LANTERNA := 0.25
 const CORES_DA_SUSPEITA := {"normal": Color(0.15, 0.3, 0.15), "observado": Color(0.6, 0.45, 0.05),
 	"procurado": Color(0.7, 0.2, 0.1), "barrado": Color(0.5, 0.05, 0.05)}
 
@@ -75,6 +79,12 @@ var painel: Label
 var _alcance_de_quem_ve: float = 12.0
 var _minutos_detido: int = 240
 var cacador: CharacterBody3D
+## Ferimentos e medo do caçador (núcleo, docs/06). Sem criatura no mapa ainda, o medo sobe
+## no escuro sem lanterna (noite, galerias) e desce com luz.
+var ferimentos: RefCounted
+var medo: RefCounted
+var _lanterna_apagada := 0.0
+var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
 ## "rua" ou "esgoto".
@@ -132,6 +142,9 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	_alcance_de_quem_ve = cfg_suspeita["sujeira"]["alcance_de_quem_ve"]
 	_minutos_detido = cfg_suspeita["detencao"]["minutos_perdidos"]
 	mare = Mare.new(Catalogo.carregar_config_mare()["dados"])
+	var cfg_confronto: Dictionary = Catalogo.carregar_config_confronto()["dados"]
+	ferimentos = Ferimentos.new(cfg_confronto["ferimentos"])
+	medo = Medo.new(cfg_confronto["medo"], Rng.new(semente).stream("medo"))
 	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -311,7 +324,7 @@ func _montar_interface() -> void:
 	camada.add_child(aviso)
 	painel = Label.new()
 	painel.position = Vector2(498, 164)
-	painel.size = Vector2(134, 30)
+	painel.size = Vector2(134, 58)
 	painel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	painel.add_theme_font_size_override("font_size", 10)
 	camada.add_child(painel)
@@ -414,6 +427,27 @@ func passar_tempo(segundos: float) -> void:
 		transeuntes[id].andar(segundos)
 	if policia.andar(segundos, cacador.position) and zona == "rua":
 		deter()
+	_corpo_e_medo(segundos)
+
+
+## Ferimentos pesam no corpo; o medo sobe no escuro e a lanterna falha com medo alto.
+func _corpo_e_medo(segundos: float) -> void:
+	ferimentos.passar(segundos)
+	var m: Dictionary = ferimentos.modificadores()
+	cacador.modificadores = m
+	var escuro := zona == "esgoto" or Relogio.new(minuto).eh_noite()
+	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": m["medo"]})
+	if _lanterna_apagada > 0.0:
+		_lanterna_apagada -= segundos
+		if _lanterna_apagada <= 0.0:
+			cacador.lanterna.light_energy = _energia_da_lanterna
+	elif cacador.lanterna.visible and medo.lanterna_falha(segundos):
+		_energia_da_lanterna = cacador.lanterna.light_energy
+		cacador.lanterna.light_energy = 0.0
+		_lanterna_apagada = PISCADA_DA_LANTERNA
+	if ferimentos.morto and not cacador.bloqueado:
+		cacador.bloqueado = true
+		_avisar("Você morreu. (O limbo vem depois.)")
 
 
 ## O que muda a cada minuto: a suspeita cai, quem vê o caçador sujo desconfia, a
@@ -478,7 +512,10 @@ func texto_do_painel() -> String:
 	var altura: float = mare.altura(minuto)
 	var sentido := "subindo" if mare.subindo(minuto) else "descendo"
 	var alagada := " (alagada)" if mare.galerias_alagadas(minuto) else ""
-	return "Maré %s %s m%s\nSuspeita: %s" % [sentido, ("%.1f" % altura).replace(".", ","), alagada, suspeita.nivel(str(bairro.dados["id"]))]
+	var texto := "Maré %s %s m%s\nSuspeita: %s\nMedo: %s" % [sentido, ("%.1f" % altura).replace(".", ","), alagada, suspeita.nivel(str(bairro.dados["id"])), medo.nivel()]
+	if ferimentos.texto() != "nenhum":
+		texto += "\nFerido: %s" % ferimentos.texto()
+	return texto
 
 
 ## "Quarta, 08:05"

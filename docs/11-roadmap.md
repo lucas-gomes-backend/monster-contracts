@@ -133,7 +133,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [x] Cartas e presentes depois do caso: saem do desfecho (pessoas salvas, criatura poupada, demora ou erro, inocente prejudicado, amaldiçoado morto, golpista exposto), citam nomes e lugares e aparecem depois do relatório. Guardar no mural da casa fica para quando houver casa e save.
 
 **Confronto** ([06](06-confronto-e-rituais.md))
-- [ ] Estados da criatura, ferimentos localizados, medo.
+- [x] Estados da criatura, ferimentos localizados, medo: núcleo em `core/confronto` e números em `config/confronto.json`. Na cidade, ferimentos pesam no corpo e o medo sobe no escuro sem lanterna (a criatura em 3D vem com as armas).
 - [ ] Espingarda de sal, revólver, faca. Menu radial, proteções de sal.
 - [ ] 2 a 3 rituais com teste de reflexo.
 - [ ] Negociação e apaziguamento (Curupira).

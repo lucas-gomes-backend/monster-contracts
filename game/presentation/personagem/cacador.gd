@@ -34,6 +34,9 @@ var lanterna: SpotLight3D
 var mirando: bool = false
 ## Bloqueado enquanto examina uma pista: não anda nem gira a câmera.
 var bloqueado: bool = false
+## Ferimentos mexem no corpo (core/confronto/ferimentos.gd): perna ferida anda mais devagar,
+## tronco ferido corre menos.
+var modificadores: Dictionary = {"velocidade": 1.0, "folego": 1.0}
 var corpo: Node3D
 var pivo: Node3D
 var inclinacao: Node3D
@@ -210,6 +213,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 ## Separado do _physics_process para os testes andarem o caçador sem teclado.
 func passo(entrada: Vector2, correndo: bool, delta: float) -> void:
 	var alvo := velocidade_alvo(entrada, yaw, correndo, config)
+	alvo *= float(modificadores.get("velocidade", 1.0)) * (float(modificadores.get("folego", 1.0)) if correndo else 1.0)
 	velocity = acelerar(velocity, alvo, config["aceleracao"], delta)
 	if is_on_floor():
 		velocity.y = 0.0
