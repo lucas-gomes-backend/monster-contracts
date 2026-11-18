@@ -49,6 +49,13 @@ func caminho(de: Vector2, para: Vector2) -> PackedVector2Array:
 	return saida
 
 
+## O ponto das ruas mais perto de p (onde parar o carro numa viagem rápida).
+func mais_perto(p: Vector2) -> Vector2:
+	if _grafo.get_point_count() == 0:
+		return p
+	return _grafo.get_point_position(_grafo.get_closest_point(p))
+
+
 func pontos() -> int:
 	return _grafo.get_point_count()
 

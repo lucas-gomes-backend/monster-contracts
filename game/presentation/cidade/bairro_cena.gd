@@ -53,6 +53,7 @@ const Blocos := preload("res://presentation/greybox/blocos.gd")
 const Progresso := preload("res://core/progressao/progresso.gd")
 const Carro3D := preload("res://presentation/cidade/carro_3d.gd")
 const MotelTela := preload("res://presentation/cidade/motel_tela.gd")
+const ViagemTela := preload("res://presentation/cidade/viagem_tela.gd")
 const MochilaTela := preload("res://presentation/cidade/mochila_tela.gd")
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
@@ -149,6 +150,7 @@ var motel_tela: Control
 var menu_do_motel := "principal"
 var dirigindo := false
 var _camadas_do_cacador := Vector2i(1, 1)
+var viagem_tela: Control
 var _cfg_progressao: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
@@ -183,6 +185,9 @@ func _ready() -> void:
 			trazer_criatura(argumento.trim_prefix("--criatura="))
 		elif argumento == "--dirigir":
 			entrar_no_carro()
+		elif argumento == "--mapa-de-viagem":
+			entrar_no_carro()
+			abrir_mapa_de_viagem()
 		elif argumento == "--mochila":
 			abrir_mochila()
 			_mochila_aberta()
@@ -481,6 +486,12 @@ func _montar_interface() -> void:
 	motel_tela.size = Vector2(460, 230)
 	motel_tela.visible = false
 	camada.add_child(motel_tela)
+	viagem_tela = ViagemTela.new()
+	viagem_tela.cena = self
+	viagem_tela.position = Vector2(20, 60)
+	viagem_tela.size = Vector2(600, 360)
+	viagem_tela.visible = false
+	camada.add_child(viagem_tela)
 
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
@@ -578,6 +589,18 @@ func _input(evento: InputEvent) -> void:
 		elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode >= KEY_1 and evento.physical_keycode <= KEY_9:
 			escolher_no_motel(evento.physical_keycode - KEY_1)
 			get_viewport().set_input_as_handled()
+		return
+	if viagem_tela.visible:
+		if evento.is_action_pressed("mapa") or evento.is_action_pressed("soltar_mouse"):
+			fechar_mapa_de_viagem()
+			get_viewport().set_input_as_handled()
+		elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode >= KEY_0 and evento.physical_keycode <= KEY_9:
+			viajar(9 if evento.physical_keycode == KEY_0 else evento.physical_keycode - KEY_1)
+			get_viewport().set_input_as_handled()
+		return
+	if evento.is_action_pressed("mapa"):
+		abrir_mapa_de_viagem()
+		get_viewport().set_input_as_handled()
 		return
 	if dirigindo:
 		return
@@ -897,6 +920,72 @@ func sair_do_carro() -> void:
 func dirigir(entrada: Vector2, delta: float) -> void:
 	carro.dirigir(entrada, delta)
 	cacador.position = carro.position + Vector3(0, 0.3, 0)
+
+
+## M: o mapa de viagem rápida só abre dentro do carro.
+func abrir_mapa_de_viagem() -> bool:
+	if not dirigindo:
+		_avisar("O mapa de viagem abre dentro do carro.")
+		return false
+	viagem_tela.visible = true
+	_mouse_antes = Input.mouse_mode
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	return true
+
+
+func fechar_mapa_de_viagem() -> void:
+	if viagem_tela.visible:
+		viagem_tela.visible = false
+		Input.mouse_mode = _mouse_antes
+
+
+## Pontos de viagem rápida: a entrada de cada bairro carregado e os pontos-chave deles, cada
+## um na rua mais perto. [{"nome", "bairro", "ponto": Vector2, "metros", "minutos", "litros"}]
+func destinos_de_viagem() -> Array:
+	var lista: Array = []
+	var ids := carregados.keys()
+	ids.sort()
+	for id in ids:
+		var c: Vector3 = carregados[id].chegada()
+		lista.append({"nome": str(carregados[id].dados["nome"]), "bairro": id, "ponto": Vector2(c.x, c.z)})
+	for id in ids:
+		if not populacoes.has(id):
+			continue
+		for ponto in populacoes[id].pontos_chave:
+			lista.append({"nome": "%s (%s)" % [ponto["nome"], carregados[id].dados["nome"]], "bairro": id, "ponto": populacoes[id].ponto_na_rua(ponto["porta"])})
+	var cfg: Dictionary = _cfg_progressao["carro"]
+	var v: Dictionary = cfg["viagem_rapida"]
+	var aqui := Vector2(carro.position.x, carro.position.z) if carro != null else Vector2(cacador.position.x, cacador.position.z)
+	for d in lista:
+		var metros: float = aqui.distance_to(d["ponto"]) * float(v["desvio_das_ruas"])
+		d["metros"] = metros
+		d["minutos"] = maxi(1, int(ceil(metros / (float(v["velocidade_media_kmh"]) * 1000.0 / 60.0))))
+		d["litros"] = metros / (float(cfg["km_por_litro"]) * 1000.0)
+	return lista
+
+
+## Viagem rápida até o destino i: o carro aparece lá, o relógio anda e a gasolina gasta.
+func viajar(i: int) -> bool:
+	var destinos := destinos_de_viagem()
+	if not dirigindo or i < 0 or i >= destinos.size():
+		return false
+	var d: Dictionary = destinos[i]
+	if float(d["litros"]) > carro.litros:
+		_avisar("Não tem gasolina para chegar lá.")
+		return false
+	carro.litros -= float(d["litros"])
+	carro.velocidade = 0.0
+	carro.position = Vector3(d["ponto"].x, 0.05, d["ponto"].y)
+	cacador.position = carro.position + Vector3(0, 0.3, 0)
+	var minutos: int = d["minutos"]
+	minuto += minutos
+	suspeita.passar_minutos(minutos)
+	for b in populacoes:
+		populacoes[b].atualizar(minuto)
+	fechar_mapa_de_viagem()
+	verificar_fronteira()
+	_avisar("%s (%d min)" % [d["nome"], minutos])
+	return true
 
 
 ## O motel do Centro (ponto-chave): a porta mais perto, ou Vector2.INF.

@@ -214,6 +214,7 @@ Levar tudo para o campo não é possível. **Escolher o que levar faz parte da p
 - **3 níveis de qualidade:** Improvisado, Comum, Profissional. Armas: dispersão 1,3/1,0/0,75 e recarga 1,25/1,0/0,8. Mochila: 6x4, 8x5, 9x6 (sempre menor que o porta-malas). Começo: espingarda Improvisada, revólver e mochila Comuns. Profissional exige reputação.
 - **Motel (Centro, Motel Estrela do Porto):** E na porta abre o menu. Descansar 8 h (R$ 60): cura um grau de cada ferimento e zera o medo. Guarda do quarto 6x3, ao lado da mochila. Encomendas por telefone chegam na guarda. Melhorias de equipamento. Abastecer o carro se ele estiver a até 30 m (posto na esquina, R$ 6 o litro).
 - **Carro fixo:** o sedã velho. E perto da porta entra e sai; WASD dirige. Tanque de 40 L, 8 km por litro; sem gasolina, não anda. O porta-malas abre perto dele.
+- **Viagem rápida (pedido do Lucas, 18/11/2026):** dentro do carro, M abre o mapa de viagem com a entrada de cada bairro carregado e os pontos-chave deles (o carro para na rua mais perto). A viagem passa o relógio e gasta gasolina pela distância em linha reta vezes 1,3 (desvio das ruas), a 25 km/h de média. Sem gasolina para chegar, não vai. O mapa mostra a cidade de verdade (ruas, prédios e o contorno dos bairros), como o minimapa.
 
 ## Desgaste e perda de equipamento
 

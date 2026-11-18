@@ -164,3 +164,8 @@ func visiveis() -> int:
 		if pessoas[id]["no"].visible:
 			n += 1
 	return n
+
+
+## O ponto da rua mais perto de p (para o carro parar numa viagem rápida).
+func ponto_na_rua(p: Vector2) -> Vector2:
+	return _caminhos.mais_perto(p) if _caminhos != null else p

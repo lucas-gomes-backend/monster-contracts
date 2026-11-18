@@ -23,7 +23,8 @@
   },
   "nivel_inicial": {"espingarda_de_sal": 1, "revolver": 2, "mochila": 2},
   "motel": {"diaria": 60, "horas_de_sono": 8, "guarda": [6, 3], "alcance": 3.0, "abastece_ate_metros": 30.0},
-  "carro": {"tanque_litros": 40.0, "litros_iniciais": 25.0, "km_por_litro": 8.0, "preco_do_litro": 6, "velocidade_maxima": 16.0, "re_maxima": 5.0, "aceleracao": 7.0, "freio": 14.0, "giro": 1.8, "alcance_da_porta": 2.8},
+  "carro": {"tanque_litros": 40.0, "litros_iniciais": 25.0, "km_por_litro": 8.0, "preco_do_litro": 6, "velocidade_maxima": 16.0, "re_maxima": 5.0, "aceleracao": 7.0, "freio": 14.0, "giro": 1.8, "alcance_da_porta": 2.8,
+    "viagem_rapida": {"velocidade_media_kmh": 25.0, "desvio_das_ruas": 1.3}},
   "loja": [
     {"id": "cartucho_de_sal", "nome": "Cartuchos de sal (8)", "item": "cartucho_de_sal", "quantidade": 8, "preco": 40},
     {"id": "bala_38", "nome": "Balas .38 (12)", "item": "bala_38", "quantidade": 12, "preco": 55},

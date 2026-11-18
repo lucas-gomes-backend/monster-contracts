@@ -180,7 +180,9 @@ $mutants += @(
     @{ name = 'paga fora do prazo'; path = 'game/core/progressao/progresso.gd';
        find = '		ganho = int(desfecho.get("recompensa", 0))'; replace = '		ganho = int(contrato.get("recompensa", 0))' },
     @{ name = 'carro anda sem gasolina'; path = 'game/presentation/cidade/carro_3d.gd';
-       find = '	if litros <= 0.0:'; replace = '	if false:' }
+       find = '	if litros <= 0.0:'; replace = '	if false:' },
+    @{ name = 'viagem rápida não gasta gasolina'; path = 'game/presentation/cidade/bairro_cena.gd';
+       find = '	carro.litros -= float(d["litros"])'; replace = '	pass' }
 )
 
 if ($Somente.Count -gt 0) {

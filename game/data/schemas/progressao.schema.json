@@ -56,7 +56,7 @@
     },
     "carro": {
       "type": "object", "additionalProperties": false,
-      "required": ["tanque_litros", "litros_iniciais", "km_por_litro", "preco_do_litro", "velocidade_maxima", "re_maxima", "aceleracao", "freio", "giro", "alcance_da_porta"],
+      "required": ["tanque_litros", "litros_iniciais", "km_por_litro", "preco_do_litro", "velocidade_maxima", "re_maxima", "aceleracao", "freio", "giro", "alcance_da_porta", "viagem_rapida"],
       "properties": {
         "tanque_litros": {"type": "number", "minimum": 1},
         "litros_iniciais": {"type": "number", "minimum": 0},
@@ -67,7 +67,12 @@
         "aceleracao": {"type": "number", "minimum": 0},
         "freio": {"type": "number", "minimum": 0},
         "giro": {"type": "number", "minimum": 0},
-        "alcance_da_porta": {"type": "number", "minimum": 0}
+        "alcance_da_porta": {"type": "number", "minimum": 0},
+        "viagem_rapida": {
+          "$comment": "Dentro do carro, M abre o mapa de viagem rápida. O tempo e a gasolina saem da distância em linha reta vezes o desvio das ruas.",
+          "type": "object", "additionalProperties": false, "required": ["velocidade_media_kmh", "desvio_das_ruas"],
+          "properties": {"velocidade_media_kmh": {"type": "number", "minimum": 1}, "desvio_das_ruas": {"type": "number", "minimum": 1}}
+        }
       }
     },
     "loja": {

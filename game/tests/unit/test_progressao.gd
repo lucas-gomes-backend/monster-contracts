@@ -238,3 +238,65 @@ func test_hud_mostra_dinheiro_e_reputacao() -> void:
 	var cena := _cena()
 	assert_has(cena.texto_do_hud(), "R$ %d · Desconhecido" % int(_cfg()["dinheiro_inicial"]))
 	cena.free()
+
+
+# --- Viagem rápida no carro ---
+
+func test_mapa_de_viagem_so_abre_dentro_do_carro() -> void:
+	var cena := _cena()
+	assert_false(cena.abrir_mapa_de_viagem())
+	assert_false(cena.viagem_tela.visible)
+	cena.entrar_no_carro()
+	assert_true(cena.abrir_mapa_de_viagem())
+	assert_true(cena.viagem_tela.visible)
+	cena.free()
+
+
+func test_destinos_sao_os_bairros_carregados_e_os_pontos_chave() -> void:
+	var cena := _cena()
+	cena.entrar_no_carro()
+	var nomes: Array = cena.destinos_de_viagem().map(func(d): return d["nome"])
+	assert_has(nomes, "Centro")
+	assert_has(nomes, "Motel Estrela do Porto (Centro)")
+	var unicos := {}
+	for n in nomes:
+		unicos[n] = true
+	assert_eq(unicos.size(), nomes.size(), "nenhum nome repetido")
+	for d in cena.destinos_de_viagem():
+		assert_true(int(d["minutos"]) >= 1 and float(d["litros"]) >= 0.0)
+	cena.free()
+
+
+func test_viajar_leva_o_carro_passa_o_tempo_e_gasta_gasolina() -> void:
+	var cena := _cena()
+	cena.entrar_no_carro()
+	var destinos: Array = cena.destinos_de_viagem()
+	var i := -1
+	for j in destinos.size():
+		if destinos[j]["nome"] == "Motel Estrela do Porto (Centro)":
+			i = j
+	var d: Dictionary = destinos[i]
+	var minuto: int = cena.minuto
+	var litros: float = cena.carro.litros
+	assert_true(cena.viajar(i))
+	assert_almost_eq(Vector2(cena.carro.position.x, cena.carro.position.z).distance_to(d["ponto"]), 0.0, 0.01)
+	assert_eq(cena.minuto - minuto, int(d["minutos"]))
+	assert_almost_eq(cena.carro.litros, litros - float(d["litros"]), 0.001)
+	assert_eq(str(cena.bairro.dados["id"]), "centro", "chegou no Centro")
+	assert_false(cena.viagem_tela.visible)
+	cena.free()
+
+
+func test_sem_gasolina_para_a_viagem_nao_vai() -> void:
+	var cena := _cena()
+	cena.entrar_no_carro()
+	cena.carro.litros = 0.0
+	var antes: Vector3 = cena.carro.position
+	var longe := -1
+	var destinos: Array = cena.destinos_de_viagem()
+	for j in destinos.size():
+		if float(destinos[j]["litros"]) > 0.0:
+			longe = j
+	assert_false(cena.viajar(longe))
+	assert_eq(cena.carro.position, antes)
+	cena.free()
