@@ -184,6 +184,15 @@ Funciona como um **nível de procurado sobrenatural**.
 - **Morte:** o jogador vai para o **limbo** e enfrenta em hordas as criaturas que matou. Ver [13 — Tempo, morte e finais](13-tempo-morte-e-finais.md).
 - **Finais:** sim, diferentes por condição. O final é a **aposentadoria**, e criaturas imortais se aposentam quando quiserem. Ver [13](13-tempo-morte-e-finais.md).
 
+## Decisões do corte vertical (18/11/2026)
+
+- **3 árvores, 3 habilidades cada** (`config/habilidades.json`), escolhidas porque mexem no que já existe:
+  - **Combate:** Pontaria (menos dispersão), Recarga rápida, Sangue-frio (o medo sobe mais devagar).
+  - **Ocultismo:** Mãos firmes (faixa do ritual maior), Concentração (marcador mais lento), Palavras certas (uma palavra errada por ritual não faz falhar).
+  - **Sobrevivência:** Primeiros socorros (bandagem trata um grau a mais), Resistência (o crítico demora mais para matar), Fôlego (corre mais).
+- **Só pela prática** por enquanto: acertar tiro e recarregar ensinam Combate; passos e rituais completos, Ocultismo; tratar e levar ferimentos, Sobrevivência. Cada 10 de experiência vira 1 ponto naquela árvore. Treino com mentores e estudo ficam para depois.
+- **Teto de 8 pontos** no total (há 15 níveis para comprar): não dá para maximizar tudo.
+
 ## Escopo no roadmap
 
 - **Corte vertical:** 2 ou 3 árvores humanas com poucas habilidades. Condições ficam de fora, ou entra só o **Sensitivo**, que é a mais simples.

@@ -1,0 +1,42 @@
+{
+  "$comment": "Habilidades humanas do corte vertical (docs/12, Parte A): 3 árvores com poucas habilidades. Evoluem pela prática: cada ação dá experiência na árvore dela, e cada 'xp_por_ponto' vira 1 ponto para gastar naquela árvore. Há um teto total de pontos, para obrigar a especialização. 'efeito' dá o valor por nível aprendido (multiplicadores; 'perdoa_palavra' e 'trata_mais' são quantidades). Nenhuma habilidade dá a resposta do caso.",
+  "teto_de_pontos": 8,
+  "xp_por_ponto": 10,
+  "xp": {
+    "acerto": {"arvore": "combate", "xp": 2},
+    "recarga": {"arvore": "combate", "xp": 1},
+    "passo_de_ritual": {"arvore": "ocultismo", "xp": 2},
+    "ritual_completo": {"arvore": "ocultismo", "xp": 6},
+    "ferimento_tratado": {"arvore": "sobrevivencia", "xp": 3},
+    "golpe_recebido": {"arvore": "sobrevivencia", "xp": 2}
+  },
+  "arvores": [
+    {
+      "id": "combate",
+      "nome": "Combate",
+      "habilidades": [
+        {"id": "pontaria", "nome": "Pontaria", "descricao": "Mira mais firme: os tiros espalham menos.", "efeito": {"dispersao": [0.85, 0.7]}},
+        {"id": "recarga_rapida", "nome": "Recarga rápida", "descricao": "Recarrega mais depressa.", "efeito": {"recarga": [0.85, 0.7]}},
+        {"id": "sangue_frio", "nome": "Sangue-frio", "descricao": "O medo sobe mais devagar.", "efeito": {"medo": [0.8, 0.6]}}
+      ]
+    },
+    {
+      "id": "ocultismo",
+      "nome": "Ocultismo",
+      "habilidades": [
+        {"id": "maos_firmes", "nome": "Mãos firmes", "descricao": "A faixa de acerto do ritual fica maior.", "efeito": {"janela_do_ritual": [1.2, 1.4]}},
+        {"id": "concentracao", "nome": "Concentração", "descricao": "O marcador do ritual anda mais devagar.", "efeito": {"marcador_do_ritual": [0.85, 0.7]}},
+        {"id": "palavras_certas", "nome": "Palavras certas", "descricao": "Uma palavra errada por ritual não o faz falhar.", "efeito": {"perdoa_palavra": [1]}}
+      ]
+    },
+    {
+      "id": "sobrevivencia",
+      "nome": "Sobrevivência",
+      "habilidades": [
+        {"id": "primeiros_socorros", "nome": "Primeiros socorros", "descricao": "A bandagem trata um grau a mais.", "efeito": {"trata_mais": [1]}},
+        {"id": "resistencia", "nome": "Resistência", "descricao": "Aguenta mais tempo um ferimento crítico.", "efeito": {"tempo_do_critico": [1.5, 2.0]}},
+        {"id": "folego", "nome": "Fôlego", "descricao": "Corre mais antes de cansar.", "efeito": {"folego": [1.15, 1.3]}}
+      ]
+    }
+  ]
+}

@@ -16,6 +16,8 @@ var def: Dictionary
 var passo: int = 0
 var situacao: String = ANDANDO
 var erros_de_tempo: int = 0
+## Palavras erradas que ainda não fazem o ritual falhar (habilidade Palavras certas).
+var perdoes: int = 0
 var centro: float = 0.5
 var _cfg: Dictionary
 var _g: RandomNumberGenerator
@@ -81,6 +83,9 @@ func escolher(opcao: int) -> bool:
 	if situacao != ANDANDO or p.get("tipo", "") != "palavra":
 		return false
 	if opcao != int(p["certa"]):
+		if perdoes > 0:
+			perdoes -= 1
+			return false
 		situacao = FALHOU
 		return false
 	_avancar()

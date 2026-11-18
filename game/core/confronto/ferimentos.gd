@@ -21,6 +21,8 @@ var _critico_ha: Dictionary = {}  # parte -> segundos desde que ficou crítico
 var morto: bool = false
 var causa_da_morte: String = ""
 var dominante: String = "braco_direito"
+## Quanto mais tempo o crítico leva para matar (habilidade Resistência).
+var tempo_do_critico: float = 1.0
 var _cfg: Dictionary
 
 
@@ -73,7 +75,7 @@ func passar(segundos: float) -> void:
 	partes.sort()
 	for parte in partes:
 		_critico_ha[parte] += segundos
-		if _critico_ha[parte] >= float(_cfg["critico_mata_em"][parte]):
+		if _critico_ha[parte] >= float(_cfg["critico_mata_em"][parte]) * tempo_do_critico:
 			morto = true
 			causa_da_morte = parte
 			return
@@ -83,7 +85,7 @@ func passar(segundos: float) -> void:
 func tempo_ate_morrer() -> float:
 	var menor := -1.0
 	for parte in _critico_ha:
-		var falta: float = float(_cfg["critico_mata_em"][parte]) - float(_critico_ha[parte])
+		var falta: float = float(_cfg["critico_mata_em"][parte]) * tempo_do_critico - float(_critico_ha[parte])
 		if menor < 0.0 or falta < menor:
 			menor = falta
 	return menor

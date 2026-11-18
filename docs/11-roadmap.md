@@ -141,7 +141,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 **Progressão**
 - [x] Mochila em grade, porta-malas, no estilo da maleta do RE4 (mochila sempre menor, armas na grade, lado a lado perto do carro): itens com formato, peso, pilha e fragilidade (`data/items/itens.json`); abrir a mochila (I) leva tempo; porta-malas perto do carro; recarga gasta a munição da mochila; peso deixa lento; golpe grave pode quebrar o frágil.
 - [x] Dinheiro, uma reputação, 3 níveis de qualidade, motel, carro fixo: pagamento e bônus por caso, reputação em 4 níveis, Improvisado/Comum/Profissional nas armas e na mochila, motel do Centro (descansar, guardar, encomendar, melhorar, abastecer) e o sedã dirigível com gasolina; no carro, M abre o mapa de viagem rápida.
-- [ ] 2 a 3 árvores de habilidades humanas com poucas habilidades.
+- [x] 2 a 3 árvores de habilidades humanas com poucas habilidades: Combate, Ocultismo e Sobrevivência (3 cada), pela prática, com teto de 8 pontos; tela H.
 - [ ] Condição **Sensitivo** (opcional).
 - [ ] Interlúdio com pulo de tempo (curto, médio, longo).
 

@@ -143,6 +143,11 @@ static func carregar_itens() -> Dictionary:
 	return {"dados": por_id, "erros": r["erros"]}
 
 
+## Habilidades humanas (docs/12), validadas.
+static func carregar_config_habilidades() -> Dictionary:
+	return carregar_validado("res://data/config/habilidades.json", "res://data/schemas/habilidades.schema.json")
+
+
 ## Contorno de todas as regiões da cidade (mapa de viagem), validado.
 static func carregar_mapa_geral() -> Dictionary:
 	return carregar_validado("res://data/mapa/mapa_geral.json", "res://data/schemas/mapa_geral.schema.json")

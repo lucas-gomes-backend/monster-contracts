@@ -182,7 +182,9 @@ $mutants += @(
     @{ name = 'carro anda sem gasolina'; path = 'game/presentation/cidade/carro_3d.gd';
        find = '	if litros <= 0.0:'; replace = '	if false:' },
     @{ name = 'viagem rápida não gasta gasolina'; path = 'game/presentation/cidade/bairro_cena.gd';
-       find = '	carro.litros -= float(d["litros"])'; replace = '	pass' }
+       find = '	carro.litros -= float(d["litros"])'; replace = '	pass' },
+    @{ name = 'sem teto de habilidades'; path = 'game/core/progressao/habilidades.gd';
+       find = '	if pontos_gastos() >= int(_cfg["teto_de_pontos"]):'; replace = '	if false:' }
 )
 
 if ($Somente.Count -gt 0) {

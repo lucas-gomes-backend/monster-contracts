@@ -1,0 +1,42 @@
+{
+  "$comment": "Habilidades humanas (game/data/config/habilidades.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["teto_de_pontos", "xp_por_ponto", "xp", "arvores"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "teto_de_pontos": {"type": "integer", "minimum": 1},
+    "xp_por_ponto": {"type": "integer", "minimum": 1},
+    "xp": {"$comment": "ação -> {arvore, xp}", "type": "object"},
+    "arvores": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nome", "habilidades"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z_]+$"},
+          "nome": {"type": "string", "minLength": 1},
+          "habilidades": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "nome", "descricao", "efeito"],
+              "properties": {
+                "id": {"type": "string", "pattern": "^[a-z_]+$"},
+                "nome": {"type": "string", "minLength": 1},
+                "descricao": {"type": "string", "minLength": 1},
+                "efeito": {"$comment": "chave -> [valor por nível]", "type": "object"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -54,6 +54,8 @@ const Progresso := preload("res://core/progressao/progresso.gd")
 const Carro3D := preload("res://presentation/cidade/carro_3d.gd")
 const MotelTela := preload("res://presentation/cidade/motel_tela.gd")
 const ViagemTela := preload("res://presentation/cidade/viagem_tela.gd")
+const Habilidades := preload("res://core/progressao/habilidades.gd")
+const HabilidadesTela := preload("res://presentation/cidade/habilidades_tela.gd")
 const MochilaTela := preload("res://presentation/cidade/mochila_tela.gd")
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
@@ -153,6 +155,9 @@ var _camadas_do_cacador := Vector2i(1, 1)
 var viagem_tela: Control
 ## Todas as regiões da cidade (contorno), para o mapa de viagem.
 var mapa_geral: Array = []
+## Habilidades humanas (núcleo) e a tela delas.
+var habilidades: RefCounted
+var habilidades_tela: Control
 var _cfg_progressao: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
@@ -237,6 +242,7 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	_cfg_inventario = Catalogo.carregar_config_inventario()["dados"]
 	_cfg_progressao = Catalogo.carregar_config_progressao()["dados"]
 	mapa_geral = Catalogo.carregar_mapa_geral()["dados"]["regioes"]
+	habilidades = Habilidades.new(Catalogo.carregar_config_habilidades()["dados"])
 	progresso = Progresso.new(_cfg_progressao)
 	var tamanho: Vector2i = progresso.tamanho_da_mochila()
 	mochila = Grade.new(tamanho.x, tamanho.y, itens)
@@ -410,7 +416,7 @@ func _montar_interface() -> void:
 	camada.layer = 11
 	add_child(camada)
 	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar · E carro e motel"
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar · E carro e motel · H habilidades"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
 	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)
@@ -496,6 +502,12 @@ func _montar_interface() -> void:
 	viagem_tela.size = Vector2(620, 400)
 	viagem_tela.visible = false
 	camada.add_child(viagem_tela)
+	habilidades_tela = HabilidadesTela.new()
+	habilidades_tela.cena = self
+	habilidades_tela.position = Vector2(40, 60)
+	habilidades_tela.size = Vector2(560, 300)
+	habilidades_tela.visible = false
+	camada.add_child(habilidades_tela)
 
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
@@ -593,6 +605,18 @@ func _input(evento: InputEvent) -> void:
 		elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode >= KEY_1 and evento.physical_keycode <= KEY_9:
 			escolher_no_motel(evento.physical_keycode - KEY_1)
 			get_viewport().set_input_as_handled()
+		return
+	if habilidades_tela.visible:
+		if evento.is_action_pressed("habilidades") or evento.is_action_pressed("soltar_mouse"):
+			habilidades_tela.visible = false
+			get_viewport().set_input_as_handled()
+		elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode >= KEY_1 and evento.physical_keycode <= KEY_9:
+			aprender_habilidade(evento.physical_keycode - KEY_1)
+			get_viewport().set_input_as_handled()
+		return
+	if evento.is_action_pressed("habilidades"):
+		habilidades_tela.visible = true
+		get_viewport().set_input_as_handled()
 		return
 	if viagem_tela.visible:
 		if evento.is_action_pressed("mapa") or evento.is_action_pressed("soltar_mouse"):
@@ -865,6 +889,7 @@ func recarregar_da_mochila() -> bool:
 		return false
 	mochila.retirar(item, vai)
 	_avisar("Recarregando...")
+	praticar("recarga")
 	return true
 
 
@@ -927,6 +952,34 @@ func sair_do_carro() -> void:
 func dirigir(entrada: Vector2, delta: float) -> void:
 	carro.dirigir(entrada, delta)
 	cacador.position = carro.position + Vector3(0, 0.3, 0)
+
+
+## Pratica uma ação (dá experiência na árvore dela) e avisa se ganhou ponto.
+func praticar(acao: String) -> void:
+	if habilidades.praticar(acao):
+		_avisar("Novo ponto de habilidade (H).")
+
+
+## Aprende a i-ésima habilidade da lista (na ordem das árvores) e aplica os efeitos.
+func aprender_habilidade(i: int) -> Dictionary:
+	var lista: Array = []
+	for a in habilidades.arvores():
+		for h in a["habilidades"]:
+			lista.append(h["id"])
+	if i < 0 or i >= lista.size():
+		return {"ok": false, "motivo": "não existe"}
+	var r: Dictionary = habilidades.aprender(lista[i])
+	if r["ok"]:
+		_aplicar_habilidades()
+	else:
+		_avisar("Não dá: %s." % r["motivo"])
+	return r
+
+
+## Efeitos das habilidades nos sistemas que não perguntam a cada uso.
+func _aplicar_habilidades() -> void:
+	arsenal.habilidade = {"dispersao": habilidades.efeito("dispersao"), "recarga": habilidades.efeito("recarga")}
+	ferimentos.tempo_do_critico = habilidades.efeito("tempo_do_critico")
 
 
 ## M: o mapa de viagem rápida só abre dentro do carro.
@@ -1201,7 +1254,12 @@ func comecar_ritual(i: int) -> bool:
 	if not gasto["ok"]:
 		_avisar("Falta material: %s." % str(gasto["falta"]).replace("_", " "))
 		return false
-	ritual = Ritual.new(def, _cfg_rituais, Rng.new(semente).stream("ritual:%s:%d" % [def["id"], minuto]))
+	var cfg_ritual: Dictionary = _cfg_rituais.duplicate()
+	cfg_ritual["janela_base"] = float(cfg_ritual["janela_base"]) * habilidades.efeito("janela_do_ritual")
+	cfg_ritual["janela_minima"] = float(cfg_ritual["janela_minima"]) * habilidades.efeito("janela_do_ritual")
+	cfg_ritual["velocidade_do_marcador"] = float(cfg_ritual["velocidade_do_marcador"]) * habilidades.efeito("marcador_do_ritual")
+	ritual = Ritual.new(def, cfg_ritual, Rng.new(semente).stream("ritual:%s:%d" % [def["id"], minuto]))
+	ritual.perdoes = int(habilidades.efeito("perdoa_palavra"))
 	tempo_do_passo = 0.0
 	segurando = false
 	return true
@@ -1231,7 +1289,9 @@ func escolher_palavra(i: int) -> void:
 
 func _tentar_no_ritual() -> void:
 	var acertou: bool = ritual.tentar(ritual.marcador(tempo_do_passo), tempo_do_passo, medo.tremor(), float(ferimentos.modificadores()["ritual"]))
-	if not acertou:
+	if acertou:
+		praticar("passo_de_ritual")
+	else:
 		_avisar("Errou o tempo: repita o passo.")
 	tempo_do_passo = 0.0
 	_conferir_ritual()
@@ -1244,6 +1304,7 @@ func _conferir_ritual() -> void:
 		_avisar("Palavra errada: o ritual falhou e os materiais se perderam.")
 		fechar_ritual()
 	elif ritual.situacao == Ritual.COMPLETO:
+		praticar("ritual_completo")
 		var efeito: Dictionary = criatura.receber(ritual.def["item"], 0.0)
 		if efeito["efeito"].is_empty():
 			criatura.estado.enfurecer()
@@ -1293,6 +1354,7 @@ func atirar() -> Dictionary:
 	if float(r["barulho"]) > 0.0 and zona == "rua" and alguem_ve_o_cacador(float(r["barulho"])):
 		suspeita.somar(str(bairro.dados["id"]), int(_cfg_armas["suspeita_por_disparo_com_gente_perto"]), "disparo", minuto)
 	if r["acertou"]:
+		praticar("acerto")
 		var efeito: Dictionary = criatura.receber(r["item"], float(_cfg_armas["interrompe_ataque_por"]))
 		_avisar(TEXTO_DO_EFEITO.get(efeito["efeito"], "Acertou, mas não fez efeito. Ela ficou mais agressiva."))
 	return r
@@ -1317,7 +1379,9 @@ func usar_bolso(i: int) -> void:
 		for parte in ferimentos.gravidade:
 			if pior.is_empty() or int(ferimentos.gravidade[parte]) > int(ferimentos.gravidade[pior]):
 				pior = parte
-		ferimentos.tratar(pior)
+		for k in 1 + int(habilidades.efeito("trata_mais")):
+			ferimentos.tratar(pior)
+		praticar("ferimento_tratado")
 		_avisar("Bandagem: %s." % ferimentos.texto())
 		return
 	if criatura == null or not criatura.visible or Vector2(criatura.position.x, criatura.position.z).distance_to(aqui) > float(_cfg_armas["alcance_de_usar_item"]):
@@ -1381,7 +1445,7 @@ func _corpo_e_medo(segundos: float) -> void:
 	ferimentos.passar(segundos)
 	var m: Dictionary = ferimentos.modificadores()
 	var peso: Dictionary = Grade.efeito_do_peso(mochila.peso_g(), _cfg_inventario["peso"])
-	cacador.modificadores = {"velocidade": float(m["velocidade"]) * float(peso["velocidade"]), "folego": float(m["folego"]) * float(peso["folego"])}
+	cacador.modificadores = {"velocidade": float(m["velocidade"]) * float(peso["velocidade"]), "folego": float(m["folego"]) * float(peso["folego"]) * habilidades.efeito("folego")}
 	if _abrindo_mochila > 0.0:
 		_abrindo_mochila -= segundos
 		if _abrindo_mochila <= 0.0:
@@ -1399,6 +1463,7 @@ func _corpo_e_medo(segundos: float) -> void:
 		distancia = Vector2(criatura.position.x, criatura.position.z).distance_to(aqui)
 		if not golpe.is_empty() and not ferimentos.morto:
 			ferimentos.receber(golpe["parte"], golpe["gravidade"])
+			praticar("golpe_recebido")
 			if golpe["gravidade"] == "grave":
 				var quebrados: Array[String] = mochila.quebrar_frageis(float(_cfg_inventario["chance_de_quebrar_fragil"]), _g_quebra)
 				if not quebrados.is_empty():
@@ -1417,7 +1482,7 @@ func _corpo_e_medo(segundos: float) -> void:
 			circulos.erase(no.get_meta("circulo"))
 			no.queue_free()
 	var escuro := zona == "esgoto" or Relogio.new(minuto).eh_noite()
-	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": m["medo"],
+	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": float(m["medo"]) * habilidades.efeito("medo"),
 		"criatura_metros": distancia, "protegido": protegido})
 	if _lanterna_apagada > 0.0:
 		_lanterna_apagada -= segundos
