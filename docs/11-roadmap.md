@@ -123,7 +123,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 **Mundo**
 - [x] 2 bairros com o subterrâneo ligando os dois: **Valongo e Centro** (decisão em [07](07-mundo-cidade-e-npcs.md)); as galerias dos bairros carregados formam uma rede só.
 - [x] Cerca de 30 NPCs com rotina em cada bairro: Valongo e Centro (data/neighborhoods), lugares nos lotes reais, relógio na cidade e gente andando pelas ruas.
-- [ ] Pontos-chave: delegacia, biblioteca, igreja, benzedeira, cemitério, motel, mecânico, lan house.
+- [x] Pontos-chave: delegacia, biblioteca, igreja, benzedeira, cemitério, motel, mecânico, lan house. Distribuídos pelo Centro, Valongo e Paquetá, com gente trabalhando, placa e letra no minimapa (o que se faz em cada um vem com os casos).
 - [ ] Suspeita e polícia básicas, maré básica.
 
 **Casos**

@@ -5,6 +5,9 @@ extends Node3D
 ## Quem está trabalhando ou passeando aparece na porta do lugar; quem está em casa, dormindo
 ## ou fora do bairro some lá dentro. Quando alguém muda de lugar, anda até lá pelas ruas
 ## (core/cidade/caminhos.gd), e não atravessando prédios.
+## Todo lugar que não é casa ganha uma placa com o nome em cima da porta; os pontos-chave
+## (config/pontos_chave.json) também viram uma letra no minimapa. A benzedeira atende em
+## casa: a casa dela ganha placa.
 
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const Rng := preload("res://core/rng.gd")
@@ -16,6 +19,9 @@ const Caminhos := preload("res://core/cidade/caminhos.gd")
 const Morador := preload("res://presentation/personagem/morador.gd")
 
 const VISIVEIS := ["trabalhando", "lazer"]
+const ALTURA_DA_PLACA := 3.4
+## Placas só aparecem de perto (a névoa cobre o resto).
+const ALCANCE_DA_PLACA := 45.0
 ## Quem está no mesmo lugar não fica empilhado: lado a lado na calçada.
 const LADO_A_LADO := 0.8
 
@@ -28,6 +34,9 @@ var pessoas: Dictionary = {}
 var _rotina: RefCounted
 var _caminhos: RefCounted
 var _primeira_vez := true
+## Pontos-chave deste bairro: [{"local", "tipo", "nome", "letra", "cor", "porta": Vector2}]
+var pontos_chave: Array[Dictionary] = []
+var placas: Array[Label3D] = []
 
 
 ## Monta a gente do bairro real (id com dados em data/neighborhoods). lotes: os do Bairro3D.
@@ -48,6 +57,44 @@ func montar(id: String, real: Dictionary, lotes: Array, semente: int) -> void:
 		no.visible = false
 		add_child(no)
 		pessoas[npc["id"]] = {"no": no, "local": "", "atividade": "", "rota": PackedVector2Array(), "passo": 0, "indice": i}
+	_montar_placas()
+
+
+func _montar_placas() -> void:
+	var tipos: Dictionary = Catalogo.carregar_pontos_chave()["dados"]["tipos"]
+	var placas_por_local := {}  # local -> [nome, tipo]
+	for local in bairro.ids_locais():
+		var dados_local: Dictionary = bairro.local(local)
+		if dados_local["tipo"] != "casa":
+			placas_por_local[local] = [dados_local["nome"], dados_local["tipo"]]
+	for npc in npcs:
+		if npc.get("ocupacao", {}).get("id", "") == "benzedeira" and tipos.has("benzedeira"):
+			placas_por_local[npc["casa"]] = ["Benzedeira", "benzedeira"]
+	var locais := placas_por_local.keys()
+	locais.sort()
+	for local in locais:
+		if not lugares.has(local):
+			continue
+		var porta: Vector2 = lugares[local]["porta"]
+		var nome: String = placas_por_local[local][0]
+		var tipo: String = placas_por_local[local][1]
+		var placa := Label3D.new()
+		placa.name = "Placa_" + local.replace("/", "_")
+		placa.text = nome
+		placa.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+		placa.font_size = 40
+		placa.pixel_size = 0.008
+		placa.outline_size = 8
+		placa.modulate = Color(0.98, 0.95, 0.85)
+		placa.outline_modulate = Color(0.1, 0.08, 0.06)
+		placa.visibility_range_end = ALCANCE_DA_PLACA
+		placa.position = Vector3(porta.x, ALTURA_DA_PLACA, porta.y)
+		add_child(placa)
+		placas.append(placa)
+		if tipos.has(tipo):
+			var t: Dictionary = tipos[tipo]
+			pontos_chave.append({"local": local, "tipo": tipo, "nome": nome, "letra": t["letra"],
+				"cor": Color.html(t["cor"]), "porta": porta})
 
 
 ## Onde fica a porta de um lugar (com a pessoa ao lado das outras), ou null.

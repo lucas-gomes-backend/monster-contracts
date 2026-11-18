@@ -66,6 +66,13 @@ func _draw() -> void:
 			if b != cena.bairro:
 				draw_polyline(_anel(b, centro, giro), COR_VIZINHO, 1.0)
 		draw_polyline(_anel(cena.bairro, centro, giro), COR_BORDA, 2.0)
+		# Pontos-chave: a letra do tipo num quadradinho da cor dele.
+		for id in cena.populacoes:
+			for ponto in cena.populacoes[id].pontos_chave:
+				var tela := para_minimapa(ponto["porta"], centro, giro)
+				draw_rect(Rect2(tela - Vector2(5, 5), Vector2(10, 10)), Color(0.1, 0.1, 0.1, 0.85))
+				draw_rect(Rect2(tela - Vector2(5, 5), Vector2(10, 10)), ponto["cor"], false, 1.0)
+				draw_string(ThemeDB.fallback_font, tela + Vector2(-3, 4), ponto["letra"], HORIZONTAL_ALIGNMENT_LEFT, -1, 9, ponto["cor"])
 		# Os transeuntes, mais apagados, e os moradores à vista, como pontinhos.
 		for id in cena.transeuntes:
 			for a in cena.transeuntes[id].andantes:

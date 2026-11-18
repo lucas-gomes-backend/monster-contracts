@@ -1,0 +1,45 @@
+{
+  "$comment": "Pontos-chave da cidade (docs/07, 'Pontos-chave'): o tipo de lugar, o nome curto, a letra no minimapa e a cor. A benzedeira atende em casa: a placa vai na casa de quem tem essa ocupação.",
+  "tipos": {
+    "delegacia": {
+      "nome": "Delegacia",
+      "letra": "D",
+      "cor": "#4f7fd6"
+    },
+    "biblioteca": {
+      "nome": "Biblioteca",
+      "letra": "B",
+      "cor": "#c79b4a"
+    },
+    "igreja": {
+      "nome": "Igreja",
+      "letra": "I",
+      "cor": "#e8e2d0"
+    },
+    "benzedeira": {
+      "nome": "Benzedeira",
+      "letra": "Z",
+      "cor": "#7fbf6a"
+    },
+    "cemiterio": {
+      "nome": "Cemitério",
+      "letra": "C",
+      "cor": "#9a9a9a"
+    },
+    "motel": {
+      "nome": "Motel",
+      "letra": "H",
+      "cor": "#d66aa0"
+    },
+    "mecanico": {
+      "nome": "Mecânico",
+      "letra": "M",
+      "cor": "#d68a3c"
+    },
+    "lan_house": {
+      "nome": "Lan house",
+      "letra": "L",
+      "cor": "#5ad6c8"
+    }
+  }
+}

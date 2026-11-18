@@ -1,0 +1,41 @@
+{
+  "$comment": "Pontos-chave (game/data/config/pontos_chave.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tipos"
+  ],
+  "properties": {
+    "$comment": {
+      "type": "string"
+    },
+    "tipos": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "ponto": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nome",
+        "letra",
+        "cor"
+      ],
+      "properties": {
+        "nome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "letra": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cor": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      }
+    }
+  }
+}

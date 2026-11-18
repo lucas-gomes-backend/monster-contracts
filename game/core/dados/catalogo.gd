@@ -118,6 +118,20 @@ static func carregar_config_relogio_da_cidade() -> Dictionary:
 	return carregar_validado("res://data/config/relogio_da_cidade.json", "res://data/schemas/relogio_da_cidade.schema.json")
 
 
+## Pontos-chave (tipo de lugar -> nome, letra no minimapa, cor), validados um a um.
+static func carregar_pontos_chave() -> Dictionary:
+	var caminho_esquema := "res://data/schemas/pontos_chave.schema.json"
+	var resultado := carregar_validado("res://data/config/pontos_chave.json", caminho_esquema)
+	if not resultado["dados"] is Dictionary:
+		return resultado
+	var de_um := Esquema.new(ler_json(caminho_esquema)["$defs"]["ponto"])
+	var tipos: Dictionary = resultado["dados"].get("tipos", {})
+	for tipo in tipos:
+		for erro in de_um.validate(tipos[tipo]):
+			resultado["erros"].append("pontos_chave.json: %s: %s" % [tipo, erro])
+	return resultado
+
+
 ## Transeuntes (figurantes nas ruas): quantos por hora e a que velocidade, validado.
 static func carregar_config_transeuntes() -> Dictionary:
 	return carregar_validado("res://data/config/transeuntes.json", "res://data/schemas/transeuntes.schema.json")

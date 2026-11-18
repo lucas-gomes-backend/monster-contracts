@@ -136,7 +136,9 @@ $mutants += @(
     @{ name = 'gente fora da rotina'; path = 'game/presentation/cidade/populacao_3d.gd';
        find = 'var estado: Dictionary = _rotina.onde_esta(npc, minuto)'; replace = 'var estado: Dictionary = _rotina.onde_esta(npc, 0)' },
     @{ name = 'transeunte para no destino'; path = 'game/presentation/cidade/transeuntes_3d.gd';
-       find = '			else:' + "`n" + '				_nova_rota(a)'; replace = '			else:' + "`n" + '				pass' }
+       find = '			else:' + "`n" + '				_nova_rota(a)'; replace = '			else:' + "`n" + '				pass' },
+    @{ name = 'ponto-chave sem placa'; path = 'game/presentation/cidade/populacao_3d.gd';
+       find = 'placas.append(placa)'; replace = 'pass' }
 )
 
 if ($Somente.Count -gt 0) {
