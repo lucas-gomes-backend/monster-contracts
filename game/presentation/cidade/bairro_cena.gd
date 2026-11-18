@@ -59,6 +59,7 @@ const HabilidadesTela := preload("res://presentation/cidade/habilidades_tela.gd"
 const Condicao := preload("res://core/condicoes/condicao.gd")
 const Espiritos3D := preload("res://presentation/cidade/espiritos_3d.gd")
 const Interludio := preload("res://core/progressao/interludio.gd")
+const VoltaDaMorte := preload("res://core/progressao/volta_da_morte.gd")
 const PausaTela := preload("res://presentation/cidade/pausa_tela.gd")
 const Sons := preload("res://presentation/audio/sons.gd")
 const MochilaTela := preload("res://presentation/cidade/mochila_tela.gd")
@@ -186,6 +187,9 @@ var _cfg_arte: Dictionary
 var _andado := 0.0
 var _ultima_posicao := Vector3.INF
 var _cfg_progressao: Dictionary
+## Morte simples (docs/13): segundos desde que morreu; depois de um tempo, volta com custo.
+var _cfg_morte: Dictionary
+var _morto_ha := 0.0
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
@@ -279,6 +283,7 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	mapa_geral = Catalogo.carregar_mapa_geral()["dados"]["regioes"]
 	habilidades = Habilidades.new(Catalogo.carregar_config_habilidades()["dados"])
 	_cfg_condicoes = Catalogo.carregar_config_condicoes()["dados"]
+	_cfg_morte = Catalogo.carregar_config_morte()["dados"]
 	condicao = Condicao.new(_cfg_condicoes)
 	_g_sussurro = Rng.new(semente).stream("sussurros")
 	progresso = Progresso.new(_cfg_progressao)
@@ -1536,6 +1541,41 @@ func pular_o_tempo(id_pulo: String, arvore: String) -> bool:
 	return true
 
 
+## Morte simples (docs/13): o caçador acorda no motel com custo. O mundo segue os dias
+## perdidos, o limbo rouba mais tempo de vida, parte da mochila fica para trás e a marca do
+## limbo acumula. Devolve o custo aplicado (com "perdidos": nomes dos itens).
+func voltar_da_morte() -> Dictionary:
+	progresso.voltas_do_limbo += 1
+	var volta: int = progresso.voltas_do_limbo
+	var c: Dictionary = VoltaDaMorte.custo(volta, _cfg_morte)
+	var perdidos: Array[String] = []
+	for n in VoltaDaMorte.perdidos(mochila.entradas, float(c["fracao_perdida"]), semente, volta):
+		var e: Dictionary = mochila.tirar_entrada(n)
+		if not e.is_empty():
+			perdidos.append(str(itens[e["item"]]["nome"]))
+	minuto += int(c["minutos"])
+	suspeita.passar_minutos(int(c["minutos"]))
+	for b in populacoes:
+		populacoes[b].atualizar(minuto)
+	progresso.dias_vividos += int(c["dias_perdidos"]) + int(c["dias_envelhecidos"])
+	ferimentos.reviver()
+	medo.valor = 0.0
+	condicao.aliviar(INF)
+	var porta := porta_do_motel()
+	if porta != Vector2.INF:
+		cacador.position = Vector3(porta.x, 0.3, porta.y)
+	cacador.velocity = Vector3.ZERO
+	cacador.bloqueado = false
+	_morto_ha = 0.0
+	verificar_fronteira()
+	var texto := "Você voltou do outro lado, no motel. Passaram-se %d dias e você tem %d anos." % [int(c["dias_perdidos"]), progresso.idade()]
+	if not perdidos.is_empty():
+		texto += " Ficou no limbo: %s." % ", ".join(perdidos)
+	_avisar(texto + " (marca do limbo: %d)" % volta)
+	c["perdidos"] = perdidos
+	return c
+
+
 ## Benzedura: tira o cansaço espiritual do sensitivo.
 func benzer() -> bool:
 	var b: Dictionary = _cfg_condicoes["sensitivo"]["benzedeira"]
@@ -1888,7 +1928,7 @@ func _corpo_e_medo(segundos: float) -> void:
 	_sensitivo(segundos, protegido, distancia)
 	_passos_e_motor(segundos)
 	var escuro := zona == "esgoto" or Relogio.new(minuto).eh_noite()
-	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": float(m["medo"]) * habilidades.efeito("medo"),
+	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": float(m["medo"]) * habilidades.efeito("medo") * VoltaDaMorte.multiplicador_do_medo(progresso.voltas_do_limbo, _cfg_morte),
 		"criatura_metros": distancia, "protegido": protegido})
 	if _lanterna_apagada > 0.0:
 		_lanterna_apagada -= segundos
@@ -1898,9 +1938,16 @@ func _corpo_e_medo(segundos: float) -> void:
 		_energia_da_lanterna = cacador.lanterna.light_energy
 		cacador.lanterna.light_energy = 0.0
 		_lanterna_apagada = PISCADA_DA_LANTERNA
-	if ferimentos.morto and not cacador.bloqueado:
-		cacador.bloqueado = true
-		_avisar("Você morreu. (O limbo vem depois.)")
+	if ferimentos.morto:
+		if not cacador.bloqueado:
+			# Acabou de morrer: a contagem até voltar começa no próximo instante.
+			cacador.bloqueado = true
+			_morto_ha = 0.0
+			_avisar("Você morreu.")
+		else:
+			_morto_ha += segundos
+			if _morto_ha >= float(_cfg_morte["segundos_ate_voltar"]):
+				voltar_da_morte()
 
 
 ## O que muda a cada minuto: a suspeita cai, quem vê o caçador sujo desconfia, a

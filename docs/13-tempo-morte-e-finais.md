@@ -121,7 +121,13 @@ Ao voltar do limbo, o jogador sofre uma combinação de:
 
 ### Escopo
 
-O limbo é o **único modo com combate físico de verdade** do jogo. Ele precisa de sistema de combate próprio (física, golpes, hordas), o que é **caro**. Por isso entra **depois do corte vertical**. Até lá, a morte pode ser um "volta com custo" simples, sem a arena.
+O limbo é o **único modo com combate físico de verdade** do jogo. Ele precisa de sistema de combate próprio (física, golpes, hordas), o que é **caro**. Por isso entra **depois do corte vertical**. Até lá, a morte é um "volta com custo" simples, sem a arena (Fase 4, `data/config/morte.json`):
+
+- O caçador acorda no **motel** poucos segundos depois de morrer, com o corpo inteiro.
+- **Tempo perdido:** 2 dias na primeira volta, +2 a cada volta seguinte. O mundo segue.
+- **Envelhecimento:** 120 dias de vida a mais, +120 a cada volta.
+- **Perda de equipamento:** 25% das pilhas da **mochila** (arredondado para cima, +15% por volta, até 75%). O porta-malas e a guarda do motel ficam a salvo.
+- **Marca do limbo:** +1 por volta; cada grau faz o medo subir 15% mais rápido.
 
 ---
 

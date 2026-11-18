@@ -196,7 +196,11 @@ $mutants += @(
     @{ name = 'postes não acendem'; path = 'game/presentation/cidade/bairro_cena.gd';
        find = '	var acesos := noite > 0.5 and zona == "rua"'; replace = '	var acesos := false' },
     @{ name = 'tutorial pula o teste de campo'; path = 'game/core/investigacao/tutorial.gd';
-       find = '			return sessao._testes_feitos > 0'; replace = '			return true' }
+       find = '			return sessao._testes_feitos > 0'; replace = '			return true' },
+    @{ name = 'morte devolve a mochila inteira'; path = 'game/core/progressao/volta_da_morte.gd';
+       find = '	var quantos := mini(int(ceil(ns.size() * fracao)), ns.size())'; replace = '	var quantos := 0' },
+    @{ name = 'volta da morte sempre igual'; path = 'game/core/progressao/volta_da_morte.gd';
+       find = '	var extra := maxi(volta - 1, 0)'; replace = '	var extra := 0' }
 )
 
 if ($Somente.Count -gt 0) {

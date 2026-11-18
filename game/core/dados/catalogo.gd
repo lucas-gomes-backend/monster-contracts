@@ -143,6 +143,11 @@ static func carregar_itens() -> Dictionary:
 	return {"dados": por_id, "erros": r["erros"]}
 
 
+## Morte simples, volta com custo (docs/13), validada.
+static func carregar_config_morte() -> Dictionary:
+	return carregar_validado("res://data/config/morte.json", "res://data/schemas/morte.schema.json")
+
+
 ## Caso tutorial com mentor (docs/02), validado.
 static func carregar_config_tutorial() -> Dictionary:
 	return carregar_validado("res://data/config/tutorial.json", "res://data/schemas/tutorial.schema.json")

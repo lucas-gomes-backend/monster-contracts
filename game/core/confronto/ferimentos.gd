@@ -67,6 +67,17 @@ func tratar(parte: String) -> void:
 		_critico_ha.erase(parte)
 
 
+## Volta da morte (docs/13): o corpo volta inteiro (o custo é cobrado em outro lugar).
+func reviver() -> void:
+	morto = false
+	causa_da_morte = ""
+	_critico_ha.clear()
+	for parte in gravidade.keys():
+		gravidade[parte] = NENHUM
+		_leves[parte] = 0
+		_graves[parte] = 0
+
+
 ## O tempo passa: um crítico sem tratamento mata.
 func passar(segundos: float) -> void:
 	if morto:

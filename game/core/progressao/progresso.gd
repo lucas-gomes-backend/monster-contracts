@@ -13,6 +13,8 @@ var regioes_liberadas: Array[String] = []
 ## Dias vividos desde o começo da carreira (a idade sai daqui) e interlúdios feitos.
 var dias_vividos: int = 0
 var interludios: int = 0
+## Voltas da morte (docs/13): cada uma é também um grau da marca do limbo.
+var voltas_do_limbo: int = 0
 var _cfg: Dictionary
 
 

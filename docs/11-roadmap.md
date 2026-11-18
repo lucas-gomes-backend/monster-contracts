@@ -153,7 +153,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [x] Caso tutorial com mentor aleatório: "Caso tutorial (com um mentor)" na tela inicial; o mentor (nome, idade e jeito pela semente) acompanha lugar, pista, testemunha, caderno, teste de campo e agir, sem nunca dizer a criatura.
 
 **Morte**
-- [ ] Versão simples: volta com custo, **sem a arena do limbo**.
+- [x] Versão simples: volta com custo, **sem a arena do limbo**: acorda no motel; dias perdidos, meses de vida roubados, parte da mochila fica no limbo e a marca do limbo (medo mais rápido) acumula. Cada volta pesa mais.
 
 **Portão:**
 - Playtest com **5 a 10 pessoas de fora**. Observar onde se perdem e se querem jogar mais.

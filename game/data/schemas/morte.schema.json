@@ -1,0 +1,18 @@
+{
+  "$comment": "Morte simples, volta com custo (game/data/config/morte.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["segundos_ate_voltar", "dias_perdidos", "dias_perdidos_por_volta", "dias_envelhecidos", "dias_envelhecidos_por_volta", "fracao_do_equipamento", "fracao_por_volta", "fracao_maxima", "medo_por_marca"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "segundos_ate_voltar": {"type": "number", "minimum": 0},
+    "dias_perdidos": {"type": "integer", "minimum": 0},
+    "dias_perdidos_por_volta": {"type": "integer", "minimum": 0},
+    "dias_envelhecidos": {"type": "integer", "minimum": 0},
+    "dias_envelhecidos_por_volta": {"type": "integer", "minimum": 0},
+    "fracao_do_equipamento": {"type": "number", "minimum": 0, "maximum": 1},
+    "fracao_por_volta": {"type": "number", "minimum": 0, "maximum": 1},
+    "fracao_maxima": {"type": "number", "minimum": 0, "maximum": 1},
+    "medo_por_marca": {"type": "number", "minimum": 0}
+  }
+}

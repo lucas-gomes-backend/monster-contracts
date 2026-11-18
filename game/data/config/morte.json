@@ -1,0 +1,12 @@
+{
+  "$comment": "Morte simples (docs/13, Parte C, 'Escopo'): até a arena do limbo existir, morrer é voltar com custo. O caçador acorda no motel; cada volta pesa mais que a anterior (os valores '_por_volta' somam a partir da segunda). Tempo perdido: o mundo segue sem você. Envelhecimento: o limbo rouba dias de vida além do tempo perdido. Equipamento: uma fração das pilhas da mochila fica no limbo (o porta-malas e a guarda do motel não). Marca do limbo: acumula uma por volta; os espíritos te notam mais e o medo sobe mais rápido.",
+  "segundos_ate_voltar": 3.0,
+  "dias_perdidos": 2,
+  "dias_perdidos_por_volta": 2,
+  "dias_envelhecidos": 120,
+  "dias_envelhecidos_por_volta": 120,
+  "fracao_do_equipamento": 0.25,
+  "fracao_por_volta": 0.15,
+  "fracao_maxima": 0.75,
+  "medo_por_marca": 0.15
+}
