@@ -13,8 +13,7 @@
     "ruas",
     "canais",
     "marcos",
-    "saidas",
-    "relevo"
+    "saidas"
   ],
   "$defs": {
     "ponto": {
@@ -176,47 +175,6 @@
           },
           "para": {
             "type": "string"
-          }
-        }
-      }
-    },
-    "relevo": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "origem",
-        "passo",
-        "colunas",
-        "linhas",
-        "escala_vertical",
-        "alturas"
-      ],
-      "properties": {
-        "origem": {
-          "$ref": "#/$defs/ponto"
-        },
-        "passo": {
-          "type": "number",
-          "minimum": 0.5
-        },
-        "colunas": {
-          "type": "integer",
-          "minimum": 2
-        },
-        "linhas": {
-          "type": "integer",
-          "minimum": 2
-        },
-        "escala_vertical": {
-          "type": "number",
-          "minimum": 1
-        },
-        "alturas": {
-          "type": "array",
-          "minItems": 4,
-          "items": {
-            "type": "number",
-            "minimum": 0
           }
         }
       }

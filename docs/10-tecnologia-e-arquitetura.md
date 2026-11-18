@@ -12,7 +12,7 @@ Escolher as ferramentas e definir **como o código se organiza**, para que um de
 |---|---|---|
 | **Motor** | **Godot 4** (versão estável mais recente) | Leve, gratuito e sem royalties, iteração rápida, bom para sistemas orientados a dados, vários shaders PSX de código aberto |
 | **Linguagem do jogo** | **GDScript** | Simples e integrada ao editor. Se alguma parte da simulação ficar lenta, só ela é reescrita em C# ou GDExtension (C++) |
-| **Ferramentas offline** | **Python** | Importador do mapa de Santos (OpenStreetMap e relevo), validação de dados, scripts de lote |
+| **Ferramentas offline** | **Python** | Importador do mapa de Santos (OpenStreetMap; a cidade é plana), validação de dados, scripts de lote |
 | **Dados de conteúdo** | **JSON** com validação por esquema | Fácil de editar em massa, de comparar no git e de gerar por script |
 | **Controle de versão** | **Git + GitHub**, com **Git LFS** para arquivos binários | Modelos, texturas e áudio não incham o repositório |
 | **Testes** | **Executor próprio** em GDScript, em modo headless, com **portão de 95%** e CI no GitHub Actions (ver "Testes e portão de qualidade") | Testar a simulação, o gerador e o solucionador sem abrir o jogo, sem depender de plugins |
@@ -133,7 +133,7 @@ Os módulos conversam por um **barramento de eventos**: um módulo publica ("cri
 ```
 OFFLINE (Python, uma vez)                   NO JOGO (Godot)
 ────────────────────────────                ───────────────────────────────────
-OpenStreetMap + relevo                      Criação do mundo (semente)
+OpenStreetMap                               Criação do mundo (semente)
    │                                           │
    ▼                                           ▼
 Simplificar, aplicar escala 1:3      ──►   Preencher lotes com módulos da zona
@@ -188,7 +188,7 @@ Ver [07](07-mundo-cidade-e-npcs.md).
 | **Solucionador** | Joga o caso automaticamente para verificar se é justo ([04](04-geracao-de-casos.md)) |
 | **Teste da matriz de distinção** | Verifica se as criaturas de cada tipo de bairro são distinguíveis ([03](03-sistema-de-criaturas.md)) |
 | **Validador de dados** | Confere todas as fichas de criaturas, itens e bairros contra o esquema |
-| **Importador do mapa** | OpenStreetMap e relevo para arquivos de bairro ([07](07-mundo-cidade-e-npcs.md)) |
+| **Importador do mapa** | OpenStreetMap para arquivos de bairro (sem relevo: cidade plana) ([07](07-mundo-cidade-e-npcs.md)) |
 | **Console de depuração** | Pular tempo, teleportar, gerar caso por semente, mudar valores |
 
 ---

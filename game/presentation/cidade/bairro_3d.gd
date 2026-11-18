@@ -1,33 +1,32 @@
 extends Node3D
 ## Um bairro do mapa real em 3D cinza (docs/07, "Como um bairro é montado"):
-##   terreno com o relevo importado (com colisão), ruas e calçadas que acompanham o chão,
+##   chão plano (decisão: a cidade é plana, o clima vem da névoa), ruas e calçadas,
 ##   prédios nos lotes gerados (core/cidade/lotes.gd), mata nos morros, marcos e saídas.
 ## Os dados vêm de game/data/cidade/<id>.json; o sorteio, do rng do mundo (mesma semente,
 ## mesmo bairro).
 
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const Rng := preload("res://core/rng.gd")
-const Terreno := preload("res://core/cidade/terreno.gd")
 const Lotes := preload("res://core/cidade/lotes.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
 const Blocos := preload("res://presentation/greybox/blocos.gd")
 
 const ALTURA_ANDAR := 3.0
-const PASSO_DAS_RUAS := 2.0
-const ACIMA_DO_CHAO_RUA := 0.08
-const ACIMA_DO_CHAO_CALCADA := 0.05
+const ACIMA_DO_CHAO_RUA := 0.04
+const ACIMA_DO_CHAO_CALCADA := 0.02
+const MARGEM_DO_CHAO := 20.0
 const DISTANCIA_ENTRE_ARVORES := 3.0
+const CAMINHOS := ["steps", "footway", "pedestrian"]
 const CORES_PREDIOS := [Color(0.62, 0.58, 0.5), Color(0.5, 0.55, 0.58), Color(0.66, 0.52, 0.45),
 	Color(0.55, 0.6, 0.5), Color(0.48, 0.48, 0.52), Color(0.64, 0.6, 0.42), Color(0.7, 0.66, 0.6)]
 const COR_TERRENO := Color(0.32, 0.36, 0.26)
 const COR_RUA := Color(0.22, 0.22, 0.24)
 const COR_CALCADA := Color(0.5, 0.49, 0.46)
 const COR_ESCADA := Color(0.45, 0.4, 0.34)
-## Chão grande e inclinado entorta demais com a textura afim do PS1: no chão, só um pouco.
+## Chão grande entorta demais com a textura afim do PS1: no chão, só um pouco.
 const AFIM_DO_CHAO := 0.25
 
 var dados: Dictionary = {}
-var terreno: RefCounted
 var lotes: Array[Dictionary] = []
 var predios: Array[StaticBody3D] = []
 var arvores: MultiMeshInstance3D
@@ -41,11 +40,10 @@ var giro_chegada: float = 0.0
 func montar(id_bairro: String, semente: int) -> void:
 	name = "Bairro_" + id_bairro
 	dados = Catalogo.carregar_bairro_real(id_bairro)["dados"]
-	terreno = Terreno.new(dados["relevo"])
 	var rng := Rng.new(semente)
 	var cfg: Dictionary = Catalogo.carregar_config_lotes()["dados"]
 	lotes = Lotes.gerar(dados, cfg, rng)
-	_montar_terreno()
+	_montar_chao()
 	for rua in dados["ruas"]:
 		_montar_rua(rua, float(cfg["calcada"]))
 	for lote in lotes:
@@ -54,95 +52,75 @@ func montar(id_bairro: String, semente: int) -> void:
 	for marco in dados["marcos"]:
 		_montar_marco(marco)
 	for s in dados["saidas"]:
-		var p := Vector2(float(s["posicao"][0]), float(s["posicao"][1]))
-		var ponto := Vector3(p.x, terreno.altura(p.x, p.y), p.y)
+		var ponto := Vector3(float(s["posicao"][0]), 0.0, float(s["posicao"][1]))
 		saidas.append({"rua": s["rua"], "para": s["para"], "ponto": ponto})
 		Blocos.bloco(self, Vector3(0.2, 2.5, 0.2), ponto + Vector3(0, 1.25, 0), Color(0.85, 0.7, 0.3), 1.0, false)
 
 
-## Onde o caçador começa: no meio do trecho de rua comum mais baixo do bairro (no plano,
-## não no meio de uma ladeira). Guarda em giro_chegada o sentido da rua.
+## Onde o caçador começa: no meio da rua comum mais comprida (num morro só de
+## escadarias, no caminho mais comprido). Guarda em giro_chegada o sentido da rua.
 func chegada() -> Vector3:
-	var melhor_ponto := Vector2.ZERO
-	var melhor_direcao := Vector2.UP
-	var mais_baixo := INF
-	# Primeiro só ruas comuns com trechos de pelo menos 4 m; se o bairro não tiver
-	# (morro só de escadarias), qualquer caminho serve.
-	for exigente in [true, false]:
-		if mais_baixo < INF:
+	var melhor: Array = []
+	var maior := -1.0
+	for so_ruas in [true, false]:
+		if maior >= 0.0:
 			break
 		for rua in dados["ruas"]:
-			if exigente and rua["tipo"] in ["steps", "footway", "pedestrian"]:
+			if so_ruas and rua["tipo"] in CAMINHOS:
 				continue
 			for i in rua["pontos"].size() - 1:
 				var a := _v2(rua["pontos"][i])
 				var b := _v2(rua["pontos"][i + 1])
-				if exigente and a.distance_to(b) < 4.0:
-					continue
-				var meio := (a + b) / 2.0
-				var h: float = terreno.altura(meio.x, meio.y)
-				if h < mais_baixo:
-					mais_baixo = h
-					melhor_ponto = meio
-					melhor_direcao = (b - a).normalized()
-	giro_chegada = atan2(-melhor_direcao.x, -melhor_direcao.y)
-	return Vector3(melhor_ponto.x, mais_baixo + 0.3, melhor_ponto.y)
+				if a.distance_to(b) > maior:
+					maior = a.distance_to(b)
+					melhor = [a, b]
+	var meio: Vector2 = (melhor[0] + melhor[1]) / 2.0
+	var direcao: Vector2 = (melhor[1] - melhor[0]).normalized()
+	giro_chegada = atan2(-direcao.x, -direcao.y)
+	return Vector3(meio.x, 0.3, meio.y)
 
 
-func _montar_terreno() -> void:
-	var st := SurfaceTool.new()
-	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	var t: RefCounted = terreno
-	for j in t.linhas - 1:
-		for i in t.colunas - 1:
-			var a: Vector3 = t.vertice(i, j)
-			var b: Vector3 = t.vertice(i + 1, j)
-			var c: Vector3 = t.vertice(i + 1, j + 1)
-			var d: Vector3 = t.vertice(i, j + 1)
-			for v in [a, b, c, a, c, d]:
-				st.set_uv(Vector2(v.x, v.z) / 8.0)
-				st.add_vertex(v)
-	st.generate_normals()
-	var malha := st.commit()
+func _montar_chao() -> void:
+	var caixa: Array = dados["caixa"]
+	var tamanho := Vector3(float(caixa[2]) - float(caixa[0]) + MARGEM_DO_CHAO * 2.0, 1.0,
+		float(caixa[3]) - float(caixa[1]) + MARGEM_DO_CHAO * 2.0)
+	var centro := Vector3((float(caixa[0]) + float(caixa[2])) / 2.0, -0.5, (float(caixa[1]) + float(caixa[3])) / 2.0)
+	var malha := BoxMesh.new()
+	malha.size = tamanho
 	var visual := MeshInstance3D.new()
-	visual.name = "Terreno"
+	visual.name = "Chao"
 	visual.mesh = malha
-	visual.material_override = Materiais.objeto(COR_TERRENO, 1.0, AFIM_DO_CHAO)
+	visual.material_override = Materiais.objeto(COR_TERRENO, tamanho.x / 8.0, AFIM_DO_CHAO)
 	chao = StaticBody3D.new()
 	chao.name = "Chao"
-	var forma := CollisionShape3D.new()
-	forma.shape = malha.create_trimesh_shape()
-	chao.add_child(forma)
+	chao.position = centro
+	var forma := BoxShape3D.new()
+	forma.size = tamanho
+	var colisao := CollisionShape3D.new()
+	colisao.shape = forma
+	chao.add_child(colisao)
 	chao.add_child(visual)
 	add_child(chao)
 
 
-## Faixa que acompanha o chão: a linha é cortada em pedaços de PASSO_DAS_RUAS.
+## Faixa plana ao longo de uma linha (rua, calçada, caminho, trilho).
 func _faixa(pontos: Array, largura: float, acima: float, cor: Color, nome: String) -> void:
-	var linha: Array[Vector2] = []
-	for i in pontos.size() - 1:
-		var a := _v2(pontos[i])
-		var b := _v2(pontos[i + 1])
-		var partes := maxi(1, int(ceil(a.distance_to(b) / PASSO_DAS_RUAS)))
-		for k in partes:
-			linha.append(a.lerp(b, float(k) / partes))
-	linha.append(_v2(pontos[-1]))
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var meia := largura / 2.0
-	for i in linha.size() - 1:
-		var a: Vector2 = linha[i]
-		var b: Vector2 = linha[i + 1]
+	for i in pontos.size() - 1:
+		var a := _v2(pontos[i])
+		var b := _v2(pontos[i + 1])
+		if a.distance_to(b) < 0.01:
+			continue
 		var lado := (b - a).normalized().orthogonal() * meia
 		var cantos := [a + lado, a - lado, b - lado, b + lado]
-		var v3: Array[Vector3] = []
-		for c in cantos:
-			v3.append(Vector3(c.x, terreno.altura(c.x, c.y) + acima, c.y))
-		# Mesma volta dos triângulos do terreno: a face fica para cima.
+		# Volta dos triângulos com a face para cima.
 		for idx in [0, 2, 1, 0, 3, 2]:
-			st.set_uv(Vector2(v3[idx].x, v3[idx].z) / 4.0)
-			st.add_vertex(v3[idx])
-	st.generate_normals()
+			var c: Vector2 = cantos[idx]
+			st.set_normal(Vector3.UP)
+			st.set_uv(c / 4.0)
+			st.add_vertex(Vector3(c.x, acima, c.y))
 	var visual := MeshInstance3D.new()
 	visual.name = nome
 	visual.mesh = st.commit()
@@ -152,7 +130,7 @@ func _faixa(pontos: Array, largura: float, acima: float, cor: Color, nome: Strin
 
 func _montar_rua(rua: Dictionary, calcada: float) -> void:
 	var largura: float = rua["largura"]
-	if rua["tipo"] in ["steps", "footway", "pedestrian"]:
+	if rua["tipo"] in CAMINHOS:
 		_faixa(rua["pontos"], largura, ACIMA_DO_CHAO_RUA, COR_ESCADA, "Caminho_%d" % int(rua["osm"]))
 		return
 	_faixa(rua["pontos"], largura + calcada * 2.0, ACIMA_DO_CHAO_CALCADA, COR_CALCADA, "Calcada_%d" % int(rua["osm"]))
@@ -162,20 +140,11 @@ func _montar_rua(rua: Dictionary, calcada: float) -> void:
 func _montar_lote(lote: Dictionary) -> void:
 	if lote["tipo"] != Lotes.TIPO_PREDIO:
 		return
-	var cantos := Lotes.cantos(lote)
-	var mais_baixo := INF
-	var mais_alto := -INF
-	for c in cantos:
-		var h: float = terreno.altura(c.x, c.y)
-		mais_baixo = minf(mais_baixo, h)
-		mais_alto = maxf(mais_alto, h)
-	# O prédio afunda no lado mais baixo, para não ficar flutuando na ladeira.
-	var base := mais_baixo - 0.5
-	var altura: float = int(lote["andares"]) * ALTURA_ANDAR + (mais_alto - base)
+	var altura: float = int(lote["andares"]) * ALTURA_ANDAR
 	var centro: Vector2 = lote["centro"]
 	var cor: Color = CORES_PREDIOS[int(lote["id"]) % CORES_PREDIOS.size()]
 	var corpo: Node3D = Blocos.bloco(self, Vector3(lote["frente"], altura, lote["fundo"]),
-		Vector3(centro.x, base + altura / 2.0, centro.y), cor, 2.0)
+		Vector3(centro.x, altura / 2.0, centro.y), cor, 2.0)
 	corpo.name = "Predio_%d" % int(lote["id"])
 	corpo.rotation.y = float(lote["giro"])
 	predios.append(corpo)
@@ -187,7 +156,7 @@ func _montar_mata(gerador: RandomNumberGenerator, cfg: Dictionary) -> void:
 	for lote in lotes:
 		if lote["tipo"] == Lotes.TIPO_MATA:
 			var c: Vector2 = lote["centro"]
-			pontos.append(Vector3(c.x, terreno.altura(c.x, c.y), c.y))
+			pontos.append(Vector3(c.x, 0.0, c.y))
 	if dados["zona"] == "morros":
 		var limite := Lotes._pontos(dados["limite"])
 		var caixa: Array = dados["caixa"]
@@ -197,7 +166,7 @@ func _montar_mata(gerador: RandomNumberGenerator, cfg: Dictionary) -> void:
 			while z <= float(caixa[3]):
 				var p := Vector2(x + gerador.randf_range(-1.0, 1.0), z + gerador.randf_range(-1.0, 1.0))
 				if Geometry2D.is_point_in_polygon(p, limite) and _livre_para_arvore(p, float(cfg["calcada"])):
-					pontos.append(Vector3(p.x, terreno.altura(p.x, p.y), p.y))
+					pontos.append(Vector3(p.x, 0.0, p.y))
 				z += DISTANCIA_ENTRE_ARVORES
 			x += DISTANCIA_ENTRE_ARVORES
 	var cone := CylinderMesh.new()
@@ -236,17 +205,16 @@ func _livre_para_arvore(p: Vector2, calcada: float) -> bool:
 
 func _montar_marco(marco: Dictionary) -> void:
 	var p := _v2(marco["posicao"])
-	var chao_aqui: float = terreno.altura(p.x, p.y)
 	match marco["tipo"]:
 		"natural=peak":
-			# A capela no topo do morro (Igreja do Monte Serrat) e uma cruz.
-			Blocos.bloco(self, Vector3(6, 5, 9), Vector3(p.x, chao_aqui + 2.0, p.y), Color(0.85, 0.82, 0.74), 2.0)
-			Blocos.bloco(self, Vector3(0.3, 3, 0.3), Vector3(p.x, chao_aqui + 6.0, p.y - 3.0), Color(0.9, 0.9, 0.9), 1.0, false)
+			# A capela no alto do morro (Igreja do Monte Serrat) e uma cruz.
+			Blocos.bloco(self, Vector3(6, 5, 9), Vector3(p.x, 2.5, p.y), Color(0.85, 0.82, 0.74), 2.0)
+			Blocos.bloco(self, Vector3(0.3, 3, 0.3), Vector3(p.x, 6.5, p.y - 3.0), Color(0.9, 0.9, 0.9), 1.0, false)
 		"railway=funicular":
 			if marco.has("pontos"):
-				_faixa(marco["pontos"], 1.6, 0.15, Color(0.3, 0.25, 0.2), "Bondinho")
+				_faixa(marco["pontos"], 1.6, 0.06, Color(0.3, 0.25, 0.2), "Bondinho")
 		_:
-			Blocos.bloco(self, Vector3(1.2, 2.4, 1.2), Vector3(p.x, chao_aqui + 1.2, p.y), Color(0.75, 0.68, 0.55), 1.0)
+			Blocos.bloco(self, Vector3(1.2, 2.4, 1.2), Vector3(p.x, 1.2, p.y), Color(0.75, 0.68, 0.55), 1.0)
 
 
 static func _v2(p: Array) -> Vector2:

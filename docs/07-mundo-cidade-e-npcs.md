@@ -25,7 +25,7 @@ O jogo se passa em **Santos (SP)**, uma versão sobrenatural da cidade real.
 | A lista de bairros, com nome e **limites reais** | Os interiores |
 | A zona de cada bairro e quais bairros são vizinhos | A população de NPCs, rotinas e relações |
 | Os marcos e pontos históricos reais (porto, orla, canais, Monte Serrat, cemitérios históricos) | A posição dos pontos-chave menores |
-| O relevo dos morros | Os túneis do subterrâneo (seguindo as ruas) |
+| A identidade dos morros (mata, escadarias, marcos), num chão plano | Os túneis do subterrâneo (seguindo as ruas) |
 | As comunidades e o folclore de cada zona | Os casos, as criaturas e os segredos |
 
 O jogador reconhece **as ruas de Santos**, mas cada mundo tem **prédios, pessoas e histórias diferentes**. A cidade gerada **persiste** entre as carreiras do legado.
@@ -36,7 +36,7 @@ O traçado da cidade vem do **mapa real**, importado de dados abertos (OpenStree
 
 - **Escala: 1:3.** A ilha passa de cerca de 39 km² para cerca de **4,3 km²**. Um bairro médio fica com cerca de **280 m de lado**, uns 3 a 4 minutos a pé de ponta a ponta.
 - **Só as distâncias encolhem.** Ruas, calçadas, casas e pessoas continuam em tamanho humano. Por isso o mapa é **simplificado**: ficam as avenidas, os canais, a orla e as ruas importantes, e as ruas menores são fundidas ou removidas.
-- **Relevo:** os morros usam dados públicos de altitude. A altura é reduzida **menos** que as distâncias, para os morros continuarem parecendo morros.
+- **Sem relevo:** a cidade é **plana**, como Silent Hill; o clima vem da névoa. Os morros continuam com a identidade de morro (mata, escadarias, marcos), mas no plano (decisão de 17/11/2026, abaixo).
 - **Área continental:** é quase toda mata. Entram só os núcleos habitados (como Caruara, Monte Cabrão e Ilha Diana), bem mais comprimidos, com mata entre eles.
 - **Desempenho:** os dados do mapa ocupam poucos MB. Com bairros carregados separadamente e a estética PS1, o custo de desempenho é baixo.
 
@@ -46,7 +46,7 @@ Uma ferramenta feita uma vez (estimativa: **3 a 6 semanas**) que:
 
 1. Lê os dados de ruas, limites de bairro, canais e pontos históricos.
 2. Simplifica o traçado e aplica a escala.
-3. Gera ruas, calçadas, canais e o relevo no Godot.
+3. Gera ruas, calçadas e canais no Godot (chão plano).
 4. Marca os **lotes vazios** onde o gerador procedural coloca os prédios.
 5. Corta a cidade nos **limites de cada bairro**, transformando as ruas que cruzam o limite em saídas para o bairro vizinho.
 
@@ -289,7 +289,7 @@ Lanterna forte, botas de borracha, máscara de gás, corda, mapa das galerias (c
 - **Mesma cidade para todos:** traçado real das ruas, limites de bairro e pontos históricos, em escala 1:3. Prédios, interiores, NPCs e casos são gerados por semente.
 - **Importador sem dependências (17/11/2026):** Python puro (biblioteca padrão). Projeção, simplificação e recorte são escritos à mão e testados. O recorte bruto do OpenStreetMap fica versionado em `tools/cidade/osm/`, para a importação dar sempre o mesmo resultado.
 - **Bairros do portão da Fase 3 (17/11/2026):** **Valongo** e **Monte Serrat**. O Valongo tem polígono de bairro no OpenStreetMap. O Monte Serrat não tem: o limite usado é o da área protegida do morro, que também está no mapa.
-- **Relevo (17/11/2026):** alturas dos "terrain tiles" públicos (Terrarium, zoom 15), versionados em `tools/cidade/relevo/`, numa grade a cada 4 m. A altura é reduzida **1:2** (as distâncias, 1:3): o Monte Serrat fica com cerca de 75 m de altura no jogo, e as encostas ficam perto do limite do que o personagem sobe, como num morro de verdade. O polígono do Valongo no mapa sobe parte da encosta vizinha.
+- **Cidade plana, sem relevo (17/11/2026):** o relevo real chegou a ser importado (morros com até 75 m no jogo), mas as ladeiras ficaram inviáveis para andar e para a câmera. Decisão: **chão plano**, como Silent Hill, com névoa mais densa fazendo o clima. O importador não lê mais altitudes. Os morros mantêm a identidade pela mata, pelas escadarias e pelos marcos.
 - **Esgotos e subterrâneo:** incluídos como segunda camada da cidade.
 
 ## Questões em aberto

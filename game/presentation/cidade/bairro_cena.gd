@@ -1,5 +1,5 @@
 extends Node3D
-## Cena para andar num bairro do mapa real (Fase 3): noite, névoa, filtro PS1 e o caçador.
+## Cena para andar num bairro do mapa real (Fase 3): cidade plana, noite, névoa densa, filtro PS1 e o caçador.
 ## Argumentos: --bairro=<id> (padrão valongo), --semente=N (padrão 1),
 ## --captura=caminho.png, --lanterna, --inclinar=G, --virar=G, --vista=cima (para conferir o visual).
 
@@ -59,7 +59,7 @@ func montar(id_bairro: String, semente: int) -> void:
 	env.ambient_light_energy = 0.9
 	env.fog_enabled = true
 	env.fog_light_color = Color(0.07, 0.08, 0.11)
-	env.fog_density = 0.025
+	env.fog_density = 0.045
 	ambiente = WorldEnvironment.new()
 	ambiente.environment = env
 	add_child(ambiente)

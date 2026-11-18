@@ -18,13 +18,6 @@ def projetar(lat, lon, origem, escala):
     return (x / escala, z / escala)
 
 
-def desprojetar(x, z, origem, escala):
-    """(x, z) do jogo -> (lat, lon). Inverso de projetar."""
-    lat = origem["lat"] - z * escala / METROS_POR_GRAU_LAT
-    lon = origem["lon"] + x * escala / (METROS_POR_GRAU_LON_EQUADOR * math.cos(math.radians(origem["lat"])))
-    return lat, lon
-
-
 def _distancia_ao_segmento(p, a, b):
     ax, az = a
     bx, bz = b

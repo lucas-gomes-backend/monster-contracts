@@ -1,9 +1,8 @@
 extends "res://tests/framework/test_case.gd"
-## Fase 3: terreno e gerador de lotes dos bairros do mapa real (core/cidade).
+## Fase 3: gerador de lotes dos bairros do mapa real (core/cidade).
 
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const Rng := preload("res://core/rng.gd")
-const Terreno := preload("res://core/cidade/terreno.gd")
 const Lotes := preload("res://core/cidade/lotes.gd")
 
 const BAIRROS := ["valongo", "monte_serrat"]
@@ -26,14 +25,6 @@ func _limite(b: Dictionary) -> PackedVector2Array:
 func test_lotes_config_valida() -> void:
 	var r := Catalogo.carregar_config_lotes()
 	assert_eq(r["erros"].size(), 0, str(r["erros"]))
-
-
-func test_terreno_nos_pontos_da_grade_e_interpolado_no_meio() -> void:
-	var t := Terreno.new({"origem": [10.0, 20.0], "passo": 4.0, "colunas": 2, "linhas": 2, "alturas": [0.0, 8.0, 4.0, 12.0]})
-	assert_almost_eq(t.altura(10.0, 20.0), 0.0)
-	assert_almost_eq(t.altura(14.0, 20.0), 8.0)
-	assert_almost_eq(t.altura(12.0, 22.0), 6.0, 0.0001, "meio do quadrado: média dos quatro")
-	assert_almost_eq(t.altura(-100.0, 20.0), 0.0, 0.0001, "fora da grade: borda")
 
 
 func test_lotes_mesma_semente_mesmos_lotes_e_outra_semente_outros() -> void:
