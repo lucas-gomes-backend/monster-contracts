@@ -5,10 +5,10 @@ extends "res://tests/framework/test_case.gd"
 const Gerador := preload("res://core/casos/gerador_casos.gd")
 
 const SEMENTES := 12
-## Valongo é antigo/religioso: corpo-seco, mais as coringas. Centro só tem as coringas.
+## Valongo é antigo/religioso: corpo-seco. O Curupira vive nas áreas verdes dos dois. Mais as coringas.
 const PERMITIDAS := {
-	"valongo": ["corpo_seco", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"],
-	"centro": ["lobisomem_br", "mula_sem_cabeca", "golpe_humano"],
+	"valongo": ["corpo_seco", "curupira", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"],
+	"centro": ["curupira", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"],
 }
 
 static var _cache: Dictionary = {}
@@ -37,10 +37,10 @@ func test_especie_respeita_o_tipo_do_bairro() -> void:
 			assert_has(PERMITIDAS[id_bairro], caso["verdade"]["especie"], "%s semente %d" % [id_bairro, caso["semente"]])
 
 
-func test_o_corte_vertical_tem_tres_criaturas_e_o_golpe() -> void:
+func test_o_corte_vertical_tem_as_quatro_criaturas_e_o_golpe() -> void:
 	var vistas := {}
 	for id_bairro in PERMITIDAS:
 		for caso in _casos(id_bairro):
 			vistas[caso["verdade"]["especie"]] = true
-	for especie in ["corpo_seco", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"]:
+	for especie in ["corpo_seco", "curupira", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"]:
 		assert_true(vistas.has(especie), "%s aparece em algum caso (vistas: %s)" % [especie, str(vistas.keys())])

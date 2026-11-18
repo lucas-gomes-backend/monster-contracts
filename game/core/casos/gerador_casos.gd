@@ -46,7 +46,7 @@ static func gerar(semente: int, id_bairro: String = "paqueta") -> Dictionary:
 			descartes.append({"tentativa": tentativa, "motivos": ["sem incidente na pré-simulação"]})
 			continue
 		# Passo 8: o solucionador joga o caso como um iniciante. Caso injusto é descartado.
-		var validacao := Solucionador.validar(caso, dados["criaturas"], dados["bairro"]["tipo"])
+		var validacao := Solucionador.validar(caso, dados["criaturas"], dados["bairro"]["tipo"], Solucionador.tipos_de_locais(dados["bairro"]))
 		caso["validacao"] = validacao
 		if validacao["valido"]:
 			caso["descartes"] = descartes
@@ -139,15 +139,26 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 		if marca["onde"] == "registro" and marca.get("sobre", "historia") == "historia":
 			if g_historia.randf() < float(d["config_criaturas"]["chance_marca"][marca["freq"]]):
 				barramento.publicar(inicio, "historia.registro", instancia, "", {"tag": marca["tag"], "evento_origem": historia["id"]})
-	if ficha["necessidade"]["frequencia"] == "quando_provocada":
+	# A criatura que só age quando provocada (Curupira) é provocada perto do contrato,
+	# dentro da validade da cena: senão o único ataque fica velho e as marcas somem antes
+	# do caçador chegar. O golpista arma o golpe desde o início da pré-simulação, e as
+	# outras criaturas acordam nele.
+	var total_horas := int(cfg["pre_simulacao_dias"]) * 24
+	var hora_da_provocacao := -1
+	if ficha["necessidade"]["frequencia"] == "quando_provocada" and "humano" in ficha["familia"]:
 		criatura.provocar(inicio, gatilho)
+	elif ficha["necessidade"]["frequencia"] == "quando_provocada":
+		var cena_h := int(cfg["validade_horas"]["cena"])
+		hora_da_provocacao = total_horas - rng.stream("provocacao").randi_range(mini(24, cena_h / 2), maxi(cena_h - 6, 1))
 	else:
 		criatura.despertar(inicio, gatilho)
 
 	# 4. Pré-simulação
 	var agenda := _agendar_ruidos(cfg, bairro, inicio, rng.stream("ruido"))
-	for hora in int(cfg["pre_simulacao_dias"]) * 24:
+	for hora in total_horas:
 		var minuto := inicio + hora * 60
+		if hora == hora_da_provocacao:
+			criatura.provocar(minuto, gatilho)
 		_emitir_pendentes(agenda, boletins, minuto, barramento)
 		criatura.passo(minuto)
 	_emitir_pendentes(agenda, boletins, contrato_min, barramento)
@@ -242,7 +253,7 @@ static func _escolher_especie(estrutura: String, bairro: RefCounted, criaturas: 
 		var humano: bool = "humano" in ficha["familia"]
 		if (estrutura == "golpe") != humano:
 			continue
-		if "coringa" in ficha["bairros"] or bairro.dados["tipo"] in ficha["bairros"]:
+		if Solucionador.vive_no_bairro(ficha, bairro.dados["tipo"], Solucionador.tipos_de_locais(bairro.dados)):
 			candidatas.append(id)
 	if candidatas.is_empty():
 		return ""

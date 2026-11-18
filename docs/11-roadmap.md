@@ -127,7 +127,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [x] Suspeita e polícia básicas, maré básica: sujeira do esgoto, patrulha e abordagem com detenção, maré semidiurna que alaga as galerias.
 
 **Casos**
-- [x] 3 a 4 criaturas e o golpe humano: casos justos no Valongo (corpo-seco, lobisomem, mula sem cabeça, golpe) e no Centro (lobisomem, mula, golpe). O Curupira pede um bairro de mata (decisão pendente).
+- [x] 3 a 4 criaturas e o golpe humano: casos justos no Valongo (corpo-seco, lobisomem, mula sem cabeça, golpe) e no Centro (lobisomem, mula, golpe). O Curupira mora nas áreas verdes dos dois bairros.
 - [ ] Estruturas: caça simples, culpado humano, golpe.
 - [ ] **Todos os testes de campo** ([05](05-investigacao-e-deducao.md)).
 - [ ] Cartas e presentes depois do caso.

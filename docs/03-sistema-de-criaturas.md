@@ -214,6 +214,10 @@ A cidade é dividida em **bairros**, e **o tipo de bairro define quais criaturas
 | **Industrial / abandonado** | Fábricas, galpões vazios, trilhos | Bestas, criptídeos, espíritos de acidentes |
 | **Subterrâneo** (esgotos e galerias) | Escuro, água, túneis, ligado a vários bairros | Ghouls, bestas, criptídeos, espíritos de afogados, lendas urbanas |
 
+### Covil fora do tipo do bairro
+
+Uma criatura também vive num bairro de outro tipo quando ele tem um lugar que serve de covil para ela (campo `covil` da ficha). Exemplo: o Curupira mora em qualquer **área verde**, mesmo no Centro.
+
 ### Criaturas coringa
 
 Algumas criaturas **podem aparecer em qualquer bairro**: são as **coringas**.

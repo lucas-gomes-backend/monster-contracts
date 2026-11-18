@@ -52,7 +52,7 @@ func _init(caso_gerado: Dictionary, criaturas: Dictionary, dados_bairro: Diction
 	bairro = Bairro.new(dados_bairro)
 	minuto = int(caso["contrato"]["minuto"])
 	var fichas := {}
-	for id in Solucionador._candidatas(criaturas, dados_bairro["tipo"]):
+	for id in Solucionador._candidatas(criaturas, dados_bairro["tipo"], Solucionador.tipos_de_locais(dados_bairro)):
 		fichas[id] = criaturas[id]
 	caderno = Caderno.new(fichas)
 	caderno.definir_modo(_cfg["modo_padrao"])

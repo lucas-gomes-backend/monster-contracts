@@ -142,7 +142,11 @@ $mutants += @(
     @{ name = 'polícia não persegue'; path = 'game/presentation/cidade/policia_3d.gd';
        find = 'p["perseguindo"] = deve and i == 0 and'; replace = 'p["perseguindo"] = false and' },
     @{ name = 'maré alta não alaga'; path = 'game/presentation/cidade/bairro_cena.gd';
-       find = 'if mare.galerias_alagadas(minuto):'; replace = 'if false:' }
+       find = 'if mare.galerias_alagadas(minuto):'; replace = 'if false:' },
+    @{ name = 'covil não conta para o bairro'; path = 'game/core/casos/solucionador.gd';
+       find = '		if covil in tipos_de_locais:'; replace = '		if false:' },
+    @{ name = 'provocado no início da pré-simulação'; path = 'game/core/casos/gerador_casos.gd';
+       find = 'hora_da_provocacao = total_horas - '; replace = 'hora_da_provocacao = 0 * total_horas - ' }
 )
 
 if ($Somente.Count -gt 0) {

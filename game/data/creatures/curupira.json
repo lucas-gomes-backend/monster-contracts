@@ -24,7 +24,7 @@
     "metodo": "despista com pegadas invertidas, assobios e vozes ate a pessoa se perder",
     "territorio_m": 2000
   },
-  "covil": ["mata_fechada"],
+  "covil": ["mata_fechada", "area_verde"],
   "disfarce": {
     "tipo": "invisivel",
     "sinais": ["assobios", "vozes_imitadas", "caca_que_some"]

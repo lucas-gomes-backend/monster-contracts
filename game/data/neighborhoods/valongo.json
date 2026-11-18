@@ -21,6 +21,7 @@
   ],
   "locais": [
     {"id": "igreja", "tipo": "igreja", "rua": "rua_sao_bento", "nome": "Igreja do Valongo"},
+    {"id": "encosta_monte_serrat", "tipo": "area_verde", "rua": "rua_sao_bento", "nome": "Mata da encosta do Monte Serrat"},
     {"id": "largo", "tipo": "praca", "rua": "avenida_visconde_de_sao_leopoldo", "nome": "Largo da antiga estação"},
     {"id": "padaria", "tipo": "padaria", "rua": "rua_visconde_de_embare", "nome": "Padaria Trilhos"},
     {"id": "bar", "tipo": "bar", "rua": "avenida_martins_fontes", "nome": "Bar do Estivador"},

@@ -31,11 +31,34 @@ const PADROES_DE_BOLETIM := {
 }
 
 
+## Os tipos de lugar de um bairro abstrato (data/neighborhoods), sem repetir, em ordem.
+static func tipos_de_locais(dados_bairro: Dictionary) -> Array:
+	var tipos: Array = []
+	for local in dados_bairro["locais"]:
+		if not local["tipo"] in tipos:
+			tipos.append(local["tipo"])
+	tipos.sort()
+	return tipos
+
+
+## A criatura pode viver neste bairro? Coringa, tipo de bairro da ficha, ou um lugar do
+## bairro que serve de covil para ela (o Curupira mora em qualquer área verde).
+static func vive_no_bairro(ficha: Dictionary, tipo_bairro: String, tipos_de_locais: Array = []) -> bool:
+	var bairros: Array = ficha["bairros"]
+	if "coringa" in bairros or tipo_bairro in bairros:
+		return true
+	for covil in ficha.get("covil", []):
+		if covil in tipos_de_locais:
+			return true
+	return false
+
+
 ## {"valido": bool, "motivos": [...], "candidatos": [...], "evidencias": [...]}
-static func validar(caso: Dictionary, criaturas: Dictionary, tipo_bairro: String) -> Dictionary:
+## tipos_de_locais: os tipos de lugar do bairro (para os covis; ver vive_no_bairro).
+static func validar(caso: Dictionary, criaturas: Dictionary, tipo_bairro: String, tipos_de_locais: Array = []) -> Dictionary:
 	var motivos: Array[String] = []
 	var especie: String = caso["verdade"]["especie"]
-	var candidatas := _candidatas(criaturas, tipo_bairro)
+	var candidatas := _candidatas(criaturas, tipo_bairro, tipos_de_locais)
 	var vocabulario := {}
 	for id in candidatas:
 		for tag in _tags(criaturas[id]):
@@ -100,13 +123,12 @@ static func coletar_evidencias(caso: Dictionary) -> Array:
 	return evidencias
 
 
-static func _candidatas(criaturas: Dictionary, tipo_bairro: String) -> Array:
+static func _candidatas(criaturas: Dictionary, tipo_bairro: String, tipos_de_locais: Array) -> Array:
 	var ids := criaturas.keys()
 	ids.sort()
 	var candidatas: Array = []
 	for id in ids:
-		var bairros: Array = criaturas[id]["bairros"]
-		if "coringa" in bairros or tipo_bairro in bairros:
+		if vive_no_bairro(criaturas[id], tipo_bairro, tipos_de_locais):
 			candidatas.append(id)
 	return candidatas
 
