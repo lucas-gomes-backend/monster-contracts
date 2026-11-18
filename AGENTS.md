@@ -48,7 +48,7 @@
 | Gerador mudou de propósito | `.\tools\lote.ps1 -AtualizarReferencia` (e explique no commit) |
 | Abrir o editor | `godot --path game --editor` |
 | Reimportar os bairros do mapa real | `python tools/cidade/importar.py` (baixar de novo: `baixar.py`) |
-| Andar num bairro do mapa real | `.	oolsairro.ps1 -Bairro valongo [-Semente 3]` |
+| Andar num bairro do mapa real | `.\tools\bairro.ps1 -Bairro valongo [-Semente 3]` |
 
 ## Referência rápida: abra só a linha da tarefa
 
