@@ -3,7 +3,8 @@ extends RefCounted
 ##
 ## Tudo sai das fraquezas e resoluções da ficha da criatura verdadeira: não há resultado
 ## escrito à mão. Um teste dá positivo quando a criatura tem uma fraqueza com o item do teste
-## e um dos efeitos esperados, E o alvo é o certo (o hospedeiro, ou um lugar que ela frequenta).
+## e um dos efeitos esperados (ou é do tipo que o teste pega: "positivo_se", pela natureza ou
+## família da ficha, como o EMF e a câmera térmica), E o alvo é o certo (o hospedeiro, ou um lugar que ela frequenta).
 ## Testar a pessoa errada dá negativo sem descartar a criatura (docs/05).
 
 const Criatura := preload("res://core/criaturas/criatura.gd")
@@ -22,11 +23,22 @@ static func positivo(teste: Dictionary, ficha_verdade: Dictionary, verdade: Dict
 		for efeito in fraqueza["efeito"]:
 			if efeito in teste["efeitos_positivos"]:
 				tem_fraqueza = true
-	if not tem_fraqueza:
+	if not tem_fraqueza and not _pega_pelo_que_e(teste, ficha_verdade):
 		return false
 	if teste["alvo"] == "pessoa":
 		return not alvo.is_empty() and alvo == verdade["hospedeiro"]
 	return alvo in verdade["locais"]
+
+
+## EMF e câmera térmica: pegam a criatura pela natureza ou pela família, não por fraqueza.
+static func _pega_pelo_que_e(teste: Dictionary, ficha: Dictionary) -> bool:
+	var regra: Dictionary = teste.get("positivo_se", {})
+	if ficha.get("natureza", "") in regra.get("natureza", []):
+		return true
+	for familia in ficha.get("familia", []):
+		if familia in regra.get("familia", []):
+			return true
+	return false
 
 
 ## Minuto em que o resultado do teste aparece (a manhã seguinte à espera).

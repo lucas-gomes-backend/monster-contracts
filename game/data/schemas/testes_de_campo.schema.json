@@ -17,7 +17,16 @@
           "nome": {"type": "string"},
           "alvo": {"enum": ["pessoa", "local"]},
           "itens": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
-          "efeitos_positivos": {"type": "array", "minItems": 1, "items": {"enum": ["afasta", "fere", "revela", "prende", "destroi", "cura", "apazigua", "distrai", "bane"]}},
+          "efeitos_positivos": {"type": "array", "items": {"enum": ["afasta", "fere", "revela", "prende", "destroi", "cura", "apazigua", "distrai", "bane"]}},
+          "positivo_se": {
+            "$comment": "Positivo também pelo que a criatura é, não por fraqueza: natureza ou família da ficha.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "natureza": {"type": "array", "items": {"enum": ["corporea", "espiritual", "hibrida"]}},
+              "familia": {"type": "array", "items": {"enum": ["morto_vivo", "metamorfo", "amaldicoado", "espirito", "natureza", "trapaceiro", "demonio", "besta", "humano"]}}
+            }
+          },
           "espera": {"enum": ["proxima_janela_da_criatura", "uma_noite"]},
           "descricao": {"type": "string"},
           "positivo": {"type": "string"},

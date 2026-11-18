@@ -1,5 +1,5 @@
 {
-  "$comment": "Testes de campo (docs/05) e desfecho do caso (docs/06), resolvidos por regras na Fase 1. O resultado vem das FRAQUEZAS da ficha da criatura verdadeira: o teste usa um item, e dá positivo quando a criatura tem uma fraqueza com esse item e um dos efeitos listados.",
+  "$comment": "Testes de campo (docs/05) e desfecho do caso (docs/06), resolvidos por regras. O resultado vem da ficha da criatura verdadeira: o teste usa um item e dá positivo quando a criatura tem uma fraqueza com esse item e um dos efeitos listados, ou quando a natureza ou a família dela está em positivo_se (EMF, câmera térmica).",
   "testes": [
     {
       "id": "ferimento_revelador",
@@ -44,6 +44,52 @@
       "descricao": "Deixar fumo e cachaça num lugar e voltar de manhã.",
       "positivo": "De manhã, a oferenda em {alvo} sumiu, e há um assobio fino vindo do mato.",
       "negativo": "De manhã, a oferenda em {alvo} continua lá."
+    },
+    {
+      "id": "graos_na_porta",
+      "nome": "Grãos na porta",
+      "alvo": "pessoa",
+      "itens": ["graos_ou_sementes"],
+      "efeitos_positivos": ["prende", "distrai"],
+      "espera": "uma_noite",
+      "descricao": "Espalhar grãos ou sementes na porta da casa do suspeito e olhar de manhã.",
+      "positivo": "De manhã, os grãos na porta de {alvo} estão separados em montinhos, contados um a um.",
+      "negativo": "De manhã, os grãos na porta de {alvo} estão espalhados, pisados como em qualquer porta."
+    },
+    {
+      "id": "espelho_ou_camera",
+      "nome": "Espelho ou câmera",
+      "alvo": "pessoa",
+      "itens": ["espelho_ou_camera"],
+      "efeitos_positivos": ["revela"],
+      "espera": "uma_noite",
+      "descricao": "Fotografar ou filmar o suspeito, ou pôr um espelho no caminho dele, e revelar as fotos.",
+      "positivo": "Nas fotos, onde {alvo} deveria estar, não há ninguém. O espelho também não mostra nada.",
+      "negativo": "{alvo} aparece normal nas fotos e no espelho."
+    },
+    {
+      "id": "medidor_emf",
+      "nome": "Medidor EMF",
+      "alvo": "local",
+      "itens": ["medidor_emf"],
+      "efeitos_positivos": [],
+      "positivo_se": {"natureza": ["espiritual", "hibrida"], "familia": ["espirito", "demonio"]},
+      "espera": "proxima_janela_da_criatura",
+      "descricao": "Medir o campo eletromagnético de um lugar na hora em que a criatura costuma agir.",
+      "positivo": "Na hora certa, o medidor em {alvo} dispara: o ponteiro vai ao fim da escala e volta.",
+      "negativo": "O medidor em {alvo} fica parado a noite toda."
+    },
+    {
+      "id": "camera_termica",
+      "nome": "Câmera térmica",
+      "alvo": "local",
+      "itens": ["camera_termica"],
+      "efeitos_positivos": [],
+      "positivo_se": {"familia": ["morto_vivo", "espirito"]},
+      "espera": "proxima_janela_da_criatura",
+      "descricao": "Filmar um lugar com a câmera térmica na hora em que a criatura costuma agir.",
+      "positivo": "Na gravação de {alvo}, algo se move, mas tem a mesma temperatura fria das paredes: não é um corpo vivo.",
+      "negativo": "Na gravação de {alvo}, só aparece o calor de gente e bicho comum."
     }
   ],
   "hora_do_resultado": 8,

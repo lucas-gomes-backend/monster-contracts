@@ -150,7 +150,9 @@ $mutants += @(
     @{ name = 'ninguém nota o culpado sair'; path = 'game/core/casos/gerador_casos.gd';
        find = '_registrar_quem_notou(npcs, culpado, rotina'; replace = '_registrar_quem_notou([] as Array[Dictionary], culpado, rotina' },
     @{ name = 'crime não deixa marca'; path = 'game/core/casos/gerador_casos.gd';
-       find = '			for marca in c["marcas"]:'; replace = '			for marca in []:' }
+       find = '			for marca in c["marcas"]:'; replace = '			for marca in []:' },
+    @{ name = 'teste não pega pelo que a criatura é'; path = 'game/core/investigacao/regras_de_campo.gd';
+       find = 'if not tem_fraqueza and not _pega_pelo_que_e(teste, ficha_verdade):'; replace = 'if not tem_fraqueza:' }
 )
 
 if ($Somente.Count -gt 0) {

@@ -42,12 +42,19 @@ func test_testes_de_campo_config_e_valida() -> void:
 	assert_eq(Catalogo.carregar_config_testes()["erros"], [] as Array[String])
 
 
+## Testes que entram no corte vertical sem criatura que os use ainda (docs/05: um negativo
+## também é informação). Grãos: strigoi; espelho: vampiros.
+const SEM_CRIATURA_AINDA := ["graos_na_porta", "espelho_ou_camera"]
+
+
 func test_testes_de_campo_todo_item_existe_em_alguma_ficha() -> void:
 	var itens := {}
 	for ficha in _criaturas().values():
 		for f in ficha["fraquezas"]:
 			itens[f["item"]] = true
 	for teste in _cfg()["testes"]:
+		if teste["id"] in SEM_CRIATURA_AINDA or teste.has("positivo_se"):
+			continue
 		for item in teste["itens"]:
 			if not itens.has(item):
 				fail("%s usa o item %s, que nenhuma ficha tem" % [teste["id"], item])
@@ -174,3 +181,47 @@ func test_interpretador_testes_e_moradores_respondem() -> void:
 		var resposta := jogo.executar(comando)
 		if resposta.is_empty() or resposta.begins_with("Não entendi") or resposta.begins_with("Não deu"):
 			fail("comando '%s': %s" % [comando, resposta])
+
+
+func test_todos_os_testes_de_campo_do_design_existem() -> void:
+	var ids := []
+	for t in _cfg()["testes"]:
+		ids.append(t["id"])
+	for id in ["graos_na_porta", "espelho_ou_camera", "linha_de_sal", "oferenda", "ferimento_revelador", "agua_benta", "medidor_emf", "camera_termica"]:
+		assert_has(ids, id)
+
+
+func test_graos_e_espelho_dao_negativo_para_as_criaturas_do_corte_vertical() -> void:
+	var verdade := {"hospedeiro": "npc_1", "locais": ["valongo/largo"]}
+	for id in SEM_CRIATURA_AINDA:
+		for ficha in _criaturas().values():
+			assert_false(Regras.positivo(_teste(id), ficha, verdade, "npc_1"), "%s em %s" % [id, ficha["id"]])
+
+
+func test_camera_termica_ve_o_corpo_seco_frio_so_nos_lugares_dele() -> void:
+	var termica := _teste("camera_termica")
+	var verdade := {"hospedeiro": "", "locais": ["valongo/largo"]}
+	var c := _criaturas()
+	assert_true(Regras.positivo(termica, c["corpo_seco"], verdade, "valongo/largo"), "morto-vivo não tem calor")
+	assert_false(Regras.positivo(termica, c["corpo_seco"], verdade, "valongo/padaria"), "lugar onde ele não vai")
+	for id in ["lobisomem_br", "mula_sem_cabeca", "curupira", "golpe_humano"]:
+		assert_false(Regras.positivo(termica, c[id], verdade, "valongo/largo"), "%s tem corpo quente" % id)
+
+
+func test_emf_pega_a_entidade_e_nao_o_corpo() -> void:
+	var emf := _teste("medidor_emf")
+	var verdade := {"hospedeiro": "", "locais": ["valongo/encosta_monte_serrat"]}
+	var c := _criaturas()
+	assert_true(Regras.positivo(emf, c["curupira"], verdade, "valongo/encosta_monte_serrat"), "o Curupira é entidade")
+	for id in ["corpo_seco", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"]:
+		assert_false(Regras.positivo(emf, c[id], verdade, "valongo/encosta_monte_serrat"), "%s é corpóreo" % id)
+
+
+func test_sessao_faz_os_testes_novos_e_o_tempo_anda() -> void:
+	var caso := _primeiro_caso("corpo_seco")
+	var s := _sessao(caso)
+	var antes: int = s.minuto
+	var r: Dictionary = s.aplicar_teste("camera_termica", caso["verdade"]["locais"][0])
+	assert_true(r["ok"], str(r.get("erro", "")))
+	assert_true(r["positivo"], "a térmica pega o corpo-seco")
+	assert_true(s.minuto > antes, "esperou a hora certa")

@@ -251,3 +251,4 @@ Elas abrem **novos jeitos de coletar**, nunca a resposta ([12](12-habilidades-e-
 - **Ligar pistas:** arrastar e soltar no caderno.
 - **Relatório do caso:** mostra toda a verdade.
 - **Testes de campo no corte vertical:** todos.
+- **EMF e câmera térmica (18/11/2026):** não exploram uma fraqueza, e sim o que a criatura é. O teste tem `positivo_se` (natureza ou família da ficha) em `config/testes_de_campo.json`. EMF: natureza espiritual ou híbrida, família espírito ou demônio (pega o Curupira). Térmica: morto-vivo ou espírito, sem calor de corpo (pega o corpo-seco). Os dois esperam a hora em que a criatura age.
