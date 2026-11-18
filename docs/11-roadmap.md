@@ -130,7 +130,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [x] 3 a 4 criaturas e o golpe humano: casos justos no Valongo (corpo-seco, lobisomem, mula sem cabeça, golpe) e no Centro (lobisomem, mula, golpe). O Curupira mora nas áreas verdes dos dois bairros.
 - [x] Estruturas: caça simples, culpado humano, golpe. No culpado humano, um morador desmata ou caça com crueldade numa área verde, os vizinhos o veem sair à noite e o Curupira reage.
 - [x] **Todos os testes de campo** ([05](05-investigacao-e-deducao.md)): os 8 da tabela. Grãos e espelho entram sem criatura que os use ainda; EMF e câmera térmica pegam pela natureza e pela família da ficha.
-- [ ] Cartas e presentes depois do caso.
+- [x] Cartas e presentes depois do caso: saem do desfecho (pessoas salvas, criatura poupada, demora ou erro, inocente prejudicado, amaldiçoado morto, golpista exposto), citam nomes e lugares e aparecem depois do relatório. Guardar no mural da casa fica para quando houver casa e save.
 
 **Confronto** ([06](06-confronto-e-rituais.md))
 - [ ] Estados da criatura, ferimentos localizados, medo.

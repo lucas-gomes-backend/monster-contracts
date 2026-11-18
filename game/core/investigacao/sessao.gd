@@ -17,6 +17,7 @@ const Rotina := preload("res://core/npcs/rotina.gd")
 const Rng := preload("res://core/rng.gd")
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const RegrasDeCampo := preload("res://core/investigacao/regras_de_campo.gd")
+const Cartas := preload("res://core/casos/cartas.gd")
 
 var caso: Dictionary
 var caderno: RefCounted
@@ -114,6 +115,14 @@ func agir(resolucao: String, especie: String, alvo: String = "") -> Dictionary:
 	if resultado["ok"]:
 		desfecho = resultado
 	return resultado
+
+
+## Cartas e presentes que chegam depois do caso (core/casos/cartas.gd). Vazio enquanto aberto.
+func cartas() -> Array[Dictionary]:
+	if not encerrado():
+		return [] as Array[Dictionary]
+	return Cartas.gerar(caso, desfecho, Catalogo.carregar_criaturas()["criaturas"], bairro.dados,
+		Catalogo.carregar_textos_cartas()["dados"], _cfg_testes["resolucoes_que_encerram_os_ataques"])
 
 
 ## Lugares que dá para visitar (todos menos as casas), em ordem.

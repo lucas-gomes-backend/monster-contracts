@@ -87,7 +87,7 @@ func executar(linha: String) -> String:
 		return ""
 	var comando := partes[0].to_lower()
 	var args := partes.slice(1)
-	var de_leitura := ["ajuda", "?", "contrato", "hora", "pistas", "depoimentos", "hipoteses", "bestiario", "caracteristicas", "sair", "resultado", "relatorio"]
+	var de_leitura := ["ajuda", "?", "contrato", "hora", "pistas", "depoimentos", "hipoteses", "bestiario", "caracteristicas", "sair", "resultado", "relatorio", "cartas"]
 	if sessao.encerrado() and not comando in de_leitura:
 		return "O caso já foi encerrado. Use 'resultado' ou 'sair'."
 	match comando:
@@ -103,6 +103,8 @@ func executar(linha: String) -> String:
 			return _resultado()
 		"relatorio":
 			return _relatorio()
+		"cartas":
+			return _cartas()
 		"ajuda", "?":
 			return _ajuda()
 		"contrato":
@@ -181,6 +183,7 @@ func _ajuda() -> String:
 		"                           apaziguar, negociar, expor ou abandonar",
 		"  resultado                o desfecho, depois de agir",
 		"  relatorio                toda a verdade: pistas perdidas, ligações erradas, mentiras, ruído",
+		"  cartas                   as cartas e presentes que chegaram depois do caso",
 		"  sair",
 	])
 
@@ -416,6 +419,25 @@ func _relatorio() -> String:
 	linhas.append("DEPOIMENTOS: você ouviu %d de %d." % [int(d["ouvidos"]), int(d["total"])])
 	if int(d["sobre_o_hospedeiro_nao_ouvidos"]) > 0:
 		linhas.append("  %d vizinho(s) tinham visto alguém sair de casa na noite do ataque, e você não conversou com eles." % int(d["sobre_o_hospedeiro_nao_ouvidos"]))
+	linhas.append("")
+	linhas.append(_cartas())
+	return "\n".join(linhas)
+
+
+## Cartas e presentes que chegam depois do caso (sessao.cartas()).
+func _cartas() -> String:
+	if not sessao.encerrado():
+		return "As cartas chegam depois que o caso for encerrado ('agir')."
+	var cartas: Array[Dictionary] = sessao.cartas()
+	var linhas: Array = ["CARTAS E PRESENTES (chegaram nos dias seguintes)"]
+	if cartas.is_empty():
+		linhas.append("  Nenhuma carta.")
+	for c in cartas:
+		var quem: String = "alguém que não se identificou" if str(c["remetente"]).is_empty() else _nome(c["remetente"])
+		linhas.append("  - De %s:" % quem)
+		linhas.append("    \"%s\"" % c["texto"])
+		if not str(c["presente"]).is_empty():
+			linhas.append("    Junto veio %s." % c["presente"])
 	return "\n".join(linhas)
 
 

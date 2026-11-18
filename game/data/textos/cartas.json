@@ -1,0 +1,31 @@
+{
+  "$comment": "Cartas e presentes depois do caso (docs/04, 'Cartas e presentes'). Cada situação tem modelos; o gerador (core/casos/cartas.gd) escolhe um por carta e troca {remetente}, {cliente}, {pessoa}, {ocupacao}, {criatura}, {local} e {bairro} pelo que aconteceu no caso. 'de' diz quem escreve: cliente, testemunha (quem viu um ataque), familia (da pessoa prejudicada), acusado (quem foi exposto) ou ninguem (presente deixado na porta).",
+  "chance_de_presente": 0.5,
+  "testemunhas_que_escrevem": [1, 2],
+  "situacoes": {
+    "pessoas_salvas": [
+      {"de": "cliente", "texto": "Caçador, aqui é {remetente}. Desde que você resolveu aquilo, a gente voltou a dormir. Ninguém mais tem medo de passar por lá ({local}). Obrigado, de coração.", "presentes": ["um bolo de fubá embrulhado num pano de prato", "uma nota de cinquenta reais dobrada dentro do envelope"]},
+      {"de": "cliente", "texto": "{remetente} escrevendo. O {bairro} está quieto de novo. Não sei como você fez, e acho que prefiro não saber. Fica aqui meu muito obrigado.", "presentes": ["um pote de doce de leite caseiro", "uma garrafa de cachaça de alambique"]},
+      {"de": "testemunha", "texto": "Moço, sou {remetente}. Eu vi aquela coisa, lá no lugar de sempre ({local}), e ninguém acreditava em mim. Você acreditou. Obrigado.", "presentes": ["um desenho de criança: um homem com lanterna e um bicho fugindo", "um terço de contas de madeira"]},
+      {"de": "testemunha", "texto": "Aqui é {remetente}. O pessoal aqui de casa mandou agradecer. Agora dá para voltar para casa de noite sem correr.", "presentes": ["uma marmita de feijoada ainda morna", "um chaveiro de São Jorge"]}
+    ],
+    "criatura_poupada": [
+      {"de": "ninguem", "texto": "De manhã, na porta, alguém (ou alguma coisa) deixou um presente. Não tem bilhete.", "presentes": ["um maço de penas de gavião amarradas com cipó", "uma moeda de prata antiga, gasta de tanto uso", "um punhado de sementes que você nunca viu"]}
+    ],
+    "vitimas_por_demora": [
+      {"de": "cliente", "texto": "Caçador, é {remetente}. Eu te paguei para resolver, e não resolveu. Aconteceu de novo, no mesmo lugar ({local}). Por que você não chegou antes?", "presentes": []},
+      {"de": "cliente", "texto": "{remetente} aqui. Eu desisti de esperar. O {bairro} continua com medo, e eu continuo sem resposta. Espero que você saiba o que deixou para trás.", "presentes": []}
+    ],
+    "inocente_prejudicado": [
+      {"de": "familia", "texto": "Você não sabe quem eu sou. Sou da família de {pessoa}. {pessoa} era {ocupacao}, trabalhava a vida inteira, e você acabou com tudo por causa de uma desconfiança. Não tinha nada a ver. Espero que isso te tire o sono. {remetente}.", "presentes": []},
+      {"de": "familia", "texto": "{pessoa} não fez nada. Todo mundo no {bairro} sabe disso agora. Quem vai cuidar da casa? Quem vai trabalhar de {ocupacao} no lugar? Você não volta mais aqui. {remetente}.", "presentes": []}
+    ],
+    "amaldicoado_morto": [
+      {"de": "familia", "texto": "{pessoa} carregava uma maldição e sofria com ela. Tinha cura, sabia? Tinha. E você escolheu matar. Eu vou lembrar de você toda vez que olhar para a cadeira vazia. {remetente}.", "presentes": []}
+    ],
+    "cliente_exposto": [
+      {"de": "acusado", "texto": "Você se acha esperto. Expôs {pessoa} na frente do {bairro} inteiro. Isso não vai ficar assim. Meu advogado já está cuidando de você.", "presentes": []},
+      {"de": "acusado", "texto": "Escritório de advocacia, em nome de {pessoa}: comunicamos que nosso cliente vai processá-lo por calúnia e difamação. Aguarde a citação.", "presentes": []}
+    ]
+  }
+}

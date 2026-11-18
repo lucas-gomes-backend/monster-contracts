@@ -190,6 +190,11 @@ static func carregar_config_testes() -> Dictionary:
 	return carregar_validado("res://data/config/testes_de_campo.json", "res://data/schemas/testes_de_campo.schema.json")
 
 
+## Cartas e presentes depois do caso, validados.
+static func carregar_textos_cartas() -> Dictionary:
+	return carregar_validado("res://data/textos/cartas.json", "res://data/schemas/cartas.schema.json")
+
+
 ## Textos das marcas: {tag: {"pista": ..., "caracteristica": ...}}.
 static func carregar_textos_marcas() -> Dictionary:
 	var dados: Variant = ler_json("res://data/textos/marcas.json")

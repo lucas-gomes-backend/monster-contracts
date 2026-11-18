@@ -152,7 +152,9 @@ $mutants += @(
     @{ name = 'crime não deixa marca'; path = 'game/core/casos/gerador_casos.gd';
        find = '			for marca in c["marcas"]:'; replace = '			for marca in []:' },
     @{ name = 'teste não pega pelo que a criatura é'; path = 'game/core/investigacao/regras_de_campo.gd';
-       find = 'if not tem_fraqueza and not _pega_pelo_que_e(teste, ficha_verdade):'; replace = 'if not tem_fraqueza:' }
+       find = 'if not tem_fraqueza and not _pega_pelo_que_e(teste, ficha_verdade):'; replace = 'if not tem_fraqueza:' },
+    @{ name = 'carta sem a família de quem morreu'; path = 'game/core/casos/cartas.gd';
+       find = '	if desfecho.get("amaldicoado_morto", false):'; replace = '	if false:' }
 )
 
 if ($Somente.Count -gt 0) {

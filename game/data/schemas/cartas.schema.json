@@ -1,0 +1,40 @@
+{
+  "$comment": "Cartas e presentes depois do caso (game/data/textos/cartas.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["chance_de_presente", "testemunhas_que_escrevem", "situacoes"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "chance_de_presente": {"type": "number", "minimum": 0, "maximum": 1},
+    "testemunhas_que_escrevem": {"type": "array", "items": {"type": "integer", "minimum": 0}, "minItems": 2, "maxItems": 2},
+    "situacoes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pessoas_salvas", "criatura_poupada", "vitimas_por_demora", "inocente_prejudicado", "amaldicoado_morto", "cliente_exposto"],
+      "properties": {
+        "pessoas_salvas": {"$ref": "#/$defs/modelos"},
+        "criatura_poupada": {"$ref": "#/$defs/modelos"},
+        "vitimas_por_demora": {"$ref": "#/$defs/modelos"},
+        "inocente_prejudicado": {"$ref": "#/$defs/modelos"},
+        "amaldicoado_morto": {"$ref": "#/$defs/modelos"},
+        "cliente_exposto": {"$ref": "#/$defs/modelos"}
+      }
+    }
+  },
+  "$defs": {
+    "modelos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["de", "texto", "presentes"],
+        "properties": {
+          "de": {"enum": ["cliente", "testemunha", "familia", "acusado", "ninguem"]},
+          "texto": {"type": "string", "minLength": 1},
+          "presentes": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    }
+  }
+}

@@ -297,6 +297,7 @@ Falhar custa reputação e gera cartas, mas o mundo segue em frente.
 
 ## Decisões
 
+- **Cartas e presentes (18/11/2026):** os textos ficam em `data/textos/cartas.json`, por situação, com quem escreve (cliente, testemunha que viu um ataque, família da pessoa prejudicada, o acusado, ou ninguém, quando é um presente na porta). O gerador (`core/casos/cartas.gd`) escolhe as situações pelo desfecho e preenche nomes, lugares e ocupação. Mesmo caso e mesmo desfecho dão as mesmas cartas. Por enquanto aparecem no fim do relatório e no comando `cartas`; o mural ou a caixa na casa do jogador vêm com a casa e o save.
 - **Culpado humano (18/11/2026):** os crimes ficam em `config/casos.json` (`crimes`), no formato dos ruídos, mais o gatilho que disparam e o que os vizinhos notam. O culpado é um morador adulto que comete o crime 2 a 3 vezes no mesmo lugar; o último provoca a criatura. Vizinhos acordados notam quando ele sai à noite (como o sumiço de um hospedeiro), e o caso só vale se pelo menos 2 depoimentos apontarem para ele. Só entram estruturas que têm alguma espécie possível no bairro; por isso o Paquetá, sem área verde, não tem culpado humano.
 
 - **Pré-simulação:** 10 dias antes do contrato.
