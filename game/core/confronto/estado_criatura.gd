@@ -83,6 +83,23 @@ func enfurecer() -> void:
 	agressividade = int(_cfg["agressividade_maxima"])
 
 
+## Negociação: acordo resolve; recusa vira confronto (ela fica mais agressiva e solta).
+func acordo() -> void:
+	if estado == RESOLVIDA:
+		return
+	estado = RESOLVIDA
+	resolucao = "negocia"
+	restante = 0.0
+
+
+func recusou() -> void:
+	if estado == RESOLVIDA:
+		return
+	estado = LIVRE
+	restante = 0.0
+	agressividade = mini(agressividade + 1, int(_cfg["agressividade_maxima"]))
+
+
 func esta_afastada() -> bool:
 	return afastada > 0.0
 

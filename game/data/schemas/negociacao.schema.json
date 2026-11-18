@@ -1,0 +1,46 @@
+{
+  "$comment": "Negociação e apaziguamento (game/data/config/negociacao.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["paciencia_inicial", "satisfacao_para_acordo", "chance_de_traicao", "apaziguar_ate_agressividade", "alcance_da_conversa", "personalidades", "abertura", "exigencias", "ofertas", "falas"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "paciencia_inicial": {"type": "integer", "minimum": 1},
+    "satisfacao_para_acordo": {"type": "integer", "minimum": 0},
+    "chance_de_traicao": {
+      "type": "object", "additionalProperties": false, "required": ["instintiva", "astuta", "ardilosa"],
+      "properties": {"instintiva": {"type": "number", "minimum": 0, "maximum": 1}, "astuta": {"type": "number", "minimum": 0, "maximum": 1}, "ardilosa": {"type": "number", "minimum": 0, "maximum": 1}}
+    },
+    "apaziguar_ate_agressividade": {"type": "integer", "minimum": 0},
+    "alcance_da_conversa": {"type": "number", "minimum": 0},
+    "personalidades": {"type": "array", "minItems": 1, "items": {"enum": ["orgulhosa", "faminta", "ressentida", "curiosa"]}},
+    "abertura": {
+      "type": "object", "additionalProperties": false, "required": ["orgulhosa", "faminta", "ressentida", "curiosa"],
+      "properties": {"orgulhosa": {"type": "string"}, "faminta": {"type": "string"}, "ressentida": {"type": "string"}, "curiosa": {"type": "string"}}
+    },
+    "exigencias": {"$comment": "gatilho -> fala; 'padrao' para os outros", "type": "object", "required": ["padrao"]},
+    "ofertas": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "texto", "agrada", "ofende"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z_]+$"},
+          "texto": {"type": "string", "minLength": 1},
+          "exige_item": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "atende_gatilho": {"type": "boolean"},
+          "termo": {"type": "string"},
+          "agrada": {"type": "array", "items": {"enum": ["orgulhosa", "faminta", "ressentida", "curiosa"]}},
+          "ofende": {"type": "array", "items": {"enum": ["orgulhosa", "faminta", "ressentida", "curiosa"]}}
+        }
+      }
+    },
+    "falas": {
+      "type": "object", "additionalProperties": false, "required": ["agradou", "indiferente", "ofendeu", "sem_item", "acordo", "recusa"],
+      "properties": {"agradou": {"type": "string"}, "indiferente": {"type": "string"}, "ofendeu": {"type": "string"}, "sem_item": {"type": "string"}, "acordo": {"type": "string"}, "recusa": {"type": "string"}}
+    }
+  }
+}

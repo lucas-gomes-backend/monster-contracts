@@ -27,6 +27,7 @@ const ACOES := {
 	"arma_2": [KEY_2],
 	"arma_3": [KEY_3],
 	"ritual": [KEY_T],
+	"conversar": [KEY_N],
 	"acao_do_ritual": [KEY_SPACE],
 }
 const ACOES_MOUSE := {

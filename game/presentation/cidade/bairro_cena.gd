@@ -45,9 +45,13 @@ const MenuRadial := preload("res://presentation/cidade/menu_radial.gd")
 const Ritual := preload("res://core/confronto/ritual.gd")
 const RitualTela := preload("res://presentation/cidade/ritual_tela.gd")
 const EstadoCriatura := preload("res://core/confronto/estado_criatura.gd")
+const Negociacao := preload("res://core/confronto/negociacao.gd")
+const ConversaTela := preload("res://presentation/cidade/conversa_tela.gd")
+const TECLAS_DE_OPCAO := [KEY_1, KEY_2, KEY_3, KEY_4, KEY_5]
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
-	"destroi": "Destruída.", "cura": "Curada: a maldição se quebrou.", "bane": "Banida.", "apazigua": "Apaziguada: foi embora em paz."}
+	"destroi": "Destruída.", "cura": "Curada: a maldição se quebrou.", "bane": "Banida.", "apazigua": "Apaziguada: foi embora em paz.",
+	"negocia": "Acordo feito."}
 ## Quanto tempo a lanterna fica apagada quando falha de medo (segundos).
 const PISCADA_DA_LANTERNA := 0.25
 const CORES_DA_SUSPEITA := {"normal": Color(0.15, 0.3, 0.15), "observado": Color(0.6, 0.45, 0.05),
@@ -111,6 +115,13 @@ var tempo_do_passo := 0.0
 var segurando := false
 var ritual_tela: Control
 var _cfg_rituais: Dictionary
+## Negociação em andamento (ou null), o gatilho do caso que a criatura cobra e os acordos
+## feitos (com a traição escondida, para o relatório e casos futuros).
+var negociacao: RefCounted
+var gatilho_do_caso: String = ""
+var acordos: Array = []
+var conversa_tela: Control
+var _cfg_negociacao: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
@@ -180,6 +191,7 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	bolsos = Bolsos.new(_cfg_armas["bolsos"])
 	_cfg_rituais = Catalogo.carregar_config_rituais()["dados"]
 	rituais = _cfg_rituais["rituais"]
+	_cfg_negociacao = Catalogo.carregar_config_negociacao()["dados"]
 	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -340,7 +352,7 @@ func _montar_interface() -> void:
 	camada.layer = 11
 	add_child(camada)
 	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma · Q bolsos · T ritual"
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma · Q bolsos · T ritual · N conversar"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
 	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)
@@ -402,6 +414,12 @@ func _montar_interface() -> void:
 	ritual_tela.size = Vector2(400, 110)
 	ritual_tela.visible = false
 	camada.add_child(ritual_tela)
+	conversa_tela = ConversaTela.new()
+	conversa_tela.cena = self
+	conversa_tela.position = Vector2(70, 270)
+	conversa_tela.size = Vector2(500, 150)
+	conversa_tela.visible = false
+	camada.add_child(conversa_tela)
 
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
@@ -477,6 +495,13 @@ func _input(evento: InputEvent) -> void:
 	if ritual_tela.visible:
 		_input_do_ritual(evento)
 		return
+	if conversa_tela.visible:
+		_input_da_conversa(evento)
+		return
+	if evento.is_action_pressed("conversar"):
+		conversar()
+		get_viewport().set_input_as_handled()
+		return
 	if evento.is_action_pressed("ritual"):
 		abrir_rituais()
 		get_viewport().set_input_as_handled()
@@ -512,6 +537,54 @@ func _input_do_ritual(evento: InputEvent) -> void:
 	else:
 		return
 	get_viewport().set_input_as_handled()
+
+
+func _input_da_conversa(evento: InputEvent) -> void:
+	if evento.is_action_pressed("soltar_mouse") or evento.is_action_pressed("conversar"):
+		fechar_conversa()
+	elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode in TECLAS_DE_OPCAO:
+		oferecer(TECLAS_DE_OPCAO.find(evento.physical_keycode))
+	else:
+		return
+	get_viewport().set_input_as_handled()
+
+
+## N: começa a conversa, se a criatura negocia e está perto.
+func conversar() -> bool:
+	if criatura == null or not criatura.visible or _distancia_da_criatura() > float(_cfg_negociacao["alcance_da_conversa"]):
+		_avisar("Não tem com quem conversar aqui.")
+		return false
+	if not Negociacao.pode(criatura.ficha):
+		_avisar("Ela não negocia.")
+		return false
+	var gatilho := gatilho_do_caso if not gatilho_do_caso.is_empty() else str(criatura.ficha["gatilhos"][0])
+	negociacao = Negociacao.new(criatura.ficha, gatilho, _cfg_negociacao, Rng.new(semente).stream("negociacao:%s" % criatura.ficha["id"]))
+	conversa_tela.visible = true
+	cacador.bloqueado = true
+	return true
+
+
+func fechar_conversa() -> void:
+	negociacao = null
+	conversa_tela.visible = false
+	if not ferimentos.morto:
+		cacador.bloqueado = false
+
+
+## Oferece a opção i. Acordo resolve (com termos); recusa vira confronto.
+func oferecer(i: int) -> void:
+	if negociacao == null:
+		return
+	negociacao.oferecer(i, bolsos)
+	if negociacao.situacao == Negociacao.ACORDO:
+		criatura.estado.acordo()
+		acordos.append({"especie": criatura.ficha["id"], "termos": negociacao.termos.duplicate(), "traira": negociacao.traira})
+		_avisar("Acordo: %s" % " ".join(negociacao.termos))
+		fechar_conversa()
+	elif negociacao.situacao == Negociacao.RECUSA:
+		criatura.estado.recusou()
+		_avisar("Ela recusou. Prepare-se!")
+		fechar_conversa()
 
 
 ## T: abre a lista de rituais, se a criatura estiver perto.
@@ -670,6 +743,11 @@ func usar_bolso(i: int) -> void:
 		bolsos.itens[i]["quantidade"] = int(bolsos.itens[i]["quantidade"]) + 1
 		_avisar("Nada perto para usar isso.")
 		return
+	# Apaziguar: furiosa, ela não aceita a oferenda (converse antes).
+	if "apazigua" in criatura.estado.efeitos_do_item(item) and criatura.estado.agressividade > int(_cfg_negociacao["apaziguar_ate_agressividade"]):
+		bolsos.itens[i]["quantidade"] = int(bolsos.itens[i]["quantidade"]) + 1
+		_avisar("Furiosa demais para aceitar. Acalme-a antes.")
+		return
 	var efeito: Dictionary = criatura.receber(item, 0.0)
 	_avisar(TEXTO_DO_EFEITO.get(efeito["efeito"], "Não fez efeito. Ela ficou mais agressiva."))
 
@@ -726,7 +804,8 @@ func _corpo_e_medo(segundos: float) -> void:
 	var aqui := Vector2(cacador.position.x, cacador.position.z)
 	var distancia := INF
 	var pressionado := false
-	if criatura != null and criatura.visible:
+	# Conversando, a criatura escuta: não anda nem ataca.
+	if criatura != null and criatura.visible and negociacao == null:
 		var golpe: Dictionary = criatura.andar(segundos, cacador.position, circulos)
 		pressionado = criatura.pressionando
 		distancia = Vector2(criatura.position.x, criatura.position.z).distance_to(aqui)

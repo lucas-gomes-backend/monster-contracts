@@ -133,6 +133,11 @@ static func carregar_config_armas() -> Dictionary:
 	return carregar_validado("res://data/config/armas.json", "res://data/schemas/armas.schema.json")
 
 
+## Negociação e apaziguamento (docs/06), validados.
+static func carregar_config_negociacao() -> Dictionary:
+	return carregar_validado("res://data/config/negociacao.json", "res://data/schemas/negociacao.schema.json")
+
+
 ## Rituais do confronto (docs/06), validados.
 static func carregar_config_rituais() -> Dictionary:
 	return carregar_validado("res://data/config/rituais.json", "res://data/schemas/rituais.schema.json")

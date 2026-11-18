@@ -166,7 +166,11 @@ $mutants += @(
     @{ name = 'palavra errada não falha o ritual'; path = 'game/core/confronto/ritual.gd';
        find = '		situacao = FALHOU'; replace = '		pass' },
     @{ name = 'ritual errado não enfurece'; path = 'game/presentation/cidade/bairro_cena.gd';
-       find = '			criatura.estado.enfurecer()'; replace = '			pass' }
+       find = '			criatura.estado.enfurecer()'; replace = '			pass' },
+    @{ name = 'acordo sem agradar antes'; path = 'game/core/confronto/negociacao.gd';
+       find = '		if satisfacao >= int(_cfg["satisfacao_para_acordo"]):'; replace = '		if true:' },
+    @{ name = 'furioso aceita a oferenda'; path = 'game/presentation/cidade/bairro_cena.gd';
+       find = 'criatura.estado.agressividade > int(_cfg_negociacao["apaziguar_ate_agressividade"])'; replace = 'false' }
 )
 
 if ($Somente.Count -gt 0) {

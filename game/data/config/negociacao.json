@@ -1,0 +1,36 @@
+{
+  "$comment": "Negociação e apaziguamento (docs/06, 'Resoluções sem combate'). Negocia quem é astuta ou ardilosa e neutra ou protetora (o Curupira). A personalidade sai da semente e muda o que agrada e o que ofende. Ofender gasta 2 de paciência; o que não agrada nem ofende gasta 1; paciência zerada é recusa e vira confronto. Acordo: oferecer o que atende o gatilho do caso depois de agradar pelo menos uma vez. Criatura ardilosa pode trair o acordo depois. Apaziguar com a oferenda só funciona se ela não estiver furiosa.",
+  "paciencia_inicial": 3,
+  "satisfacao_para_acordo": 1,
+  "chance_de_traicao": {"instintiva": 0.0, "astuta": 0.1, "ardilosa": 0.35},
+  "apaziguar_ate_agressividade": 1,
+  "alcance_da_conversa": 6.0,
+  "personalidades": ["orgulhosa", "faminta", "ressentida", "curiosa"],
+  "abertura": {
+    "orgulhosa": "Quem é você para entrar aqui sem pedir licença?",
+    "faminta": "Você chega de mãos vazias? Aqui nada é de graça.",
+    "ressentida": "Mais um da cidade. Vieram terminar o serviço?",
+    "curiosa": "Um caçador que conversa... Fala. O que você sabe?"
+  },
+  "exigencias": {
+    "desmatamento": "Estão derrubando as árvores. Quero que parem.",
+    "caca_por_crueldade": "Matam bicho por maldade e largam no chão. Isso acaba.",
+    "matar_femea_com_filhotes": "Mataram a mãe e deixaram os filhotes. Quem fez paga.",
+    "padrao": "Vocês me provocaram. Agora escuta."
+  },
+  "ofertas": [
+    {"id": "pedir_licenca", "texto": "Peço licença. Não vim tomar nada daqui.", "agrada": ["orgulhosa", "curiosa"], "ofende": []},
+    {"id": "dar_oferenda", "texto": "Trouxe fumo e cachaça para você.", "exige_item": "oferenda_fumo_e_cachaca", "agrada": ["faminta", "orgulhosa"], "ofende": []},
+    {"id": "contar_a_verdade", "texto": "Sei quem fez isso. Foi gente daqui, e eu posso provar.", "agrada": ["curiosa", "ressentida"], "ofende": []},
+    {"id": "prometer_justica", "texto": "Eu faço o culpado parar. Dou minha palavra.", "atende_gatilho": true, "termo": "Fazer o culpado parar (expor quem cometeu o crime).", "agrada": ["ressentida"], "ofende": []},
+    {"id": "ameacar", "texto": "Some daqui, ou eu volto com fogo.", "agrada": [], "ofende": ["orgulhosa", "faminta", "ressentida", "curiosa"]}
+  ],
+  "falas": {
+    "agradou": "Hm. Continua.",
+    "indiferente": "Isso não me serve.",
+    "ofendeu": "Cuidado com o que fala.",
+    "sem_item": "Você nem tem isso aí.",
+    "acordo": "Combinado. Cumpra, e a mata fica em paz.",
+    "recusa": "Chega de conversa."
+  }
+}
