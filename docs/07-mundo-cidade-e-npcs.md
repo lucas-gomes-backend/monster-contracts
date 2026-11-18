@@ -289,6 +289,7 @@ Lanterna forte, botas de borracha, máscara de gás, corda, mapa das galerias (c
 - **Mesma cidade para todos:** traçado real das ruas, limites de bairro e pontos históricos, em escala 1:3. Prédios, interiores, NPCs e casos são gerados por semente.
 - **Importador sem dependências (17/11/2026):** Python puro (biblioteca padrão). Projeção, simplificação e recorte são escritos à mão e testados. O recorte bruto do OpenStreetMap fica versionado em `tools/cidade/osm/`, para a importação dar sempre o mesmo resultado.
 - **Bairros do portão da Fase 3 (17/11/2026):** **Valongo** e **Monte Serrat**. O Valongo tem polígono de bairro no OpenStreetMap. O Monte Serrat não tem: o limite usado é o da área protegida do morro, que também está no mapa.
+- **Relevo (17/11/2026):** alturas dos "terrain tiles" públicos (Terrarium, zoom 15), versionados em `tools/cidade/relevo/`, numa grade a cada 4 m. A altura é reduzida **1:2** (as distâncias, 1:3): o Monte Serrat fica com cerca de 75 m de altura no jogo, e as encostas ficam perto do limite do que o personagem sobe, como num morro de verdade. O polígono do Valongo no mapa sobe parte da encosta vizinha.
 - **Esgotos e subterrâneo:** incluídos como segunda camada da cidade.
 
 ## Questões em aberto

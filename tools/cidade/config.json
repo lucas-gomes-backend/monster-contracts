@@ -4,6 +4,7 @@
   "escala": 3.0,
   "tolerancia_simplificacao": 1.5,
   "margem_download_m": 150,
+  "relevo": {"passo": 4.0, "escala_vertical": 2.0, "$comment": "Grade de alturas a cada 'passo' metros (já na escala do jogo). A altura é reduzida menos que as distâncias (1:2 contra 1:3), para os morros continuarem parecendo morros."},
   "ruas": {
     "primary": {"largura": 10.0},
     "secondary": {"largura": 9.0},

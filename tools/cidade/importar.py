@@ -17,6 +17,7 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(os.path.dirname(AQUI))
 sys.path.insert(0, AQUI)
 import geometria as G  # noqa: E402
+import relevo as R  # noqa: E402
 
 DESTINO = os.path.join(RAIZ, "game", "data", "cidade")
 LARGURA_CANAL = 4.0
@@ -62,7 +63,27 @@ def _marco(elemento, config):
     return ""
 
 
-def importar_bairro(config, recorte, bairro, vizinhos):
+def grade_de_relevo(config, caixa, alturas):
+    """Alturas (já na escala vertical do jogo) numa grade que cobre a caixa do bairro.
+
+    alturas: objeto com altitude(lat, lon) em metros reais (relevo.Relevo).
+    """
+    passo = config["relevo"]["passo"]
+    escala_v = config["relevo"]["escala_vertical"]
+    x0 = math.floor(caixa[0] / passo) * passo
+    z0 = math.floor(caixa[1] / passo) * passo
+    colunas = int(math.ceil((caixa[2] - x0) / passo)) + 1
+    linhas = int(math.ceil((caixa[3] - z0) / passo)) + 1
+    valores = []
+    for j in range(linhas):
+        for i in range(colunas):
+            lat, lon = G.desprojetar(x0 + i * passo, z0 + j * passo, config["origem"], config["escala"])
+            valores.append(round(max(0.0, alturas.altitude(lat, lon)) / escala_v, 1))
+    return {"origem": [round(x0, 2), round(z0, 2)], "passo": passo, "colunas": colunas, "linhas": linhas,
+            "escala_vertical": escala_v, "alturas": valores}
+
+
+def importar_bairro(config, recorte, bairro, vizinhos, alturas=None):
     """vizinhos: {id: polígono} dos outros bairros, para saber aonde cada saída leva."""
     limite = _poligono(recorte, bairro["limite_osm"], config)
     tol = config["tolerancia_simplificacao"]
@@ -127,6 +148,7 @@ def importar_bairro(config, recorte, bairro, vizinhos):
         "canais": sorted(canais, key=lambda c: (c["osm"], c["pontos"][0])),
         "marcos": sorted(marcos, key=lambda m: m["osm"]),
         "saidas": sorted(saidas, key=lambda s: (s["posicao"][0], s["posicao"][1])),
+        "relevo": grade_de_relevo(config, caixa, alturas or R.Relevo()),
     }
 
 

@@ -1,17 +1,22 @@
 """Baixa do OpenStreetMap (API Overpass) o recorte bruto dos bairros do config.json.
 
-Uso (na raiz do repositório):  python tools/cidade/baixar.py
-Grava tools/cidade/osm/recorte.json. Rodar só quando quiser atualizar os dados: o
+Uso (na raiz do repositório):
+  python tools/cidade/baixar.py              # recorte do OSM e tiles de relevo
+  python tools/cidade/baixar.py --so-relevo  # só os tiles de relevo (para a caixa do recorte salvo)
+Grava tools/cidade/osm/recorte.json e tools/cidade/relevo/*.png. Rodar só quando quiser atualizar os dados: o
 importador (importar.py) lê o arquivo salvo, sem rede, e sempre dá o mesmo resultado.
 Dados © colaboradores do OpenStreetMap, licença ODbL (ver osm/LICENCA.md).
 """
 import json
 import os
+import sys
 import time
 import urllib.parse
 import urllib.request
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, AQUI)
+import relevo  # noqa: E402
 SERVIDORES = [
     "https://overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
@@ -47,7 +52,28 @@ def _enxugar(elemento, chaves):
     return saida
 
 
+def baixar_relevo(caixa):
+    """Baixa os tiles de relevo (Terrarium) que cobrem a caixa [sul, oeste, norte, leste]."""
+    os.makedirs(relevo.PASTA, exist_ok=True)
+    tiles = relevo.tiles_da_caixa(*caixa)
+    for x, y in tiles:
+        destino = relevo.caminho_tile(x, y)
+        if os.path.exists(destino):
+            continue
+        url = relevo.URL.format(z=relevo.ZOOM, x=x, y=y)
+        with urllib.request.urlopen(urllib.request.Request(url, headers=CABECALHO), timeout=60) as resposta:
+            dados = resposta.read()
+        relevo.ler_png(dados)  # confere que é um PNG que o importador consegue ler
+        with open(destino, "wb") as f:
+            f.write(dados)
+    print("%d tiles de relevo em %s" % (len(tiles), relevo.PASTA))
+
+
 def main():
+    if "--so-relevo" in sys.argv:
+        with open(os.path.join(AQUI, "osm", "recorte.json"), encoding="utf-8") as f:
+            baixar_relevo(json.load(f)["caixa"])
+        return
     with open(os.path.join(AQUI, "config.json"), encoding="utf-8") as f:
         config = json.load(f)
     ids = [b["limite_osm"].split("/")[1] for b in config["bairros"]]
@@ -80,6 +106,7 @@ def main():
         json.dump(recorte, f, ensure_ascii=False, indent=0, separators=(",", ":"))
         f.write("\n")
     print("%d limites e %d elementos salvos em %s" % (len(recorte["limites"]), len(recorte["elementos"]), destino))
+    baixar_relevo(recorte["caixa"])
 
 
 if __name__ == "__main__":

@@ -2,46 +2,154 @@
   "$comment": "Bairro do mapa real, gerado por tools/cidade/importar.py (game/data/cidade/<id>.json). Metros já reduzidos pela escala; x = leste, z = sul.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "nome", "zona", "escala", "area_m2", "caixa", "limite", "ruas", "canais", "marcos", "saidas"],
+  "required": [
+    "id",
+    "nome",
+    "zona",
+    "escala",
+    "area_m2",
+    "caixa",
+    "limite",
+    "ruas",
+    "canais",
+    "marcos",
+    "saidas",
+    "relevo"
+  ],
   "$defs": {
-    "ponto": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "ponto": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
     "linha": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["osm", "nome", "tipo", "largura", "pontos"],
+      "required": [
+        "osm",
+        "nome",
+        "tipo",
+        "largura",
+        "pontos"
+      ],
       "properties": {
-        "osm": {"type": "integer"},
-        "nome": {"type": "string"},
-        "tipo": {"type": "string", "pattern": "^[a-z_]+$"},
-        "largura": {"type": "number", "minimum": 0.5},
-        "pontos": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/ponto"}}
+        "osm": {
+          "type": "integer"
+        },
+        "nome": {
+          "type": "string"
+        },
+        "tipo": {
+          "type": "string",
+          "pattern": "^[a-z_]+$"
+        },
+        "largura": {
+          "type": "number",
+          "minimum": 0.5
+        },
+        "pontos": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/ponto"
+          }
+        }
       }
     }
   },
   "properties": {
-    "$comment": {"type": "string"},
-    "id": {"type": "string", "pattern": "^[a-z_]+$"},
-    "nome": {"type": "string", "minLength": 1},
-    "zona": {"enum": ["orla", "central_portuaria", "morros", "noroeste", "continental"]},
-    "escala": {"type": "number", "minimum": 1},
-    "area_m2": {"type": "number", "minimum": 0},
-    "caixa": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
-    "limite": {"type": "array", "minItems": 3, "items": {"$ref": "#/$defs/ponto"}},
-    "ruas": {"type": "array", "items": {"$ref": "#/$defs/linha"}},
-    "canais": {"type": "array", "items": {"$ref": "#/$defs/linha"}},
+    "$comment": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z_]+$"
+    },
+    "nome": {
+      "type": "string",
+      "minLength": 1
+    },
+    "zona": {
+      "enum": [
+        "orla",
+        "central_portuaria",
+        "morros",
+        "noroeste",
+        "continental"
+      ]
+    },
+    "escala": {
+      "type": "number",
+      "minimum": 1
+    },
+    "area_m2": {
+      "type": "number",
+      "minimum": 0
+    },
+    "caixa": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "limite": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "$ref": "#/$defs/ponto"
+      }
+    },
+    "ruas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/linha"
+      }
+    },
+    "canais": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/linha"
+      }
+    },
     "marcos": {
       "type": "array",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["osm", "nome", "tipo", "posicao"],
+        "required": [
+          "osm",
+          "nome",
+          "tipo",
+          "posicao"
+        ],
         "properties": {
-          "osm": {"type": "string", "pattern": "^(node|way|relation)/[0-9]+$"},
-          "nome": {"type": "string"},
-          "tipo": {"type": "string"},
-          "posicao": {"$ref": "#/$defs/ponto"},
-          "altitude": {"type": "number"},
-          "pontos": {"type": "array", "items": {"$ref": "#/$defs/ponto"}}
+          "osm": {
+            "type": "string",
+            "pattern": "^(node|way|relation)/[0-9]+$"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "tipo": {
+            "type": "string"
+          },
+          "posicao": {
+            "$ref": "#/$defs/ponto"
+          },
+          "altitude": {
+            "type": "number"
+          },
+          "pontos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/ponto"
+            }
+          }
         }
       }
     },
@@ -50,12 +158,66 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["rua", "osm", "posicao", "para"],
+        "required": [
+          "rua",
+          "osm",
+          "posicao",
+          "para"
+        ],
         "properties": {
-          "rua": {"type": "string"},
-          "osm": {"type": "integer"},
-          "posicao": {"$ref": "#/$defs/ponto"},
-          "para": {"type": "string"}
+          "rua": {
+            "type": "string"
+          },
+          "osm": {
+            "type": "integer"
+          },
+          "posicao": {
+            "$ref": "#/$defs/ponto"
+          },
+          "para": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "relevo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origem",
+        "passo",
+        "colunas",
+        "linhas",
+        "escala_vertical",
+        "alturas"
+      ],
+      "properties": {
+        "origem": {
+          "$ref": "#/$defs/ponto"
+        },
+        "passo": {
+          "type": "number",
+          "minimum": 0.5
+        },
+        "colunas": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "linhas": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "escala_vertical": {
+          "type": "number",
+          "minimum": 1
+        },
+        "alturas": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
         }
       }
     }
