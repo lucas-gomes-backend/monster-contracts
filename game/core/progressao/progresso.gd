@@ -10,6 +10,9 @@ var qualidade: Dictionary = {}  # categoria -> nível 1..3
 var extrato: Array[Dictionary] = []  # [{"valor", "motivo"}]
 ## Regiões da cidade abertas (as outras ficam bloqueadas no mapa de viagem).
 var regioes_liberadas: Array[String] = []
+## Dias vividos desde o começo da carreira (a idade sai daqui) e interlúdios feitos.
+var dias_vividos: int = 0
+var interludios: int = 0
 var _cfg: Dictionary
 
 
@@ -20,6 +23,10 @@ func _init(cfg_progressao: Dictionary) -> void:
 		regioes_liberadas.append(str(r))
 	for categoria in _cfg["nivel_inicial"]:
 		qualidade[categoria] = int(_cfg["nivel_inicial"][categoria])
+
+
+func idade() -> int:
+	return int(_cfg["idade_inicial_anos"]) + dias_vividos / 365
 
 
 func liberada(regiao: String) -> bool:

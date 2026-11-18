@@ -2,10 +2,27 @@
   "$comment": "Progressão do corte vertical (game/data/config/progressao.json).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["dinheiro_inicial", "regioes_liberadas", "reputacao", "bonus", "qualidade", "nivel_inicial", "motel", "carro", "loja", "melhorias"],
+  "required": ["dinheiro_inicial", "regioes_liberadas", "idade_inicial_anos", "interludio", "reputacao", "bonus", "qualidade", "nivel_inicial", "motel", "carro", "loja", "melhorias"],
   "properties": {
     "$comment": {"type": "string"},
     "dinheiro_inicial": {"type": "integer", "minimum": 0},
+    "idade_inicial_anos": {"type": "integer", "minimum": 1},
+    "interludio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pulos", "diaria_no_interludio"],
+      "properties": {
+        "$comment": {"type": "string"},
+        "pulos": {
+          "type": "array", "minItems": 3, "maxItems": 3,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["id", "nome", "dias", "cura_graus", "treino_xp"],
+            "properties": {"id": {"type": "string"}, "nome": {"type": "string"}, "dias": {"type": "integer", "minimum": 1}, "cura_graus": {"type": "integer", "minimum": 0}, "treino_xp": {"type": "integer", "minimum": 0}}
+          }
+        },
+        "diaria_no_interludio": {"type": "integer", "minimum": 0}
+      }
+    },
     "regioes_liberadas": {"$comment": "Regiões do mapa geral abertas no começo; as outras aparecem bloqueadas, em cinza.", "type": "array", "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
     "reputacao": {
       "type": "object",

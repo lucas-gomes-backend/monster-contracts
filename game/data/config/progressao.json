@@ -2,6 +2,16 @@
   "$comment": "Progressão do corte vertical (docs/08): dinheiro (reais inteiros), uma reputação, 3 níveis de qualidade, motel e carro fixo. Ajustar aqui, nunca no código.",
   "dinheiro_inicial": 400,
   "regioes_liberadas": ["valongo", "centro"],
+  "idade_inicial_anos": 20,
+  "interludio": {
+    "$comment": "O tempo entre um caso e outro (docs/02, 'Interlúdio'). Pulo curto: pega o próximo caso rápido, mas quase não sara nem treina. Médio: sara e treina. Longo: cura tudo e treina muito, mas envelhece mais. Paga a diária do motel por dia. cura_graus: quantos graus cada ferimento melhora; treino_xp: experiência na árvore escolhida.",
+    "pulos": [
+      {"id": "curto", "nome": "Curto", "dias": 3, "cura_graus": 1, "treino_xp": 5},
+      {"id": "medio", "nome": "Médio", "dias": 21, "cura_graus": 3, "treino_xp": 20},
+      {"id": "longo", "nome": "Longo", "dias": 120, "cura_graus": 3, "treino_xp": 60}
+    ],
+    "diaria_no_interludio": 10
+  },
   "reputacao": {
     "niveis": [
       {"nome": "Desconhecido", "a_partir_de": 0},

@@ -104,6 +104,8 @@ O interlúdio termina quando o jogador **escolhe quanto tempo deixar passar** at
 | **Médio** (semanas) | Ferimentos saram, treino e pesquisa avançam | Algumas ofertas expiram |
 | **Longo** (meses) | Cura completa, muito treino, base melhora | **Envelhece mais**, o mundo muda, caçadores rivais se organizam |
 
+**No corte vertical (18/11/2026):** o interlúdio fica no menu do motel (`config/progressao.json`, "interludio"). Curto: 3 dias, sara um grau, 5 de treino. Médio: 21 dias, sara três graus (cura um crítico), 20 de treino. Longo: 120 dias, sara tudo, 60 de treino. A experiência vai para a árvore que o jogador escolhe. Cada dia custa R$ 10 (pensão barata). O caçador começa com 20 anos e envelhece pelos dias vividos. Ofertas que expiram, o mundo mudando e caçadores rivais ficam para depois.
+
 **A idade vira um recurso.** Cada pulo longo deixa o caçador mais preparado, mas aproxima a aposentadoria ([13](13-tempo-morte-e-finais.md)).
 
 ---

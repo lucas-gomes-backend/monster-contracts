@@ -58,6 +58,7 @@ const Habilidades := preload("res://core/progressao/habilidades.gd")
 const HabilidadesTela := preload("res://presentation/cidade/habilidades_tela.gd")
 const Condicao := preload("res://core/condicoes/condicao.gd")
 const Espiritos3D := preload("res://presentation/cidade/espiritos_3d.gd")
+const Interludio := preload("res://core/progressao/interludio.gd")
 const MochilaTela := preload("res://presentation/cidade/mochila_tela.gd")
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
@@ -1155,7 +1156,7 @@ func fechar_motel() -> void:
 
 
 func titulo_do_motel() -> String:
-	return {"principal": "MOTEL ESTRELA DO PORTO", "suprimentos": "ENCOMENDAS (entregues no motel)", "melhorias": "MELHORIAS",
+	return {"principal": "MOTEL ESTRELA DO PORTO", "suprimentos": "ENCOMENDAS (entregues no motel)", "melhorias": "MELHORIAS", "interludio": "INTERLÚDIO · quanto tempo deixar passar?",
 		"benzedeira": "BENZEDEIRA", "benzedeira_aviso": "BENZEDEIRA · PENSE BEM"}[menu_do_motel]
 
 
@@ -1191,6 +1192,13 @@ func opcoes_do_motel() -> Array:
 			lista.append({"texto": "Melhorias de equipamento", "acao": "melhorias"})
 			var litros: float = carro.faltam_litros() if carro != null else 0.0
 			lista.append({"texto": "Abastecer o carro (%.0f L, R$ %d)" % [litros, _preco_da_gasolina()], "acao": "abastecer"})
+			lista.append({"texto": "Interlúdio: deixar o tempo passar até o próximo caso", "acao": "interludio"})
+		"interludio":
+			for pulo in Interludio.pulos(_cfg_progressao):
+				var e: Dictionary = Interludio.efeito(pulo, _cfg_progressao)
+				for a in habilidades.arvores():
+					lista.append({"texto": "%s (%d dias) · treinar %s · R$ %d" % [pulo["nome"], int(e["dias"]), a["nome"], int(e["custo"])],
+						"acao": "pular", "dado": {"pulo": pulo, "arvore": a["id"]}})
 		"suprimentos":
 			for o in _cfg_progressao["loja"]:
 				lista.append({"texto": "%s · R$ %d" % [o["nome"], int(o["preco"])], "acao": "comprar", "dado": o})
@@ -1229,8 +1237,11 @@ func escolher_no_motel(i: int) -> void:
 			abrir_mochila()
 			_mochila_aberta()
 			foco = "outra"
-		"suprimentos", "melhorias":
+		"suprimentos", "melhorias", "interludio":
 			menu_do_motel = o["acao"]
+		"pular":
+			if pular_o_tempo(o["dado"]["pulo"]["id"], o["dado"]["arvore"]):
+				fechar_motel()
 		"comprar":
 			var oferta: Dictionary = o["dado"]
 			if progresso.gastar(int(oferta["preco"]), oferta["nome"]):
@@ -1259,6 +1270,37 @@ func escolher_no_motel(i: int) -> void:
 			fechar_motel()
 		"benzer":
 			benzer()
+
+
+## Interlúdio: o tempo pula (curto, médio ou longo). Sara ferimentos, zera medo e cansaço,
+## treina a árvore escolhida, envelhece e paga as diárias. Devolve se pulou.
+func pular_o_tempo(id_pulo: String, arvore: String) -> bool:
+	var pulo: Dictionary = {}
+	for p in Interludio.pulos(_cfg_progressao):
+		if p["id"] == id_pulo:
+			pulo = p
+	if pulo.is_empty() or not habilidades.xp.has(arvore):
+		return false
+	var e: Dictionary = Interludio.efeito(pulo, _cfg_progressao)
+	if not progresso.gastar(int(e["custo"]), "interlúdio %s" % pulo["nome"].to_lower()):
+		_avisar("Falta dinheiro para tantas diárias.")
+		return false
+	minuto += int(e["minutos"])
+	suspeita.passar_minutos(int(e["minutos"]))
+	for b in populacoes:
+		populacoes[b].atualizar(minuto)
+	for parte in ferimentos.gravidade.keys():
+		for k in int(e["cura_graus"]):
+			ferimentos.tratar(parte)
+	medo.valor = 0.0
+	condicao.aliviar(INF)
+	habilidades.xp[arvore] = int(habilidades.xp[arvore]) + int(e["treino_xp"])
+	var antes: int = progresso.idade()
+	progresso.dias_vividos += int(e["dias"])
+	progresso.interludios += 1
+	var envelheceu := " Você fez %d anos." % progresso.idade() if progresso.idade() > antes else ""
+	_avisar("Passaram-se %d dias.%s" % [int(e["dias"]), envelheceu])
+	return true
 
 
 ## Benzedura: tira o cansaço espiritual do sensitivo.
@@ -1696,7 +1738,7 @@ func texto_do_painel() -> String:
 
 ## "Espingarda de sal: 2/2" e o estado da criatura, se houver uma no campo.
 func texto_do_hud() -> String:
-	var texto: String = "R$ %d · %s\n" % [progresso.dinheiro, progresso.nivel_de_reputacao()]
+	var texto: String = "R$ %d · %s · %d anos\n" % [progresso.dinheiro, progresso.nivel_de_reputacao(), progresso.idade()]
 	if condicao.tem():
 		texto += condicao.texto() + "\n"
 		var presenca := texto_da_presenca()

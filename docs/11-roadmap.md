@@ -143,7 +143,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [x] Dinheiro, uma reputação, 3 níveis de qualidade, motel, carro fixo: pagamento e bônus por caso, reputação em 4 níveis, Improvisado/Comum/Profissional nas armas e na mochila, motel do Centro (descansar, guardar, encomendar, melhorar, abastecer) e o sedã dirigível com gasolina; no carro, M abre o mapa de viagem rápida.
 - [x] 2 a 3 árvores de habilidades humanas com poucas habilidades: Combate, Ocultismo e Sobrevivência (3 cada), pela prática, com teto de 8 pontos; tela H.
 - [x] Condição **Sensitivo** (opcional): pega-se na benzedeira (com aviso); sente presenças, vê espíritos errantes e toca pistas (psicometria); exaustão e possessão; estágios pelo uso.
-- [ ] Interlúdio com pulo de tempo (curto, médio, longo).
+- [x] Interlúdio com pulo de tempo (curto, médio, longo): no motel; sara, treina a árvore escolhida, paga as diárias e envelhece (o caçador começa com 20 anos).
 
 **Personagem e apresentação**
 - [ ] Criação de personagem com sliders (corpo, rosto, pele, cabelo) e 1 a 2 roupas por parte, com disfarce de agente.
