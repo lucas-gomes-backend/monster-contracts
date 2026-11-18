@@ -1,5 +1,6 @@
 extends Node3D
-## Cena para andar num bairro do mapa real (Fase 3): cidade plana, noite, névoa densa, filtro PS1 e o caçador.
+## Cena para andar num bairro do mapa real (Fase 3): cidade plana, de dia, com névoa
+## esbranquiçada (como Silent Hill), e o caçador.
 ## Argumentos: --bairro=<id> (padrão valongo), --semente=N (padrão 1),
 ## --captura=caminho.png, --lanterna, --inclinar=G, --virar=G, --vista=cima (para conferir o visual).
 
@@ -8,6 +9,7 @@ const Cacador := preload("res://presentation/personagem/cacador.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
 
 const QUADROS_ANTES_DA_CAPTURA := 40
+const COR_DA_NEVOA := Color(0.72, 0.73, 0.74)
 
 var bairro: Node3D
 var cacador: CharacterBody3D
@@ -51,23 +53,25 @@ func _ready() -> void:
 
 ## Monta tudo. Pode ser chamado sem estar na árvore (testes).
 func montar(id_bairro: String, semente: int) -> void:
+	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
-	env.background_color = Color(0.05, 0.06, 0.09)
+	env.background_color = COR_DA_NEVOA
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
-	env.ambient_light_color = Color(0.32, 0.34, 0.45)
-	env.ambient_light_energy = 0.9
+	env.ambient_light_color = Color(0.85, 0.86, 0.88)
+	env.ambient_light_energy = 0.55
 	env.fog_enabled = true
-	env.fog_light_color = Color(0.07, 0.08, 0.11)
-	env.fog_density = 0.045
+	env.fog_light_color = COR_DA_NEVOA
+	env.fog_density = 0.035
 	ambiente = WorldEnvironment.new()
 	ambiente.environment = env
 	add_child(ambiente)
-	var lua := DirectionalLight3D.new()
-	lua.light_color = Color(0.55, 0.6, 0.85)
-	lua.light_energy = 0.45
-	lua.rotation_degrees = Vector3(-50, 30, 0)
-	add_child(lua)
+	var sol := DirectionalLight3D.new()
+	sol.name = "Sol"
+	sol.light_color = Color(1.0, 0.97, 0.9)
+	sol.light_energy = 0.9
+	sol.rotation_degrees = Vector3(-55, 35, 0)
+	add_child(sol)
 
 	bairro = Bairro3D.new()
 	bairro.montar(id_bairro, semente)
@@ -83,11 +87,7 @@ func montar(id_bairro: String, semente: int) -> void:
 	var camada_filtro := CanvasLayer.new()
 	camada_filtro.layer = 10
 	add_child(camada_filtro)
-	var filtro := ColorRect.new()
-	filtro.set_anchors_preset(Control.PRESET_FULL_RECT)
-	filtro.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	filtro.material = Materiais.tela()
-	camada_filtro.add_child(filtro)
+	camada_filtro.add_child(Materiais.filtro_de_tela())
 	var camada := CanvasLayer.new()
 	camada.layer = 11
 	add_child(camada)
@@ -95,13 +95,13 @@ func montar(id_bairro: String, semente: int) -> void:
 	titulo.text = "%s · mapa real 1:3 · WASD andar · Shift correr · F lanterna" % bairro.dados["nome"]
 	titulo.position = Vector2(8, 6)
 	titulo.add_theme_font_size_override("font_size", 11)
-	titulo.modulate = Color(0.85, 0.8, 0.6, 0.85)
+	titulo.modulate = Color(0.15, 0.13, 0.1, 0.9)
 	camada.add_child(titulo)
 	var credito := Label.new()
 	credito.text = "© colaboradores do OpenStreetMap"
 	credito.position = Vector2(8, 460)
 	credito.add_theme_font_size_override("font_size", 9)
-	credito.modulate = Color(0.7, 0.7, 0.7, 0.7)
+	credito.modulate = Color(0.2, 0.2, 0.2, 0.8)
 	camada.add_child(credito)
 
 

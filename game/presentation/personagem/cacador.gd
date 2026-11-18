@@ -8,6 +8,7 @@ const Materiais := preload("res://presentation/ps1/materiais.gd")
 const Mira := preload("res://presentation/inspecao/mira.gd")
 
 const FOV_NORMAL := 65.0
+const ALCANCE_DA_CAMERA := 400.0
 
 const ACOES := {
 	"mover_frente": [KEY_W, KEY_UP],
@@ -93,6 +94,9 @@ func montar(cfg: Dictionary = {}, cfg_inspecao: Dictionary = {}) -> void:
 	inclinacao.add_child(braco)
 	camera = Camera3D.new()
 	camera.fov = FOV_NORMAL
+	# Alcance curto: mais precisão de profundidade (chão sem piscar). A névoa cobre o fundo.
+	camera.near = 0.1
+	camera.far = ALCANCE_DA_CAMERA
 	camera.current = true
 	braco.add_child(camera)
 	# A lanterna sai do ombro, na frente do corpo, e aponta para onde a câmera olha

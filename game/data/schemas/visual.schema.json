@@ -1,0 +1,10 @@
+{
+  "$comment": "Opções de visual (game/data/config/visual.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["efeito_ps1"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "efeito_ps1": {"type": "boolean"}
+  }
+}

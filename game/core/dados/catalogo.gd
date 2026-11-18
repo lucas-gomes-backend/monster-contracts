@@ -113,6 +113,11 @@ static func carregar_bairro_real(id_bairro: String) -> Dictionary:
 	return resultado
 
 
+## Opções de visual (efeito PS1 ligado ou não), validadas.
+static func carregar_config_visual() -> Dictionary:
+	return carregar_validado("res://data/config/visual.json", "res://data/schemas/visual.schema.json")
+
+
 ## Kits de lotes por zona (gerador de lotes do mapa real), validados.
 static func carregar_config_lotes() -> Dictionary:
 	return carregar_validado("res://data/config/lotes.json", "res://data/schemas/lotes.schema.json")

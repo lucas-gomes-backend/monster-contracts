@@ -121,3 +121,5 @@ Tudo o que o jogador veste e carrega **aparece no modelo**:
 - **Câmeras fixas:** em momentos roteirizados e também como opção do jogador nos interiores.
 - **Voz:** só sons, sem falas dubladas.
 - **Customização:** por sliders.
+- **Efeito PS1 desligado por enquanto (17/11/2026):** o tremor dos vértices, a textura afim e o pontilhado da tela ficam desligados em `game/data/config/visual.json` (`efeito_ps1`), porque o chão da cidade piscava. Liga de novo mudando uma linha. A resolução interna de 640×480 continua.
+- **Cidade de dia, com névoa clara (17/11/2026):** os bairros do mapa real ficam de dia nublado, com névoa esbranquiçada que engole o fundo, no espírito de Silent Hill.

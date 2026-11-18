@@ -177,10 +177,7 @@ func montar(semente: int = SEMENTE_PADRAO) -> void:
 	var camada_filtro := CanvasLayer.new()
 	camada_filtro.layer = 10
 	add_child(camada_filtro)
-	filtro = ColorRect.new()
-	filtro.set_anchors_preset(Control.PRESET_FULL_RECT)
-	filtro.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	filtro.material = Materiais.tela()
+	filtro = Materiais.filtro_de_tela()
 	camada_filtro.add_child(filtro)
 	_montar_interface()
 

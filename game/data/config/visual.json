@@ -1,0 +1,4 @@
+{
+  "$comment": "Opções de visual. efeito_ps1: tremor dos vértices, textura que entorta (afim) e pontilhado de 15 bits na tela (docs/09). Desligado por enquanto, a pedido (17/11/2026): o chão piscava.",
+  "efeito_ps1": false
+}

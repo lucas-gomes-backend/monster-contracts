@@ -12,8 +12,10 @@ const Materiais := preload("res://presentation/ps1/materiais.gd")
 const Blocos := preload("res://presentation/greybox/blocos.gd")
 
 const ALTURA_ANDAR := 3.0
-const ACIMA_DO_CHAO_RUA := 0.04
-const ACIMA_DO_CHAO_CALCADA := 0.02
+## Rua, calçada e chão em alturas bem separadas: com poucos centímetros, de longe a placa
+## de vídeo não decide qual fica na frente e o chão pisca.
+const ACIMA_DO_CHAO_RUA := 0.1
+const ACIMA_DO_CHAO_CALCADA := 0.05
 const MARGEM_DO_CHAO := 20.0
 const DISTANCIA_ENTRE_ARVORES := 3.0
 const CAMINHOS := ["steps", "footway", "pedestrian"]

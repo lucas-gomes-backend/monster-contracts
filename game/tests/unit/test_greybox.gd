@@ -105,6 +105,20 @@ func test_materiais_ps1_usam_os_shaders_do_projeto() -> void:
 	assert_has(Materiais.SHADER_TELA.code, "BAYER", "o filtro de tela pontilha")
 
 
+func test_visual_config_valida_e_efeito_ps1_desligado_tira_tremor_e_textura_torta() -> void:
+	var r := Catalogo.carregar_config_visual()
+	assert_eq(r["erros"].size(), 0, str(r["erros"]))
+	var material := Materiais.objeto(Color.RED, 1.0, 1.0)
+	if Materiais.efeito_ps1():
+		assert_eq(material.get_shader_parameter("afim"), 1.0, "ligado: a textura entorta")
+	else:
+		assert_eq(material.get_shader_parameter("afim"), 0.0, "desligado: a textura não entorta")
+		assert_eq(material.get_shader_parameter("grade"), Materiais.GRADE_SEM_TREMOR, "desligado: os vértices não tremem")
+		var filtro := Materiais.filtro_de_tela()
+		assert_false(filtro.visible, "desligado: sem pontilhado na tela")
+		filtro.free()
+
+
 func test_rua_tem_chao_sob_o_cacador_nevoa_postes_e_filtro() -> void:
 	var rua := Rua.new()
 	rua.montar()
@@ -112,6 +126,7 @@ func test_rua_tem_chao_sob_o_cacador_nevoa_postes_e_filtro() -> void:
 	assert_true(rua.ambiente.environment.fog_enabled, "névoa ligada")
 	assert_gte(rua.postes.size(), 3, "postes com luz")
 	assert_true(rua.filtro.material.shader == Materiais.SHADER_TELA, "filtro PS1 na tela")
+	assert_eq(rua.filtro.visible, Materiais.efeito_ps1(), "o filtro só aparece com o efeito PS1 ligado")
 	var pe := rua.cacador.position
 	var tem_chao := false
 	for corpo in _todos(rua, "StaticBody3D"):
