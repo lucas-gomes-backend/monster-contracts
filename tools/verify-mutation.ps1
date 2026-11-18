@@ -162,7 +162,11 @@ $mutants += @(
     @{ name = 'medo não atrapalha a mira'; path = 'game/core/confronto/arsenal.gd';
        find = '(1.0 + tremor * float(_cfg["tremor_multiplica_dispersao"]))'; replace = '1.0' },
     @{ name = 'sal não barra a criatura'; path = 'game/presentation/cidade/criatura_3d.gd';
-       find = '	if Circulo.barra(ficha):'; replace = '	if false:' }
+       find = '	if Circulo.barra(ficha):'; replace = '	if false:' },
+    @{ name = 'palavra errada não falha o ritual'; path = 'game/core/confronto/ritual.gd';
+       find = '		situacao = FALHOU'; replace = '		pass' },
+    @{ name = 'ritual errado não enfurece'; path = 'game/presentation/cidade/bairro_cena.gd';
+       find = '			criatura.estado.enfurecer()'; replace = '			pass' }
 )
 
 if ($Somente.Count -gt 0) {

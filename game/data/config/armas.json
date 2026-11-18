@@ -15,7 +15,7 @@
     {"item": "oferenda_fumo_e_cachaca", "nome": "Fumo e cachaça", "quantidade": 1},
     {"item": "laco_ate_o_galo_cantar", "nome": "Laço", "quantidade": 1},
     {"item": "correntes", "nome": "Correntes", "quantidade": 1},
-    {"item": "graos_ou_sementes", "nome": "Grãos", "quantidade": 2},
+    {"item": "vela", "nome": "Velas", "quantidade": 4},
     {"item": "bandagem", "nome": "Bandagem", "quantidade": 2}
   ],
   "alcance_de_usar_item": 3.0,

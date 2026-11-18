@@ -42,6 +42,9 @@ const Bolsos := preload("res://core/confronto/bolsos.gd")
 const Circulo := preload("res://core/confronto/circulo_de_sal.gd")
 const Criatura3D := preload("res://presentation/cidade/criatura_3d.gd")
 const MenuRadial := preload("res://presentation/cidade/menu_radial.gd")
+const Ritual := preload("res://core/confronto/ritual.gd")
+const RitualTela := preload("res://presentation/cidade/ritual_tela.gd")
+const EstadoCriatura := preload("res://core/confronto/estado_criatura.gd")
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
 	"destroi": "Destruída.", "cura": "Curada: a maldição se quebrou.", "bane": "Banida.", "apazigua": "Apaziguada: foi embora em paz."}
@@ -101,6 +104,13 @@ var menu: Control
 var hud: Label
 var _cfg_armas: Dictionary
 var _cfg_confronto: Dictionary
+## Ritual: a lista do config, o ritual em andamento (ou null), o tempo do passo e a tela.
+var rituais: Array = []
+var ritual: RefCounted
+var tempo_do_passo := 0.0
+var segurando := false
+var ritual_tela: Control
+var _cfg_rituais: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
@@ -168,6 +178,8 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	_cfg_armas = Catalogo.carregar_config_armas()["dados"]
 	arsenal = Arsenal.new(_cfg_armas, Rng.new(semente).stream("armas"))
 	bolsos = Bolsos.new(_cfg_armas["bolsos"])
+	_cfg_rituais = Catalogo.carregar_config_rituais()["dados"]
+	rituais = _cfg_rituais["rituais"]
 	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -328,7 +340,7 @@ func _montar_interface() -> void:
 	camada.layer = 11
 	add_child(camada)
 	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma · Q bolsos"
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma · Q bolsos · T ritual"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
 	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)
@@ -384,6 +396,12 @@ func _montar_interface() -> void:
 	menu.size = Vector2(300, 300)
 	menu.visible = false
 	camada.add_child(menu)
+	ritual_tela = RitualTela.new()
+	ritual_tela.cena = self
+	ritual_tela.position = Vector2(120, 300)
+	ritual_tela.size = Vector2(400, 110)
+	ritual_tela.visible = false
+	camada.add_child(ritual_tela)
 
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
@@ -451,9 +469,17 @@ func _unhandled_input(evento: InputEvent) -> void:
 				arsenal.equipar(arsenal.ordem[i])
 
 
-## O menu radial pega o mouse antes da câmera enquanto está aberto.
+## O menu radial pega o mouse antes da câmera enquanto está aberto. O ritual pega as
+## teclas enquanto a tela dele está aberta.
 func _input(evento: InputEvent) -> void:
 	if menu == null:
+		return
+	if ritual_tela.visible:
+		_input_do_ritual(evento)
+		return
+	if evento.is_action_pressed("ritual"):
+		abrir_rituais()
+		get_viewport().set_input_as_handled()
 		return
 	if evento.is_action_pressed("menu_radial"):
 		menu.abrir()
@@ -466,6 +492,115 @@ func _input(evento: InputEvent) -> void:
 	elif menu.visible and evento is InputEventMouseMotion:
 		menu.mover(evento.relative)
 		get_viewport().set_input_as_handled()
+
+
+func _input_do_ritual(evento: InputEvent) -> void:
+	var numero := -1
+	for i in 3:
+		if evento.is_action_pressed("arma_%d" % (i + 1)):
+			numero = i
+	if evento.is_action_pressed("soltar_mouse") or (ritual == null and evento.is_action_pressed("ritual")):
+		fechar_ritual()
+	elif ritual == null and numero >= 0:
+		comecar_ritual(numero)
+	elif ritual != null and numero >= 0:
+		escolher_palavra(numero)
+	elif ritual != null and evento.is_action_pressed("acao_do_ritual"):
+		apertar_no_ritual()
+	elif ritual != null and evento.is_action_released("acao_do_ritual"):
+		soltar_no_ritual()
+	else:
+		return
+	get_viewport().set_input_as_handled()
+
+
+## T: abre a lista de rituais, se a criatura estiver perto.
+func abrir_rituais() -> bool:
+	if criatura == null or not criatura.visible or _distancia_da_criatura() > float(_cfg_armas["alcance_de_usar_item"]):
+		_avisar("O ritual se faz perto da criatura.")
+		return false
+	ritual_tela.visible = true
+	cacador.bloqueado = true
+	return true
+
+
+func fechar_ritual() -> void:
+	ritual = null
+	segurando = false
+	ritual_tela.visible = false
+	if not ferimentos.morto:
+		cacador.bloqueado = false
+
+
+## Começa o ritual i: a criatura tem de estar no estado que ele pede, e os materiais saem
+## dos bolsos.
+func comecar_ritual(i: int) -> bool:
+	if i < 0 or i >= rituais.size():
+		return false
+	var def: Dictionary = rituais[i]
+	var e: RefCounted = criatura.estado
+	var ok_estado: bool = def["exige_estado"] == "livre" or e.estado == def["exige_estado"] or (def["exige_estado"] == "contida" and e.estado == EstadoCriatura.VULNERAVEL)
+	if not ok_estado:
+		_avisar("Ela precisa estar %s para isso." % str(def["exige_estado"]).replace("vulneravel", "vulnerável"))
+		return false
+	var gasto: Dictionary = Ritual.gastar_materiais(def, bolsos)
+	if not gasto["ok"]:
+		_avisar("Falta material: %s." % str(gasto["falta"]).replace("_", " "))
+		return false
+	ritual = Ritual.new(def, _cfg_rituais, Rng.new(semente).stream("ritual:%s:%d" % [def["id"], minuto]))
+	tempo_do_passo = 0.0
+	segurando = false
+	return true
+
+
+func apertar_no_ritual() -> void:
+	var p: Dictionary = ritual.passo_atual()
+	if p.get("tipo", "") == "apertar":
+		_tentar_no_ritual()
+	elif p.get("tipo", "") == "segurar":
+		segurando = true
+		tempo_do_passo = 0.0
+
+
+func soltar_no_ritual() -> void:
+	if segurando and ritual.passo_atual().get("tipo", "") == "segurar":
+		segurando = false
+		_tentar_no_ritual()
+
+
+func escolher_palavra(i: int) -> void:
+	if ritual.passo_atual().get("tipo", "") != "palavra":
+		return
+	ritual.escolher(i)
+	_conferir_ritual()
+
+
+func _tentar_no_ritual() -> void:
+	var acertou: bool = ritual.tentar(ritual.marcador(tempo_do_passo), tempo_do_passo, medo.tremor(), float(ferimentos.modificadores()["ritual"]))
+	if not acertou:
+		_avisar("Errou o tempo: repita o passo.")
+	tempo_do_passo = 0.0
+	_conferir_ritual()
+
+
+## Fim do ritual: completo entrega o item na criatura; errado para ela, o efeito é o
+## contrário; palavra errada faz falhar (materiais perdidos).
+func _conferir_ritual() -> void:
+	if ritual.situacao == Ritual.FALHOU:
+		_avisar("Palavra errada: o ritual falhou e os materiais se perderam.")
+		fechar_ritual()
+	elif ritual.situacao == Ritual.COMPLETO:
+		var efeito: Dictionary = criatura.receber(ritual.def["item"], 0.0)
+		if efeito["efeito"].is_empty():
+			criatura.estado.enfurecer()
+			_avisar("Ritual errado para ela: se libertou e se enfureceu!")
+		else:
+			_avisar(TEXTO_DO_EFEITO.get(efeito["efeito"], "O ritual terminou."))
+		fechar_ritual()
+
+
+func _distancia_da_criatura() -> float:
+	return Vector2(criatura.position.x, criatura.position.z).distance_to(Vector2(cacador.position.x, cacador.position.z))
 
 
 ## Põe a criatura de uma ficha no campo, à frente do caçador (para testar o confronto).
@@ -586,6 +721,8 @@ func _corpo_e_medo(segundos: float) -> void:
 	var m: Dictionary = ferimentos.modificadores()
 	cacador.modificadores = m
 	arsenal.passar(segundos, float(m["mira"]))
+	if ritual != null and (ritual.passo_atual().get("tipo", "") == "apertar" or segurando):
+		tempo_do_passo += segundos
 	var aqui := Vector2(cacador.position.x, cacador.position.z)
 	var distancia := INF
 	var pressionado := false
@@ -595,6 +732,9 @@ func _corpo_e_medo(segundos: float) -> void:
 		distancia = Vector2(criatura.position.x, criatura.position.z).distance_to(aqui)
 		if not golpe.is_empty() and not ferimentos.morto:
 			ferimentos.receber(golpe["parte"], golpe["gravidade"])
+			if ritual != null:
+				ritual.interromper()
+				tempo_do_passo = 0.0
 			medo.susto(0.5)
 			_avisar("Ferido: %s (%s)." % [str(golpe["parte"]).replace("_", " "), golpe["gravidade"]])
 	var protegido := false

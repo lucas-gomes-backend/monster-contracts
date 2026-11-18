@@ -133,6 +133,11 @@ static func carregar_config_armas() -> Dictionary:
 	return carregar_validado("res://data/config/armas.json", "res://data/schemas/armas.schema.json")
 
 
+## Rituais do confronto (docs/06), validados.
+static func carregar_config_rituais() -> Dictionary:
+	return carregar_validado("res://data/config/rituais.json", "res://data/schemas/rituais.schema.json")
+
+
 ## Confronto: estados da criatura, ferimentos e medo (docs/06), validados.
 static func carregar_config_confronto() -> Dictionary:
 	return carregar_validado("res://data/config/confronto.json", "res://data/schemas/confronto.schema.json")

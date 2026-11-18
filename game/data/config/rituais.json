@@ -1,0 +1,36 @@
+{
+  "$comment": "Rituais do confronto (docs/06, 'Rituais'). Cada ritual exige a criatura num estado, gasta materiais dos bolsos e tem passos: 'apertar' (aperta quando o marcador passa na janela), 'segurar' (segura e solta na janela) e 'palavra' (escolhe a certa; errada faz o ritual falhar e recomeçar). Completo, o ritual entrega 'item' na criatura, que vale pelas fraquezas da ficha. A janela encolhe e treme com o medo e com o braço ferido.",
+  "janela_base": 0.24,
+  "janela_minima": 0.05,
+  "medo_encolhe_a_janela": 0.6,
+  "tremor_da_janela": 0.06,
+  "velocidade_do_marcador": 0.8,
+  "rituais": [
+    {
+      "id": "sepultamento",
+      "nome": "Sepultamento do corpo-seco",
+      "item": "ritual_de_sepultamento",
+      "exige_estado": "contida",
+      "materiais": [{"item": "vela", "quantidade": 2}, {"item": "sal_grosso", "quantidade": 1}],
+      "passos": [
+        {"tipo": "apertar", "texto": "Acender as velas na cabeceira"},
+        {"tipo": "segurar", "texto": "Traçar a cruz de sal sobre o corpo"},
+        {"tipo": "palavra", "texto": "Encomendar a alma", "opcoes": ["Que a terra te receba", "Que o fogo te leve", "Que a água te lave"], "certa": 0},
+        {"tipo": "apertar", "texto": "Jogar a primeira pá de terra"}
+      ]
+    },
+    {
+      "id": "freio_da_mula",
+      "nome": "Tirar o freio da mula",
+      "item": "tirar_o_freio_de_ferro",
+      "exige_estado": "contida",
+      "materiais": [{"item": "agua_benta", "quantidade": 1}],
+      "passos": [
+        {"tipo": "segurar", "texto": "Chegar perto sem assustar"},
+        {"tipo": "apertar", "texto": "Agarrar o freio de ferro"},
+        {"tipo": "palavra", "texto": "Chamar pelo nome", "opcoes": ["O nome de batismo dela", "Mula, sai daqui", "O nome do padre"], "certa": 0},
+        {"tipo": "segurar", "texto": "Puxar o freio de uma vez"}
+      ]
+    }
+  ]
+}

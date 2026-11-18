@@ -135,7 +135,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 **Confronto** ([06](06-confronto-e-rituais.md))
 - [x] Estados da criatura, ferimentos localizados, medo: núcleo em `core/confronto` e números em `config/confronto.json`. Na cidade, ferimentos pesam no corpo e o medo sobe no escuro sem lanterna (a criatura em 3D vem com as armas).
 - [x] Espingarda de sal, revólver, faca. Menu radial, proteções de sal: armas entregam um item na criatura (sal, bala, lâmina benzida), mira treme com o medo, tiro faz barulho; bolsos no Q; círculo de sal barra quem tem o sal como fraqueza. Criatura de teste no campo: `.\tools\bairro.ps1 -Extra --criatura=corpo_seco`.
-- [ ] 2 a 3 rituais com teste de reflexo.
+- [x] 2 a 3 rituais com teste de reflexo: sepultamento do corpo-seco e tirar o freio da mula (T perto da criatura contida). Passos de apertar, segurar e escolher a palavra; medo e braço ferido encolhem a janela; ser atacado perde o passo; ritual errado enfurece a criatura.
 - [ ] Negociação e apaziguamento (Curupira).
 
 **Progressão**

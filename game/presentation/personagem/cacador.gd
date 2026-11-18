@@ -26,6 +26,8 @@ const ACOES := {
 	"arma_1": [KEY_1],
 	"arma_2": [KEY_2],
 	"arma_3": [KEY_3],
+	"ritual": [KEY_T],
+	"acao_do_ritual": [KEY_SPACE],
 }
 const ACOES_MOUSE := {
 	"mirar": MOUSE_BUTTON_RIGHT,

@@ -73,6 +73,16 @@ func passar(segundos: float) -> void:
 			estado = LIVRE
 
 
+## Ritual errado (docs/06, "Erros no ritual"): o efeito é o contrário. Ela se liberta e se
+## enfurece.
+func enfurecer() -> void:
+	if estado == RESOLVIDA:
+		return
+	estado = LIVRE
+	restante = 0.0
+	agressividade = int(_cfg["agressividade_maxima"])
+
+
 func esta_afastada() -> bool:
 	return afastada > 0.0
 
