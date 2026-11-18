@@ -30,9 +30,10 @@ func test_bairro_e_config_de_populacao_sao_validos() -> void:
 func test_bairro_casas_sao_criadas_em_rodizio_pelas_ruas() -> void:
 	var b := _bairro()
 	assert_eq(b.locais_do_tipo("casa").size(), 14, "14 casas")
-	assert_eq(b.rua_de("paqueta/casa_01"), "rua_1")
-	assert_eq(b.rua_de("paqueta/casa_04"), "rua_do_cemiterio")
-	assert_eq(b.rua_de("paqueta/casa_05"), "rua_1")
+	# 6 ruas: a casa 7 volta para a primeira.
+	assert_eq(b.rua_de("paqueta/casa_01"), "rua_joao_pessoa")
+	assert_eq(b.rua_de("paqueta/casa_04"), "avenida_xavier_da_silveira")
+	assert_eq(b.rua_de("paqueta/casa_07"), "rua_joao_pessoa")
 
 
 func test_bairro_lugar_desconhecido_nao_tem_rua() -> void:

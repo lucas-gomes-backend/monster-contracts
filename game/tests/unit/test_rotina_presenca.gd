@@ -26,7 +26,7 @@ func _rotina(semente: int = 1) -> RefCounted:
 	return Rotina.new(_config(), Rng.new(semente), _bairro())
 
 
-## NPC de teste. "casa" é o número da casa (casa_01 fica na rua_1, casa_04 na rua_do_cemiterio).
+## NPC de teste. "casa" é o número da casa (casa_01 fica na rua_joao_pessoa, casa_04 na avenida_xavier_da_silveira).
 func _npc(id: String, casa: int, tracos: Array = [], ocupacao: Dictionary = {}, trabalho: String = "", idade: int = 40) -> Dictionary:
 	return {"id": id, "casa": "paqueta/casa_%02d" % casa, "tracos": tracos, "ocupacao": ocupacao,
 		"trabalho": trabalho, "idade": idade, "memorias": [], "relacoes": []}
@@ -111,7 +111,7 @@ func test_presenca_vigia_ouve_e_quem_dorme_sem_sono_leve_nao() -> void:
 	var barramento := Barramento.new()
 	var vigia := _vigia()
 	var dorminhoco := _npc("dorminhoco", 4)
-	var sono_leve := _npc("sono_leve", 8, ["sono_leve"])
+	var sono_leve := _npc("sono_leve", 10, ["sono_leve"])  # mesma rua do galinheiro (6 ruas: casas 4 e 10)
 	var outra_rua := _npc("outra_rua", 2, ["notivago"])
 	var npcs := [vigia, dorminhoco, sono_leve, outra_rua]
 	var _p := Presenca.new(npcs, _rotina(), b, barramento, ["criatura.ataque"])

@@ -6,9 +6,6 @@ extends "res://tests/framework/test_case.gd"
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const Gerador := preload("res://core/casos/gerador_casos.gd")
 const ZONA := "central_portuaria"
-## O Paquetá é o bairro das referências do gerador (tests/baselines): ainda usa ruas abstratas,
-## e trocar para as ruas reais muda os mundos já gerados (decisão pendente).
-const RUAS_ABSTRATAS := ["paqueta"]
 
 
 func _zona() -> Dictionary:
@@ -38,8 +35,6 @@ func test_todo_bairro_da_zona_tem_tracado_e_conteudo_da_zona() -> void:
 
 func test_ruas_dos_lugares_existem_no_mapa_real() -> void:
 	for id in _bairros():
-		if id in RUAS_ABSTRATAS:
-			continue
 		var real: Dictionary = Catalogo.carregar_bairro_real(id)["dados"]
 		var ruas := {}
 		for rua in real["ruas"]:

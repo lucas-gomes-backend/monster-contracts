@@ -22,12 +22,15 @@ func _ready() -> void:
 	fundo.color = COR_FUNDO
 	fundo.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(fundo)
+	# A coluna fica no meio da tela em qualquer tamanho de janela.
+	var centro := CenterContainer.new()
+	centro.set_anchors_preset(Control.PRESET_FULL_RECT)
+	add_child(centro)
 	var coluna := VBoxContainer.new()
-	coluna.set_anchors_preset(Control.PRESET_CENTER)
-	coluna.position = Vector2(170, 90)
+	coluna.name = "Coluna"
 	coluna.custom_minimum_size = Vector2(300, 0)
-	coluna.add_theme_constant_override("separation", 10)
-	add_child(coluna)
+	coluna.add_theme_constant_override("separation", 8)
+	centro.add_child(coluna)
 	var titulo := Label.new()
 	titulo.text = "MONSTER CONTRACTS"
 	titulo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

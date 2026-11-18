@@ -5,53 +5,53 @@
   "casos": 20,
   "chuva": 0.7,
   "depoimentos": {
-    "maximo": 48,
-    "media": 23.05,
-    "minimo": 10
+    "maximo": 35,
+    "media": 19.5,
+    "minimo": 7
   },
   "descartes": {
-    "<espécie> descartada por só N evidência(s)": 6,
+    "<espécie> descartada por só N evidência(s)": 9,
     "sem incidente na pré-simulação": 1,
-    "só N depoimento(s) apontam para o hospedeiro": 3
+    "só N depoimento(s) apontam para o hospedeiro": 6
   },
   "especies": {
-    "corpo_seco": 8,
+    "corpo_seco": 9,
     "golpe_humano": 5,
     "lobisomem_br": 4,
-    "mula_sem_cabeca": 3
+    "mula_sem_cabeca": 2
   },
   "estruturas": {
     "caca_simples": 15,
     "golpe": 5
   },
   "evidencias_do_iniciante": {
-    "media": 6.55,
+    "media": 5.9,
     "minimo": 2
   },
   "mentiras": {
-    "onde_estava": 13,
-    "protege_familiar": 16
+    "onde_estava": 12,
+    "protege_familiar": 18
   },
   "pistas": {
-    "maximo": 60,
-    "media": 31.0,
-    "minimo": 15,
+    "maximo": 47,
+    "media": 28.0,
+    "minimo": 12,
     "por_tipo": {
-      "marca/criatura": 2.9,
-      "marca/ruido": 3.7,
-      "registro/criatura": 1.4,
-      "testemunho/criatura": 14.15,
-      "testemunho/ruido": 8.85
+      "marca/criatura": 3.0,
+      "marca/ruido": 4.0,
+      "registro/criatura": 1.45,
+      "testemunho/criatura": 12.8,
+      "testemunho/ruido": 6.75
     }
   },
   "ruidos": {
-    "media": 1.85
+    "media": 2.0
   },
   "taxa_validos": 1.0,
   "tentativas": {
-    "maximo": 3,
-    "media": 1.2,
-    "primeira_tentativa": 0.85
+    "maximo": 4,
+    "media": 1.4,
+    "primeira_tentativa": 0.75
   },
   "validos": 20
 }
