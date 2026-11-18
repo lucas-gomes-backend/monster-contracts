@@ -1,0 +1,55 @@
+{
+  "$comment": "Encruzilhada, bairro secundário da zona Central e portuária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa.",
+  "id": "encruzilhada",
+  "nome": "Encruzilhada",
+  "zona": "central_portuaria",
+  "tipo": "residencial_denso",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_washington_luiz",
+    "avenida_conselheiro_nebias",
+    "avenida_anna_costa",
+    "rua_julio_conceicao"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 1
+    },
+    {
+      "id": "arabe",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "rua_julio_conceicao",
+      "nome": "Praça da Encruzilhada"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "avenida_conselheiro_nebias",
+      "nome": "Padaria Encruzo"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "avenida_washington_luiz",
+      "nome": "Bar do Canal"
+    },
+    {
+      "id": "galinheiro_1",
+      "tipo": "galinheiro",
+      "rua": "rua_julio_conceicao",
+      "nome": "Galinheiro de um quintal"
+    }
+  ]
+}

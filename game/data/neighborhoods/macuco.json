@@ -1,0 +1,85 @@
+{
+  "$comment": "Macuco, bairro principal da zona Central e portuária (Fase 5). Lugares públicos reais; estabelecimentos e pessoas fictícios. As ruas são as reais do mapa (nome sem acento, em minúsculas): cada lugar vai para um lote na rua dele (core/cidade/lugares_reais.gd).",
+  "id": "macuco",
+  "nome": "Macuco",
+  "zona": "central_portuaria",
+  "tipo": "industrial",
+  "populacao_alvo": 36,
+  "casas": 14,
+  "ruas": [
+    "avenida_conselheiro_rodrigues_alves",
+    "avenida_siqueira_campos",
+    "avenida_afonso_pena",
+    "avenida_senador_dantas",
+    "rua_doutor_batista_pereira",
+    "rua_padre_anchieta"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 5
+    },
+    {
+      "id": "portuguesa",
+      "peso": 3
+    },
+    {
+      "id": "arabe",
+      "peso": 1
+    },
+    {
+      "id": "japonesa",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "igreja_sao_benedito",
+      "tipo": "igreja",
+      "rua": "rua_padre_anchieta",
+      "nome": "Igreja de São Benedito"
+    },
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "avenida_siqueira_campos",
+      "nome": "Praça do bairro"
+    },
+    {
+      "id": "delegacia",
+      "tipo": "delegacia",
+      "rua": "avenida_afonso_pena",
+      "nome": "Delegacia do Macuco"
+    },
+    {
+      "id": "armazem",
+      "tipo": "armazem",
+      "rua": "avenida_conselheiro_rodrigues_alves",
+      "nome": "Armazém abandonado perto do cais"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "avenida_conselheiro_rodrigues_alves",
+      "nome": "Bar dos Estivadores"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "rua_doutor_batista_pereira",
+      "nome": "Padaria Portuária"
+    },
+    {
+      "id": "mecanico",
+      "tipo": "mecanico",
+      "rua": "avenida_senador_dantas",
+      "nome": "Mecânica Contêiner"
+    },
+    {
+      "id": "galinheiro_1",
+      "tipo": "galinheiro",
+      "rua": "rua_padre_anchieta",
+      "nome": "Galinheiro de um quintal"
+    }
+  ]
+}

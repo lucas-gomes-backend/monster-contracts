@@ -1,0 +1,55 @@
+{
+  "$comment": "Marapé, bairro secundário da zona Central e portuária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa.",
+  "id": "marape",
+  "nome": "Marapé",
+  "zona": "central_portuaria",
+  "tipo": "residencial_denso",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_senador_pinheiro_machado",
+    "avenida_doutor_nilo_pecanha",
+    "avenida_doutor_moura_ribeiro",
+    "rua_saturnino_de_brito"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 1
+    },
+    {
+      "id": "japonesa",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "rua_saturnino_de_brito",
+      "nome": "Praça do Marapé"
+    },
+    {
+      "id": "encosta",
+      "tipo": "area_verde",
+      "rua": "avenida_doutor_moura_ribeiro",
+      "nome": "Mata da encosta do morro"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "avenida_doutor_nilo_pecanha",
+      "nome": "Padaria Marapé"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "avenida_senador_pinheiro_machado",
+      "nome": "Bar do Canal 1"
+    }
+  ]
+}

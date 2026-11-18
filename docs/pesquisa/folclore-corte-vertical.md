@@ -108,6 +108,34 @@ Cada criatura tem três blocos:
 
 ---
 
+## 5. Saci-Pererê
+
+> Acrescentado na Fase 5 (18/11/2026) para a estrutura "criatura errada".
+
+### O que as fontes dizem
+
+- **Aparência:** menino negro de **uma perna só**, que fuma cachimbo e usa uma **carapuça vermelha**, de onde vêm os poderes.
+- **Redemoinho:** ele se desloca em redemoinhos de vento, que levantam folhas e poeira.
+- **Travessuras:** assobia para assustar quem viaja à noite, estraga freios de carroça, esconde e derruba objetos e deixa a comida queimar no fogão.
+- **Captura:** jogar uma **peneira** no redemoinho; depois, tirar a carapuça e prendê-lo numa **garrafa com uma cruz na rolha** (é como o Pedrinho faz em *O Saci*, de Monteiro Lobato, 1921). Quem fica com a carapuça ganha um desejo ou o controle sobre ele.
+- **Origem:** as versões divergem. A mais difundida põe a origem entre os guaranis, no Sul. Segundo Câmara Cascudo, a lenda começou com um pássaro de canto assobiado chamado saci, e o gorro vermelho seria o barrete dos libertos da Roma antiga.
+
+### Variações
+
+- **Água corrente:** uma fonte diz que ele não atravessa riachos, e que cruzar um deles é o jeito de fugir dele. Não achei essa regra atribuída a Cascudo.
+- **Trança na crina dos cavalos:** é um traço comum na cultura popular, mas não apareceu nas fontes desta pesquisa.
+
+### No jogo
+
+- **Perigo 0:** nunca mata nem fere. **Nunca é o culpado de um caso**; serve de **bode expiatório** na estrutura "criatura errada".
+- **Só na fofoca (decisão de 18/11/2026):** o Saci não age de verdade. O cliente e quem viu alguma coisa juram que foi ele, mas as pistas físicas são da criatura verdadeira, e a forma que a testemunha descreve não bate com "menino de uma perna só".
+- **Marcas:** redemoinho de folhas, objetos sumidos, comida queimada e assobio curto à noite.
+- **Resolução:** prender (peneira e garrafa) ou negociar (a carapuça). Prender o Saci num caso de criatura errada **fere um inocente**.
+- **A confirmar:** a água corrente e a trança na crina.
+- **Cuidado cultural:** é um símbolo nacional. O jogo o trata como travesso e inofensivo, nunca como monstro.
+
+---
+
 ## Coincidências úteis para o design
 
 - **Sete e o galo:** lobisomem e mula correm "sete" lugares antes do **terceiro canto do galo**. Isso cria uma **mecânica de urgência noturna** e testes de campo (vigiar um dos sete lugares, impedir a corrida).
@@ -138,3 +166,6 @@ Cada criatura tem três blocos:
 - [Mula sem cabeça — Toda Matéria](https://www.todamateria.com.br/mula-sem-cabeca/)
 - [Mula sem cabeça — Portal São Francisco](https://www.portalsaofrancisco.com.br/mula-sem-cabeca)
 - [Mula sem cabeça — InfoEscola](https://www.infoescola.com/folclore/mula-sem-cabeca)
+- [Lenda do Saci-pererê — Toda Matéria](https://www.todamateria.com.br/saci-perere/)
+- [Saci-pererê — Significados](https://www.significados.com.br/saci-perere/)
+- [Saci (folklore) — Wikipedia (inglês)](https://en.wikipedia.org/wiki/Saci_(folklore))

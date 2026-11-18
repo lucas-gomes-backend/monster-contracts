@@ -164,7 +164,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 ## Fase 5 — Conteúdo (6 a 9 meses)
 
 - [ ] Zonas de Santos, **uma por vez**. Ordem sugerida:
-  1. Central e portuária.
+  1. Central e portuária. *Em andamento:* 13 bairros no jogo (principais e secundários em `config/zonas.json`); faltam o Porto e a Vila Rica, sem limite no OpenStreetMap (traçar à mão).
   2. Orla e intermediária.
   3. Morros.
   4. Noroeste.
@@ -173,7 +173,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [ ] Kits de módulos por zona.
 - [ ] Bestiário: criaturas típicas de cada tipo de bairro e as coringas, cobrindo as 8 famílias ([03](03-sistema-de-criaturas.md)).
 - [ ] Variantes culturais (lobisomem brasileiro e europeu).
-- [ ] Estruturas de caso restantes: cliente mentiroso, criatura errada.
+- [x] Estruturas de caso restantes: cliente mentiroso (o cliente é o culpado humano; no fim, expor ou calar) e criatura errada (o Saci leva a culpa só na fofoca).
 - [ ] Condições **Vampirismo** e **Licantropia**, com estigma básico ([12](12-habilidades-e-condicoes.md)).
 - [ ] Mais rituais, armas e roupas.
 

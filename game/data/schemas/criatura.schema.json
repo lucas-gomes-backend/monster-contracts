@@ -13,7 +13,7 @@
     "natureza": {"enum": ["corporea", "espiritual", "hibrida"]},
     "inteligencia": {"enum": ["instintiva", "astuta", "ardilosa"]},
     "disposicao": {"enum": ["hostil", "neutra", "protetora", "ressentida"]},
-    "perigo": {"type": "integer", "minimum": 1, "maximum": 5},
+    "perigo": {"$comment": "0 = inofensiva: nunca é a culpada, só leva a culpa (estrutura criatura errada)", "type": "integer", "minimum": 0, "maximum": 5},
     "ciclo": {
       "type": "object",
       "additionalProperties": false,

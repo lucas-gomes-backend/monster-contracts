@@ -1,0 +1,51 @@
+{
+  "$comment": "Estuário, bairro secundário da zona Central e portuária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa.",
+  "id": "estuario",
+  "nome": "Estuário",
+  "zona": "central_portuaria",
+  "tipo": "industrial",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_governador_mario_covas_junior",
+    "avenida_afonso_pena",
+    "rua_da_liberdade",
+    "rua_doutor_bernardo_browne"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 2
+    }
+  ],
+  "locais": [
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "rua_da_liberdade",
+      "nome": "Praça do Estuário"
+    },
+    {
+      "id": "armazem",
+      "tipo": "armazem",
+      "rua": "avenida_governador_mario_covas_junior",
+      "nome": "Galpão vazio da avenida"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "avenida_afonso_pena",
+      "nome": "Bar da Maré"
+    },
+    {
+      "id": "galinheiro_1",
+      "tipo": "galinheiro",
+      "rua": "rua_doutor_bernardo_browne",
+      "nome": "Galinheiro de um quintal"
+    }
+  ]
+}

@@ -49,18 +49,19 @@ func test_comeca_no_bairro_com_o_vizinho_carregado_do_outro_lado() -> void:
 func test_cruzar_a_linha_troca_o_bairro_e_carrega_os_vizinhos_dele() -> void:
 	_cruzar_para("centro")
 	assert_eq(_cena.bairro.dados["id"], "centro")
-	assert_eq(_ids(), ["centro", "monte_serrat", "paqueta", "valongo"])
+	# Fase 5: a Vila Mathias e a Vila Nova também fazem divisa com o Centro.
+	assert_eq(_ids(), ["centro", "monte_serrat", "paqueta", "valongo", "vila_mathias", "vila_nova"])
 	assert_true(_cena.carregados["centro"].borda.visible)
 	assert_false(_cena.carregados["valongo"].borda.visible)
 	# O Monte Serrat só tem escadarias e trilhas: não tem galeria embaixo.
-	assert_eq(_bairros_da_rede(), ["centro", "paqueta", "valongo"], "a rede acompanha os bairros carregados")
+	assert_eq(_bairros_da_rede(), ["centro", "paqueta", "valongo", "vila_mathias", "vila_nova"], "a rede acompanha os bairros carregados")
 	assert_eq(_cena.nome_do_lugar.text, "Centro", "o nome do bairro aparece")
 
 
 func test_quem_fica_longe_e_descarregado() -> void:
 	_cruzar_para("centro")
 	_cruzar_para("paqueta")
-	assert_eq(_ids(), ["centro", "paqueta"], "o Valongo e o Monte Serrat não fazem divisa com o Paquetá")
+	assert_eq(_ids(), ["centro", "paqueta", "vila_nova"], "o Valongo e o Monte Serrat não fazem divisa com o Paquetá")
 
 
 func test_dentro_do_mesmo_bairro_nada_muda() -> void:

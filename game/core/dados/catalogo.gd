@@ -143,6 +143,11 @@ static func carregar_itens() -> Dictionary:
 	return {"dados": por_id, "erros": r["erros"]}
 
 
+## Zonas da cidade, com os bairros principais e secundários (docs/07), validadas.
+static func carregar_config_zonas() -> Dictionary:
+	return carregar_validado("res://data/config/zonas.json", "res://data/schemas/zonas.schema.json")
+
+
 ## Morte simples, volta com custo (docs/13), validada.
 static func carregar_config_morte() -> Dictionary:
 	return carregar_validado("res://data/config/morte.json", "res://data/schemas/morte.schema.json")

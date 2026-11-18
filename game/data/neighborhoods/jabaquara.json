@@ -1,0 +1,51 @@
+{
+  "$comment": "Jabaquara, bairro secundário da zona Central e portuária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa.",
+  "id": "jabaquara",
+  "nome": "Jabaquara",
+  "zona": "central_portuaria",
+  "tipo": "residencial_denso",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_francisco_manoel",
+    "rua_teodoro_sampaio",
+    "avenida_doutor_waldemar_leao",
+    "avenida_rangel_pestana"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 7
+    },
+    {
+      "id": "portuguesa",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "rua_teodoro_sampaio",
+      "nome": "Praça do bairro"
+    },
+    {
+      "id": "mata_da_pedreira",
+      "tipo": "area_verde",
+      "rua": "avenida_francisco_manoel",
+      "nome": "Mata da antiga pedreira"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "avenida_rangel_pestana",
+      "nome": "Padaria do Morro"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "avenida_doutor_waldemar_leao",
+      "nome": "Bar da Pedreira"
+    }
+  ]
+}

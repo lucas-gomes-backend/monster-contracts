@@ -1,0 +1,3374 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "vila_mathias",
+ "nome": "Vila Mathias",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 152317.3,
+ "caixa": [
+  -308.42,
+  250.88,
+  392.84,
+  611.49
+ ],
+ "limite": [
+  [
+   234.79,
+   599.36
+  ],
+  [
+   -59.64,
+   564.09
+  ],
+  [
+   -308.42,
+   528.05
+  ],
+  [
+   -71.86,
+   368.16
+  ],
+  [
+   -196.15,
+   351.61
+  ],
+  [
+   -193.37,
+   312.1
+  ],
+  [
+   -185.84,
+   292.11
+  ],
+  [
+   -174.14,
+   296.72
+  ],
+  [
+   -166.23,
+   286.04
+  ],
+  [
+   -121.77,
+   276.32
+  ],
+  [
+   -93.63,
+   291.56
+  ],
+  [
+   -49.02,
+   294.0
+  ],
+  [
+   -7.52,
+   282.21
+  ],
+  [
+   53.82,
+   288.21
+  ],
+  [
+   89.95,
+   266.86
+  ],
+  [
+   90.51,
+   250.88
+  ],
+  [
+   102.82,
+   252.22
+  ],
+  [
+   91.54,
+   349.34
+  ],
+  [
+   205.34,
+   362.29
+  ],
+  [
+   315.49,
+   321.17
+  ],
+  [
+   392.84,
+   326.86
+  ],
+  [
+   378.09,
+   390.36
+  ],
+  [
+   377.55,
+   409.87
+  ],
+  [
+   381.27,
+   442.92
+  ],
+  [
+   366.96,
+   611.49
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 32338882,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -262.04,
+     500.71
+    ],
+    [
+     -265.7,
+     534.07
+    ]
+   ]
+  },
+  {
+   "osm": 38798884,
+   "nome": "Rua Joaquim Nabuco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     238.81,
+     523.75
+    ],
+    [
+     181.49,
+     516.24
+    ]
+   ]
+  },
+  {
+   "osm": 38798885,
+   "nome": "Rua Doutor Emílio Ribas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     331.52,
+     523.22
+    ],
+    [
+     286.41,
+     519.54
+    ]
+   ]
+  },
+  {
+   "osm": 38798905,
+   "nome": "Rua Doutor Antônio Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -96.83,
+     558.48
+    ],
+    [
+     -75.56,
+     375.2
+    ]
+   ]
+  },
+  {
+   "osm": 48454190,
+   "nome": "",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -230.87,
+     479.63
+    ],
+    [
+     -228.37,
+     473.59
+    ]
+   ]
+  },
+  {
+   "osm": 48459684,
+   "nome": "Avenida Campos Salles",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     257.73,
+     346.97
+    ],
+    [
+     302.77,
+     329.43
+    ]
+   ]
+  },
+  {
+   "osm": 48459846,
+   "nome": "Rua Henrique Ablas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     300.06,
+     366.43
+    ],
+    [
+     256.24,
+     362.81
+    ]
+   ]
+  },
+  {
+   "osm": 48459857,
+   "nome": "Rua Dona Luísa Macuco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     127.4,
+     428.09
+    ],
+    [
+     187.71,
+     431.04
+    ]
+   ]
+  },
+  {
+   "osm": 48460028,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -37.09,
+     331.37
+    ],
+    [
+     -193.37,
+     312.1
+    ]
+   ]
+  },
+  {
+   "osm": 48464995,
+   "nome": "Rua Princesa Isabel",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -264.82,
+     526.55
+    ],
+    [
+     -271.47,
+     533.33
+    ]
+   ]
+  },
+  {
+   "osm": 48465786,
+   "nome": "Rua Braz Cubas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     127.4,
+     428.09
+    ],
+    [
+     126.91,
+     424.39
+    ]
+   ]
+  },
+  {
+   "osm": 48488854,
+   "nome": "Rua Prudente de Moraes",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -178.38,
+     444.1
+    ],
+    [
+     -46.47,
+     443.2
+    ]
+   ]
+  },
+  {
+   "osm": 48488855,
+   "nome": "Rua Comendador Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     23.35,
+     574.44
+    ],
+    [
+     32.7,
+     498.65
+    ]
+   ]
+  },
+  {
+   "osm": 48488860,
+   "nome": "Rua Luis de Camoes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     181.49,
+     516.24
+    ],
+    [
+     176.77,
+     592.88
+    ]
+   ]
+  },
+  {
+   "osm": 48488861,
+   "nome": "Rua Júlio de Mesquita",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     129.27,
+     390.22
+    ],
+    [
+     191.0,
+     397.62
+    ]
+   ]
+  },
+  {
+   "osm": 48488892,
+   "nome": "Avenida Francisco Manoel",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -72.62,
+     363.5
+    ],
+    [
+     -193.21,
+     347.98
+    ]
+   ]
+  },
+  {
+   "osm": 48489516,
+   "nome": "Rua São Paulo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -177.35,
+     546.85
+    ],
+    [
+     -161.4,
+     444.24
+    ]
+   ]
+  },
+  {
+   "osm": 48489524,
+   "nome": "Rua Almeida de Moraes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -55.53,
+     524.62
+    ],
+    [
+     -131.55,
+     516.69
+    ]
+   ]
+  },
+  {
+   "osm": 48489574,
+   "nome": "Rua Paulo Moutinho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     279.74,
+     364.65
+    ],
+    [
+     274.45,
+     420.01
+    ]
+   ]
+  },
+  {
+   "osm": 48489580,
+   "nome": "Rua Paraná",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -119.66,
+     419.73
+    ],
+    [
+     -131.55,
+     516.69
+    ]
+   ]
+  },
+  {
+   "osm": 48489609,
+   "nome": "Praça Belmiro Ribeiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -66.41,
+     369.08
+    ],
+    [
+     -38.85,
+     371.26
+    ]
+   ]
+  },
+  {
+   "osm": 48489649,
+   "nome": "Rua Paulo Gonçalves",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     320.35,
+     407.97
+    ],
+    [
+     322.92,
+     369.1
+    ]
+   ]
+  },
+  {
+   "osm": 124526540,
+   "nome": "Rua Adolfo Millon",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -121.82,
+     320.94
+    ],
+    [
+     -126.34,
+     356.48
+    ]
+   ]
+  },
+  {
+   "osm": 127812240,
+   "nome": "Rua Xavier Pinheiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     234.79,
+     599.36
+    ],
+    [
+     176.77,
+     592.88
+    ]
+   ]
+  },
+  {
+   "osm": 127812292,
+   "nome": "Rua Lowndes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     238.55,
+     559.59
+    ],
+    [
+     370.06,
+     571.65
+    ]
+   ]
+  },
+  {
+   "osm": 127812343,
+   "nome": "Rua Dona Luísa Macuco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     249.43,
+     435.35
+    ],
+    [
+     380.05,
+     446.06
+    ]
+   ]
+  },
+  {
+   "osm": 195669882,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -32.55,
+     333.89
+    ],
+    [
+     -69.72,
+     361.58
+    ]
+   ]
+  },
+  {
+   "osm": 196170219,
+   "nome": "Avenida Perimetral",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     390.76,
+     326.7
+    ],
+    [
+     386.15,
+     355.64
+    ]
+   ]
+  },
+  {
+   "osm": 196615507,
+   "nome": "Rua Luís La Scala Júnior",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -142.31,
+     444.04
+    ],
+    [
+     -154.62,
+     428.25
+    ]
+   ]
+  },
+  {
+   "osm": 227850730,
+   "nome": "Avenida Washington Luiz",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     123.12,
+     429.01
+    ],
+    [
+     111.75,
+     547.06
+    ]
+   ]
+  },
+  {
+   "osm": 227850741,
+   "nome": "Rua Lucas Fortunato",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -115.11,
+     401.89
+    ],
+    [
+     -43.23,
+     409.69
+    ]
+   ]
+  },
+  {
+   "osm": 252794276,
+   "nome": "Rua Joaquim Nabuco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     115.31,
+     508.74
+    ],
+    [
+     32.7,
+     498.65
+    ]
+   ]
+  },
+  {
+   "osm": 252799226,
+   "nome": "Avenida Ana Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -26.63,
+     337.26
+    ],
+    [
+     -29.06,
+     338.55
+    ]
+   ]
+  },
+  {
+   "osm": 252799227,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     91.3,
+     351.56
+    ],
+    [
+     127.32,
+     355.61
+    ]
+   ]
+  },
+  {
+   "osm": 252799229,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     91.3,
+     351.56
+    ],
+    [
+     51.3,
+     346.88
+    ]
+   ]
+  },
+  {
+   "osm": 252799232,
+   "nome": "Rua República Portuguesa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     345.88,
+     362.92
+    ],
+    [
+     338.17,
+     363.88
+    ],
+    [
+     304.21,
+     331.96
+    ]
+   ]
+  },
+  {
+   "osm": 316317997,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -301.8,
+     528.68
+    ],
+    [
+     -262.04,
+     500.71
+    ]
+   ]
+  },
+  {
+   "osm": 316453929,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -195.27,
+     544.26
+    ],
+    [
+     -255.92,
+     535.51
+    ]
+   ]
+  },
+  {
+   "osm": 316453929,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -59.64,
+     564.09
+    ],
+    [
+     -174.91,
+     547.2
+    ]
+   ]
+  },
+  {
+   "osm": 317670838,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     115.29,
+     585.98
+    ],
+    [
+     108.25,
+     585.19
+    ]
+   ]
+  },
+  {
+   "osm": 359636928,
+   "nome": "Rua Lisboa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -63.48,
+     443.64
+    ],
+    [
+     -59.81,
+     407.96
+    ]
+   ]
+  },
+  {
+   "osm": 359636929,
+   "nome": "Rua Silveira Lobo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -102.84,
+     444.0
+    ],
+    [
+     -99.65,
+     403.59
+    ]
+   ]
+  },
+  {
+   "osm": 359636932,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -73.25,
+     443.76
+    ],
+    [
+     -69.18,
+     406.93
+    ]
+   ]
+  },
+  {
+   "osm": 359636933,
+   "nome": "Viela da Sabesp",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -91.31,
+     404.5
+    ],
+    [
+     -94.08,
+     443.95
+    ]
+   ]
+  },
+  {
+   "osm": 359695838,
+   "nome": "Rua Campos Melo",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     278.66,
+     603.33
+    ],
+    [
+     302.77,
+     329.43
+    ]
+   ]
+  },
+  {
+   "osm": 364186307,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -21.36,
+     332.78
+    ],
+    [
+     -37.09,
+     331.37
+    ]
+   ]
+  },
+  {
+   "osm": 364196517,
+   "nome": "Praça Belmiro Ribeiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -38.22,
+     366.96
+    ],
+    [
+     -40.57,
+     369.06
+    ],
+    [
+     -62.89,
+     366.67
+    ]
+   ]
+  },
+  {
+   "osm": 366557099,
+   "nome": "Rua Júlio Conceição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     19.44,
+     298.88
+    ],
+    [
+     17.31,
+     311.38
+    ]
+   ]
+  },
+  {
+   "osm": 366813580,
+   "nome": "Rua Henrique Ablas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     345.63,
+     370.92
+    ],
+    [
+     300.06,
+     366.43
+    ]
+   ]
+  },
+  {
+   "osm": 366813581,
+   "nome": "Rua Anhanguera",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     345.63,
+     370.92
+    ],
+    [
+     380.27,
+     363.63
+    ]
+   ]
+  },
+  {
+   "osm": 366819747,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     288.97,
+     365.45
+    ],
+    [
+     284.79,
+     412.26
+    ]
+   ]
+  },
+  {
+   "osm": 366819748,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     313.25,
+     367.94
+    ],
+    [
+     311.68,
+     388.11
+    ]
+   ]
+  },
+  {
+   "osm": 366821559,
+   "nome": "Rua Doutor Silvério Fontes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     371.72,
+     325.29
+    ],
+    [
+     365.75,
+     366.18
+    ]
+   ]
+  },
+  {
+   "osm": 366821561,
+   "nome": "Rua Antenor da Rocha Leite",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     340.77,
+     408.09
+    ],
+    [
+     377.55,
+     409.87
+    ]
+   ]
+  },
+  {
+   "osm": 366821562,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     335.3,
+     476.14
+    ],
+    [
+     316.99,
+     474.74
+    ]
+   ]
+  },
+  {
+   "osm": 367011396,
+   "nome": "Rua Xavier Pinheiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     278.66,
+     603.33
+    ],
+    [
+     237.04,
+     599.57
+    ]
+   ]
+  },
+  {
+   "osm": 367245166,
+   "nome": "Rua Particular Vila Augusta",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     169.22,
+     374.19
+    ],
+    [
+     165.71,
+     395.09
+    ]
+   ]
+  },
+  {
+   "osm": 367245167,
+   "nome": "Rua Particular Vila Augusta",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     148.13,
+     374.98
+    ],
+    [
+     176.59,
+     374.19
+    ],
+    [
+     176.36,
+     379.78
+    ]
+   ]
+  },
+  {
+   "osm": 367255768,
+   "nome": "Rua da Constituição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     185.83,
+     516.82
+    ],
+    [
+     193.52,
+     431.46
+    ]
+   ]
+  },
+  {
+   "osm": 367255770,
+   "nome": "Rua da Constituição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     194.25,
+     361.18
+    ],
+    [
+     193.9,
+     365.63
+    ]
+   ]
+  },
+  {
+   "osm": 367295515,
+   "nome": "Rua Doutor João Éboli",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     98.7,
+     290.05
+    ],
+    [
+     79.23,
+     288.31
+    ],
+    [
+     68.47,
+     290.65
+    ],
+    [
+     63.43,
+     292.78
+    ],
+    [
+     54.33,
+     302.22
+    ],
+    [
+     19.44,
+     298.88
+    ]
+   ]
+  },
+  {
+   "osm": 367439106,
+   "nome": "Acesso à Rua Paraná",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -128.46,
+     410.79
+    ],
+    [
+     -122.31,
+     411.26
+    ],
+    [
+     -119.66,
+     419.73
+    ]
+   ]
+  },
+  {
+   "osm": 367444403,
+   "nome": "Rua Almeida de Moraes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -55.53,
+     524.62
+    ],
+    [
+     -52.3,
+     526.9
+    ],
+    [
+     69.67,
+     541.89
+    ]
+   ]
+  },
+  {
+   "osm": 367444404,
+   "nome": "Avenida Gaffrée e Guinle",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     -172.05,
+     511.35
+    ],
+    [
+     -90.16,
+     500.99
+    ]
+   ]
+  },
+  {
+   "osm": 367444405,
+   "nome": "Rua Professor Leonardo Roitman",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     38.4,
+     452.15
+    ],
+    [
+     -38.54,
+     441.2
+    ]
+   ]
+  },
+  {
+   "osm": 367445006,
+   "nome": "Rua Júlio de Mesquita",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -38.85,
+     371.26
+    ],
+    [
+     -31.3,
+     371.18
+    ]
+   ]
+  },
+  {
+   "osm": 380498926,
+   "nome": "Rua Treze de Maio",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -21.7,
+     306.88
+    ],
+    [
+     17.31,
+     311.38
+    ]
+   ]
+  },
+  {
+   "osm": 441075681,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     241.31,
+     524.03
+    ],
+    [
+     257.73,
+     346.97
+    ]
+   ]
+  },
+  {
+   "osm": 441075682,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     246.62,
+     435.19
+    ],
+    [
+     235.61,
+     559.34
+    ]
+   ]
+  },
+  {
+   "osm": 441075684,
+   "nome": "Rua Lucas Fortunato",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     246.62,
+     435.19
+    ],
+    [
+     249.43,
+     435.35
+    ]
+   ]
+  },
+  {
+   "osm": 441075686,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     249.34,
+     403.95
+    ],
+    [
+     246.62,
+     435.19
+    ]
+   ]
+  },
+  {
+   "osm": 441075687,
+   "nome": "Rua Júlio de Mesquita",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     249.34,
+     403.95
+    ],
+    [
+     252.35,
+     404.3
+    ]
+   ]
+  },
+  {
+   "osm": 441075690,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     254.6,
+     348.26
+    ],
+    [
+     249.34,
+     403.95
+    ]
+   ]
+  },
+  {
+   "osm": 441075692,
+   "nome": "Avenida Campos Sales",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     254.6,
+     348.26
+    ],
+    [
+     257.73,
+     346.97
+    ]
+   ]
+  },
+  {
+   "osm": 441077533,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -43.23,
+     409.69
+    ],
+    [
+     -59.64,
+     564.09
+    ]
+   ]
+  },
+  {
+   "osm": 441077534,
+   "nome": "Rua Lucas Fortunato",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -35.1,
+     410.67
+    ],
+    [
+     127.4,
+     428.09
+    ]
+   ]
+  },
+  {
+   "osm": 441077795,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -53.04,
+     564.76
+    ],
+    [
+     -35.1,
+     410.67
+    ]
+   ]
+  },
+  {
+   "osm": 467491409,
+   "nome": "Avenida Doutor Waldemar Leão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -193.21,
+     347.98
+    ],
+    [
+     -191.0,
+     312.16
+    ]
+   ]
+  },
+  {
+   "osm": 467491410,
+   "nome": "Avenida Francisco Manoel",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -193.21,
+     347.98
+    ],
+    [
+     -195.86,
+     347.55
+    ]
+   ]
+  },
+  {
+   "osm": 467496293,
+   "nome": "Avenida Ana Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -29.06,
+     338.55
+    ],
+    [
+     -30.96,
+     340.57
+    ]
+   ]
+  },
+  {
+   "osm": 467496495,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -30.96,
+     340.57
+    ],
+    [
+     -34.36,
+     344.0
+    ],
+    [
+     -38.85,
+     371.26
+    ]
+   ]
+  },
+  {
+   "osm": 475925609,
+   "nome": "Rua Comendador Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     32.7,
+     498.65
+    ],
+    [
+     51.3,
+     346.88
+    ]
+   ]
+  },
+  {
+   "osm": 475925610,
+   "nome": "Rua Joaquim Nabuco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     32.7,
+     498.65
+    ],
+    [
+     15.54,
+     496.16
+    ]
+   ]
+  },
+  {
+   "osm": 475925611,
+   "nome": "Rua Paraná",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -131.55,
+     516.69
+    ],
+    [
+     -135.96,
+     552.81
+    ]
+   ]
+  },
+  {
+   "osm": 477928907,
+   "nome": "Rua Júlio Conceição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     17.31,
+     311.38
+    ],
+    [
+     13.9,
+     337.13
+    ]
+   ]
+  },
+  {
+   "osm": 477928913,
+   "nome": "Rua Treze de Maio",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     17.31,
+     311.38
+    ],
+    [
+     55.03,
+     316.51
+    ]
+   ]
+  },
+  {
+   "osm": 478739874,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     235.61,
+     559.34
+    ],
+    [
+     232.33,
+     599.09
+    ]
+   ]
+  },
+  {
+   "osm": 478739875,
+   "nome": "Rua Almeida de Moraes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     235.61,
+     559.34
+    ],
+    [
+     238.55,
+     559.59
+    ]
+   ]
+  },
+  {
+   "osm": 478739876,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     234.79,
+     599.36
+    ],
+    [
+     241.31,
+     524.03
+    ]
+   ]
+  },
+  {
+   "osm": 481243380,
+   "nome": "Rua Doutor Cláudio Luís da Costa",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -193.8,
+     351.92
+    ],
+    [
+     -193.21,
+     347.98
+    ]
+   ]
+  },
+  {
+   "osm": 482296774,
+   "nome": "Rua Doutor Antônio Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -69.72,
+     361.58
+    ],
+    [
+     -73.84,
+     356.66
+    ],
+    [
+     -70.84,
+     327.84
+    ]
+   ]
+  },
+  {
+   "osm": 482296775,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -69.72,
+     361.58
+    ],
+    [
+     -72.62,
+     363.5
+    ]
+   ]
+  },
+  {
+   "osm": 482304388,
+   "nome": "Praça Coronel Narciso de Andrade",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     13.27,
+     341.99
+    ],
+    [
+     -26.63,
+     337.26
+    ]
+   ]
+  },
+  {
+   "osm": 482304389,
+   "nome": "Rua Júlio Conceição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     13.27,
+     341.99
+    ],
+    [
+     -15.93,
+     569.46
+    ]
+   ]
+  },
+  {
+   "osm": 482304390,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     13.9,
+     337.13
+    ],
+    [
+     -21.36,
+     332.78
+    ]
+   ]
+  },
+  {
+   "osm": 482304391,
+   "nome": "Rua Júlio Conceição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     13.9,
+     337.13
+    ],
+    [
+     13.27,
+     341.99
+    ]
+   ]
+  },
+  {
+   "osm": 483118765,
+   "nome": "Avenida Washington Luiz",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     115.29,
+     585.98
+    ],
+    [
+     118.95,
+     547.81
+    ]
+   ]
+  },
+  {
+   "osm": 483118882,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     23.35,
+     574.44
+    ],
+    [
+     -15.93,
+     569.46
+    ]
+   ]
+  },
+  {
+   "osm": 483118882,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     108.25,
+     585.19
+    ],
+    [
+     65.1,
+     579.72
+    ]
+   ]
+  },
+  {
+   "osm": 483119029,
+   "nome": "Rua Almeida de Moraes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     118.95,
+     547.81
+    ],
+    [
+     235.61,
+     559.34
+    ]
+   ]
+  },
+  {
+   "osm": 483119030,
+   "nome": "Avenida Washington Luiz",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     118.95,
+     547.81
+    ],
+    [
+     127.4,
+     428.09
+    ]
+   ]
+  },
+  {
+   "osm": 483119031,
+   "nome": "Avenida Washington Luiz",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     111.75,
+     547.06
+    ],
+    [
+     108.25,
+     585.19
+    ]
+   ]
+  },
+  {
+   "osm": 483119032,
+   "nome": "Rua Almeida de Moraes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     111.75,
+     547.06
+    ],
+    [
+     118.95,
+     547.81
+    ]
+   ]
+  },
+  {
+   "osm": 483326402,
+   "nome": "Rua Silva Jardim",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     350.65,
+     323.72
+    ],
+    [
+     340.77,
+     408.09
+    ],
+    [
+     324.45,
+     607.76
+    ]
+   ]
+  },
+  {
+   "osm": 483327912,
+   "nome": "Avenida Campos Salles",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     302.77,
+     329.43
+    ],
+    [
+     306.3,
+     328.06
+    ]
+   ]
+  },
+  {
+   "osm": 483529443,
+   "nome": "Avenida Campos Salles",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     306.3,
+     328.06
+    ],
+    [
+     322.69,
+     321.65
+    ]
+   ]
+  },
+  {
+   "osm": 483529643,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     257.73,
+     346.97
+    ],
+    [
+     258.12,
+     342.65
+    ]
+   ]
+  },
+  {
+   "osm": 483529645,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     254.99,
+     343.86
+    ],
+    [
+     254.6,
+     348.26
+    ]
+   ]
+  },
+  {
+   "osm": 483530203,
+   "nome": "Avenida Campos Salles",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     193.9,
+     365.63
+    ],
+    [
+     210.44,
+     364.69
+    ],
+    [
+     254.6,
+     348.26
+    ]
+   ]
+  },
+  {
+   "osm": 483530204,
+   "nome": "Rua da Constituição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     193.9,
+     365.63
+    ],
+    [
+     181.49,
+     516.24
+    ]
+   ]
+  },
+  {
+   "osm": 483534266,
+   "nome": "Rua Luís La Scala Júnior",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -159.79,
+     427.62
+    ],
+    [
+     -157.97,
+     430.41
+    ]
+   ]
+  },
+  {
+   "osm": 483534269,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -157.97,
+     430.41
+    ],
+    [
+     -154.62,
+     428.25
+    ]
+   ]
+  },
+  {
+   "osm": 483534271,
+   "nome": "Rua Luís La Scala Júnior",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -157.97,
+     430.41
+    ],
+    [
+     -146.75,
+     444.16
+    ]
+   ]
+  },
+  {
+   "osm": 483534274,
+   "nome": "Rua Luís La Scala Júnior",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -154.62,
+     428.25
+    ],
+    [
+     -156.44,
+     425.39
+    ]
+   ]
+  },
+  {
+   "osm": 483534275,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -154.62,
+     428.25
+    ],
+    [
+     -74.57,
+     374.33
+    ]
+   ]
+  },
+  {
+   "osm": 483534277,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -245.57,
+     489.49
+    ],
+    [
+     -230.87,
+     479.63
+    ]
+   ]
+  },
+  {
+   "osm": 483534279,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -262.04,
+     500.71
+    ],
+    [
+     -256.49,
+     496.93
+    ]
+   ]
+  },
+  {
+   "osm": 484971733,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -257.85,
+     535.23
+    ],
+    [
+     -254.82,
+     507.83
+    ],
+    [
+     -245.57,
+     489.49
+    ]
+   ]
+  },
+  {
+   "osm": 484971735,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -296.56,
+     530.08
+    ],
+    [
+     -301.8,
+     528.68
+    ]
+   ]
+  },
+  {
+   "osm": 484971735,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -265.7,
+     534.07
+    ],
+    [
+     -271.47,
+     533.33
+    ]
+   ]
+  },
+  {
+   "osm": 485439191,
+   "nome": "Rua Luiz de Camões",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     163.79,
+     591.41
+    ],
+    [
+     143.41,
+     511.8
+    ]
+   ]
+  },
+  {
+   "osm": 485439192,
+   "nome": "Rua Xavier Pinheiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     163.79,
+     591.41
+    ],
+    [
+     115.29,
+     585.98
+    ]
+   ]
+  },
+  {
+   "osm": 497474867,
+   "nome": "Avenida Campos Salles",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     127.32,
+     355.61
+    ],
+    [
+     130.61,
+     358.76
+    ],
+    [
+     193.9,
+     365.63
+    ]
+   ]
+  },
+  {
+   "osm": 497474869,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     91.79,
+     346.97
+    ],
+    [
+     13.9,
+     337.13
+    ]
+   ]
+  },
+  {
+   "osm": 500514582,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -62.89,
+     366.67
+    ],
+    [
+     -39.23,
+     348.81
+    ],
+    [
+     -36.64,
+     348.67
+    ],
+    [
+     -36.28,
+     351.57
+    ]
+   ]
+  },
+  {
+   "osm": 500518765,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -38.85,
+     371.26
+    ],
+    [
+     -43.23,
+     409.69
+    ]
+   ]
+  },
+  {
+   "osm": 500518766,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     51.3,
+     346.88
+    ],
+    [
+     13.27,
+     341.99
+    ]
+   ]
+  },
+  {
+   "osm": 500518767,
+   "nome": "Rua Comendador Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     51.3,
+     346.88
+    ],
+    [
+     56.16,
+     307.27
+    ],
+    [
+     54.33,
+     302.22
+    ]
+   ]
+  },
+  {
+   "osm": 676681462,
+   "nome": "Rua Dona Luísa Macuco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     187.71,
+     431.04
+    ],
+    [
+     246.62,
+     435.19
+    ]
+   ]
+  },
+  {
+   "osm": 775235101,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     69.67,
+     541.89
+    ],
+    [
+     65.1,
+     579.72
+    ]
+   ]
+  },
+  {
+   "osm": 775235102,
+   "nome": "Rua Braz Cubas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     129.27,
+     390.22
+    ],
+    [
+     130.75,
+     354.48
+    ]
+   ]
+  },
+  {
+   "osm": 775235103,
+   "nome": "Rua Júlio de Mesquita",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -31.3,
+     371.18
+    ],
+    [
+     129.27,
+     390.22
+    ]
+   ]
+  },
+  {
+   "osm": 775235104,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -31.3,
+     371.18
+    ],
+    [
+     -29.06,
+     338.55
+    ]
+   ]
+  },
+  {
+   "osm": 775244466,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -66.41,
+     369.08
+    ],
+    [
+     -62.89,
+     366.67
+    ]
+   ]
+  },
+  {
+   "osm": 775244467,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -74.57,
+     374.33
+    ],
+    [
+     -66.41,
+     369.08
+    ]
+   ]
+  },
+  {
+   "osm": 775245131,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -72.62,
+     363.5
+    ],
+    [
+     -77.89,
+     367.27
+    ]
+   ]
+  },
+  {
+   "osm": 883086096,
+   "nome": "Rua Doutor Emílio Ribas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     286.41,
+     519.54
+    ],
+    [
+     241.93,
+     515.91
+    ]
+   ]
+  },
+  {
+   "osm": 883086097,
+   "nome": "Rua Doutor Emílio Ribas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     373.63,
+     526.65
+    ],
+    [
+     331.52,
+     523.22
+    ]
+   ]
+  },
+  {
+   "osm": 883112240,
+   "nome": "Rua Braz Cubas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     123.12,
+     429.01
+    ],
+    [
+     126.91,
+     424.39
+    ]
+   ]
+  },
+  {
+   "osm": 883112241,
+   "nome": "Rua Braz Cubas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     126.91,
+     424.39
+    ],
+    [
+     129.27,
+     390.22
+    ]
+   ]
+  },
+  {
+   "osm": 883137997,
+   "nome": "Rua Júlio de Mesquita",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     191.0,
+     397.62
+    ],
+    [
+     249.34,
+     403.95
+    ]
+   ]
+  },
+  {
+   "osm": 883737439,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -35.85,
+     318.02
+    ],
+    [
+     -33.6,
+     304.44
+    ],
+    [
+     -21.7,
+     306.88
+    ]
+   ]
+  },
+  {
+   "osm": 922134971,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -230.87,
+     479.63
+    ],
+    [
+     -157.97,
+     430.41
+    ]
+   ]
+  },
+  {
+   "osm": 973188359,
+   "nome": "Avenida Doutor Waldemar Leão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -191.0,
+     312.16
+    ],
+    [
+     -190.79,
+     307.08
+    ]
+   ]
+  },
+  {
+   "osm": 975245318,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -256.49,
+     496.93
+    ],
+    [
+     -245.57,
+     489.49
+    ]
+   ]
+  },
+  {
+   "osm": 975978819,
+   "nome": "Rua Lucas Fortunato",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -43.23,
+     409.69
+    ],
+    [
+     -35.1,
+     410.67
+    ]
+   ]
+  },
+  {
+   "osm": 975978820,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -35.1,
+     410.67
+    ],
+    [
+     -31.3,
+     371.18
+    ]
+   ]
+  },
+  {
+   "osm": 976652306,
+   "nome": "Rua Almeida de Moraes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     69.67,
+     541.89
+    ],
+    [
+     111.75,
+     547.06
+    ]
+   ]
+  },
+  {
+   "osm": 976652307,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     91.3,
+     351.56
+    ],
+    [
+     69.67,
+     541.89
+    ]
+   ]
+  },
+  {
+   "osm": 1024398116,
+   "nome": "Rua Paraná",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -119.66,
+     419.73
+    ],
+    [
+     -117.68,
+     403.6
+    ]
+   ]
+  },
+  {
+   "osm": 1311195334,
+   "nome": "Rua Doutor Emílio Ribas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     241.93,
+     515.91
+    ],
+    [
+     239.5,
+     515.71
+    ]
+   ]
+  },
+  {
+   "osm": 1374274156,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     91.54,
+     349.34
+    ],
+    [
+     91.3,
+     351.56
+    ]
+   ]
+  },
+  {
+   "osm": 1374492086,
+   "nome": "Rua Xavier Pinheiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     366.96,
+     611.49
+    ],
+    [
+     278.66,
+     603.33
+    ]
+   ]
+  },
+  {
+   "osm": 1374492088,
+   "nome": "Rua Doutor Manoel Tourinho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     380.05,
+     446.06
+    ],
+    [
+     380.83,
+     448.14
+    ]
+   ]
+  },
+  {
+   "osm": 1376845043,
+   "nome": "Rua Joaquim Nabuco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     181.49,
+     516.24
+    ],
+    [
+     122.14,
+     509.34
+    ]
+   ]
+  },
+  {
+   "osm": 1516573797,
+   "nome": "",
+   "tipo": "steps",
+   "largura": 2.5,
+   "pontos": [
+    [
+     239.6,
+     466.67
+    ],
+    [
+     237.16,
+     466.41
+    ]
+   ]
+  }
+ ],
+ "canais": [
+  {
+   "osm": 48465263,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -256.76,
+     492.59
+    ],
+    [
+     -257.4,
+     498.79
+    ]
+   ]
+  },
+  {
+   "osm": 48465819,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -36.15,
+     343.53
+    ],
+    [
+     -64.23,
+     363.0
+    ]
+   ]
+  },
+  {
+   "osm": 196170226,
+   "nome": "Canal 3",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     123.55,
+     451.46
+    ],
+    [
+     121.53,
+     476.86
+    ]
+   ]
+  },
+  {
+   "osm": 483118883,
+   "nome": "Canal 3",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     112.87,
+     581.87
+    ],
+    [
+     112.55,
+     585.67
+    ]
+   ]
+  },
+  {
+   "osm": 483119033,
+   "nome": "Canal 3",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     115.79,
+     546.48
+    ],
+    [
+     115.42,
+     550.9
+    ]
+   ]
+  },
+  {
+   "osm": 483119034,
+   "nome": "Canal 3",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     115.42,
+     550.9
+    ],
+    [
+     112.87,
+     581.87
+    ]
+   ]
+  },
+  {
+   "osm": 483119468,
+   "nome": "Canal 3",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     121.53,
+     476.86
+    ],
+    [
+     120.89,
+     484.68
+    ]
+   ]
+  },
+  {
+   "osm": 483119469,
+   "nome": "Canal 3",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     120.89,
+     484.68
+    ],
+    [
+     115.79,
+     546.48
+    ]
+   ]
+  },
+  {
+   "osm": 483530205,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     205.34,
+     362.29
+    ],
+    [
+     207.7,
+     361.8
+    ]
+   ]
+  },
+  {
+   "osm": 483530989,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -64.23,
+     363.0
+    ],
+    [
+     -71.86,
+     368.16
+    ]
+   ]
+  },
+  {
+   "osm": 483530990,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -80.08,
+     373.8
+    ],
+    [
+     -153.67,
+     423.56
+    ]
+   ]
+  },
+  {
+   "osm": 483534264,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -153.67,
+     423.56
+    ],
+    [
+     -163.4,
+     430.02
+    ]
+   ]
+  },
+  {
+   "osm": 483534265,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -163.4,
+     430.02
+    ],
+    [
+     -221.33,
+     468.87
+    ]
+   ]
+  },
+  {
+   "osm": 483534284,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -250.66,
+     488.5
+    ],
+    [
+     -266.0,
+     499.1
+    ]
+   ]
+  },
+  {
+   "osm": 483534910,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -301.09,
+     523.09
+    ],
+    [
+     -308.42,
+     528.05
+    ]
+   ]
+  },
+  {
+   "osm": 484971736,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -257.4,
+     498.79
+    ],
+    [
+     -261.2,
+     534.73
+    ]
+   ]
+  },
+  {
+   "osm": 1374278087,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     312.93,
+     322.09
+    ],
+    [
+     315.49,
+     321.17
+    ]
+   ]
+  },
+  {
+   "osm": 1374492084,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -71.86,
+     368.16
+    ],
+    [
+     -80.08,
+     373.8
+    ]
+   ]
+  },
+  {
+   "osm": 1556676291,
+   "nome": "",
+   "tipo": "stream",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -196.05,
+     350.24
+    ],
+    [
+     -188.26,
+     351.34
+    ]
+   ]
+  },
+  {
+   "osm": 1556676292,
+   "nome": "",
+   "tipo": "stream",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -188.26,
+     351.34
+    ],
+    [
+     -85.59,
+     364.47
+    ]
+   ]
+  },
+  {
+   "osm": 1556676293,
+   "nome": "",
+   "tipo": "stream",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -85.59,
+     364.47
+    ],
+    [
+     -71.01,
+     367.59
+    ]
+   ]
+  }
+ ],
+ "marcos": [
+  {
+   "osm": "node/4876560204",
+   "nome": "Trabalhador Portuário",
+   "tipo": "historic=monument",
+   "posicao": [
+    373.44,
+    606.73
+   ]
+  },
+  {
+   "osm": "way/1118764932",
+   "nome": "Templo de Santos Brasil",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    -169.62,
+    322.78
+   ]
+  },
+  {
+   "osm": "way/1446495872",
+   "nome": "Congregação Cristã no Brasil",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    225.66,
+    366.33
+   ]
+  },
+  {
+   "osm": "way/1446495873",
+   "nome": "Congregação Cristã no Brasil",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    -182.38,
+    452.7
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Avenida Senador Pinheiro Machado",
+   "osm": 316317997,
+   "posicao": [
+    -301.8,
+    528.68
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Joaquim Távora",
+   "osm": 484971735,
+   "posicao": [
+    -296.56,
+    530.08
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Princesa Isabel",
+   "osm": 48464995,
+   "posicao": [
+    -271.47,
+    533.33
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Joaquim Távora",
+   "osm": 316453929,
+   "posicao": [
+    -255.92,
+    535.51
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "primary",
+   "osm": 48454190,
+   "posicao": [
+    -228.37,
+    473.59
+   ],
+   "para": "jabaquara"
+  },
+  {
+   "rua": "Avenida Francisco Manoel",
+   "osm": 467491410,
+   "posicao": [
+    -195.86,
+    347.55
+   ],
+   "para": "jabaquara"
+  },
+  {
+   "rua": "Rua Joaquim Távora",
+   "osm": 316453929,
+   "posicao": [
+    -195.27,
+    544.26
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Doutor Cláudio Luís da Costa",
+   "osm": 481243380,
+   "posicao": [
+    -193.8,
+    351.92
+   ],
+   "para": "jabaquara"
+  },
+  {
+   "rua": "Avenida Rangel Pestana",
+   "osm": 48460028,
+   "posicao": [
+    -193.37,
+    312.1
+   ],
+   "para": "jabaquara"
+  },
+  {
+   "rua": "Avenida Doutor Waldemar Leão",
+   "osm": 973188359,
+   "posicao": [
+    -190.79,
+    307.08
+   ],
+   "para": "jabaquara"
+  },
+  {
+   "rua": "Rua Joaquim Távora",
+   "osm": 316453929,
+   "posicao": [
+    -181.61,
+    546.23
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua São Paulo",
+   "osm": 48489516,
+   "posicao": [
+    -177.35,
+    546.85
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Luís La Scala Júnior",
+   "osm": 483534266,
+   "posicao": [
+    -159.79,
+    427.62
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Luís La Scala Júnior",
+   "osm": 483534274,
+   "posicao": [
+    -156.44,
+    425.39
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Doutor Antônio Bento",
+   "osm": 38798905,
+   "posicao": [
+    -96.83,
+    558.48
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Avenida Senador Pinheiro Machado",
+   "osm": 775245131,
+   "posicao": [
+    -77.89,
+    367.27
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Anna Costa",
+   "osm": 441077533,
+   "posicao": [
+    -59.64,
+    564.09
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Júlio Conceição",
+   "osm": 482304389,
+   "posicao": [
+    -15.93,
+    569.46
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Rua Comendador Martins",
+   "osm": 48488855,
+   "posicao": [
+    23.35,
+    574.44
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Rua Joaquim Távora",
+   "osm": 483118882,
+   "posicao": [
+    65.1,
+    579.72
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Avenida Rangel Pestana",
+   "osm": 497474869,
+   "posicao": [
+    91.79,
+    346.97
+   ],
+   "para": "vila_nova"
+  },
+  {
+   "rua": "Avenida Washington Luiz",
+   "osm": 483118765,
+   "posicao": [
+    115.29,
+    585.98
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Rua Braz Cubas",
+   "osm": 775235102,
+   "posicao": [
+    130.75,
+    354.48
+   ],
+   "para": "vila_nova"
+  },
+  {
+   "rua": "Rua Luis de Camoes",
+   "osm": 48488860,
+   "posicao": [
+    176.77,
+    592.88
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Rua da Constituição",
+   "osm": 367255770,
+   "posicao": [
+    194.25,
+    361.18
+   ],
+   "para": "vila_nova"
+  },
+  {
+   "rua": "Avenida Conselheiro Nébias",
+   "osm": 478739874,
+   "posicao": [
+    232.33,
+    599.09
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Rua Xavier Pinheiro",
+   "osm": 367011396,
+   "posicao": [
+    237.04,
+    599.57
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Avenida Conselheiro Nébias",
+   "osm": 483529645,
+   "posicao": [
+    254.99,
+    343.86
+   ],
+   "para": "vila_nova"
+  },
+  {
+   "rua": "Avenida Conselheiro Nébias",
+   "osm": 483529643,
+   "posicao": [
+    258.12,
+    342.65
+   ],
+   "para": "vila_nova"
+  },
+  {
+   "rua": "Rua Silva Jardim",
+   "osm": 483326402,
+   "posicao": [
+    324.45,
+    607.76
+   ],
+   "para": "macuco"
+  },
+  {
+   "rua": "Rua Silva Jardim",
+   "osm": 483326402,
+   "posicao": [
+    350.65,
+    323.72
+   ],
+   "para": "vila_nova"
+  },
+  {
+   "rua": "Rua Doutor Silvério Fontes",
+   "osm": 366821559,
+   "posicao": [
+    371.72,
+    325.29
+   ],
+   "para": "vila_nova"
+  },
+  {
+   "rua": "Avenida Perimetral",
+   "osm": 196170219,
+   "posicao": [
+    386.15,
+    355.64
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Perimetral",
+   "osm": 196170219,
+   "posicao": [
+    390.76,
+    326.7
+   ],
+   "para": "vila_nova"
+  }
+ ]
+}

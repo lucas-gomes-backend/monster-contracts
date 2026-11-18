@@ -16,6 +16,8 @@
     "antigo_religioso": {"tinta_nevoa": "#9a958c", "cores_predios": ["#a39e92", "#b5ad9a", "#8f8a80", "#c2b8a3", "#9c9384"]},
     "centro": {"tinta_nevoa": "#a3a7b0", "cores_predios": ["#b8a48a", "#c7c0b0", "#8e9aa3", "#d0b48c", "#a69c8f", "#7f8a80"]},
     "mata": {"tinta_nevoa": "#7f9480", "cores_predios": ["#8f9a80", "#a39e82"]},
+    "industrial": {"tinta_nevoa": "#9aa0a3", "cores_predios": ["#8c8f8a", "#a39a86", "#7d858c", "#b0a48e", "#6f7a73"]},
+    "residencial_denso": {"tinta_nevoa": "#aeb0b3", "cores_predios": ["#c9bfae", "#b7c2b4", "#d4c6a8", "#a8b4bd", "#c4a99a", "#bdb7a0"]},
     "padrao": {"tinta_nevoa": "#b8babd", "cores_predios": ["#a0a0a0", "#b0aca4"]}
   },
   "janelas": {"acesas_a_noite": 0.35, "cor_acesa": "#ffcf7a", "brilho": 1.6},

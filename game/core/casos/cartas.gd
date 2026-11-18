@@ -24,6 +24,8 @@ static func situacoes(desfecho: Dictionary, encerram: Array) -> Array[String]:
 			lista.append("cliente_exposto")
 	else:
 		lista.append("vitimas_por_demora")
+	if desfecho.get("cliente_exposto", false) and not "cliente_exposto" in lista:
+		lista.append("cliente_exposto")
 	if desfecho.get("amaldicoado_morto", false):
 		lista.append("amaldicoado_morto")
 	if not str(desfecho.get("inocente_prejudicado", "")).is_empty():
@@ -82,7 +84,9 @@ static func _pessoa_da_situacao(situacao: String, verdade: Dictionary, desfecho:
 	match situacao:
 		"inocente_prejudicado":
 			return desfecho["inocente_prejudicado"]
-		"amaldicoado_morto", "cliente_exposto":
+		"cliente_exposto":
+			return str(verdade.get("culpado", "")) if desfecho.get("cliente_exposto", false) else str(verdade["hospedeiro"])
+		"amaldicoado_morto":
 			return verdade["hospedeiro"]
 	return ""
 

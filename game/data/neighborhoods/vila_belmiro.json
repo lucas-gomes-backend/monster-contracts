@@ -1,0 +1,81 @@
+{
+  "$comment": "Vila Belmiro, bairro principal da zona Central e portuária (Fase 5). Lugares públicos reais; estabelecimentos e pessoas fictícios. As ruas são as reais do mapa (nome sem acento, em minúsculas): cada lugar vai para um lote na rua dele (core/cidade/lugares_reais.gd).",
+  "id": "vila_belmiro",
+  "nome": "Vila Belmiro",
+  "zona": "central_portuaria",
+  "tipo": "residencial_denso",
+  "populacao_alvo": 36,
+  "casas": 14,
+  "ruas": [
+    "avenida_doutor_bernardino_de_campos",
+    "avenida_senador_pinheiro_machado",
+    "rua_princesa_isabel",
+    "rua_monsenhor_paula_rodrigues",
+    "rua_alvares_cabral",
+    "rua_dom_pedro_i"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 2
+    },
+    {
+      "id": "japonesa",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "igreja",
+      "tipo": "igreja",
+      "rua": "rua_princesa_isabel",
+      "nome": "Igreja da Vila"
+    },
+    {
+      "id": "praca_do_estadio",
+      "tipo": "praca",
+      "rua": "rua_princesa_isabel",
+      "nome": "Praça em frente ao estádio"
+    },
+    {
+      "id": "delegacia",
+      "tipo": "delegacia",
+      "rua": "avenida_doutor_bernardino_de_campos",
+      "nome": "Distrito Policial da Vila Belmiro"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "rua_alvares_cabral",
+      "nome": "Padaria Alvinegra"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "rua_dom_pedro_i",
+      "nome": "Bar do Torcedor"
+    },
+    {
+      "id": "escola",
+      "tipo": "escola",
+      "rua": "rua_monsenhor_paula_rodrigues",
+      "nome": "Escola estadual"
+    },
+    {
+      "id": "galinheiro_1",
+      "tipo": "galinheiro",
+      "rua": "rua_dom_pedro_i",
+      "nome": "Galinheiro de um quintal"
+    },
+    {
+      "id": "lan_house",
+      "tipo": "lan_house",
+      "rua": "avenida_senador_pinheiro_machado",
+      "nome": "Lan house Gol de Placa"
+    }
+  ]
+}

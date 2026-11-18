@@ -1,0 +1,2053 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "campo_grande",
+ "nome": "Campo Grande",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 128432.4,
+ "caixa": [
+  -557.42,
+  674.61,
+  -68.85,
+  1111.72
+ ],
+ "limite": [
+  [
+   -315.71,
+   1014.78
+  ],
+  [
+   -96.86,
+   925.91
+  ],
+  [
+   -68.85,
+   674.61
+  ],
+  [
+   -519.51,
+   778.24
+  ],
+  [
+   -557.42,
+   1111.72
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 38795648,
+   "nome": "Rua Visconde de Faria",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -396.93,
+     1036.43
+    ],
+    [
+     -395.24,
+     1046.69
+    ]
+   ]
+  },
+  {
+   "osm": 38795690,
+   "nome": "Rua Duque de Caxias",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -534.83,
+     945.5
+    ],
+    [
+     -389.65,
+     960.15
+    ],
+    [
+     -315.17,
+     970.7
+    ]
+   ]
+  },
+  {
+   "osm": 38795691,
+   "nome": "Rua Carlos Gomes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -222.61,
+     940.02
+    ],
+    [
+     -302.29,
+     930.85
+    ]
+   ]
+  },
+  {
+   "osm": 38795773,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -359.32,
+     1032.12
+    ],
+    [
+     -357.74,
+     1020.14
+    ]
+   ]
+  },
+  {
+   "osm": 38795774,
+   "nome": "Rua Marquês de São Vicente",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -319.12,
+     1005.19
+    ],
+    [
+     -357.74,
+     1020.14
+    ]
+   ]
+  },
+  {
+   "osm": 38795869,
+   "nome": "Rua Visconde de Faria",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -371.72,
+     744.52
+    ],
+    [
+     -367.69,
+     762.18
+    ],
+    [
+     -368.73,
+     778.33
+    ],
+    [
+     -394.29,
+     997.93
+    ],
+    [
+     -396.93,
+     1036.43
+    ]
+   ]
+  },
+  {
+   "osm": 38795871,
+   "nome": "Rua Teixeira de Freitas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -413.81,
+     839.18
+    ],
+    [
+     -427.56,
+     956.36
+    ]
+   ]
+  },
+  {
+   "osm": 38795878,
+   "nome": "Rua Gonçalves Ledo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -483.54,
+     770.08
+    ],
+    [
+     -517.31,
+     1072.95
+    ]
+   ]
+  },
+  {
+   "osm": 38795886,
+   "nome": "Rua Evaristo da Veiga",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -526.4,
+     868.68
+    ],
+    [
+     -306.26,
+     892.89
+    ]
+   ]
+  },
+  {
+   "osm": 38795905,
+   "nome": "Rua José Clemente Pereira",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -478.19,
+     1068.31
+    ],
+    [
+     -444.31,
+     761.05
+    ]
+   ]
+  },
+  {
+   "osm": 38795990,
+   "nome": "Rua Ministro Xavier de Toledo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -355.94,
+     1001.63
+    ],
+    [
+     -431.45,
+     995.25
+    ],
+    [
+     -538.91,
+     981.94
+    ]
+   ]
+  },
+  {
+   "osm": 38796205,
+   "nome": "Rua Almirante Barroso",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -244.14,
+     754.91
+    ],
+    [
+     -249.59,
+     800.53
+    ]
+   ]
+  },
+  {
+   "osm": 38796210,
+   "nome": "Rua Doutor Arnaldo de Carvalho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -212.36,
+     861.32
+    ],
+    [
+     -222.61,
+     940.02
+    ]
+   ]
+  },
+  {
+   "osm": 38796212,
+   "nome": "Rua Augusto Paulino",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -76.68,
+     719.65
+    ],
+    [
+     -277.92,
+     761.67
+    ],
+    [
+     -282.64,
+     756.92
+    ]
+   ]
+  },
+  {
+   "osm": 38796257,
+   "nome": "Rua Amazonas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -171.0,
+     866.28
+    ],
+    [
+     -155.64,
+     736.15
+    ]
+   ]
+  },
+  {
+   "osm": 38796258,
+   "nome": "Rua Pará",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -125.12,
+     687.48
+    ],
+    [
+     -116.6,
+     733.82
+    ],
+    [
+     -132.01,
+     870.88
+    ]
+   ]
+  },
+  {
+   "osm": 48489489,
+   "nome": "Rua Rio de Janeiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -226.51,
+     710.55
+    ],
+    [
+     -219.68,
+     749.34
+    ]
+   ]
+  },
+  {
+   "osm": 316317997,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -526.4,
+     868.68
+    ],
+    [
+     -515.69,
+     777.68
+    ]
+   ]
+  },
+  {
+   "osm": 316318368,
+   "nome": "Rua João Carvalhal Filho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -487.77,
+     807.9
+    ],
+    [
+     -447.56,
+     800.11
+    ]
+   ]
+  },
+  {
+   "osm": 316318369,
+   "nome": "Rua João Carvalhal Filho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -369.69,
+     786.09
+    ],
+    [
+     -292.52,
+     772.9
+    ]
+   ]
+  },
+  {
+   "osm": 359695850,
+   "nome": "Rua Doutor Carvalho de Mendonça",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -515.69,
+     777.68
+    ],
+    [
+     -287.1,
+     724.6
+    ]
+   ]
+  },
+  {
+   "osm": 359696061,
+   "nome": "Rua Amazonas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -162.56,
+     737.63
+    ],
+    [
+     -171.49,
+     698.03
+    ]
+   ]
+  },
+  {
+   "osm": 364569401,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -95.23,
+     884.02
+    ],
+    [
+     -98.8,
+     922.01
+    ]
+   ]
+  },
+  {
+   "osm": 364974919,
+   "nome": "Rua Carlos Gomes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -310.51,
+     929.97
+    ],
+    [
+     -530.2,
+     906.28
+    ]
+   ]
+  },
+  {
+   "osm": 364974920,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -319.12,
+     1005.19
+    ],
+    [
+     -320.37,
+     1016.47
+    ]
+   ]
+  },
+  {
+   "osm": 364974922,
+   "nome": "Rua Pedro Américo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -301.46,
+     850.98
+    ],
+    [
+     -413.81,
+     839.18
+    ]
+   ]
+  },
+  {
+   "osm": 364974924,
+   "nome": "Rua Doutor Arnaldo de Carvalho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -197.54,
+     744.9
+    ],
+    [
+     -210.5,
+     861.58
+    ]
+   ]
+  },
+  {
+   "osm": 364974925,
+   "nome": "Rua Pedro Américo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -94.36,
+     875.57
+    ],
+    [
+     -293.48,
+     851.96
+    ]
+   ]
+  },
+  {
+   "osm": 367434721,
+   "nome": "Rua Almirante Barroso",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -270.69,
+     983.73
+    ],
+    [
+     -264.68,
+     935.23
+    ]
+   ]
+  },
+  {
+   "osm": 367434722,
+   "nome": "Rua Almirante Barroso",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -264.68,
+     935.23
+    ],
+    [
+     -261.16,
+     897.85
+    ]
+   ]
+  },
+  {
+   "osm": 367434723,
+   "nome": "Rua Almirante Barroso",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -261.16,
+     897.85
+    ],
+    [
+     -249.59,
+     800.53
+    ]
+   ]
+  },
+  {
+   "osm": 367436172,
+   "nome": "Rua Doutor Álvaro Guião",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -83.22,
+     775.25
+    ],
+    [
+     -120.86,
+     772.86
+    ]
+   ]
+  },
+  {
+   "osm": 367436174,
+   "nome": "Rua Doutor Álvaro Guião",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -121.24,
+     775.91
+    ],
+    [
+     -141.22,
+     779.75
+    ]
+   ]
+  },
+  {
+   "osm": 367436175,
+   "nome": "Rua Particular Rio de Janeiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -262.55,
+     745.62
+    ],
+    [
+     -221.83,
+     737.22
+    ]
+   ]
+  },
+  {
+   "osm": 367454214,
+   "nome": "Rua Teixeira de Freitas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -427.56,
+     956.36
+    ],
+    [
+     -438.36,
+     1052.5
+    ]
+   ]
+  },
+  {
+   "osm": 441078042,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -71.75,
+     675.24
+    ],
+    [
+     -76.68,
+     719.65
+    ]
+   ]
+  },
+  {
+   "osm": 441078045,
+   "nome": "Rua Doutor Carvalho de Mendonça",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -71.75,
+     675.24
+    ],
+    [
+     -68.85,
+     674.61
+    ]
+   ]
+  },
+  {
+   "osm": 441078814,
+   "nome": "Avenida General Francisco Glicério",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -96.28,
+     921.07
+    ],
+    [
+     -98.8,
+     922.01
+    ]
+   ]
+  },
+  {
+   "osm": 449396874,
+   "nome": "Avenida General Francisco Glicério",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -103.97,
+     924.03
+    ],
+    [
+     -150.54,
+     940.0
+    ],
+    [
+     -263.52,
+     986.91
+    ]
+   ]
+  },
+  {
+   "osm": 449396878,
+   "nome": "Avenida General Francisco Glycerio",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -482.61,
+     1080.09
+    ],
+    [
+     -551.55,
+     1109.43
+    ]
+   ]
+  },
+  {
+   "osm": 449396881,
+   "nome": "Rua Marquês de São Vicente",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -303.34,
+     998.75
+    ],
+    [
+     -311.01,
+     1001.92
+    ]
+   ]
+  },
+  {
+   "osm": 449396883,
+   "nome": "Rua Marquês de São Vicente",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -478.19,
+     1068.31
+    ],
+    [
+     -503.49,
+     1073.28
+    ],
+    [
+     -548.79,
+     1071.16
+    ]
+   ]
+  },
+  {
+   "osm": 475904028,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -271.63,
+     995.57
+    ],
+    [
+     -271.17,
+     989.82
+    ]
+   ]
+  },
+  {
+   "osm": 478531376,
+   "nome": "Avenida General Francisco Glycerio",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -462.85,
+     1062.2
+    ],
+    [
+     -482.61,
+     1080.09
+    ]
+   ]
+  },
+  {
+   "osm": 478531377,
+   "nome": "Rua Marquês de São Vicente",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -462.85,
+     1062.2
+    ],
+    [
+     -478.19,
+     1068.31
+    ]
+   ]
+  },
+  {
+   "osm": 478747218,
+   "nome": "Avenida General Francisco Glicério",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -98.8,
+     922.01
+    ],
+    [
+     -103.97,
+     924.03
+    ]
+   ]
+  },
+  {
+   "osm": 478747219,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -98.8,
+     922.01
+    ],
+    [
+     -99.23,
+     926.81
+    ]
+   ]
+  },
+  {
+   "osm": 478747785,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -552.7,
+     1109.88
+    ],
+    [
+     -543.22,
+     1020.38
+    ]
+   ]
+  },
+  {
+   "osm": 481054659,
+   "nome": "Rua Barão de Paranapiacaba",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -86.84,
+     833.9
+    ],
+    [
+     -89.94,
+     833.91
+    ]
+   ]
+  },
+  {
+   "osm": 481060824,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -88.57,
+     818.93
+    ],
+    [
+     -94.36,
+     875.57
+    ]
+   ]
+  },
+  {
+   "osm": 481060825,
+   "nome": "Rua Espírito Santo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -88.57,
+     818.93
+    ],
+    [
+     -85.53,
+     819.14
+    ]
+   ]
+  },
+  {
+   "osm": 481697358,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -543.22,
+     1020.38
+    ],
+    [
+     -526.4,
+     868.68
+    ]
+   ]
+  },
+  {
+   "osm": 481697359,
+   "nome": "Rua João Caetano",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -543.22,
+     1020.38
+    ],
+    [
+     -435.94,
+     1030.59
+    ]
+   ]
+  },
+  {
+   "osm": 482277296,
+   "nome": "Rua Visconde de Cayrú",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -357.74,
+     1020.14
+    ],
+    [
+     -330.25,
+     780.02
+    ],
+    [
+     -327.57,
+     734.38
+    ]
+   ]
+  },
+  {
+   "osm": 482277300,
+   "nome": "Rua Marquês de São Vicente",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -396.93,
+     1036.43
+    ],
+    [
+     -462.85,
+     1062.2
+    ]
+   ]
+  },
+  {
+   "osm": 482279177,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -311.01,
+     1001.92
+    ],
+    [
+     -302.29,
+     930.85
+    ]
+   ]
+  },
+  {
+   "osm": 482279178,
+   "nome": "Rua Marquês de São Vicente",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -311.01,
+     1001.92
+    ],
+    [
+     -319.12,
+     1005.19
+    ]
+   ]
+  },
+  {
+   "osm": 483126735,
+   "nome": "Rua Marquês de São Vicente",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -270.69,
+     983.73
+    ],
+    [
+     -303.34,
+     998.75
+    ]
+   ]
+  },
+  {
+   "osm": 483126736,
+   "nome": "Rua Almirante Barroso",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -271.17,
+     989.82
+    ],
+    [
+     -270.69,
+     983.73
+    ]
+   ]
+  },
+  {
+   "osm": 484972419,
+   "nome": "Rua Doutor Carvalho de Mendonça",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -287.1,
+     724.6
+    ],
+    [
+     -279.2,
+     722.53
+    ]
+   ]
+  },
+  {
+   "osm": 484972420,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -287.1,
+     724.6
+    ],
+    [
+     -306.26,
+     892.89
+    ]
+   ]
+  },
+  {
+   "osm": 484972421,
+   "nome": "Rua Doutor Carvalho de Mendonça",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -279.2,
+     722.53
+    ],
+    [
+     -165.98,
+     696.77
+    ]
+   ]
+  },
+  {
+   "osm": 484972421,
+   "nome": "Rua Doutor Carvalho de Mendonça",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -125.12,
+     687.48
+    ],
+    [
+     -106.4,
+     683.22
+    ]
+   ]
+  },
+  {
+   "osm": 484972735,
+   "nome": "Rua Espírito Santo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -287.55,
+     796.64
+    ],
+    [
+     -88.57,
+     818.93
+    ]
+   ]
+  },
+  {
+   "osm": 484972736,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -287.55,
+     796.64
+    ],
+    [
+     -279.2,
+     722.53
+    ]
+   ]
+  },
+  {
+   "osm": 484972889,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -293.48,
+     851.96
+    ],
+    [
+     -287.55,
+     796.64
+    ]
+   ]
+  },
+  {
+   "osm": 484973641,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -306.26,
+     892.89
+    ],
+    [
+     -315.17,
+     970.7
+    ]
+   ]
+  },
+  {
+   "osm": 484973643,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -298.19,
+     893.78
+    ],
+    [
+     -293.48,
+     851.96
+    ]
+   ]
+  },
+  {
+   "osm": 484973645,
+   "nome": "Rua Evaristo da Veiga",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -298.19,
+     893.78
+    ],
+    [
+     -217.21,
+     902.68
+    ]
+   ]
+  },
+  {
+   "osm": 484974196,
+   "nome": "Rua Carlos Gomes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -302.29,
+     930.85
+    ],
+    [
+     -304.95,
+     930.56
+    ]
+   ]
+  },
+  {
+   "osm": 484974197,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -302.29,
+     930.85
+    ],
+    [
+     -298.19,
+     893.78
+    ]
+   ]
+  },
+  {
+   "osm": 484974683,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -315.17,
+     970.7
+    ],
+    [
+     -319.12,
+     1005.19
+    ]
+   ]
+  },
+  {
+   "osm": 485280512,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -312.27,
+     1013.28
+    ],
+    [
+     -311.01,
+     1001.92
+    ]
+   ]
+  },
+  {
+   "osm": 500506178,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -76.68,
+     719.65
+    ],
+    [
+     -88.57,
+     818.93
+    ]
+   ]
+  },
+  {
+   "osm": 500802178,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -73.47,
+     718.99
+    ],
+    [
+     -76.68,
+     719.65
+    ]
+   ]
+  },
+  {
+   "osm": 665786300,
+   "nome": "Rua Teixeira de Freitas",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -413.81,
+     839.18
+    ],
+    [
+     -407.12,
+     772.44
+    ],
+    [
+     -410.73,
+     753.43
+    ]
+   ]
+  },
+  {
+   "osm": 858396965,
+   "nome": "Rua João Caetano",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -546.99,
+     1020.05
+    ],
+    [
+     -544.51,
+     1020.27
+    ]
+   ]
+  },
+  {
+   "osm": 858405045,
+   "nome": "Rua Carlos Gomes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -532.08,
+     906.1
+    ],
+    [
+     -534.23,
+     905.88
+    ]
+   ]
+  },
+  {
+   "osm": 858405047,
+   "nome": "Rua Carlos Gomes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -304.95,
+     930.56
+    ],
+    [
+     -309.55,
+     930.07
+    ]
+   ]
+  },
+  {
+   "osm": 858421655,
+   "nome": "Rua Duque de Caxias",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -309.52,
+     971.05
+    ],
+    [
+     -307.38,
+     971.15
+    ]
+   ]
+  },
+  {
+   "osm": 858421656,
+   "nome": "Rua Duque de Caxias",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -314.28,
+     970.8
+    ],
+    [
+     -309.52,
+     971.05
+    ]
+   ]
+  },
+  {
+   "osm": 866543018,
+   "nome": "Rua Carvalho de Mendonça",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -518.08,
+     778.29
+    ],
+    [
+     -515.69,
+     777.68
+    ]
+   ]
+  },
+  {
+   "osm": 883075544,
+   "nome": "Rua Evaristo da Veiga",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -306.26,
+     892.89
+    ],
+    [
+     -298.19,
+     893.78
+    ]
+   ]
+  },
+  {
+   "osm": 883077520,
+   "nome": "Rua Espírito Santo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -295.2,
+     796.37
+    ],
+    [
+     -287.55,
+     796.64
+    ]
+   ]
+  },
+  {
+   "osm": 883077522,
+   "nome": "Rua Pedro Américo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -293.48,
+     851.96
+    ],
+    [
+     -301.46,
+     850.98
+    ]
+   ]
+  },
+  {
+   "osm": 974232266,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -495.44,
+     1072.33
+    ],
+    [
+     -493.82,
+     1051.33
+    ]
+   ]
+  },
+  {
+   "osm": 1171057649,
+   "nome": "Rua Marquês de São Vicente",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -357.74,
+     1020.14
+    ],
+    [
+     -396.93,
+     1036.43
+    ]
+   ]
+  },
+  {
+   "osm": 1375461962,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -94.36,
+     875.57
+    ],
+    [
+     -95.23,
+     884.02
+    ]
+   ]
+  },
+  {
+   "osm": 1458162944,
+   "nome": "Avenida General Francisco Glicério",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -263.52,
+     986.91
+    ],
+    [
+     -303.34,
+     998.75
+    ]
+   ]
+  }
+ ],
+ "canais": [
+  {
+   "osm": 48464988,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -519.51,
+     778.24
+    ],
+    [
+     -520.33,
+     784.9
+    ]
+   ]
+  },
+  {
+   "osm": 483535620,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -520.33,
+     784.9
+    ],
+    [
+     -533.95,
+     903.15
+    ]
+   ]
+  },
+  {
+   "osm": 483536578,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -533.95,
+     903.15
+    ],
+    [
+     -534.87,
+     911.89
+    ]
+   ]
+  },
+  {
+   "osm": 483536579,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -534.87,
+     911.89
+    ],
+    [
+     -546.46,
+     1015.67
+    ]
+   ]
+  },
+  {
+   "osm": 483537316,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -546.46,
+     1015.67
+    ],
+    [
+     -547.42,
+     1023.65
+    ]
+   ]
+  },
+  {
+   "osm": 483537317,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -547.42,
+     1023.65
+    ],
+    [
+     -552.83,
+     1069.61
+    ]
+   ]
+  },
+  {
+   "osm": 483537682,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -554.04,
+     1080.58
+    ],
+    [
+     -556.73,
+     1105.37
+    ]
+   ]
+  },
+  {
+   "osm": 483537683,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -552.83,
+     1069.61
+    ],
+    [
+     -554.04,
+     1080.58
+    ]
+   ]
+  },
+  {
+   "osm": 483538009,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -556.73,
+     1105.37
+    ],
+    [
+     -557.42,
+     1111.72
+    ]
+   ]
+  },
+  {
+   "osm": 484972422,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -282.08,
+     723.29
+    ],
+    [
+     -282.62,
+     727.99
+    ]
+   ]
+  },
+  {
+   "osm": 484972423,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -282.62,
+     727.99
+    ],
+    [
+     -290.17,
+     793.27
+    ]
+   ]
+  },
+  {
+   "osm": 484972737,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -290.17,
+     793.27
+    ],
+    [
+     -290.91,
+     799.59
+    ]
+   ]
+  },
+  {
+   "osm": 484972738,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -290.91,
+     799.59
+    ],
+    [
+     -296.84,
+     849.85
+    ]
+   ]
+  },
+  {
+   "osm": 484972891,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -296.84,
+     849.85
+    ],
+    [
+     -297.58,
+     856.14
+    ]
+   ]
+  },
+  {
+   "osm": 484972892,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -297.58,
+     856.14
+    ],
+    [
+     -301.67,
+     890.85
+    ]
+   ]
+  },
+  {
+   "osm": 484973647,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -301.67,
+     890.85
+    ],
+    [
+     -302.37,
+     896.82
+    ]
+   ]
+  },
+  {
+   "osm": 484973649,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -302.37,
+     896.82
+    ],
+    [
+     -306.29,
+     930.05
+    ]
+   ]
+  },
+  {
+   "osm": 484974198,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -306.29,
+     930.05
+    ],
+    [
+     -307.03,
+     936.28
+    ]
+   ]
+  },
+  {
+   "osm": 484974199,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -307.03,
+     936.28
+    ],
+    [
+     -310.21,
+     966.83
+    ]
+   ]
+  },
+  {
+   "osm": 484974684,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -310.21,
+     966.83
+    ],
+    [
+     -310.64,
+     972.75
+    ]
+   ]
+  },
+  {
+   "osm": 484974685,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -310.64,
+     972.75
+    ],
+    [
+     -313.75,
+     999.96
+    ]
+   ]
+  },
+  {
+   "osm": 491229061,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -313.75,
+     999.96
+    ],
+    [
+     -315.71,
+     1014.78
+    ]
+   ]
+  }
+ ],
+ "marcos": [
+  {
+   "osm": "node/5301055473",
+   "nome": "Primeira igreja Presbiteriana",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    -403.94,
+    1033.78
+   ]
+  },
+  {
+   "osm": "way/495068563",
+   "nome": "Estação da Cidadania",
+   "tipo": "historic=building",
+   "posicao": [
+    -110.89,
+    915.05
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Avenida General Francisco Glycerio",
+   "osm": 449396878,
+   "posicao": [
+    -551.55,
+    1109.43
+   ],
+   "para": "marape"
+  },
+  {
+   "rua": "Rua João Caetano",
+   "osm": 858396965,
+   "posicao": [
+    -546.99,
+    1020.05
+   ],
+   "para": "marape"
+  },
+  {
+   "rua": "Rua Carlos Gomes",
+   "osm": 858405045,
+   "posicao": [
+    -534.23,
+    905.88
+   ],
+   "para": "marape"
+  },
+  {
+   "rua": "Rua Carvalho de Mendonça",
+   "osm": 359695856,
+   "posicao": [
+    -519.57,
+    778.68
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Avenida Senador Pinheiro Machado",
+   "osm": 316317997,
+   "posicao": [
+    -515.69,
+    777.68
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Visconde de Faria",
+   "osm": 38795648,
+   "posicao": [
+    -395.24,
+    1046.69
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 38795773,
+   "posicao": [
+    -359.32,
+    1032.12
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Doutor Bernardino de Campos",
+   "osm": 364974920,
+   "posicao": [
+    -320.37,
+    1016.47
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Doutor Bernardino de Campos",
+   "osm": 485280512,
+   "posicao": [
+    -312.27,
+    1013.28
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 475904028,
+   "posicao": [
+    -271.63,
+    995.57
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Rio de Janeiro",
+   "osm": 48489489,
+   "posicao": [
+    -226.51,
+    710.55
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Doutor Carvalho de Mendonça",
+   "osm": 484972421,
+   "posicao": [
+    -165.98,
+    696.77
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Doutor Carvalho de Mendonça",
+   "osm": 484972421,
+   "posicao": [
+    -125.12,
+    687.48
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Rua Doutor Carvalho de Mendonça",
+   "osm": 484972421,
+   "posicao": [
+    -106.4,
+    683.22
+   ],
+   "para": "vila_belmiro"
+  },
+  {
+   "rua": "Avenida Anna Costa",
+   "osm": 478747219,
+   "posicao": [
+    -99.23,
+    926.81
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Avenida General Francisco Glicério",
+   "osm": 441078814,
+   "posicao": [
+    -96.28,
+    921.07
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Rua Barão de Paranapiacaba",
+   "osm": 481054659,
+   "posicao": [
+    -86.84,
+    833.9
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "Rua Espírito Santo",
+   "osm": 481060825,
+   "posicao": [
+    -85.53,
+    819.14
+   ],
+   "para": "encruzilhada"
+  },
+  {
+   "rua": "residential",
+   "osm": 500802178,
+   "posicao": [
+    -73.47,
+    718.99
+   ],
+   "para": "encruzilhada"
+  }
+ ]
+}

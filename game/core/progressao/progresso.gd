@@ -74,7 +74,7 @@ func fechar_caso(desfecho: Dictionary, contrato: Dictionary) -> Dictionary:
 	var ganho := 0
 	var pontos := 0
 	var linhas: Array[String] = []
-	var inocente: bool = not str(desfecho.get("inocente_prejudicado", "")).is_empty() or bool(desfecho.get("amaldicoado_morto", false))
+	var inocente: bool = not str(desfecho.get("inocente_prejudicado", "")).is_empty() or bool(desfecho.get("amaldicoado_morto", false)) or bool(desfecho.get("criatura_inocente", false))
 	if desfecho.get("resolucao", "") == "abandonar":
 		pontos += int(rep["abandono"])
 		linhas.append("Caso abandonado.")
@@ -97,6 +97,11 @@ func fechar_caso(desfecho: Dictionary, contrato: Dictionary) -> Dictionary:
 	else:
 		pontos += int(rep["fracasso"])
 		linhas.append("Fracasso.")
+	if desfecho.get("cliente_exposto", false):
+		pontos += int(rep["cliente_exposto"])
+		linhas.append("Você expôs o cliente: ele não pagou, mas a cidade ficou sabendo.")
+	elif desfecho.get("crime_continua", false):
+		linhas.append("O cliente pagou e seguiu impune.")
 	if inocente:
 		pontos += int(rep["inocente_prejudicado"])
 		linhas.append("Um inocente pagou pelo seu erro.")

@@ -1,0 +1,10 @@
+{
+  "$comment": "Zonas da cidade, bairros principais e secundários (game/data/config/zonas.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["zonas"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "zonas": {"type": "object"}
+  }
+}

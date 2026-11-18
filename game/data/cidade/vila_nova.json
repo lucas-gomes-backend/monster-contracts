@@ -1,0 +1,1364 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "vila_nova",
+ "nome": "Vila Nova",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 55386.3,
+ "caixa": [
+  91.54,
+  127.49,
+  426.61,
+  362.29
+ ],
+ "limite": [
+  [
+   350.65,
+   323.72
+  ],
+  [
+   315.49,
+   321.17
+  ],
+  [
+   205.34,
+   362.29
+  ],
+  [
+   91.54,
+   349.34
+  ],
+  [
+   115.73,
+   127.49
+  ],
+  [
+   425.42,
+   195.69
+  ],
+  [
+   426.61,
+   198.09
+  ],
+  [
+   412.1,
+   222.75
+  ],
+  [
+   404.88,
+   245.87
+  ],
+  [
+   392.84,
+   326.86
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 38798853,
+   "nome": "Avenida Campos Sales",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     362.4,
+     261.14
+    ],
+    [
+     353.73,
+     309.18
+    ]
+   ]
+  },
+  {
+   "osm": 48459678,
+   "nome": "Avenida Campos Salles",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     258.49,
+     338.6
+    ],
+    [
+     255.35,
+     339.76
+    ]
+   ]
+  },
+  {
+   "osm": 48459679,
+   "nome": "Avenida Campos Salles",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     355.52,
+     259.07
+    ],
+    [
+     348.18,
+     300.21
+    ],
+    [
+     340.01,
+     308.02
+    ],
+    [
+     312.05,
+     318.06
+    ]
+   ]
+  },
+  {
+   "osm": 48459786,
+   "nome": "Rua 7 de Setembro",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     108.08,
+     206.25
+    ],
+    [
+     264.06,
+     240.17
+    ]
+   ]
+  },
+  {
+   "osm": 48489543,
+   "nome": "Rua Uruguay",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     322.69,
+     321.65
+    ],
+    [
+     350.65,
+     323.72
+    ]
+   ]
+  },
+  {
+   "osm": 48489546,
+   "nome": "Rua Henrique Dias",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     401.58,
+     190.47
+    ],
+    [
+     399.48,
+     217.77
+    ]
+   ]
+  },
+  {
+   "osm": 48489565,
+   "nome": "Rua Henrique Porchart",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     138.27,
+     252.61
+    ],
+    [
+     202.69,
+     257.34
+    ]
+   ]
+  },
+  {
+   "osm": 48489570,
+   "nome": "Rua Soter de Araújo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     173.24,
+     220.83
+    ],
+    [
+     179.63,
+     173.3
+    ]
+   ]
+  },
+  {
+   "osm": 48489572,
+   "nome": "Rua Benedito Pinheiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     301.64,
+     198.86
+    ],
+    [
+     294.22,
+     247.01
+    ]
+   ]
+  },
+  {
+   "osm": 196170219,
+   "nome": "Avenida Perimetral",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     425.78,
+     196.43
+    ],
+    [
+     413.73,
+     216.08
+    ],
+    [
+     404.02,
+     241.0
+    ],
+    [
+     390.76,
+     326.7
+    ]
+   ]
+  },
+  {
+   "osm": 196615505,
+   "nome": "Rua Conselheiro Saraiva",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     131.88,
+     337.22
+    ],
+    [
+     194.47,
+     340.72
+    ]
+   ]
+  },
+  {
+   "osm": 252799231,
+   "nome": "Rua Uruguay",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     350.65,
+     323.72
+    ],
+    [
+     386.53,
+     326.38
+    ]
+   ]
+  },
+  {
+   "osm": 252835219,
+   "nome": "Praça Iguatemi Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     363.51,
+     248.53
+    ],
+    [
+     368.63,
+     225.38
+    ],
+    [
+     373.62,
+     219.95
+    ],
+    [
+     372.27,
+     213.89
+    ]
+   ]
+  },
+  {
+   "osm": 252841027,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     267.34,
+     191.8
+    ],
+    [
+     264.06,
+     240.17
+    ]
+   ]
+  },
+  {
+   "osm": 320464098,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     269.21,
+     192.09
+    ],
+    [
+     268.62,
+     189.15
+    ]
+   ]
+  },
+  {
+   "osm": 364207875,
+   "nome": "Rua Bittencourt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     267.34,
+     191.8
+    ],
+    [
+     145.34,
+     165.91
+    ]
+   ]
+  },
+  {
+   "osm": 364207876,
+   "nome": "Praça Iguatemi Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     352.2,
+     209.57
+    ],
+    [
+     342.62,
+     254.08
+    ]
+   ]
+  },
+  {
+   "osm": 366821556,
+   "nome": "Rua Chile",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     391.22,
+     296.94
+    ],
+    [
+     358.2,
+     290.05
+    ]
+   ]
+  },
+  {
+   "osm": 366821559,
+   "nome": "Rua Doutor Silvério Fontes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     376.36,
+     294.12
+    ],
+    [
+     371.72,
+     325.29
+    ]
+   ]
+  },
+  {
+   "osm": 367253018,
+   "nome": "Rua Marechal Pego Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     134.87,
+     293.07
+    ],
+    [
+     255.21,
+     302.39
+    ]
+   ]
+  },
+  {
+   "osm": 367253019,
+   "nome": "Praça Iguatemi Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     387.39,
+     262.56
+    ],
+    [
+     362.45,
+     256.77
+    ],
+    [
+     363.51,
+     248.53
+    ]
+   ]
+  },
+  {
+   "osm": 367255770,
+   "nome": "Rua da Constituição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     194.49,
+     358.11
+    ],
+    [
+     194.25,
+     361.18
+    ]
+   ]
+  },
+  {
+   "osm": 367255773,
+   "nome": "Rua Cerquinho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     283.94,
+     282.04
+    ],
+    [
+     317.59,
+     287.03
+    ]
+   ]
+  },
+  {
+   "osm": 367255775,
+   "nome": "Rua Vieira de Souza",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     284.53,
+     267.19
+    ],
+    [
+     321.05,
+     273.53
+    ]
+   ]
+  },
+  {
+   "osm": 367303808,
+   "nome": "Rua Bittencourt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     145.34,
+     165.91
+    ],
+    [
+     112.67,
+     159.53
+    ]
+   ]
+  },
+  {
+   "osm": 441075689,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     261.55,
+     301.51
+    ],
+    [
+     269.21,
+     192.09
+    ]
+   ]
+  },
+  {
+   "osm": 441075693,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     258.64,
+     302.65
+    ],
+    [
+     255.35,
+     339.76
+    ]
+   ]
+  },
+  {
+   "osm": 441076979,
+   "nome": "Rua Doutor Cochrane",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     312.05,
+     318.06
+    ],
+    [
+     336.38,
+     205.92
+    ]
+   ]
+  },
+  {
+   "osm": 441076980,
+   "nome": "Avenida Campos Salles",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     312.05,
+     318.06
+    ],
+    [
+     258.49,
+     338.6
+    ]
+   ]
+  },
+  {
+   "osm": 445561620,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     264.06,
+     240.17
+    ],
+    [
+     258.77,
+     301.12
+    ]
+   ]
+  },
+  {
+   "osm": 445561621,
+   "nome": "Rua 7 de Setembro",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     264.06,
+     240.17
+    ],
+    [
+     362.4,
+     261.14
+    ]
+   ]
+  },
+  {
+   "osm": 472990350,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     102.82,
+     252.22
+    ],
+    [
+     91.79,
+     346.97
+    ]
+   ]
+  },
+  {
+   "osm": 477923201,
+   "nome": "Rua Bittencourt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     336.38,
+     205.92
+    ],
+    [
+     269.21,
+     192.09
+    ]
+   ]
+  },
+  {
+   "osm": 477923203,
+   "nome": "Rua Bittencourt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     352.2,
+     209.57
+    ],
+    [
+     336.38,
+     205.92
+    ]
+   ]
+  },
+  {
+   "osm": 483301044,
+   "nome": "Avenida São Francisco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     401.58,
+     190.47
+    ],
+    [
+     422.12,
+     195.01
+    ]
+   ]
+  },
+  {
+   "osm": 483308938,
+   "nome": "Rua Bittencourt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     399.48,
+     217.77
+    ],
+    [
+     352.2,
+     209.57
+    ]
+   ]
+  },
+  {
+   "osm": 483326402,
+   "nome": "Rua Silva Jardim",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     353.73,
+     309.18
+    ],
+    [
+     350.65,
+     323.72
+    ]
+   ]
+  },
+  {
+   "osm": 483529643,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     258.12,
+     342.65
+    ],
+    [
+     258.49,
+     338.6
+    ]
+   ]
+  },
+  {
+   "osm": 483529644,
+   "nome": "Avenida Campos Salles",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     255.35,
+     339.76
+    ],
+    [
+     203.75,
+     358.72
+    ],
+    [
+     130.85,
+     351.48
+    ]
+   ]
+  },
+  {
+   "osm": 483529645,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     255.35,
+     339.76
+    ],
+    [
+     254.99,
+     343.86
+    ]
+   ]
+  },
+  {
+   "osm": 485372410,
+   "nome": "Praça Iguatemi Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     362.45,
+     256.77
+    ],
+    [
+     362.4,
+     261.14
+    ]
+   ]
+  },
+  {
+   "osm": 497474868,
+   "nome": "Rua Braz Cubas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     130.85,
+     351.48
+    ],
+    [
+     141.42,
+     213.94
+    ]
+   ]
+  },
+  {
+   "osm": 497474869,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     130.85,
+     351.48
+    ],
+    [
+     91.79,
+     346.97
+    ]
+   ]
+  },
+  {
+   "osm": 500528978,
+   "nome": "Rua 7 de Setembro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     362.4,
+     261.14
+    ],
+    [
+     383.5,
+     266.84
+    ],
+    [
+     386.73,
+     266.43
+    ],
+    [
+     387.39,
+     262.56
+    ]
+   ]
+  },
+  {
+   "osm": 516208742,
+   "nome": "Rua Braz Cubas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     141.42,
+     213.94
+    ],
+    [
+     147.61,
+     133.72
+    ]
+   ]
+  },
+  {
+   "osm": 676681461,
+   "nome": "Rua Doutor João Éboli",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     134.87,
+     293.07
+    ],
+    [
+     98.7,
+     290.05
+    ]
+   ]
+  },
+  {
+   "osm": 775235102,
+   "nome": "Rua Braz Cubas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     130.75,
+     354.48
+    ],
+    [
+     130.85,
+     351.48
+    ]
+   ]
+  },
+  {
+   "osm": 841016701,
+   "nome": "Rua Vereador Freitas Guimaraes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     340.01,
+     308.02
+    ],
+    [
+     313.6,
+     306.69
+    ]
+   ]
+  },
+  {
+   "osm": 879187854,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     267.34,
+     191.8
+    ],
+    [
+     268.62,
+     189.15
+    ]
+   ]
+  },
+  {
+   "osm": 879187855,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     268.62,
+     189.15
+    ],
+    [
+     272.59,
+     161.52
+    ]
+   ]
+  },
+  {
+   "osm": 973342031,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     112.67,
+     159.53
+    ],
+    [
+     108.08,
+     206.25
+    ]
+   ]
+  },
+  {
+   "osm": 975245316,
+   "nome": "Rua Doutor Cochrane",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     336.38,
+     205.92
+    ],
+    [
+     342.54,
+     177.07
+    ]
+   ]
+  },
+  {
+   "osm": 1373641400,
+   "nome": "Avenida São Francisco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     216.46,
+     149.03
+    ],
+    [
+     272.59,
+     161.52
+    ]
+   ]
+  },
+  {
+   "osm": 1373641401,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     108.08,
+     206.25
+    ],
+    [
+     102.82,
+     252.22
+    ]
+   ]
+  },
+  {
+   "osm": 1373641403,
+   "nome": "Rua da Constituição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     214.82,
+     148.67
+    ],
+    [
+     197.86,
+     298.3
+    ],
+    [
+     194.49,
+     358.11
+    ]
+   ]
+  },
+  {
+   "osm": 1374274155,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     91.79,
+     346.97
+    ],
+    [
+     91.54,
+     349.34
+    ]
+   ]
+  },
+  {
+   "osm": 1546186923,
+   "nome": "Rua Marechal Pego Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     255.21,
+     302.39
+    ],
+    [
+     258.64,
+     302.65
+    ]
+   ]
+  },
+  {
+   "osm": 1546186924,
+   "nome": "Rua Vereador Freitas Guimaraes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     262.55,
+     302.94
+    ],
+    [
+     313.6,
+     306.69
+    ]
+   ]
+  },
+  {
+   "osm": 1546186926,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     258.49,
+     338.6
+    ],
+    [
+     261.43,
+     302.88
+    ]
+   ]
+  },
+  {
+   "osm": 1563338444,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     115.73,
+     127.49
+    ],
+    [
+     112.67,
+     159.53
+    ]
+   ]
+  }
+ ],
+ "canais": [
+  {
+   "osm": 48460001,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     136.98,
+     355.29
+    ],
+    [
+     191.56,
+     360.85
+    ]
+   ]
+  },
+  {
+   "osm": 481704020,
+   "nome": "Catraia Santos-Vicente de Carvalho",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     398.43,
+     243.97
+    ],
+    [
+     405.14,
+     244.88
+    ]
+   ]
+  },
+  {
+   "osm": 483529445,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     315.49,
+     321.17
+    ],
+    [
+     348.86,
+     306.7
+    ],
+    [
+     358.48,
+     264.0
+    ]
+   ]
+  },
+  {
+   "osm": 483529646,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     259.74,
+     342.03
+    ],
+    [
+     298.03,
+     327.63
+    ]
+   ]
+  },
+  {
+   "osm": 483529647,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     250.07,
+     345.77
+    ],
+    [
+     259.74,
+     342.03
+    ]
+   ]
+  },
+  {
+   "osm": 483530205,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     197.07,
+     361.54
+    ],
+    [
+     205.34,
+     362.29
+    ]
+   ]
+  },
+  {
+   "osm": 483530205,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     207.7,
+     361.8
+    ],
+    [
+     250.07,
+     345.77
+    ]
+   ]
+  },
+  {
+   "osm": 483530206,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     191.56,
+     360.85
+    ],
+    [
+     197.07,
+     361.54
+    ]
+   ]
+  },
+  {
+   "osm": 1564779219,
+   "nome": "",
+   "tipo": "stream",
+   "largura": 4.0,
+   "pontos": [
+    [
+     358.48,
+     264.0
+    ],
+    [
+     364.78,
+     236.98
+    ],
+    [
+     368.87,
+     237.59
+    ]
+   ]
+  }
+ ],
+ "marcos": [
+  {
+   "osm": "way/219409033",
+   "nome": "Mercado Municipal de Santos",
+   "tipo": "tourism=attraction",
+   "posicao": [
+    338.17,
+    227.85
+   ]
+  },
+  {
+   "osm": "way/234432350",
+   "nome": "Mercado Municipal de Santos",
+   "tipo": "tourism=attraction",
+   "posicao": [
+    353.32,
+    232.66
+   ]
+  },
+  {
+   "osm": "way/483326350",
+   "nome": "Centro Espírita e de Caridade Doutor Luiz Monteiro de Barros",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    356.63,
+    311.67
+   ]
+  },
+  {
+   "osm": "way/485434941",
+   "nome": "Loja Maçonica José Bonifácio",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    167.19,
+    264.55
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Avenida Rangel Pestana",
+   "osm": 497474869,
+   "posicao": [
+    91.79,
+    346.97
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua Braz Cubas",
+   "osm": 775235102,
+   "posicao": [
+    130.75,
+    354.48
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida São Francisco",
+   "osm": 320464100,
+   "posicao": [
+    148.81,
+    133.98
+   ],
+   "para": "centro"
+  },
+  {
+   "rua": "Rua da Constituição",
+   "osm": 367255770,
+   "posicao": [
+    194.25,
+    361.18
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida São Francisco",
+   "osm": 1373641400,
+   "posicao": [
+    216.46,
+    149.03
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Avenida Conselheiro Nébias",
+   "osm": 483529645,
+   "posicao": [
+    254.99,
+    343.86
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Conselheiro Nébias",
+   "osm": 483529643,
+   "posicao": [
+    258.12,
+    342.65
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida São Francisco",
+   "osm": 1373641400,
+   "posicao": [
+    272.59,
+    161.52
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Rua Silva Jardim",
+   "osm": 483326402,
+   "posicao": [
+    350.65,
+    323.72
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua Doutor Silvério Fontes",
+   "osm": 366821559,
+   "posicao": [
+    371.72,
+    325.29
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Perimetral",
+   "osm": 196170219,
+   "posicao": [
+    390.76,
+    326.7
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Perimetral",
+   "osm": 196170219,
+   "posicao": [
+    425.78,
+    196.43
+   ],
+   "para": "paqueta"
+  }
+ ]
+}

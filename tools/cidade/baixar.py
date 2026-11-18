@@ -20,6 +20,7 @@ SERVIDORES = [
     "https://overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
 ]
+PEDACOS = 3
 CABECALHO = {"User-Agent": "monster-contracts-importador/0.1"}
 
 
@@ -110,15 +111,27 @@ def main():
     margem = config["margem_download_m"] / 110540.0
     sul, norte = min(lats) - margem, max(lats) + margem
     oeste, leste = min(lons) - margem, max(lons) + margem
-    bbox = "%.6f,%.6f,%.6f,%.6f" % (sul, oeste, norte, leste)
 
-    filtros_marcos = []
-    for m in config["marcos"]:
-        filtro = '["%s"="%s"]' % (m["chave"], m["valor"]) if "valor" in m else '["%s"]' % m["chave"]
-        filtros_marcos.append("nwr%s(%s);" % (filtro, bbox))
-    consulta = "[out:json][timeout:180];(way[\"highway\"](%s);way[\"waterway\"](%s);%s);out geom;" % (
-        bbox, bbox, "".join(filtros_marcos))
-    elementos = consultar(consulta)["elements"]
+    # A caixa da cidade inteira é pesada demais para o Overpass de uma vez: baixa em
+    # pedaços (PEDACOS x PEDACOS) e junta, sem repetir o que cai em dois pedaços.
+    vistos = {}
+    for i in range(PEDACOS):
+        for j in range(PEDACOS):
+            s_ = sul + (norte - sul) * i / PEDACOS
+            n_ = sul + (norte - sul) * (i + 1) / PEDACOS
+            o_ = oeste + (leste - oeste) * j / PEDACOS
+            l_ = oeste + (leste - oeste) * (j + 1) / PEDACOS
+            caixa = "%.6f,%.6f,%.6f,%.6f" % (s_, o_, n_, l_)
+            filtros_marcos = []
+            for m in config["marcos"]:
+                filtro = '["%s"="%s"]' % (m["chave"], m["valor"]) if "valor" in m else '["%s"]' % m["chave"]
+                filtros_marcos.append("nwr%s(%s);" % (filtro, caixa))
+            consulta = "[out:json][timeout:180];(way[\"highway\"](%s);way[\"waterway\"](%s);%s);out geom;" % (
+                caixa, caixa, "".join(filtros_marcos))
+            for e in consultar(consulta)["elements"]:
+                vistos[(e["type"], e["id"])] = e
+            print("pedaço %d/%d" % (i * PEDACOS + j + 1, PEDACOS * PEDACOS), flush=True)
+    elementos = list(vistos.values())
 
     chaves = {"name", "highway", "waterway", "railway", "natural", "historic", "amenity", "tourism", "ele", "tunnel", "layer"}
     recorte = {

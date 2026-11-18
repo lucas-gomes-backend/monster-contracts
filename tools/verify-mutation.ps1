@@ -200,7 +200,13 @@ $mutants += @(
     @{ name = 'morte devolve a mochila inteira'; path = 'game/core/progressao/volta_da_morte.gd';
        find = '	var quantos := mini(int(ceil(ns.size() * fracao)), ns.size())'; replace = '	var quantos := 0' },
     @{ name = 'volta da morte sempre igual'; path = 'game/core/progressao/volta_da_morte.gd';
-       find = '	var extra := maxi(volta - 1, 0)'; replace = '	var extra := 0' }
+       find = '	var extra := maxi(volta - 1, 0)'; replace = '	var extra := 0' },
+    @{ name = 'cliente exposto nao conta'; path = 'game/core/investigacao/regras_de_campo.gd';
+       find = '		base["cliente_exposto"] = true'; replace = '		base["cliente_exposto"] = false' },
+    @{ name = 'prender o saci nao fere inocente'; path = 'game/core/investigacao/regras_de_campo.gd';
+       find = '		base["criatura_inocente"] = true'; replace = '		base["criatura_inocente"] = false' },
+    @{ name = 'inofensiva pode ser culpada'; path = 'game/core/casos/gerador_casos.gd';
+       find = '		if int(ficha["perigo"]) == 0:'; replace = '		if false:' }
 )
 
 if ($Somente.Count -gt 0) {

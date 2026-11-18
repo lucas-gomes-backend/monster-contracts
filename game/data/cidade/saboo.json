@@ -1,0 +1,2062 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "saboo",
+ "nome": "Saboó",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 65397.9,
+ "caixa": [
+  -952.22,
+  -157.71,
+  -542.62,
+  86.96
+ ],
+ "limite": [
+  [
+   -952.22,
+   -63.07
+  ],
+  [
+   -882.29,
+   -157.71
+  ],
+  [
+   -683.63,
+   -125.55
+  ],
+  [
+   -653.25,
+   -127.71
+  ],
+  [
+   -628.81,
+   -135.44
+  ],
+  [
+   -609.76,
+   -149.21
+  ],
+  [
+   -542.62,
+   10.72
+  ],
+  [
+   -551.81,
+   32.9
+  ],
+  [
+   -544.97,
+   49.95
+  ],
+  [
+   -561.2,
+   54.65
+  ],
+  [
+   -577.89,
+   68.39
+  ],
+  [
+   -614.35,
+   86.96
+  ],
+  [
+   -628.26,
+   85.52
+  ],
+  [
+   -633.55,
+   80.25
+  ],
+  [
+   -638.71,
+   80.29
+  ],
+  [
+   -652.81,
+   69.6
+  ],
+  [
+   -712.41,
+   61.13
+  ],
+  [
+   -725.8,
+   65.03
+  ],
+  [
+   -736.21,
+   64.69
+  ],
+  [
+   -743.49,
+   46.63
+  ],
+  [
+   -780.24,
+   39.22
+  ],
+  [
+   -798.94,
+   39.64
+  ],
+  [
+   -847.74,
+   21.69
+  ],
+  [
+   -880.64,
+   2.9
+  ],
+  [
+   -889.04,
+   -16.25
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 48459288,
+   "nome": "Rua São Sebastião",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -880.58,
+     -17.54
+    ],
+    [
+     -850.61,
+     -86.97
+    ]
+   ]
+  },
+  {
+   "osm": 48459290,
+   "nome": "Rua Caraguatatuba",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -832.41,
+     13.33
+    ],
+    [
+     -807.65,
+     -131.98
+    ]
+   ]
+  },
+  {
+   "osm": 48459326,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -877.22,
+     -142.15
+    ],
+    [
+     -698.57,
+     -113.44
+    ],
+    [
+     -665.21,
+     -110.25
+    ],
+    [
+     -645.82,
+     -111.5
+    ]
+   ]
+  },
+  {
+   "osm": 48459340,
+   "nome": "Rua Cananéia",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -923.96,
+     -101.46
+    ],
+    [
+     -820.59,
+     -53.68
+    ],
+    [
+     -802.27,
+     -49.86
+    ]
+   ]
+  },
+  {
+   "osm": 48459356,
+   "nome": "Rua Manoel Barbosa da Silveira",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -906.99,
+     -123.7
+    ],
+    [
+     -865.46,
+     -110.13
+    ]
+   ]
+  },
+  {
+   "osm": 48459372,
+   "nome": "Rua Ilha Bela",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -862.12,
+     -139.95
+    ],
+    [
+     -875.75,
+     -113.43
+    ]
+   ]
+  },
+  {
+   "osm": 134564528,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -632.46,
+     -121.25
+    ],
+    [
+     -651.26,
+     -119.01
+    ],
+    [
+     -674.98,
+     -119.6
+    ],
+    [
+     -781.8,
+     -135.7
+    ]
+   ]
+  },
+  {
+   "osm": 198387494,
+   "nome": "Rua Renata Câmara Agondi",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -595.25,
+     -20.72
+    ],
+    [
+     -656.32,
+     5.19
+    ]
+   ]
+  },
+  {
+   "osm": 215588959,
+   "nome": "Rua Doutor Oswaldo Carvalho de Rosis",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -804.34,
+     -14.71
+    ],
+    [
+     -810.01,
+     22.14
+    ]
+   ]
+  },
+  {
+   "osm": 215588960,
+   "nome": "Rua Ernesto Xavier Krone",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -850.61,
+     -86.97
+    ],
+    [
+     -817.52,
+     -73.93
+    ]
+   ]
+  },
+  {
+   "osm": 215588964,
+   "nome": "Rua São Vicente",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -927.8,
+     -48.47
+    ],
+    [
+     -887.38,
+     -117.25
+    ]
+   ]
+  },
+  {
+   "osm": 215588965,
+   "nome": "Rua Ubatuba",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -838.91,
+     -62.02
+    ],
+    [
+     -857.02,
+     -0.6
+    ]
+   ]
+  },
+  {
+   "osm": 215588969,
+   "nome": "Rua Guarujá",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -865.46,
+     -110.13
+    ],
+    [
+     -904.33,
+     -33.23
+    ]
+   ]
+  },
+  {
+   "osm": 215589492,
+   "nome": "Rua Flamínio Levy",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -662.68,
+     35.79
+    ],
+    [
+     -654.22,
+     15.31
+    ],
+    [
+     -654.38,
+     9.46
+    ],
+    [
+     -685.25,
+     -65.95
+    ],
+    [
+     -674.44,
+     -110.85
+    ]
+   ]
+  },
+  {
+   "osm": 317528466,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -604.19,
+     -135.61
+    ],
+    [
+     -606.1,
+     -134.27
+    ]
+   ]
+  },
+  {
+   "osm": 358899997,
+   "nome": "Travessa Dona Elvira",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -584.79,
+     36.65
+    ],
+    [
+     -555.7,
+     47.44
+    ]
+   ]
+  },
+  {
+   "osm": 358943863,
+   "nome": "Travessa 2",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -578.65,
+     23.24
+    ],
+    [
+     -576.42,
+     27.07
+    ],
+    [
+     -557.72,
+     38.32
+    ],
+    [
+     -554.22,
+     43.6
+    ],
+    [
+     -555.7,
+     47.44
+    ]
+   ]
+  },
+  {
+   "osm": 358943864,
+   "nome": "Travessa 4",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -595.84,
+     50.61
+    ],
+    [
+     -591.37,
+     74.85
+    ]
+   ]
+  },
+  {
+   "osm": 358943865,
+   "nome": "Rua Pio XII",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -634.6,
+     -112.46
+    ],
+    [
+     -580.65,
+     14.02
+    ],
+    [
+     -578.65,
+     23.24
+    ]
+   ]
+  },
+  {
+   "osm": 358943866,
+   "nome": "Rua Maria Mercedes Féa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -578.65,
+     23.24
+    ],
+    [
+     -588.93,
+     46.77
+    ],
+    [
+     -608.53,
+     53.31
+    ],
+    [
+     -620.86,
+     54.22
+    ],
+    [
+     -630.37,
+     51.82
+    ],
+    [
+     -662.68,
+     35.79
+    ]
+   ]
+  },
+  {
+   "osm": 358943867,
+   "nome": "Rua Maria Mercedes Féa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -662.68,
+     35.79
+    ],
+    [
+     -732.35,
+     33.56
+    ],
+    [
+     -771.09,
+     26.33
+    ]
+   ]
+  },
+  {
+   "osm": 358943868,
+   "nome": "Rua Itanhaém",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -810.01,
+     22.14
+    ],
+    [
+     -819.48,
+     19.69
+    ],
+    [
+     -857.02,
+     -0.6
+    ],
+    [
+     -927.8,
+     -48.47
+    ]
+   ]
+  },
+  {
+   "osm": 358943869,
+   "nome": "Rua Maria Mercedes Féa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -578.65,
+     23.24
+    ],
+    [
+     -544.05,
+     11.54
+    ]
+   ]
+  },
+  {
+   "osm": 358943870,
+   "nome": "Primeira Travessa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -558.61,
+     15.96
+    ],
+    [
+     -554.59,
+     27.73
+    ]
+   ]
+  },
+  {
+   "osm": 358943871,
+   "nome": "Primeira Travessa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -554.59,
+     27.73
+    ],
+    [
+     -561.06,
+     35.87
+    ]
+   ]
+  },
+  {
+   "osm": 358954143,
+   "nome": "Rua Vivaldo de Almeida Nery",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -652.34,
+     -65.47
+    ],
+    [
+     -648.04,
+     -68.48
+    ],
+    [
+     -650.9,
+     -71.71
+    ],
+    [
+     -654.45,
+     -69.23
+    ],
+    [
+     -652.34,
+     -65.47
+    ]
+   ]
+  },
+  {
+   "osm": 358958258,
+   "nome": "Rua Luciano de Castro",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     -544.05,
+     11.54
+    ],
+    [
+     -556.88,
+     -21.25
+    ]
+   ]
+  },
+  {
+   "osm": 358958259,
+   "nome": "Caminho do Engenho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -551.06,
+     13.39
+    ],
+    [
+     -546.54,
+     20.17
+    ]
+   ]
+  },
+  {
+   "osm": 358960893,
+   "nome": "Rua Doutor Oswaldo Carvalho de Rosis",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -804.34,
+     -14.71
+    ],
+    [
+     -800.5,
+     -37.98
+    ]
+   ]
+  },
+  {
+   "osm": 358961651,
+   "nome": "Rua Cananéia",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -802.27,
+     -49.86
+    ],
+    [
+     -762.49,
+     -47.04
+    ],
+    [
+     -745.02,
+     -41.98
+    ],
+    [
+     -721.55,
+     -46.14
+    ]
+   ]
+  },
+  {
+   "osm": 358964887,
+   "nome": "Rua Cananéia",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -721.55,
+     -46.14
+    ],
+    [
+     -698.76,
+     -49.69
+    ],
+    [
+     -695.63,
+     -56.73
+    ],
+    [
+     -695.83,
+     -66.55
+    ]
+   ]
+  },
+  {
+   "osm": 359171888,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -891.02,
+     -144.64
+    ],
+    [
+     -877.22,
+     -142.15
+    ]
+   ]
+  },
+  {
+   "osm": 359344329,
+   "nome": "Rua 11",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -743.83,
+     -41.98
+    ],
+    [
+     -744.86,
+     -30.24
+    ]
+   ]
+  },
+  {
+   "osm": 359347013,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -760.91,
+     27.25
+    ],
+    [
+     -759.04,
+     5.91
+    ]
+   ]
+  },
+  {
+   "osm": 359348154,
+   "nome": "Viela da Terceira Travessa",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -564.1,
+     44.25
+    ],
+    [
+     -565.53,
+     50.72
+    ],
+    [
+     -561.2,
+     54.65
+    ]
+   ]
+  },
+  {
+   "osm": 360567075,
+   "nome": "Avenida Nossa Senhora de Fátima",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -947.65,
+     -69.28
+    ],
+    [
+     -923.96,
+     -101.46
+    ]
+   ]
+  },
+  {
+   "osm": 360567076,
+   "nome": "Rua Iguapé",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -937.76,
+     -81.8
+    ],
+    [
+     -831.47,
+     -23.12
+    ],
+    [
+     -797.16,
+     -13.39
+    ],
+    [
+     -779.46,
+     -13.89
+    ]
+   ]
+  },
+  {
+   "osm": 360572394,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -680.43,
+     35.78
+    ],
+    [
+     -703.0,
+     39.76
+    ],
+    [
+     -725.79,
+     50.61
+    ],
+    [
+     -728.52,
+     54.49
+    ]
+   ]
+  },
+  {
+   "osm": 360572395,
+   "nome": "",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     -649.15,
+     43.65
+    ],
+    [
+     -657.13,
+     51.31
+    ],
+    [
+     -684.49,
+     53.63
+    ],
+    [
+     -691.95,
+     58.26
+    ],
+    [
+     -693.91,
+     63.11
+    ]
+   ]
+  },
+  {
+   "osm": 360572396,
+   "nome": "",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     -661.96,
+     52.23
+    ],
+    [
+     -652.81,
+     69.6
+    ]
+   ]
+  },
+  {
+   "osm": 360572397,
+   "nome": "Travessa Dona Elvira",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     -555.7,
+     47.44
+    ],
+    [
+     -544.97,
+     49.95
+    ]
+   ]
+  },
+  {
+   "osm": 360731673,
+   "nome": "Praça Santa Paulina",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -686.85,
+     -49.17
+    ],
+    [
+     -672.55,
+     -16.52
+    ],
+    [
+     -669.61,
+     -14.73
+    ],
+    [
+     -665.09,
+     -15.97
+    ]
+   ]
+  },
+  {
+   "osm": 360733606,
+   "nome": "Rua Ernesto Fulgoso",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -802.27,
+     -49.86
+    ],
+    [
+     -788.95,
+     -129.06
+    ]
+   ]
+  },
+  {
+   "osm": 366117543,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -664.57,
+     -75.32
+    ],
+    [
+     -668.19,
+     -64.46
+    ],
+    [
+     -659.61,
+     -60.75
+    ]
+   ]
+  },
+  {
+   "osm": 366117547,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -664.57,
+     -75.32
+    ],
+    [
+     -681.97,
+     -82.13
+    ]
+   ]
+  },
+  {
+   "osm": 366117548,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -664.57,
+     -75.32
+    ],
+    [
+     -655.06,
+     -75.57
+    ],
+    [
+     -650.16,
+     -92.4
+    ],
+    [
+     -634.62,
+     -96.44
+    ],
+    [
+     -638.96,
+     -81.06
+    ],
+    [
+     -627.57,
+     -71.57
+    ],
+    [
+     -635.55,
+     -61.14
+    ]
+   ]
+  },
+  {
+   "osm": 366117551,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -635.55,
+     -61.14
+    ],
+    [
+     -628.21,
+     -46.81
+    ]
+   ]
+  },
+  {
+   "osm": 366117552,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -635.55,
+     -61.14
+    ],
+    [
+     -637.55,
+     -53.71
+    ],
+    [
+     -632.69,
+     -41.47
+    ],
+    [
+     -636.61,
+     -35.43
+    ],
+    [
+     -645.43,
+     -36.71
+    ],
+    [
+     -650.79,
+     -47.73
+    ],
+    [
+     -657.78,
+     -51.9
+    ]
+   ]
+  },
+  {
+   "osm": 366117554,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -668.14,
+     -23.04
+    ],
+    [
+     -656.7,
+     -27.99
+    ],
+    [
+     -650.34,
+     -27.19
+    ],
+    [
+     -637.3,
+     -32.96
+    ]
+   ]
+  },
+  {
+   "osm": 366117556,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -635.05,
+     -28.21
+    ],
+    [
+     -637.9,
+     -23.42
+    ],
+    [
+     -629.69,
+     -6.11
+    ]
+   ]
+  },
+  {
+   "osm": 366117557,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -654.22,
+     15.31
+    ],
+    [
+     -644.67,
+     18.42
+    ],
+    [
+     -631.08,
+     12.76
+    ]
+   ]
+  },
+  {
+   "osm": 366117559,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -637.32,
+     -2.87
+    ],
+    [
+     -628.68,
+     18.36
+    ]
+   ]
+  },
+  {
+   "osm": 366117561,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -628.68,
+     18.36
+    ],
+    [
+     -618.49,
+     16.05
+    ],
+    [
+     -589.7,
+     16.1
+    ]
+   ]
+  },
+  {
+   "osm": 366117565,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -622.31,
+     16.86
+    ],
+    [
+     -621.88,
+     28.56
+    ],
+    [
+     -602.07,
+     30.03
+    ]
+   ]
+  },
+  {
+   "osm": 366117567,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -602.07,
+     30.03
+    ],
+    [
+     -603.01,
+     36.54
+    ]
+   ]
+  },
+  {
+   "osm": 366118207,
+   "nome": "Travessa Quatro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -617.17,
+     54.4
+    ],
+    [
+     -615.83,
+     78.94
+    ]
+   ]
+  },
+  {
+   "osm": 380498930,
+   "nome": "",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     -708.89,
+     -74.79
+    ],
+    [
+     -725.13,
+     -63.62
+    ]
+   ]
+  },
+  {
+   "osm": 380498931,
+   "nome": "",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     -717.05,
+     -68.86
+    ],
+    [
+     -732.99,
+     -72.66
+    ]
+   ]
+  },
+  {
+   "osm": 380498932,
+   "nome": "",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     -715.83,
+     -82.04
+    ],
+    [
+     -730.34,
+     -84.27
+    ]
+   ]
+  },
+  {
+   "osm": 380498933,
+   "nome": "",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     -715.92,
+     -101.5
+    ],
+    [
+     -726.27,
+     -103.85
+    ]
+   ]
+  },
+  {
+   "osm": 380498934,
+   "nome": "",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     -727.37,
+     -98.87
+    ],
+    [
+     -716.65,
+     -96.41
+    ]
+   ]
+  },
+  {
+   "osm": 481270783,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -852.48,
+     -142.92
+    ],
+    [
+     -645.82,
+     -111.5
+    ]
+   ]
+  },
+  {
+   "osm": 483332507,
+   "nome": "Rua Babalorixa Vivaldo Pires de Carvalho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -685.25,
+     -65.95
+    ],
+    [
+     -689.56,
+     -67.42
+    ]
+   ]
+  },
+  {
+   "osm": 483333918,
+   "nome": "Rua Babalorixa Vivaldo Pires de Carvalho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -689.56,
+     -67.42
+    ],
+    [
+     -695.83,
+     -66.55
+    ]
+   ]
+  },
+  {
+   "osm": 483333919,
+   "nome": "Rua Babalorixa Vivaldo Pires de Carvalho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -695.83,
+     -66.55
+    ],
+    [
+     -715.83,
+     -82.04
+    ],
+    [
+     -716.65,
+     -96.41
+    ],
+    [
+     -712.84,
+     -115.64
+    ]
+   ]
+  },
+  {
+   "osm": 513692268,
+   "nome": "Largo da Saudade",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -634.6,
+     -112.46
+    ],
+    [
+     -605.99,
+     -125.17
+    ]
+   ]
+  },
+  {
+   "osm": 513692269,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -605.99,
+     -125.17
+    ],
+    [
+     -601.36,
+     -128.68
+    ]
+   ]
+  },
+  {
+   "osm": 676683079,
+   "nome": "Rua Maria Mercedes Féa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -771.09,
+     26.33
+    ],
+    [
+     -810.01,
+     22.14
+    ]
+   ]
+  },
+  {
+   "osm": 866270087,
+   "nome": "Rua Vivaldo de Almeida Nery",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -676.82,
+     -42.33
+    ],
+    [
+     -658.48,
+     -50.73
+    ],
+    [
+     -652.34,
+     -65.47
+    ]
+   ]
+  },
+  {
+   "osm": 866272286,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -628.68,
+     18.36
+    ],
+    [
+     -628.07,
+     24.54
+    ],
+    [
+     -635.37,
+     39.9
+    ],
+    [
+     -646.15,
+     35.7
+    ]
+   ]
+  },
+  {
+   "osm": 879563103,
+   "nome": "Rua São Sebastião",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -850.61,
+     -86.97
+    ],
+    [
+     -843.78,
+     -103.24
+    ]
+   ]
+  },
+  {
+   "osm": 879626279,
+   "nome": "Rua Manoel Barbosa da Silveira",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -865.46,
+     -110.13
+    ],
+    [
+     -843.78,
+     -103.24
+    ]
+   ]
+  },
+  {
+   "osm": 879626280,
+   "nome": "Rua Manoel Barbosa da Silveira",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -843.78,
+     -103.24
+    ],
+    [
+     -795.56,
+     -89.63
+    ]
+   ]
+  },
+  {
+   "osm": 958285839,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -843.78,
+     -103.24
+    ],
+    [
+     -829.75,
+     -135.43
+    ]
+   ]
+  },
+  {
+   "osm": 965786009,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -781.8,
+     -135.7
+    ],
+    [
+     -861.25,
+     -147.18
+    ]
+   ]
+  },
+  {
+   "osm": 965786010,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -645.82,
+     -111.5
+    ],
+    [
+     -634.6,
+     -112.46
+    ]
+   ]
+  },
+  {
+   "osm": 965788208,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -889.41,
+     -146.74
+    ],
+    [
+     -868.25,
+     -144.73
+    ]
+   ]
+  },
+  {
+   "osm": 965788209,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -861.25,
+     -147.18
+    ],
+    [
+     -885.99,
+     -151.22
+    ]
+   ]
+  },
+  {
+   "osm": 965815646,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -868.25,
+     -144.73
+    ],
+    [
+     -852.48,
+     -142.92
+    ]
+   ]
+  },
+  {
+   "osm": 965833079,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -617.55,
+     -127.03
+    ],
+    [
+     -632.46,
+     -121.25
+    ]
+   ]
+  },
+  {
+   "osm": 965833080,
+   "nome": "Avenida Martins Fontes",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -606.1,
+     -134.27
+    ],
+    [
+     -617.55,
+     -127.03
+    ]
+   ]
+  },
+  {
+   "osm": 974325097,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -668.19,
+     -64.46
+    ],
+    [
+     -683.47,
+     -61.25
+    ]
+   ]
+  },
+  {
+   "osm": 976900898,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -620.09,
+     29.44
+    ],
+    [
+     -603.01,
+     36.54
+    ]
+   ]
+  },
+  {
+   "osm": 1061158084,
+   "nome": "Rua Itanhaém",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -927.8,
+     -48.47
+    ],
+    [
+     -952.22,
+     -63.07
+    ]
+   ]
+  },
+  {
+   "osm": 1371960507,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -683.4,
+     13.48
+    ],
+    [
+     -687.4,
+     20.12
+    ],
+    [
+     -684.17,
+     28.02
+    ]
+   ]
+  },
+  {
+   "osm": 1371960508,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -658.57,
+     -0.03
+    ],
+    [
+     -660.88,
+     1.1
+    ]
+   ]
+  },
+  {
+   "osm": 1371960509,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -661.07,
+     25.81
+    ],
+    [
+     -658.9,
+     26.62
+    ]
+   ]
+  },
+  {
+   "osm": 1371960510,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -661.07,
+     25.81
+    ],
+    [
+     -670.94,
+     21.79
+    ],
+    [
+     -674.58,
+     15.74
+    ],
+    [
+     -684.81,
+     12.53
+    ],
+    [
+     -687.63,
+     4.72
+    ],
+    [
+     -679.26,
+     -0.88
+    ],
+    [
+     -666.84,
+     3.0
+    ],
+    [
+     -660.88,
+     1.1
+    ]
+   ]
+  },
+  {
+   "osm": 1374616500,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -652.46,
+     -71.52
+    ],
+    [
+     -655.06,
+     -75.57
+    ]
+   ]
+  },
+  {
+   "osm": 1473493953,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -676.51,
+     -0.33
+    ],
+    [
+     -680.74,
+     -6.01
+    ],
+    [
+     -694.66,
+     0.29
+    ],
+    [
+     -693.58,
+     4.59
+    ],
+    [
+     -687.13,
+     3.09
+    ]
+   ]
+  },
+  {
+   "osm": 1473917128,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -637.3,
+     -32.96
+    ],
+    [
+     -635.05,
+     -28.21
+    ],
+    [
+     -612.36,
+     -38.95
+    ]
+   ]
+  },
+  {
+   "osm": 1473917129,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -637.3,
+     -32.96
+    ],
+    [
+     -615.26,
+     -40.95
+    ],
+    [
+     -611.03,
+     -37.33
+    ],
+    [
+     -606.98,
+     -25.97
+    ]
+   ]
+  }
+ ],
+ "canais": [
+  {
+   "osm": 483332835,
+   "nome": "",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -692.73,
+     -68.02
+    ],
+    [
+     -712.24,
+     -83.3
+    ],
+    [
+     -713.03,
+     -96.09
+    ],
+    [
+     -709.23,
+     -113.09
+    ]
+   ]
+  },
+  {
+   "osm": 483333188,
+   "nome": "",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -684.3,
+     -52.61
+    ],
+    [
+     -690.25,
+     -65.67
+    ]
+   ]
+  },
+  {
+   "osm": 483333190,
+   "nome": "",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -690.25,
+     -65.67
+    ],
+    [
+     -692.73,
+     -68.02
+    ]
+   ]
+  },
+  {
+   "osm": 483333554,
+   "nome": "",
+   "tipo": "stream",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -695.26,
+     -30.41
+    ],
+    [
+     -692.32,
+     -53.3
+    ],
+    [
+     -688.92,
+     -62.19
+    ]
+   ]
+  },
+  {
+   "osm": 1101627738,
+   "nome": "",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -709.23,
+     -113.09
+    ],
+    [
+     -700.19,
+     -128.24
+    ]
+   ]
+  }
+ ],
+ "marcos": [
+  {
+   "osm": "way/1446495870",
+   "nome": "Congregação Cristã no Brasil",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    -815.58,
+    6.34
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Avenida Nossa Senhora de Fátima",
+   "osm": 360567075,
+   "posicao": [
+    -947.65,
+    -69.28
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Nossa Senhora de Fátima",
+   "osm": 360567075,
+   "posicao": [
+    -923.96,
+    -101.46
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Manoel Barbosa da Silveira",
+   "osm": 48459356,
+   "posicao": [
+    -906.99,
+    -123.7
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Martins Fontes",
+   "osm": 359171888,
+   "posicao": [
+    -891.02,
+    -144.64
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Martins Fontes",
+   "osm": 965788209,
+   "posicao": [
+    -885.99,
+    -151.22
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Martins Fontes",
+   "osm": 317528466,
+   "posicao": [
+    -604.19,
+    -135.61
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Martins Fontes",
+   "osm": 513692269,
+   "posicao": [
+    -601.36,
+    -128.68
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Caminho Maria Rosa",
+   "osm": 360562726,
+   "posicao": [
+    -550.69,
+    -7.38
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Caminho do Engenho",
+   "osm": 358958259,
+   "posicao": [
+    -546.54,
+    20.17
+   ],
+   "para": ""
+  }
+ ]
+}

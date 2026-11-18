@@ -1,0 +1,1289 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "jabaquara",
+ "nome": "Jabaquara",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 79544.7,
+ "caixa": [
+  -512.4,
+  192.79,
+  -147.64,
+  528.05
+ ],
+ "limite": [
+  [
+   -308.42,
+   528.05
+  ],
+  [
+   -480.06,
+   500.81
+  ],
+  [
+   -474.65,
+   493.15
+  ],
+  [
+   -469.02,
+   402.93
+  ],
+  [
+   -512.4,
+   334.48
+  ],
+  [
+   -501.23,
+   307.93
+  ],
+  [
+   -481.79,
+   301.58
+  ],
+  [
+   -463.41,
+   299.69
+  ],
+  [
+   -446.97,
+   291.65
+  ],
+  [
+   -444.23,
+   286.56
+  ],
+  [
+   -446.82,
+   281.1
+  ],
+  [
+   -446.56,
+   270.87
+  ],
+  [
+   -435.28,
+   239.69
+  ],
+  [
+   -404.58,
+   225.76
+  ],
+  [
+   -353.03,
+   215.91
+  ],
+  [
+   -318.82,
+   241.93
+  ],
+  [
+   -254.78,
+   227.47
+  ],
+  [
+   -237.5,
+   197.67
+  ],
+  [
+   -225.67,
+   192.79
+  ],
+  [
+   -147.64,
+   212.11
+  ],
+  [
+   -153.64,
+   237.89
+  ],
+  [
+   -166.86,
+   268.94
+  ],
+  [
+   -181.9,
+   280.14
+  ],
+  [
+   -183.69,
+   290.9
+  ],
+  [
+   -193.37,
+   312.1
+  ],
+  [
+   -195.11,
+   347.68
+  ],
+  [
+   -216.66,
+   431.82
+  ],
+  [
+   -228.66,
+   469.27
+  ],
+  [
+   -250.66,
+   488.5
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 48454199,
+   "nome": "Avenida Doutor Waldemar Leão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -181.73,
+     217.4
+    ],
+    [
+     -193.94,
+     251.94
+    ],
+    [
+     -196.32,
+     311.7
+    ]
+   ]
+  },
+  {
+   "osm": 48460028,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -193.37,
+     312.1
+    ],
+    [
+     -196.32,
+     311.7
+    ]
+   ]
+  },
+  {
+   "osm": 48489370,
+   "nome": "Rua Gastão Vidigal",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -247.46,
+     305.65
+    ],
+    [
+     -237.33,
+     225.38
+    ]
+   ]
+  },
+  {
+   "osm": 48489375,
+   "nome": "Rua Teodoro Sampaio",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -355.82,
+     223.95
+    ],
+    [
+     -362.81,
+     292.69
+    ]
+   ]
+  },
+  {
+   "osm": 124524590,
+   "nome": "Rua Major Quintino de Lacerda",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -195.84,
+     284.5
+    ],
+    [
+     -290.5,
+     273.5
+    ]
+   ]
+  },
+  {
+   "osm": 124524602,
+   "nome": "Rua José Pacheco P do N e Silva",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -438.1,
+     245.42
+    ],
+    [
+     -358.55,
+     254.43
+    ]
+   ]
+  },
+  {
+   "osm": 124524606,
+   "nome": "Largo Doutor Washington Di Giovanni",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -441.0,
+     282.66
+    ],
+    [
+     -444.23,
+     286.56
+    ]
+   ]
+  },
+  {
+   "osm": 124524610,
+   "nome": "Rua Joaquim de Toledo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -381.58,
+     221.42
+    ],
+    [
+     -390.25,
+     289.17
+    ]
+   ]
+  },
+  {
+   "osm": 124524634,
+   "nome": "Avenida Guilherme Russo",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -469.3,
+     300.95
+    ],
+    [
+     -481.79,
+     301.58
+    ]
+   ]
+  },
+  {
+   "osm": 124524634,
+   "nome": "Avenida Guilherme Russo",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -444.23,
+     286.56
+    ],
+    [
+     -446.97,
+     291.65
+    ],
+    [
+     -463.41,
+     299.69
+    ]
+   ]
+  },
+  {
+   "osm": 124524635,
+   "nome": "Rua Mário dos Santos Dias",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -410.47,
+     228.94
+    ],
+    [
+     -417.13,
+     285.51
+    ]
+   ]
+  },
+  {
+   "osm": 124524638,
+   "nome": "Rua Manoel Nascimento Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -284.08,
+     234.09
+    ],
+    [
+     -282.75,
+     240.42
+    ],
+    [
+     -295.65,
+     300.36
+    ]
+   ]
+  },
+  {
+   "osm": 124524669,
+   "nome": "Rua Vasco da Gama",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -284.44,
+     248.69
+    ],
+    [
+     -241.19,
+     252.91
+    ]
+   ]
+  },
+  {
+   "osm": 196615503,
+   "nome": "Rua Nossa Senhora de Lourdes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -189.51,
+     269.47
+    ],
+    [
+     -178.43,
+     268.75
+    ],
+    [
+     -171.7,
+     258.92
+    ],
+    [
+     -160.66,
+     213.42
+    ],
+    [
+     -156.18,
+     210.36
+    ]
+   ]
+  },
+  {
+   "osm": 196615506,
+   "nome": "Avenida Francisco Manoel",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -432.98,
+     323.37
+    ],
+    [
+     -366.69,
+     331.45
+    ]
+   ]
+  },
+  {
+   "osm": 316453926,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -247.24,
+     480.49
+    ],
+    [
+     -313.92,
+     527.19
+    ]
+   ]
+  },
+  {
+   "osm": 316459708,
+   "nome": "Rua Cincinato Brago",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -332.23,
+     524.34
+    ],
+    [
+     -329.81,
+     499.1
+    ]
+   ]
+  },
+  {
+   "osm": 360717341,
+   "nome": "Rua Marechal Carmona",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -187.74,
+     231.17
+    ],
+    [
+     -237.33,
+     225.38
+    ]
+   ]
+  },
+  {
+   "osm": 364186315,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -247.46,
+     305.65
+    ],
+    [
+     -430.0,
+     284.04
+    ]
+   ]
+  },
+  {
+   "osm": 364221132,
+   "nome": "Largo Doutor Washington Di Giovanni",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -430.0,
+     284.04
+    ],
+    [
+     -441.0,
+     282.66
+    ]
+   ]
+  },
+  {
+   "osm": 367491001,
+   "nome": "Avenida Francisco Manoel",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -366.69,
+     331.45
+    ],
+    [
+     -198.83,
+     354.01
+    ]
+   ]
+  },
+  {
+   "osm": 367491002,
+   "nome": "Travessa Teodoro Sampaio",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -375.42,
+     411.1
+    ],
+    [
+     -424.87,
+     406.32
+    ]
+   ]
+  },
+  {
+   "osm": 367491735,
+   "nome": "Avenida Doutor Waldemar Leão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -189.51,
+     269.47
+    ],
+    [
+     -186.3,
+     241.15
+    ],
+    [
+     -171.65,
+     208.46
+    ]
+   ]
+  },
+  {
+   "osm": 367491736,
+   "nome": "Avenida Doutor Waldemar Leão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -196.32,
+     311.7
+    ],
+    [
+     -197.85,
+     347.35
+    ]
+   ]
+  },
+  {
+   "osm": 367492402,
+   "nome": "Rua Professor Celso da Cunha Lima",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -231.13,
+     200.27
+    ],
+    [
+     -212.27,
+     201.47
+    ],
+    [
+     -183.93,
+     212.88
+    ],
+    [
+     -181.73,
+     217.4
+    ]
+   ]
+  },
+  {
+   "osm": 467491410,
+   "nome": "Avenida Francisco Manoel",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -195.11,
+     347.68
+    ],
+    [
+     -197.29,
+     347.29
+    ]
+   ]
+  },
+  {
+   "osm": 476415722,
+   "nome": "Avenida Rangel Pestana",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -196.32,
+     311.7
+    ],
+    [
+     -247.46,
+     305.65
+    ]
+   ]
+  },
+  {
+   "osm": 477925455,
+   "nome": "Avenida Francisco Manoel",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -197.85,
+     347.35
+    ],
+    [
+     -366.17,
+     325.28
+    ]
+   ]
+  },
+  {
+   "osm": 477925456,
+   "nome": "Rua Doutor Cláudio Luís da Costa",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -197.85,
+     347.35
+    ],
+    [
+     -198.83,
+     354.01
+    ]
+   ]
+  },
+  {
+   "osm": 478956242,
+   "nome": "Rua Gastão Vidigal",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -237.33,
+     225.38
+    ],
+    [
+     -233.65,
+     203.43
+    ],
+    [
+     -231.13,
+     200.27
+    ]
+   ]
+  },
+  {
+   "osm": 478956243,
+   "nome": "Rua Marechal Carmona",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -237.33,
+     225.38
+    ],
+    [
+     -247.11,
+     224.67
+    ]
+   ]
+  },
+  {
+   "osm": 481243384,
+   "nome": "Rua Teodoro Sampaio",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -366.69,
+     331.45
+    ],
+    [
+     -384.43,
+     484.83
+    ]
+   ]
+  },
+  {
+   "osm": 481488699,
+   "nome": "Avenida Doutor Cláudio Luiz da Costa",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -198.83,
+     354.01
+    ],
+    [
+     -219.04,
+     431.11
+    ]
+   ]
+  },
+  {
+   "osm": 481488700,
+   "nome": "Avenida Francisco Manoel",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -198.83,
+     354.01
+    ],
+    [
+     -196.8,
+     354.26
+    ]
+   ]
+  },
+  {
+   "osm": 513692272,
+   "nome": "Largo Doutor Washington Di Giovanni",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -444.23,
+     286.56
+    ],
+    [
+     -440.04,
+     288.42
+    ],
+    [
+     -430.0,
+     284.04
+    ]
+   ]
+  },
+  {
+   "osm": 513692275,
+   "nome": "Rua Engenheiro José García da Silveira",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -444.23,
+     286.56
+    ],
+    [
+     -446.82,
+     281.1
+    ],
+    [
+     -446.56,
+     270.87
+    ],
+    [
+     -435.28,
+     239.69
+    ],
+    [
+     -404.58,
+     225.76
+    ]
+   ]
+  },
+  {
+   "osm": 513692275,
+   "nome": "Rua Engenheiro José García da Silveira",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -370.49,
+     219.28
+    ],
+    [
+     -358.14,
+     220.16
+    ],
+    [
+     -355.82,
+     223.95
+    ]
+   ]
+  },
+  {
+   "osm": 866522500,
+   "nome": "Rua Teodoro Sampaio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -366.28,
+     326.51
+    ],
+    [
+     -366.53,
+     329.48
+    ]
+   ]
+  },
+  {
+   "osm": 866587794,
+   "nome": "Rua Teodoro Sampaio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -362.81,
+     292.69
+    ],
+    [
+     -366.17,
+     325.28
+    ]
+   ]
+  },
+  {
+   "osm": 973188359,
+   "nome": "Avenida Doutor Waldemar Leão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -190.79,
+     307.08
+    ],
+    [
+     -189.51,
+     269.47
+    ]
+   ]
+  },
+  {
+   "osm": 973188360,
+   "nome": "Avenida Doutor Waldemar Leão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -176.2,
+     206.54
+    ],
+    [
+     -181.73,
+     217.4
+    ]
+   ]
+  },
+  {
+   "osm": 975245309,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -237.92,
+     474.6
+    ],
+    [
+     -247.24,
+     480.49
+    ]
+   ]
+  },
+  {
+   "osm": 975245310,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -228.66,
+     469.27
+    ],
+    [
+     -237.92,
+     474.6
+    ]
+   ]
+  },
+  {
+   "osm": 1022432538,
+   "nome": "Rua Vasco da Gama",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -241.19,
+     252.91
+    ],
+    [
+     -188.66,
+     258.02
+    ]
+   ]
+  },
+  {
+   "osm": 1161302310,
+   "nome": "Avenida Doutor Cláudio Luiz da Costa",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -219.04,
+     431.11
+    ],
+    [
+     -221.83,
+     441.27
+    ]
+   ]
+  },
+  {
+   "osm": 1161304600,
+   "nome": "Avenida Doutor Cláudio Luiz da Costa",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -225.08,
+     450.17
+    ],
+    [
+     -228.64,
+     461.75
+    ],
+    [
+     -237.92,
+     474.6
+    ]
+   ]
+  },
+  {
+   "osm": 1161304603,
+   "nome": "Avenida Doutor Cláudio Luiz da Costa",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -223.74,
+     447.11
+    ],
+    [
+     -225.08,
+     450.17
+    ]
+   ]
+  },
+  {
+   "osm": 1161304604,
+   "nome": "Avenida Doutor Cláudio Luiz da Costa",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -222.32,
+     443.46
+    ],
+    [
+     -223.74,
+     447.11
+    ]
+   ]
+  },
+  {
+   "osm": 1161304605,
+   "nome": "Avenida Doutor Cláudio Luiz da Costa",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -221.83,
+     441.27
+    ],
+    [
+     -222.32,
+     443.46
+    ]
+   ]
+  },
+  {
+   "osm": 1418809049,
+   "nome": "",
+   "tipo": "steps",
+   "largura": 2.5,
+   "pontos": [
+    [
+     -180.14,
+     225.65
+    ],
+    [
+     -164.15,
+     232.2
+    ]
+   ]
+  },
+  {
+   "osm": 1517779304,
+   "nome": "",
+   "tipo": "steps",
+   "largura": 2.5,
+   "pontos": [
+    [
+     -217.05,
+     251.18
+    ],
+    [
+     -216.81,
+     249.05
+    ]
+   ]
+  },
+  {
+   "osm": 1517779308,
+   "nome": "",
+   "tipo": "steps",
+   "largura": 2.5,
+   "pontos": [
+    [
+     -211.33,
+     231.26
+    ],
+    [
+     -211.83,
+     235.7
+    ]
+   ]
+  }
+ ],
+ "canais": [
+  {
+   "osm": 48465263,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -256.76,
+     492.59
+    ],
+    [
+     -256.78,
+     492.73
+    ]
+   ]
+  },
+  {
+   "osm": 483534284,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -250.66,
+     488.5
+    ],
+    [
+     -266.0,
+     499.1
+    ]
+   ]
+  },
+  {
+   "osm": 1556676290,
+   "nome": "",
+   "tipo": "stream",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -431.89,
+     319.17
+    ],
+    [
+     -204.25,
+     349.09
+    ]
+   ]
+  },
+  {
+   "osm": 1556676291,
+   "nome": "",
+   "tipo": "stream",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -204.25,
+     349.09
+    ],
+    [
+     -195.78,
+     350.28
+    ]
+   ]
+  }
+ ],
+ "marcos": [
+  {
+   "osm": "way/1446484362",
+   "nome": "Congregação Cristã no Brasil",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    -277.9,
+    238.9
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Avenida Guilherme Russo",
+   "osm": 124524634,
+   "posicao": [
+    -481.79,
+    301.58
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Guilherme Russo",
+   "osm": 124524634,
+   "posicao": [
+    -469.3,
+    300.95
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Guilherme Russo",
+   "osm": 124524634,
+   "posicao": [
+    -463.41,
+    299.69
+   ],
+   "para": ""
+  },
+  {
+   "rua": "steps",
+   "osm": 1362626656,
+   "posicao": [
+    -428.15,
+    235.71
+   ],
+   "para": ""
+  },
+  {
+   "rua": "steps",
+   "osm": 1362626657,
+   "posicao": [
+    -425.09,
+    234.53
+   ],
+   "para": ""
+  },
+  {
+   "rua": "steps",
+   "osm": 1362626658,
+   "posicao": [
+    -417.83,
+    231.76
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Engenheiro José García da Silveira",
+   "osm": 513692275,
+   "posicao": [
+    -404.58,
+    225.76
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Joaquim de Toledo",
+   "osm": 124524610,
+   "posicao": [
+    -381.58,
+    221.42
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Engenheiro José García da Silveira",
+   "osm": 513692275,
+   "posicao": [
+    -370.49,
+    219.28
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Cincinato Brago",
+   "osm": 316459708,
+   "posicao": [
+    -332.23,
+    524.34
+   ],
+   "para": "marape"
+  },
+  {
+   "rua": "Avenida Senador Pinheiro Machado",
+   "osm": 316453926,
+   "posicao": [
+    -313.92,
+    527.19
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua Manoel Nascimento Júnior",
+   "osm": 124524638,
+   "posicao": [
+    -284.08,
+    234.09
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Senador Pinheiro Machado",
+   "osm": 975245310,
+   "posicao": [
+    -228.66,
+    469.27
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Francisco Manoel",
+   "osm": 481488700,
+   "posicao": [
+    -196.8,
+    354.26
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Francisco Manoel",
+   "osm": 467491410,
+   "posicao": [
+    -195.11,
+    347.68
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Rangel Pestana",
+   "osm": 48460028,
+   "posicao": [
+    -193.37,
+    312.1
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Doutor Waldemar Leão",
+   "osm": 973188359,
+   "posicao": [
+    -190.79,
+    307.08
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Túnel Prefeito Rubens Ferreira Martins",
+   "osm": 48458880,
+   "posicao": [
+    -176.1,
+    206.28
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Túnel Prefeito Rubens Ferreira Martins",
+   "osm": 48454191,
+   "posicao": [
+    -171.14,
+    207.3
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Nossa Senhora de Lourdes",
+   "osm": 196615503,
+   "posicao": [
+    -156.18,
+    210.36
+   ],
+   "para": "monte_serrat"
+  }
+ ]
+}

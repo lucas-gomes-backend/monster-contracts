@@ -111,11 +111,12 @@ func aplicar_teste(teste_id: String, alvo: String) -> Dictionary:
 
 
 ## Encerra o caso agindo (docs/05, "Decisão"). Depois disso, a investigação acaba.
-func agir(resolucao: String, especie: String, alvo: String = "") -> Dictionary:
+## expor_cliente: denunciar quem contratou junto com a ação (cliente mentiroso).
+func agir(resolucao: String, especie: String, alvo: String = "", expor_cliente: bool = false) -> Dictionary:
 	if encerrado():
 		return {"ok": false, "erro": "o caso já foi encerrado"}
 	var todas: Dictionary = Catalogo.carregar_criaturas()["criaturas"]
-	var resultado := RegrasDeCampo.decidir(resolucao, especie, alvo, caso, todas, _cfg_testes, minuto)
+	var resultado := RegrasDeCampo.decidir(resolucao, especie, alvo, caso, todas, _cfg_testes, minuto, expor_cliente)
 	if resultado["ok"]:
 		desfecho = resultado
 	return resultado

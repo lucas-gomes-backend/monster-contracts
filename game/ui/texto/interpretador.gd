@@ -184,6 +184,7 @@ func _ajuda() -> String:
 		"  testar <tN> <mN|lN|hN>   fazer um teste numa pessoa ou lugar (espera até a manhã do resultado)",
 		"  agir <resolução> <espécie> [mN]   ENCERRA o caso: matar, banir, prender, curar,",
 		"                           apaziguar, negociar, expor ou abandonar",
+		"                           (no fim, 'expor' denuncia também quem te contratou)",
 		"  resultado                o desfecho, depois de agir",
 		"  relatorio                toda a verdade: pistas perdidas, ligações erradas, mentiras, ruído",
 		"  cartas                   as cartas e presentes que chegaram depois do caso",
@@ -191,12 +192,17 @@ func _ajuda() -> String:
 	])
 
 
+func _criaturas_nome(id: String) -> String:
+	return str(Catalogo.carregar_criaturas()["criaturas"].get(id, {}).get("nome", id))
+
+
 func _contrato() -> String:
 	var c: Dictionary = sessao.caso["contrato"]
 	var cliente: Dictionary = _npcs.get(c["cliente"], {})
 	return "\n".join([
 		"Cliente: %s %s, %d anos." % [cliente.get("nome", "?"), cliente.get("sobrenome", ""), int(cliente.get("idade", 0))],
-		"Pedido: %s." % ("acabar com a coisa que anda atacando o bairro" if c["pedido"] == "matar" else "descobrir o que está acontecendo"),
+		"Pedido: %s." % ("acabar com a coisa que anda atacando o bairro" if c["pedido"] == "matar" else "descobrir o que está acontecendo")
+			+ (" Ele jura que é %s." % _criaturas_nome(str(c["acusa"])) if c.has("acusa") else ""),
 		"Recompensa: R$ %d." % int(c["recompensa"]),
 		"Prazo: %s." % _data(int(c["prazo_minuto"])),
 	])
@@ -330,10 +336,13 @@ func texto_teste(r: Dictionary) -> String:
 func _agir(args: Array) -> String:
 	if args.is_empty():
 		return "Use: agir <resolução> <espécie> [mN], ou 'agir abandonar'."
+	var expor: bool = args.size() > 2 and str(args[-1]) == "expor"
+	if expor:
+		args = args.slice(0, args.size() - 1)
 	var resolucao: String = args[0]
 	var especie: String = args[1] if args.size() > 1 else ""
 	var alvo := _resolver_pessoa(args[2]) if args.size() > 2 else ""
-	var r: Dictionary = sessao.agir(resolucao, especie, alvo)
+	var r: Dictionary = sessao.agir(resolucao, especie, alvo, expor)
 	if not r["ok"]:
 		return "Não deu: %s." % r["erro"]
 	return "Caso encerrado.\n" + _resultado() + "\nUse 'relatorio' para ver toda a verdade."

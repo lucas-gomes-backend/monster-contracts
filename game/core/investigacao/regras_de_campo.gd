@@ -75,11 +75,15 @@ static func percebeu(ficha_verdade: Dictionary, cfg: Dictionary, sub_semente: in
 ## inocente_prejudicado, amaldicoado_morto, recompensa, motivo.
 ## "minuto_atual": quando o caçador age. Depois do prazo do contrato, o cliente já desistiu:
 ## o caso pode até ser resolvido, mas não há pagamento (docs/04, "O caso pode falhar sozinho").
-static func decidir(resolucao: String, especie: String, alvo: String, caso: Dictionary, fichas: Dictionary, cfg: Dictionary, minuto_atual: int = -1) -> Dictionary:
+## expor_cliente: denunciar quem contratou (cliente mentiroso, docs/04). Se ele era o culpado,
+## a reputação sobe mas ele não paga; se era inocente, é um inocente prejudicado. Ficar quieto
+## com um cliente culpado: recebe, e o crime continua.
+static func decidir(resolucao: String, especie: String, alvo: String, caso: Dictionary, fichas: Dictionary, cfg: Dictionary, minuto_atual: int = -1, expor_cliente: bool = false) -> Dictionary:
 	var verdade: Dictionary = caso["verdade"]
 	var base := {"ok": true, "erro": "", "resolucao": resolucao, "especie": especie, "alvo": alvo,
 		"sucesso": false, "especie_certa": false, "quem_certo": false, "inocente_prejudicado": "",
 		"amaldicoado_morto": false, "recompensa": 0, "motivo": "",
+		"cliente_exposto": false, "crime_continua": false, "criatura_inocente": false,
 		"prazo_estourado": minuto_atual > int(caso["contrato"]["prazo_minuto"])}
 	if resolucao == "abandonar":
 		base["motivo"] = "Você abandonou o caso."
@@ -111,4 +115,15 @@ static func decidir(resolucao: String, especie: String, alvo: String, caso: Dict
 		base["amaldicoado_morto"] = resolucao == "matar" and "amaldicoado" in verdadeira.get("familia", [])
 		if resolucao in cfg["resolucoes_que_encerram_os_ataques"] and not base["prazo_estourado"]:
 			base["recompensa"] = int(caso["contrato"]["recompensa"])
+	# Criatura errada: prender ou matar a inofensiva que levou a culpa fere um inocente.
+	if especie == str(verdade.get("criatura_acusada", "")) and resolucao in ["matar", "prender"]:
+		base["criatura_inocente"] = true
+	var cliente_culpado: bool = verdade.get("cliente_mentiroso", false)
+	if expor_cliente and cliente_culpado:
+		base["cliente_exposto"] = true
+		base["recompensa"] = 0
+	elif expor_cliente:
+		base["inocente_prejudicado"] = str(caso["contrato"]["cliente"])
+	elif cliente_culpado:
+		base["crime_continua"] = true
 	return base

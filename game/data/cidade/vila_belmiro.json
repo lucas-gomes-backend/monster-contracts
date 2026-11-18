@@ -1,0 +1,1813 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "vila_belmiro",
+ "nome": "Vila Belmiro",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 70032.6,
+ "caixa": [
+  -519.51,
+  528.05,
+  -57.07,
+  778.24
+ ],
+ "limite": [
+  [
+   -314.97,
+   532.42
+  ],
+  [
+   -503.82,
+   661.65
+  ],
+  [
+   -507.12,
+   669.69
+  ],
+  [
+   -519.51,
+   778.24
+  ],
+  [
+   -68.85,
+   674.61
+  ],
+  [
+   -57.07,
+   564.35
+  ],
+  [
+   -301.8,
+   528.68
+  ],
+  [
+   -308.42,
+   528.05
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 38798905,
+   "nome": "Rua Doutor Antônio Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -106.4,
+     683.22
+    ],
+    [
+     -109.49,
+     667.64
+    ],
+    [
+     -96.83,
+     558.48
+    ]
+   ]
+  },
+  {
+   "osm": 38798910,
+   "nome": "Rua Doutor Adolfo Assis",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -149.33,
+     666.47
+    ],
+    [
+     -270.69,
+     652.82
+    ]
+   ]
+  },
+  {
+   "osm": 38798920,
+   "nome": "Rua Monsenhor Paula Rodrigues",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -272.69,
+     598.44
+    ],
+    [
+     -265.52,
+     599.24
+    ]
+   ]
+  },
+  {
+   "osm": 48464995,
+   "nome": "Rua Princesa Isabel",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -271.47,
+     533.33
+    ],
+    [
+     -463.99,
+     716.98
+    ]
+   ]
+  },
+  {
+   "osm": 48464999,
+   "nome": "Rua Álvares Cabral",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -494.15,
+     658.77
+    ],
+    [
+     -480.63,
+     660.26
+    ]
+   ]
+  },
+  {
+   "osm": 48465196,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -279.2,
+     722.53
+    ],
+    [
+     -270.69,
+     652.82
+    ]
+   ]
+  },
+  {
+   "osm": 48489391,
+   "nome": "Rua José Gonçalves da Mota Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -473.9,
+     661.32
+    ],
+    [
+     -483.33,
+     720.02
+    ],
+    [
+     -483.68,
+     734.43
+    ]
+   ]
+  },
+  {
+   "osm": 48489393,
+   "nome": "Rua Nove de Julho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -506.49,
+     695.93
+    ],
+    [
+     -480.04,
+     699.46
+    ]
+   ]
+  },
+  {
+   "osm": 48489395,
+   "nome": "Rua Napoleão Laureano",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -511.33,
+     733.69
+    ],
+    [
+     -486.41,
+     737.14
+    ]
+   ]
+  },
+  {
+   "osm": 48489400,
+   "nome": "Rua Dom João VI",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -463.75,
+     722.08
+    ],
+    [
+     -453.41,
+     736.94
+    ],
+    [
+     -444.31,
+     761.05
+    ]
+   ]
+  },
+  {
+   "osm": 48489401,
+   "nome": "Rua Francisco Octaviano",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -453.41,
+     736.94
+    ],
+    [
+     -424.55,
+     721.02
+    ]
+   ]
+  },
+  {
+   "osm": 48489406,
+   "nome": "Rua Delfino Stockler de Lima",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -343.74,
+     602.44
+    ],
+    [
+     -353.41,
+     599.72
+    ]
+   ]
+  },
+  {
+   "osm": 48489410,
+   "nome": "Rua Doutor Vital Brasil",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -344.72,
+     556.97
+    ],
+    [
+     -337.85,
+     558.44
+    ]
+   ]
+  },
+  {
+   "osm": 48489414,
+   "nome": "Rua Antônio Malheiros Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -337.85,
+     558.44
+    ],
+    [
+     -344.32,
+     591.94
+    ]
+   ]
+  },
+  {
+   "osm": 48489416,
+   "nome": "Rua José Olintho de Carvalho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -389.8,
+     634.29
+    ],
+    [
+     -383.75,
+     595.86
+    ]
+   ]
+  },
+  {
+   "osm": 48489420,
+   "nome": "Rua Antônio Bento de Amorim",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -427.91,
+     629.6
+    ],
+    [
+     -446.4,
+     626.39
+    ]
+   ]
+  },
+  {
+   "osm": 48489489,
+   "nome": "Rua Rio de Janeiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -224.63,
+     604.01
+    ],
+    [
+     -234.07,
+     683.91
+    ],
+    [
+     -226.51,
+     710.55
+    ]
+   ]
+  },
+  {
+   "osm": 48489516,
+   "nome": "Rua São Paulo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -188.08,
+     701.8
+    ],
+    [
+     -192.78,
+     678.16
+    ],
+    [
+     -177.35,
+     546.85
+    ]
+   ]
+  },
+  {
+   "osm": 48489559,
+   "nome": "Rua Guararapes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -286.03,
+     714.12
+    ],
+    [
+     -295.32,
+     715.5
+    ],
+    [
+     -341.85,
+     673.13
+    ]
+   ]
+  },
+  {
+   "osm": 48489582,
+   "nome": "Rua Araguaya",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -165.98,
+     696.77
+    ],
+    [
+     -170.57,
+     674.97
+    ],
+    [
+     -166.64,
+     641.09
+    ]
+   ]
+  },
+  {
+   "osm": 48489584,
+   "nome": "Rua Júlio Murat",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -166.64,
+     641.09
+    ],
+    [
+     -146.6,
+     643.15
+    ]
+   ]
+  },
+  {
+   "osm": 177891750,
+   "nome": "Rua Tiradentes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -274.96,
+     624.9
+    ],
+    [
+     -285.04,
+     627.58
+    ]
+   ]
+  },
+  {
+   "osm": 195837941,
+   "nome": "Rua Paissandu",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -322.51,
+     648.13
+    ],
+    [
+     -304.65,
+     661.21
+    ],
+    [
+     -301.31,
+     668.48
+    ],
+    [
+     -280.43,
+     669.88
+    ]
+   ]
+  },
+  {
+   "osm": 195837942,
+   "nome": "Rua Oliveira Lima",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -305.53,
+     566.27
+    ],
+    [
+     -290.13,
+     579.37
+    ],
+    [
+     -271.34,
+     584.8
+    ]
+   ]
+  },
+  {
+   "osm": 195837943,
+   "nome": "Rua José de Alencar",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -374.28,
+     631.65
+    ],
+    [
+     -335.4,
+     665.63
+    ]
+   ]
+  },
+  {
+   "osm": 195837944,
+   "nome": "Rua Maris e Barros",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -294.75,
+     626.15
+    ],
+    [
+     -298.51,
+     661.46
+    ],
+    [
+     -303.92,
+     677.14
+    ],
+    [
+     -326.43,
+     702.98
+    ],
+    [
+     -344.77,
+     715.89
+    ]
+   ]
+  },
+  {
+   "osm": 195837946,
+   "nome": "Rua Tiradentes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -307.21,
+     620.42
+    ],
+    [
+     -311.51,
+     614.98
+    ],
+    [
+     -337.73,
+     596.84
+    ]
+   ]
+  },
+  {
+   "osm": 195837947,
+   "nome": "Rua Marquês de Olinda",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -360.73,
+     693.54
+    ],
+    [
+     -344.77,
+     715.89
+    ],
+    [
+     -338.46,
+     736.96
+    ]
+   ]
+  },
+  {
+   "osm": 195837948,
+   "nome": "Rua Monsenhor Rizzo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -313.83,
+     670.61
+    ],
+    [
+     -301.31,
+     668.48
+    ]
+   ]
+  },
+  {
+   "osm": 196615595,
+   "nome": "Rua Doutor Antônio Carlos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -284.78,
+     568.27
+    ],
+    [
+     -290.13,
+     579.37
+    ]
+   ]
+  },
+  {
+   "osm": 316317997,
+   "nome": "Avenida Senador Pinheiro Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -515.69,
+     777.68
+    ],
+    [
+     -503.23,
+     669.83
+    ],
+    [
+     -500.95,
+     664.59
+    ],
+    [
+     -301.8,
+     528.68
+    ]
+   ]
+  },
+  {
+   "osm": 316453929,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -181.61,
+     546.23
+    ],
+    [
+     -195.27,
+     544.26
+    ]
+   ]
+  },
+  {
+   "osm": 316453929,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -174.91,
+     547.2
+    ],
+    [
+     -180.28,
+     546.42
+    ]
+   ]
+  },
+  {
+   "osm": 364371286,
+   "nome": "Rua José Gonçalves da Mota Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -473.9,
+     661.32
+    ],
+    [
+     -471.49,
+     643.44
+    ]
+   ]
+  },
+  {
+   "osm": 365119198,
+   "nome": "Rua Antônio Bento de Amorim",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -379.58,
+     636.1
+    ],
+    [
+     -388.48,
+     634.52
+    ]
+   ]
+  },
+  {
+   "osm": 365119199,
+   "nome": "Rua Professor Reinaldo Porchat",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -427.21,
+     613.84
+    ],
+    [
+     -427.91,
+     629.6
+    ]
+   ]
+  },
+  {
+   "osm": 365119201,
+   "nome": "Rua Princesa Isabel",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -506.02,
+     756.67
+    ],
+    [
+     -511.38,
+     759.01
+    ],
+    [
+     -514.18,
+     755.33
+    ]
+   ]
+  },
+  {
+   "osm": 365119202,
+   "nome": "Rua Princesa Isabel",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -514.98,
+     767.29
+    ],
+    [
+     -506.02,
+     756.67
+    ]
+   ]
+  },
+  {
+   "osm": 365119203,
+   "nome": "Praça Olímpio Lima",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -417.72,
+     703.38
+    ],
+    [
+     -400.96,
+     724.0
+    ]
+   ]
+  },
+  {
+   "osm": 365127283,
+   "nome": "Rua Conselheiro Zacarias",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -404.43,
+     691.03
+    ],
+    [
+     -427.98,
+     712.62
+    ],
+    [
+     -424.55,
+     721.02
+    ]
+   ]
+  },
+  {
+   "osm": 365127284,
+   "nome": "Rua Dom Pedro I",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -424.55,
+     721.02
+    ],
+    [
+     -420.11,
+     729.21
+    ],
+    [
+     -416.05,
+     729.79
+    ],
+    [
+     -400.96,
+     724.0
+    ],
+    [
+     -373.92,
+     706.12
+    ],
+    [
+     -328.38,
+     656.71
+    ],
+    [
+     -307.21,
+     620.42
+    ]
+   ]
+  },
+  {
+   "osm": 365127288,
+   "nome": "Praça Benedito Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -314.41,
+     666.25
+    ],
+    [
+     -313.25,
+     675.05
+    ]
+   ]
+  },
+  {
+   "osm": 365127290,
+   "nome": "Rua Tiradentes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -303.8,
+     622.07
+    ],
+    [
+     -307.21,
+     620.42
+    ]
+   ]
+  },
+  {
+   "osm": 365127292,
+   "nome": "Rua Tiradentes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -285.04,
+     627.58
+    ],
+    [
+     -277.77,
+     630.41
+    ],
+    [
+     -275.99,
+     633.44
+    ]
+   ]
+  },
+  {
+   "osm": 365127294,
+   "nome": "Rua Tiradentes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -285.04,
+     627.58
+    ],
+    [
+     -300.39,
+     623.58
+    ]
+   ]
+  },
+  {
+   "osm": 365127296,
+   "nome": "Rua Tiradentes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -300.39,
+     623.58
+    ],
+    [
+     -303.8,
+     622.07
+    ]
+   ]
+  },
+  {
+   "osm": 367443581,
+   "nome": "Rua Paraná",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -135.96,
+     552.81
+    ],
+    [
+     -149.33,
+     666.47
+    ],
+    [
+     -143.89,
+     691.75
+    ]
+   ]
+  },
+  {
+   "osm": 367443582,
+   "nome": "Rua Doutor Cesário Bastos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -109.49,
+     667.64
+    ],
+    [
+     -148.94,
+     663.1
+    ]
+   ]
+  },
+  {
+   "osm": 367443583,
+   "nome": "Rua Araguaya",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -166.64,
+     641.09
+    ],
+    [
+     -165.08,
+     629.23
+    ]
+   ]
+  },
+  {
+   "osm": 367443584,
+   "nome": "Rua Particular Doutor Antônio Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -108.07,
+     655.41
+    ],
+    [
+     -88.35,
+     657.37
+    ]
+   ]
+  },
+  {
+   "osm": 367443586,
+   "nome": "Vila Maria de Lourdes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -119.98,
+     577.55
+    ],
+    [
+     -124.16,
+     615.72
+    ]
+   ]
+  },
+  {
+   "osm": 367471476,
+   "nome": "Rua Princesa Isabel",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -468.96,
+     721.63
+    ],
+    [
+     -506.02,
+     756.67
+    ]
+   ]
+  },
+  {
+   "osm": 367471477,
+   "nome": "Rua Dom João VI",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -463.99,
+     716.98
+    ],
+    [
+     -463.75,
+     722.08
+    ]
+   ]
+  },
+  {
+   "osm": 367471478,
+   "nome": "Rua Dom João VI",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -468.96,
+     721.63
+    ],
+    [
+     -463.75,
+     722.08
+    ]
+   ]
+  },
+  {
+   "osm": 367471758,
+   "nome": "Rua Álvares Cabral",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -480.63,
+     660.26
+    ],
+    [
+     -422.63,
+     671.0
+    ],
+    [
+     -384.43,
+     714.47
+    ],
+    [
+     -371.72,
+     744.52
+    ]
+   ]
+  },
+  {
+   "osm": 367471759,
+   "nome": "Rua Álvares Cabral",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -480.63,
+     660.26
+    ],
+    [
+     -485.98,
+     653.24
+    ]
+   ]
+  },
+  {
+   "osm": 367472040,
+   "nome": "Rua Doutor Antônio Carlos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -308.76,
+     617.93
+    ],
+    [
+     -290.13,
+     579.37
+    ]
+   ]
+  },
+  {
+   "osm": 367473103,
+   "nome": "Rua Professor Reinaldo Porchat",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -438.36,
+     679.57
+    ],
+    [
+     -441.94,
+     696.02
+    ]
+   ]
+  },
+  {
+   "osm": 367473104,
+   "nome": "Rua Professor Reinaldo Porchat",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -431.94,
+     686.9
+    ],
+    [
+     -436.55,
+     685.81
+    ],
+    [
+     -438.36,
+     679.57
+    ]
+   ]
+  },
+  {
+   "osm": 367473105,
+   "nome": "Rua Antônio Bento de Amorim",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -388.48,
+     634.52
+    ],
+    [
+     -427.91,
+     629.6
+    ]
+   ]
+  },
+  {
+   "osm": 367473106,
+   "nome": "Rua Antônio Bento de Amorim",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -388.48,
+     634.52
+    ],
+    [
+     -384.29,
+     640.48
+    ]
+   ]
+  },
+  {
+   "osm": 367473107,
+   "nome": "Rua José Olintho de Carvalho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -383.75,
+     595.86
+    ],
+    [
+     -381.68,
+     583.01
+    ]
+   ]
+  },
+  {
+   "osm": 367473108,
+   "nome": "Rua Delfino Stockler de Lima",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -353.41,
+     599.72
+    ],
+    [
+     -348.39,
+     606.88
+    ]
+   ]
+  },
+  {
+   "osm": 367473109,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -337.73,
+     596.84
+    ],
+    [
+     -344.32,
+     591.94
+    ]
+   ]
+  },
+  {
+   "osm": 441077533,
+   "nome": "Avenida Anna Costa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -59.64,
+     564.09
+    ],
+    [
+     -71.75,
+     675.24
+    ]
+   ]
+  },
+  {
+   "osm": 484971734,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -265.7,
+     534.07
+    ],
+    [
+     -287.1,
+     724.6
+    ]
+   ]
+  },
+  {
+   "osm": 484971735,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -271.47,
+     533.33
+    ],
+    [
+     -296.56,
+     530.08
+    ]
+   ]
+  },
+  {
+   "osm": 484971933,
+   "nome": "Rua Monsenhor Paula Rodrigues",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -265.52,
+     599.24
+    ],
+    [
+     -103.75,
+     618.1
+    ]
+   ]
+  },
+  {
+   "osm": 484971934,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -265.52,
+     599.24
+    ],
+    [
+     -257.85,
+     535.23
+    ]
+   ]
+  },
+  {
+   "osm": 484972253,
+   "nome": "Avenida Doutor Bernardino de Campos",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -270.69,
+     652.82
+    ],
+    [
+     -265.52,
+     599.24
+    ]
+   ]
+  },
+  {
+   "osm": 484972421,
+   "nome": "Rua Doutor Carvalho de Mendonça",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -165.98,
+     696.77
+    ],
+    [
+     -125.12,
+     687.48
+    ]
+   ]
+  },
+  {
+   "osm": 484972421,
+   "nome": "Rua Doutor Carvalho de Mendonça",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -106.4,
+     683.22
+    ],
+    [
+     -71.75,
+     675.24
+    ]
+   ]
+  },
+  {
+   "osm": 502994755,
+   "nome": "Rua Princesa Isabel",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -463.99,
+     716.98
+    ],
+    [
+     -468.96,
+     721.63
+    ]
+   ]
+  },
+  {
+   "osm": 534975422,
+   "nome": "Rua Joaquim Távora",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -259.83,
+     534.95
+    ],
+    [
+     -263.83,
+     534.31
+    ]
+   ]
+  },
+  {
+   "osm": 866851558,
+   "nome": "Rua Professor Reinaldo Porchat",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -427.91,
+     629.6
+    ],
+    [
+     -438.36,
+     679.57
+    ]
+   ]
+  },
+  {
+   "osm": 866851559,
+   "nome": "Rua Antônio Malheiros Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -344.32,
+     591.94
+    ],
+    [
+     -343.34,
+     602.09
+    ]
+   ]
+  },
+  {
+   "osm": 866882957,
+   "nome": "Rua Doutor Vital Brasil",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -337.85,
+     558.44
+    ],
+    [
+     -310.67,
+     561.59
+    ],
+    [
+     -305.53,
+     566.27
+    ]
+   ]
+  },
+  {
+   "osm": 866882958,
+   "nome": "Rua Antônio Malheiros Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -337.85,
+     558.44
+    ],
+    [
+     -336.49,
+     551.15
+    ]
+   ]
+  },
+  {
+   "osm": 866882959,
+   "nome": "Rua Delfino Stockler de Lima",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -383.75,
+     595.86
+    ],
+    [
+     -353.41,
+     599.72
+    ]
+   ]
+  },
+  {
+   "osm": 866882960,
+   "nome": "Rua Delfino Stockler de Lima",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -398.06,
+     594.43
+    ],
+    [
+     -383.75,
+     595.86
+    ]
+   ]
+  },
+  {
+   "osm": 883077518,
+   "nome": "Rua Adolfo Assis",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -270.69,
+     652.82
+    ],
+    [
+     -278.29,
+     651.87
+    ]
+   ]
+  },
+  {
+   "osm": 1324974289,
+   "nome": "Rua Monsenhor Paula Rodrigues",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -103.75,
+     618.1
+    ],
+    [
+     -65.9,
+     622.74
+    ]
+   ]
+  }
+ ],
+ "canais": [
+  {
+   "osm": 317670837,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -308.42,
+     528.05
+    ],
+    [
+     -314.97,
+     532.42
+    ]
+   ]
+  },
+  {
+   "osm": 483534911,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -365.52,
+     566.97
+    ],
+    [
+     -445.47,
+     621.17
+    ]
+   ]
+  },
+  {
+   "osm": 483535420,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -445.47,
+     621.17
+    ],
+    [
+     -458.86,
+     630.31
+    ]
+   ]
+  },
+  {
+   "osm": 483535421,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -503.82,
+     661.65
+    ],
+    [
+     -507.12,
+     669.69
+    ],
+    [
+     -519.05,
+     774.49
+    ]
+   ]
+  },
+  {
+   "osm": 483535421,
+   "nome": "Canal 1",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -458.86,
+     630.31
+    ],
+    [
+     -501.48,
+     659.74
+    ]
+   ]
+  },
+  {
+   "osm": 484971736,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -261.2,
+     534.73
+    ],
+    [
+     -267.87,
+     596.83
+    ]
+   ]
+  },
+  {
+   "osm": 484971935,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -267.87,
+     596.83
+    ],
+    [
+     -268.53,
+     602.86
+    ]
+   ]
+  },
+  {
+   "osm": 484971936,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -268.53,
+     602.86
+    ],
+    [
+     -273.66,
+     649.8
+    ]
+   ]
+  },
+  {
+   "osm": 484972255,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -273.66,
+     649.8
+    ],
+    [
+     -274.55,
+     657.32
+    ]
+   ]
+  },
+  {
+   "osm": 484972256,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -274.55,
+     657.32
+    ],
+    [
+     -281.67,
+     719.65
+    ]
+   ]
+  },
+  {
+   "osm": 484972422,
+   "nome": "Canal 2",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -281.67,
+     719.65
+    ],
+    [
+     -282.08,
+     723.29
+    ]
+   ]
+  }
+ ],
+ "marcos": [
+  {
+   "osm": "node/2062530328",
+   "nome": "Memorial das Conquistas",
+   "tipo": "tourism=museum",
+   "posicao": [
+    -355.27,
+    617.77
+   ]
+  },
+  {
+   "osm": "node/5294725939",
+   "nome": "Monumento do Zito",
+   "tipo": "historic=monument",
+   "posicao": [
+    -343.39,
+    597.44
+   ],
+   "altitude": 0.0
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Avenida Senador Pinheiro Machado",
+   "osm": 316317997,
+   "posicao": [
+    -515.69,
+    777.68
+   ],
+   "para": "marape"
+  },
+  {
+   "rua": "Avenida Senador Pinheiro Machado",
+   "osm": 316317997,
+   "posicao": [
+    -301.8,
+    528.68
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua Joaquim Távora",
+   "osm": 484971735,
+   "posicao": [
+    -296.56,
+    530.08
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua Princesa Isabel",
+   "osm": 48464995,
+   "posicao": [
+    -271.47,
+    533.33
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua Joaquim Távora",
+   "osm": 316453929,
+   "posicao": [
+    -255.92,
+    535.51
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua Rio de Janeiro",
+   "osm": 48489489,
+   "posicao": [
+    -226.51,
+    710.55
+   ],
+   "para": "campo_grande"
+  },
+  {
+   "rua": "Rua Joaquim Távora",
+   "osm": 316453929,
+   "posicao": [
+    -195.27,
+    544.26
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua Joaquim Távora",
+   "osm": 316453929,
+   "posicao": [
+    -181.61,
+    546.23
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua São Paulo",
+   "osm": 48489516,
+   "posicao": [
+    -177.35,
+    546.85
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Rua Doutor Carvalho de Mendonça",
+   "osm": 484972421,
+   "posicao": [
+    -165.98,
+    696.77
+   ],
+   "para": "campo_grande"
+  },
+  {
+   "rua": "Rua Doutor Carvalho de Mendonça",
+   "osm": 484972421,
+   "posicao": [
+    -125.12,
+    687.48
+   ],
+   "para": "campo_grande"
+  },
+  {
+   "rua": "Rua Doutor Carvalho de Mendonça",
+   "osm": 484972421,
+   "posicao": [
+    -106.4,
+    683.22
+   ],
+   "para": "campo_grande"
+  },
+  {
+   "rua": "Rua Doutor Antônio Bento",
+   "osm": 38798905,
+   "posicao": [
+    -96.83,
+    558.48
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Anna Costa",
+   "osm": 441077533,
+   "posicao": [
+    -59.64,
+    564.09
+   ],
+   "para": "vila_mathias"
+  }
+ ]
+}

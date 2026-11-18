@@ -1,0 +1,1622 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "estuario",
+ "nome": "Estuário",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 65535.5,
+ "caixa": [
+  785.18,
+  1173.01,
+  1187.81,
+  1664.82
+ ],
+ "limite": [
+  [
+   796.62,
+   1280.92
+  ],
+  [
+   785.18,
+   1271.16
+  ],
+  [
+   905.25,
+   1173.01
+  ],
+  [
+   1041.38,
+   1356.39
+  ],
+  [
+   1049.52,
+   1373.25
+  ],
+  [
+   1066.75,
+   1396.54
+  ],
+  [
+   1076.08,
+   1408.25
+  ],
+  [
+   1089.7,
+   1419.09
+  ],
+  [
+   1179.33,
+   1538.36
+  ],
+  [
+   1185.28,
+   1556.36
+  ],
+  [
+   1187.81,
+   1664.82
+  ],
+  [
+   1030.78,
+   1545.44
+  ],
+  [
+   1022.38,
+   1544.55
+  ],
+  [
+   1009.12,
+   1531.97
+  ],
+  [
+   930.89,
+   1474.9
+  ],
+  [
+   925.43,
+   1467.67
+  ],
+  [
+   923.24,
+   1459.72
+  ],
+  [
+   908.32,
+   1365.45
+  ],
+  [
+   904.32,
+   1357.86
+  ],
+  [
+   832.0,
+   1304.04
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 32338974,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1117.57,
+     1458.84
+    ],
+    [
+     1116.64,
+     1462.84
+    ],
+    [
+     1025.95,
+     1538.22
+    ]
+   ]
+  },
+  {
+   "osm": 40459679,
+   "nome": "Avenida Governador Mário Covas Júnior",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     903.21,
+     1174.41
+    ],
+    [
+     1039.21,
+     1356.24
+    ],
+    [
+     1053.79,
+     1383.58
+    ],
+    [
+     1073.47,
+     1409.3
+    ],
+    [
+     1091.78,
+     1425.25
+    ],
+    [
+     1150.64,
+     1504.07
+    ],
+    [
+     1159.55,
+     1519.43
+    ],
+    [
+     1178.07,
+     1540.48
+    ],
+    [
+     1183.24,
+     1560.74
+    ],
+    [
+     1185.44,
+     1653.14
+    ]
+   ]
+  },
+  {
+   "osm": 42604425,
+   "nome": "Avenida Afonso Pena",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     970.96,
+     1500.81
+    ],
+    [
+     939.32,
+     1478.27
+    ],
+    [
+     929.24,
+     1466.89
+    ],
+    [
+     924.66,
+     1450.75
+    ],
+    [
+     911.46,
+     1366.37
+    ],
+    [
+     907.78,
+     1357.87
+    ],
+    [
+     883.83,
+     1337.56
+    ],
+    [
+     808.73,
+     1283.41
+    ],
+    [
+     798.53,
+     1267.87
+    ]
+   ]
+  },
+  {
+   "osm": 48848162,
+   "nome": "Rua da Liberdade",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1055.83,
+     1521.74
+    ],
+    [
+     1122.69,
+     1569.59
+    ]
+   ]
+  },
+  {
+   "osm": 48848165,
+   "nome": "Rua Doutor Bernardo Browne",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1078.83,
+     1503.52
+    ],
+    [
+     1183.93,
+     1578.86
+    ]
+   ]
+  },
+  {
+   "osm": 51103643,
+   "nome": "Rua José Knudsen",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     920.66,
+     1287.78
+    ],
+    [
+     841.97,
+     1229.38
+    ]
+   ]
+  },
+  {
+   "osm": 51103644,
+   "nome": "Rua Senador Lacerda Franco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     919.5,
+     1286.92
+    ],
+    [
+     883.83,
+     1337.56
+    ]
+   ]
+  },
+  {
+   "osm": 51103645,
+   "nome": "Rua Padre Gastão de Moraes",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     926.63,
+     1205.51
+    ],
+    [
+     917.41,
+     1325.99
+    ]
+   ]
+  },
+  {
+   "osm": 51103657,
+   "nome": "Rua Cipriano Barata",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1176.88,
+     1591.12
+    ],
+    [
+     1168.1,
+     1602.06
+    ]
+   ]
+  },
+  {
+   "osm": 127761086,
+   "nome": "Rua da Liberdade",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1052.0,
+     1517.45
+    ],
+    [
+     931.94,
+     1428.11
+    ]
+   ]
+  },
+  {
+   "osm": 127761781,
+   "nome": "Rua Tenente Antônio João",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1085.82,
+     1418.41
+    ],
+    [
+     1041.8,
+     1477.6
+    ]
+   ]
+  },
+  {
+   "osm": 127815441,
+   "nome": "Rua Moema",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1101.69,
+     1599.88
+    ],
+    [
+     1122.69,
+     1569.59
+    ]
+   ]
+  },
+  {
+   "osm": 127832306,
+   "nome": "Rua Doutor Bernardo Browne",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     967.23,
+     1402.71
+    ],
+    [
+     950.23,
+     1390.44
+    ]
+   ]
+  },
+  {
+   "osm": 127832307,
+   "nome": "Rua Octavio Corrêa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1102.98,
+     1483.05
+    ],
+    [
+     1156.83,
+     1523.61
+    ]
+   ]
+  },
+  {
+   "osm": 127832309,
+   "nome": "Rua Doutor Bernardo Browne",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1073.47,
+     1498.94
+    ],
+    [
+     968.96,
+     1422.66
+    ],
+    [
+     963.7,
+     1413.87
+    ],
+    [
+     967.23,
+     1402.71
+    ]
+   ]
+  },
+  {
+   "osm": 127832315,
+   "nome": "Rua Octavio Corrêa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     967.23,
+     1402.71
+    ],
+    [
+     977.27,
+     1396.74
+    ],
+    [
+     986.87,
+     1398.15
+    ],
+    [
+     1097.14,
+     1479.17
+    ]
+   ]
+  },
+  {
+   "osm": 127833005,
+   "nome": "Praça Visconde de Ouro Preto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     919.06,
+     1412.8
+    ],
+    [
+     930.44,
+     1396.53
+    ],
+    [
+     940.71,
+     1396.98
+    ],
+    [
+     945.98,
+     1393.96
+    ]
+   ]
+  },
+  {
+   "osm": 127833006,
+   "nome": "Praça Visconde de Ouro Preto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     934.32,
+     1368.38
+    ],
+    [
+     928.35,
+     1369.21
+    ]
+   ]
+  },
+  {
+   "osm": 127833659,
+   "nome": "Rua Professor José Olivar",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     967.54,
+     1344.68
+    ],
+    [
+     1032.66,
+     1347.98
+    ]
+   ]
+  },
+  {
+   "osm": 127833661,
+   "nome": "Rua Voluntários da Pátria",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     948.01,
+     1371.0
+    ],
+    [
+     967.54,
+     1344.68
+    ]
+   ]
+  },
+  {
+   "osm": 127834226,
+   "nome": "Rua Professor João de Lima Roland",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     981.97,
+     1315.06
+    ],
+    [
+     997.36,
+     1316.17
+    ]
+   ]
+  },
+  {
+   "osm": 127834820,
+   "nome": "Rua Coronel Raposo de Almeida",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     986.87,
+     1398.15
+    ],
+    [
+     996.29,
+     1383.53
+    ]
+   ]
+  },
+  {
+   "osm": 127834822,
+   "nome": "Rua Coronel Evaristo Machado Netto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1004.47,
+     1376.08
+    ],
+    [
+     994.24,
+     1371.4
+    ]
+   ]
+  },
+  {
+   "osm": 127834891,
+   "nome": "Rua Francisco Alves",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     958.51,
+     1355.94
+    ],
+    [
+     943.14,
+     1346.23
+    ],
+    [
+     941.09,
+     1341.17
+    ],
+    [
+     949.45,
+     1235.99
+    ]
+   ]
+  },
+  {
+   "osm": 127835069,
+   "nome": "Rua Aprovada 904",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     920.95,
+     1284.2
+    ],
+    [
+     945.05,
+     1285.77
+    ]
+   ]
+  },
+  {
+   "osm": 128150513,
+   "nome": "Rua Alexandre Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     837.07,
+     1303.66
+    ],
+    [
+     875.87,
+     1249.9
+    ],
+    [
+     882.32,
+     1195.34
+    ]
+   ]
+  },
+  {
+   "osm": 128150514,
+   "nome": "Rua Particular Marambaia",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     852.12,
+     1251.5
+    ],
+    [
+     833.03,
+     1236.77
+    ]
+   ]
+  },
+  {
+   "osm": 128150515,
+   "nome": "Rua Francisco de Paula Ribeiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     824.31,
+     1244.37
+    ],
+    [
+     918.56,
+     1313.77
+    ]
+   ]
+  },
+  {
+   "osm": 128150639,
+   "nome": "Rua Comendador Aristides Cabrera Correa da Cunha",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     877.05,
+     1246.58
+    ],
+    [
+     948.95,
+     1251.82
+    ]
+   ]
+  },
+  {
+   "osm": 128150640,
+   "nome": "Rua Doutor Constâncio Martins Sampaio",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     904.9,
+     1203.56
+    ],
+    [
+     897.52,
+     1271.27
+    ],
+    [
+     885.15,
+     1289.06
+    ]
+   ]
+  },
+  {
+   "osm": 128150641,
+   "nome": "Rua Luis de Mattos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     874.77,
+     1201.67
+    ],
+    [
+     925.79,
+     1204.39
+    ]
+   ]
+  },
+  {
+   "osm": 128150669,
+   "nome": "Rua aprovada 905",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     930.37,
+     1324.32
+    ],
+    [
+     941.68,
+     1330.11
+    ]
+   ]
+  },
+  {
+   "osm": 128150677,
+   "nome": "Rua Felipe Camarão",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     940.27,
+     1461.89
+    ],
+    [
+     968.96,
+     1422.66
+    ]
+   ]
+  },
+  {
+   "osm": 128150807,
+   "nome": "Rua João de Barros",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     970.96,
+     1500.81
+    ],
+    [
+     1024.14,
+     1426.92
+    ]
+   ]
+  },
+  {
+   "osm": 195836434,
+   "nome": "Praça Visconde de Ouro Preto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     911.46,
+     1366.37
+    ],
+    [
+     915.39,
+     1363.01
+    ],
+    [
+     928.07,
+     1371.48
+    ],
+    [
+     934.32,
+     1368.38
+    ]
+   ]
+  },
+  {
+   "osm": 366188232,
+   "nome": "Rua Caramurú",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1058.45,
+     1564.97
+    ],
+    [
+     1077.76,
+     1536.66
+    ]
+   ]
+  },
+  {
+   "osm": 366347720,
+   "nome": "Rua Felipe Camarão",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     939.32,
+     1478.27
+    ],
+    [
+     937.16,
+     1468.62
+    ],
+    [
+     940.27,
+     1461.89
+    ]
+   ]
+  },
+  {
+   "osm": 366347721,
+   "nome": "Rua Felipe Camarão",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     940.27,
+     1461.89
+    ],
+    [
+     932.57,
+     1464.14
+    ],
+    [
+     926.84,
+     1461.39
+    ]
+   ]
+  },
+  {
+   "osm": 366347722,
+   "nome": "Rua da Liberdade",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     921.83,
+     1431.95
+    ],
+    [
+     926.99,
+     1428.02
+    ],
+    [
+     931.94,
+     1428.11
+    ]
+   ]
+  },
+  {
+   "osm": 366365431,
+   "nome": "Vila Maracanã",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     863.62,
+     1322.92
+    ],
+    [
+     879.28,
+     1301.24
+    ]
+   ]
+  },
+  {
+   "osm": 366365433,
+   "nome": "Praça Visconde de Ouro Preto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     945.98,
+     1393.96
+    ],
+    [
+     930.55,
+     1394.79
+    ]
+   ]
+  },
+  {
+   "osm": 366371545,
+   "nome": "Rua Coronel Raposo de Almeida",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     996.29,
+     1383.53
+    ],
+    [
+     993.77,
+     1366.62
+    ],
+    [
+     997.36,
+     1316.17
+    ]
+   ]
+  },
+  {
+   "osm": 366371546,
+   "nome": "Rua Coronel Evaristo Machado Netto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     996.29,
+     1383.53
+    ],
+    [
+     1004.47,
+     1376.08
+    ]
+   ]
+  },
+  {
+   "osm": 366371547,
+   "nome": "Rua Coronel Evaristo Machado Netto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1004.47,
+     1376.08
+    ],
+    [
+     1023.71,
+     1377.15
+    ]
+   ]
+  },
+  {
+   "osm": 366483545,
+   "nome": "Praça Visconde de Ouro Preto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     945.98,
+     1393.96
+    ],
+    [
+     950.23,
+     1390.44
+    ],
+    [
+     952.99,
+     1383.51
+    ],
+    [
+     950.39,
+     1373.93
+    ],
+    [
+     944.28,
+     1368.67
+    ],
+    [
+     934.32,
+     1368.38
+    ]
+   ]
+  },
+  {
+   "osm": 457552228,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1031.85,
+     1543.36
+    ],
+    [
+     1037.28,
+     1538.43
+    ]
+   ]
+  },
+  {
+   "osm": 486143857,
+   "nome": "Praça Visconde de Itaborahy",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     791.52,
+     1276.57
+    ],
+    [
+     798.53,
+     1267.87
+    ]
+   ]
+  },
+  {
+   "osm": 486143859,
+   "nome": "Praça Visconde de Itaborahy",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     798.53,
+     1267.87
+    ],
+    [
+     795.79,
+     1262.76
+    ]
+   ]
+  },
+  {
+   "osm": 486143861,
+   "nome": "Avenida Almirante Cochrane",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     798.53,
+     1267.87
+    ],
+    [
+     907.07,
+     1175.51
+    ]
+   ]
+  },
+  {
+   "osm": 496962266,
+   "nome": "Praça Professor Oswaldo Gonçalves Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     914.02,
+     1296.89
+    ],
+    [
+     917.71,
+     1296.36
+    ],
+    [
+     919.71,
+     1299.56
+    ]
+   ]
+  },
+  {
+   "osm": 496968599,
+   "nome": "Rua Cipriano Barata",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1168.1,
+     1602.06
+    ],
+    [
+     1147.37,
+     1629.86
+    ]
+   ]
+  },
+  {
+   "osm": 496971269,
+   "nome": "Praça Vereador José Vieira",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     925.16,
+     1391.93
+    ],
+    [
+     916.25,
+     1394.46
+    ]
+   ]
+  },
+  {
+   "osm": 496971270,
+   "nome": "Praça Visconde de Ouro Preto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     928.35,
+     1369.21
+    ],
+    [
+     902.42,
+     1351.55
+    ]
+   ]
+  },
+  {
+   "osm": 496971273,
+   "nome": "Praça Visconde de Ouro Preto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     930.55,
+     1394.79
+    ],
+    [
+     923.67,
+     1401.53
+    ],
+    [
+     917.5,
+     1400.79
+    ]
+   ]
+  },
+  {
+   "osm": 496973766,
+   "nome": "Rua Emídio de Souza",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     974.77,
+     1283.07
+    ],
+    [
+     975.13,
+     1276.69
+    ],
+    [
+     978.85,
+     1273.87
+    ]
+   ]
+  },
+  {
+   "osm": 497908311,
+   "nome": "Rua Professor João de Lima Roland",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     997.36,
+     1316.17
+    ],
+    [
+     1009.71,
+     1317.31
+    ]
+   ]
+  },
+  {
+   "osm": 497908313,
+   "nome": "Rua Coronel Raposo de Almeida",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     998.11,
+     1301.47
+    ],
+    [
+     997.36,
+     1316.17
+    ]
+   ]
+  },
+  {
+   "osm": 503301746,
+   "nome": "Faixa Viva",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     832.0,
+     1304.04
+    ],
+    [
+     834.31,
+     1301.62
+    ]
+   ]
+  },
+  {
+   "osm": 503301747,
+   "nome": "Faixa Viva",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     884.17,
+     1342.27
+    ],
+    [
+     886.23,
+     1339.44
+    ]
+   ]
+  },
+  {
+   "osm": 821724922,
+   "nome": "Rua da Liberdade",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1122.69,
+     1569.59
+    ],
+    [
+     1168.1,
+     1602.06
+    ]
+   ]
+  },
+  {
+   "osm": 821724923,
+   "nome": "Rua Moema",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1159.55,
+     1519.43
+    ],
+    [
+     1138.94,
+     1547.49
+    ]
+   ]
+  },
+  {
+   "osm": 859600397,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1034.63,
+     1488.46
+    ],
+    [
+     1041.8,
+     1477.6
+    ]
+   ]
+  },
+  {
+   "osm": 883100334,
+   "nome": "Rua da Liberdade",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     931.94,
+     1428.11
+    ],
+    [
+     919.84,
+     1418.69
+    ]
+   ]
+  },
+  {
+   "osm": 956981406,
+   "nome": "Rua Cipriano Barata",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1184.0,
+     1581.06
+    ],
+    [
+     1176.88,
+     1591.12
+    ]
+   ]
+  },
+  {
+   "osm": 956981407,
+   "nome": "Rua Cipriano Barata",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1176.88,
+     1591.12
+    ],
+    [
+     1181.42,
+     1591.45
+    ],
+    [
+     1183.99,
+     1596.15
+    ]
+   ]
+  },
+  {
+   "osm": 956988929,
+   "nome": "Rua Moema",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1122.69,
+     1569.59
+    ],
+    [
+     1138.94,
+     1547.49
+    ]
+   ]
+  },
+  {
+   "osm": 1201878223,
+   "nome": "Avenida Afonso Pena",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1185.44,
+     1653.14
+    ],
+    [
+     1180.8,
+     1653.53
+    ],
+    [
+     1147.37,
+     1629.86
+    ],
+    [
+     1031.85,
+     1543.36
+    ]
+   ]
+  },
+  {
+   "osm": 1519981325,
+   "nome": "Avenida Afonso Pena",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1031.85,
+     1543.36
+    ],
+    [
+     1025.95,
+     1538.22
+    ]
+   ]
+  },
+  {
+   "osm": 1532318309,
+   "nome": "Avenida Governador Mário Covas Júnior",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1185.44,
+     1653.14
+    ],
+    [
+     1185.5,
+     1662.82
+    ]
+   ]
+  },
+  {
+   "osm": 1534708914,
+   "nome": "Avenida Afonso Pena",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1025.95,
+     1538.22
+    ],
+    [
+     1006.23,
+     1527.1
+    ],
+    [
+     970.96,
+     1500.81
+    ]
+   ]
+  },
+  {
+   "osm": 1534708915,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1025.95,
+     1538.22
+    ],
+    [
+     1019.89,
+     1542.13
+    ]
+   ]
+  },
+  {
+   "osm": 1534708916,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1037.28,
+     1538.43
+    ],
+    [
+     1125.07,
+     1465.58
+    ]
+   ]
+  },
+  {
+   "osm": 1534708917,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1030.78,
+     1545.44
+    ],
+    [
+     1031.85,
+     1543.36
+    ]
+   ]
+  }
+ ],
+ "canais": [
+  {
+   "osm": 48465508,
+   "nome": "Canal 5",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     901.27,
+     1175.74
+    ],
+    [
+     799.0,
+     1260.22
+    ]
+   ]
+  },
+  {
+   "osm": 196170237,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     1117.86,
+     1466.66
+    ],
+    [
+     1031.2,
+     1539.11
+    ]
+   ]
+  },
+  {
+   "osm": 366735226,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     1031.2,
+     1539.11
+    ],
+    [
+     1023.98,
+     1545.23
+    ]
+   ]
+  },
+  {
+   "osm": 481706433,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     1122.74,
+     1462.73
+    ],
+    [
+     1117.86,
+     1466.66
+    ]
+   ]
+  },
+  {
+   "osm": 482956950,
+   "nome": "Canal 5",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     799.0,
+     1260.22
+    ],
+    [
+     785.18,
+     1271.16
+    ]
+   ]
+  }
+ ],
+ "marcos": [],
+ "saidas": [
+  {
+   "rua": "Praça Visconde de Itaborahy",
+   "osm": 486143857,
+   "posicao": [
+    791.52,
+    1276.57
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Praça Visconde de Itaborahy",
+   "osm": 486143859,
+   "posicao": [
+    795.79,
+    1262.76
+   ],
+   "para": "macuco"
+  },
+  {
+   "rua": "Faixa Viva",
+   "osm": 503301746,
+   "posicao": [
+    832.0,
+    1304.04
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Faixa Viva",
+   "osm": 503301747,
+   "posicao": [
+    884.17,
+    1342.27
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Governador Mário Covas Júnior",
+   "osm": 40459679,
+   "posicao": [
+    903.21,
+    1174.41
+   ],
+   "para": "macuco"
+  },
+  {
+   "rua": "Avenida Almirante Cochrane",
+   "osm": 486143861,
+   "posicao": [
+    907.07,
+    1175.51
+   ],
+   "para": "macuco"
+  },
+  {
+   "rua": "Avenida Coronel Joaquim Montenegro",
+   "osm": 1534708915,
+   "posicao": [
+    1019.89,
+    1542.13
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Coronel Joaquim Montenegro",
+   "osm": 1534708917,
+   "posicao": [
+    1030.78,
+    1545.44
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Moema",
+   "osm": 127815441,
+   "posicao": [
+    1101.69,
+    1599.88
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Coronel Joaquim Montenegro",
+   "osm": 1534708916,
+   "posicao": [
+    1125.07,
+    1465.58
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Governador Mário Covas Júnior",
+   "osm": 1532318309,
+   "posicao": [
+    1185.5,
+    1662.82
+   ],
+   "para": ""
+  }
+ ]
+}

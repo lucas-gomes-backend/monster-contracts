@@ -27,7 +27,7 @@
     "reputacao": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["niveis", "caso_resolvido", "no_prazo", "sem_inocentes", "fracasso", "abandono", "inocente_prejudicado"],
+      "required": ["niveis", "caso_resolvido", "no_prazo", "sem_inocentes", "fracasso", "abandono", "inocente_prejudicado", "cliente_exposto"],
       "properties": {
         "niveis": {
           "type": "array", "minItems": 1,
@@ -38,7 +38,8 @@
         "sem_inocentes": {"type": "integer"},
         "fracasso": {"type": "integer"},
         "abandono": {"type": "integer"},
-        "inocente_prejudicado": {"type": "integer"}
+        "inocente_prejudicado": {"type": "integer"},
+        "cliente_exposto": {"type": "integer"}
       }
     },
     "bonus": {

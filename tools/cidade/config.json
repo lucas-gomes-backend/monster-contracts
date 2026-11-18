@@ -30,6 +30,16 @@
     {"id": "valongo", "nome": "Valongo", "zona": "central_portuaria", "limite_osm": "way/1223318887"},
     {"id": "centro", "nome": "Centro", "zona": "central_portuaria", "limite_osm": "relation/18922323"},
     {"id": "paqueta", "nome": "Paquetá", "zona": "central_portuaria", "limite_osm": "relation/18922322"},
-    {"id": "monte_serrat", "nome": "Monte Serrat", "zona": "morros", "limite_osm": "way/196615801", "nota": "sem limite de bairro no OpenStreetMap: usa a área protegida do morro"}
+    {"id": "monte_serrat", "nome": "Monte Serrat", "zona": "morros", "limite_osm": "way/196615801", "nota": "sem limite de bairro no OpenStreetMap: usa a área protegida do morro"},
+    {"id": "campo_grande", "nome": "Campo Grande", "zona": "central_portuaria", "limite_osm": "relation/4282881"},
+    {"id": "encruzilhada", "nome": "Encruzilhada", "zona": "central_portuaria", "limite_osm": "relation/18954283"},
+    {"id": "estuario", "nome": "Estuário", "zona": "central_portuaria", "limite_osm": "relation/4282883"},
+    {"id": "jabaquara", "nome": "Jabaquara", "zona": "central_portuaria", "limite_osm": "way/1223065895", "nota": "limite de bairro como área de 'place' no OpenStreetMap"},
+    {"id": "macuco", "nome": "Macuco", "zona": "central_portuaria", "limite_osm": "relation/5353913"},
+    {"id": "marape", "nome": "Marapé", "zona": "central_portuaria", "limite_osm": "relation/4282886"},
+    {"id": "saboo", "nome": "Saboó", "zona": "central_portuaria", "limite_osm": "way/1223097900", "nota": "limite de bairro como área de 'place' no OpenStreetMap"},
+    {"id": "vila_belmiro", "nome": "Vila Belmiro", "zona": "central_portuaria", "limite_osm": "relation/4282888"},
+    {"id": "vila_mathias", "nome": "Vila Mathias", "zona": "central_portuaria", "limite_osm": "relation/18937523"},
+    {"id": "vila_nova", "nome": "Vila Nova", "zona": "central_portuaria", "limite_osm": "relation/18933692"}
   ]
 }

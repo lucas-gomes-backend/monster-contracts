@@ -1,0 +1,49 @@
+{
+  "id": "saci",
+  "nome": "Saci-Pererê",
+  "nomes_alternativos": ["saci", "saci perere"],
+  "origem": "brasil_guarani",
+  "bairros": ["mata"],
+  "familia": ["trapaceiro", "natureza"],
+  "natureza": "hibrida",
+  "inteligencia": "astuta",
+  "disposicao": "neutra",
+  "perigo": 0,
+  "ciclo": {
+    "horario": "qualquer",
+    "lua": "independe"
+  },
+  "gatilhos": ["travessura"],
+  "necessidade": {
+    "tipo": "pregar_pecas",
+    "frequencia": "continua",
+    "escalada": "de esconder objetos a assustar quem anda sozinho a noite"
+  },
+  "caca": {
+    "vitimas": ["ninguem_sai_ferido"],
+    "metodo": "travessuras: esconde objetos, queima a comida, assobia para assustar viajantes",
+    "territorio_m": 500
+  },
+  "covil": ["area_verde"],
+  "disfarce": {
+    "tipo": "invisivel",
+    "sinais": ["redemoinho", "assobio"]
+  },
+  "observavel": {"forma": "menino de uma perna so, de gorro vermelho", "tamanho": "pequeno", "som": "assobio curto"},
+  "marcas": [
+    {"tag": "redemoinho_de_folhas", "onde": "cena", "freq": "sempre", "detectar": "olho_nu"},
+    {"tag": "objetos_sumidos_ou_escondidos", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "evento"},
+    {"tag": "comida_queimada_no_fogao", "onde": "testemunha", "freq": "comum", "detectar": "entrevista", "sobre": "evento"},
+    {"tag": "assobio_curto_a_noite", "onde": "testemunha", "freq": "rara", "detectar": "entrevista", "sobre": "evento"}
+  ],
+  "fraquezas": [
+    {"item": "peneira", "efeito": ["prende"]},
+    {"item": "garrafa_com_cruz_na_rolha", "efeito": ["prende"]},
+    {"item": "agua_corrente", "efeito": ["afasta"]}
+  ],
+  "tabus": ["nunca mata nem fere", "sem a carapuca vermelha perde os poderes"],
+  "resolucoes": ["prender", "negociar"],
+  "fontes": ["docs/pesquisa/folclore-corte-vertical.md#5-saci-perere"],
+  "invencoes_do_jogo": ["o Saci como bode expiatorio do bairro (estrutura criatura errada)", "perigo 0: nunca e o culpado de um caso"],
+  "a_confirmar": ["a agua corrente que ele nao atravessa (uma fonte so, sem citar Camara Cascudo)", "a trança na crina dos cavalos (nao achada nas fontes)"]
+}

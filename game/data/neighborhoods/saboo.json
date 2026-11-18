@@ -1,0 +1,51 @@
+{
+  "$comment": "Saboó, bairro secundário da zona Central e portuária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa.",
+  "id": "saboo",
+  "nome": "Saboó",
+  "zona": "central_portuaria",
+  "tipo": "industrial",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_martins_fontes",
+    "rua_maria_mercedes_fea",
+    "rua_cananeia",
+    "rua_iguape"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 2
+    }
+  ],
+  "locais": [
+    {
+      "id": "cemiterio",
+      "tipo": "cemiterio",
+      "rua": "avenida_martins_fontes",
+      "nome": "Cemitério do Saboó"
+    },
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "rua_cananeia",
+      "nome": "Praça do bairro"
+    },
+    {
+      "id": "armazem",
+      "tipo": "armazem",
+      "rua": "rua_maria_mercedes_fea",
+      "nome": "Pátio de contêineres vazio"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "rua_iguape",
+      "nome": "Bar do Saboó"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "$comment": "Zonas da cidade (docs/07, 'Bairros'): quais bairros são principais (marcos e pontos-chave próprios, 30 a 60 moradores) e quais são secundários (só o kit da zona, menos gente). 'pendentes': bairros da zona que ainda não entraram no jogo (sem limite no OpenStreetMap: precisam de traçado à mão).",
+  "zonas": {
+    "central_portuaria": {
+      "nome": "Central e portuária",
+      "principais": ["centro", "valongo", "paqueta", "vila_belmiro", "macuco"],
+      "secundarios": ["campo_grande", "encruzilhada", "estuario", "jabaquara", "marape", "saboo", "vila_mathias", "vila_nova"],
+      "pendentes": ["porto", "vila_rica"]
+    }
+  }
+}

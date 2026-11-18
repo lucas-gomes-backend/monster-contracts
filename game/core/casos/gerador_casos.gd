@@ -98,7 +98,7 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 	var crime := {}
 	var culpado := {}
 	var g_crime: RandomNumberGenerator = rng.stream("crime")
-	if estrutura == "culpado_humano":
+	if tem_culpado(estrutura):
 		var crimes := _crimes_possiveis(cfg, ficha, bairro)
 		crime = crimes[g_crime.randi_range(0, crimes.size() - 1)]
 		culpado = _escolher_culpado(npcs, hospedeiro, g_crime)
@@ -195,13 +195,14 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 		return {"valido": false}
 
 	# 5. Contrato
-	var cliente := _escolher_cliente(npcs, ataques, hospedeiro if not hospedeiro.is_empty() else culpado, bairro, g)
+	# Cliente mentiroso: quem contrata é o próprio culpado, e esconde o crime.
+	var cliente := culpado if estrutura == "cliente_mentiroso" else _escolher_cliente(npcs, ataques, hospedeiro if not hospedeiro.is_empty() else culpado, bairro, g)
 	var pedidos: Array = cfg["pedidos"].get(estrutura, ["descobrir"])
 	var contrato := {
 		"minuto": contrato_min,
 		"cliente": cliente["id"],
 		"pedido": pedidos[g.randi_range(0, pedidos.size() - 1)],
-		"esconde": cliente["segredo"],
+		"esconde": "crime" if estrutura == "cliente_mentiroso" else cliente["segredo"],
 		"recompensa": int(ficha["perigo"]) * int(cfg["recompensa_por_perigo"]),
 		"prazo_minuto": contrato_min + int(cfg["prazo_dias"]) * MINUTOS_POR_DIA,
 	}
@@ -223,6 +224,7 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 	if not crime.is_empty():
 		verdade["culpado"] = culpado["id"]
 		verdade["crime"] = crime["id"]
+		verdade["cliente_mentiroso"] = estrutura == "cliente_mentiroso"
 	var caso := {
 		"valido": true,
 		"semente": semente,
@@ -239,6 +241,8 @@ static func _gerar_tentativa(semente: int, sub_semente: int, tentativa: int, d: 
 		"pistas": Pistas.derivar(registro, cfg["validade_horas"], chuva_em),
 		"depoimentos": Testemunhas.gerar(registro, npcs, rotina, bairro, d["criaturas"], cfg["ruidos"] + ([crime] if not crime.is_empty() else []), d["testemunhas"], hospedeiro, rng.stream("testemunhas")),
 	}
+	if estrutura == "criatura_errada":
+		_culpar_inocente(caso, bairro, d, g)
 	caso["hash"] = ("%s|%s|%s" % [JSON.stringify(verdade, "", true), JSON.stringify(contrato, "", true), registro.hash_canonico()]).sha256_text()
 	return caso
 
@@ -287,15 +291,30 @@ static func _especies_da_estrutura(estrutura: String, bairro: RefCounted, criatu
 	ids.sort()
 	for id in ids:
 		var ficha: Dictionary = criaturas[id]
+		if int(ficha["perigo"]) == 0:
+			continue
 		var humano: bool = "humano" in ficha["familia"]
 		if (estrutura == "golpe") != humano:
 			continue
 		if not Solucionador.vive_no_bairro(ficha, bairro.dados["tipo"], Solucionador.tipos_de_locais(bairro.dados)):
 			continue
-		if estrutura == "culpado_humano" and _crimes_possiveis(cfg, ficha, bairro).is_empty():
+		if tem_culpado(estrutura) and _crimes_possiveis(cfg, ficha, bairro).is_empty():
+			continue
+		if estrutura == "criatura_errada" and inocentes(bairro, criaturas).is_empty():
 			continue
 		candidatas.append(id)
 	return candidatas
+
+
+## Criaturas inofensivas (perigo 0) que vivem no bairro: levam a culpa na criatura errada.
+static func inocentes(bairro: RefCounted, criaturas: Dictionary) -> Array:
+	var lista: Array = []
+	var ids := criaturas.keys()
+	ids.sort()
+	for id in ids:
+		if int(criaturas[id]["perigo"]) == 0 and Solucionador.vive_no_bairro(criaturas[id], bairro.dados["tipo"], Solucionador.tipos_de_locais(bairro.dados)):
+			lista.append(id)
+	return lista
 
 
 ## Só sorteia estruturas que têm alguma espécie possível no bairro.
@@ -314,6 +333,27 @@ static func _crimes_possiveis(cfg: Dictionary, ficha: Dictionary, bairro: RefCou
 		if c["gatilho"] in ficha["gatilhos"] and not bairro.locais_do_tipo(c["tipo_local"]).is_empty():
 			crimes.append(c)
 	return crimes
+
+
+## Criatura errada (docs/04): uma criatura inofensiva leva a culpa só na fofoca. Ela não
+## age; o cliente pede para matá-la e quem viu alguma coisa (menos os céticos) jura que foi
+## ela, mas a forma que a testemunha descreve é a da criatura de verdade.
+static func _culpar_inocente(caso: Dictionary, bairro: RefCounted, d: Dictionary, g: RandomNumberGenerator) -> void:
+	var opcoes := inocentes(bairro, d["criaturas"])
+	var acusada: String = opcoes[g.randi_range(0, opcoes.size() - 1)]
+	var nome := str(d["criaturas"][acusada]["nome"]).to_lower()
+	caso["verdade"]["criatura_acusada"] = acusada
+	caso["contrato"]["acusa"] = acusada
+	var ceticas: Array = d["testemunhas"]["interpretacoes_ceticas"]
+	for dep in caso["depoimentos"]:
+		if dep["tipo"] == "presenciou" and not str(dep["interpretacao"]) in ceticas:
+			dep["interpretacao"] = nome
+
+
+## Estruturas com um culpado humano (o crime provoca a criatura). No cliente mentiroso,
+## o culpado é quem contrata o caçador.
+static func tem_culpado(estrutura: String) -> bool:
+	return estrutura in ["culpado_humano", "cliente_mentiroso"]
 
 
 ## O culpado: um adulto que não é o hospedeiro da criatura.

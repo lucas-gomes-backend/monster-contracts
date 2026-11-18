@@ -1,0 +1,62 @@
+{
+  "$comment": "Vila Nova, bairro secundário da zona Central e portuária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa.",
+  "id": "vila_nova",
+  "nome": "Vila Nova",
+  "zona": "central_portuaria",
+  "tipo": "antigo_religioso",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_conselheiro_nebias",
+    "rua_bittencourt",
+    "rua_7_de_setembro",
+    "avenida_campos_salles",
+    "rua_braz_cubas"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 5
+    },
+    {
+      "id": "portuguesa",
+      "peso": 3
+    },
+    {
+      "id": "arabe",
+      "peso": 2
+    }
+  ],
+  "locais": [
+    {
+      "id": "praca_do_mercado",
+      "tipo": "praca",
+      "rua": "avenida_campos_salles",
+      "nome": "Largo do Mercado"
+    },
+    {
+      "id": "igreja",
+      "tipo": "igreja",
+      "rua": "rua_7_de_setembro",
+      "nome": "Igreja da Vila Nova"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "rua_bittencourt",
+      "nome": "Padaria do Mercado"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "rua_braz_cubas",
+      "nome": "Bar do Cortiço"
+    },
+    {
+      "id": "galinheiro_1",
+      "tipo": "galinheiro",
+      "rua": "rua_7_de_setembro",
+      "nome": "Galinheiro de um quintal"
+    }
+  ]
+}
