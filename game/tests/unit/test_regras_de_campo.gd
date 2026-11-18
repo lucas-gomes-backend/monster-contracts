@@ -42,9 +42,10 @@ func test_testes_de_campo_config_e_valida() -> void:
 	assert_eq(Catalogo.carregar_config_testes()["erros"], [] as Array[String])
 
 
-## Testes que entram no corte vertical sem criatura que os use ainda (docs/05: um negativo
-## também é informação). Grãos: strigoi; espelho: vampiros.
-const SEM_CRIATURA_AINDA := ["graos_na_porta", "espelho_ou_camera"]
+## Grãos e espelho: o Strigoi (Fase 5) é quem eles pegam. No corte vertical davam sempre
+## negativo (docs/05: um negativo também é informação).
+const GRAOS_E_ESPELHO := ["graos_na_porta", "espelho_ou_camera"]
+const CORTE_VERTICAL := ["corpo_seco", "curupira", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"]
 
 
 func test_testes_de_campo_todo_item_existe_em_alguma_ficha() -> void:
@@ -53,7 +54,7 @@ func test_testes_de_campo_todo_item_existe_em_alguma_ficha() -> void:
 		for f in ficha["fraquezas"]:
 			itens[f["item"]] = true
 	for teste in _cfg()["testes"]:
-		if teste["id"] in SEM_CRIATURA_AINDA or teste.has("positivo_se"):
+		if teste.has("positivo_se"):
 			continue
 		for item in teste["itens"]:
 			if not itens.has(item):
@@ -193,9 +194,16 @@ func test_todos_os_testes_de_campo_do_design_existem() -> void:
 
 func test_graos_e_espelho_dao_negativo_para_as_criaturas_do_corte_vertical() -> void:
 	var verdade := {"hospedeiro": "npc_1", "locais": ["valongo/largo"]}
-	for id in SEM_CRIATURA_AINDA:
-		for ficha in _criaturas().values():
-			assert_false(Regras.positivo(_teste(id), ficha, verdade, "npc_1"), "%s em %s" % [id, ficha["id"]])
+	for id in GRAOS_E_ESPELHO:
+		for especie in CORTE_VERTICAL:
+			assert_false(Regras.positivo(_teste(id), _criaturas()[especie], verdade, "npc_1"), "%s em %s" % [id, especie])
+
+
+func test_graos_e_espelho_pegam_o_strigoi_que_vive_como_morador() -> void:
+	var verdade := {"hospedeiro": "npc_7", "locais": ["centro/praca_maua"]}
+	for id in GRAOS_E_ESPELHO:
+		assert_true(Regras.positivo(_teste(id), _criaturas()["strigoi"], verdade, "npc_7"), "%s no strigoi" % id)
+		assert_false(Regras.positivo(_teste(id), _criaturas()["strigoi"], verdade, "npc_8"), "%s num inocente" % id)
 
 
 func test_camera_termica_ve_o_corpo_seco_frio_so_nos_lugares_dele() -> void:

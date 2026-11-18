@@ -1,57 +1,59 @@
 {
   "boletins": {
-    "media": 0.75
+    "media": 0.8
   },
   "casos": 20,
   "chuva": 0.7,
   "depoimentos": {
-    "maximo": 35,
-    "media": 19.5,
+    "maximo": 33,
+    "media": 19.1,
     "minimo": 7
   },
   "descartes": {
-    "<espécie> descartada por só N evidência(s)": 9,
+    "<espécie> descartada por só N evidência(s)": 40,
     "sem incidente na pré-simulação": 1,
-    "só N depoimento(s) apontam para o hospedeiro": 6
+    "sobraram N candidatas": 2,
+    "só N depoimento(s) apontam para o hospedeiro": 7
   },
   "especies": {
-    "corpo_seco": 9,
-    "golpe_humano": 5,
-    "lobisomem_br": 4,
-    "mula_sem_cabeca": 2
+    "corpo_seco": 5,
+    "golpe_humano": 4,
+    "lobisomem_br": 3,
+    "mula_sem_cabeca": 5,
+    "onryo": 3
   },
   "estruturas": {
-    "caca_simples": 15,
-    "golpe": 5
+    "caca_simples": 16,
+    "golpe": 4
   },
   "evidencias_do_iniciante": {
-    "media": 5.9,
+    "media": 5.0,
     "minimo": 2
   },
   "mentiras": {
     "onde_estava": 12,
-    "protege_familiar": 18
+    "protege_familiar": 22
   },
   "pistas": {
-    "maximo": 47,
-    "media": 28.0,
+    "maximo": 41,
+    "media": 26.95,
     "minimo": 12,
     "por_tipo": {
-      "marca/criatura": 3.0,
-      "marca/ruido": 4.0,
-      "registro/criatura": 1.45,
-      "testemunho/criatura": 12.8,
-      "testemunho/ruido": 6.75
+      "marca/criatura": 2.45,
+      "marca/ruido": 3.9,
+      "registro/criatura": 1.4,
+      "testemunho/criatura": 11.35,
+      "testemunho/ruido": 7.85
     }
   },
   "ruidos": {
-    "media": 2.0
+    "media": 1.95
   },
   "taxa_validos": 1.0,
   "tentativas": {
     "maximo": 4,
-    "media": 1.4,
-    "primeira_tentativa": 0.75
+    "media": 1.8,
+    "primeira_tentativa": 0.55
   },
   "validos": 20
 }

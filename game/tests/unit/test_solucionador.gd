@@ -89,7 +89,12 @@ func test_solucionador_ruido_nao_descarta_ninguem() -> void:
 	caso["depoimentos"] = []
 	assert_gte(Solucionador.coletar_evidencias(caso).size(), 1, "há evidência de ruído")
 	var v := Solucionador.validar(caso, _criaturas(), "antigo_religioso")
-	assert_eq(v["candidatos"].size(), 4, "só com ruído, nenhuma das 4 espécies do Paquetá é descartada")
+	var do_paqueta := 0
+	for ficha in _criaturas().values():
+		if Solucionador.vive_no_bairro(ficha, "antigo_religioso"):
+			do_paqueta += 1
+	assert_gte(do_paqueta, 4)
+	assert_eq(v["candidatos"].size(), do_paqueta, "só com ruído, nenhuma espécie do Paquetá é descartada")
 
 
 func test_solucionador_um_boletim_nao_vira_padrao() -> void:

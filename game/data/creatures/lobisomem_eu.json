@@ -1,0 +1,142 @@
+{
+  "id": "lobisomem_eu",
+  "nome": "Lobisomem europeu",
+  "nomes_alternativos": [
+    "loup-garou",
+    "werewolf",
+    "lobisomem da europa"
+  ],
+  "origem": "europa",
+  "bairros": [
+    "residencial_denso"
+  ],
+  "familia": [
+    "metamorfo",
+    "amaldicoado"
+  ],
+  "natureza": "corporea",
+  "inteligencia": "instintiva",
+  "disposicao": "hostil",
+  "perigo": 4,
+  "ciclo": {
+    "horario": "noite",
+    "lua": "cheia"
+  },
+  "gatilhos": [
+    "mordida_de_outro_lobisomem",
+    "cinto_de_pele_de_lobo"
+  ],
+  "necessidade": {
+    "tipo": "cacar_sob_a_lua",
+    "frequencia": "semanal",
+    "escalada": "de cães e gatos a pessoas sozinhas na rua"
+  },
+  "caca": {
+    "vitimas": [
+      "caes_e_gatos",
+      "pessoas_sozinhas"
+    ],
+    "metodo": "persegue e morde, arrastando a presa",
+    "territorio_m": 2500
+  },
+  "covil": [
+    "armazem"
+  ],
+  "disfarce": {
+    "tipo": "forma_humana",
+    "sinais": [
+      "ferimentos_que_saram_rapido",
+      "irritado_perto_da_lua_cheia",
+      "cheiro_de_bicho"
+    ]
+  },
+  "hospedeiro": {
+    "idade_min": 18,
+    "idade_max": 65
+  },
+  "observavel": {
+    "forma": "lobo enorme de pelo cinza, de quatro",
+    "tamanho": "grande",
+    "som": "uivo longo",
+    "cheiro": "cheiro de bicho"
+  },
+  "marcas": [
+    {
+      "tag": "pegadas_de_lobo",
+      "onde": "cena",
+      "freq": "sempre",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "mordida_funda_e_rasgada",
+      "onde": "corpo",
+      "freq": "comum",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "uivo_longo_na_noite",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "morador_com_ferimentos_que_saram_rapido",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "hospedeiro"
+    },
+    {
+      "tag": "cinto_de_pele_de_lobo_escondido",
+      "onde": "covil",
+      "freq": "rara",
+      "detectar": "olho_nu"
+    }
+  ],
+  "fraquezas": [
+    {
+      "item": "prata",
+      "efeito": [
+        "fere",
+        "destroi"
+      ]
+    },
+    {
+      "item": "aconito",
+      "efeito": [
+        "afasta"
+      ]
+    },
+    {
+      "item": "tirar_o_cinto_de_pele",
+      "efeito": [
+        "revela",
+        "cura"
+      ]
+    },
+    {
+      "item": "correntes",
+      "efeito": [
+        "prende"
+      ]
+    }
+  ],
+  "tabus": [
+    "sem o cinto de pele de lobo nao se transforma"
+  ],
+  "resolucoes": [
+    "curar",
+    "prender",
+    "matar"
+  ],
+  "condicao_transmitida": "licantropia",
+  "fontes": [
+    "docs/pesquisa/folclore-corte-vertical.md#7-lobisomem-europeu"
+  ],
+  "invencoes_do_jogo": [
+    "prata e lua cheia (vieram da ficção dos séculos XIX e XX, não do folclore antigo; ficam por serem o que todo mundo 'sabe')",
+    "covil num armazém abandonado"
+  ],
+  "a_confirmar": []
+}

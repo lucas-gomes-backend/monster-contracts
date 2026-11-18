@@ -1,0 +1,158 @@
+{
+  "id": "strigoi",
+  "nome": "Strigoi",
+  "nomes_alternativos": [
+    "vampiro",
+    "strigoi mort"
+  ],
+  "origem": "romenia",
+  "bairros": [
+    "residencial_denso",
+    "centro"
+  ],
+  "familia": [
+    "morto_vivo"
+  ],
+  "natureza": "corporea",
+  "inteligencia": "astuta",
+  "disposicao": "hostil",
+  "perigo": 4,
+  "ciclo": {
+    "horario": "noite",
+    "lua": "independe"
+  },
+  "gatilhos": [
+    "morte_sem_os_ritos",
+    "cova_perturbada"
+  ],
+  "necessidade": {
+    "tipo": "sangue",
+    "frequencia": "diaria",
+    "escalada": "de parentes e conhecidos a qualquer um que durma sozinho"
+  },
+  "caca": {
+    "vitimas": [
+      "parentes",
+      "conhecidos",
+      "quem_dorme_sozinho"
+    ],
+    "metodo": "bebe o sangue aos poucos, noite apos noite",
+    "territorio_m": 1500
+  },
+  "covil": [
+    "cova_antiga"
+  ],
+  "disfarce": {
+    "tipo": "forma_humana",
+    "sinais": [
+      "palido_como_quando_morreu",
+      "so_aparece_depois_que_escurece",
+      "nao_entra_sem_convite"
+    ]
+  },
+  "hospedeiro": {
+    "idade_min": 25,
+    "idade_max": 80
+  },
+  "observavel": {
+    "forma": "homem palido com roupa antiga",
+    "tamanho": "medio",
+    "som": "nenhum",
+    "cheiro": "cheiro de terra fria"
+  },
+  "marcas": [
+    {
+      "tag": "marcas_pequenas_no_pescoco",
+      "onde": "corpo",
+      "freq": "sempre",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "vitima_mais_fraca_a_cada_noite",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "caes_uivando_e_animais_agitados",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "terra_de_cova_no_parapeito",
+      "onde": "cena",
+      "freq": "comum",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "enterro_sem_os_ritos",
+      "onde": "registro",
+      "freq": "sempre",
+      "detectar": "pesquisa",
+      "sobre": "historia"
+    },
+    {
+      "tag": "sem_reflexo_no_espelho",
+      "onde": "testemunha",
+      "freq": "rara",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "morador_que_so_aparece_a_noite",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "hospedeiro"
+    }
+  ],
+  "fraquezas": [
+    {
+      "item": "alho",
+      "efeito": [
+        "afasta"
+      ]
+    },
+    {
+      "item": "estaca",
+      "efeito": [
+        "prende",
+        "destroi"
+      ]
+    },
+    {
+      "item": "graos_ou_sementes",
+      "efeito": [
+        "distrai"
+      ]
+    },
+    {
+      "item": "espelho_ou_camera",
+      "efeito": [
+        "revela"
+      ]
+    }
+  ],
+  "tabus": [
+    "precisa parar e contar graos e sementes espalhados",
+    "enfraquece de dia"
+  ],
+  "resolucoes": [
+    "matar",
+    "prender"
+  ],
+  "condicao_transmitida": "vampirismo",
+  "fontes": [
+    "docs/pesquisa/folclore-corte-vertical.md#6-strigoi"
+  ],
+  "invencoes_do_jogo": [
+    "sem reflexo no espelho (traço literário, não do strigoi romeno)",
+    "terra de cova no parapeito como pista"
+  ],
+  "a_confirmar": [
+    "contar graos e sementes (não achado nas fontes desta pesquisa)"
+  ]
+}

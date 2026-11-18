@@ -7,8 +7,9 @@ const Gerador := preload("res://core/casos/gerador_casos.gd")
 const SEMENTES := 12
 ## Valongo é antigo/religioso: corpo-seco. O Curupira vive nas áreas verdes dos dois. Mais as coringas.
 const PERMITIDAS := {
-	"valongo": ["corpo_seco", "curupira", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"],
-	"centro": ["curupira", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"],
+	# Fase 5: Onryō (antigo/religioso), Boitatá (áreas verdes), Strigoi e demônio (centro).
+	"valongo": ["corpo_seco", "curupira", "lobisomem_br", "mula_sem_cabeca", "golpe_humano", "onryo", "boitata"],
+	"centro": ["curupira", "lobisomem_br", "mula_sem_cabeca", "golpe_humano", "boitata", "strigoi", "demonio_encruzilhada"],
 }
 
 static var _cache: Dictionary = {}
@@ -38,10 +39,15 @@ func test_especie_respeita_o_tipo_do_bairro() -> void:
 
 
 func test_o_corte_vertical_tem_as_quatro_criaturas_e_o_golpe() -> void:
+	# Com o bestiário da Fase 5 as espécies dividem os sorteios: olha mais sementes.
 	var vistas := {}
 	for id_bairro in PERMITIDAS:
 		for caso in _casos(id_bairro):
 			vistas[caso["verdade"]["especie"]] = true
+		for semente in range(SEMENTES + 1, 41):
+			var caso := Gerador.gerar(semente, id_bairro)
+			if caso.get("valido", false):
+				vistas[caso["verdade"]["especie"]] = true
 	for especie in ["corpo_seco", "curupira", "lobisomem_br", "mula_sem_cabeca", "golpe_humano"]:
 		assert_true(vistas.has(especie), "%s aparece em algum caso (vistas: %s)" % [especie, str(vistas.keys())])
 

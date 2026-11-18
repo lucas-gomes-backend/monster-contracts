@@ -1,0 +1,126 @@
+{
+  "id": "demonio_encruzilhada",
+  "nome": "Demônio da encruzilhada",
+  "nomes_alternativos": [
+    "bode preto",
+    "coisa-ruim",
+    "o cão"
+  ],
+  "origem": "europa_e_sertao",
+  "bairros": [
+    "centro",
+    "residencial_denso"
+  ],
+  "familia": [
+    "demonio"
+  ],
+  "natureza": "espiritual",
+  "inteligencia": "ardilosa",
+  "disposicao": "neutra",
+  "perigo": 5,
+  "ciclo": {
+    "horario": "meia_noite",
+    "lua": "independe"
+  },
+  "gatilhos": [
+    "pacto_vencido"
+  ],
+  "necessidade": {
+    "tipo": "cobrar_a_divida",
+    "frequencia": "semanal",
+    "escalada": "de azar e doenca na familia do devedor a levar a alma"
+  },
+  "caca": {
+    "vitimas": [
+      "quem_fez_o_pacto",
+      "a_familia_do_devedor"
+    ],
+    "metodo": "cobra a divida com azar, doenca e morte",
+    "territorio_m": 1000
+  },
+  "covil": [],
+  "disfarce": {
+    "tipo": "animal_ou_objeto",
+    "sinais": [
+      "bode_preto_na_encruzilhada",
+      "homem_bem_vestido_que_ninguem_conhece"
+    ]
+  },
+  "observavel": {
+    "forma": "bode preto enorme, de pé na encruzilhada",
+    "tamanho": "grande",
+    "som": "risada baixa",
+    "cheiro": "cheiro de enxofre"
+  },
+  "marcas": [
+    {
+      "tag": "cheiro_de_enxofre",
+      "onde": "ambiente",
+      "freq": "comum",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "pegadas_de_casco_fendido",
+      "onde": "cena",
+      "freq": "sempre",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "bode_preto_na_encruzilhada",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "vizinho_que_enriqueceu_de_repente",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "historia"
+    },
+    {
+      "tag": "contrato_assinado_com_sangue",
+      "onde": "covil",
+      "freq": "rara",
+      "detectar": "olho_nu"
+    }
+  ],
+  "fraquezas": [
+    {
+      "item": "agua_benta",
+      "efeito": [
+        "afasta"
+      ]
+    },
+    {
+      "item": "queimar_o_contrato",
+      "efeito": [
+        "bane"
+      ]
+    },
+    {
+      "item": "cruz_de_sal",
+      "efeito": [
+        "prende"
+      ]
+    }
+  ],
+  "tabus": [
+    "cumpre ao pe da letra o que esta no contrato",
+    "nao entra em igreja"
+  ],
+  "resolucoes": [
+    "banir",
+    "negociar"
+  ],
+  "condicao_transmitida": "pacto",
+  "fontes": [
+    "docs/pesquisa/folclore-corte-vertical.md#10-demonio-da-encruzilhada"
+  ],
+  "invencoes_do_jogo": [
+    "queimar o contrato bane",
+    "cruz de sal prende"
+  ],
+  "a_confirmar": []
+}

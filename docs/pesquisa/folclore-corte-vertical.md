@@ -136,6 +136,82 @@ Cada criatura tem três blocos:
 
 ---
 
+## 6. Strigoi
+
+> Fase 5 (18/11/2026), bestiário "Mix Santos": o vampiro europeu, chegado pelo porto.
+
+### O que as fontes dizem
+
+- **Exumação e estaca:** um testemunho oral da Oltênia conta que o corpo suspeito era desenterrado e, se estivesse de bruços, levava uma **estaca de teixo no coração**.
+- **Alho:** quem era suspeito de ser strigoi **evitava o alho**.
+- **Enterro:** os aldeões faziam **ritos no sepultamento** para impedir a volta. A destruição completa incluía cortar a cabeça e queimar o coração.
+- **Vivo ou morto:** no folclore é difícil separar o strigoi vivo do morto.
+
+### No jogo
+
+- **Morto-vivo com forma humana:** vive como um morador (a aparência de quando era vivo), só aparece à noite e bebe sangue aos poucos.
+- **Marcas:** furinhos no pescoço, vítima mais fraca a cada noite, cães agitados, terra de cova no parapeito, enterro sem os ritos e o morador que só aparece à noite.
+- **Testes:** grãos na porta (ele para e conta) e espelho ou câmera (sem reflexo).
+- **Transmite vampirismo.**
+- **Invenções:** o espelho é traço literário, não do strigoi romeno. **A confirmar:** contar grãos e sementes.
+
+## 7. Lobisomem europeu
+
+### O que as fontes dizem
+
+- **Elementos antigos:** o **cinto de pele de lobo** (vestir para se transformar, tirar para voltar), a maldição, o pacto com o Diabo e a **mordida**.
+- **Elementos modernos:** a **lua cheia** é rara no folclore antigo e se espalhou com a ficção do século XX. A **bala de prata** aparece no século XIX e foi fixada pelo cinema em 1941.
+
+### No jogo
+
+- **Espécie separada do lobisomem brasileiro** (docs/03): forma humana, ataca de noite, mordida funda, pegadas de lobo, uivo longo, ferimentos que saram rápido, cinto escondido.
+- **Resoluções:** curar (tirar o cinto de pele), prender (correntes) ou matar (prata). **Transmite licantropia.**
+- **Prata e lua cheia ficam** por serem o que "todo mundo sabe", anotadas como vindas da ficção.
+
+## 8. Onryō
+
+### O que as fontes dizem
+
+- **Espírito vingativo:** quando o ódio e o ressentimento ficam fortes demais, o espírito se separa do corpo e vira onryō.
+- **Oiwa** (*Tōkaidō Yotsuya Kaidan*, kabuki de 1825) é o onryō mais famoso: a assombração é **tortura psicológica**, não ataque físico.
+
+### No jogo
+
+- **Espírito ligado a uma morte injusta**, nos bairros antigos e religiosos (a comunidade japonesa de Santos).
+- **Marcas:** frio súbito, fios de cabelo preto comprido, pesadelo repetido entre os moradores, morte injusta antiga nos registros e água pingando sem vazamento.
+- **Resoluções:** apaziguar levando a prova da injustiça (docs/06) ou banir com ritual de purificação.
+- **A confirmar:** a hora do boi (cerca de 2h) como hora preferida.
+
+## 9. Boitatá
+
+### O que as fontes dizem
+
+- **Cobra de fogo** (do tupi *mbói-tatá*) que protege matas e campos e **persegue quem põe fogo**. Anchieta registrou a lenda no século XVI.
+- **Olhar fixo** para ela cega e enlouquece. Numa versão, come os olhos dos bichos.
+- Pode ter nascido do **fogo-fátuo**. Algumas versões falam em touro de fogo ou bola de fogo.
+
+### No jogo
+
+- **Entidade da natureza** que mora nas áreas verdes e é **provocada por queimada criminosa**: dá casos de culpado humano (crime "queimada" em `config/casos.json`).
+- **Marcas:** rastro de capim queimado em linha, luz de fogo rastejando, vista ofuscada e bicho morto sem os olhos.
+- **Resolução:** apaziguar (oferenda de mandioca e mel, invenção do jogo). Não é para ser morto.
+
+## 10. Demônio da encruzilhada
+
+### O que as fontes dizem
+
+- **Pacto na encruzilhada à meia-noite** (às vezes numa sexta-feira santa): o Diabo aparece como **bode preto** e oferece riqueza em troca da alma. Quem tenta enganá-lo paga caro.
+- A ideia vem em parte do **Fausto** europeu (pacto assinado com sangue). Guimarães Rosa usou o tema em *Grande Sertão: Veredas*.
+
+### No jogo
+
+- **Demônio que cobra a dívida** de um pacto vencido: azar, doença e morte na família do devedor.
+- **Marcas:** cheiro de enxofre, pegadas de casco fendido, bode preto na encruzilhada, vizinho que enriqueceu de repente e contrato assinado com sangue.
+- **Resoluções:** banir (queimar o contrato) ou negociar. **Transmite o pacto** (condição).
+- **Cuidado cultural:** no Brasil, a encruzilhada se mistura com tradições afro-brasileiras. O jogo usa **só o Diabo do pacto, da tradição cristã europeia e do sertão**, e **nunca** associa Exu, pombagira ou qualquer entidade de religião afro-brasileira a demônio.
+
+---
+
 ## Coincidências úteis para o design
 
 - **Sete e o galo:** lobisomem e mula correm "sete" lugares antes do **terceiro canto do galo**. Isso cria uma **mecânica de urgência noturna** e testes de campo (vigiar um dos sete lugares, impedir a corrida).
@@ -169,3 +245,13 @@ Cada criatura tem três blocos:
 - [Lenda do Saci-pererê — Toda Matéria](https://www.todamateria.com.br/saci-perere/)
 - [Saci-pererê — Significados](https://www.significados.com.br/saci-perere/)
 - [Saci (folklore) — Wikipedia (inglês)](https://en.wikipedia.org/wiki/Saci_(folklore))
+- [Testemunho oral sobre strigoi na Oltênia — Boletín de Literatura Oral](https://doaj.org/article/9ac1d5f0d2a449eeb950cb3481769267)
+- [Strigoi e a noite de Santo André — Argophilia](https://www.argophilia.com/news/saint-andrews-night/238287/)
+- [Werewolf — Britannica](https://www.britannica.com/art/werewolf)
+- [Werewolves: lore, legend and lycanthropy — Live Science](https://www.livescience.com/24412-werewolves.html)
+- [Onryō — Wikipedia (inglês)](https://en.wikipedia.org/wiki/Onry%C5%8D)
+- [Oiwa — Yokai.com](https://yokai.com/oiwa/)
+- [Japan's Onryō Spirits — Atlas Obscura](https://www.atlasobscura.com/articles/monster-mythology-onryo)
+- [Boitatá — InfoEscola](https://www.infoescola.com/folclore/boitata/)
+- [Boitatá — Toda Matéria](https://www.todamateria.com.br/boitata/)
+- [Bode Preto — Portal São Francisco](https://www.portalsaofrancisco.com.br/bode-preto)

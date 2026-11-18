@@ -1,0 +1,131 @@
+{
+  "id": "onryo",
+  "nome": "Onryō",
+  "nomes_alternativos": [
+    "onryo",
+    "espirito vingativo"
+  ],
+  "origem": "japao",
+  "bairros": [
+    "antigo_religioso"
+  ],
+  "familia": [
+    "espirito"
+  ],
+  "natureza": "espiritual",
+  "inteligencia": "astuta",
+  "disposicao": "ressentida",
+  "perigo": 4,
+  "ciclo": {
+    "horario": "hora_do_boi",
+    "lua": "independe"
+  },
+  "gatilhos": [
+    "morte_injusta",
+    "lugar_da_morte_perturbado"
+  ],
+  "necessidade": {
+    "tipo": "vinganca",
+    "frequencia": "semanal",
+    "escalada": "de pesadelos e sustos a ferir quem entra no seu espaco"
+  },
+  "caca": {
+    "vitimas": [
+      "responsaveis_pela_morte",
+      "quem_entra_no_lugar"
+    ],
+    "metodo": "aparece na hora do boi e tortura com medo e doenca",
+    "territorio_m": 600
+  },
+  "covil": [],
+  "disfarce": {
+    "tipo": "invisivel",
+    "sinais": [
+      "mulher_de_branco_de_cabelo_longo"
+    ]
+  },
+  "observavel": {
+    "forma": "mulher de branco, de cabelo preto comprido",
+    "tamanho": "medio",
+    "som": "choro baixo",
+    "cheiro": "cheiro de incenso"
+  },
+  "marcas": [
+    {
+      "tag": "frio_subito",
+      "onde": "ambiente",
+      "freq": "comum",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "fios_de_cabelo_preto_comprido",
+      "onde": "cena",
+      "freq": "sempre",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "pesadelo_repetido_dos_moradores",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "morte_injusta_antiga",
+      "onde": "registro",
+      "freq": "sempre",
+      "detectar": "pesquisa",
+      "sobre": "historia"
+    },
+    {
+      "tag": "agua_pingando_sem_vazamento",
+      "onde": "cena",
+      "freq": "rara",
+      "detectar": "olho_nu"
+    }
+  ],
+  "fraquezas": [
+    {
+      "item": "ofuda",
+      "efeito": [
+        "afasta"
+      ]
+    },
+    {
+      "item": "prova_da_injustica",
+      "efeito": [
+        "apazigua"
+      ]
+    },
+    {
+      "item": "ritual_de_purificacao",
+      "efeito": [
+        "bane"
+      ]
+    },
+    {
+      "item": "sal_grosso",
+      "efeito": [
+        "afasta"
+      ]
+    }
+  ],
+  "tabus": [
+    "so descansa quando a injustica e revelada"
+  ],
+  "resolucoes": [
+    "apaziguar",
+    "banir"
+  ],
+  "condicao_transmitida": null,
+  "fontes": [
+    "docs/pesquisa/folclore-corte-vertical.md#8-onryo"
+  ],
+  "invencoes_do_jogo": [
+    "agua pingando como pista",
+    "o onryo na cidade de Santos (comunidade japonesa)"
+  ],
+  "a_confirmar": [
+    "a hora do boi como hora preferida (não confirmada nas fontes desta pesquisa)"
+  ]
+}

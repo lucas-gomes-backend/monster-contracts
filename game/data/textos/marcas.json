@@ -1,47 +1,295 @@
 {
   "$comment": "Textos de cada marca (docs/05). 'pista' é a descrição FACTUAL que o caderno mostra (sem dizer de quem é). 'caracteristica' é como o bestiário descreve o que a criatura deixa. O jogador liga uma à outra.",
-  "pegadas_cao_grande": {"pista": "Pegadas de um canídeo muito grande no barro.", "caracteristica": "Deixa pegadas de cão enorme."},
-  "galinheiro_atacado": {"pista": "Galinheiro arrombado, galinhas mortas e espalhadas.", "caracteristica": "Ataca galinheiros e chiqueiros."},
-  "pelos_escuros_grossos": {"pista": "Pelos escuros e grossos presos no arame.", "caracteristica": "Solta pelos escuros e grossos, que não são de cão doméstico."},
-  "mordida_arcada_grande": {"pista": "Mordida com arcada maior que a de qualquer cão da região.", "caracteristica": "Morde com arcada enorme."},
-  "corrida_em_cemiterio": {"pista": "Contam que o bicho corria entre as covas do cemitério, como se tivesse pressa.", "caracteristica": "Corre por cemitérios e encruzilhadas durante a noite."},
-  "ataques_noite_quinta_sexta": {"pista": "Os boletins mostram ataques sempre na noite de quinta para sexta.", "caracteristica": "Age na noite de quinta para sexta."},
-  "morador_some_noite_quinta_sexta": {"pista": "Um vizinho viu um morador saindo de casa tarde da noite, na noite de quinta para sexta.", "caracteristica": "Durante o dia é um homem comum, que some na noite de quinta para sexta."},
-  "roupas_rasgadas_escondidas": {"pista": "Roupas rasgadas escondidas no mato, perto de uma casa.", "caracteristica": "Deixa as roupas rasgadas perto de onde se transforma."},
-  "redemoinho_de_folhas": {"pista": "Um redemoinho de folhas e poeira que gira sozinho, sem vento.", "caracteristica": "Anda dentro de redemoinhos de vento."},
-  "objetos_sumidos_ou_escondidos": {"pista": "Coisas da casa sumiram e apareceram em lugares estranhos.", "caracteristica": "Esconde e derruba objetos por travessura."},
-  "comida_queimada_no_fogao": {"pista": "A comida queimou no fogão sem ninguém perto.", "caracteristica": "Queima a comida no fogão por travessura."},
-  "assobio_curto_a_noite": {"pista": "Um assobio curto e agudo à noite, que some de repente.", "caracteristica": "Assobia para assustar quem anda sozinho à noite."},
-  "pegadas_invertidas": {"pista": "Pegadas com o calcanhar na frente.", "caracteristica": "Tem os pés virados para trás."},
-  "pessoas_perdidas_andando_em_circulo": {"pista": "Pessoas que se perderam e andaram em círculo a noite inteira.", "caracteristica": "Faz quem entra na mata se perder."},
-  "assobios_na_mata": {"pista": "Assobios agudos vindos da mata.", "caracteristica": "Assobia para confundir."},
-  "desmatamento_ou_caca_predatoria": {"pista": "Árvores derrubadas ou caça feita sem necessidade.", "caracteristica": "Pune quem destrói a mata ou caça por crueldade."},
-  "armadilhas_desarmadas": {"pista": "Armadilhas de caça desarmadas e vazias.", "caracteristica": "Solta os animais presos em armadilhas."},
-  "cova_revirada": {"pista": "Uma cova antiga com a terra revirada.", "caracteristica": "Sai de covas antigas."},
-  "cadaver_sem_decomposicao": {"pista": "Um corpo antigo que não se decompôs.", "caracteristica": "O corpo não apodrece: a terra o rejeita."},
-  "cheiro_de_podre": {"pista": "Cheiro forte de coisa podre no ar.", "caracteristica": "Deixa cheiro de podre por onde passa."},
-  "vulto_magro_avistado": {"pista": "Contam ter visto um vulto magro e seco.", "caracteristica": "Aparece como um vulto magro e ressecado."},
-  "historico_de_violencia_familiar": {"pista": "Registros antigos de um homem violento com a própria família.", "caracteristica": "Foi alguém que cometeu violência contra a família em vida."},
-  "marcas_de_cascos": {"pista": "Marcas de cascos no chão.", "caracteristica": "Deixa marcas de cascos."},
-  "relinchos_e_galope_noturno": {"pista": "Contam ter ouvido relinchos e galope de madrugada.", "caracteristica": "Galopa e relincha durante a noite."},
-  "rastro_por_varios_bairros": {"pista": "Ocorrências parecidas em vários bairros na mesma noite.", "caracteristica": "Atravessa vários lugares numa só noite."},
-  "mulher_some_noite_quinta_sexta": {"pista": "Um vizinho viu uma moradora saindo de casa tarde da noite, na noite de quinta para sexta.", "caracteristica": "Durante o dia é uma mulher comum, que some na noite de quinta para sexta."},
-  "relacao_secreta_com_padre": {"pista": "Comentam sobre um romance escondido com um padre.", "caracteristica": "É uma mulher amaldiçoada por um romance com um padre."},
-  "pegadas_de_sapato": {"pista": "Pegadas de sapato comum.", "caracteristica": "Deixa pegadas de sapato, como qualquer pessoa."},
-  "equipamento_de_efeito_escondido": {"pista": "Equipamento escondido: fios, caixa de som, lençóis.", "caracteristica": "Usa equipamento para encenar o sobrenatural."},
-  "relatos_de_uma_unica_fonte": {"pista": "Todos os relatos vêm da mesma pessoa.", "caracteristica": "Só uma pessoa diz ter visto alguma coisa."},
-  "beneficio_financeiro_registrado": {"pista": "Registros de que alguém ganha dinheiro com o medo do bairro.", "caracteristica": "Alguém lucra com a assombração."},
-  "contradicoes_no_relato": {"pista": "O relato muda a cada vez que é contado.", "caracteristica": "As histórias não batem entre si."},
-  "galinhas_sumidas_sem_sangue": {"pista": "Galinhas sumidas, sem sangue nem penas espalhadas.", "caracteristica": ""},
-  "pegadas_de_chinelo": {"pista": "Pegadas de chinelo perto do galinheiro.", "caracteristica": ""},
-  "toras_recem_cortadas": {"pista": "Toras de árvore recém-cortadas, escondidas no mato.", "caracteristica": ""},
-  "serragem_e_oleo_de_motosserra": {"pista": "Serragem fresca e manchas de óleo de motosserra.", "caracteristica": ""},
-  "armadilhas_com_bichos_mortos": {"pista": "Armadilhas de laço com bichos mortos e largados.", "caracteristica": ""},
-  "cartuchos_no_chao": {"pista": "Cartuchos de espingarda vazios no chão.", "caracteristica": ""},
-  "saiu_de_madrugada_com_ferramentas": {"pista": "Um vizinho viu um morador sair de madrugada carregando ferramentas.", "caracteristica": ""},
-  "saiu_de_noite_com_espingarda": {"pista": "Um vizinho viu um morador sair de noite com uma espingarda.", "caracteristica": ""},
-  "lixo_revirado": {"pista": "Sacos de lixo rasgados e revirados.", "caracteristica": ""},
-  "mordidas_pequenas_em_sacos": {"pista": "Mordidas pequenas nos sacos de lixo.", "caracteristica": ""},
-  "vidro_quebrado": {"pista": "Cacos de vidro na calçada.", "caracteristica": ""},
-  "sangue_na_calcada": {"pista": "Manchas de sangue na calçada.", "caracteristica": ""}
+  "pegadas_cao_grande": {
+    "pista": "Pegadas de um canídeo muito grande no barro.",
+    "caracteristica": "Deixa pegadas de cão enorme."
+  },
+  "galinheiro_atacado": {
+    "pista": "Galinheiro arrombado, galinhas mortas e espalhadas.",
+    "caracteristica": "Ataca galinheiros e chiqueiros."
+  },
+  "pelos_escuros_grossos": {
+    "pista": "Pelos escuros e grossos presos no arame.",
+    "caracteristica": "Solta pelos escuros e grossos, que não são de cão doméstico."
+  },
+  "mordida_arcada_grande": {
+    "pista": "Mordida com arcada maior que a de qualquer cão da região.",
+    "caracteristica": "Morde com arcada enorme."
+  },
+  "corrida_em_cemiterio": {
+    "pista": "Contam que o bicho corria entre as covas do cemitério, como se tivesse pressa.",
+    "caracteristica": "Corre por cemitérios e encruzilhadas durante a noite."
+  },
+  "ataques_noite_quinta_sexta": {
+    "pista": "Os boletins mostram ataques sempre na noite de quinta para sexta.",
+    "caracteristica": "Age na noite de quinta para sexta."
+  },
+  "morador_some_noite_quinta_sexta": {
+    "pista": "Um vizinho viu um morador saindo de casa tarde da noite, na noite de quinta para sexta.",
+    "caracteristica": "Durante o dia é um homem comum, que some na noite de quinta para sexta."
+  },
+  "roupas_rasgadas_escondidas": {
+    "pista": "Roupas rasgadas escondidas no mato, perto de uma casa.",
+    "caracteristica": "Deixa as roupas rasgadas perto de onde se transforma."
+  },
+  "redemoinho_de_folhas": {
+    "pista": "Um redemoinho de folhas e poeira que gira sozinho, sem vento.",
+    "caracteristica": "Anda dentro de redemoinhos de vento."
+  },
+  "objetos_sumidos_ou_escondidos": {
+    "pista": "Coisas da casa sumiram e apareceram em lugares estranhos.",
+    "caracteristica": "Esconde e derruba objetos por travessura."
+  },
+  "comida_queimada_no_fogao": {
+    "pista": "A comida queimou no fogão sem ninguém perto.",
+    "caracteristica": "Queima a comida no fogão por travessura."
+  },
+  "assobio_curto_a_noite": {
+    "pista": "Um assobio curto e agudo à noite, que some de repente.",
+    "caracteristica": "Assobia para assustar quem anda sozinho à noite."
+  },
+  "pegadas_invertidas": {
+    "pista": "Pegadas com o calcanhar na frente.",
+    "caracteristica": "Tem os pés virados para trás."
+  },
+  "pessoas_perdidas_andando_em_circulo": {
+    "pista": "Pessoas que se perderam e andaram em círculo a noite inteira.",
+    "caracteristica": "Faz quem entra na mata se perder."
+  },
+  "assobios_na_mata": {
+    "pista": "Assobios agudos vindos da mata.",
+    "caracteristica": "Assobia para confundir."
+  },
+  "desmatamento_ou_caca_predatoria": {
+    "pista": "Árvores derrubadas ou caça feita sem necessidade.",
+    "caracteristica": "Pune quem destrói a mata ou caça por crueldade."
+  },
+  "armadilhas_desarmadas": {
+    "pista": "Armadilhas de caça desarmadas e vazias.",
+    "caracteristica": "Solta os animais presos em armadilhas."
+  },
+  "cova_revirada": {
+    "pista": "Uma cova antiga com a terra revirada.",
+    "caracteristica": "Sai de covas antigas."
+  },
+  "cadaver_sem_decomposicao": {
+    "pista": "Um corpo antigo que não se decompôs.",
+    "caracteristica": "O corpo não apodrece: a terra o rejeita."
+  },
+  "cheiro_de_podre": {
+    "pista": "Cheiro forte de coisa podre no ar.",
+    "caracteristica": "Deixa cheiro de podre por onde passa."
+  },
+  "vulto_magro_avistado": {
+    "pista": "Contam ter visto um vulto magro e seco.",
+    "caracteristica": "Aparece como um vulto magro e ressecado."
+  },
+  "historico_de_violencia_familiar": {
+    "pista": "Registros antigos de um homem violento com a própria família.",
+    "caracteristica": "Foi alguém que cometeu violência contra a família em vida."
+  },
+  "marcas_de_cascos": {
+    "pista": "Marcas de cascos no chão.",
+    "caracteristica": "Deixa marcas de cascos."
+  },
+  "relinchos_e_galope_noturno": {
+    "pista": "Contam ter ouvido relinchos e galope de madrugada.",
+    "caracteristica": "Galopa e relincha durante a noite."
+  },
+  "rastro_por_varios_bairros": {
+    "pista": "Ocorrências parecidas em vários bairros na mesma noite.",
+    "caracteristica": "Atravessa vários lugares numa só noite."
+  },
+  "mulher_some_noite_quinta_sexta": {
+    "pista": "Um vizinho viu uma moradora saindo de casa tarde da noite, na noite de quinta para sexta.",
+    "caracteristica": "Durante o dia é uma mulher comum, que some na noite de quinta para sexta."
+  },
+  "relacao_secreta_com_padre": {
+    "pista": "Comentam sobre um romance escondido com um padre.",
+    "caracteristica": "É uma mulher amaldiçoada por um romance com um padre."
+  },
+  "pegadas_de_sapato": {
+    "pista": "Pegadas de sapato comum.",
+    "caracteristica": "Deixa pegadas de sapato, como qualquer pessoa."
+  },
+  "equipamento_de_efeito_escondido": {
+    "pista": "Equipamento escondido: fios, caixa de som, lençóis.",
+    "caracteristica": "Usa equipamento para encenar o sobrenatural."
+  },
+  "relatos_de_uma_unica_fonte": {
+    "pista": "Todos os relatos vêm da mesma pessoa.",
+    "caracteristica": "Só uma pessoa diz ter visto alguma coisa."
+  },
+  "beneficio_financeiro_registrado": {
+    "pista": "Registros de que alguém ganha dinheiro com o medo do bairro.",
+    "caracteristica": "Alguém lucra com a assombração."
+  },
+  "contradicoes_no_relato": {
+    "pista": "O relato muda a cada vez que é contado.",
+    "caracteristica": "As histórias não batem entre si."
+  },
+  "galinhas_sumidas_sem_sangue": {
+    "pista": "Galinhas sumidas, sem sangue nem penas espalhadas.",
+    "caracteristica": ""
+  },
+  "pegadas_de_chinelo": {
+    "pista": "Pegadas de chinelo perto do galinheiro.",
+    "caracteristica": ""
+  },
+  "toras_recem_cortadas": {
+    "pista": "Toras de árvore recém-cortadas, escondidas no mato.",
+    "caracteristica": ""
+  },
+  "serragem_e_oleo_de_motosserra": {
+    "pista": "Serragem fresca e manchas de óleo de motosserra.",
+    "caracteristica": ""
+  },
+  "armadilhas_com_bichos_mortos": {
+    "pista": "Armadilhas de laço com bichos mortos e largados.",
+    "caracteristica": ""
+  },
+  "cartuchos_no_chao": {
+    "pista": "Cartuchos de espingarda vazios no chão.",
+    "caracteristica": ""
+  },
+  "saiu_de_madrugada_com_ferramentas": {
+    "pista": "Um vizinho viu um morador sair de madrugada carregando ferramentas.",
+    "caracteristica": ""
+  },
+  "saiu_de_noite_com_espingarda": {
+    "pista": "Um vizinho viu um morador sair de noite com uma espingarda.",
+    "caracteristica": ""
+  },
+  "lixo_revirado": {
+    "pista": "Sacos de lixo rasgados e revirados.",
+    "caracteristica": ""
+  },
+  "mordidas_pequenas_em_sacos": {
+    "pista": "Mordidas pequenas nos sacos de lixo.",
+    "caracteristica": ""
+  },
+  "vidro_quebrado": {
+    "pista": "Cacos de vidro na calçada.",
+    "caracteristica": ""
+  },
+  "sangue_na_calcada": {
+    "pista": "Manchas de sangue na calçada.",
+    "caracteristica": ""
+  },
+  "marcas_pequenas_no_pescoco": {
+    "pista": "Dois furinhos no pescoço da vítima.",
+    "caracteristica": "Bebe sangue por mordidas pequenas no pescoço."
+  },
+  "vitima_mais_fraca_a_cada_noite": {
+    "pista": "A pessoa atacada fica mais fraca a cada noite.",
+    "caracteristica": "Volta à mesma vítima noite após noite."
+  },
+  "caes_uivando_e_animais_agitados": {
+    "pista": "Os cachorros uivam e os bichos ficam agitados de madrugada.",
+    "caracteristica": "Os animais pressentem quando ele passa."
+  },
+  "terra_de_cova_no_parapeito": {
+    "pista": "Terra úmida de cemitério no parapeito da janela.",
+    "caracteristica": "Traz a terra da própria cova."
+  },
+  "enterro_sem_os_ritos": {
+    "pista": "Um morto do bairro foi enterrado às pressas, sem os ritos.",
+    "caracteristica": "Volta quem foi enterrado sem os ritos certos."
+  },
+  "sem_reflexo_no_espelho": {
+    "pista": "Alguém jura que viu um vulto que não aparecia no espelho.",
+    "caracteristica": "Não tem reflexo em espelho."
+  },
+  "pegadas_de_lobo": {
+    "pista": "Pegadas de lobo, maiores que as de qualquer cachorro.",
+    "caracteristica": "Deixa pegadas de lobo enorme."
+  },
+  "mordida_funda_e_rasgada": {
+    "pista": "Uma mordida funda e rasgada, de bicho grande.",
+    "caracteristica": "Morde fundo e arrasta a presa."
+  },
+  "uivo_longo_na_noite": {
+    "pista": "Um uivo longo, de lobo, no meio da noite.",
+    "caracteristica": "Uiva antes de caçar."
+  },
+  "morador_com_ferimentos_que_saram_rapido": {
+    "pista": "Um vizinho vive machucado, mas sara rápido demais.",
+    "caracteristica": "De dia é gente; os ferimentos da noite saram rápido."
+  },
+  "cinto_de_pele_de_lobo_escondido": {
+    "pista": "Um cinto feito de pele de lobo escondido num canto.",
+    "caracteristica": "Se transforma vestindo um cinto de pele de lobo."
+  },
+  "frio_subito": {
+    "pista": "O ar fica gelado de repente, num lugar fechado.",
+    "caracteristica": "Esfria o lugar onde aparece."
+  },
+  "fios_de_cabelo_preto_comprido": {
+    "pista": "Fios de cabelo preto muito comprido onde não devia ter.",
+    "caracteristica": "Deixa cabelo preto comprido por onde passa."
+  },
+  "pesadelo_repetido_dos_moradores": {
+    "pista": "Vários moradores sonham o mesmo pesadelo.",
+    "caracteristica": "Atormenta os vivos com o mesmo pesadelo."
+  },
+  "morte_injusta_antiga": {
+    "pista": "Uma morte antiga no bairro, mal explicada e nunca punida.",
+    "caracteristica": "Nasce de uma morte injusta."
+  },
+  "agua_pingando_sem_vazamento": {
+    "pista": "Água pingando do teto, sem nenhum vazamento.",
+    "caracteristica": "Onde aparece, pinga água."
+  },
+  "rastro_de_capim_queimado_em_linha": {
+    "pista": "Uma trilha de capim queimado, fina e sinuosa como uma cobra.",
+    "caracteristica": "Rasteja deixando um rastro queimado."
+  },
+  "luz_de_fogo_rastejando": {
+    "pista": "Uma luz de fogo que rastejava pelo mato à noite.",
+    "caracteristica": "Aparece como fogo que rasteja."
+  },
+  "vista_ofuscada_depois_da_luz": {
+    "pista": "Quem viu a luz ficou com a vista turva por horas.",
+    "caracteristica": "Olhar para ele ofusca e pode cegar."
+  },
+  "bicho_morto_sem_os_olhos": {
+    "pista": "Um bicho morto no mato, sem os olhos.",
+    "caracteristica": "Come os olhos dos bichos."
+  },
+  "cheiro_de_enxofre": {
+    "pista": "Um cheiro forte de enxofre no ar.",
+    "caracteristica": "Deixa cheiro de enxofre."
+  },
+  "pegadas_de_casco_fendido": {
+    "pista": "Pegadas de casco fendido, de bode, onde não há bicho.",
+    "caracteristica": "Anda com cascos de bode."
+  },
+  "bode_preto_na_encruzilhada": {
+    "pista": "Um bode preto parado na encruzilhada à meia-noite.",
+    "caracteristica": "Aparece como bode preto na encruzilhada."
+  },
+  "vizinho_que_enriqueceu_de_repente": {
+    "pista": "Um vizinho enriqueceu de repente, sem explicação.",
+    "caracteristica": "Dá riqueza em troca da alma."
+  },
+  "contrato_assinado_com_sangue": {
+    "pista": "Um papel velho assinado com sangue.",
+    "caracteristica": "Faz pactos assinados com sangue."
+  },
+  "mato_queimado_com_cheiro_de_gasolina": {
+    "pista": "Mato queimado com cheiro de gasolina.",
+    "caracteristica": ""
+  },
+  "galao_de_gasolina_largado": {
+    "pista": "Um galão de gasolina largado perto do mato.",
+    "caracteristica": ""
+  },
+  "saiu_de_noite_com_um_galao": {
+    "pista": "Um vizinho viu um morador sair de noite carregando um galão.",
+    "caracteristica": ""
+  },
+  "morador_que_so_aparece_a_noite": {
+    "pista": "Um morador que ninguém vê de dia: só sai depois que escurece.",
+    "caracteristica": "Vive como gente, mas só aparece de noite."
+  }
 }

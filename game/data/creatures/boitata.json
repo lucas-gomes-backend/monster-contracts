@@ -1,0 +1,115 @@
+{
+  "id": "boitata",
+  "nome": "Boitatá",
+  "nomes_alternativos": [
+    "mboitata",
+    "cobra de fogo"
+  ],
+  "origem": "brasil_tupi",
+  "bairros": [
+    "mata"
+  ],
+  "familia": [
+    "natureza",
+    "besta"
+  ],
+  "natureza": "hibrida",
+  "inteligencia": "instintiva",
+  "disposicao": "protetora",
+  "perigo": 3,
+  "ciclo": {
+    "horario": "noite",
+    "lua": "independe"
+  },
+  "gatilhos": [
+    "queimada_criminosa"
+  ],
+  "necessidade": {
+    "tipo": "proteger_o_mato_do_fogo",
+    "frequencia": "quando_provocada",
+    "escalada": "de assustar a cegar quem pos fogo"
+  },
+  "caca": {
+    "vitimas": [
+      "quem_pos_fogo_no_mato"
+    ],
+    "metodo": "persegue como uma cobra de fogo e ofusca a vista",
+    "territorio_m": 1500
+  },
+  "covil": [
+    "area_verde"
+  ],
+  "disfarce": {
+    "tipo": "animal_ou_objeto",
+    "sinais": [
+      "luz_azulada_no_mato"
+    ]
+  },
+  "observavel": {
+    "forma": "cobra de fogo rastejando no mato",
+    "tamanho": "enorme",
+    "som": "estalo de brasa",
+    "cheiro": "cheiro de capim queimado"
+  },
+  "marcas": [
+    {
+      "tag": "rastro_de_capim_queimado_em_linha",
+      "onde": "cena",
+      "freq": "sempre",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "luz_de_fogo_rastejando",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "vista_ofuscada_depois_da_luz",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "bicho_morto_sem_os_olhos",
+      "onde": "cena",
+      "freq": "rara",
+      "detectar": "olho_nu"
+    }
+  ],
+  "fraquezas": [
+    {
+      "item": "agua_de_mina",
+      "efeito": [
+        "afasta"
+      ]
+    },
+    {
+      "item": "oferenda_de_mandioca_e_mel",
+      "efeito": [
+        "apazigua"
+      ]
+    }
+  ],
+  "tabus": [
+    "nao ataca quem nao fez mal ao mato",
+    "olhar fixo para ele cega"
+  ],
+  "resolucoes": [
+    "apaziguar"
+  ],
+  "condicao_transmitida": null,
+  "fontes": [
+    "docs/pesquisa/folclore-corte-vertical.md#9-boitata"
+  ],
+  "invencoes_do_jogo": [
+    "oferenda de mandioca e mel",
+    "agua de mina que afasta",
+    "cegar quem olha vira o medo do caçador no confronto"
+  ],
+  "a_confirmar": [
+    "formas de touro de fogo ou bola de fogo em outras versões"
+  ]
+}

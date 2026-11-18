@@ -171,8 +171,8 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
   5. Área continental.
 - [ ] Definir bairros **principais** (com marcos próprios) e **secundários** (só kit da zona).
 - [ ] Kits de módulos por zona.
-- [ ] Bestiário: criaturas típicas de cada tipo de bairro e as coringas, cobrindo as 8 famílias ([03](03-sistema-de-criaturas.md)).
-- [ ] Variantes culturais (lobisomem brasileiro e europeu).
+- [ ] Bestiário: criaturas típicas de cada tipo de bairro e as coringas, cobrindo as 8 famílias ([03](03-sistema-de-criaturas.md)). *Em andamento:* 11 espécies, com as 8 famílias cobertas (Saci, Strigoi, Lobisomem europeu, Onryō, Boitatá e demônio da encruzilhada entraram na Fase 5).
+- [x] Variantes culturais (lobisomem brasileiro e europeu): espécies separadas, com regras próprias.
 - [x] Estruturas de caso restantes: cliente mentiroso (o cliente é o culpado humano; no fim, expor ou calar) e criatura errada (o Saci leva a culpa só na fofoca).
 - [ ] Condições **Vampirismo** e **Licantropia**, com estigma básico ([12](12-habilidades-e-condicoes.md)).
 - [ ] Mais rituais, armas e roupas.
