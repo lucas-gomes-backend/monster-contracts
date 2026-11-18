@@ -170,7 +170,11 @@ $mutants += @(
     @{ name = 'acordo sem agradar antes'; path = 'game/core/confronto/negociacao.gd';
        find = '		if satisfacao >= int(_cfg["satisfacao_para_acordo"]):'; replace = '		if true:' },
     @{ name = 'furioso aceita a oferenda'; path = 'game/presentation/cidade/bairro_cena.gd';
-       find = 'criatura.estado.agressividade > int(_cfg_negociacao["apaziguar_ate_agressividade"])'; replace = 'false' }
+       find = 'criatura.estado.agressividade > int(_cfg_negociacao["apaziguar_ate_agressividade"])'; replace = 'false' },
+    @{ name = 'itens se sobrepõem na grade'; path = 'game/core/inventario/grade.gd';
+       find = '		if x < e["x"] + e["w"] and e["x"] < x + w and y < e["y"] + e["h"] and e["y"] < y + h:'; replace = '		if false:' },
+    @{ name = 'recarga não gasta munição'; path = 'game/presentation/cidade/bairro_cena.gd';
+       find = '	mochila.retirar(item, vai)'; replace = '	pass' }
 )
 
 if ($Somente.Count -gt 0) {

@@ -133,6 +133,21 @@ static func carregar_config_armas() -> Dictionary:
 	return carregar_validado("res://data/config/armas.json", "res://data/schemas/armas.schema.json")
 
 
+## Itens de inventário, validados: {"dados": {id: definição}, "erros"}.
+static func carregar_itens() -> Dictionary:
+	var r := carregar_validado("res://data/items/itens.json", "res://data/schemas/itens.schema.json")
+	var por_id := {}
+	if r["dados"] is Dictionary:
+		for item in r["dados"]["itens"]:
+			por_id[item["id"]] = item
+	return {"dados": por_id, "erros": r["erros"]}
+
+
+## Mochila e porta-malas (docs/08), validados.
+static func carregar_config_inventario() -> Dictionary:
+	return carregar_validado("res://data/config/inventario.json", "res://data/schemas/inventario.schema.json")
+
+
 ## Negociação e apaziguamento (docs/06), validados.
 static func carregar_config_negociacao() -> Dictionary:
 	return carregar_validado("res://data/config/negociacao.json", "res://data/schemas/negociacao.schema.json")

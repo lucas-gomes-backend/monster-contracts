@@ -48,6 +48,9 @@ const EstadoCriatura := preload("res://core/confronto/estado_criatura.gd")
 const Negociacao := preload("res://core/confronto/negociacao.gd")
 const ConversaTela := preload("res://presentation/cidade/conversa_tela.gd")
 const TECLAS_DE_OPCAO := [KEY_1, KEY_2, KEY_3, KEY_4, KEY_5]
+const Grade := preload("res://core/inventario/grade.gd")
+const Blocos := preload("res://presentation/greybox/blocos.gd")
+const MochilaTela := preload("res://presentation/cidade/mochila_tela.gd")
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
 	"destroi": "Destruída.", "cura": "Curada: a maldição se quebrou.", "bane": "Banida.", "apazigua": "Apaziguada: foi embora em paz.",
@@ -122,6 +125,18 @@ var gatilho_do_caso: String = ""
 var acordos: Array = []
 var conversa_tela: Control
 var _cfg_negociacao: Dictionary
+## Mochila e porta-malas (grades do núcleo), o carro parado, a tela e o que está na mão.
+var itens: Dictionary = {}
+var mochila: RefCounted
+var porta_malas: RefCounted
+var carro: Node3D
+var mochila_tela: Control
+var cursor := Vector2i.ZERO
+var na_mao: Dictionary = {}
+var _no_porta_malas := false
+var _abrindo_mochila := 0.0
+var _cfg_inventario: Dictionary
+var _g_quebra: RandomNumberGenerator
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
@@ -153,6 +168,9 @@ func _ready() -> void:
 			cacador.bloqueado = true
 		elif argumento.begins_with("--criatura="):
 			trazer_criatura(argumento.trim_prefix("--criatura="))
+		elif argumento == "--mochila":
+			abrir_mochila()
+			_mochila_aberta()
 		elif argumento == "--lanterna":
 			cacador.alternar_lanterna()
 		elif argumento.begins_with("--inclinar="):
@@ -192,6 +210,15 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	_cfg_rituais = Catalogo.carregar_config_rituais()["dados"]
 	rituais = _cfg_rituais["rituais"]
 	_cfg_negociacao = Catalogo.carregar_config_negociacao()["dados"]
+	itens = Catalogo.carregar_itens()["dados"]
+	_cfg_inventario = Catalogo.carregar_config_inventario()["dados"]
+	mochila = Grade.new(int(_cfg_inventario["mochila"]["largura"]), int(_cfg_inventario["mochila"]["altura"]), itens)
+	porta_malas = Grade.new(int(_cfg_inventario["porta_malas"]["largura"]), int(_cfg_inventario["porta_malas"]["altura"]), itens)
+	for c in _cfg_inventario["mochila_inicial"]:
+		mochila.adicionar(c["item"], int(c["quantidade"]))
+	for c in _cfg_inventario["porta_malas_inicial"]:
+		porta_malas.adicionar(c["item"], int(c["quantidade"]))
+	_g_quebra = Rng.new(semente).stream("frageis")
 	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -232,6 +259,7 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	entrar_em(id_bairro)
 	cacador.position = bairro.chegada()
 	cacador.virar_para(bairro.giro_chegada)
+	_estacionar_carro()
 
 
 ## O bairro vira o atual: linha da borda, galerias e bueiros nele; vizinhos carregados.
@@ -352,7 +380,7 @@ func _montar_interface() -> void:
 	camada.layer = 11
 	add_child(camada)
 	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma · Q bolsos · T ritual · N conversar"
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
 	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)
@@ -420,6 +448,12 @@ func _montar_interface() -> void:
 	conversa_tela.size = Vector2(500, 150)
 	conversa_tela.visible = false
 	camada.add_child(conversa_tela)
+	mochila_tela = MochilaTela.new()
+	mochila_tela.cena = self
+	mochila_tela.position = Vector2(110, 70)
+	mochila_tela.size = Vector2(420, 250)
+	mochila_tela.visible = false
+	camada.add_child(mochila_tela)
 
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
@@ -479,8 +513,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 	elif evento.is_action_pressed("atirar") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and not menu.visible:
 		atirar()
 	elif evento.is_action_pressed("recarregar"):
-		if arsenal.recarregar():
-			_avisar("Recarregando...")
+		recarregar_da_mochila()
 	elif evento.is_action_pressed("arma_1") or evento.is_action_pressed("arma_2") or evento.is_action_pressed("arma_3"):
 		for i in 3:
 			if evento.is_action_pressed("arma_%d" % (i + 1)) and i < arsenal.ordem.size():
@@ -497,6 +530,13 @@ func _input(evento: InputEvent) -> void:
 		return
 	if conversa_tela.visible:
 		_input_da_conversa(evento)
+		return
+	if mochila_tela.visible:
+		_input_da_mochila(evento)
+		return
+	if evento.is_action_pressed("mochila") and _abrindo_mochila <= 0.0:
+		abrir_mochila()
+		get_viewport().set_input_as_handled()
 		return
 	if evento.is_action_pressed("conversar"):
 		conversar()
@@ -547,6 +587,150 @@ func _input_da_conversa(evento: InputEvent) -> void:
 	else:
 		return
 	get_viewport().set_input_as_handled()
+
+
+func _input_da_mochila(evento: InputEvent) -> void:
+	if evento.is_action_pressed("mochila") or evento.is_action_pressed("soltar_mouse"):
+		fechar_mochila()
+	elif evento.is_action_pressed("mover_frente", true):
+		mover_cursor(Vector2i(0, -1))
+	elif evento.is_action_pressed("mover_tras", true):
+		mover_cursor(Vector2i(0, 1))
+	elif evento.is_action_pressed("mover_esquerda", true):
+		mover_cursor(Vector2i(-1, 0))
+	elif evento.is_action_pressed("mover_direita", true):
+		mover_cursor(Vector2i(1, 0))
+	elif evento.is_action_pressed("acao_do_ritual"):
+		pegar_ou_soltar()
+	elif evento.is_action_pressed("recarregar"):
+		girar_na_mao()
+	elif evento.is_action_pressed("caderno"):
+		trocar_grade()
+	elif evento is InputEventKey and evento.pressed and evento.physical_keycode == KEY_B:
+		por_no_bolso()
+	else:
+		return
+	get_viewport().set_input_as_handled()
+
+
+## I: abrir a mochila leva tempo; o caçador fica parado (perigoso no confronto).
+func abrir_mochila() -> void:
+	_abrindo_mochila = float(_cfg_inventario["abrir_mochila_segundos"])
+	cacador.bloqueado = true
+	_avisar("Abrindo a mochila...")
+	if _abrindo_mochila <= 0.0:
+		_mochila_aberta()
+
+
+func _mochila_aberta() -> void:
+	_abrindo_mochila = 0.0
+	_tempo_do_nome = 0.0
+	nome_do_lugar.text = ""
+	_no_porta_malas = false
+	cursor = Vector2i.ZERO
+	mochila_tela.visible = true
+
+
+func fechar_mochila() -> void:
+	if not na_mao.is_empty():
+		grade_aberta().adicionar(na_mao["item"], int(na_mao["quantidade"]))
+		na_mao = {}
+	mochila_tela.visible = false
+	_abrindo_mochila = 0.0
+	if not ferimentos.morto:
+		cacador.bloqueado = false
+
+
+func grade_aberta() -> RefCounted:
+	return porta_malas if _no_porta_malas and perto_do_carro() else mochila
+
+
+func perto_do_carro() -> bool:
+	return carro != null and zona == "rua" and Vector2(carro.position.x, carro.position.z).distance_to(Vector2(cacador.position.x, cacador.position.z)) <= float(_cfg_inventario["alcance_do_porta_malas"])
+
+
+func trocar_grade() -> void:
+	if perto_do_carro():
+		_no_porta_malas = not _no_porta_malas
+		cursor = Vector2i.ZERO
+
+
+func mover_cursor(d: Vector2i) -> void:
+	var g: RefCounted = grade_aberta()
+	cursor = Vector2i(clampi(cursor.x + d.x, 0, g.largura - 1), clampi(cursor.y + d.y, 0, g.altura - 1))
+
+
+## Espaço: pega o item do cursor, ou solta o da mão ali (pode ser na outra grade).
+func pegar_ou_soltar() -> void:
+	var g: RefCounted = grade_aberta()
+	if na_mao.is_empty():
+		var e: Dictionary = g.em(cursor.x, cursor.y)
+		if not e.is_empty():
+			na_mao = g.tirar_entrada(e["n"])
+		return
+	var girado: bool = int(na_mao["w"]) != int(itens[na_mao["item"]]["formato"][0])
+	if g.colocar(na_mao["item"], cursor.x, cursor.y, girado, int(na_mao["quantidade"])) > 0:
+		na_mao = {}
+	else:
+		# Mesmo item embaixo: empilha o que couber.
+		var e: Dictionary = g.em(cursor.x, cursor.y)
+		if not e.is_empty() and e["item"] == na_mao["item"]:
+			var cabe: int = mini(int(itens[e["item"]]["pilha"]) - int(e["quantidade"]), int(na_mao["quantidade"]))
+			e["quantidade"] = int(e["quantidade"]) + cabe
+			na_mao["quantidade"] = int(na_mao["quantidade"]) - cabe
+			if int(na_mao["quantidade"]) <= 0:
+				na_mao = {}
+
+
+func girar_na_mao() -> void:
+	if not na_mao.is_empty():
+		var w: int = na_mao["w"]
+		na_mao["w"] = na_mao["h"]
+		na_mao["h"] = w
+
+
+## B: passa uma unidade do item do cursor para o bolso do mesmo item (menu radial).
+func por_no_bolso() -> bool:
+	var e: Dictionary = grade_aberta().em(cursor.x, cursor.y)
+	if e.is_empty():
+		return false
+	for b in bolsos.itens:
+		if b["item"] == e["item"]:
+			grade_aberta().retirar(e["item"], 1)
+			b["quantidade"] = int(b["quantidade"]) + 1
+			_avisar("%s no bolso (%d)." % [b["nome"], int(b["quantidade"])])
+			return true
+	_avisar("Não tem bolso para isso.")
+	return false
+
+
+## R fora da mochila: recarrega com a munição da mochila.
+func recarregar_da_mochila() -> bool:
+	var item: String = _cfg_inventario["municao_das_armas"].get(arsenal.equipada, "")
+	if item.is_empty():
+		return false
+	var tem: int = mochila.quantidade(item)
+	if tem <= 0:
+		_avisar("Sem %s na mochila." % str(itens[item]["nome"]).to_lower())
+		return false
+	var vai: int = mini(tem, arsenal.faltam())
+	if not arsenal.recarregar(vai):
+		return false
+	mochila.retirar(item, vai)
+	_avisar("Recarregando...")
+	return true
+
+
+## O carro parado do caçador (o porta-malas abre perto dele).
+func _estacionar_carro() -> void:
+	carro = Node3D.new()
+	carro.name = "Carro"
+	add_child(carro)
+	var lado := Vector3(cos(cacador.yaw), 0.0, -sin(cacador.yaw))
+	carro.position = Vector3(cacador.position.x, 0.0, cacador.position.z) + lado * 2.6
+	carro.rotation.y = cacador.yaw
+	Blocos.bloco(carro, Vector3(1.8, 1.0, 4.2), Vector3(0, 0.6, 0), Color(0.42, 0.12, 0.1), 1.0)
+	Blocos.bloco(carro, Vector3(1.6, 0.6, 2.0), Vector3(0, 1.4, 0.2), Color(0.3, 0.32, 0.35), 1.0, false)
 
 
 ## N: começa a conversa, se a criatura negocia e está perto.
@@ -797,7 +981,12 @@ func passar_tempo(segundos: float) -> void:
 func _corpo_e_medo(segundos: float) -> void:
 	ferimentos.passar(segundos)
 	var m: Dictionary = ferimentos.modificadores()
-	cacador.modificadores = m
+	var peso: Dictionary = Grade.efeito_do_peso(mochila.peso_g(), _cfg_inventario["peso"])
+	cacador.modificadores = {"velocidade": float(m["velocidade"]) * float(peso["velocidade"]), "folego": float(m["folego"]) * float(peso["folego"])}
+	if _abrindo_mochila > 0.0:
+		_abrindo_mochila -= segundos
+		if _abrindo_mochila <= 0.0:
+			_mochila_aberta()
 	arsenal.passar(segundos, float(m["mira"]))
 	if ritual != null and (ritual.passo_atual().get("tipo", "") == "apertar" or segurando):
 		tempo_do_passo += segundos
@@ -811,6 +1000,10 @@ func _corpo_e_medo(segundos: float) -> void:
 		distancia = Vector2(criatura.position.x, criatura.position.z).distance_to(aqui)
 		if not golpe.is_empty() and not ferimentos.morto:
 			ferimentos.receber(golpe["parte"], golpe["gravidade"])
+			if golpe["gravidade"] == "grave":
+				var quebrados: Array[String] = mochila.quebrar_frageis(float(_cfg_inventario["chance_de_quebrar_fragil"]), _g_quebra)
+				if not quebrados.is_empty():
+					_avisar("Quebrou na mochila: %s." % ", ".join(quebrados.map(func(i): return itens[i]["nome"])))
 			if ritual != null:
 				ritual.interromper()
 				tempo_do_passo = 0.0

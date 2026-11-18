@@ -1,0 +1,26 @@
+{
+  "$comment": "Itens de inventário (game/data/items/itens.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["itens"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "itens": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nome", "formato", "peso_g", "pilha", "fragil"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "nome": {"type": "string", "minLength": 1},
+          "formato": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 6}, "minItems": 2, "maxItems": 2},
+          "peso_g": {"type": "integer", "minimum": 0},
+          "pilha": {"type": "integer", "minimum": 1},
+          "fragil": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$comment": "Mochila e porta-malas (game/data/config/inventario.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["mochila", "porta_malas", "abrir_mochila_segundos", "alcance_do_porta_malas", "peso", "chance_de_quebrar_fragil", "municao_das_armas", "mochila_inicial", "porta_malas_inicial"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "mochila": {"$ref": "#/$defs/grade"},
+    "porta_malas": {"$ref": "#/$defs/grade"},
+    "abrir_mochila_segundos": {"type": "number", "minimum": 0},
+    "alcance_do_porta_malas": {"type": "number", "minimum": 0},
+    "peso": {
+      "type": "object", "additionalProperties": false,
+      "required": ["leve_ate_g", "pesado_a_partir_g", "velocidade_no_pesado", "folego_no_pesado"],
+      "properties": {
+        "leve_ate_g": {"type": "integer", "minimum": 0},
+        "pesado_a_partir_g": {"type": "integer", "minimum": 0},
+        "velocidade_no_pesado": {"type": "number", "minimum": 0, "maximum": 1},
+        "folego_no_pesado": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "chance_de_quebrar_fragil": {"type": "number", "minimum": 0, "maximum": 1},
+    "municao_das_armas": {"$comment": "arma -> item de munição", "type": "object"},
+    "mochila_inicial": {"$ref": "#/$defs/conteudo"},
+    "porta_malas_inicial": {"$ref": "#/$defs/conteudo"}
+  },
+  "$defs": {
+    "grade": {
+      "type": "object", "additionalProperties": false, "required": ["largura", "altura"],
+      "properties": {"largura": {"type": "integer", "minimum": 1, "maximum": 20}, "altura": {"type": "integer", "minimum": 1, "maximum": 20}}
+    },
+    "conteudo": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["item", "quantidade"],
+        "properties": {"item": {"type": "string", "pattern": "^[a-z0-9_]+$"}, "quantidade": {"type": "integer", "minimum": 1}}
+      }
+    }
+  }
+}

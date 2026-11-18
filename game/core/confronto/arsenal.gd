@@ -9,6 +9,8 @@ var ordem: Array[String] = []
 var municao: Dictionary = {}  # id -> tiros na arma
 var equipada: String = ""
 var recarregando: float = 0.0
+## Quantos tiros entram quando a recarga terminar.
+var _entra := 0
 var _cfg: Dictionary
 var _g: RandomNumberGenerator
 
@@ -39,10 +41,17 @@ func sem_municao() -> bool:
 	return int(arma()["capacidade"]) > 0 and int(municao[equipada]) <= 0
 
 
-func recarregar() -> bool:
+## Quantos tiros faltam para encher a arma equipada.
+func faltam() -> int:
+	return maxi(0, int(arma()["capacidade"]) - int(municao[equipada]))
+
+
+## Começa a recarregar com até "disponivel" tiros (-1 = munição à vontade). Devolve se começou.
+func recarregar(disponivel: int = -1) -> bool:
 	var a := arma()
-	if int(a["capacidade"]) == 0 or recarregando > 0.0 or int(municao[equipada]) >= int(a["capacidade"]):
+	if int(a["capacidade"]) == 0 or recarregando > 0.0 or faltam() == 0 or disponivel == 0:
 		return false
+	_entra = faltam() if disponivel < 0 else mini(disponivel, faltam())
 	recarregando = float(a["recarga"])
 	return true
 
@@ -54,7 +63,8 @@ func passar(segundos: float, lentidao: float = 1.0) -> void:
 	recarregando -= segundos / maxf(lentidao, 0.01)
 	if recarregando <= 0.0:
 		recarregando = 0.0
-		municao[equipada] = int(arma()["capacidade"])
+		municao[equipada] = int(municao[equipada]) + _entra
+		_entra = 0
 
 
 ## Dispara (ou golpeia) na direção da mira. "para_o_alvo" é o vetor do caçador até a

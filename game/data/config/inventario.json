@@ -1,0 +1,28 @@
+{
+  "$comment": "Mochila e porta-malas (docs/08, 'Mochila e inventário'). Grades em casas; peso em gramas. Mochila pesada deixa mais lento e cansa mais. Abrir a mochila leva tempo e o caçador fica parado. O porta-malas só abre perto do carro. Recarregar tira munição dos bolsos e da mochila.",
+  "mochila": {"largura": 6, "altura": 4},
+  "porta_malas": {"largura": 10, "altura": 5},
+  "abrir_mochila_segundos": 1.5,
+  "alcance_do_porta_malas": 3.0,
+  "peso": {"leve_ate_g": 5000, "pesado_a_partir_g": 10000, "velocidade_no_pesado": 0.8, "folego_no_pesado": 0.65},
+  "chance_de_quebrar_fragil": 0.35,
+  "municao_das_armas": {"espingarda_de_sal": "cartucho_de_sal", "revolver": "bala_38"},
+  "mochila_inicial": [
+    {"item": "cartucho_de_sal", "quantidade": 8},
+    {"item": "bala_38", "quantidade": 12},
+    {"item": "sal_grosso", "quantidade": 3},
+    {"item": "vela", "quantidade": 4},
+    {"item": "agua_benta", "quantidade": 1},
+    {"item": "medidor_emf", "quantidade": 1}
+  ],
+  "porta_malas_inicial": [
+    {"item": "cartucho_de_sal", "quantidade": 16},
+    {"item": "bala_38", "quantidade": 24},
+    {"item": "sal_grosso", "quantidade": 6},
+    {"item": "correntes", "quantidade": 1},
+    {"item": "camera_termica", "quantidade": 1},
+    {"item": "espelho_ou_camera", "quantidade": 1},
+    {"item": "graos_ou_sementes", "quantidade": 2},
+    {"item": "kit_de_tala", "quantidade": 1}
+  ]
+}

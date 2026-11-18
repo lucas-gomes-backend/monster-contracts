@@ -196,6 +196,15 @@ Levar tudo para o campo não é possível. **Escolher o que levar faz parte da p
   - Compartimento selado para itens amaldiçoados, que se não ficarem selados afetam o portador.
   - Menos ruído.
 
+### Decisões da mochila (18/11/2026)
+
+- Itens em `data/items/itens.json`: formato na grade, peso em gramas, pilha e se é frágil. Grades e regras em `config/inventario.json`.
+- Mochila 6x4 e porta-malas 10x5. Abrir a mochila leva 1,5 s e o caçador fica parado; dentro, pega, gira e solta itens, e passa um item para o bolso do mesmo tipo. Perto do carro, troca para o porta-malas e leva itens de um para o outro.
+- Recarregar tira cartuchos e balas da mochila; sem munição na mochila, não recarrega.
+- Peso: até 5 kg não pesa; a partir de 10 kg, 80% da velocidade e 65% do fôlego.
+- Golpe grave: cada item frágil da mochila tem 35% de chance de quebrar.
+- As armas ficam nas mãos e coldres, fora da grade, por enquanto.
+
 ## Desgaste e perda de equipamento
 
 O equipamento sofre **as duas coisas**:
