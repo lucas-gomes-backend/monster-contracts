@@ -61,7 +61,7 @@ func test_cruzar_a_linha_troca_o_bairro_e_carrega_os_vizinhos_dele() -> void:
 func test_quem_fica_longe_e_descarregado() -> void:
 	_cruzar_para("centro")
 	_cruzar_para("paqueta")
-	assert_eq(_ids(), ["centro", "paqueta", "vila_nova"], "o Valongo e o Monte Serrat não fazem divisa com o Paquetá")
+	assert_eq(_ids(), ["centro", "paqueta", "porto", "vila_nova"], "o Valongo e o Monte Serrat não fazem divisa com o Paquetá")
 
 
 func test_dentro_do_mesmo_bairro_nada_muda() -> void:

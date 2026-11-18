@@ -164,7 +164,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 ## Fase 5 — Conteúdo (6 a 9 meses)
 
 - [ ] Zonas de Santos, **uma por vez**. Ordem sugerida:
-  1. Central e portuária. *Em andamento:* 13 bairros no jogo (principais e secundários em `config/zonas.json`); faltam o Porto e a Vila Rica, sem limite no OpenStreetMap (traçar à mão).
+  1. Central e portuária. *Em andamento:* 14 bairros no jogo, com o Porto traçado à mão (principais e secundários em `config/zonas.json`); falta a Vila Rica, que não aparece no OpenStreetMap.
   2. Orla e intermediária.
   3. Morros.
   4. Noroeste.

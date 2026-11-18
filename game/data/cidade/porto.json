@@ -1,0 +1,1018 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "porto",
+ "nome": "Porto",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 88738.5,
+ "caixa": [
+  367.0,
+  25.38,
+  661.36,
+  779.44
+ ],
+ "limite": [
+  [
+   461.4,
+   53.5
+  ],
+  [
+   454.2,
+   119.9
+  ],
+  [
+   445.4,
+   157.8
+  ],
+  [
+   433.3,
+   157.7
+  ],
+  [
+   425.4,
+   195.7
+  ],
+  [
+   404.9,
+   245.9
+  ],
+  [
+   392.8,
+   326.9
+  ],
+  [
+   378.1,
+   390.4
+  ],
+  [
+   381.3,
+   442.9
+  ],
+  [
+   367.0,
+   611.5
+  ],
+  [
+   492.2,
+   623.5
+  ],
+  [
+   520.4,
+   646.2
+  ],
+  [
+   563.4,
+   659.8
+  ],
+  [
+   587.4,
+   675.5
+  ],
+  [
+   661.36,
+   779.44
+  ],
+  [
+   616.14,
+   683.35
+  ],
+  [
+   582.23,
+   570.29
+  ],
+  [
+   531.35,
+   208.52
+  ],
+  [
+   511.0,
+   101.12
+  ],
+  [
+   489.52,
+   25.38
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 48458850,
+   "nome": "Rua João Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     459.82,
+     122.05
+    ],
+    [
+     453.99,
+     120.78
+    ]
+   ]
+  },
+  {
+   "osm": 48488881,
+   "nome": "Rua João Otávio",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     426.7,
+     189.86
+    ],
+    [
+     433.33,
+     157.74
+    ]
+   ]
+  },
+  {
+   "osm": 195669840,
+   "nome": "Avenida Perimetral",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     582.3,
+     669.3
+    ],
+    [
+     562.88,
+     657.55
+    ],
+    [
+     517.76,
+     642.75
+    ],
+    [
+     482.32,
+     612.68
+    ],
+    [
+     422.23,
+     607.44
+    ],
+    [
+     411.34,
+     604.02
+    ],
+    [
+     393.84,
+     590.66
+    ],
+    [
+     386.5,
+     579.33
+    ],
+    [
+     381.4,
+     565.74
+    ],
+    [
+     380.44,
+     550.27
+    ],
+    [
+     389.0,
+     456.0
+    ],
+    [
+     385.86,
+     393.89
+    ],
+    [
+     405.22,
+     253.41
+    ],
+    [
+     412.58,
+     227.43
+    ],
+    [
+     452.07,
+     158.04
+    ],
+    [
+     459.82,
+     122.05
+    ]
+   ]
+  },
+  {
+   "osm": 195669841,
+   "nome": "Avenida Perimetral",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     454.18,
+     119.99
+    ],
+    [
+     448.3,
+     155.28
+    ],
+    [
+     434.35,
+     181.54
+    ]
+   ]
+  },
+  {
+   "osm": 195680893,
+   "nome": "Avenida Princesa Isabel",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     408.18,
+     341.64
+    ],
+    [
+     439.11,
+     338.75
+    ],
+    [
+     520.99,
+     323.58
+    ]
+   ]
+  },
+  {
+   "osm": 195680895,
+   "nome": "Avenida Carvalho de Mendonça",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     416.78,
+     429.9
+    ],
+    [
+     534.73,
+     409.99
+    ]
+   ]
+  },
+  {
+   "osm": 195680896,
+   "nome": "Avenida Silvério de Souza",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     442.2,
+     242.89
+    ],
+    [
+     471.24,
+     424.38
+    ]
+   ]
+  },
+  {
+   "osm": 195680897,
+   "nome": "Avenida Ulrico Mursa",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     507.51,
+     233.97
+    ],
+    [
+     424.15,
+     245.36
+    ]
+   ]
+  },
+  {
+   "osm": 195680898,
+   "nome": "Avenida Xavier da Silveira",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     459.82,
+     122.05
+    ],
+    [
+     465.52,
+     64.23
+    ],
+    [
+     464.59,
+     50.31
+    ]
+   ]
+  },
+  {
+   "osm": 195680900,
+   "nome": "Avenida Cândido Gaffrée",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     506.66,
+     228.46
+    ],
+    [
+     534.73,
+     409.99
+    ],
+    [
+     563.52,
+     574.38
+    ],
+    [
+     560.81,
+     578.31
+    ]
+   ]
+  },
+  {
+   "osm": 195680901,
+   "nome": "Avenida Eduardo Guinle",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     458.32,
+     88.68
+    ],
+    [
+     457.69,
+     125.61
+    ],
+    [
+     468.51,
+     157.4
+    ],
+    [
+     478.02,
+     216.87
+    ]
+   ]
+  },
+  {
+   "osm": 195730988,
+   "nome": "Rua 28 de Setembro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     460.15,
+     620.43
+    ],
+    [
+     462.29,
+     618.6
+    ]
+   ]
+  },
+  {
+   "osm": 196170218,
+   "nome": "Avenida Eduardo Pereira Guinle",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     478.02,
+     216.87
+    ],
+    [
+     499.58,
+     328.24
+    ],
+    [
+     524.47,
+     500.42
+    ],
+    [
+     538.79,
+     583.23
+    ]
+   ]
+  },
+  {
+   "osm": 196170219,
+   "nome": "Avenida Perimetral",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     386.17,
+     355.55
+    ],
+    [
+     381.72,
+     396.25
+    ],
+    [
+     385.09,
+     454.68
+    ],
+    [
+     374.7,
+     585.91
+    ],
+    [
+     375.65,
+     598.69
+    ],
+    [
+     379.9,
+     603.63
+    ],
+    [
+     392.08,
+     608.71
+    ],
+    [
+     483.34,
+     622.65
+    ]
+   ]
+  },
+  {
+   "osm": 196170219,
+   "nome": "Avenida Perimetral",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     434.35,
+     181.54
+    ],
+    [
+     423.6,
+     200.11
+    ]
+   ]
+  },
+  {
+   "osm": 196170220,
+   "nome": "Avenida Xavier da Silveira",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     460.0,
+     70.66
+    ],
+    [
+     454.24,
+     119.55
+    ]
+   ]
+  },
+  {
+   "osm": 197054460,
+   "nome": "Avenida Eduardo Pereira Guinle",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     539.84,
+     591.57
+    ],
+    [
+     543.43,
+     614.67
+    ],
+    [
+     542.61,
+     623.46
+    ],
+    [
+     537.89,
+     631.34
+    ],
+    [
+     528.91,
+     636.54
+    ],
+    [
+     520.72,
+     636.98
+    ],
+    [
+     512.56,
+     633.83
+    ],
+    [
+     485.02,
+     610.3
+    ],
+    [
+     465.31,
+     606.69
+    ]
+   ]
+  },
+  {
+   "osm": 197054461,
+   "nome": "Avenida Eduardo Pereira Guinle",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     465.31,
+     606.69
+    ],
+    [
+     430.59,
+     608.19
+    ]
+   ]
+  },
+  {
+   "osm": 359695876,
+   "nome": "Rua Xavier Pinheiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     369.38,
+     611.73
+    ],
+    [
+     367.0,
+     611.49
+    ]
+   ]
+  },
+  {
+   "osm": 380498905,
+   "nome": "Avenida Alvaro Fontes",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     551.14,
+     496.4
+    ],
+    [
+     444.03,
+     512.32
+    ]
+   ]
+  },
+  {
+   "osm": 476947077,
+   "nome": "Avenida Eduardo Pereira Guinle",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     538.79,
+     583.23
+    ],
+    [
+     539.84,
+     591.57
+    ]
+   ]
+  },
+  {
+   "osm": 477918797,
+   "nome": "Avenida Ulrico Mursa",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     425.55,
+     254.15
+    ],
+    [
+     429.12,
+     251.86
+    ],
+    [
+     508.89,
+     241.91
+    ]
+   ]
+  },
+  {
+   "osm": 477918799,
+   "nome": "Avenida Francisco Ribeiro",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     410.38,
+     297.01
+    ],
+    [
+     413.7,
+     327.91
+    ],
+    [
+     433.47,
+     427.78
+    ],
+    [
+     444.03,
+     512.32
+    ],
+    [
+     454.64,
+     573.3
+    ]
+   ]
+  },
+  {
+   "osm": 483305164,
+   "nome": "Rua João Otávio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     440.14,
+     159.27
+    ],
+    [
+     442.26,
+     158.69
+    ]
+   ]
+  },
+  {
+   "osm": 485225230,
+   "nome": "Avenida Cândido Gaffrée",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     633.62,
+     726.14
+    ],
+    [
+     595.98,
+     669.46
+    ],
+    [
+     572.17,
+     649.69
+    ]
+   ]
+  },
+  {
+   "osm": 485225231,
+   "nome": "Avenida Cidade de Santos",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     525.39,
+     622.86
+    ],
+    [
+     521.18,
+     618.56
+    ]
+   ]
+  },
+  {
+   "osm": 494736399,
+   "nome": "Avenida Silvério de Souza",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     471.24,
+     424.38
+    ],
+    [
+     484.44,
+     502.35
+    ]
+   ]
+  },
+  {
+   "osm": 494736400,
+   "nome": "Avenida Silvério de Souza",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     484.44,
+     502.35
+    ],
+    [
+     497.33,
+     589.43
+    ]
+   ]
+  },
+  {
+   "osm": 494736403,
+   "nome": "Avenida Cândido Gaffreé",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     495.6,
+     156.37
+    ],
+    [
+     506.66,
+     228.46
+    ]
+   ]
+  },
+  {
+   "osm": 494736404,
+   "nome": "Avenida Cândido Gaffreé",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     490.46,
+     120.08
+    ],
+    [
+     495.6,
+     156.37
+    ]
+   ]
+  },
+  {
+   "osm": 494774094,
+   "nome": "Avenida Guilherme Weimschenck",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     491.1,
+     422.07
+    ],
+    [
+     462.05,
+     240.18
+    ]
+   ]
+  },
+  {
+   "osm": 494778566,
+   "nome": "Avenida Guilherme Weimschenck",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     503.34,
+     498.44
+    ],
+    [
+     491.1,
+     422.07
+    ]
+   ]
+  },
+  {
+   "osm": 494778567,
+   "nome": "Avenida Guilherme Weimschenck",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     517.42,
+     586.26
+    ],
+    [
+     503.34,
+     498.44
+    ]
+   ]
+  },
+  {
+   "osm": 498641268,
+   "nome": "Avenida Cidade de Santos",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     521.18,
+     618.56
+    ],
+    [
+     498.18,
+     606.27
+    ],
+    [
+     488.01,
+     597.47
+    ],
+    [
+     485.94,
+     591.37
+    ]
+   ]
+  },
+  {
+   "osm": 877383012,
+   "nome": "Avenida Xavier da Silveira",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     460.05,
+     65.92
+    ],
+    [
+     460.0,
+     70.66
+    ]
+   ]
+  },
+  {
+   "osm": 979561314,
+   "nome": "Avenida Perimetral",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     626.3,
+     730.17
+    ],
+    [
+     593.26,
+     680.26
+    ],
+    [
+     582.3,
+     669.3
+    ]
+   ]
+  },
+  {
+   "osm": 1374278088,
+   "nome": "Rua João Otávio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     433.33,
+     157.74
+    ],
+    [
+     440.14,
+     159.27
+    ]
+   ]
+  }
+ ],
+ "canais": [
+  {
+   "osm": 481704020,
+   "nome": "Catraia Santos-Vicente de Carvalho",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     405.31,
+     244.9
+    ],
+    [
+     447.83,
+     246.35
+    ],
+    [
+     532.36,
+     234.01
+    ]
+   ]
+  }
+ ],
+ "marcos": [
+  {
+   "osm": "node/4780007470",
+   "nome": "Nossa Senhora de Fátima",
+   "tipo": "historic=monument",
+   "posicao": [
+    557.14,
+    624.95
+   ]
+  },
+  {
+   "osm": "node/4876560204",
+   "nome": "Trabalhador Portuário",
+   "tipo": "historic=monument",
+   "posicao": [
+    373.44,
+    606.73
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Rua Xavier Pinheiro",
+   "osm": 359695876,
+   "posicao": [
+    369.38,
+    611.73
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Perimetral",
+   "osm": 196170219,
+   "posicao": [
+    386.17,
+    355.55
+   ],
+   "para": "vila_mathias"
+  },
+  {
+   "rua": "Avenida Perimetral",
+   "osm": 196170219,
+   "posicao": [
+    423.6,
+    200.11
+   ],
+   "para": "vila_nova"
+  },
+  {
+   "rua": "Rua João Otávio",
+   "osm": 1374278090,
+   "posicao": [
+    426.49,
+    190.44
+   ],
+   "para": "vila_nova"
+  },
+  {
+   "rua": "Rua Amador Bueno",
+   "osm": 1518439130,
+   "posicao": [
+    433.29,
+    157.73
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Rua João Otávio",
+   "osm": 483308937,
+   "posicao": [
+    442.97,
+    157.78
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Rua João Pessoa",
+   "osm": 48458850,
+   "posicao": [
+    453.99,
+    120.78
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Avenida Xavier da Silveira",
+   "osm": 877383012,
+   "posicao": [
+    460.05,
+    65.92
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Rua 28 de Setembro",
+   "osm": 195730988,
+   "posicao": [
+    460.15,
+    620.43
+   ],
+   "para": "macuco"
+  },
+  {
+   "rua": "Avenida Xavier da Silveira",
+   "osm": 195680898,
+   "posicao": [
+    464.59,
+    50.31
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Avenida Perimetral",
+   "osm": 196170219,
+   "posicao": [
+    483.34,
+    622.65
+   ],
+   "para": "macuco"
+  },
+  {
+   "rua": "Avenida Perimetral",
+   "osm": 979561314,
+   "posicao": [
+    626.3,
+    730.17
+   ],
+   "para": ""
+  }
+ ]
+}

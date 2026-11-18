@@ -1,7 +1,7 @@
 {
   "$comment": "Progressão do corte vertical (docs/08): dinheiro (reais inteiros), uma reputação, 3 níveis de qualidade, motel e carro fixo. Ajustar aqui, nunca no código.",
   "dinheiro_inicial": 400,
-  "regioes_liberadas": ["valongo", "centro", "paqueta", "vila_belmiro", "macuco", "campo_grande", "encruzilhada", "estuario", "jabaquara", "marape", "saboo", "vila_mathias", "vila_nova"],
+  "regioes_liberadas": ["valongo", "centro", "paqueta", "vila_belmiro", "macuco", "campo_grande", "encruzilhada", "estuario", "jabaquara", "marape", "saboo", "vila_mathias", "vila_nova", "porto"],
   "idade_inicial_anos": 20,
   "interludio": {
     "$comment": "O tempo entre um caso e outro (docs/02, 'Interlúdio'). Pulo curto: pega o próximo caso rápido, mas quase não sara nem treina. Médio: sara e treina. Longo: cura tudo e treina muito, mas envelhece mais. Paga a diária do motel por dia. cura_graus: quantos graus cada ferimento melhora; treino_xp: experiência na árvore escolhida.",

@@ -40,6 +40,7 @@
     {"id": "saboo", "nome": "Saboó", "zona": "central_portuaria", "limite_osm": "way/1223097900", "nota": "limite de bairro como área de 'place' no OpenStreetMap"},
     {"id": "vila_belmiro", "nome": "Vila Belmiro", "zona": "central_portuaria", "limite_osm": "relation/4282888"},
     {"id": "vila_mathias", "nome": "Vila Mathias", "zona": "central_portuaria", "limite_osm": "relation/18937523"},
-    {"id": "vila_nova", "nome": "Vila Nova", "zona": "central_portuaria", "limite_osm": "relation/18933692"}
+    {"id": "vila_nova", "nome": "Vila Nova", "zona": "central_portuaria", "limite_osm": "relation/18933692"},
+    {"id": "porto", "nome": "Porto", "zona": "central_portuaria", "nota": "sem limite no OpenStreetMap: traçado à mão (aproximado) na faixa do cais entre o Paquetá, a Vila Nova, a Vila Mathias, o Macuco e a água (setor de Outeirinhos)", "limite_manual": [[-23.935452, -46.3153958], [-23.937254, -46.3156081], [-23.9382826, -46.3158676], [-23.9382799, -46.3162243], [-23.9393112, -46.3164572], [-23.9406736, -46.3170617], [-23.9428719, -46.3174184], [-23.9445953, -46.3178519], [-23.9460201, -46.3177575], [-23.9505958, -46.3181791], [-23.9509215, -46.3144877], [-23.9515375, -46.3136562], [-23.9519066, -46.3123884], [-23.9523327, -46.3116807], [-23.9551537, -46.3095], [-23.9525457, -46.3108333], [-23.9494775, -46.3118333], [-23.9464093, -46.3123333], [-23.9427274, -46.3128333], [-23.9396592, -46.3133333], [-23.9367444, -46.3139333], [-23.9346887, -46.3145667]]}
   ]
 }

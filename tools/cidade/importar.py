@@ -38,6 +38,14 @@ def _linha(elemento, config):
     return [G.projetar(lat, lon, config["origem"], config["escala"]) for lat, lon in elemento["geometry"]]
 
 
+def _limite(recorte, bairro, config):
+    """O limite do bairro: o do OpenStreetMap ou, onde ele não existe, um traçado à mão
+    ("limite_manual": lista de [lat, lon], anotado como aproximado no config)."""
+    if "limite_manual" in bairro:
+        return [G.projetar(lat, lon, config["origem"], config["escala"]) for lat, lon in bairro["limite_manual"]]
+    return _poligono(recorte, bairro["limite_osm"], config)
+
+
 def _poligono(recorte, osm_id, config):
     tipo, numero = osm_id.split("/")
     for e in recorte["limites"]:
@@ -69,7 +77,7 @@ def _marco(elemento, config):
 
 def importar_bairro(config, recorte, bairro, vizinhos):
     """vizinhos: {id: polígono} dos outros bairros, para saber aonde cada saída leva."""
-    limite = _poligono(recorte, bairro["limite_osm"], config)
+    limite = _limite(recorte, bairro, config)
     tol = config["tolerancia_simplificacao"]
     ruas, canais, marcos, saidas = [], [], [], []
     for e in recorte["elementos"]:
@@ -136,7 +144,7 @@ def importar_bairro(config, recorte, bairro, vizinhos):
 
 
 def importar_todos(config, recorte):
-    poligonos = {b["id"]: _poligono(recorte, b["limite_osm"], config) for b in config["bairros"]}
+    poligonos = {b["id"]: _limite(recorte, b, config) for b in config["bairros"]}
     resultado = {}
     for b in config["bairros"]:
         vizinhos = {k: v for k, v in poligonos.items() if k != b["id"]}
@@ -156,7 +164,7 @@ def importar_mapa_geral(config, recorte, mapa):
     usam o id e o limite deles; as outras regiões, o nome do OpenStreetMap."""
     tol = config["mapa_geral"]["tolerancia_simplificacao"]
     regioes = {}
-    usados = {b["limite_osm"] for b in config["bairros"]}
+    usados = {b["limite_osm"] for b in config["bairros"] if "limite_osm" in b}
     for r in mapa["regioes"]:
         if "%s/%s" % (r["type"], r["id"]) in usados or not r["tags"].get("name"):
             continue
@@ -165,7 +173,7 @@ def importar_mapa_geral(config, recorte, mapa):
             pontos = pontos[:-1]
         regioes[slug(r["tags"]["name"])] = {"nome": r["tags"]["name"], "limite": pontos}
     for b in config["bairros"]:
-        regioes[b["id"]] = {"nome": b["nome"], "limite": _poligono(recorte, b["limite_osm"], config)}
+        regioes[b["id"]] = {"nome": b["nome"], "limite": _limite(recorte, b, config)}
     saida = []
     for rid in sorted(regioes):
         anel = G.simplificar(regioes[rid]["limite"] + [regioes[rid]["limite"][0]], tol)[:-1]

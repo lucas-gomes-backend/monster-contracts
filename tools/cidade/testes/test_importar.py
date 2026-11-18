@@ -51,6 +51,14 @@ class TestImportar(unittest.TestCase):
         self.assertEqual(picos[0]["altitude"], 166.0)
         self.assertTrue(any(m["tipo"] == "railway=funicular" for m in marcos), "o bondinho")
 
+    def test_limite_manual_vale_no_lugar_do_osm(self):
+        # O Porto não tem limite no OpenStreetMap: o traçado à mão (lat, lon) vira o limite.
+        porto = next(b for b in CONFIG["bairros"] if b["id"] == "porto")
+        self.assertNotIn("limite_osm", porto)
+        esperado = [G.projetar(lat, lon, CONFIG["origem"], CONFIG["escala"]) for lat, lon in porto["limite_manual"]]
+        self.assertEqual(importar._limite(RECORTE, porto, CONFIG), esperado)
+        self.assertGreater(len(BAIRROS["porto"]["ruas"]), 0, "o cais tem ruas")
+
     def test_ruas_so_dos_tipos_do_config(self):
         for b in BAIRROS.values():
             for rua in b["ruas"]:

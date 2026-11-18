@@ -1,0 +1,79 @@
+{
+  "$comment": "Porto, bairro principal da zona Central e portuária (Fase 5): a faixa do cais entre o Paquetá, a Vila Nova, a Vila Mathias e o Macuco (setor de Outeirinhos), traçada à mão porque o OpenStreetMap não tem o limite. Lugares públicos reais; estabelecimentos e pessoas fictícios; as ruas são as reais do mapa.",
+  "id": "porto",
+  "nome": "Porto",
+  "zona": "central_portuaria",
+  "tipo": "industrial",
+  "populacao_alvo": 36,
+  "casas": 6,
+  "ruas": [
+    "avenida_perimetral",
+    "avenida_candido_gaffree",
+    "avenida_eduardo_pereira_guinle",
+    "avenida_silverio_de_souza",
+    "avenida_guilherme_weimschenck",
+    "avenida_francisco_ribeiro"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 5
+    },
+    {
+      "id": "portuguesa",
+      "peso": 2
+    },
+    {
+      "id": "japonesa",
+      "peso": 1
+    },
+    {
+      "id": "arabe",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "capela",
+      "tipo": "igreja",
+      "rua": "avenida_candido_gaffree",
+      "nome": "Capela de Nossa Senhora de Fátima"
+    },
+    {
+      "id": "guarda_portuaria",
+      "tipo": "delegacia",
+      "rua": "avenida_perimetral",
+      "nome": "Posto da Guarda Portuária"
+    },
+    {
+      "id": "armazem_1",
+      "tipo": "armazem",
+      "rua": "avenida_perimetral",
+      "nome": "Armazém 12, desativado"
+    },
+    {
+      "id": "armazem_2",
+      "tipo": "armazem",
+      "rua": "avenida_eduardo_pereira_guinle",
+      "nome": "Galpão de cargas"
+    },
+    {
+      "id": "patio",
+      "tipo": "praca",
+      "rua": "avenida_silverio_de_souza",
+      "nome": "Pátio dos estivadores"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "avenida_guilherme_weimschenck",
+      "nome": "Bar do Cais"
+    },
+    {
+      "id": "mecanico",
+      "tipo": "mecanico",
+      "rua": "avenida_francisco_ribeiro",
+      "nome": "Oficina das Empilhadeiras"
+    }
+  ]
+}

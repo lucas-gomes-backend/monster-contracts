@@ -89,8 +89,9 @@ def main():
         return
     # Limite de bairro: um caminho fechado (way) ou uma relação, cujos trechos "outer"
     # são juntados num anel e gravados como se fossem um caminho só.
-    vias = [b["limite_osm"].split("/")[1] for b in config["bairros"] if b["limite_osm"].startswith("way/")]
-    relacoes = [b["limite_osm"].split("/")[1] for b in config["bairros"] if b["limite_osm"].startswith("relation/")]
+    # Bairros sem limite no OSM trazem um "limite_manual" (lat, lon): só entram na caixa.
+    vias = [b["limite_osm"].split("/")[1] for b in config["bairros"] if b.get("limite_osm", "").startswith("way/")]
+    relacoes = [b["limite_osm"].split("/")[1] for b in config["bairros"] if b.get("limite_osm", "").startswith("relation/")]
     consulta = "[out:json][timeout:90];("
     if vias:
         consulta += "way(id:%s);" % ",".join(vias)
@@ -106,8 +107,8 @@ def main():
                  "geometry": [{"lat": lat, "lon": lon} for lat, lon in anel]}
         limites.append(e)
 
-    lats = [p["lat"] for e in limites for p in e["geometry"]]
-    lons = [p["lon"] for e in limites for p in e["geometry"]]
+    lats = [p["lat"] for e in limites for p in e["geometry"]] + [p[0] for b in config["bairros"] for p in b.get("limite_manual", [])]
+    lons = [p["lon"] for e in limites for p in e["geometry"]] + [p[1] for b in config["bairros"] for p in b.get("limite_manual", [])]
     margem = config["margem_download_m"] / 110540.0
     sul, norte = min(lats) - margem, max(lats) + margem
     oeste, leste = min(lons) - margem, max(lons) + margem
