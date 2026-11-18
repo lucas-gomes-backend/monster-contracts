@@ -13,9 +13,11 @@ jobs:
       GODOT_VERSION: 4.7.2
     steps:
       - uses: actions/checkout@v4
-        with:
-          # Os tiles de relevo (tools/cidade/relevo/*.png) ficam no Git LFS.
-          lfs: true
+
+      # Arquivos do Git LFS (imagens), menos o MonsterContracts.zip da raiz: a versão para
+      # testar não serve aos testes e gastaria a cota de download do LFS a cada execução.
+      - name: Baixar os arquivos do LFS
+        run: git lfs pull --exclude="MonsterContracts.zip"
 
       - name: Baixar o Godot
         run: |
