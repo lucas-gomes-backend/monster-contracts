@@ -27,6 +27,8 @@
   ],
   "bairros": [
     {"id": "valongo", "nome": "Valongo", "zona": "central_portuaria", "limite_osm": "way/1223318887"},
+    {"id": "centro", "nome": "Centro", "zona": "central_portuaria", "limite_osm": "relation/18922323"},
+    {"id": "paqueta", "nome": "Paquetá", "zona": "central_portuaria", "limite_osm": "relation/18922322"},
     {"id": "monte_serrat", "nome": "Monte Serrat", "zona": "morros", "limite_osm": "way/196615801", "nota": "sem limite de bairro no OpenStreetMap: usa a área protegida do morro"}
   ]
 }

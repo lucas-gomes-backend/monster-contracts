@@ -1,0 +1,807 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "paqueta",
+ "nome": "Paquetá",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 43284.9,
+ "caixa": [
+  214.82,
+  -50.08,
+  461.42,
+  195.69
+ ],
+ "limite": [
+  [
+   425.42,
+   195.69
+  ],
+  [
+   433.33,
+   157.74
+  ],
+  [
+   442.19,
+   159.73
+  ],
+  [
+   445.36,
+   157.79
+  ],
+  [
+   454.19,
+   119.89
+  ],
+  [
+   461.42,
+   53.48
+  ],
+  [
+   455.18,
+   35.93
+  ],
+  [
+   448.49,
+   27.57
+  ],
+  [
+   438.57,
+   20.7
+  ],
+  [
+   293.39,
+   -35.95
+  ],
+  [
+   237.6,
+   -50.08
+  ],
+  [
+   214.82,
+   148.67
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 48458850,
+   "nome": "Rua João Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     453.99,
+     120.78
+    ],
+    [
+     450.58,
+     120.04
+    ]
+   ]
+  },
+  {
+   "osm": 48461135,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     272.59,
+     161.52
+    ],
+    [
+     278.7,
+     81.35
+    ]
+   ]
+  },
+  {
+   "osm": 48488870,
+   "nome": "Rua da Constituição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     233.48,
+     -21.97
+    ],
+    [
+     214.82,
+     148.67
+    ]
+   ]
+  },
+  {
+   "osm": 48488875,
+   "nome": "Rua General Câmara",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     450.6,
+     50.98
+    ],
+    [
+     372.94,
+     42.09
+    ]
+   ]
+  },
+  {
+   "osm": 48488877,
+   "nome": "Rua Aguiar de Andrade",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     418.23,
+     47.08
+    ],
+    [
+     425.16,
+     15.44
+    ]
+   ]
+  },
+  {
+   "osm": 48489554,
+   "nome": "Rua Eduardo Ferreira",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     345.11,
+     -13.75
+    ],
+    [
+     323.72,
+     36.96
+    ]
+   ]
+  },
+  {
+   "osm": 253080763,
+   "nome": "",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     290.47,
+     -34.68
+    ],
+    [
+     291.15,
+     -36.68
+    ]
+   ]
+  },
+  {
+   "osm": 253080764,
+   "nome": "Rua Aguiar de Andrade",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     418.23,
+     47.08
+    ],
+    [
+     394.55,
+     149.05
+    ]
+   ]
+  },
+  {
+   "osm": 253080765,
+   "nome": "Rua dos Estivadores",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     323.72,
+     36.96
+    ],
+    [
+     314.93,
+     89.23
+    ]
+   ]
+  },
+  {
+   "osm": 253080766,
+   "nome": "Travessa Dona Adelina",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     455.37,
+     88.28
+    ],
+    [
+     410.64,
+     79.04
+    ]
+   ]
+  },
+  {
+   "osm": 367258160,
+   "nome": "Rua Visconde do Embaré",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     336.22,
+     5.84
+    ],
+    [
+     377.32,
+     22.64
+    ]
+   ]
+  },
+  {
+   "osm": 367258161,
+   "nome": "Travessa Maria Loureiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     289.12,
+     -21.28
+    ],
+    [
+     275.26,
+     -25.59
+    ]
+   ]
+  },
+  {
+   "osm": 367258162,
+   "nome": "Travessa Maria Loureiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     275.26,
+     -25.59
+    ],
+    [
+     270.1,
+     -6.5
+    ]
+   ]
+  },
+  {
+   "osm": 472986508,
+   "nome": "Rua Amador Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     218.62,
+     109.74
+    ],
+    [
+     350.11,
+     139.1
+    ]
+   ]
+  },
+  {
+   "osm": 476415720,
+   "nome": "Rua João Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     278.7,
+     81.35
+    ],
+    [
+     223.15,
+     69.26
+    ]
+   ]
+  },
+  {
+   "osm": 476415721,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     283.21,
+     31.6
+    ],
+    [
+     290.47,
+     -34.68
+    ]
+   ]
+  },
+  {
+   "osm": 476420882,
+   "nome": "Avenida Xavier da Silveira",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     236.42,
+     -48.13
+    ],
+    [
+     290.47,
+     -34.68
+    ],
+    [
+     382.25,
+     0.7
+    ]
+   ]
+  },
+  {
+   "osm": 477923202,
+   "nome": "Rua Doutor Cochrane",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     372.94,
+     42.09
+    ],
+    [
+     382.25,
+     0.7
+    ]
+   ]
+  },
+  {
+   "osm": 482298158,
+   "nome": "Avenida Xavier da Silveira",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     444.67,
+     27.65
+    ],
+    [
+     450.26,
+     33.45
+    ],
+    [
+     458.13,
+     50.92
+    ]
+   ]
+  },
+  {
+   "osm": 483305164,
+   "nome": "Rua João Otávio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     440.14,
+     159.27
+    ],
+    [
+     442.26,
+     158.69
+    ]
+   ]
+  },
+  {
+   "osm": 483308937,
+   "nome": "Rua João Otávio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     442.26,
+     158.69
+    ],
+    [
+     450.58,
+     120.04
+    ]
+   ]
+  },
+  {
+   "osm": 500500826,
+   "nome": "Rua João Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     450.58,
+     120.04
+    ],
+    [
+     358.97,
+     99.25
+    ]
+   ]
+  },
+  {
+   "osm": 500500827,
+   "nome": "Rua João Otávio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     450.58,
+     120.04
+    ],
+    [
+     458.23,
+     64.75
+    ],
+    [
+     456.24,
+     53.6
+    ],
+    [
+     450.6,
+     50.98
+    ]
+   ]
+  },
+  {
+   "osm": 877383012,
+   "nome": "Avenida Xavier da Silveira",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     458.13,
+     50.92
+    ],
+    [
+     460.0,
+     70.66
+    ]
+   ]
+  },
+  {
+   "osm": 975245313,
+   "nome": "Rua João Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     314.93,
+     89.23
+    ],
+    [
+     278.7,
+     81.35
+    ]
+   ]
+  },
+  {
+   "osm": 975245314,
+   "nome": "Rua João Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     358.97,
+     99.25
+    ],
+    [
+     314.93,
+     89.23
+    ]
+   ]
+  },
+  {
+   "osm": 975245315,
+   "nome": "Rua Doutor Cochrane",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     350.11,
+     139.1
+    ],
+    [
+     358.97,
+     99.25
+    ]
+   ]
+  },
+  {
+   "osm": 975245317,
+   "nome": "Avenida São Francisco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     342.54,
+     177.07
+    ],
+    [
+     401.58,
+     190.47
+    ]
+   ]
+  },
+  {
+   "osm": 979561328,
+   "nome": "Avenida Xavier da Silveira",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     382.25,
+     0.7
+    ],
+    [
+     444.67,
+     27.65
+    ]
+   ]
+  },
+  {
+   "osm": 1373641400,
+   "nome": "Avenida São Francisco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     272.59,
+     161.52
+    ],
+    [
+     342.54,
+     177.07
+    ]
+   ]
+  },
+  {
+   "osm": 1374278088,
+   "nome": "Rua João Otávio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     433.33,
+     157.74
+    ],
+    [
+     440.14,
+     159.27
+    ]
+   ]
+  },
+  {
+   "osm": 1374278090,
+   "nome": "Rua João Otávio",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     422.12,
+     195.01
+    ],
+    [
+     426.7,
+     189.86
+    ]
+   ]
+  },
+  {
+   "osm": 1443973455,
+   "nome": "Rua da Constituição",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     234.8,
+     -30.86
+    ],
+    [
+     233.48,
+     -21.97
+    ]
+   ]
+  },
+  {
+   "osm": 1443973456,
+   "nome": "Rua da Constituição",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     234.8,
+     -30.86
+    ],
+    [
+     236.42,
+     -48.13
+    ]
+   ]
+  },
+  {
+   "osm": 1499132801,
+   "nome": "Avenida Conselheiro Nébias",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     278.7,
+     81.35
+    ],
+    [
+     283.21,
+     31.6
+    ]
+   ]
+  },
+  {
+   "osm": 1499132802,
+   "nome": "Rua General Câmara",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     283.21,
+     31.6
+    ],
+    [
+     228.3,
+     25.17
+    ]
+   ]
+  },
+  {
+   "osm": 1518439129,
+   "nome": "Rua Doutor Cochrane",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     342.54,
+     177.07
+    ],
+    [
+     350.11,
+     139.1
+    ]
+   ]
+  },
+  {
+   "osm": 1518439130,
+   "nome": "Rua Amador Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     350.11,
+     139.1
+    ],
+    [
+     433.33,
+     157.74
+    ]
+   ]
+  },
+  {
+   "osm": 1519981323,
+   "nome": "Rua General Câmara",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     372.94,
+     42.09
+    ],
+    [
+     283.21,
+     31.6
+    ]
+   ]
+  },
+  {
+   "osm": 1519981324,
+   "nome": "Rua Doutor Cochrane",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     358.97,
+     99.25
+    ],
+    [
+     372.94,
+     42.09
+    ]
+   ]
+  }
+ ],
+ "canais": [],
+ "marcos": [],
+ "saidas": [
+  {
+   "rua": "Avenida São Francisco",
+   "osm": 1373641400,
+   "posicao": [
+    216.46,
+    149.03
+   ],
+   "para": "centro"
+  },
+  {
+   "rua": "Rua Amador Bueno",
+   "osm": 472986508,
+   "posicao": [
+    218.62,
+    109.74
+   ],
+   "para": "centro"
+  },
+  {
+   "rua": "Rua João Pessoa",
+   "osm": 476415720,
+   "posicao": [
+    223.15,
+    69.26
+   ],
+   "para": "centro"
+  },
+  {
+   "rua": "Rua General Câmara",
+   "osm": 1499132802,
+   "posicao": [
+    228.3,
+    25.17
+   ],
+   "para": "centro"
+  },
+  {
+   "rua": "Avenida Xavier da Silveira",
+   "osm": 476420882,
+   "posicao": [
+    236.42,
+    -48.13
+   ],
+   "para": "centro"
+  },
+  {
+   "rua": "Avenida São Francisco",
+   "osm": 1373641400,
+   "posicao": [
+    272.59,
+    161.52
+   ],
+   "para": ""
+  },
+  {
+   "rua": "tertiary",
+   "osm": 253080763,
+   "posicao": [
+    291.15,
+    -36.68
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Aguiar de Andrade",
+   "osm": 48488877,
+   "posicao": [
+    425.16,
+    15.44
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua João Pessoa",
+   "osm": 48458850,
+   "posicao": [
+    453.99,
+    120.78
+   ],
+   "para": ""
+  }
+ ]
+}

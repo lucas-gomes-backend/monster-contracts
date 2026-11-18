@@ -1,28 +1,49 @@
 extends Node3D
-## Cena para andar num bairro do mapa real (Fase 3): cidade plana, de dia, com névoa
-## esbranquiçada (como Silent Hill), e o caçador. E desce pelo bueiro para as galerias
-## (escuras: só a lanterna) e sobe de volta pela escada.
-## Argumentos: --bairro=<id> (padrão valongo), --semente=N (padrão 1),
-## --captura=caminho.png, --lanterna, --inclinar=G, --virar=G, --vista=cima (para conferir o visual).
+## A cidade do mapa real para andar (Fase 3): plana, de dia, com névoa esbranquiçada (como
+## Silent Hill). Os bairros se encaixam (mesma origem do mapa), num chão só.
+##
+## Bordas como em Final Fantasy XII: uma linha no chão marca o limite do bairro atual, e os
+## bairros vizinhos ficam carregados do outro lado, à vista. Quando o caçador cruza a linha,
+## o vizinho vira o atual: ganha as galerias e os bueiros, os vizinhos dele são carregados e
+## quem ficou longe é descarregado. O nome do bairro aparece na tela.
+## E desce pelo bueiro (escuro: só a lanterna) e sobe pela escada. Minimapa no canto.
+##
+## Argumentos: --bairro=<id> (padrão valongo), --semente=N (padrão 1), --captura=caminho.png,
+## --lanterna, --inclinar=G, --virar=G, --vista=cima, --esgoto, --ir=<id> (para conferir o visual).
 
 const Bairro3D := preload("res://presentation/cidade/bairro_3d.gd")
 const Cacador := preload("res://presentation/personagem/cacador.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
 const Mira := preload("res://presentation/inspecao/mira.gd")
+const Catalogo := preload("res://core/dados/catalogo.gd")
+const Viz := preload("res://core/cidade/vizinhanca.gd")
+const Lotes := preload("res://core/cidade/lotes.gd")
+const Minimapa := preload("res://presentation/cidade/minimapa.gd")
 
 const ALCANCE_DO_BUEIRO := 2.5
 const ANGULO_DO_BUEIRO := 35.0
-
 const QUADROS_ANTES_DA_CAPTURA := 40
 const COR_DA_NEVOA := Color(0.72, 0.73, 0.74)
+const MARGEM_DO_CHAO := 60.0
+const TEMPO_DO_NOME := 3.0
 
+## O bairro atual (onde o caçador está).
 var bairro: Node3D
+## Bairros montados agora: o atual e os vizinhos dele. {id: Bairro3D}
+var carregados: Dictionary = {}
+## Limites e divisas de todos os bairros importados (dados leves, sempre na memória).
+var limites: Dictionary = {}
+var vizinhos: Dictionary = {}
+var semente: int = 1
 var cacador: CharacterBody3D
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
 ## "rua" ou "esgoto".
 var zona: String = "rua"
 var aviso: Label
+var nome_do_lugar: Label
+var minimapa: Control
+var _tempo_do_nome := 0.0
 var _alvo := -1
 var _captura := ""
 var _quadros := 0
@@ -30,41 +51,39 @@ var _quadros := 0
 
 func _ready() -> void:
 	var id := "valongo"
-	var semente := 1
+	var s := 1
 	for argumento in OS.get_cmdline_user_args():
 		if argumento.begins_with("--bairro="):
 			id = argumento.trim_prefix("--bairro=")
 		elif argumento.begins_with("--semente="):
-			semente = int(argumento.trim_prefix("--semente="))
+			s = int(argumento.trim_prefix("--semente="))
 	if bairro == null:
-		montar(id, semente)
+		montar(id, s)
 	for argumento in OS.get_cmdline_user_args():
 		if argumento.begins_with("--captura="):
 			_captura = argumento.trim_prefix("--captura=")
+			# Na captura o mouse da janela não pode girar a câmera.
+			cacador.bloqueado = true
 		elif argumento == "--lanterna":
 			cacador.alternar_lanterna()
 		elif argumento.begins_with("--inclinar="):
 			cacador.olhar(Vector2(0.0, -float(argumento.trim_prefix("--inclinar=")) / float(cacador.config["sensibilidade_mouse"])))
+		elif argumento.begins_with("--ir="):
+			var outro: Node3D = carregados.get(argumento.trim_prefix("--ir="))
+			if outro:
+				cacador.position = outro.chegada()
+				verificar_fronteira()
 		elif argumento == "--vista=cima":
-			# Câmera alta olhando para baixo: o bairro inteiro numa imagem.
-			var caixa: Array = bairro.dados["caixa"]
-			var vista := Camera3D.new()
-			vista.projection = Camera3D.PROJECTION_ORTHOGONAL
-			vista.size = maxf(float(caixa[2]) - float(caixa[0]), float(caixa[3]) - float(caixa[1])) * 1.1
-			vista.far = 2000.0
-			add_child(vista)
-			vista.global_position = Vector3((float(caixa[0]) + float(caixa[2])) / 2.0, 400.0, (float(caixa[1]) + float(caixa[3])) / 2.0)
-			vista.rotation_degrees = Vector3(-90, 0, 0)
-			vista.current = true
-			ambiente.environment.fog_enabled = false
+			_vista_de_cima()
 		elif argumento == "--esgoto" and not bairro.bueiros.is_empty():
 			usar_bueiro(0)
 		elif argumento.begins_with("--virar="):
 			cacador.virar_para(deg_to_rad(float(argumento.trim_prefix("--virar="))))
 
 
-## Monta tudo. Pode ser chamado sem estar na árvore (testes).
-func montar(id_bairro: String, semente: int) -> void:
+## Monta a cidade começando no bairro pedido. Pode ser chamado sem estar na árvore (testes).
+func montar(id_bairro: String, semente_do_mundo: int) -> void:
+	semente = semente_do_mundo
 	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -85,17 +104,89 @@ func montar(id_bairro: String, semente: int) -> void:
 	sol.rotation_degrees = Vector3(-55, 35, 0)
 	add_child(sol)
 
-	bairro = Bairro3D.new()
-	bairro.montar(id_bairro, semente)
-	add_child(bairro)
+	var caixa_da_cidade := Rect2()
+	var primeira := true
+	for id in Catalogo.bairros_reais():
+		var dados: Dictionary = Catalogo.carregar_bairro_real(id)["dados"]
+		limites[id] = Lotes._pontos(dados["limite"])
+		var c: Array = dados["caixa"]
+		var caixa := Rect2(float(c[0]), float(c[1]), float(c[2]) - float(c[0]), float(c[3]) - float(c[1]))
+		caixa_da_cidade = caixa if primeira else caixa_da_cidade.merge(caixa)
+		primeira = false
+	vizinhos = Viz.vizinhos(limites)
+	_montar_chao(caixa_da_cidade.grow(MARGEM_DO_CHAO))
 
 	cacador = Cacador.new()
 	cacador.name = "Cacador"
 	cacador.montar()
+	add_child(cacador)
+	_montar_interface()
+	entrar_em(id_bairro)
 	cacador.position = bairro.chegada()
 	cacador.virar_para(bairro.giro_chegada)
-	add_child(cacador)
 
+
+## O bairro vira o atual: linha da borda, galerias e bueiros nele; vizinhos carregados.
+func entrar_em(id: String) -> void:
+	if bairro != null:
+		bairro.borda.visible = false
+		bairro.remover_subterraneo()
+	bairro = _carregar(id)
+	bairro.borda.visible = true
+	bairro.montar_subterraneo()
+	var queridos: Array = [id] + vizinhos.get(id, [])
+	for outro in queridos:
+		_carregar(outro)
+	for velho in carregados.keys():
+		if not velho in queridos:
+			var no: Node3D = carregados[velho]
+			carregados.erase(velho)
+			remove_child(no)
+			no.queue_free()
+	nome_do_lugar.text = bairro.dados["nome"]
+	_tempo_do_nome = TEMPO_DO_NOME
+	minimapa.queue_redraw()
+
+
+func _carregar(id: String) -> Node3D:
+	if not carregados.has(id):
+		var novo := Bairro3D.new()
+		novo.montar(id, semente, {"chao": false, "subterraneo": false})
+		add_child(novo)
+		carregados[id] = novo
+	return carregados[id]
+
+
+## Cruzou a linha? Se o caçador está num bairro vizinho, ele vira o atual.
+func verificar_fronteira() -> void:
+	if zona != "rua":
+		return
+	var id_atual := str(bairro.dados["id"])
+	var onde := Viz.bairro_em(Vector2(cacador.position.x, cacador.position.z), limites, id_atual)
+	if not onde.is_empty() and onde != id_atual and carregados.has(onde):
+		entrar_em(onde)
+
+
+func _montar_chao(area: Rect2) -> void:
+	var tamanho := Vector3(area.size.x, 1.0, area.size.y)
+	var malha := BoxMesh.new()
+	malha.size = tamanho
+	var visual := MeshInstance3D.new()
+	visual.mesh = malha
+	visual.material_override = Materiais.objeto(Bairro3D.COR_TERRENO, tamanho.x / 8.0, Bairro3D.AFIM_DO_CHAO)
+	var chao := StaticBody3D.new()
+	chao.name = "ChaoDaCidade"
+	chao.position = Vector3(area.get_center().x, -0.5, area.get_center().y)
+	var forma := BoxShape3D.new()
+	forma.size = tamanho
+	var colisao := CollisionShape3D.new()
+	colisao.shape = forma
+	chao.add_child(colisao)
+	chao.add_child(visual)
+	add_child(chao)
+
+
+func _montar_interface() -> void:
 	var camada_filtro := CanvasLayer.new()
 	camada_filtro.layer = 10
 	add_child(camada_filtro)
@@ -103,12 +194,12 @@ func montar(id_bairro: String, semente: int) -> void:
 	var camada := CanvasLayer.new()
 	camada.layer = 11
 	add_child(camada)
-	var titulo := Label.new()
-	titulo.text = "%s · mapa real 1:3 · WASD andar · Shift correr · F lanterna" % bairro.dados["nome"]
-	titulo.position = Vector2(8, 6)
-	titulo.add_theme_font_size_override("font_size", 11)
-	titulo.modulate = Color(0.15, 0.13, 0.1, 0.9)
-	camada.add_child(titulo)
+	var ajuda := Label.new()
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro"
+	ajuda.position = Vector2(8, 6)
+	ajuda.add_theme_font_size_override("font_size", 11)
+	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)
+	camada.add_child(ajuda)
 	var credito := Label.new()
 	credito.text = "© colaboradores do OpenStreetMap"
 	credito.position = Vector2(8, 460)
@@ -121,6 +212,18 @@ func montar(id_bairro: String, semente: int) -> void:
 	aviso.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	aviso.add_theme_font_size_override("font_size", 13)
 	camada.add_child(aviso)
+	nome_do_lugar = Label.new()
+	nome_do_lugar.position = Vector2(0, 120)
+	nome_do_lugar.size = Vector2(640, 40)
+	nome_do_lugar.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	nome_do_lugar.add_theme_font_size_override("font_size", 26)
+	nome_do_lugar.add_theme_color_override("font_color", Color(0.98, 0.95, 0.85))
+	nome_do_lugar.add_theme_color_override("font_outline_color", Color(0.1, 0.08, 0.05))
+	nome_do_lugar.add_theme_constant_override("outline_size", 4)
+	camada.add_child(nome_do_lugar)
+	minimapa = Minimapa.new()
+	minimapa.cena = self
+	camada.add_child(minimapa)
 
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
@@ -144,6 +247,7 @@ func usar_bueiro(i: int) -> void:
 		env.fog_light_color = COR_DA_NEVOA
 		env.fog_density = 0.035
 	cacador.velocity = Vector3.ZERO
+	minimapa.queue_redraw()
 
 
 ## Bueiro na mira, ou -1. Na rua, o bueiro no chão; embaixo, a escada logo abaixo dele.
@@ -154,13 +258,30 @@ func bueiro_na_mira(olho: Vector3, frente: Vector3) -> int:
 	return Mira.escolher_alvo(olho, frente, cacador.position + Vector3(0, 0.9, 0), pontos, ALCANCE_DO_BUEIRO, ANGULO_DO_BUEIRO)
 
 
+func _vista_de_cima() -> void:
+	var caixa: Array = bairro.dados["caixa"]
+	var vista := Camera3D.new()
+	vista.projection = Camera3D.PROJECTION_ORTHOGONAL
+	vista.size = maxf(float(caixa[2]) - float(caixa[0]), float(caixa[3]) - float(caixa[1])) * 1.6
+	vista.far = 2000.0
+	add_child(vista)
+	vista.global_position = Vector3((float(caixa[0]) + float(caixa[2])) / 2.0, 400.0, (float(caixa[1]) + float(caixa[3])) / 2.0)
+	vista.rotation_degrees = Vector3(-90, 0, 0)
+	vista.current = true
+	ambiente.environment.fog_enabled = false
+
+
 func _unhandled_input(evento: InputEvent) -> void:
 	if evento.is_action_pressed("examinar") and _alvo >= 0:
 		usar_bueiro(_alvo)
 		get_viewport().set_input_as_handled()
 
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	verificar_fronteira()
+
+
+func _process(delta: float) -> void:
 	var camera: Camera3D = cacador.camera
 	_alvo = bueiro_na_mira(camera.global_position, -camera.global_basis.z)
 	if _alvo < 0:
@@ -168,6 +289,10 @@ func _process(_delta: float) -> void:
 	else:
 		aviso.text = "[E] descer pelo bueiro" if zona == "rua" else "[E] subir para a rua"
 	aviso.modulate = Color(0.1, 0.1, 0.1) if zona == "rua" else Color(0.9, 0.85, 0.7)
+	if _tempo_do_nome > 0.0:
+		_tempo_do_nome -= delta
+		nome_do_lugar.modulate.a = clampf(_tempo_do_nome, 0.0, 1.0)
+	minimapa.queue_redraw()
 	if _captura.is_empty():
 		return
 	_quadros += 1

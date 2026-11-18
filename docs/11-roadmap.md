@@ -108,7 +108,7 @@ Pode ser feita **em paralelo** com o fim da Fase 2.
 - [x] Importador em Python: OpenStreetMap, simplificação, escala 1:3, corte por bairro ([07](07-mundo-cidade-e-npcs.md)). Valongo e Monte Serrat em `game/data/cidade/`. O relevo foi tirado: a cidade é plana (decisão em [07](07-mundo-cidade-e-npcs.md)).
 - [x] Gerador de lotes no Godot, preenchendo com módulos. Prédios em blocos cinza e mata nos morros; `tools/bairro.ps1`.
 - [x] Subterrâneo gerado seguindo as ruas. Galerias embaixo das ruas comuns, bueiros sorteados; E desce e sobe.
-- [ ] Transição entre bairros pelo mapa.
+- [x] Transição entre bairros: bordas contínuas como em Final Fantasy XII (linha no chão, vizinho à vista, carrega ao cruzar) e minimapa como em GTA ([07](07-mundo-cidade-e-npcs.md)).
 
 **Portão:** os 2 bairros do corte vertical (um morro e Paquetá ou Valongo) gerados a partir do mapa real.
 

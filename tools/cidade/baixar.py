@@ -7,11 +7,14 @@ Dados © colaboradores do OpenStreetMap, licença ODbL (ver osm/LICENCA.md).
 """
 import json
 import os
+import sys
 import time
 import urllib.parse
 import urllib.request
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, AQUI)
+import geometria as G  # noqa: E402
 SERVIDORES = [
     "https://overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
@@ -50,8 +53,24 @@ def _enxugar(elemento, chaves):
 def main():
     with open(os.path.join(AQUI, "config.json"), encoding="utf-8") as f:
         config = json.load(f)
-    ids = [b["limite_osm"].split("/")[1] for b in config["bairros"]]
-    limites = consultar("[out:json][timeout:90];way(id:%s);out geom;" % ",".join(ids))["elements"]
+    # Limite de bairro: um caminho fechado (way) ou uma relação, cujos trechos "outer"
+    # são juntados num anel e gravados como se fossem um caminho só.
+    vias = [b["limite_osm"].split("/")[1] for b in config["bairros"] if b["limite_osm"].startswith("way/")]
+    relacoes = [b["limite_osm"].split("/")[1] for b in config["bairros"] if b["limite_osm"].startswith("relation/")]
+    consulta = "[out:json][timeout:90];("
+    if vias:
+        consulta += "way(id:%s);" % ",".join(vias)
+    if relacoes:
+        consulta += "relation(id:%s);" % ",".join(relacoes)
+    limites = []
+    for e in consultar(consulta + ");out geom;")["elements"]:
+        if e["type"] == "relation":
+            trechos = [[(p["lat"], p["lon"]) for p in m["geometry"]] for m in e["members"]
+                       if m["type"] == "way" and m.get("role") == "outer" and "geometry" in m]
+            anel = G.juntar_anel(trechos)
+            e = {"type": "relation", "id": e["id"], "tags": e.get("tags", {}),
+                 "geometry": [{"lat": lat, "lon": lon} for lat, lon in anel]}
+        limites.append(e)
 
     lats = [p["lat"] for e in limites for p in e["geometry"]]
     lons = [p["lon"] for e in limites for p in e["geometry"]]

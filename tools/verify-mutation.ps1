@@ -124,7 +124,11 @@ $mutants += @(
     @{ name = 'galeria sem parede'; path = 'game/presentation/cidade/bairro_3d.gd';
        find = 'subterraneo.add_child(corpo)'; replace = 'pass' },
     @{ name = 'parede corta o cruzamento'; path = 'game/core/cidade/subterraneo.gd';
-       find = 'return dentro_da_galeria(meio + normal, corredores) != dentro_da_galeria(meio - normal, corredores)'; replace = 'return true' }
+       find = 'return dentro_da_galeria(meio + normal, corredores) != dentro_da_galeria(meio - normal, corredores)'; replace = 'return true' },
+    @{ name = 'cruzar a linha não troca o bairro'; path = 'game/presentation/cidade/bairro_cena.gd';
+       find = 'entrar_em(onde)'; replace = 'pass' },
+    @{ name = 'minimapa não gira'; path = 'game/presentation/cidade/minimapa.gd';
+       find = '(ponto - centro_mundo).rotated(giro) * ESCALA'; replace = '(ponto - centro_mundo) * ESCALA' }
 )
 
 if ($Somente.Count -gt 0) {

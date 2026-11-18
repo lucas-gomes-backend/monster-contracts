@@ -83,7 +83,7 @@ A versão completa usa **os bairros de Santos**. A referência é a [lista de ba
 
 **66 bairros é muita coisa para um dev solo.** Para tornar isso possível:
 
-- **Bairros como áreas separadas** (decidido): cada bairro é uma área compacta, e o jogador se desloca entre eles pelo mapa.
+- **Bairros como áreas separadas** (decidido): cada bairro é uma área compacta, carregada à parte. Entre bairros vizinhos a passagem é **contínua, como em Final Fantasy XII** (ver "Decisões").
 - **Mapa real importado:** o traçado das ruas vem pronto dos dados abertos, então não é preciso desenhar plantas.
 - **Kits por zona:** bairros da mesma zona compartilham módulos e paleta. Os 16 morros, por exemplo, usam o mesmo kit de módulos com variações.
 - **Bairros principais e secundários:** cerca de 15 a 20 bairros **principais** recebem marcos e pontos-chave próprios. Os outros são **secundários**, montados só com o kit da zona.
@@ -289,6 +289,9 @@ Lanterna forte, botas de borracha, máscara de gás, corda, mapa das galerias (c
 - **Mesma cidade para todos:** traçado real das ruas, limites de bairro e pontos históricos, em escala 1:3. Prédios, interiores, NPCs e casos são gerados por semente.
 - **Importador sem dependências (17/11/2026):** Python puro (biblioteca padrão). Projeção, simplificação e recorte são escritos à mão e testados. O recorte bruto do OpenStreetMap fica versionado em `tools/cidade/osm/`, para a importação dar sempre o mesmo resultado.
 - **Bairros do portão da Fase 3 (17/11/2026):** **Valongo** e **Monte Serrat**. O Valongo tem polígono de bairro no OpenStreetMap. O Monte Serrat não tem: o limite usado é o da área protegida do morro, que também está no mapa.
+- **Bordas como em Final Fantasy XII (18/11/2026):** os bairros se encaixam no mapa real, num chão só. Uma **linha no chão** marca o limite do bairro atual, e os bairros vizinhos ficam carregados do outro lado, à vista. Ao **cruzar a linha**, o vizinho vira o bairro atual: o nome dele aparece na tela, as galerias e os bueiros passam para ele, os vizinhos dele são carregados e quem ficou longe sai da memória. Substitui a "transição entre bairros pelo mapa" do roadmap.
+- **Minimapa como em GTA (18/11/2026):** um quadrado no canto superior direito, centrado no caçador e girando com a câmera, com ruas, prédios, a linha do bairro atual e os vizinhos. Embaixo da terra, mostra as galerias.
+- **Bairros importados (18/11/2026):** Valongo, Centro, Paquetá e Monte Serrat. O Centro liga os outros três (é o único vizinho de todos). Centro e Paquetá vêm de relações do OpenStreetMap (vários trechos juntados num contorno).
 - **Cidade plana, sem relevo (17/11/2026):** o relevo real chegou a ser importado (morros com até 75 m no jogo), mas as ladeiras ficaram inviáveis para andar e para a câmera. Decisão: **chão plano**, como Silent Hill, com névoa mais densa fazendo o clima. O importador não lê mais altitudes. Os morros mantêm a identidade pela mata, pelas escadarias e pelos marcos.
 - **Esgotos e subterrâneo:** incluídos como segunda camada da cidade.
 

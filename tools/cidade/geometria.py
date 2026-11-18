@@ -18,6 +18,40 @@ def projetar(lat, lon, origem, escala):
     return (x / escala, z / escala)
 
 
+def juntar_anel(trechos):
+    """Junta trechos de linha (os 'outer' de uma relação do OSM) num anel fechado.
+
+    Cada trecho é uma lista de pontos; trechos se encaixam pelas pontas, em qualquer sentido.
+    Devolve o maior anel que fechar (bairros às vezes têm ilhotas soltas).
+    """
+    sobrando = [list(t) for t in trechos if len(t) >= 2]
+    aneis = []
+    while sobrando:
+        anel = sobrando.pop(0)
+        mudou = True
+        while anel[0] != anel[-1] and mudou:
+            mudou = False
+            for i, t in enumerate(sobrando):
+                if t[0] == anel[-1]:
+                    anel += t[1:]
+                elif t[-1] == anel[-1]:
+                    anel += list(reversed(t))[1:]
+                elif t[-1] == anel[0]:
+                    anel = t[:-1] + anel
+                elif t[0] == anel[0]:
+                    anel = list(reversed(t))[:-1] + anel
+                else:
+                    continue
+                sobrando.pop(i)
+                mudou = True
+                break
+        if anel[0] == anel[-1] and len(anel) >= 4:
+            aneis.append(anel)
+    if not aneis:
+        raise ValueError("os trechos não fecham um anel")
+    return max(aneis, key=len)
+
+
 def _distancia_ao_segmento(p, a, b):
     ax, az = a
     bx, bz = b

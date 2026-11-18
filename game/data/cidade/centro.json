@@ -1,0 +1,3335 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "centro",
+ "nome": "Centro",
+ "zona": "central_portuaria",
+ "escala": 3.0,
+ "area_m2": 86285.3,
+ "caixa": [
+  -217.35,
+  -118.31,
+  237.6,
+  252.22
+ ],
+ "limite": [
+  [
+   -153.6,
+   -90.63
+  ],
+  [
+   -217.35,
+   14.11
+  ],
+  [
+   -185.69,
+   48.25
+  ],
+  [
+   -117.1,
+   110.76
+  ],
+  [
+   -95.58,
+   125.12
+  ],
+  [
+   -77.56,
+   123.32
+  ],
+  [
+   -32.99,
+   102.12
+  ],
+  [
+   -23.99,
+   105.29
+  ],
+  [
+   1.48,
+   124.37
+  ],
+  [
+   8.98,
+   140.85
+  ],
+  [
+   52.26,
+   153.06
+  ],
+  [
+   80.67,
+   164.62
+  ],
+  [
+   80.51,
+   188.32
+  ],
+  [
+   86.37,
+   192.52
+  ],
+  [
+   87.33,
+   197.47
+  ],
+  [
+   77.51,
+   210.87
+  ],
+  [
+   77.36,
+   218.06
+  ],
+  [
+   90.51,
+   250.88
+  ],
+  [
+   102.82,
+   252.22
+  ],
+  [
+   115.73,
+   127.49
+  ],
+  [
+   214.82,
+   148.67
+  ],
+  [
+   237.6,
+   -50.08
+  ],
+  [
+   179.51,
+   -60.2
+  ],
+  [
+   78.01,
+   -63.58
+  ],
+  [
+   47.92,
+   -66.9
+  ],
+  [
+   -14.78,
+   -81.22
+  ],
+  [
+   -54.75,
+   -83.72
+  ],
+  [
+   -85.37,
+   -93.48
+  ],
+  [
+   -136.38,
+   -118.31
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 4626712,
+   "nome": "Praça Francisco Martins dos Santos",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -105.74,
+     81.31
+    ],
+    [
+     -98.21,
+     84.61
+    ],
+    [
+     -94.03,
+     89.38
+    ],
+    [
+     -92.25,
+     96.06
+    ],
+    [
+     -95.76,
+     105.44
+    ],
+    [
+     -101.81,
+     108.89
+    ],
+    [
+     -109.1,
+     109.0
+    ],
+    [
+     -123.33,
+     98.35
+    ]
+   ]
+  },
+  {
+   "osm": 38796379,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     125.51,
+     -44.68
+    ],
+    [
+     120.08,
+     45.98
+    ]
+   ]
+  },
+  {
+   "osm": 48454191,
+   "nome": "Túnel Prefeito Rubens Ferreira Martins",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -126.26,
+     102.41
+    ],
+    [
+     -121.07,
+     90.17
+    ]
+   ]
+  },
+  {
+   "osm": 48454193,
+   "nome": "Praça dos Andradas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -106.95,
+     -8.07
+    ],
+    [
+     -112.04,
+     -5.65
+    ],
+    [
+     -113.92,
+     -1.58
+    ],
+    [
+     -128.05,
+     63.14
+    ]
+   ]
+  },
+  {
+   "osm": 48454223,
+   "nome": "Avenida São Francisco",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -105.74,
+     81.31
+    ],
+    [
+     -76.06,
+     86.31
+    ]
+   ]
+  },
+  {
+   "osm": 48458854,
+   "nome": "Rua Frei Gaspar",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -39.79,
+     -80.52
+    ],
+    [
+     -42.85,
+     -51.54
+    ],
+    [
+     -41.13,
+     -8.77
+    ]
+   ]
+  },
+  {
+   "osm": 48458858,
+   "nome": "Rua São Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -214.02,
+     8.5
+    ],
+    [
+     -213.64,
+     15.02
+    ]
+   ]
+  },
+  {
+   "osm": 48458876,
+   "nome": "Praça dos Andradas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -118.85,
+     85.02
+    ],
+    [
+     -110.29,
+     70.45
+    ],
+    [
+     -87.32,
+     -1.99
+    ]
+   ]
+  },
+  {
+   "osm": 48458880,
+   "nome": "Túnel Prefeito Rubens Ferreira Martins",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -127.03,
+     87.73
+    ],
+    [
+     -131.46,
+     97.68
+    ]
+   ]
+  },
+  {
+   "osm": 48488882,
+   "nome": "Rua Itororó",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     65.4,
+     -14.69
+    ],
+    [
+     62.25,
+     4.59
+    ]
+   ]
+  },
+  {
+   "osm": 48488884,
+   "nome": "Rua 15 de Novembro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     47.12,
+     -42.58
+    ],
+    [
+     24.23,
+     -45.26
+    ]
+   ]
+  },
+  {
+   "osm": 48488886,
+   "nome": "Praça República",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     70.82,
+     -40.37
+    ],
+    [
+     158.09,
+     -31.43
+    ]
+   ]
+  },
+  {
+   "osm": 48489619,
+   "nome": "Rua Martim Affonso",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     53.93,
+     147.17
+    ],
+    [
+     91.77,
+     -38.08
+    ]
+   ]
+  },
+  {
+   "osm": 48489630,
+   "nome": "Rua Pedro II",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     0.12,
+     102.93
+    ],
+    [
+     17.33,
+     -4.33
+    ]
+   ]
+  },
+  {
+   "osm": 195669842,
+   "nome": "Rua Amador Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -100.04,
+     39.37
+    ],
+    [
+     -51.54,
+     49.71
+    ]
+   ]
+  },
+  {
+   "osm": 196611586,
+   "nome": "Rua do Comércio",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -48.05,
+     -8.76
+    ],
+    [
+     -71.31,
+     -32.12
+    ],
+    [
+     -100.27,
+     -55.58
+    ],
+    [
+     -153.6,
+     -90.63
+    ]
+   ]
+  },
+  {
+   "osm": 196611589,
+   "nome": "Rua Gonçalves Dias",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -122.01,
+     -24.52
+    ],
+    [
+     -98.46,
+     -53.99
+    ]
+   ]
+  },
+  {
+   "osm": 196611591,
+   "nome": "Rua Tuiuti",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -121.98,
+     -111.3
+    ],
+    [
+     -82.8,
+     -90.9
+    ],
+    [
+     -57.21,
+     -82.77
+    ],
+    [
+     -39.79,
+     -80.52
+    ]
+   ]
+  },
+  {
+   "osm": 196614112,
+   "nome": "Rua Visconde de Mauá",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -15.38,
+     -7.05
+    ],
+    [
+     -13.09,
+     -29.5
+    ]
+   ]
+  },
+  {
+   "osm": 196614113,
+   "nome": "Praça Barão do Rio Branco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     72.42,
+     -64.2
+    ],
+    [
+     68.31,
+     -44.69
+    ],
+    [
+     70.82,
+     -40.37
+    ]
+   ]
+  },
+  {
+   "osm": 196614114,
+   "nome": "Rua Riachuelo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -3.78,
+     -28.56
+    ],
+    [
+     -0.37,
+     -73.38
+    ]
+   ]
+  },
+  {
+   "osm": 196614115,
+   "nome": "Rua Augusto Severo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     47.12,
+     -42.58
+    ],
+    [
+     40.66,
+     -2.41
+    ]
+   ]
+  },
+  {
+   "osm": 196614116,
+   "nome": "Rua Cidade de Toledo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     22.47,
+     -25.81
+    ],
+    [
+     45.1,
+     -23.44
+    ]
+   ]
+  },
+  {
+   "osm": 196614983,
+   "nome": "Praça Tenente Mauro Batista de Miranda",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     97.86,
+     156.63
+    ],
+    [
+     100.05,
+     158.99
+    ]
+   ]
+  },
+  {
+   "osm": 215571063,
+   "nome": "Rua Conde D'Eu",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -75.54,
+     -35.52
+    ],
+    [
+     -64.01,
+     -54.33
+    ],
+    [
+     -72.22,
+     -73.53
+    ],
+    [
+     -67.57,
+     -85.59
+    ]
+   ]
+  },
+  {
+   "osm": 215571064,
+   "nome": "Rua Alexandre Rodrigues",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -161.59,
+     25.49
+    ],
+    [
+     -148.92,
+     -21.44
+    ]
+   ]
+  },
+  {
+   "osm": 215571065,
+   "nome": "Rua Visconde de Embaré",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -198.23,
+     31.19
+    ],
+    [
+     -191.09,
+     27.42
+    ],
+    [
+     -190.18,
+     21.96
+    ],
+    [
+     -205.25,
+     5.92
+    ],
+    [
+     -206.51,
+     1.89
+    ]
+   ]
+  },
+  {
+   "osm": 215571070,
+   "nome": "Rua Dom Pedro II",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     22.47,
+     -25.81
+    ],
+    [
+     24.23,
+     -45.26
+    ]
+   ]
+  },
+  {
+   "osm": 215571075,
+   "nome": "Rua Visconde de Embaré",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -161.59,
+     25.49
+    ],
+    [
+     -122.34,
+     34.08
+    ]
+   ]
+  },
+  {
+   "osm": 297185625,
+   "nome": "Viela Doutor Zoilo de Toloza",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -71.76,
+     70.41
+    ],
+    [
+     -56.89,
+     73.43
+    ]
+   ]
+  },
+  {
+   "osm": 317528461,
+   "nome": "Rua General Câmara",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     40.66,
+     -2.41
+    ],
+    [
+     17.33,
+     -4.33
+    ]
+   ]
+  },
+  {
+   "osm": 317528464,
+   "nome": "Avenida Visconde de São Leopoldo",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -106.95,
+     -8.07
+    ],
+    [
+     -148.92,
+     -21.44
+    ]
+   ]
+  },
+  {
+   "osm": 317528465,
+   "nome": "Elevado Aristides Bastos Machado",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -123.33,
+     98.35
+    ],
+    [
+     -214.59,
+     9.47
+    ]
+   ]
+  },
+  {
+   "osm": 320464100,
+   "nome": "Avenida São Francisco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     148.81,
+     133.98
+    ],
+    [
+     214.82,
+     148.67
+    ]
+   ]
+  },
+  {
+   "osm": 341856800,
+   "nome": "Rua Riachuelo",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     -5.17,
+     -6.25
+    ],
+    [
+     -7.85,
+     17.98
+    ]
+   ]
+  },
+  {
+   "osm": 341856801,
+   "nome": "Rua Riachuelo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -7.85,
+     17.98
+    ],
+    [
+     -24.51,
+     97.43
+    ]
+   ]
+  },
+  {
+   "osm": 341861766,
+   "nome": "Rua Quinze de Novembro",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     -42.85,
+     -51.54
+    ],
+    [
+     -70.52,
+     -31.34
+    ]
+   ]
+  },
+  {
+   "osm": 359184903,
+   "nome": "Avenida Presidente Getulio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -190.31,
+     40.41
+    ],
+    [
+     -125.55,
+     101.45
+    ]
+   ]
+  },
+  {
+   "osm": 359188535,
+   "nome": "Praça Francisco Martins dos Santos",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -125.55,
+     101.45
+    ],
+    [
+     -111.78,
+     112.28
+    ],
+    [
+     -99.02,
+     112.42
+    ],
+    [
+     -90.49,
+     105.19
+    ],
+    [
+     -85.41,
+     90.98
+    ],
+    [
+     -76.06,
+     86.31
+    ]
+   ]
+  },
+  {
+   "osm": 359188536,
+   "nome": "Avenida São Francisco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -59.81,
+     86.23
+    ],
+    [
+     -62.65,
+     87.5
+    ],
+    [
+     -105.09,
+     77.76
+    ],
+    [
+     -109.05,
+     75.35
+    ],
+    [
+     -110.29,
+     70.45
+    ]
+   ]
+  },
+  {
+   "osm": 359188538,
+   "nome": "Avenida São Francisco",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -58.38,
+     90.27
+    ],
+    [
+     16.13,
+     106.37
+    ]
+   ]
+  },
+  {
+   "osm": 359188539,
+   "nome": "Rua Rubião Junior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -74.11,
+     112.76
+    ],
+    [
+     -68.66,
+     87.98
+    ]
+   ]
+  },
+  {
+   "osm": 359189032,
+   "nome": "Rua Visconde de Vergueiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -178.15,
+     -50.12
+    ],
+    [
+     -122.01,
+     -24.52
+    ]
+   ]
+  },
+  {
+   "osm": 359189033,
+   "nome": "Rua José Ricardo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -100.27,
+     -55.58
+    ],
+    [
+     -86.48,
+     -92.35
+    ]
+   ]
+  },
+  {
+   "osm": 359189746,
+   "nome": "Travessa Comendador Neto",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -139.84,
+     -81.98
+    ],
+    [
+     -122.04,
+     -110.45
+    ]
+   ]
+  },
+  {
+   "osm": 359208185,
+   "nome": "Praça dos Andradas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -87.32,
+     -1.99
+    ],
+    [
+     -106.95,
+     -8.07
+    ]
+   ]
+  },
+  {
+   "osm": 367257781,
+   "nome": "Rua Marrey Júnior",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     179.21,
+     117.19
+    ],
+    [
+     148.5,
+     111.16
+    ]
+   ]
+  },
+  {
+   "osm": 367257782,
+   "nome": "Rua Doutor Adhemar de Figueiredo Lyra",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     182.55,
+     102.45
+    ],
+    [
+     179.21,
+     117.19
+    ]
+   ]
+  },
+  {
+   "osm": 367257783,
+   "nome": "Rua Doutor Adhemar de Figueiredo Lyra",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     175.17,
+     139.85
+    ],
+    [
+     179.21,
+     117.19
+    ]
+   ]
+  },
+  {
+   "osm": 367260208,
+   "nome": "Praça Antonio Telles",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     160.12,
+     -36.82
+    ],
+    [
+     172.34,
+     -36.22
+    ],
+    [
+     173.92,
+     -41.8
+    ]
+   ]
+  },
+  {
+   "osm": 367260209,
+   "nome": "Praça Antonio Telles",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     173.92,
+     -41.8
+    ],
+    [
+     160.72,
+     -42.93
+    ]
+   ]
+  },
+  {
+   "osm": 367260210,
+   "nome": "Praça República",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     68.31,
+     -44.69
+    ],
+    [
+     95.19,
+     -42.28
+    ],
+    [
+     125.51,
+     -44.68
+    ]
+   ]
+  },
+  {
+   "osm": 367260211,
+   "nome": "Rua Alberto Leal",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     94.71,
+     -37.7
+    ],
+    [
+     97.0,
+     -63.03
+    ]
+   ]
+  },
+  {
+   "osm": 367260579,
+   "nome": "Rua Tiro 11",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     190.12,
+     -29.81
+    ],
+    [
+     198.36,
+     -55.66
+    ]
+   ]
+  },
+  {
+   "osm": 367260580,
+   "nome": "Rua Visconde do Rio Branco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     227.93,
+     -28.7
+    ],
+    [
+     233.14,
+     -24.75
+    ],
+    [
+     233.48,
+     -21.97
+    ]
+   ]
+  },
+  {
+   "osm": 367295516,
+   "nome": "Praça Tenente Mauro Batista de Miranda",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     100.05,
+     158.99
+    ],
+    [
+     111.69,
+     168.61
+    ]
+   ]
+  },
+  {
+   "osm": 367303806,
+   "nome": "Praça Correia de Melo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     16.13,
+     106.37
+    ],
+    [
+     11.26,
+     130.83
+    ],
+    [
+     12.03,
+     134.37
+    ],
+    [
+     15.93,
+     136.78
+    ]
+   ]
+  },
+  {
+   "osm": 367303814,
+   "nome": "Rua Itororó",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     62.25,
+     4.59
+    ],
+    [
+     46.62,
+     113.41
+    ]
+   ]
+  },
+  {
+   "osm": 367304777,
+   "nome": "Rua Frei Caneca",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     35.58,
+     27.46
+    ],
+    [
+     39.59,
+     70.43
+    ]
+   ]
+  },
+  {
+   "osm": 367315230,
+   "nome": "Praça Ruy Barbosa",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -41.13,
+     -8.77
+    ],
+    [
+     -53.39,
+     -7.83
+    ],
+    [
+     -66.05,
+     4.78
+    ]
+   ]
+  },
+  {
+   "osm": 380498925,
+   "nome": "Caminho Monsenhor Moreira",
+   "tipo": "steps",
+   "largura": 2.5,
+   "pontos": [
+    [
+     10.39,
+     134.77
+    ],
+    [
+     7.63,
+     137.88
+    ]
+   ]
+  },
+  {
+   "osm": 380498927,
+   "nome": "Rua Tiro Naval",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     80.85,
+     211.82
+    ],
+    [
+     106.8,
+     217.39
+    ]
+   ]
+  },
+  {
+   "osm": 389334140,
+   "nome": "Praça Patriarca José Bonifácio",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     115.73,
+     127.49
+    ],
+    [
+     147.61,
+     133.72
+    ]
+   ]
+  },
+  {
+   "osm": 417898115,
+   "nome": "Plataformas Terminal Rodoviário de Santos",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -149.78,
+     59.87
+    ],
+    [
+     -145.05,
+     38.21
+    ]
+   ]
+  },
+  {
+   "osm": 440203337,
+   "nome": "Rua São Bento",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     -149.68,
+     -96.94
+    ],
+    [
+     -139.05,
+     -111.83
+    ]
+   ]
+  },
+  {
+   "osm": 462453365,
+   "nome": "Rua São Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -153.6,
+     -90.63
+    ],
+    [
+     -178.15,
+     -50.12
+    ]
+   ]
+  },
+  {
+   "osm": 462453366,
+   "nome": "Rua Gonçalves Dias",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -122.01,
+     -24.52
+    ],
+    [
+     -129.59,
+     -15.69
+    ]
+   ]
+  },
+  {
+   "osm": 462453367,
+   "nome": "Rua 15 de Novembro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -94.35,
+     -3.81
+    ],
+    [
+     -71.31,
+     -32.12
+    ]
+   ]
+  },
+  {
+   "osm": 462454371,
+   "nome": "Praça Antonio Telles",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     173.92,
+     -41.8
+    ],
+    [
+     174.62,
+     -59.11
+    ]
+   ]
+  },
+  {
+   "osm": 462454372,
+   "nome": "Rua Visconde do Rio Branco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     47.12,
+     -42.58
+    ],
+    [
+     65.95,
+     -40.83
+    ]
+   ]
+  },
+  {
+   "osm": 472977999,
+   "nome": "Rua 15 de Novembro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     24.23,
+     -45.26
+    ],
+    [
+     -42.85,
+     -51.54
+    ]
+   ]
+  },
+  {
+   "osm": 472986506,
+   "nome": "Praça Patriarca José Bonifácio",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     147.61,
+     133.72
+    ],
+    [
+     149.05,
+     98.19
+    ]
+   ]
+  },
+  {
+   "osm": 472986508,
+   "nome": "Rua Amador Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     153.78,
+     95.93
+    ],
+    [
+     218.62,
+     109.74
+    ]
+   ]
+  },
+  {
+   "osm": 472986510,
+   "nome": "Rua Braz Cubas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     149.19,
+     94.87
+    ],
+    [
+     152.85,
+     53.53
+    ]
+   ]
+  },
+  {
+   "osm": 472990348,
+   "nome": "Rua Amador Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     118.88,
+     88.1
+    ],
+    [
+     149.19,
+     94.87
+    ]
+   ]
+  },
+  {
+   "osm": 472990349,
+   "nome": "Praça Patriarca José Bonifácio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     118.74,
+     91.11
+    ],
+    [
+     115.73,
+     127.49
+    ]
+   ]
+  },
+  {
+   "osm": 476409101,
+   "nome": "Praça Corrêa de Mello",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     15.93,
+     136.78
+    ],
+    [
+     42.08,
+     142.4
+    ]
+   ]
+  },
+  {
+   "osm": 476413956,
+   "nome": "Avenida São Francisco",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -76.06,
+     86.31
+    ],
+    [
+     -58.38,
+     90.27
+    ]
+   ]
+  },
+  {
+   "osm": 476415718,
+   "nome": "Rua Braz Cubas",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     152.85,
+     53.53
+    ],
+    [
+     155.36,
+     16.49
+    ]
+   ]
+  },
+  {
+   "osm": 476415719,
+   "nome": "Rua João Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     120.08,
+     45.98
+    ],
+    [
+     -42.97,
+     10.42
+    ]
+   ]
+  },
+  {
+   "osm": 476415720,
+   "nome": "Rua João Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     223.15,
+     69.26
+    ],
+    [
+     152.85,
+     53.53
+    ]
+   ]
+  },
+  {
+   "osm": 476415958,
+   "nome": "Avenida Getúlio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -216.36,
+     12.45
+    ],
+    [
+     -213.64,
+     15.02
+    ]
+   ]
+  },
+  {
+   "osm": 476418141,
+   "nome": "Praça Ruy Barbosa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -41.13,
+     -8.77
+    ],
+    [
+     -42.97,
+     10.42
+    ]
+   ]
+  },
+  {
+   "osm": 476420882,
+   "nome": "Avenida Xavier da Silveira",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     160.28,
+     -60.42
+    ],
+    [
+     236.42,
+     -48.13
+    ]
+   ]
+  },
+  {
+   "osm": 478906791,
+   "nome": "Acesso às plataformas",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -159.61,
+     59.48
+    ],
+    [
+     -154.93,
+     40.23
+    ]
+   ]
+  },
+  {
+   "osm": 479627723,
+   "nome": "Praça da República",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     160.72,
+     -42.93
+    ],
+    [
+     125.51,
+     -44.68
+    ]
+   ]
+  },
+  {
+   "osm": 479627724,
+   "nome": "Rua Braz Cubas",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     160.72,
+     -42.93
+    ],
+    [
+     160.28,
+     -60.42
+    ]
+   ]
+  },
+  {
+   "osm": 482300768,
+   "nome": "Rua Andrade Neves",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     100.05,
+     158.99
+    ],
+    [
+     95.96,
+     193.45
+    ],
+    [
+     98.05,
+     198.2
+    ],
+    [
+     108.08,
+     206.25
+    ]
+   ]
+  },
+  {
+   "osm": 482300769,
+   "nome": "Praça Corrêa de Mello",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     46.62,
+     113.41
+    ],
+    [
+     42.08,
+     142.4
+    ]
+   ]
+  },
+  {
+   "osm": 482300770,
+   "nome": "Avenida São Francisco",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     46.62,
+     113.41
+    ],
+    [
+     115.73,
+     127.49
+    ]
+   ]
+  },
+  {
+   "osm": 482304637,
+   "nome": "Estacionamento Privativo dos Associados do Sindipetro",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -81.31,
+     90.82
+    ],
+    [
+     -84.4,
+     103.03
+    ],
+    [
+     -72.38,
+     105.52
+    ]
+   ]
+  },
+  {
+   "osm": 483289608,
+   "nome": "Rua Visconde do Rio Branco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     158.09,
+     -31.43
+    ],
+    [
+     227.93,
+     -28.7
+    ],
+    [
+     234.8,
+     -30.86
+    ]
+   ]
+  },
+  {
+   "osm": 483289609,
+   "nome": "Rua Braz Cubas",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     158.09,
+     -31.43
+    ],
+    [
+     160.72,
+     -42.93
+    ]
+   ]
+  },
+  {
+   "osm": 483303562,
+   "nome": "Avenida Visconde de São Leopoldo",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -66.05,
+     4.78
+    ],
+    [
+     -87.32,
+     -1.99
+    ]
+   ]
+  },
+  {
+   "osm": 483303564,
+   "nome": "Rua Vasconcellos Tavares",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -66.05,
+     4.78
+    ],
+    [
+     -78.27,
+     44.04
+    ]
+   ]
+  },
+  {
+   "osm": 483303565,
+   "nome": "Rua Frei Gaspar",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -42.97,
+     10.42
+    ],
+    [
+     -51.54,
+     49.71
+    ]
+   ]
+  },
+  {
+   "osm": 483303566,
+   "nome": "Praça Ruy Barbosa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -42.97,
+     10.42
+    ],
+    [
+     -66.05,
+     4.78
+    ]
+   ]
+  },
+  {
+   "osm": 484611753,
+   "nome": "Rua Tuiuti",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -39.79,
+     -80.52
+    ],
+    [
+     -13.74,
+     -78.34
+    ],
+    [
+     -0.37,
+     -73.38
+    ]
+   ]
+  },
+  {
+   "osm": 484611755,
+   "nome": "Rua Tuiuti",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -0.37,
+     -73.38
+    ],
+    [
+     16.87,
+     -70.45
+    ]
+   ]
+  },
+  {
+   "osm": 484726925,
+   "nome": "Rua Bittencourt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     42.08,
+     142.4
+    ],
+    [
+     53.93,
+     147.17
+    ]
+   ]
+  },
+  {
+   "osm": 484726928,
+   "nome": "Avenida São Francisco",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     16.13,
+     106.37
+    ],
+    [
+     46.62,
+     113.41
+    ]
+   ]
+  },
+  {
+   "osm": 504327288,
+   "nome": "Largo Marquês de Monte Alegre",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     -139.05,
+     -111.83
+    ],
+    [
+     -125.56,
+     -104.82
+    ]
+   ]
+  },
+  {
+   "osm": 516208740,
+   "nome": "Rua General Câmara",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     155.36,
+     16.49
+    ],
+    [
+     67.25,
+     5.66
+    ],
+    [
+     40.66,
+     -2.41
+    ]
+   ]
+  },
+  {
+   "osm": 516208741,
+   "nome": "Rua Braz Cubas",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     155.36,
+     16.49
+    ],
+    [
+     158.09,
+     -31.43
+    ]
+   ]
+  },
+  {
+   "osm": 666625443,
+   "nome": "Praça Patriarca José Bonifácio",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     149.05,
+     98.19
+    ],
+    [
+     118.74,
+     91.11
+    ]
+   ]
+  },
+  {
+   "osm": 676681453,
+   "nome": "Rua General Câmara",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     17.33,
+     -4.33
+    ],
+    [
+     -15.38,
+     -7.05
+    ]
+   ]
+  },
+  {
+   "osm": 676681454,
+   "nome": "Rua General Câmara",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -15.38,
+     -7.05
+    ],
+    [
+     -41.13,
+     -8.77
+    ]
+   ]
+  },
+  {
+   "osm": 676681455,
+   "nome": "Rua Cidade de Toledo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -3.78,
+     -28.56
+    ],
+    [
+     22.47,
+     -25.81
+    ]
+   ]
+  },
+  {
+   "osm": 676681456,
+   "nome": "Rua Cidade de Toledo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -42.19,
+     -32.82
+    ],
+    [
+     -3.78,
+     -28.56
+    ]
+   ]
+  },
+  {
+   "osm": 682321255,
+   "nome": "",
+   "tipo": "steps",
+   "largura": 2.5,
+   "pontos": [
+    [
+     80.85,
+     211.82
+    ],
+    [
+     77.43,
+     214.74
+    ]
+   ]
+  },
+  {
+   "osm": 736570353,
+   "nome": "Rua Augusto Severo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     50.22,
+     -66.64
+    ],
+    [
+     47.12,
+     -42.58
+    ]
+   ]
+  },
+  {
+   "osm": 736570682,
+   "nome": "Rua Augusto Severo",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     42.15,
+     -2.13
+    ],
+    [
+     38.71,
+     28.33
+    ]
+   ]
+  },
+  {
+   "osm": 736579881,
+   "nome": "Rua São Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -188.5,
+     -34.27
+    ],
+    [
+     -178.15,
+     -50.12
+    ]
+   ]
+  },
+  {
+   "osm": 775235099,
+   "nome": "Rua Frei Gaspar",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -51.54,
+     49.71
+    ],
+    [
+     -59.81,
+     86.23
+    ],
+    [
+     -58.38,
+     90.27
+    ]
+   ]
+  },
+  {
+   "osm": 775235100,
+   "nome": "Rua Amador Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     -51.54,
+     49.71
+    ],
+    [
+     115.03,
+     87.26
+    ]
+   ]
+  },
+  {
+   "osm": 879132029,
+   "nome": "Túnel Prefeito Rubens Ferreira Martins",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -121.07,
+     90.17
+    ],
+    [
+     -118.85,
+     85.02
+    ]
+   ]
+  },
+  {
+   "osm": 879132030,
+   "nome": "Túnel Prefeito Rubens Ferreira Martins",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -126.03,
+     84.49
+    ],
+    [
+     -127.03,
+     87.73
+    ]
+   ]
+  },
+  {
+   "osm": 879164051,
+   "nome": "Praça Francisco Martins dos Santos",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -118.85,
+     85.02
+    ],
+    [
+     -113.13,
+     81.82
+    ],
+    [
+     -105.74,
+     81.31
+    ]
+   ]
+  },
+  {
+   "osm": 879172744,
+   "nome": "Rua Visconde do Rio Branco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     68.31,
+     -44.69
+    ],
+    [
+     65.95,
+     -40.83
+    ]
+   ]
+  },
+  {
+   "osm": 879172745,
+   "nome": "Rua Visconde do Rio Branco",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     65.95,
+     -40.83
+    ],
+    [
+     70.82,
+     -40.37
+    ]
+   ]
+  },
+  {
+   "osm": 879172746,
+   "nome": "Rua Amador Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     115.03,
+     87.26
+    ],
+    [
+     118.88,
+     88.1
+    ]
+   ]
+  },
+  {
+   "osm": 879172748,
+   "nome": "Rua Amador Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     149.19,
+     94.87
+    ],
+    [
+     153.78,
+     95.93
+    ]
+   ]
+  },
+  {
+   "osm": 879227265,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -11.53,
+     100.31
+    ],
+    [
+     -14.24,
+     112.6
+    ]
+   ]
+  },
+  {
+   "osm": 879227266,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -10.2,
+     115.62
+    ],
+    [
+     -0.6,
+     117.36
+    ],
+    [
+     3.05,
+     103.56
+    ]
+   ]
+  },
+  {
+   "osm": 975245312,
+   "nome": "Avenida Getúlio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -213.64,
+     15.02
+    ],
+    [
+     -198.23,
+     31.19
+    ]
+   ]
+  },
+  {
+   "osm": 976652308,
+   "nome": "Avenida Senador Feijó",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     120.08,
+     45.98
+    ],
+    [
+     118.74,
+     91.11
+    ]
+   ]
+  },
+  {
+   "osm": 976652309,
+   "nome": "Rua João Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     152.85,
+     53.53
+    ],
+    [
+     120.08,
+     45.98
+    ]
+   ]
+  },
+  {
+   "osm": 1113273055,
+   "nome": "Avenida Nossa Senhora do Monte Serrat",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -101.5,
+     120.36
+    ],
+    [
+     -79.5,
+     117.78
+    ],
+    [
+     -74.11,
+     112.76
+    ]
+   ]
+  },
+  {
+   "osm": 1151978122,
+   "nome": "Praça dos Andradas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -127.42,
+     68.33
+    ],
+    [
+     -124.68,
+     77.39
+    ],
+    [
+     -126.03,
+     84.49
+    ]
+   ]
+  },
+  {
+   "osm": 1232187466,
+   "nome": "Acesso da Plataforma B",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -153.12,
+     33.32
+    ],
+    [
+     -167.53,
+     30.87
+    ]
+   ]
+  },
+  {
+   "osm": 1232187467,
+   "nome": "Acesso da Plataforma D",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -168.81,
+     36.83
+    ],
+    [
+     -183.43,
+     33.41
+    ]
+   ]
+  },
+  {
+   "osm": 1232187468,
+   "nome": "Acesso da Plataforma C",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -154.07,
+     36.72
+    ],
+    [
+     -168.21,
+     33.9
+    ]
+   ]
+  },
+  {
+   "osm": 1232187469,
+   "nome": "Acesso da Plataforma F",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -159.61,
+     59.48
+    ],
+    [
+     -182.17,
+     37.5
+    ]
+   ]
+  },
+  {
+   "osm": 1232187470,
+   "nome": "Acesso da Plataforma A",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -152.64,
+     30.81
+    ],
+    [
+     -181.79,
+     26.0
+    ]
+   ]
+  },
+  {
+   "osm": 1232187471,
+   "nome": "Acesso da Plataforma E",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -155.76,
+     43.63
+    ],
+    [
+     -182.66,
+     36.68
+    ]
+   ]
+  },
+  {
+   "osm": 1232202314,
+   "nome": "Acesso da Plataforma F",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -156.82,
+     48.01
+    ],
+    [
+     -175.78,
+     43.07
+    ]
+   ]
+  },
+  {
+   "osm": 1265017772,
+   "nome": "Entrada de ônibus",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -144.92,
+     68.69
+    ],
+    [
+     -149.78,
+     59.87
+    ]
+   ]
+  },
+  {
+   "osm": 1265017773,
+   "nome": "Saída de ônibus",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -145.05,
+     38.21
+    ],
+    [
+     -143.26,
+     29.54
+    ]
+   ]
+  },
+  {
+   "osm": 1303394666,
+   "nome": "",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     125.51,
+     -44.68
+    ],
+    [
+     126.29,
+     -54.17
+    ]
+   ]
+  },
+  {
+   "osm": 1303394667,
+   "nome": "Passarela Érica Latina Ceciliato",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     126.19,
+     -58.04
+    ],
+    [
+     125.62,
+     -62.19
+    ]
+   ]
+  },
+  {
+   "osm": 1303394670,
+   "nome": "",
+   "tipo": "steps",
+   "largura": 2.5,
+   "pontos": [
+    [
+     126.29,
+     -54.17
+    ],
+    [
+     126.19,
+     -58.04
+    ]
+   ]
+  },
+  {
+   "osm": 1303394671,
+   "nome": "",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     126.29,
+     -54.17
+    ],
+    [
+     126.19,
+     -58.04
+    ]
+   ]
+  },
+  {
+   "osm": 1340149825,
+   "nome": "Rua Bittencourt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     97.86,
+     156.63
+    ],
+    [
+     53.93,
+     147.17
+    ]
+   ]
+  },
+  {
+   "osm": 1365388750,
+   "nome": "",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     129.7,
+     106.58
+    ],
+    [
+     129.38,
+     113.47
+    ],
+    [
+     135.84,
+     114.11
+    ],
+    [
+     136.16,
+     107.3
+    ],
+    [
+     129.7,
+     106.58
+    ]
+   ]
+  },
+  {
+   "osm": 1365388751,
+   "nome": "",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     129.7,
+     106.58
+    ],
+    [
+     118.74,
+     91.11
+    ]
+   ]
+  },
+  {
+   "osm": 1365388752,
+   "nome": "",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     119.7,
+     124.1
+    ],
+    [
+     129.38,
+     113.47
+    ]
+   ]
+  },
+  {
+   "osm": 1365388753,
+   "nome": "",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     143.49,
+     128.47
+    ],
+    [
+     135.84,
+     114.11
+    ]
+   ]
+  },
+  {
+   "osm": 1365388755,
+   "nome": "",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     146.17,
+     99.82
+    ],
+    [
+     136.16,
+     107.3
+    ]
+   ]
+  },
+  {
+   "osm": 1365388756,
+   "nome": "",
+   "tipo": "pedestrian",
+   "largura": 5.0,
+   "pontos": [
+    [
+     139.53,
+     104.78
+    ],
+    [
+     141.14,
+     113.59
+    ],
+    [
+     137.75,
+     117.69
+    ],
+    [
+     133.23,
+     119.6
+    ],
+    [
+     125.92,
+     117.27
+    ],
+    [
+     123.86,
+     109.34
+    ],
+    [
+     125.8,
+     105.09
+    ],
+    [
+     130.64,
+     102.21
+    ],
+    [
+     139.53,
+     104.78
+    ]
+   ]
+  },
+  {
+   "osm": 1372266747,
+   "nome": "Rua São Bento",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -206.51,
+     1.89
+    ],
+    [
+     -188.5,
+     -34.27
+    ]
+   ]
+  },
+  {
+   "osm": 1459546826,
+   "nome": "Rua Tuiuti",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     16.87,
+     -70.45
+    ],
+    [
+     33.99,
+     -70.08
+    ]
+   ]
+  },
+  {
+   "osm": 1459546827,
+   "nome": "Avenida Xavier da Silveira",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     133.75,
+     -61.96
+    ],
+    [
+     160.28,
+     -60.42
+    ]
+   ]
+  },
+  {
+   "osm": 1499132802,
+   "nome": "Rua General Câmara",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     228.3,
+     25.17
+    ],
+    [
+     155.36,
+     16.49
+    ]
+   ]
+  },
+  {
+   "osm": 1499132805,
+   "nome": "Praça dos Andradas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -128.05,
+     63.14
+    ],
+    [
+     -127.42,
+     68.33
+    ]
+   ]
+  },
+  {
+   "osm": 1499132806,
+   "nome": "Acesso às plataformas",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -154.93,
+     40.23
+    ],
+    [
+     -154.07,
+     36.72
+    ]
+   ]
+  },
+  {
+   "osm": 1499132807,
+   "nome": "Acesso da Plataforma D",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -154.93,
+     40.23
+    ],
+    [
+     -168.81,
+     36.83
+    ]
+   ]
+  },
+  {
+   "osm": 1499155602,
+   "nome": "Avenida Presidente Getulio Dornelles Vargas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     -197.75,
+     31.77
+    ],
+    [
+     -190.31,
+     40.41
+    ]
+   ]
+  },
+  {
+   "osm": 1517223373,
+   "nome": "Acesso da Plataforma B",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -167.53,
+     30.87
+    ],
+    [
+     -182.84,
+     28.15
+    ]
+   ]
+  },
+  {
+   "osm": 1517223374,
+   "nome": "Acesso às plataformas",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -153.12,
+     33.32
+    ],
+    [
+     -152.64,
+     30.81
+    ]
+   ]
+  },
+  {
+   "osm": 1518439131,
+   "nome": "Rua Braz Cubas",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     149.05,
+     98.19
+    ],
+    [
+     149.19,
+     94.87
+    ]
+   ]
+  },
+  {
+   "osm": 1518774367,
+   "nome": "Acesso da Plataforma C",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -168.21,
+     33.9
+    ],
+    [
+     -183.42,
+     30.58
+    ]
+   ]
+  },
+  {
+   "osm": 1519981322,
+   "nome": "Acesso às plataformas",
+   "tipo": "service",
+   "largura": 4.0,
+   "pontos": [
+    [
+     -154.07,
+     36.72
+    ],
+    [
+     -153.12,
+     33.32
+    ]
+   ]
+  },
+  {
+   "osm": 1547988427,
+   "nome": "Avenida Visconde de São Leopoldo",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     -148.92,
+     -21.44
+    ],
+    [
+     -188.5,
+     -34.27
+    ]
+   ]
+  },
+  {
+   "osm": 1547988428,
+   "nome": "Rua Visconde de Embaré",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -180.1,
+     22.97
+    ],
+    [
+     -161.59,
+     25.49
+    ]
+   ]
+  },
+  {
+   "osm": 1547988429,
+   "nome": "Rua Visconde de Embaré",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     -190.56,
+     26.63
+    ],
+    [
+     -180.1,
+     22.97
+    ]
+   ]
+  },
+  {
+   "osm": 1563338443,
+   "nome": "Rua Bittencourt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     112.67,
+     159.53
+    ],
+    [
+     97.86,
+     156.63
+    ]
+   ]
+  }
+ ],
+ "canais": [],
+ "marcos": [
+  {
+   "osm": "node/2069253588",
+   "nome": "Praça Mauá",
+   "tipo": "historic=monument",
+   "posicao": [
+    1.84,
+    -15.97
+   ]
+  },
+  {
+   "osm": "node/2069253591",
+   "nome": "À Memória de Braz Cubas",
+   "tipo": "historic=monument",
+   "posicao": [
+    133.89,
+    -38.16
+   ]
+  },
+  {
+   "osm": "node/2069253601",
+   "nome": "",
+   "tipo": "historic=monument",
+   "posicao": [
+    60.78,
+    -55.08
+   ]
+  },
+  {
+   "osm": "node/2073297626",
+   "nome": "Catedral de Santos",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    160.7,
+    106.75
+   ]
+  },
+  {
+   "osm": "node/4653493477",
+   "nome": "Palácio Saturnino de Brito",
+   "tipo": "tourism=museum",
+   "posicao": [
+    -6.06,
+    109.26
+   ]
+  },
+  {
+   "osm": "node/5092219422",
+   "nome": "Corretor de Café",
+   "tipo": "historic=monument",
+   "posicao": [
+    -46.05,
+    -48.64
+   ]
+  },
+  {
+   "osm": "way/1150006149",
+   "nome": "Igreja Nossa Senhora do Rosário",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    -60.16,
+    15.01
+   ]
+  },
+  {
+   "osm": "way/1365381126",
+   "nome": "Catedral de Santos",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    161.44,
+    106.07
+   ]
+  },
+  {
+   "osm": "way/1377329797",
+   "nome": "Casa do Trem Bélico",
+   "tipo": "tourism=museum",
+   "posicao": [
+    196.24,
+    -38.59
+   ]
+  },
+  {
+   "osm": "way/234460381",
+   "nome": "A Tribuna (Antigo Edifício)",
+   "tipo": "historic=building",
+   "posicao": [
+    63.48,
+    27.64
+   ]
+  },
+  {
+   "osm": "way/235153134",
+   "nome": "Museu do Café",
+   "tipo": "historic=building",
+   "posicao": [
+    -37.53,
+    -65.54
+   ]
+  },
+  {
+   "osm": "way/292797666",
+   "nome": "Museu Pelé",
+   "tipo": "tourism=museum",
+   "posicao": [
+    -142.08,
+    -95.88
+   ]
+  },
+  {
+   "osm": "way/479630445",
+   "nome": "",
+   "tipo": "historic=monument",
+   "posicao": [
+    141.82,
+    -38.37
+   ]
+  },
+  {
+   "osm": "way/482758079",
+   "nome": "Cadeia Velha de Santos",
+   "tipo": "historic=building",
+   "posicao": [
+    -117.26,
+    56.56
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Avenida Getúlio Dornelles Vargas",
+   "osm": 476415958,
+   "posicao": [
+    -216.36,
+    12.45
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua São Bento",
+   "osm": 48458858,
+   "posicao": [
+    -214.02,
+    8.5
+   ],
+   "para": "valongo"
+  },
+  {
+   "rua": "Rua São Bento",
+   "osm": 440203337,
+   "posicao": [
+    -149.68,
+    -96.94
+   ],
+   "para": "valongo"
+  },
+  {
+   "rua": "Túnel Prefeito Rubens Ferreira Martins",
+   "osm": 48458880,
+   "posicao": [
+    -131.46,
+    97.68
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Túnel Prefeito Rubens Ferreira Martins",
+   "osm": 48454191,
+   "posicao": [
+    -126.26,
+    102.41
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Tuiuti",
+   "osm": 196611591,
+   "posicao": [
+    -121.98,
+    -111.3
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 879227265,
+   "posicao": [
+    -14.24,
+    112.6
+   ],
+   "para": ""
+  },
+  {
+   "rua": "residential",
+   "osm": 879227266,
+   "posicao": [
+    -10.2,
+    115.62
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Caminho Monsenhor Moreira",
+   "osm": 380498925,
+   "posicao": [
+    7.63,
+    137.88
+   ],
+   "para": "monte_serrat"
+  },
+  {
+   "rua": "Rua Tuiuti",
+   "osm": 1459546826,
+   "posicao": [
+    33.99,
+    -70.08
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Augusto Severo",
+   "osm": 736570353,
+   "posicao": [
+    50.22,
+    -66.64
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Praça Barão do Rio Branco",
+   "osm": 196614113,
+   "posicao": [
+    72.42,
+    -64.2
+   ],
+   "para": ""
+  },
+  {
+   "rua": "steps",
+   "osm": 682321255,
+   "posicao": [
+    77.43,
+    214.74
+   ],
+   "para": "monte_serrat"
+  },
+  {
+   "rua": "Rua Alberto Leal",
+   "osm": 367260211,
+   "posicao": [
+    97.0,
+    -63.03
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Passarela Érica Latina Ceciliato",
+   "osm": 1303394667,
+   "posicao": [
+    125.62,
+    -62.19
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Xavier da Silveira",
+   "osm": 1459546827,
+   "posicao": [
+    133.75,
+    -61.96
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida São Francisco",
+   "osm": 320464100,
+   "posicao": [
+    148.81,
+    133.98
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Braz Cubas",
+   "osm": 476420883,
+   "posicao": [
+    160.28,
+    -60.94
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Rua Amador Bueno",
+   "osm": 472986508,
+   "posicao": [
+    218.62,
+    109.74
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Rua João Pessoa",
+   "osm": 476415720,
+   "posicao": [
+    223.15,
+    69.26
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Rua General Câmara",
+   "osm": 1499132802,
+   "posicao": [
+    228.3,
+    25.17
+   ],
+   "para": "paqueta"
+  },
+  {
+   "rua": "Avenida Xavier da Silveira",
+   "osm": 476420882,
+   "posicao": [
+    236.42,
+    -48.13
+   ],
+   "para": "paqueta"
+  }
+ ]
+}

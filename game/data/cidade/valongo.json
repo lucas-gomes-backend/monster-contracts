@@ -1444,7 +1444,7 @@
     -216.55,
     2.54
    ],
-   "para": ""
+   "para": "centro"
   },
   {
    "rua": "Rua Senador Christiano Ottoni",
@@ -1462,7 +1462,7 @@
     -183.24,
     -42.75
    ],
-   "para": ""
+   "para": "centro"
   },
   {
    "rua": "Rua Marquês de Herval",
@@ -1471,7 +1471,7 @@
     -163.03,
     -75.33
    ],
-   "para": ""
+   "para": "centro"
   },
   {
    "rua": "Rua São Bento",
@@ -1480,7 +1480,7 @@
     -155.66,
     -87.23
    ],
-   "para": ""
+   "para": "centro"
   },
   {
    "rua": "Rua do Comércio",
@@ -1489,7 +1489,7 @@
     -153.56,
     -90.61
    ],
-   "para": ""
+   "para": "centro"
   },
   {
    "rua": "Rua São Bento",
@@ -1498,7 +1498,7 @@
     -149.64,
     -96.93
    ],
-   "para": ""
+   "para": "centro"
   }
  ]
 }

@@ -43,6 +43,24 @@ class TestDentro(unittest.TestCase):
         self.assertFalse(G.dentro((5, -1), QUADRADO))
 
 
+class TestJuntarAnel(unittest.TestCase):
+    def test_junta_trechos_em_qualquer_sentido(self):
+        # Um quadrado em três pedaços, um deles ao contrário.
+        trechos = [[(0, 0), (1, 0)], [(1, 1), (1, 0)], [(1, 1), (0, 1), (0, 0)]]
+        anel = G.juntar_anel(trechos)
+        self.assertEqual(anel[0], anel[-1])
+        self.assertEqual(sorted(set(anel)), [(0, 0), (0, 1), (1, 0), (1, 1)])
+
+    def test_fica_com_o_maior_anel(self):
+        grande = [[(0, 0), (10, 0), (10, 10), (0, 10), (0, 0)]]
+        ilhota = [[(20, 20), (21, 20), (21, 21), (20, 20)]]
+        self.assertEqual(len(G.juntar_anel(ilhota + grande)), 5)
+
+    def test_trechos_que_nao_fecham_dao_erro(self):
+        with self.assertRaises(ValueError):
+            G.juntar_anel([[(0, 0), (1, 0)], [(5, 5), (6, 6)]])
+
+
 class TestRecortar(unittest.TestCase):
     def test_linha_que_atravessa_fica_so_com_a_parte_de_dentro_e_duas_saidas(self):
         trechos, saidas = G.recortar([(-5, 5), (15, 5)], QUADRADO)

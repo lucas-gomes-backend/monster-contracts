@@ -19,6 +19,8 @@ const ALTURA_ANDAR := 3.0
 const ACIMA_DO_CHAO_RUA := 0.1
 const ACIMA_DO_CHAO_CALCADA := 0.05
 const MARGEM_DO_CHAO := 20.0
+## A chegada fica pelo menos isto longe da borda do bairro.
+const LONGE_DA_BORDA := 6.0
 const DISTANCIA_ENTRE_ARVORES := 3.0
 const CAMINHOS := ["steps", "footway", "pedestrian"]
 const CORES_PREDIOS := [Color(0.62, 0.58, 0.5), Color(0.5, 0.55, 0.58), Color(0.66, 0.52, 0.45),
@@ -27,6 +29,8 @@ const COR_TERRENO := Color(0.32, 0.36, 0.26)
 const COR_RUA := Color(0.22, 0.22, 0.24)
 const COR_CALCADA := Color(0.5, 0.49, 0.46)
 const COR_ESCADA := Color(0.45, 0.4, 0.34)
+const LARGURA_DA_BORDA := 0.35
+const COR_DA_BORDA := Color(0.95, 0.85, 0.45)
 ## Chão grande entorta demais com a textura afim do PS1: no chão, só um pouco.
 const AFIM_DO_CHAO := 0.25
 
@@ -43,16 +47,24 @@ var subterraneo: Node3D
 var galerias: Dictionary = {}
 var profundidade: float = 0.0
 var bueiros: Array[Vector3] = []
+## Linha no chão em volta do bairro (a borda, como em Final Fantasy XII).
+var borda: MeshInstance3D
+var _tampas: Array[Node3D] = []
+var _rng: RefCounted
 
 
 ## Monta o bairro. Pode ser chamado sem estar na árvore (testes).
-func montar(id_bairro: String, semente: int) -> void:
+## opcoes: "chao" (chão próprio; a cidade usa um chão só para todos) e "subterraneo"
+## (as galerias; a cidade só monta as do bairro onde o caçador está). Os dois: sim.
+func montar(id_bairro: String, semente: int, opcoes: Dictionary = {}) -> void:
 	name = "Bairro_" + id_bairro
 	dados = Catalogo.carregar_bairro_real(id_bairro)["dados"]
 	var rng := Rng.new(semente)
+	_rng = rng
 	var cfg: Dictionary = Catalogo.carregar_config_lotes()["dados"]
 	lotes = Lotes.gerar(dados, cfg, rng)
-	_montar_chao()
+	if opcoes.get("chao", true):
+		_montar_chao()
 	for rua in dados["ruas"]:
 		_montar_rua(rua, float(cfg["calcada"]))
 	for lote in lotes:
@@ -60,34 +72,56 @@ func montar(id_bairro: String, semente: int) -> void:
 	_montar_mata(rng.stream("mata:%s" % id_bairro), cfg)
 	for marco in dados["marcos"]:
 		_montar_marco(marco)
-	_montar_subterraneo(rng)
+	_montar_borda()
+	if opcoes.get("subterraneo", true):
+		montar_subterraneo()
 	for s in dados["saidas"]:
 		var ponto := Vector3(float(s["posicao"][0]), 0.0, float(s["posicao"][1]))
 		saidas.append({"rua": s["rua"], "para": s["para"], "ponto": ponto})
 		Blocos.bloco(self, Vector3(0.2, 2.5, 0.2), ponto + Vector3(0, 1.25, 0), Color(0.85, 0.7, 0.3), 1.0, false)
 
 
-## Onde o caçador começa: no meio da rua comum mais comprida (num morro só de
-## escadarias, no caminho mais comprido). Guarda em giro_chegada o sentido da rua.
+## Onde o caçador começa: no meio do trecho de rua comum mais comprido, bem dentro do
+## bairro (num morro só de escadarias, no caminho mais comprido). Guarda em giro_chegada
+## o sentido da rua.
 func chegada() -> Vector3:
+	var limite := Lotes._pontos(dados["limite"])
 	var melhor: Array = []
 	var maior := -1.0
-	for so_ruas in [true, false]:
+	# Primeiro só ruas comuns e longe da borda (rua que corre pela divisa deixaria o caçador
+	# em cima da linha); depois, qualquer caminho dentro do bairro.
+	for exigente in [true, false]:
 		if maior >= 0.0:
 			break
 		for rua in dados["ruas"]:
-			if so_ruas and rua["tipo"] in CAMINHOS:
+			if exigente and rua["tipo"] in CAMINHOS:
 				continue
 			for i in rua["pontos"].size() - 1:
 				var a := _v2(rua["pontos"][i])
 				var b := _v2(rua["pontos"][i + 1])
+				var meio := (a + b) / 2.0
+				if not Geometry2D.is_point_in_polygon(meio, limite):
+					continue
+				if exigente and _distancia_da_borda(meio, limite) < LONGE_DA_BORDA:
+					continue
 				if a.distance_to(b) > maior:
 					maior = a.distance_to(b)
 					melhor = [a, b]
+	if melhor.is_empty():
+		var c: Array = dados["ruas"][0]["pontos"]
+		melhor = [_v2(c[0]), _v2(c[1])]
 	var meio: Vector2 = (melhor[0] + melhor[1]) / 2.0
 	var direcao: Vector2 = (melhor[1] - melhor[0]).normalized()
 	giro_chegada = atan2(-direcao.x, -direcao.y)
 	return Vector3(meio.x, 0.3, meio.y)
+
+
+static func _distancia_da_borda(p: Vector2, limite: PackedVector2Array) -> float:
+	var menor := INF
+	for k in limite.size():
+		var q := Geometry2D.get_closest_point_to_segment(p, limite[k], limite[(k + 1) % limite.size()])
+		menor = minf(menor, p.distance_to(q))
+	return menor
 
 
 func _montar_chao() -> void:
@@ -229,9 +263,11 @@ func _montar_marco(marco: Dictionary) -> void:
 
 ## As galerias embaixo das ruas: piso, teto e paredes no contorno do traçado, água até o
 ## joelho e um bueiro na rua para cada ponto de descida. Sem luz: só a lanterna.
-func _montar_subterraneo(rng: RefCounted) -> void:
+func montar_subterraneo() -> void:
+	if subterraneo != null:
+		return
 	var cfg: Dictionary = Catalogo.carregar_config_subterraneo()["dados"]
-	galerias = Sub.gerar(dados, cfg, rng)
+	galerias = Sub.gerar(dados, cfg, _rng)
 	profundidade = cfg["profundidade"]
 	var altura: float = cfg["altura"]
 	subterraneo = Node3D.new()
@@ -279,10 +315,34 @@ func _montar_subterraneo(rng: RefCounted) -> void:
 	for p in galerias["bueiros"]:
 		var em_cima := Vector3(p.x, 0.0, p.y)
 		bueiros.append(em_cima)
-		Blocos.bloco(self, Vector3(0.9, 0.02, 0.9), em_cima + Vector3(0, ACIMA_DO_CHAO_RUA + 0.02, 0), Color(0.1, 0.1, 0.1), 1.0, false)
+		_tampas.append(Blocos.bloco(self, Vector3(0.9, 0.02, 0.9), em_cima + Vector3(0, ACIMA_DO_CHAO_RUA + 0.02, 0), Color(0.1, 0.1, 0.1), 1.0, false))
 		# Escada de ferro: degraus do piso ao teto, embaixo do bueiro.
 		for degrau in int(altura / 0.4):
 			Blocos.bloco(subterraneo, Vector3(0.5, 0.05, 0.08), Vector3(p.x, 0.4 + degrau * 0.4, p.y), Color(0.42, 0.3, 0.2), 1.0, false)
+
+
+## Tira as galerias e os bueiros (o bairro deixou de ser o atual).
+func remover_subterraneo() -> void:
+	if subterraneo == null:
+		return
+	subterraneo.queue_free()
+	subterraneo = null
+	for tampa in _tampas:
+		tampa.queue_free()
+	_tampas.clear()
+	bueiros.clear()
+	galerias = {}
+
+
+## A linha em volta do bairro, um pouco acima da rua. Começa escondida.
+func _montar_borda() -> void:
+	var anel: Array = dados["limite"].duplicate()
+	anel.append(dados["limite"][0])
+	var antes := get_child_count()
+	_faixa(anel, LARGURA_DA_BORDA, ACIMA_DO_CHAO_RUA + 0.03, COR_DA_BORDA, "Borda")
+	borda = get_child(antes)
+	borda.material_override = Materiais.objeto(COR_DA_BORDA, 1.0, 0.0)
+	borda.visible = false
 
 
 static func _v2(p: Array) -> Vector2:
