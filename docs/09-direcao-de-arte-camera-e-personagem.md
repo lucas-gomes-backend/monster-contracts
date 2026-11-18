@@ -118,6 +118,8 @@ Tudo o que o jogador veste e carrega **aparece no modelo**:
 
 ## Decisões
 
+- **Correr e carro no minimapa (18/11/2026, pedido do Lucas):** Shift liga e desliga a corrida (não precisa segurar); parar de andar desliga. O carro aparece no minimapa como um carrinho vermelho virado para onde aponta; longe, fica preso na borda mostrando o caminho, como em GTA. Dirigindo, a seta já é o carro.
+
 - **Menu de pausa (18/11/2026, pedido do Lucas):** Esc na cidade pausa o jogo: continuar, controles, opções (sensibilidade do mouse, volume, tela cheia, guardadas em `user://opcoes.cfg`), menu principal e sair.
 
 - **Criação de personagem no corte vertical (18/11/2026):** `config/aparencia.json`. 9 sliders (altura, compleição, pernas, ombros, cabeça, mandíbula, nariz, olhos, testa), 6 tons de pele, 5 cabelos, 5 cores de cabelo, 4 barbas e roupas por parte (cabeça, tronco, pernas, pés). O boneco é montado em caixas low-poly (`presentation/personagem/corpo.gd`), sem esqueleto nem blend shapes ainda: serve para o corte vertical e já usa os mesmos dados que o modelo final vai usar. Disfarce de agente = terno, calça social e sapato social: quem vê o caçador desconfia pela metade. A tela fica em "Criar o caçador", na tela inicial.

@@ -22,6 +22,7 @@ const COR_GALERIA := Color(0.25, 0.4, 0.3)
 const COR_SETA := Color(1.0, 0.35, 0.25)
 const COR_PESSOA := Color(0.95, 0.95, 0.95)
 const COR_TRANSEUNTE := Color(0.7, 0.7, 0.7)
+const COR_CARRO := Color(0.85, 0.2, 0.15)
 
 ## A cena da cidade (bairro_cena.gd): de onde vêm bairros, caçador e zona.
 var cena: Node3D
@@ -84,6 +85,7 @@ func _draw() -> void:
 				var no: Node3D = gente.pessoas[npc_id]["no"]
 				if no.visible:
 					draw_circle(para_minimapa(Vector2(no.position.x, no.position.z), centro, giro), 2.0, COR_PESSOA)
+	_icone_do_carro(centro, giro)
 	# A seta do caçador: sempre no meio, apontando para cima (para onde a câmera olha).
 	var meio := size / 2.0
 	draw_colored_polygon(PackedVector2Array([meio + Vector2(0, -7), meio + Vector2(5, 5), meio + Vector2(-5, 5)]), COR_SETA)
@@ -91,6 +93,36 @@ func _draw() -> void:
 	var norte := meio + Vector2(0, -1).rotated(giro) * (TAMANHO / 2.0 - 9.0)
 	draw_string(ThemeDB.fallback_font, norte + Vector2(-4, 4), "N", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, COR_MOLDURA)
 	draw_rect(Rect2(Vector2.ZERO, size), COR_MOLDURA, false, 2.0)
+
+
+## O carro do caçador: um carrinho vermelho virado para onde o carro aponta. Fora do
+## minimapa, fica preso na borda, apontando o caminho (como em GTA). Dirigindo, a seta já é ele.
+## Onde o ícone do carro fica no minimapa (preso na borda se estiver longe), ou Vector2.INF
+## quando não deve aparecer (dirigindo, no esgoto, sem carro).
+func posicao_do_carro() -> Vector2:
+	var carro: Node3D = cena.get("carro")
+	if carro == null or cena.get("dirigindo") or cena.zona != "rua":
+		return Vector2.INF
+	var p := para_minimapa(Vector2(carro.position.x, carro.position.z), Vector2(cena.cacador.position.x, cena.cacador.position.z), cena.cacador.yaw)
+	var meio := Vector2(TAMANHO, TAMANHO) / 2.0
+	var borda := TAMANHO / 2.0 - 8.0
+	if (p - meio).length() > borda:
+		p = meio + (p - meio).normalized() * borda
+	return p
+
+
+func _icone_do_carro(_centro: Vector2, giro: float) -> void:
+	var p := posicao_do_carro()
+	if p == Vector2.INF:
+		return
+	var carro: Node3D = cena.carro
+	var frente := Vector2(-sin(carro.rotation.y), -cos(carro.rotation.y)).rotated(giro)
+	var lado := Vector2(-frente.y, frente.x)
+	var corpo := PackedVector2Array([p + frente * 6 + lado * 3.5, p + frente * 6 - lado * 3.5, p - frente * 6 - lado * 3.5, p - frente * 6 + lado * 3.5])
+	draw_colored_polygon(corpo, COR_CARRO)
+	corpo.append(corpo[0])
+	draw_polyline(corpo, COR_MOLDURA, 1.0)
+	draw_line(p + frente * 1 + lado * 3.5, p + frente * 1 - lado * 3.5, Color(0.2, 0.25, 0.3), 2.0)
 
 
 func _anel(b: Node3D, centro: Vector2, giro: float) -> PackedVector2Array:

@@ -47,6 +47,8 @@ var lanterna: SpotLight3D
 var mirando: bool = false
 ## Bloqueado enquanto examina uma pista: não anda nem gira a câmera.
 var bloqueado: bool = false
+## Correr é ligar e desligar no Shift (pedido do Lucas), não segurar. Desliga ao parar.
+var correndo_ligado: bool = false
 ## A aparência escolhida na criação de personagem (core/personagem/aparencia.gd).
 var aparencia: RefCounted
 ## Ferimentos mexem no corpo (core/confronto/ferimentos.gd): perna ferida anda mais devagar,
@@ -183,6 +185,11 @@ func vestir(nova: RefCounted) -> void:
 		Corpo.montar(corpo, aparencia)
 
 
+## Shift: liga ou desliga a corrida.
+func alternar_corrida() -> void:
+	correndo_ligado = not correndo_ligado
+
+
 func alternar_lanterna() -> void:
 	lanterna.visible = not lanterna.visible
 
@@ -208,6 +215,8 @@ func _unhandled_input(evento: InputEvent) -> void:
 		return
 	if evento.is_action_pressed("lanterna"):
 		alternar_lanterna()
+	elif evento.is_action_pressed("correr"):
+		alternar_corrida()
 	elif evento is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		olhar(evento.relative)
 	elif evento is InputEventMouseButton and evento.pressed:
@@ -252,7 +261,9 @@ func _physics_process(delta: float) -> void:
 	if not bloqueado:
 		entrada = Input.get_vector("mover_esquerda", "mover_direita", "mover_tras", "mover_frente")
 	mirando = not bloqueado and Input.is_action_pressed("mirar")
-	var correndo := Input.is_action_pressed("correr") and not mirando
+	if entrada == Vector2.ZERO:
+		correndo_ligado = false
+	var correndo := correndo_ligado and not mirando
 	passo(entrada, correndo, delta)
 	# O corpo vira, suave, para onde está andando (ou para onde mira); a câmera não gira junto.
 	var plano := Vector2(velocity.x, velocity.z)

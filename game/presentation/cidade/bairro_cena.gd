@@ -443,7 +443,7 @@ func _montar_interface() -> void:
 	camada.layer = 11
 	add_child(camada)
 	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar · E carro e motel · H habilidades · Esc pausa"
+	ajuda.text = "WASD andar · Shift liga/desliga corrida · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar · E carro e motel · H habilidades · Esc pausa"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
 	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)

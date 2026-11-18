@@ -4,7 +4,7 @@ extends Control
 ## As opções ficam guardadas em user://opcoes.cfg e valem nas próximas vezes.
 
 const ARQUIVO := "user://opcoes.cfg"
-const CONTROLES := """WASD: andar · Shift: correr · Mouse: olhar
+const CONTROLES := """WASD: andar · Shift: liga/desliga a corrida · Mouse: olhar
 Botão direito: mirar · Esquerdo: atirar · R: recarregar · 1-3: arma
 F: lanterna · E: carro, bueiro, motel e benzedeira
 Q (segurar): bolsos · I: mochila · T: ritual · N: conversar
