@@ -97,6 +97,8 @@ O teste de fogo: **o jogo inteiro sem 3D**, só com texto e botões.
 
 **Portão:** um caso gerado, jogado do contrato ao relatório, em 3D cinza.
 
+**Resultado (17/11/2026): portão APROVADO.** O playtest jogou um caso do contrato ao relatório em 3D cinza, e um jogador automático resolve 3 casos só pela cena (`tests/gates/test_gate_caso_em_3d.gd`). Retornos do playtest que viraram correções: o caçador não subia no meio-fio (subida de degrau, com teste de física de verdade). Decisão: a prova de mutação inteira reiniciava o PC; agora roda só os mutantes novos, em lotes com pausa.
+
 ---
 
 ## Fase 3 — Ferramenta da cidade (1 a 2 meses)
