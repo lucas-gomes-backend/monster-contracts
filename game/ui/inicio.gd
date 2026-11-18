@@ -7,8 +7,12 @@ const CASO := "res://ui/jogo.tscn"
 const COR_FUNDO := Color("#17130f")
 const COR_PAPEL := Color("#e6d8b8")
 
+const CRIACAO := "res://presentation/personagem/criacao.tscn"
+
 ## Bairro onde a cidade começa (lido por bairro_cena.gd, se a cena for aberta por aqui).
 static var bairro_inicial := "valongo"
+## A aparência feita na criação de personagem ({} = a padrão).
+static var aparencia_escolhida: Dictionary = {}
 
 
 func _ready() -> void:
@@ -33,6 +37,7 @@ func _ready() -> void:
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	sub.add_theme_color_override("font_color", Color(0.75, 0.7, 0.6))
 	coluna.add_child(sub)
+	coluna.add_child(_botao("Criar o caçador", func(): get_tree().change_scene_to_file(CRIACAO)))
 	coluna.add_child(_botao("Andar pela cidade: Valongo", func(): abrir_cidade("valongo")))
 	coluna.add_child(_botao("Andar pela cidade: Centro", func(): abrir_cidade("centro")))
 	coluna.add_child(_botao("Investigar um caso (caderno)", func(): get_tree().change_scene_to_file(CASO)))

@@ -143,6 +143,11 @@ static func carregar_itens() -> Dictionary:
 	return {"dados": por_id, "erros": r["erros"]}
 
 
+## Criação de personagem: sliders, pele, cabelo, roupas e disfarces (docs/09), validada.
+static func carregar_config_aparencia() -> Dictionary:
+	return carregar_validado("res://data/config/aparencia.json", "res://data/schemas/aparencia.schema.json")
+
+
 ## Condições paranormais (docs/12, Parte B), validadas.
 static func carregar_config_condicoes() -> Dictionary:
 	return carregar_validado("res://data/config/condicoes.json", "res://data/schemas/condicoes.schema.json")

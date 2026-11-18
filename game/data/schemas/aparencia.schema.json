@@ -1,0 +1,33 @@
+{
+  "$comment": "Criação de personagem (game/data/config/aparencia.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sliders", "peles", "cabelos", "barbas", "cores_de_cabelo", "roupas", "padrao", "disfarces"],
+  "$defs": {
+    "opcao": {"type": "object", "additionalProperties": false, "required": ["id", "nome"], "properties": {"id": {"type": "string", "pattern": "^[a-z0-9_]+$"}, "nome": {"type": "string"}, "cor": {"type": "string", "pattern": "^#[0-9a-f]{6}$"}}},
+    "lista": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/opcao"}}
+  },
+  "properties": {
+    "$comment": {"type": "string"},
+    "sliders": {"$comment": "id -> {nome, padrao 0..1}", "type": "object"},
+    "peles": {"$ref": "#/$defs/lista"},
+    "cabelos": {"$ref": "#/$defs/lista"},
+    "barbas": {"$ref": "#/$defs/lista"},
+    "cores_de_cabelo": {"$ref": "#/$defs/lista"},
+    "roupas": {
+      "type": "object", "additionalProperties": false, "required": ["cabeca", "tronco", "pernas", "pes"],
+      "properties": {"cabeca": {"$ref": "#/$defs/lista"}, "tronco": {"$ref": "#/$defs/lista"}, "pernas": {"$ref": "#/$defs/lista"}, "pes": {"$ref": "#/$defs/lista"}}
+    },
+    "padrao": {
+      "type": "object", "additionalProperties": false, "required": ["pele", "cabelo", "cor_do_cabelo", "barba", "roupas"],
+      "properties": {"pele": {"type": "string"}, "cabelo": {"type": "string"}, "cor_do_cabelo": {"type": "string"}, "barba": {"type": "string"}, "roupas": {"type": "object"}}
+    },
+    "disfarces": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "nome", "pecas", "efeito", "descricao"],
+        "properties": {"id": {"type": "string"}, "nome": {"type": "string"}, "pecas": {"type": "object"}, "efeito": {"type": "object"}, "descricao": {"type": "string"}}
+      }
+    }
+  }
+}

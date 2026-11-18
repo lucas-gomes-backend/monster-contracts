@@ -146,7 +146,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 - [x] Interlúdio com pulo de tempo (curto, médio, longo): no motel; sara, treina a árvore escolhida, paga as diárias e envelhece (o caçador começa com 20 anos).
 
 **Personagem e apresentação**
-- [ ] Criação de personagem com sliders (corpo, rosto, pele, cabelo) e 1 a 2 roupas por parte, com disfarce de agente.
+- [x] Criação de personagem com sliders (corpo, rosto, pele, cabelo) e 1 a 2 roupas por parte, com disfarce de agente: boneco em peças low-poly, tela "Criar o caçador" na tela inicial; o terno de agente corta pela metade a suspeita de quem te vê.
 - [ ] Primeira passada de arte e áudio nos 2 bairros.
 
 **Introdução**

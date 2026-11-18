@@ -314,6 +314,12 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	cacador.position = bairro.chegada()
 	cacador.virar_para(bairro.giro_chegada)
 	_estacionar_carro()
+	# A aparência feita na criação de personagem (tela inicial), se houver.
+	var escolhida: Dictionary = load("res://ui/inicio.gd").aparencia_escolhida
+	if not escolhida.is_empty():
+		var a = cacador.aparencia
+		a.de_dados(escolhida)
+		cacador.vestir(a)
 
 
 ## O bairro vira o atual: linha da borda, galerias e bueiros nele; vizinhos carregados.
@@ -1672,7 +1678,8 @@ func _um_minuto() -> void:
 	var id := str(bairro.dados["id"])
 	suspeita.passar_minutos(1)
 	if zona == "rua" and suspeita.sujo(minuto) and alguem_ve_o_cacador():
-		suspeita.visto(id, minuto)
+		# Disfarce (terno de agente): quem vê desconfia menos.
+		suspeita.visto(id, minuto, cacador.aparencia.efeito("suspeita_de_quem_ve"))
 	if suspeita.nivel(id) != policia.nivel:
 		policia.atualizar(suspeita.nivel(id))
 	subterraneo.nivel_da_agua(mare.fracao(minuto))

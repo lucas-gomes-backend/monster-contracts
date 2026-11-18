@@ -190,7 +190,9 @@ $mutants += @(
     @{ name = 'sensitivo sente corpo'; path = 'game/core/condicoes/condicao.gd';
        find = 'ficha.get("natureza", "") in _c()["sente_naturezas"] and '; replace = '' },
     @{ name = 'interlúdio não sara'; path = 'game/presentation/cidade/bairro_cena.gd';
-       find = '		for k in int(e["cura_graus"]):'; replace = '		for k in 0:' }
+       find = '		for k in int(e["cura_graus"]):'; replace = '		for k in 0:' },
+    @{ name = 'disfarce não muda a suspeita'; path = 'game/presentation/cidade/bairro_cena.gd';
+       find = 'suspeita.visto(id, minuto, cacador.aparencia.efeito("suspeita_de_quem_ve"))'; replace = 'suspeita.visto(id, minuto)' }
 )
 
 if ($Somente.Count -gt 0) {

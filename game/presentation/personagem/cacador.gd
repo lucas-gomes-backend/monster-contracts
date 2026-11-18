@@ -6,6 +6,8 @@ extends CharacterBody3D
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
 const Mira := preload("res://presentation/inspecao/mira.gd")
+const Corpo := preload("res://presentation/personagem/corpo.gd")
+const Aparencia := preload("res://core/personagem/aparencia.gd")
 
 const FOV_NORMAL := 65.0
 const ALCANCE_DA_CAMERA := 400.0
@@ -45,6 +47,8 @@ var lanterna: SpotLight3D
 var mirando: bool = false
 ## Bloqueado enquanto examina uma pista: não anda nem gira a câmera.
 var bloqueado: bool = false
+## A aparência escolhida na criação de personagem (core/personagem/aparencia.gd).
+var aparencia: RefCounted
 ## Ferimentos mexem no corpo (core/confronto/ferimentos.gd): perna ferida anda mais devagar,
 ## tronco ferido corre menos.
 var modificadores: Dictionary = {"velocidade": 1.0, "folego": 1.0}
@@ -82,16 +86,9 @@ func montar(cfg: Dictionary = {}, cfg_inspecao: Dictionary = {}) -> void:
 	corpo = Node3D.new()
 	corpo.name = "Corpo"
 	add_child(corpo)
-	var malha := CapsuleMesh.new()
-	malha.height = altura
-	malha.radius = raio
-	malha.radial_segments = 8
-	malha.rings = 2
-	_peca(malha, Vector3(0, altura / 2.0, 0), Color(0.36, 0.30, 0.24))
-	# Um "nariz" para ver para onde o corpo está virado.
-	var nariz := BoxMesh.new()
-	nariz.size = Vector3(0.12, 0.08, 0.2)
-	_peca(nariz, Vector3(0, altura * 0.88, -raio), Color(0.7, 0.55, 0.45))
+	if aparencia == null:
+		aparencia = Aparencia.new(Catalogo.carregar_config_aparencia()["dados"])
+	Corpo.montar(corpo, aparencia)
 
 	pivo = Node3D.new()
 	pivo.name = "Pivo"
@@ -125,14 +122,6 @@ func montar(cfg: Dictionary = {}, cfg_inspecao: Dictionary = {}) -> void:
 	lanterna.position = Vector3(config["camera_ombro"] * 0.5, 0.0, -config["raio_do_corpo"] - 0.2)
 	lanterna.rotation_degrees.x = config_inspecao["lanterna_inclinacao"]
 	inclinacao.add_child(lanterna)
-
-
-func _peca(malha: Mesh, posicao: Vector3, cor: Color) -> void:
-	var instancia := MeshInstance3D.new()
-	instancia.mesh = malha
-	instancia.position = posicao
-	instancia.material_override = Materiais.objeto(cor)
-	corpo.add_child(instancia)
 
 
 ## Cria as ações de teclado se o projeto ainda não as tiver.
@@ -185,6 +174,13 @@ static func camera_alvo(mira: bool, cfg: Dictionary, cfg_inspecao: Dictionary) -
 	if mira:
 		return Vector2(cfg_inspecao["mira_distancia"], cfg_inspecao["mira_fov"])
 	return Vector2(cfg["camera_distancia"], FOV_NORMAL)
+
+
+## Troca a aparência (criação de personagem, troca de roupa) e remonta o boneco.
+func vestir(nova: RefCounted) -> void:
+	aparencia = nova
+	if corpo != null:
+		Corpo.montar(corpo, aparencia)
 
 
 func alternar_lanterna() -> void:

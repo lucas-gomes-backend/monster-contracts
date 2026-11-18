@@ -10,6 +10,7 @@ const OBSERVADO := "observado"
 const PROCURADO := "procurado"
 const BARRADO := "barrado"
 
+var _sobra: Dictionary = {}  # bairro -> fração de ponto ainda não somada
 var geral: int = 0
 ## [{"minuto", "bairro", "pontos", "motivo"}]
 var historico: Array[Dictionary] = []
@@ -71,11 +72,16 @@ func sujo(minuto: int) -> bool:
 
 
 ## Alguém o viu neste minuto. Se estiver sujo, soma pontos. Devolve quantos somou.
-func visto(bairro: String, minuto: int) -> int:
+## "fator": um disfarce faz quem vê desconfiar menos (0,5 = metade). A sobra fracionária
+## fica guardada por bairro, para os pontos continuarem inteiros.
+func visto(bairro: String, minuto: int, fator: float = 1.0) -> int:
 	if not sujo(minuto):
 		return 0
-	var n := int(_cfg["sujeira"]["pontos_por_minuto_visto"])
-	somar(bairro, n, "visto sujo do esgoto", minuto)
+	var exato: float = float(_cfg["sujeira"]["pontos_por_minuto_visto"]) * fator + float(_sobra.get(bairro, 0.0))
+	var n := int(floor(exato))
+	_sobra[bairro] = exato - n
+	if n > 0:
+		somar(bairro, n, "visto sujo do esgoto", minuto)
 	return n
 
 

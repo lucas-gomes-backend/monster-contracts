@@ -1,0 +1,69 @@
+{
+  "$comment": "Criação de personagem do corte vertical (docs/09, 'Customização do personagem'): sliders de corpo e rosto (0 a 1), tons de pele, cabelo e barba, e 1 a 2 roupas por parte, com o disfarce de agente. O boneco é montado em peças low-poly (presentation/personagem/corpo.gd). Disfarce: quando as peças batem, o efeito vale (o terno de agente faz quem te vê desconfiar menos).",
+  "sliders": {
+    "altura": {"nome": "Altura", "padrao": 0.5},
+    "compleicao": {"nome": "Compleição", "padrao": 0.5},
+    "pernas": {"nome": "Pernas", "padrao": 0.5},
+    "ombros": {"nome": "Ombros", "padrao": 0.5},
+    "cabeca": {"nome": "Cabeça", "padrao": 0.5},
+    "mandibula": {"nome": "Mandíbula", "padrao": 0.5},
+    "nariz": {"nome": "Nariz", "padrao": 0.5},
+    "olhos": {"nome": "Olhos", "padrao": 0.5},
+    "testa": {"nome": "Testa", "padrao": 0.5}
+  },
+  "peles": [
+    {"id": "pele_1", "nome": "Clara", "cor": "#f1d1b5"},
+    {"id": "pele_2", "nome": "Morena clara", "cor": "#d9a77e"},
+    {"id": "pele_3", "nome": "Morena", "cor": "#b07a52"},
+    {"id": "pele_4", "nome": "Parda", "cor": "#8d5a3a"},
+    {"id": "pele_5", "nome": "Negra", "cor": "#5e3a24"},
+    {"id": "pele_6", "nome": "Negra retinta", "cor": "#3d2416"}
+  ],
+  "cabelos": [
+    {"id": "careca", "nome": "Careca"},
+    {"id": "curto", "nome": "Curto"},
+    {"id": "comprido", "nome": "Comprido"},
+    {"id": "black_power", "nome": "Black power"},
+    {"id": "rabo_de_cavalo", "nome": "Rabo de cavalo"}
+  ],
+  "barbas": [
+    {"id": "nenhuma", "nome": "Sem barba"},
+    {"id": "bigode", "nome": "Bigode"},
+    {"id": "cavanhaque", "nome": "Cavanhaque"},
+    {"id": "cheia", "nome": "Barba cheia"}
+  ],
+  "cores_de_cabelo": [
+    {"id": "preto", "nome": "Preto", "cor": "#1c1612"},
+    {"id": "castanho", "nome": "Castanho", "cor": "#4a2f1c"},
+    {"id": "loiro", "nome": "Loiro", "cor": "#b8964f"},
+    {"id": "ruivo", "nome": "Ruivo", "cor": "#8a3b1c"},
+    {"id": "grisalho", "nome": "Grisalho", "cor": "#8f8c86"}
+  ],
+  "roupas": {
+    "cabeca": [
+      {"id": "nada", "nome": "Nada", "cor": "#000000"},
+      {"id": "bone", "nome": "Boné", "cor": "#2c3a4a"},
+      {"id": "chapeu", "nome": "Chapéu", "cor": "#3b2e22"}
+    ],
+    "tronco": [
+      {"id": "camiseta", "nome": "Camiseta", "cor": "#6b6b5e"},
+      {"id": "jaqueta_de_couro", "nome": "Jaqueta de couro", "cor": "#2b1d14"},
+      {"id": "terno", "nome": "Terno escuro", "cor": "#1e2128"}
+    ],
+    "pernas": [
+      {"id": "jeans", "nome": "Jeans", "cor": "#2f3c55"},
+      {"id": "calca_social", "nome": "Calça social", "cor": "#1e2128"}
+    ],
+    "pes": [
+      {"id": "tenis", "nome": "Tênis", "cor": "#d8d4cc"},
+      {"id": "botas", "nome": "Botas", "cor": "#3a2a1c"},
+      {"id": "sapato_social", "nome": "Sapato social", "cor": "#111111"}
+    ]
+  },
+  "padrao": {"pele": "pele_3", "cabelo": "curto", "cor_do_cabelo": "preto", "barba": "nenhuma",
+             "roupas": {"cabeca": "nada", "tronco": "jaqueta_de_couro", "pernas": "jeans", "pes": "botas"}},
+  "disfarces": [
+    {"id": "agente", "nome": "Agente federal", "pecas": {"tronco": "terno", "pernas": "calca_social", "pes": "sapato_social"},
+     "efeito": {"suspeita_de_quem_ve": 0.5}, "descricao": "Terno, calça e sapato social: quem te vê desconfia menos."}
+  ]
+}
