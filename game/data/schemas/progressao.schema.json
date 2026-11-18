@@ -2,10 +2,11 @@
   "$comment": "Progressão do corte vertical (game/data/config/progressao.json).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["dinheiro_inicial", "reputacao", "bonus", "qualidade", "nivel_inicial", "motel", "carro", "loja", "melhorias"],
+  "required": ["dinheiro_inicial", "regioes_liberadas", "reputacao", "bonus", "qualidade", "nivel_inicial", "motel", "carro", "loja", "melhorias"],
   "properties": {
     "$comment": {"type": "string"},
     "dinheiro_inicial": {"type": "integer", "minimum": 0},
+    "regioes_liberadas": {"$comment": "Regiões do mapa geral abertas no começo; as outras aparecem bloqueadas, em cinza.", "type": "array", "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}},
     "reputacao": {
       "type": "object",
       "additionalProperties": false,

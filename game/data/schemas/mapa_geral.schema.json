@@ -1,0 +1,23 @@
+{
+  "$comment": "Contorno de todas as regiões da cidade (game/data/mapa/mapa_geral.json), gerado por tools/cidade/importar.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["regioes"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "regioes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nome", "limite"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "nome": {"type": "string", "minLength": 1},
+          "limite": {"type": "array", "minItems": 3, "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}}}
+        }
+      }
+    }
+  }
+}

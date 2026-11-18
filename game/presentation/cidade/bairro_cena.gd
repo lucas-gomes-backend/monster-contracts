@@ -151,6 +151,8 @@ var menu_do_motel := "principal"
 var dirigindo := false
 var _camadas_do_cacador := Vector2i(1, 1)
 var viagem_tela: Control
+## Todas as regiões da cidade (contorno), para o mapa de viagem.
+var mapa_geral: Array = []
 var _cfg_progressao: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
@@ -233,6 +235,7 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	itens = Catalogo.carregar_itens()["dados"]
 	_cfg_inventario = Catalogo.carregar_config_inventario()["dados"]
 	_cfg_progressao = Catalogo.carregar_config_progressao()["dados"]
+	mapa_geral = Catalogo.carregar_mapa_geral()["dados"]["regioes"]
 	progresso = Progresso.new(_cfg_progressao)
 	var tamanho: Vector2i = progresso.tamanho_da_mochila()
 	mochila = Grade.new(tamanho.x, tamanho.y, itens)
@@ -488,8 +491,8 @@ func _montar_interface() -> void:
 	camada.add_child(motel_tela)
 	viagem_tela = ViagemTela.new()
 	viagem_tela.cena = self
-	viagem_tela.position = Vector2(20, 60)
-	viagem_tela.size = Vector2(600, 360)
+	viagem_tela.position = Vector2(10, 44)
+	viagem_tela.size = Vector2(620, 400)
 	viagem_tela.visible = false
 	camada.add_child(viagem_tela)
 
@@ -593,6 +596,9 @@ func _input(evento: InputEvent) -> void:
 	if viagem_tela.visible:
 		if evento.is_action_pressed("mapa") or evento.is_action_pressed("soltar_mouse"):
 			fechar_mapa_de_viagem()
+			get_viewport().set_input_as_handled()
+		elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode == KEY_Z:
+			viagem_tela.perto = not viagem_tela.perto
 			get_viewport().set_input_as_handled()
 		elif evento is InputEventKey and evento.pressed and not evento.echo and evento.physical_keycode >= KEY_0 and evento.physical_keycode <= KEY_9:
 			viajar(9 if evento.physical_keycode == KEY_0 else evento.physical_keycode - KEY_1)
@@ -945,6 +951,7 @@ func destinos_de_viagem() -> Array:
 	var lista: Array = []
 	var ids := carregados.keys()
 	ids.sort()
+	ids = ids.filter(func(i): return progresso.liberada(i))
 	for id in ids:
 		var c: Vector3 = carregados[id].chegada()
 		lista.append({"nome": str(carregados[id].dados["nome"]), "bairro": id, "ponto": Vector2(c.x, c.z)})

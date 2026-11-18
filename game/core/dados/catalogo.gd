@@ -143,6 +143,11 @@ static func carregar_itens() -> Dictionary:
 	return {"dados": por_id, "erros": r["erros"]}
 
 
+## Contorno de todas as regiões da cidade (mapa de viagem), validado.
+static func carregar_mapa_geral() -> Dictionary:
+	return carregar_validado("res://data/mapa/mapa_geral.json", "res://data/schemas/mapa_geral.schema.json")
+
+
 ## Progressão: dinheiro, reputação, qualidade, motel, carro e loja (docs/08), validados.
 static func carregar_config_progressao() -> Dictionary:
 	return carregar_validado("res://data/config/progressao.json", "res://data/schemas/progressao.schema.json")

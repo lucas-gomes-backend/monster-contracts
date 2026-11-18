@@ -4,6 +4,7 @@
   "escala": 3.0,
   "tolerancia_simplificacao": 1.5,
   "margem_download_m": 150,
+  "mapa_geral": {"$comment": "Contorno de todas as regiões da cidade (só o limite, sem ruas), para o mapa de viagem: as que não estão no jogo aparecem bloqueadas, em cinza.", "municipio": "Santos", "admin_level": "10", "tolerancia_simplificacao": 4.0},
   "ruas": {
     "primary": {"largura": 10.0},
     "secondary": {"largura": 9.0},

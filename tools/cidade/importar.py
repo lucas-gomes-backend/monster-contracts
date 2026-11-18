@@ -4,6 +4,9 @@ Uso (na raiz do repositório):
   python tools/cidade/importar.py             # grava game/data/cidade/<bairro>.json
   python tools/cidade/importar.py --conferir  # só confere se os arquivos estão em dia (sai 1 se não)
 
+Também grava game/data/mapa/mapa_geral.json: o contorno de todas as regiões da cidade
+(de osm/mapa_geral.json, mais os limites dos bairros do config), para o mapa de viagem.
+
 Lê tools/cidade/osm/recorte.json (sem rede): o mesmo recorte dá sempre o mesmo resultado.
 Para cada bairro: o limite, as ruas (recortadas no limite e simplificadas), os canais,
 os marcos e as saídas (onde uma rua atravessa o limite e leva ao bairro vizinho).
@@ -19,6 +22,8 @@ sys.path.insert(0, AQUI)
 import geometria as G  # noqa: E402
 
 DESTINO = os.path.join(RAIZ, "game", "data", "cidade")
+## O mapa geral fica fora de data/cidade (lá, todo arquivo é um bairro jogável).
+DESTINO_MAPA = os.path.join(RAIZ, "game", "data", "mapa")
 LARGURA_CANAL = 4.0
 COMPRIMENTO_MINIMO = 2.0
 SAIDAS_JUNTAS = 3.0
@@ -139,6 +144,38 @@ def importar_todos(config, recorte):
     return resultado
 
 
+def slug(nome):
+    """'José Menino' -> 'jose_menino'."""
+    import unicodedata
+    sem_acento = unicodedata.normalize("NFKD", nome).encode("ascii", "ignore").decode("ascii")
+    return "_".join(sem_acento.lower().replace("-", " ").split())
+
+
+def importar_mapa_geral(config, recorte, mapa):
+    """Regiões: [{id, nome, limite}] em metros do jogo, simplificadas. Os bairros do config
+    usam o id e o limite deles; as outras regiões, o nome do OpenStreetMap."""
+    tol = config["mapa_geral"]["tolerancia_simplificacao"]
+    regioes = {}
+    usados = {b["limite_osm"] for b in config["bairros"]}
+    for r in mapa["regioes"]:
+        if "%s/%s" % (r["type"], r["id"]) in usados or not r["tags"].get("name"):
+            continue
+        pontos = [G.projetar(lat, lon, config["origem"], config["escala"]) for lat, lon in r["geometry"]]
+        if pontos[0] == pontos[-1]:
+            pontos = pontos[:-1]
+        regioes[slug(r["tags"]["name"])] = {"nome": r["tags"]["name"], "limite": pontos}
+    for b in config["bairros"]:
+        regioes[b["id"]] = {"nome": b["nome"], "limite": _poligono(recorte, b["limite_osm"], config)}
+    saida = []
+    for rid in sorted(regioes):
+        anel = G.simplificar(regioes[rid]["limite"] + [regioes[rid]["limite"][0]], tol)[:-1]
+        saida.append({"id": rid, "nome": regioes[rid]["nome"], "limite": [_r(p) for p in anel]})
+    return {
+        "$comment": "Contorno de todas as regiões da cidade para o mapa de viagem (só o limite). © colaboradores do OpenStreetMap, ODbL. Gerado por tools/cidade/importar.py.",
+        "regioes": saida,
+    }
+
+
 def texto(bairro):
     return json.dumps(bairro, ensure_ascii=False, indent=1) + "\n"
 
@@ -154,10 +191,15 @@ def carregar():
 def main(argv):
     config, recorte = carregar()
     bairros = importar_todos(config, recorte)
+    caminho_mapa = os.path.join(AQUI, "osm", "mapa_geral.json")
+    if os.path.exists(caminho_mapa):
+        with open(caminho_mapa, encoding="utf-8") as f:
+            bairros["mapa_geral"] = importar_mapa_geral(config, recorte, json.load(f))
     conferir = "--conferir" in argv
     desatualizados = []
     for bid, dados in bairros.items():
-        caminho = os.path.join(DESTINO, bid + ".json")
+        pasta = DESTINO_MAPA if bid == "mapa_geral" else DESTINO
+        caminho = os.path.join(pasta, bid + ".json")
         if conferir:
             atual = ""
             if os.path.exists(caminho):
@@ -166,9 +208,12 @@ def main(argv):
             if atual != texto(dados):
                 desatualizados.append(bid)
             continue
-        os.makedirs(DESTINO, exist_ok=True)
+        os.makedirs(pasta, exist_ok=True)
         with open(caminho, "w", encoding="utf-8", newline="\n") as f:
             f.write(texto(dados))
+        if bid == "mapa_geral":
+            print("mapa_geral: %d regiões" % len(dados["regioes"]))
+            continue
         print("%s: %d ruas, %d canais, %d marcos, %d saídas, %.0f m²" % (
             bid, len(dados["ruas"]), len(dados["canais"]), len(dados["marcos"]), len(dados["saidas"]), dados["area_m2"]))
     if desatualizados:

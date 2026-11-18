@@ -1,6 +1,7 @@
 """Baixa do OpenStreetMap (API Overpass) o recorte bruto dos bairros do config.json.
 
 Uso (na raiz do repositório):  python tools/cidade/baixar.py
+                               python tools/cidade/baixar.py --mapa-geral   # só os contornos de todas as regiões
 Grava tools/cidade/osm/recorte.json. Rodar só quando quiser atualizar os dados: o
 importador (importar.py) lê o arquivo salvo, sem rede, e sempre dá o mesmo resultado.
 Dados © colaboradores do OpenStreetMap, licença ODbL (ver osm/LICENCA.md).
@@ -50,9 +51,41 @@ def _enxugar(elemento, chaves):
     return saida
 
 
+def _anel_da_relacao(e):
+    trechos = [[(p["lat"], p["lon"]) for p in m["geometry"]] for m in e["members"]
+               if m["type"] == "way" and m.get("role") == "outer" and "geometry" in m]
+    return G.juntar_anel(trechos)
+
+
+def baixar_mapa_geral(config):
+    """Contornos de todas as regiões administrativas do município (osm/mapa_geral.json)."""
+    mg = config["mapa_geral"]
+    consulta = ('[out:json][timeout:120];area["name"="%s"]["admin_level"="8"]["boundary"="administrative"]->.m;'
+                'relation(area.m)["boundary"="administrative"]["admin_level"="%s"];out geom;') % (mg["municipio"], mg["admin_level"])
+    regioes = []
+    for e in consultar(consulta)["elements"]:
+        anel = _anel_da_relacao(e)
+        if len(anel) < 3:
+            continue
+        regioes.append({"type": "relation", "id": e["id"], "tags": {"name": e.get("tags", {}).get("name", "")},
+                        "geometry": [[round(lat, 7), round(lon, 7)] for lat, lon in anel]})
+    saida = {
+        "$comment": "Contornos das regiões de %s no OpenStreetMap (admin_level %s). © colaboradores do OpenStreetMap, ODbL. Gerado por tools/cidade/baixar.py --mapa-geral." % (mg["municipio"], mg["admin_level"]),
+        "regioes": sorted(regioes, key=lambda r: r["id"]),
+    }
+    destino = os.path.join(AQUI, "osm", "mapa_geral.json")
+    with open(destino, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(saida, f, ensure_ascii=False, indent=0, separators=(",", ":"))
+        f.write("\n")
+    print("%d regiões salvas em %s" % (len(regioes), destino))
+
+
 def main():
     with open(os.path.join(AQUI, "config.json"), encoding="utf-8") as f:
         config = json.load(f)
+    if "--mapa-geral" in sys.argv:
+        baixar_mapa_geral(config)
+        return
     # Limite de bairro: um caminho fechado (way) ou uma relação, cujos trechos "outer"
     # são juntados num anel e gravados como se fossem um caminho só.
     vias = [b["limite_osm"].split("/")[1] for b in config["bairros"] if b["limite_osm"].startswith("way/")]

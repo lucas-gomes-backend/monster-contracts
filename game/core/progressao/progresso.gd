@@ -8,14 +8,22 @@ var dinheiro: int = 0
 var reputacao: int = 0
 var qualidade: Dictionary = {}  # categoria -> nível 1..3
 var extrato: Array[Dictionary] = []  # [{"valor", "motivo"}]
+## Regiões da cidade abertas (as outras ficam bloqueadas no mapa de viagem).
+var regioes_liberadas: Array[String] = []
 var _cfg: Dictionary
 
 
 func _init(cfg_progressao: Dictionary) -> void:
 	_cfg = cfg_progressao
 	dinheiro = int(_cfg["dinheiro_inicial"])
+	for r in _cfg["regioes_liberadas"]:
+		regioes_liberadas.append(str(r))
 	for categoria in _cfg["nivel_inicial"]:
 		qualidade[categoria] = int(_cfg["nivel_inicial"][categoria])
+
+
+func liberada(regiao: String) -> bool:
+	return regiao in regioes_liberadas
 
 
 func nivel_de_reputacao() -> String:

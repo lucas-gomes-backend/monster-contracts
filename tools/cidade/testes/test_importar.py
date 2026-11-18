@@ -64,3 +64,27 @@ class TestImportar(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestMapaGeral(unittest.TestCase):
+    def test_slug_tira_acento_e_espaco(self):
+        self.assertEqual(importar.slug("José Menino"), "jose_menino")
+        self.assertEqual(importar.slug("Boqueirão"), "boqueirao")
+
+    def test_bairros_do_config_usam_o_proprio_id_e_as_outras_regioes_o_nome(self):
+        mapa = {"regioes": [
+            {"type": "relation", "id": 1, "tags": {"name": "Gonzaga"},
+             "geometry": [[-23.97, -46.33], [-23.97, -46.32], [-23.96, -46.32], [-23.96, -46.33], [-23.97, -46.33]]},
+            {"type": "relation", "id": 18922323, "tags": {"name": "Centro"}, "geometry": [[-23.93, -46.33], [-23.93, -46.32], [-23.92, -46.32]]},
+        ]}
+        geral = importar.importar_mapa_geral(CONFIG, RECORTE, mapa)
+        ids = [r["id"] for r in geral["regioes"]]
+        self.assertIn("gonzaga", ids)
+        for b in CONFIG["bairros"]:
+            self.assertIn(b["id"], ids)
+        self.assertEqual(ids, sorted(ids))
+        gonzaga = [r for r in geral["regioes"] if r["id"] == "gonzaga"][0]
+        self.assertEqual(len(gonzaga["limite"]), 4, "sem repetir o primeiro ponto")
+        centro = [r for r in geral["regioes"] if r["id"] == "centro"][0]
+        self.assertEqual(centro["nome"], "Centro")
+        self.assertGreater(len(centro["limite"]), 3, "o Centro usa o limite do recorte, não o da lista")

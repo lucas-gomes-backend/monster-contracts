@@ -300,3 +300,28 @@ func test_sem_gasolina_para_a_viagem_nao_vai() -> void:
 	assert_false(cena.viajar(longe))
 	assert_eq(cena.carro.position, antes)
 	cena.free()
+
+
+func test_mapa_geral_tem_todas_as_regioes_e_as_liberadas_existem() -> void:
+	var r: Dictionary = Catalogo.carregar_mapa_geral()
+	assert_eq(r["erros"], [] as Array[String])
+	var ids: Array = r["dados"]["regioes"].map(func(x): return x["id"])
+	assert_gte(ids.size(), 10, "a cidade inteira, não só o corte vertical")
+	for id in _cfg()["regioes_liberadas"]:
+		assert_has(ids, id)
+	for id in Catalogo.bairros_reais():
+		assert_has(ids, id, "todo bairro jogável aparece no mapa geral")
+
+
+func test_regiao_bloqueada_nao_vira_destino_de_viagem() -> void:
+	var cena := Cena.new()
+	cena.montar("centro", 1)
+	cena.entrar_no_carro()
+	var bloqueados: Array = cena.carregados.keys().filter(func(i): return not cena.progresso.liberada(i))
+	assert_false(bloqueados.is_empty(), "do Centro, algum vizinho carregado está bloqueado")
+	for d in cena.destinos_de_viagem():
+		assert_true(cena.progresso.liberada(d["bairro"]), "%s é de região liberada" % d["nome"])
+	cena.progresso.regioes_liberadas.append(bloqueados[0])
+	var bairros: Array = cena.destinos_de_viagem().map(func(d): return d["bairro"])
+	assert_has(bairros, bloqueados[0], "liberou, vira destino")
+	cena.free()

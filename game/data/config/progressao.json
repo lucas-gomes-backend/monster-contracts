@@ -1,6 +1,7 @@
 {
   "$comment": "Progressão do corte vertical (docs/08): dinheiro (reais inteiros), uma reputação, 3 níveis de qualidade, motel e carro fixo. Ajustar aqui, nunca no código.",
   "dinheiro_inicial": 400,
+  "regioes_liberadas": ["valongo", "centro"],
   "reputacao": {
     "niveis": [
       {"nome": "Desconhecido", "a_partir_de": 0},
