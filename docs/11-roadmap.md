@@ -10,7 +10,7 @@ Transformar tudo o que foi decidido nas outras partes em **fases realistas para 
 2. **Provar que é divertido antes de crescer.** Cada fase termina com um teste concreto. Se não passar, ajusta antes de seguir.
 3. **Nenhum trabalho jogado fora.** O núcleo da Fase 1 é o mesmo do jogo final ([10](10-tecnologia-e-arquitetura.md)).
 4. **Arte por último.** Até o corte vertical, tudo é cinza com o shader PS1.
-5. **Mostrar cedo.** A página na Steam entra logo depois do corte vertical.
+5. **Mostrar cedo.** O playtest com gente de fora entra logo depois do corte vertical.
 
 ## Acompanhamento
 
@@ -31,7 +31,7 @@ O progresso do roadmap é acompanhado no **Diário do Caçador**, uma página co
 | 1 | Núcleo em texto | 2 a 3 meses | **Os casos gerados são divertidos em texto?** |
 | 2 | Greybox 3D | 2 meses | Um caso completo jogável em 3D cinza |
 | 3 | Ferramenta da cidade | 1 a 2 meses | 2 bairros de Santos gerados a partir do mapa |
-| 4 | Corte vertical | 4 a 6 meses | **Playtest externo aprova; página na Steam** |
+| 4 | Corte vertical | 4 a 6 meses | **Playtest externo aprova** |
 | 5 | Conteúdo | 6 a 9 meses | Cidade e bestiário principais prontos |
 | 6 | Meta-jogo | 4 a 6 meses | Uma carreira completa de 10 h jogável |
 | 7 | Limbo | 2 a 3 meses | Morte e limbo completos |
@@ -157,7 +157,6 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 
 **Portão:**
 - Playtest com **5 a 10 pessoas de fora**. Observar onde se perdem e se querem jogar mais.
-- **Página na Steam** e início das *wishlists*.
 - Decidir se o projeto segue para a produção completa.
 
 ---
