@@ -112,6 +112,8 @@ Pode ser feita **em paralelo** com o fim da Fase 2.
 
 **Portão:** os 2 bairros do corte vertical (um morro e Paquetá ou Valongo) gerados a partir do mapa real.
 
+**Resultado (18/11/2026): portão APROVADO.** O playtest andou pela cidade gerada do mapa real: Valongo, Centro, Paquetá e Monte Serrat, com lotes, mata, galerias embaixo das ruas, bordas contínuas como em Final Fantasy XII e minimapa como em GTA. Decisões no caminho: cidade plana (sem relevo), de dia com névoa clara, efeito PS1 desligado por enquanto. Os 5 mutantes novos da fase rodaram em lotes com pausa e todos foram pegos.
+
 ---
 
 ## Fase 4 — Corte vertical (4 a 6 meses)
