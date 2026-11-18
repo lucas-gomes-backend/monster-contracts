@@ -37,6 +37,14 @@ const Suspeita := preload("res://core/mundo/suspeita.gd")
 const Mare := preload("res://core/tempo/mare.gd")
 const Ferimentos := preload("res://core/confronto/ferimentos.gd")
 const Medo := preload("res://core/confronto/medo.gd")
+const Arsenal := preload("res://core/confronto/arsenal.gd")
+const Bolsos := preload("res://core/confronto/bolsos.gd")
+const Circulo := preload("res://core/confronto/circulo_de_sal.gd")
+const Criatura3D := preload("res://presentation/cidade/criatura_3d.gd")
+const MenuRadial := preload("res://presentation/cidade/menu_radial.gd")
+const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
+	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
+	"destroi": "Destruída.", "cura": "Curada: a maldição se quebrou.", "bane": "Banida.", "apazigua": "Apaziguada: foi embora em paz."}
 ## Quanto tempo a lanterna fica apagada quando falha de medo (segundos).
 const PISCADA_DA_LANTERNA := 0.25
 const CORES_DA_SUSPEITA := {"normal": Color(0.15, 0.3, 0.15), "observado": Color(0.6, 0.45, 0.05),
@@ -84,6 +92,15 @@ var cacador: CharacterBody3D
 var ferimentos: RefCounted
 var medo: RefCounted
 var _lanterna_apagada := 0.0
+## Armas, bolsos e círculos de sal (núcleo); a criatura no campo e o menu radial.
+var arsenal: RefCounted
+var bolsos: RefCounted
+var circulos: Array = []
+var criatura: Node3D
+var menu: Control
+var hud: Label
+var _cfg_armas: Dictionary
+var _cfg_confronto: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
@@ -113,6 +130,8 @@ func _ready() -> void:
 			_captura = argumento.trim_prefix("--captura=")
 			# Na captura o mouse da janela não pode girar a câmera.
 			cacador.bloqueado = true
+		elif argumento.begins_with("--criatura="):
+			trazer_criatura(argumento.trim_prefix("--criatura="))
 		elif argumento == "--lanterna":
 			cacador.alternar_lanterna()
 		elif argumento.begins_with("--inclinar="):
@@ -143,8 +162,12 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	_minutos_detido = cfg_suspeita["detencao"]["minutos_perdidos"]
 	mare = Mare.new(Catalogo.carregar_config_mare()["dados"])
 	var cfg_confronto: Dictionary = Catalogo.carregar_config_confronto()["dados"]
+	_cfg_confronto = cfg_confronto
 	ferimentos = Ferimentos.new(cfg_confronto["ferimentos"])
 	medo = Medo.new(cfg_confronto["medo"], Rng.new(semente).stream("medo"))
+	_cfg_armas = Catalogo.carregar_config_armas()["dados"]
+	arsenal = Arsenal.new(_cfg_armas, Rng.new(semente).stream("armas"))
+	bolsos = Bolsos.new(_cfg_armas["bolsos"])
 	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -305,7 +328,7 @@ func _montar_interface() -> void:
 	camada.layer = 11
 	add_child(camada)
 	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro"
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma · Q bolsos"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
 	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)
@@ -347,6 +370,20 @@ func _montar_interface() -> void:
 	minimapa = Minimapa.new()
 	minimapa.cena = self
 	camada.add_child(minimapa)
+	hud = Label.new()
+	hud.position = Vector2(8, 420)
+	hud.size = Vector2(300, 36)
+	hud.add_theme_font_size_override("font_size", 12)
+	hud.add_theme_color_override("font_color", Color(0.98, 0.95, 0.85))
+	hud.add_theme_color_override("font_outline_color", Color(0.1, 0.08, 0.05))
+	hud.add_theme_constant_override("outline_size", 3)
+	camada.add_child(hud)
+	menu = MenuRadial.new()
+	menu.bolsos = bolsos
+	menu.position = Vector2(170, 90)
+	menu.size = Vector2(300, 300)
+	menu.visible = false
+	camada.add_child(menu)
 
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
@@ -403,6 +440,118 @@ func _unhandled_input(evento: InputEvent) -> void:
 	if evento.is_action_pressed("examinar") and _alvo >= 0:
 		usar_bueiro(_alvo)
 		get_viewport().set_input_as_handled()
+	elif evento.is_action_pressed("atirar") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and not menu.visible:
+		atirar()
+	elif evento.is_action_pressed("recarregar"):
+		if arsenal.recarregar():
+			_avisar("Recarregando...")
+	elif evento.is_action_pressed("arma_1") or evento.is_action_pressed("arma_2") or evento.is_action_pressed("arma_3"):
+		for i in 3:
+			if evento.is_action_pressed("arma_%d" % (i + 1)) and i < arsenal.ordem.size():
+				arsenal.equipar(arsenal.ordem[i])
+
+
+## O menu radial pega o mouse antes da câmera enquanto está aberto.
+func _input(evento: InputEvent) -> void:
+	if menu == null:
+		return
+	if evento.is_action_pressed("menu_radial"):
+		menu.abrir()
+		get_viewport().set_input_as_handled()
+	elif evento.is_action_released("menu_radial") and menu.visible:
+		menu.visible = false
+		if menu.escolhida >= 0:
+			usar_bolso(menu.escolhida)
+		get_viewport().set_input_as_handled()
+	elif menu.visible and evento is InputEventMouseMotion:
+		menu.mover(evento.relative)
+		get_viewport().set_input_as_handled()
+
+
+## Põe a criatura de uma ficha no campo, à frente do caçador (para testar o confronto).
+func trazer_criatura(id: String) -> void:
+	var fichas: Dictionary = Catalogo.carregar_criaturas()["criaturas"]
+	if not fichas.has(id):
+		return
+	if criatura != null:
+		criatura.queue_free()
+	criatura = Criatura3D.new()
+	criatura.montar(fichas[id], _cfg_confronto["criatura"], _cfg_armas["criatura_em_campo"], Rng.new(semente).stream("criatura_em_campo"))
+	add_child(criatura)
+	var frente := Vector3(-sin(cacador.yaw), 0.0, -cos(cacador.yaw))
+	criatura.position = Vector3(cacador.position.x, 0.0, cacador.position.z) + frente * float(_cfg_armas["criatura_em_campo"]["distancia_inicial"])
+
+
+## Atira (ou golpeia, com a faca) para onde a câmera aponta. Armas de fogo pedem mira.
+func atirar() -> Dictionary:
+	if int(arsenal.arma()["capacidade"]) > 0 and not cacador.mirando:
+		return {}
+	var camera: Camera3D = cacador.camera
+	var para_o_alvo := Vector3.ZERO
+	var raio := 0.0
+	if criatura != null and criatura.visible:
+		para_o_alvo = criatura.global_position + Vector3(0, 1.0, 0) - camera.global_position
+		raio = criatura.raio()
+		if int(arsenal.arma()["capacidade"]) == 0:
+			para_o_alvo = criatura.global_position - cacador.global_position
+	var direcao := -camera.global_basis.z
+	if int(arsenal.arma()["capacidade"]) == 0:
+		direcao = Vector3(-sin(cacador.yaw), 0.0, -cos(cacador.yaw))
+	var r: Dictionary = arsenal.disparar(direcao, para_o_alvo, raio, medo.tremor(), float(ferimentos.modificadores()["mira"]))
+	if not r["ok"]:
+		_avisar("Sem munição: R para recarregar." if r["motivo"] == "sem munição" else "Recarregando...")
+		return r
+	if float(r["barulho"]) > 0.0 and zona == "rua" and alguem_ve_o_cacador(float(r["barulho"])):
+		suspeita.somar(str(bairro.dados["id"]), int(_cfg_armas["suspeita_por_disparo_com_gente_perto"]), "disparo", minuto)
+	if r["acertou"]:
+		var efeito: Dictionary = criatura.receber(r["item"], float(_cfg_armas["interrompe_ataque_por"]))
+		_avisar(TEXTO_DO_EFEITO.get(efeito["efeito"], "Acertou, mas não fez efeito. Ela ficou mais agressiva."))
+	return r
+
+
+## Usa o item do bolso i: sal vira círculo nos pés; bandagem trata o pior ferimento; o resto
+## vai na criatura, se estiver perto.
+func usar_bolso(i: int) -> void:
+	var item: String = bolsos.usar(i)
+	if item.is_empty():
+		_avisar("Acabou.")
+		return
+	var aqui := Vector2(cacador.position.x, cacador.position.z)
+	if item == "sal_grosso":
+		var c := Circulo.new(aqui, _cfg_armas["circulo_de_sal"])
+		circulos.append(c)
+		_desenhar_circulo(c)
+		_avisar("Círculo de sal no chão.")
+		return
+	if item == "bandagem":
+		var pior := ""
+		for parte in ferimentos.gravidade:
+			if pior.is_empty() or int(ferimentos.gravidade[parte]) > int(ferimentos.gravidade[pior]):
+				pior = parte
+		ferimentos.tratar(pior)
+		_avisar("Bandagem: %s." % ferimentos.texto())
+		return
+	if criatura == null or not criatura.visible or Vector2(criatura.position.x, criatura.position.z).distance_to(aqui) > float(_cfg_armas["alcance_de_usar_item"]):
+		bolsos.itens[i]["quantidade"] = int(bolsos.itens[i]["quantidade"]) + 1
+		_avisar("Nada perto para usar isso.")
+		return
+	var efeito: Dictionary = criatura.receber(item, 0.0)
+	_avisar(TEXTO_DO_EFEITO.get(efeito["efeito"], "Não fez efeito. Ela ficou mais agressiva."))
+
+
+func _desenhar_circulo(c: RefCounted) -> void:
+	var anel := MeshInstance3D.new()
+	var malha := TorusMesh.new()
+	malha.inner_radius = c.raio - 0.06
+	malha.outer_radius = c.raio
+	malha.rings = 32
+	anel.mesh = malha
+	anel.scale = Vector3(1, 0.15, 1)
+	anel.material_override = Materiais.objeto(Color(0.95, 0.95, 0.92), 1.0)
+	anel.position = Vector3(c.centro.x, cacador.position.y - 0.25, c.centro.y)
+	anel.set_meta("circulo", c)
+	anel.name = "CirculoDeSal"
+	add_child(anel)
 
 
 func _physics_process(_delta: float) -> void:
@@ -430,13 +579,35 @@ func passar_tempo(segundos: float) -> void:
 	_corpo_e_medo(segundos)
 
 
-## Ferimentos pesam no corpo; o medo sobe no escuro e a lanterna falha com medo alto.
+## Ferimentos pesam no corpo; o medo sobe no escuro e com a criatura perto, e a lanterna
+## falha com medo alto. A criatura anda e ataca; os círculos de sal se desgastam.
 func _corpo_e_medo(segundos: float) -> void:
 	ferimentos.passar(segundos)
 	var m: Dictionary = ferimentos.modificadores()
 	cacador.modificadores = m
+	arsenal.passar(segundos, float(m["mira"]))
+	var aqui := Vector2(cacador.position.x, cacador.position.z)
+	var distancia := INF
+	var pressionado := false
+	if criatura != null and criatura.visible:
+		var golpe: Dictionary = criatura.andar(segundos, cacador.position, circulos)
+		pressionado = criatura.pressionando
+		distancia = Vector2(criatura.position.x, criatura.position.z).distance_to(aqui)
+		if not golpe.is_empty() and not ferimentos.morto:
+			ferimentos.receber(golpe["parte"], golpe["gravidade"])
+			medo.susto(0.5)
+			_avisar("Ferido: %s (%s)." % [str(golpe["parte"]).replace("_", " "), golpe["gravidade"]])
+	var protegido := false
+	for c in circulos:
+		c.passar(segundos, false, pressionado)
+		protegido = protegido or c.dentro(aqui)
+	for no in get_children():
+		if no.name.begins_with("CirculoDeSal") and not no.get_meta("circulo").ativo():
+			circulos.erase(no.get_meta("circulo"))
+			no.queue_free()
 	var escuro := zona == "esgoto" or Relogio.new(minuto).eh_noite()
-	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": m["medo"]})
+	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": m["medo"],
+		"criatura_metros": distancia, "protegido": protegido})
 	if _lanterna_apagada > 0.0:
 		_lanterna_apagada -= segundos
 		if _lanterna_apagada <= 0.0:
@@ -463,7 +634,9 @@ func _um_minuto() -> void:
 
 
 ## Tem alguém (morador, transeunte ou policial) a poucos metros do caçador?
-func alguem_ve_o_cacador() -> bool:
+func alguem_ve_o_cacador(alcance: float = -1.0) -> bool:
+	if alcance < 0.0:
+		alcance = _alcance_de_quem_ve
 	var aqui := Vector2(cacador.position.x, cacador.position.z)
 	var nos: Array = []
 	for id in populacoes:
@@ -475,7 +648,7 @@ func alguem_ve_o_cacador() -> bool:
 	for p in policia.policiais:
 		nos.append(p["no"])
 	for no in nos:
-		if no.visible and Vector2(no.position.x, no.position.z).distance_to(aqui) <= _alcance_de_quem_ve:
+		if no.visible and Vector2(no.position.x, no.position.z).distance_to(aqui) <= alcance:
 			return true
 	return false
 
@@ -518,6 +691,15 @@ func texto_do_painel() -> String:
 	return texto
 
 
+## "Espingarda de sal: 2/2" e o estado da criatura, se houver uma no campo.
+func texto_do_hud() -> String:
+	var texto: String = arsenal.texto()
+	if criatura != null and criatura.visible:
+		var e: RefCounted = criatura.estado
+		texto += "\nCriatura: %s%s" % [e.estado.replace("vulneravel", "vulnerável"), " (recuando)" if e.esta_afastada() else ""]
+	return texto
+
+
 ## "Quarta, 08:05"
 func texto_do_relogio() -> String:
 	var d: Dictionary = Relogio.data_de(minuto)
@@ -527,6 +709,7 @@ func texto_do_relogio() -> String:
 func _process(delta: float) -> void:
 	passar_tempo(delta)
 	relogio.text = texto_do_relogio()
+	hud.text = texto_do_hud()
 	painel.text = texto_do_painel()
 	painel.add_theme_color_override("font_color", CORES_DA_SUSPEITA[suspeita.nivel(str(bairro.dados["id"]))])
 	var camera: Camera3D = cacador.camera

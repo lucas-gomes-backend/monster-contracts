@@ -21,10 +21,16 @@ const ACOES := {
 	"examinar": [KEY_E],
 	"caderno": [KEY_TAB],
 	"mapa": [KEY_M],
+	"recarregar": [KEY_R],
+	"menu_radial": [KEY_Q],
+	"arma_1": [KEY_1],
+	"arma_2": [KEY_2],
+	"arma_3": [KEY_3],
 }
 const ACOES_MOUSE := {
 	"mirar": MOUSE_BUTTON_RIGHT,
 	"fotografar": MOUSE_BUTTON_LEFT,
+	"atirar": MOUSE_BUTTON_LEFT,
 }
 
 var config: Dictionary = {}

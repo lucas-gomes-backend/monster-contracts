@@ -1,0 +1,74 @@
+{
+  "$comment": "Armas, bolsos e círculo de sal (game/data/config/armas.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["armas", "tremor_multiplica_dispersao", "interrompe_ataque_por", "suspeita_por_disparo_com_gente_perto", "bolsos", "alcance_de_usar_item", "circulo_de_sal", "criatura_em_campo"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "armas": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nome", "item", "capacidade", "recarga", "alcance", "dispersao_graus", "barulho_metros"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z_]+$"},
+          "nome": {"type": "string", "minLength": 1},
+          "item": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "capacidade": {"type": "integer", "minimum": 0},
+          "recarga": {"type": "number", "minimum": 0},
+          "alcance": {"type": "number", "minimum": 0},
+          "dispersao_graus": {"type": "number", "minimum": 0},
+          "barulho_metros": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "tremor_multiplica_dispersao": {"type": "number", "minimum": 0},
+    "interrompe_ataque_por": {"type": "number", "minimum": 0},
+    "suspeita_por_disparo_com_gente_perto": {"type": "integer", "minimum": 0},
+    "bolsos": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item", "nome", "quantidade"],
+        "properties": {
+          "item": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+          "nome": {"type": "string", "minLength": 1},
+          "quantidade": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "alcance_de_usar_item": {"type": "number", "minimum": 0},
+    "circulo_de_sal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raio", "dura", "desgaste_com_chuva", "desgaste_com_a_criatura_pressionando"],
+      "properties": {
+        "raio": {"type": "number", "minimum": 0},
+        "dura": {"type": "number", "minimum": 0},
+        "desgaste_com_chuva": {"type": "number", "minimum": 1},
+        "desgaste_com_a_criatura_pressionando": {"type": "number", "minimum": 1}
+      }
+    },
+    "criatura_em_campo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["velocidade", "velocidade_por_agressividade", "alcance_do_ataque", "intervalo_entre_ataques", "raio", "partes_atingidas", "chance_de_grave", "chance_de_grave_por_agressividade", "distancia_inicial"],
+      "properties": {
+        "velocidade": {"type": "number", "minimum": 0},
+        "velocidade_por_agressividade": {"type": "number", "minimum": 0},
+        "alcance_do_ataque": {"type": "number", "minimum": 0},
+        "intervalo_entre_ataques": {"type": "number", "minimum": 0},
+        "raio": {"type": "number", "minimum": 0},
+        "partes_atingidas": {"$comment": "parte -> peso", "type": "object"},
+        "chance_de_grave": {"type": "number", "minimum": 0, "maximum": 1},
+        "chance_de_grave_por_agressividade": {"type": "number", "minimum": 0, "maximum": 1},
+        "distancia_inicial": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

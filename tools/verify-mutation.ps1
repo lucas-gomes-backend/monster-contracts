@@ -158,7 +158,11 @@ $mutants += @(
     @{ name = 'contenção não se desgasta'; path = 'game/core/confronto/estado_criatura.gd';
        find = '		restante -= segundos'; replace = '		restante -= 0.0' },
     @{ name = 'crítico não mata'; path = 'game/core/confronto/ferimentos.gd';
-       find = '			morto = true'; replace = '			morto = false' }
+       find = '			morto = true'; replace = '			morto = false' },
+    @{ name = 'medo não atrapalha a mira'; path = 'game/core/confronto/arsenal.gd';
+       find = '(1.0 + tremor * float(_cfg["tremor_multiplica_dispersao"]))'; replace = '1.0' },
+    @{ name = 'sal não barra a criatura'; path = 'game/presentation/cidade/criatura_3d.gd';
+       find = '	if Circulo.barra(ficha):'; replace = '	if false:' }
 )
 
 if ($Somente.Count -gt 0) {

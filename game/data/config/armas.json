@@ -1,0 +1,34 @@
+{
+  "$comment": "Armas, bolsos (menu radial) e círculo de sal do confronto (docs/06), e como a criatura age no campo. 'item' é o que a arma entrega na criatura: conta pelas fraquezas da ficha (sal grosso prende o corpo-seco, a faca benzida fere o lobisomem). Tempos em segundos, distâncias em metros.",
+  "armas": [
+    {"id": "espingarda_de_sal", "nome": "Espingarda de sal", "item": "sal_grosso", "capacidade": 2, "recarga": 2.5, "alcance": 14.0, "dispersao_graus": 7.0, "barulho_metros": 30.0},
+    {"id": "revolver", "nome": "Revólver", "item": "bala_comum", "capacidade": 6, "recarga": 3.5, "alcance": 30.0, "dispersao_graus": 2.5, "barulho_metros": 45.0},
+    {"id": "faca", "nome": "Faca benzida", "item": "arma_branca_benzida", "capacidade": 0, "recarga": 0.0, "alcance": 1.8, "dispersao_graus": 30.0, "barulho_metros": 0.0}
+  ],
+  "tremor_multiplica_dispersao": 3.0,
+  "interrompe_ataque_por": 2.0,
+  "suspeita_por_disparo_com_gente_perto": 10,
+  "bolsos": [
+    {"item": "sal_grosso", "nome": "Sal grosso", "quantidade": 3},
+    {"item": "agua_benta", "nome": "Água benta", "quantidade": 2},
+    {"item": "figa_e_arruda", "nome": "Figa e arruda", "quantidade": 1},
+    {"item": "oferenda_fumo_e_cachaca", "nome": "Fumo e cachaça", "quantidade": 1},
+    {"item": "laco_ate_o_galo_cantar", "nome": "Laço", "quantidade": 1},
+    {"item": "correntes", "nome": "Correntes", "quantidade": 1},
+    {"item": "graos_ou_sementes", "nome": "Grãos", "quantidade": 2},
+    {"item": "bandagem", "nome": "Bandagem", "quantidade": 2}
+  ],
+  "alcance_de_usar_item": 3.0,
+  "circulo_de_sal": {"raio": 1.6, "dura": 90.0, "desgaste_com_chuva": 3.0, "desgaste_com_a_criatura_pressionando": 4.0},
+  "criatura_em_campo": {
+    "velocidade": 3.2,
+    "velocidade_por_agressividade": 0.6,
+    "alcance_do_ataque": 1.6,
+    "intervalo_entre_ataques": 2.2,
+    "raio": 0.6,
+    "partes_atingidas": {"cabeca": 1, "tronco": 3, "braco_esquerdo": 2, "braco_direito": 2, "perna_esquerda": 2, "perna_direita": 2},
+    "chance_de_grave": 0.25,
+    "chance_de_grave_por_agressividade": 0.15,
+    "distancia_inicial": 16.0
+  }
+}
