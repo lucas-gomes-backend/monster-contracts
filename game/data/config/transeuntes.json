@@ -1,5 +1,5 @@
 {
   "$comment": "Transeuntes: figurantes andando a esmo pelas ruas para a cidade parecer viva. Não fazem parte da simulação (não são testemunhas nem suspeitos). 'por_hora': quantos ficam na rua de cada bairro em cada hora (0 a 23). 'velocidade': faixa sorteada para cada um, em m/s.",
   "por_hora": [2, 1, 1, 1, 1, 2, 5, 9, 12, 12, 12, 12, 14, 13, 12, 12, 12, 14, 14, 12, 10, 8, 5, 3],
-  "velocidade": [1.1, 1.7]
+  "velocidade": [2.2, 3.2]
 }

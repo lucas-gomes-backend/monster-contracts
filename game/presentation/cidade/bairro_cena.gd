@@ -59,6 +59,7 @@ const HabilidadesTela := preload("res://presentation/cidade/habilidades_tela.gd"
 const Condicao := preload("res://core/condicoes/condicao.gd")
 const Espiritos3D := preload("res://presentation/cidade/espiritos_3d.gd")
 const Interludio := preload("res://core/progressao/interludio.gd")
+const PausaTela := preload("res://presentation/cidade/pausa_tela.gd")
 const MochilaTela := preload("res://presentation/cidade/mochila_tela.gd")
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
@@ -168,6 +169,8 @@ var _cfg_condicoes: Dictionary
 var _sentidas: Dictionary = {}  # criaturas cuja presença já foi sentida (conta uso uma vez)
 var _g_sussurro: RandomNumberGenerator
 var _proximo_sussurro := 0.0
+## Menu de pausa (Esc): para o jogo; fica numa camada que roda mesmo pausada.
+var pausa_tela: Control
 var _cfg_progressao: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
@@ -440,7 +443,7 @@ func _montar_interface() -> void:
 	camada.layer = 11
 	add_child(camada)
 	var ajuda := Label.new()
-	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar · E carro e motel · H habilidades"
+	ajuda.text = "WASD andar · Shift correr · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar · E carro e motel · H habilidades · Esc pausa"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
 	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)
@@ -532,6 +535,16 @@ func _montar_interface() -> void:
 	habilidades_tela.size = Vector2(560, 300)
 	habilidades_tela.visible = false
 	camada.add_child(habilidades_tela)
+	var camada_pausa := CanvasLayer.new()
+	camada_pausa.layer = 20
+	camada_pausa.process_mode = Node.PROCESS_MODE_ALWAYS
+	add_child(camada_pausa)
+	pausa_tela = PausaTela.new()
+	pausa_tela.cena = self
+	pausa_tela.size = Vector2(640, 480)
+	pausa_tela.visible = false
+	camada_pausa.add_child(pausa_tela)
+	PausaTela.aplicar_todas(self)
 
 
 ## Desce pelo bueiro i (ou sobe, se já estiver lá embaixo). Muda a luz da zona.
@@ -611,6 +624,15 @@ func _unhandled_input(evento: InputEvent) -> void:
 ## teclas enquanto a tela dele está aberta.
 func _input(evento: InputEvent) -> void:
 	if menu == null:
+		return
+	if pausa_tela.visible:
+		if evento.is_action_pressed("soltar_mouse"):
+			fechar_pausa()
+			get_viewport().set_input_as_handled()
+		return
+	if evento.is_action_pressed("soltar_mouse") and not (mochila_tela.visible or ritual_tela.visible or conversa_tela.visible or motel_tela.visible or habilidades_tela.visible or viagem_tela.visible or menu.visible):
+		abrir_pausa()
+		get_viewport().set_input_as_handled()
 		return
 	if ritual_tela.visible:
 		_input_do_ritual(evento)
@@ -978,6 +1000,28 @@ func sair_do_carro() -> void:
 func dirigir(entrada: Vector2, delta: float) -> void:
 	carro.dirigir(entrada, delta)
 	cacador.position = carro.position + Vector3(0, 0.3, 0)
+
+
+## Esc: pausa o jogo e mostra o menu (o mouse fica livre para clicar).
+func abrir_pausa() -> void:
+	pausa_tela.mostrar("principal")
+	pausa_tela.visible = true
+	_mouse_antes = Input.mouse_mode
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().paused = true
+
+
+func fechar_pausa() -> void:
+	pausa_tela.visible = false
+	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if _mouse_antes == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_VISIBLE
+
+
+## Volta para a tela inicial (o jogo não tem save ainda: o que não foi guardado se perde).
+func ir_para_o_menu() -> void:
+	get_tree().paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().change_scene_to_file("res://ui/inicio.tscn")
 
 
 ## O Sensitivo: espíritos errantes vêm incomodar (exaustão e medo), a presença da criatura é

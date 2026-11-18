@@ -52,9 +52,10 @@ func test_relogio_anda_e_quem_muda_de_lugar_vai_andando_pelas_ruas() -> void:
 	assert_gte(p["rota"].size(), 3, "vai pelas ruas, não em linha reta pelos prédios")
 	assert_true(p["no"].visible, "quem anda está à vista")
 	var antes := Vector2(p["no"].position.x, p["no"].position.z)
-	gente.andar(1.0)
+	# Passo curto, para não dobrar esquina no meio (a distância é em linha reta).
+	gente.andar(0.1)
 	var depois := Vector2(p["no"].position.x, p["no"].position.z)
-	assert_almost_eq(antes.distance_to(depois), gente.velocidade, 0.05, "anda na velocidade a pé")
+	assert_almost_eq(antes.distance_to(depois), gente.velocidade * 0.1, 0.02, "anda na velocidade a pé")
 	for i in 2000:
 		gente.andar(0.5)
 		if p["rota"].is_empty():

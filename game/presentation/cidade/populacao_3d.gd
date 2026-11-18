@@ -28,7 +28,7 @@ const LADO_A_LADO := 0.8
 var bairro: RefCounted
 var npcs: Array[Dictionary] = []
 var lugares: Dictionary = {}
-var velocidade: float = 1.6
+var velocidade: float = 3.0
 ## {npc_id: {"no": Morador, "local", "atividade", "rota": PackedVector2Array, "passo": int}}
 var pessoas: Dictionary = {}
 var _rotina: RefCounted

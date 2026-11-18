@@ -4,5 +4,5 @@
   "queda_por_hora": 2,
   "sujeira": {"duracao_minutos": 120, "pontos_por_minuto_visto": 1, "alcance_de_quem_ve": 12.0},
   "detencao": {"minutos_perdidos": 240, "suspeita_depois": 15},
-  "policia": {"patrulha_observado": 2, "patrulha_procurado": 3, "alcance_da_abordagem": 1.6, "velocidade": 2.2}
+  "policia": {"patrulha_observado": 2, "patrulha_procurado": 3, "alcance_da_abordagem": 1.6, "velocidade": 4.0}
 }
