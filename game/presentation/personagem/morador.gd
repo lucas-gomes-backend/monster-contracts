@@ -11,7 +11,8 @@ var npc_id: String = ""
 var nome: String = ""
 
 
-func montar(id: String, nome_completo: String) -> void:
+## cor: a do corpo; sem ela, uma das CORES pelo id (policiais usam o azul da farda).
+func montar(id: String, nome_completo: String, cor: Variant = null) -> void:
 	npc_id = id
 	nome = nome_completo
 	name = "Morador_" + id
@@ -23,7 +24,7 @@ func montar(id: String, nome_completo: String) -> void:
 	capsula.rings = 2
 	corpo.mesh = capsula
 	corpo.position.y = ALTURA / 2.0
-	corpo.material_override = Materiais.objeto(CORES[id.hash() % CORES.size()])
+	corpo.material_override = Materiais.objeto(cor if cor is Color else CORES[id.hash() % CORES.size()])
 	add_child(corpo)
 	var cabeca := MeshInstance3D.new()
 	var caixa := BoxMesh.new()

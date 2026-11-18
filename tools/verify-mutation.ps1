@@ -138,7 +138,11 @@ $mutants += @(
     @{ name = 'transeunte para no destino'; path = 'game/presentation/cidade/transeuntes_3d.gd';
        find = '			else:' + "`n" + '				_nova_rota(a)'; replace = '			else:' + "`n" + '				pass' },
     @{ name = 'ponto-chave sem placa'; path = 'game/presentation/cidade/populacao_3d.gd';
-       find = 'placas.append(placa)'; replace = 'pass' }
+       find = 'placas.append(placa)'; replace = 'pass' },
+    @{ name = 'polícia não persegue'; path = 'game/presentation/cidade/policia_3d.gd';
+       find = 'p["perseguindo"] = deve and i == 0 and'; replace = 'p["perseguindo"] = false and' },
+    @{ name = 'maré alta não alaga'; path = 'game/presentation/cidade/bairro_cena.gd';
+       find = 'if mare.galerias_alagadas(minuto):'; replace = 'if false:' }
 )
 
 if ($Somente.Count -gt 0) {

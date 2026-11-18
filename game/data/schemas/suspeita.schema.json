@@ -1,0 +1,50 @@
+{
+  "$comment": "Suspeita e polícia básicas (game/data/config/suspeita.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["niveis", "queda_por_hora", "sujeira", "detencao", "policia"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "niveis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observado", "procurado", "barrado"],
+      "properties": {
+        "observado": {"type": "integer", "minimum": 1},
+        "procurado": {"type": "integer", "minimum": 1},
+        "barrado": {"type": "integer", "minimum": 1}
+      }
+    },
+    "queda_por_hora": {"type": "integer", "minimum": 0},
+    "sujeira": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duracao_minutos", "pontos_por_minuto_visto", "alcance_de_quem_ve"],
+      "properties": {
+        "duracao_minutos": {"type": "integer", "minimum": 0},
+        "pontos_por_minuto_visto": {"type": "integer", "minimum": 0},
+        "alcance_de_quem_ve": {"type": "number", "minimum": 0}
+      }
+    },
+    "detencao": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minutos_perdidos", "suspeita_depois"],
+      "properties": {
+        "minutos_perdidos": {"type": "integer", "minimum": 0},
+        "suspeita_depois": {"type": "integer", "minimum": 0}
+      }
+    },
+    "policia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["patrulha_observado", "patrulha_procurado", "alcance_da_abordagem", "velocidade"],
+      "properties": {
+        "patrulha_observado": {"type": "integer", "minimum": 0},
+        "patrulha_procurado": {"type": "integer", "minimum": 0},
+        "alcance_da_abordagem": {"type": "number", "minimum": 0.1},
+        "velocidade": {"type": "number", "minimum": 0.1}
+      }
+    }
+  }
+}

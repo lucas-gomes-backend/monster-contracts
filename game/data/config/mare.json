@@ -1,0 +1,8 @@
+{
+  "$comment": "Maré básica (docs/07, 'Marés' e 'Esgotos e subterrâneo'). Santos tem maré semidiurna: sobe e desce duas vezes por dia, num ciclo de cerca de 12h25. Alturas em metros reais. 'preamar_de_referencia': uma maré alta conhecida (data e hora), para o ciclo ter fase fixa. Acima de 'galerias_alagadas', as galerias do esgoto alagam e não dá para descer.",
+  "periodo_minutos": 745,
+  "media": 0.75,
+  "amplitude": 0.6,
+  "preamar_de_referencia": {"ano": 2026, "mes": 11, "dia": 18, "hora": 9, "minuto": 30},
+  "galerias_alagadas": 1.25
+}

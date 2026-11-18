@@ -118,6 +118,16 @@ static func carregar_config_relogio_da_cidade() -> Dictionary:
 	return carregar_validado("res://data/config/relogio_da_cidade.json", "res://data/schemas/relogio_da_cidade.schema.json")
 
 
+## Suspeita e polícia básicas, validadas.
+static func carregar_config_suspeita() -> Dictionary:
+	return carregar_validado("res://data/config/suspeita.json", "res://data/schemas/suspeita.schema.json")
+
+
+## Maré básica, validada.
+static func carregar_config_mare() -> Dictionary:
+	return carregar_validado("res://data/config/mare.json", "res://data/schemas/mare.schema.json")
+
+
 ## Pontos-chave (tipo de lugar -> nome, letra no minimapa, cor), validados um a um.
 static func carregar_pontos_chave() -> Dictionary:
 	var caminho_esquema := "res://data/schemas/pontos_chave.schema.json"

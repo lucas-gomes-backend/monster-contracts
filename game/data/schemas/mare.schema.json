@@ -1,0 +1,25 @@
+{
+  "$comment": "Maré básica (game/data/config/mare.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["periodo_minutos", "media", "amplitude", "preamar_de_referencia", "galerias_alagadas"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "periodo_minutos": {"type": "integer", "minimum": 60},
+    "media": {"type": "number"},
+    "amplitude": {"type": "number", "minimum": 0},
+    "preamar_de_referencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ano", "mes", "dia", "hora", "minuto"],
+      "properties": {
+        "ano": {"type": "integer", "minimum": 1970},
+        "mes": {"type": "integer", "minimum": 1, "maximum": 12},
+        "dia": {"type": "integer", "minimum": 1, "maximum": 31},
+        "hora": {"type": "integer", "minimum": 0, "maximum": 23},
+        "minuto": {"type": "integer", "minimum": 0, "maximum": 59}
+      }
+    },
+    "galerias_alagadas": {"type": "number"}
+  }
+}

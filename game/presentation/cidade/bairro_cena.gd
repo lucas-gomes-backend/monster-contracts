@@ -10,6 +10,10 @@ extends Node3D
 ## E desce pelo bueiro (escuro: só a lanterna) e sobe pela escada. Minimapa no canto.
 ## Um relógio corre na cidade, e os moradores dos bairros (com dados em data/neighborhoods)
 ## seguem a rotina: aparecem nas portas dos lugares e andam pelas ruas (populacao_3d.gd).
+## Suspeita e polícia básicas: quem sai do esgoto fica sujo, e ser visto assim faz a
+## suspeita subir; observado, a polícia patrulha; procurado, um policial vem atrás e, se
+## alcançar, o caçador é detido (perde horas e sai na porta da delegacia). A maré sobe e
+## desce: a água das galerias acompanha, e na maré alta não dá para descer.
 ##
 ## Argumentos: --bairro=<id> (padrão valongo), --semente=N (padrão 1), --captura=caminho.png,
 ## --lanterna, --inclinar=G, --virar=G, --vista=cima, --esgoto, --ir=<id> (para conferir o visual).
@@ -28,6 +32,11 @@ const Rng := preload("res://core/rng.gd")
 const Relogio := preload("res://core/tempo/relogio.gd")
 const Populacao3D := preload("res://presentation/cidade/populacao_3d.gd")
 const Transeuntes3D := preload("res://presentation/cidade/transeuntes_3d.gd")
+const Policia3D := preload("res://presentation/cidade/policia_3d.gd")
+const Suspeita := preload("res://core/mundo/suspeita.gd")
+const Mare := preload("res://core/tempo/mare.gd")
+const CORES_DA_SUSPEITA := {"normal": Color(0.15, 0.3, 0.15), "observado": Color(0.6, 0.45, 0.05),
+	"procurado": Color(0.7, 0.2, 0.1), "barrado": Color(0.5, 0.05, 0.05)}
 
 const ALCANCE_DO_BUEIRO := 2.5
 const ANGULO_DO_BUEIRO := 35.0
@@ -57,6 +66,14 @@ var populacoes: Dictionary = {}
 var transeuntes: Dictionary = {}
 var relogio: Label
 var _sobra_de_minuto := 0.0
+## Suspeita (núcleo), maré (núcleo) e a polícia do bairro atual.
+var suspeita: RefCounted
+var mare: RefCounted
+var policia: Node3D
+var detencoes: int = 0
+var painel: Label
+var _alcance_de_quem_ve: float = 12.0
+var _minutos_detido: int = 240
 var cacador: CharacterBody3D
 var ambiente: WorldEnvironment
 var sol: DirectionalLight3D
@@ -110,6 +127,11 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	var inicio: Dictionary = cfg_relogio["inicio"]
 	minuto = Relogio.minutos_de(int(inicio["ano"]), int(inicio["mes"]), int(inicio["dia"]), int(inicio["hora"]), int(inicio["minuto"]))
 	minutos_por_segundo = cfg_relogio["minutos_por_segundo"]
+	var cfg_suspeita: Dictionary = Catalogo.carregar_config_suspeita()["dados"]
+	suspeita = Suspeita.new(cfg_suspeita)
+	_alcance_de_quem_ve = cfg_suspeita["sujeira"]["alcance_de_quem_ve"]
+	_minutos_detido = cfg_suspeita["detencao"]["minutos_perdidos"]
+	mare = Mare.new(Catalogo.carregar_config_mare()["dados"])
 	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -170,9 +192,22 @@ func entrar_em(id: String) -> void:
 			remove_child(no)
 			no.queue_free()
 	_montar_rede()
+	_montar_policia(id)
 	nome_do_lugar.text = bairro.dados["nome"]
+	nome_do_lugar.add_theme_font_size_override("font_size", 26)
 	_tempo_do_nome = TEMPO_DO_NOME
 	minimapa.queue_redraw()
+
+
+## A polícia é a do bairro atual: patrulha pelas ruas dele.
+func _montar_policia(id: String) -> void:
+	if policia != null:
+		remove_child(policia)
+		policia.queue_free()
+	policia = Policia3D.new()
+	policia.montar(id, bairro.dados, semente)
+	add_child(policia)
+	policia.atualizar(suspeita.nivel(id))
 
 
 ## Uma rede de galerias para todos os bairros carregados (só refaz se o conjunto mudou).
@@ -274,6 +309,12 @@ func _montar_interface() -> void:
 	aviso.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	aviso.add_theme_font_size_override("font_size", 13)
 	camada.add_child(aviso)
+	painel = Label.new()
+	painel.position = Vector2(498, 164)
+	painel.size = Vector2(134, 30)
+	painel.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	painel.add_theme_font_size_override("font_size", 10)
+	camada.add_child(painel)
 	relogio = Label.new()
 	relogio.position = Vector2(498, 150)
 	relogio.size = Vector2(134, 16)
@@ -300,6 +341,9 @@ func usar_bueiro(i: int) -> void:
 	var p: Vector3 = subterraneo.bueiros[i]
 	var env: Environment = ambiente.environment
 	if zona == "rua":
+		if mare.galerias_alagadas(minuto):
+			_avisar("Maré alta: a galeria está alagada.")
+			return
 		zona = "esgoto"
 		cacador.position = p + Vector3(0.8, -subterraneo.profundidade + 0.1, 0)
 		sol.visible = false
@@ -310,6 +354,8 @@ func usar_bueiro(i: int) -> void:
 	else:
 		zona = "rua"
 		cacador.position = p + Vector3(1.2, 0.3, 0)
+		# Roupa e cheiro de esgoto: quem vê desconfia.
+		suspeita.sujar(minuto)
 		sol.visible = true
 		env.background_color = COR_DA_NEVOA
 		env.ambient_light_energy = 0.55
@@ -356,6 +402,7 @@ func passar_tempo(segundos: float) -> void:
 	while _sobra_de_minuto >= 1.0:
 		_sobra_de_minuto -= 1.0
 		minuto += 1
+		_um_minuto()
 		for id in populacoes:
 			populacoes[id].atualizar(minuto)
 		if minuto % 60 == 0:
@@ -365,6 +412,73 @@ func passar_tempo(segundos: float) -> void:
 		populacoes[id].andar(segundos)
 	for id in transeuntes:
 		transeuntes[id].andar(segundos)
+	if policia.andar(segundos, cacador.position) and zona == "rua":
+		deter()
+
+
+## O que muda a cada minuto: a suspeita cai, quem vê o caçador sujo desconfia, a
+## polícia acompanha o nível e a água das galerias acompanha a maré.
+func _um_minuto() -> void:
+	var id := str(bairro.dados["id"])
+	suspeita.passar_minutos(1)
+	if zona == "rua" and suspeita.sujo(minuto) and alguem_ve_o_cacador():
+		suspeita.visto(id, minuto)
+	if suspeita.nivel(id) != policia.nivel:
+		policia.atualizar(suspeita.nivel(id))
+	subterraneo.nivel_da_agua(mare.fracao(minuto))
+
+
+## Tem alguém (morador, transeunte ou policial) a poucos metros do caçador?
+func alguem_ve_o_cacador() -> bool:
+	var aqui := Vector2(cacador.position.x, cacador.position.z)
+	var nos: Array = []
+	for id in populacoes:
+		for npc_id in populacoes[id].pessoas:
+			nos.append(populacoes[id].pessoas[npc_id]["no"])
+	for id in transeuntes:
+		for a in transeuntes[id].andantes:
+			nos.append(a["no"])
+	for p in policia.policiais:
+		nos.append(p["no"])
+	for no in nos:
+		if no.visible and Vector2(no.position.x, no.position.z).distance_to(aqui) <= _alcance_de_quem_ve:
+			return true
+	return false
+
+
+## A polícia alcançou o caçador: detido. Perde horas (o mundo segue), a suspeita cai e
+## ele sai na porta da delegacia, se houver uma por perto.
+func deter() -> void:
+	detencoes += 1
+	var id := str(bairro.dados["id"])
+	var antes := minuto
+	minuto += _minutos_detido
+	suspeita.passar_minutos(minuto - antes)
+	suspeita.detido(id, minuto)
+	for b in populacoes:
+		populacoes[b].atualizar(minuto)
+	for b in populacoes:
+		for ponto in populacoes[b].pontos_chave:
+			if ponto["tipo"] == "delegacia":
+				cacador.position = Vector3(ponto["porta"].x, 0.3, ponto["porta"].y)
+	cacador.velocity = Vector3.ZERO
+	policia.atualizar(suspeita.nivel(str(bairro.dados["id"])))
+	verificar_fronteira()
+	_avisar("Detido pela polícia. Você perdeu %d horas." % (_minutos_detido / 60))
+
+
+func _avisar(texto: String) -> void:
+	nome_do_lugar.text = texto
+	nome_do_lugar.add_theme_font_size_override("font_size", 16)
+	_tempo_do_nome = TEMPO_DO_NOME
+
+
+## "Maré subindo 1,1 m" e "Suspeita: observado".
+func texto_do_painel() -> String:
+	var altura: float = mare.altura(minuto)
+	var sentido := "subindo" if mare.subindo(minuto) else "descendo"
+	var alagada := " (alagada)" if mare.galerias_alagadas(minuto) else ""
+	return "Maré %s %s m%s\nSuspeita: %s" % [sentido, ("%.1f" % altura).replace(".", ","), alagada, suspeita.nivel(str(bairro.dados["id"]))]
 
 
 ## "Quarta, 08:05"
@@ -376,6 +490,8 @@ func texto_do_relogio() -> String:
 func _process(delta: float) -> void:
 	passar_tempo(delta)
 	relogio.text = texto_do_relogio()
+	painel.text = texto_do_painel()
+	painel.add_theme_color_override("font_color", CORES_DA_SUSPEITA[suspeita.nivel(str(bairro.dados["id"]))])
 	var camera: Camera3D = cacador.camera
 	_alvo = bueiro_na_mira(camera.global_position, -camera.global_basis.z)
 	if _alvo < 0:

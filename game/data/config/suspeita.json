@@ -1,0 +1,8 @@
+{
+  "$comment": "Suspeita e polícia básicas (docs/07, 'Polícia e suspeita'; docs/05, 'Suspeita durante a investigação'). Pontos inteiros por bairro; a geral da cidade recebe metade de tudo. Níveis: a partir de quantos pontos. A suspeita cai um pouco a cada hora. Sujeira: quem sai do esgoto fica sujo por um tempo, e cada minuto em que alguém o vê de perto soma pontos. Detenção: quanto tempo se perde e para quanto a suspeita do bairro cai.",
+  "niveis": {"observado": 20, "procurado": 50, "barrado": 90},
+  "queda_por_hora": 2,
+  "sujeira": {"duracao_minutos": 120, "pontos_por_minuto_visto": 1, "alcance_de_quem_ve": 12.0},
+  "detencao": {"minutos_perdidos": 240, "suspeita_depois": 15},
+  "policia": {"patrulha_observado": 2, "patrulha_procurado": 3, "alcance_da_abordagem": 1.6, "velocidade": 2.2}
+}

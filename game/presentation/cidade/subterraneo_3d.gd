@@ -9,11 +9,16 @@ const Blocos := preload("res://presentation/greybox/blocos.gd")
 
 ## Altura das tampas acima do chão (logo acima da faixa da rua).
 const ALTURA_DA_TAMPA := 0.12
+## Quanto a água sobe da maré baixa à alta (metros).
+const SUBIDA_DA_AGUA := 0.7
 
 var galerias: Dictionary = {}
 var profundidade: float = 0.0
 ## Bueiros na rua (y = 0).
 var bueiros: Array[Vector3] = []
+## A lâmina d'água (sobe com a maré) e a altura dela na maré baixa.
+var agua: Node3D
+var agua_baixa: float = 0.0
 
 
 ## rede: saída de Sub.gerar_rede; area: retângulo (x, z) que o piso e o teto cobrem.
@@ -29,7 +34,8 @@ func montar(rede: Dictionary, cfg: Dictionary, area: Rect2) -> void:
 	var centro := Vector3(area.get_center().x, 0.0, area.get_center().y)
 	Blocos.bloco(self, tamanho, centro + Vector3(0, -0.25, 0), Color(0.18, 0.2, 0.16), tamanho.x / 6.0)
 	Blocos.bloco(self, tamanho, centro + Vector3(0, altura + 0.25, 0), Color(0.16, 0.16, 0.15), tamanho.x / 6.0)
-	Blocos.bloco(self, Vector3(tamanho.x, 0.02, tamanho.z), centro + Vector3(0, float(cfg["agua"]), 0),
+	agua_baixa = cfg["agua"]
+	agua = Blocos.bloco(self, Vector3(tamanho.x, 0.02, tamanho.z), centro + Vector3(0, agua_baixa, 0),
 		Color(0.1, 0.16, 0.13), tamanho.x / 6.0, false)
 	_montar_paredes(rede["paredes"], altura)
 	for p in rede["bueiros"]:
@@ -38,6 +44,12 @@ func montar(rede: Dictionary, cfg: Dictionary, area: Rect2) -> void:
 		# Escada de ferro: degraus do piso ao teto, embaixo do bueiro.
 		for degrau in int(altura / 0.4):
 			Blocos.bloco(self, Vector3(0.5, 0.05, 0.08), Vector3(p.x, 0.4 + degrau * 0.4, p.y), Color(0.42, 0.3, 0.2), 1.0, false)
+
+
+## A água sobe com a maré: fracao 0 (baixa-mar) a 1 (preamar), até a cintura.
+func nivel_da_agua(fracao: float) -> void:
+	if agua:
+		agua.position.y = agua_baixa + fracao * SUBIDA_DA_AGUA
 
 
 ## Paredes: um quadrado de pé por trecho do contorno, dos dois lados, numa malha só.
