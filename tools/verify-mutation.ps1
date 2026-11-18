@@ -118,7 +118,9 @@ $mutants += @(
     @{ name = 'caçador não sobe degrau'; path = 'game/presentation/personagem/cacador.gd';
        find = '	_subir_degrau(delta)'; replace = '	pass' },
     @{ name = 'pistas de outros lugares aparecem aqui'; path = 'game/core/investigacao/sessao.gd';
-       find = 'if pista["tipo"] != "marca" or pista["local"] != _local_atual:'; replace = 'if pista["tipo"] != "marca":' }
+       find = 'if pista["tipo"] != "marca" or pista["local"] != _local_atual:'; replace = 'if pista["tipo"] != "marca":' },
+    @{ name = 'lote invade a rua'; path = 'game/core/cidade/lotes.gd';
+       find = 'if distancia_segmento_poligono(pontos[s], pontos[s + 1], meus) < folga:'; replace = 'if false:' }
 )
 
 if ($Somente.Count -gt 0) {

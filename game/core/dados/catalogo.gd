@@ -113,6 +113,11 @@ static func carregar_bairro_real(id_bairro: String) -> Dictionary:
 	return resultado
 
 
+## Kits de lotes por zona (gerador de lotes do mapa real), validados.
+static func carregar_config_lotes() -> Dictionary:
+	return carregar_validado("res://data/config/lotes.json", "res://data/schemas/lotes.schema.json")
+
+
 ## Ids dos bairros do mapa real que já foram importados, em ordem.
 static func bairros_reais() -> Array[String]:
 	var ids: Array[String] = []

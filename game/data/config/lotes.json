@@ -1,0 +1,13 @@
+{
+  "$comment": "Gerador de lotes dos bairros do mapa real (docs/07, 'Como um bairro é montado'). Medidas em metros (escala do jogo). Cada zona tem o seu kit; 'padrao' vale para zonas sem entrada. Intervalos [mínimo, máximo] são sorteados pelo rng do mundo. 'sem_lotes': tipos de caminho sem casas na beira; um kit pode trocar a lista (no morro, as casas ficam ao longo das escadarias).",
+  "calcada": 2.0,
+  "recuo": 0.4,
+  "espaco_entre_lotes": 0.6,
+  "folga_das_ruas": 0.5,
+  "sem_lotes": ["steps", "footway", "service", "pedestrian"],
+  "zonas": {
+    "padrao": {"frente": [6.0, 11.0], "fundo": [8.0, 12.0], "andares": [1, 3], "chance_vazio": 0.08, "chance_mata": 0.0},
+    "central_portuaria": {"frente": [6.0, 12.0], "fundo": [8.0, 14.0], "andares": [1, 4], "chance_vazio": 0.08, "chance_mata": 0.0},
+    "morros": {"frente": [5.0, 8.0], "fundo": [6.0, 9.0], "andares": [1, 2], "chance_vazio": 0.1, "chance_mata": 0.3, "sem_lotes": ["service"]}
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "$comment": "Gerador de lotes (game/data/config/lotes.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "calcada",
+    "recuo",
+    "espaco_entre_lotes",
+    "folga_das_ruas",
+    "sem_lotes",
+    "zonas"
+  ],
+  "$defs": {
+    "intervalo": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "kit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frente",
+        "fundo",
+        "andares",
+        "chance_vazio",
+        "chance_mata"
+      ],
+      "properties": {
+        "frente": {
+          "$ref": "#/$defs/intervalo"
+        },
+        "fundo": {
+          "$ref": "#/$defs/intervalo"
+        },
+        "andares": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "chance_vazio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "chance_mata": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sem_lotes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "$comment": {
+      "type": "string"
+    },
+    "calcada": {
+      "type": "number",
+      "minimum": 0
+    },
+    "recuo": {
+      "type": "number",
+      "minimum": 0
+    },
+    "espaco_entre_lotes": {
+      "type": "number",
+      "minimum": 0
+    },
+    "folga_das_ruas": {
+      "type": "number",
+      "minimum": 0
+    },
+    "sem_lotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "zonas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "padrao"
+      ],
+      "properties": {
+        "padrao": {
+          "$ref": "#/$defs/kit"
+        },
+        "orla": {
+          "$ref": "#/$defs/kit"
+        },
+        "central_portuaria": {
+          "$ref": "#/$defs/kit"
+        },
+        "morros": {
+          "$ref": "#/$defs/kit"
+        },
+        "noroeste": {
+          "$ref": "#/$defs/kit"
+        },
+        "continental": {
+          "$ref": "#/$defs/kit"
+        }
+      }
+    }
+  }
+}

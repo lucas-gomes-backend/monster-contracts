@@ -8,11 +8,13 @@ static var _grade: Texture2D
 
 
 ## Material de objeto PS1 com uma cor e a textura de grade (mostra o entortar afim).
-static func objeto(cor: Color, escala_uv: float = 1.0) -> ShaderMaterial:
+## afim: 1 = textura entorta como no PS1; menos que 1 suaviza (chão grande e inclinado).
+static func objeto(cor: Color, escala_uv: float = 1.0, afim: float = 1.0) -> ShaderMaterial:
 	var material := ShaderMaterial.new()
 	material.shader = SHADER_OBJETO
 	material.set_shader_parameter("cor", cor)
 	material.set_shader_parameter("escala_uv", escala_uv)
+	material.set_shader_parameter("afim", afim)
 	material.set_shader_parameter("textura", grade())
 	return material
 

@@ -106,7 +106,7 @@ O teste de fogo: **o jogo inteiro sem 3D**, só com texto e botões.
 Pode ser feita **em paralelo** com o fim da Fase 2.
 
 - [x] Importador em Python: OpenStreetMap e relevo, simplificação, escala 1:3, corte por bairro ([07](07-mundo-cidade-e-npcs.md)). Valongo e Monte Serrat em `game/data/cidade/`.
-- [ ] Gerador de lotes no Godot, preenchendo com módulos.
+- [x] Gerador de lotes no Godot, preenchendo com módulos. Prédios em blocos cinza e mata nos morros; `tools/bairro.ps1`.
 - [ ] Subterrâneo gerado seguindo as ruas.
 - [ ] Transição entre bairros pelo mapa.
 
