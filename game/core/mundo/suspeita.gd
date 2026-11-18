@@ -85,6 +85,19 @@ func visto(bairro: String, minuto: int, fator: float = 1.0) -> int:
 	return n
 
 
+## Estigma de uma condição (docs/12): alguém viu os sinais (palidez, cheiro de bicho) e
+## desconfia, mesmo com o caçador limpo. "fator" é o peso do estigma. Devolve quantos somou.
+func visto_com_estigma(bairro: String, minuto: int, fator: float) -> int:
+	if fator <= 0.0:
+		return 0
+	var exato: float = float(_cfg["sujeira"]["pontos_por_minuto_visto"]) * fator + float(_sobra.get(bairro, 0.0))
+	var n := int(floor(exato))
+	_sobra[bairro] = exato - n
+	if n > 0:
+		somar(bairro, n, "sinais da condição", minuto)
+	return n
+
+
 ## Foi detido: a suspeita do bairro e a geral caem até o valor da detenção.
 func detido(bairro: String, minuto: int) -> void:
 	var depois := int(_cfg["detencao"]["suspeita_depois"])

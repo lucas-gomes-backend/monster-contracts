@@ -151,6 +151,10 @@ var _mouse_antes := Input.MOUSE_MODE_VISIBLE
 var _abrindo_mochila := 0.0
 var _cfg_inventario: Dictionary
 var _g_quebra: RandomNumberGenerator
+## Mordida que passa condição (vampirismo, licantropia), minutos ao sol e o faro.
+var _g_mordida: RandomNumberGenerator
+var _minutos_no_sol := 0
+var _farejadas: Dictionary = {}
 ## Dinheiro, reputação e qualidade (núcleo); o motel (guarda e menu) e o carro dirigível.
 var progresso: RefCounted
 var guarda_do_motel: RefCounted
@@ -298,6 +302,7 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	for c in _cfg_inventario["porta_malas_inicial"]:
 		porta_malas.adicionar(c["item"], int(c["quantidade"]))
 	_g_quebra = Rng.new(semente).stream("frageis")
+	_g_mordida = Rng.new(semente).stream("mordida")
 	# Dia nublado: céu e névoa da mesma cor clara, o fundo some na névoa.
 	var env := Environment.new()
 	env.background_mode = Environment.BG_COLOR
@@ -1211,6 +1216,24 @@ func ir_para_o_menu() -> void:
 	get_tree().change_scene_to_file("res://ui/inicio.tscn")
 
 
+## A mordida pode passar a condição da criatura (docs/12). Uma por vez: com outra, nada.
+func _mordida(ficha: Dictionary, gravidade: String) -> void:
+	if not gravidade in ["grave", "critico"] or condicao.tem():
+		return
+	var qual: String = Condicao.pega_pela_mordida(_cfg_condicoes, ficha, gravidade, _g_mordida.randf())
+	if not qual.is_empty() and condicao.adquirir(qual)["ok"]:
+		_avisar(str(_cfg_condicoes[qual]["aviso"]))
+
+
+## Licantropia: o faro avisa (uma vez por criatura) quando há alguma coisa perto.
+func _faro(distancia_da_criatura: float) -> void:
+	if condicao.id != "licantropia" or criatura == null or not criatura.visible:
+		return
+	if condicao.sente(criatura.ficha, distancia_da_criatura) and not _farejadas.has(criatura.get_instance_id()):
+		_farejadas[criatura.get_instance_id()] = true
+		_avisar(str(_cfg_condicoes["licantropia"]["aviso_do_faro"]))
+
+
 ## O Sensitivo: espíritos errantes vêm incomodar (exaustão e medo), a presença da criatura é
 ## sentida (só a força e a direção) e, no máximo da exaustão, algo toma o corpo.
 func _sensitivo(segundos: float, protegido: bool, distancia_da_criatura: float) -> void:
@@ -1908,6 +1931,7 @@ func _corpo_e_medo(segundos: float) -> void:
 		if not golpe.is_empty() and not ferimentos.morto:
 			ferimentos.receber(golpe["parte"], golpe["gravidade"])
 			praticar("golpe_recebido")
+			_mordida(criatura.ficha, golpe["gravidade"])
 			if golpe["gravidade"] == "grave":
 				var quebrados: Array[String] = mochila.quebrar_frageis(float(_cfg_inventario["chance_de_quebrar_fragil"]), _g_quebra)
 				if not quebrados.is_empty():
@@ -1926,8 +1950,10 @@ func _corpo_e_medo(segundos: float) -> void:
 			circulos.erase(no.get_meta("circulo"))
 			no.queue_free()
 	_sensitivo(segundos, protegido, distancia)
+	_faro(distancia)
 	_passos_e_motor(segundos)
-	var escuro := zona == "esgoto" or Relogio.new(minuto).eh_noite()
+	# Vampirismo: enxerga no escuro, e o escuro não assusta.
+	var escuro: bool = (zona == "esgoto" or Relogio.new(minuto).eh_noite()) and not condicao.enxerga_no_escuro()
 	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": float(m["medo"]) * habilidades.efeito("medo") * VoltaDaMorte.multiplicador_do_medo(progresso.voltas_do_limbo, _cfg_morte),
 		"criatura_metros": distancia, "protegido": protegido})
 	if _lanterna_apagada > 0.0:
@@ -1959,9 +1985,26 @@ func _um_minuto() -> void:
 	if zona == "rua" and suspeita.sujo(minuto) and alguem_ve_o_cacador():
 		# Disfarce (terno de agente): quem vê desconfia menos.
 		suspeita.visto(id, minuto, cacador.aparencia.efeito("suspeita_de_quem_ve"))
+	elif zona == "rua" and condicao.fator_de_estigma() > 0.0 and alguem_ve_o_cacador():
+		# Estigma básico da condição: quem vê de perto desconfia, mesmo limpo.
+		suspeita.visto_com_estigma(id, minuto, condicao.fator_de_estigma() * cacador.aparencia.efeito("suspeita_de_quem_ve"))
+	_sol()
 	if suspeita.nivel(id) != policia.nivel:
 		policia.atualizar(suspeita.nivel(id))
 	subterraneo.nivel_da_agua(mare.fracao(minuto))
+
+
+## Vampirismo: na rua, de dia, o sol fere de tempos em tempos.
+func _sol() -> void:
+	var cada: int = condicao.sol_fere_a_cada_minutos()
+	if cada <= 0 or zona != "rua" or Relogio.new(minuto).eh_noite() or ferimentos.morto:
+		_minutos_no_sol = 0
+		return
+	_minutos_no_sol += 1
+	if _minutos_no_sol >= cada:
+		_minutos_no_sol = 0
+		ferimentos.receber("tronco", "leve")
+		_avisar(str(_cfg_condicoes[condicao.id]["aviso_do_sol"]))
 
 
 ## Tem alguém (morador, transeunte ou policial) a poucos metros do caçador?

@@ -5,6 +5,8 @@
   "required": ["sensitivo"],
   "properties": {
     "$comment": {"type": "string"},
+    "vampirismo": {"$ref": "#/$defs/por_mordida"},
+    "licantropia": {"$ref": "#/$defs/por_mordida"},
     "sensitivo": {
       "type": "object",
       "additionalProperties": false,
@@ -42,6 +44,25 @@
           "type": "object", "additionalProperties": false, "required": ["benzer_preco", "benzer_tira"],
           "properties": {"benzer_preco": {"type": "integer", "minimum": 0}, "benzer_tira": {"type": "number", "minimum": 0}}
         }
+      }
+    }
+  },
+  "$defs": {
+    "por_mordida": {
+      "$comment": "Condição pega por mordida (Fase 5): chance por ferimento grave ou crítico, poderes e estigma básico.",
+      "type": "object", "additionalProperties": false,
+      "required": ["nome", "chance_por_mordida", "aviso", "enxerga_no_escuro", "sol_fere_a_cada_minutos", "aviso_do_sol", "estigma_suspeita", "sente_naturezas", "alcance_do_faro"],
+      "properties": {
+        "nome": {"type": "string"},
+        "chance_por_mordida": {"type": "number", "minimum": 0, "maximum": 1},
+        "aviso": {"type": "string"},
+        "enxerga_no_escuro": {"type": "boolean"},
+        "sol_fere_a_cada_minutos": {"type": "integer", "minimum": 0},
+        "aviso_do_sol": {"type": "string"},
+        "estigma_suspeita": {"type": "number", "minimum": 0},
+        "sente_naturezas": {"type": "array", "items": {"enum": ["corporea", "espiritual", "hibrida"]}},
+        "alcance_do_faro": {"type": "number", "minimum": 0},
+        "aviso_do_faro": {"type": "string"}
       }
     }
   }

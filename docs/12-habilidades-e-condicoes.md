@@ -206,4 +206,5 @@ Funciona como um **nível de procurado sobrenatural**.
 
 - **Corte vertical:** 2 ou 3 árvores humanas com poucas habilidades. Condições ficam de fora, ou entra só o **Sensitivo**, que é a mais simples.
 - **Fase 4 (conteúdo):** Vampirismo e Licantropia, com estigma básico.
+- **Vampirismo e Licantropia (18/11/2026):** pegas **por mordida no confronto**: um ferimento grave ou crítico do Strigoi (vampirismo) ou do Lobisomem europeu (licantropia) passa a condição com 35% de chance, com aviso; com outra condição ativa, nada acontece. Vampirismo: enxerga no escuro (o escuro não dá medo) e o sol fere na rua de dia (um ferimento leve a cada 30 minutos). Licantropia: faro (avisa quando há criatura a até 30 m, sem dizer qual). Estigma básico: quem vê o caçador de perto desconfia, mesmo limpo (a suspeita sobe). Ainda de fora: sede de sangue, lua cheia, caçada e cura. Números em `config/condicoes.json`.
 - **Fase 5 (meta-jogo):** caçada completa com caçadores investigando o jogador, reputação dupla e mercados ocultos.

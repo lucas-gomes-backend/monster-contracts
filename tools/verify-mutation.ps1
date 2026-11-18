@@ -206,7 +206,11 @@ $mutants += @(
     @{ name = 'prender o saci nao fere inocente'; path = 'game/core/investigacao/regras_de_campo.gd';
        find = '		base["criatura_inocente"] = true'; replace = '		base["criatura_inocente"] = false' },
     @{ name = 'inofensiva pode ser culpada'; path = 'game/core/casos/gerador_casos.gd';
-       find = '		if int(ficha["perigo"]) == 0:'; replace = '		if false:' }
+       find = '		if int(ficha["perigo"]) == 0:'; replace = '		if false:' },
+    @{ name = 'arranhao leve passa condicao'; path = 'game/core/condicoes/condicao.gd';
+       find = '	if not gravidade in ["grave", "critico"]:'; replace = '	if gravidade == "nenhum":' },
+    @{ name = 'estigma nao soma'; path = 'game/core/mundo/suspeita.gd';
+       find = '	if fator <= 0.0:'; replace = '	if true:' }
 )
 
 if ($Somente.Count -gt 0) {

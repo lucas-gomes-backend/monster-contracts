@@ -8,6 +8,10 @@ extends RefCounted
 ##     toma o corpo (possessão) por alguns segundos. Cai devagar sozinha, de vez com descanso
 ##     ou benzedura; a proteção espiritual (figa e arruda) corta pela metade;
 ##   - estágios (Recente, Controlado, Dominante) sobem com o uso: mais alcance, mais custo.
+## Fase 5: Vampirismo e Licantropia, pegos por mordida (pega_pela_mordida):
+##   - vampirismo: enxerga no escuro (o escuro não dá medo), o sol fere na rua de dia;
+##   - licantropia: faro (sente criaturas de qualquer natureza, sem dizer qual);
+##   - estigma básico: quem vê o caçador de perto desconfia, mesmo limpo.
 ## Números em data/config/condicoes.json.
 
 var id: String = ""
@@ -48,6 +52,8 @@ func _c() -> Dictionary:
 func estagio() -> Dictionary:
 	if not tem():
 		return {}
+	if not _c().has("estagios"):
+		return {"nome": "Recente"}
 	var atual: Dictionary = _c()["estagios"][0]
 	for e in _c()["estagios"]:
 		if usos >= int(e["a_partir_de_usos"]):
@@ -61,7 +67,37 @@ func nome() -> String:
 
 ## Sente esta criatura a esta distância? (só a presença, nunca a espécie)
 func sente(ficha: Dictionary, metros: float) -> bool:
-	return sensitivo() and ficha.get("natureza", "") in _c()["sente_naturezas"] and metros <= float(estagio()["alcance_da_presenca"])
+	if not tem() or not ficha.get("natureza", "") in _c()["sente_naturezas"]:
+		return false
+	if sensitivo():
+		return metros <= float(estagio()["alcance_da_presenca"])
+	return metros <= float(_c().get("alcance_do_faro", 0.0))
+
+
+## A mordida passa a condição? Só ferimento grave ou crítico de uma criatura que transmite
+## uma condição pega por mordida; "sorteio" (0 a 1) vem do stream do mundo. Devolve o id
+## da condição ou "".
+static func pega_pela_mordida(cfg_condicoes: Dictionary, ficha: Dictionary, gravidade: String, sorteio: float) -> String:
+	if not gravidade in ["grave", "critico"]:
+		return ""
+	var qual = ficha.get("condicao_transmitida", null)
+	if qual == null or not cfg_condicoes.has(str(qual)) or not cfg_condicoes[str(qual)].has("chance_por_mordida"):
+		return ""
+	return str(qual) if sorteio < float(cfg_condicoes[str(qual)]["chance_por_mordida"]) else ""
+
+
+func enxerga_no_escuro() -> bool:
+	return tem() and bool(_c().get("enxerga_no_escuro", false))
+
+
+## De quantos em quantos minutos o sol fere quem está na rua de dia (0 = não fere).
+func sol_fere_a_cada_minutos() -> int:
+	return int(_c().get("sol_fere_a_cada_minutos", 0)) if tem() else 0
+
+
+## Estigma básico: quanto quem vê o caçador de perto desconfia, mesmo limpo (0 = nada).
+func fator_de_estigma() -> float:
+	return float(_c().get("estigma_suspeita", 0.0)) if tem() else 0.0
 
 
 ## Usou um poder (sentiu uma presença nova, teve uma visão): conta para o estágio.
@@ -115,4 +151,6 @@ func _cansar(quanto: float, protegido: bool) -> void:
 func texto() -> String:
 	if not tem():
 		return ""
+	if not sensitivo():
+		return nome()
 	return "%s · exaustão %d%%" % [nome(), int(round(exaustao / float(_c()["exaustao_maxima"]) * 100.0))]
