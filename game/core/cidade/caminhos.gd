@@ -51,3 +51,8 @@ func caminho(de: Vector2, para: Vector2) -> PackedVector2Array:
 
 func pontos() -> int:
 	return _grafo.get_point_count()
+
+
+## Um ponto qualquer das ruas (para quem anda a esmo), sorteado pelo gerador dado.
+func ponto_qualquer(gerador: RandomNumberGenerator) -> Vector2:
+	return _grafo.get_point_position(gerador.randi_range(0, _grafo.get_point_count() - 1))

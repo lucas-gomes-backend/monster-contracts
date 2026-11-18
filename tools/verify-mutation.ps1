@@ -134,7 +134,9 @@ $mutants += @(
     @{ name = 'gente atravessa os prédios'; path = 'game/presentation/cidade/populacao_3d.gd';
        find = 'p["rota"] = _caminhos.caminho(de, para)'; replace = 'p["rota"] = PackedVector2Array([de, para])' },
     @{ name = 'gente fora da rotina'; path = 'game/presentation/cidade/populacao_3d.gd';
-       find = 'var estado: Dictionary = _rotina.onde_esta(npc, minuto)'; replace = 'var estado: Dictionary = _rotina.onde_esta(npc, 0)' }
+       find = 'var estado: Dictionary = _rotina.onde_esta(npc, minuto)'; replace = 'var estado: Dictionary = _rotina.onde_esta(npc, 0)' },
+    @{ name = 'transeunte para no destino'; path = 'game/presentation/cidade/transeuntes_3d.gd';
+       find = '			else:' + "`n" + '				_nova_rota(a)'; replace = '			else:' + "`n" + '				pass' }
 )
 
 if ($Somente.Count -gt 0) {

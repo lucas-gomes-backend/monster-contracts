@@ -118,6 +118,11 @@ static func carregar_config_relogio_da_cidade() -> Dictionary:
 	return carregar_validado("res://data/config/relogio_da_cidade.json", "res://data/schemas/relogio_da_cidade.schema.json")
 
 
+## Transeuntes (figurantes nas ruas): quantos por hora e a que velocidade, validado.
+static func carregar_config_transeuntes() -> Dictionary:
+	return carregar_validado("res://data/config/transeuntes.json", "res://data/schemas/transeuntes.schema.json")
+
+
 ## O bairro real tem descrição abstrata (famílias, casas e lugares) em data/neighborhoods?
 static func tem_bairro_abstrato(id_bairro: String) -> bool:
 	return FileAccess.file_exists("res://data/neighborhoods/%s.json" % id_bairro)

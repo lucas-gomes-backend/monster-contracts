@@ -27,6 +27,7 @@ const Subterraneo3D := preload("res://presentation/cidade/subterraneo_3d.gd")
 const Rng := preload("res://core/rng.gd")
 const Relogio := preload("res://core/tempo/relogio.gd")
 const Populacao3D := preload("res://presentation/cidade/populacao_3d.gd")
+const Transeuntes3D := preload("res://presentation/cidade/transeuntes_3d.gd")
 
 const ALCANCE_DO_BUEIRO := 2.5
 const ANGULO_DO_BUEIRO := 35.0
@@ -52,6 +53,8 @@ var _ids_da_rede: Array = []
 var minuto: int = 0
 var minutos_por_segundo: float = 1.0
 var populacoes: Dictionary = {}
+## Figurantes andando a esmo em cada bairro carregado.
+var transeuntes: Dictionary = {}
 var relogio: Label
 var _sobra_de_minuto := 0.0
 var cacador: CharacterBody3D
@@ -163,6 +166,7 @@ func entrar_em(id: String) -> void:
 			var no: Node3D = carregados[velho]
 			carregados.erase(velho)
 			populacoes.erase(velho)
+			transeuntes.erase(velho)
 			remove_child(no)
 			no.queue_free()
 	_montar_rede()
@@ -207,6 +211,11 @@ func _carregar(id: String) -> Node3D:
 			novo.add_child(gente)
 			gente.atualizar(minuto)
 			populacoes[id] = gente
+		var passantes := Transeuntes3D.new()
+		passantes.montar(id, novo.dados, semente)
+		novo.add_child(passantes)
+		passantes.atualizar(Relogio.data_de(minuto)["hora"])
+		transeuntes[id] = passantes
 	return carregados[id]
 
 
@@ -349,8 +358,13 @@ func passar_tempo(segundos: float) -> void:
 		minuto += 1
 		for id in populacoes:
 			populacoes[id].atualizar(minuto)
+		if minuto % 60 == 0:
+			for id in transeuntes:
+				transeuntes[id].atualizar(Relogio.data_de(minuto)["hora"])
 	for id in populacoes:
 		populacoes[id].andar(segundos)
+	for id in transeuntes:
+		transeuntes[id].andar(segundos)
 
 
 ## "Quarta, 08:05"

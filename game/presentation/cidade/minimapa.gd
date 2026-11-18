@@ -21,6 +21,7 @@ const COR_VIZINHO := Color(0.6, 0.6, 0.6, 0.6)
 const COR_GALERIA := Color(0.25, 0.4, 0.3)
 const COR_SETA := Color(1.0, 0.35, 0.25)
 const COR_PESSOA := Color(0.95, 0.95, 0.95)
+const COR_TRANSEUNTE := Color(0.7, 0.7, 0.7)
 
 ## A cena da cidade (bairro_cena.gd): de onde vêm bairros, caçador e zona.
 var cena: Node3D
@@ -65,7 +66,11 @@ func _draw() -> void:
 			if b != cena.bairro:
 				draw_polyline(_anel(b, centro, giro), COR_VIZINHO, 1.0)
 		draw_polyline(_anel(cena.bairro, centro, giro), COR_BORDA, 2.0)
-		# As pessoas à vista, como pontinhos.
+		# Os transeuntes, mais apagados, e os moradores à vista, como pontinhos.
+		for id in cena.transeuntes:
+			for a in cena.transeuntes[id].andantes:
+				if a["ativo"]:
+					draw_circle(para_minimapa(Vector2(a["no"].position.x, a["no"].position.z), centro, giro), 1.5, COR_TRANSEUNTE)
 		for id in cena.populacoes:
 			var gente: Node3D = cena.populacoes[id]
 			for npc_id in gente.pessoas:
