@@ -133,6 +133,8 @@ func executar(linha: String) -> String:
 			return _bestiario(args)
 		"caracteristicas":
 			return _caracteristicas()
+		"tocar":
+			return _tocar(args)
 		"ligar":
 			return _ligar(args, true)
 		"desligar":
@@ -170,6 +172,7 @@ func _ajuda() -> String:
 		"  bestiario [espécie]      espécies e o que cada uma deixa",
 		"  caracteristicas          características do bestiário (c1, c2...)",
 		"  ligar <pN|dN> <cN>       ligar uma pista ou depoimento a uma característica",
+		"  tocar <pN>               (sensitivo) tocar uma pista para ter uma visão vaga, 20 min",
 		"  desligar <pN|dN> <cN>    desfazer uma ligação",
 		"  hipoteses                ligações, espécies compatíveis, riscadas, circulada",
 		"  riscar <espécie>         riscar uma espécie",
@@ -607,6 +610,17 @@ func _caracteristicas() -> String:
 	for i in vocab.size():
 		linhas.append("  c%d  %s" % [i + 1, _textos.get(vocab[i], {}).get("caracteristica", vocab[i])])
 	return "\n".join(linhas)
+
+
+## Sensitivo: tocar uma pista anotada (psicometria).
+func _tocar(args: Array) -> String:
+	if args.is_empty():
+		return "Use: tocar <pN>."
+	var id := _resolver_evidencia(args[0])
+	if id.is_empty() or not id.begins_with("pista"):
+		return "Pista desconhecida: %s." % args[0]
+	var r: Dictionary = sessao.tocar(id)
+	return r["visao"] if r["ok"] else "Não deu: %s." % r["erro"]
 
 
 func _ligar(args: Array, ligar: bool) -> String:

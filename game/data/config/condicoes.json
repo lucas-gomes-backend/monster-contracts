@@ -1,0 +1,26 @@
+{
+  "$comment": "Condições paranormais (docs/12, Parte B). Uma por vez. No corte vertical só o Sensitivo (médium): sente presenças, vê espíritos errantes e tem visões ao tocar pistas (psicometria). Em troca, os espíritos o procuram e incomodam, a exaustão mental sobe e, no máximo, algo toma o corpo por alguns segundos. Descanso, figa e arruda, sal e a benzedeira aliviam. Os estágios sobem com o uso dos poderes: mais alcance e mais custo.",
+  "sensitivo": {
+    "nome": "Sensitivo",
+    "estagios": [
+      {"nome": "Recente", "a_partir_de_usos": 0, "alcance_da_presenca": 18.0, "exaustao_perto_de_espirito": 3.0, "espiritos": 2},
+      {"nome": "Controlado", "a_partir_de_usos": 6, "alcance_da_presenca": 32.0, "exaustao_perto_de_espirito": 2.0, "espiritos": 3},
+      {"nome": "Dominante", "a_partir_de_usos": 18, "alcance_da_presenca": 55.0, "exaustao_perto_de_espirito": 4.0, "espiritos": 5}
+    ],
+    "sente_naturezas": ["espiritual", "hibrida"],
+    "exaustao_maxima": 100.0,
+    "exaustao_por_visao": 15.0,
+    "exaustao_cai_por_segundo": 0.5,
+    "protecao_corta_pela_metade": "figa_e_arruda",
+    "possessao_segundos": 4.0,
+    "exaustao_depois_da_possessao": 50.0,
+    "espiritos_errantes": {"velocidade": 1.3, "incomodam_a": 5.0, "aparecem_a": 25.0, "medo_por_segundo_perto": 1.5},
+    "sussurros": [
+      "Uma voz fina no seu ouvido: \"você também vê a gente\".",
+      "Alguém chama seu nome, bem de perto. Não tem ninguém.",
+      "Um frio passa pelas suas costas e fica.",
+      "\"Fala pra minha mãe que eu tô aqui.\""
+    ],
+    "benzedeira": {"benzer_preco": 20, "benzer_tira": 100.0}
+  }
+}

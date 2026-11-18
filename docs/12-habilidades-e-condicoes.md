@@ -193,6 +193,15 @@ Funciona como um **nível de procurado sobrenatural**.
 - **Só pela prática** por enquanto: acertar tiro e recarregar ensinam Combate; passos e rituais completos, Ocultismo; tratar e levar ferimentos, Sobrevivência. Cada 10 de experiência vira 1 ponto naquela árvore. Treino com mentores e estudo ficam para depois.
 - **Teto de 8 pontos** no total (há 15 níveis para comprar): não dá para maximizar tudo.
 
+### Sensitivo no corte vertical (18/11/2026)
+
+- Números e textos em `config/condicoes.json`; núcleo em `core/condicoes/`. Uma condição por vez: adquirir outra com uma ativa é recusado (o conflito entre condições fica para depois).
+- **Como pega:** por escolha, na benzedeira (Valongo ou Centro). Ela avisa o preço antes e pede confirmação.
+- **Poderes:** sente presenças de criaturas espirituais ou híbridas (o Curupira, sim; o corpo-seco, não), só com a força e a direção, nunca a espécie. Vê espíritos errantes. No caderno, `tocar pN` dá uma visão vaga de uma pista (hora, som e tamanho, nunca a forma), uma vez por pista, 20 minutos.
+- **Custo:** os espíritos vêm atrás e, perto, sobem a exaustão e o medo, com sussurros. No máximo, a possessão trava o caçador por 4 s. Figa e arruda no bolso cortam o cansaço pela metade; dentro do círculo de sal eles não alcançam. Descansar no motel ou ser benzido (R$ 20) tira a exaustão.
+- **Estágios:** Recente (alcance 18 m, 2 espíritos), Controlado (6 usos: 32 m, 3 espíritos, cansa menos), Dominante (18 usos: 55 m, 5 espíritos, cansa mais). Uso conta ao sentir uma criatura nova e a cada visão.
+- Ainda de fora: estigma, caçada e cura.
+
 ## Escopo no roadmap
 
 - **Corte vertical:** 2 ou 3 árvores humanas com poucas habilidades. Condições ficam de fora, ou entra só o **Sensitivo**, que é a mais simples.

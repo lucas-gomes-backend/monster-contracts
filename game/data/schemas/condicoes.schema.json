@@ -1,0 +1,48 @@
+{
+  "$comment": "Condições paranormais (game/data/config/condicoes.json). No corte vertical, só o Sensitivo.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sensitivo"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "sensitivo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nome", "estagios", "sente_naturezas", "exaustao_maxima", "exaustao_por_visao", "exaustao_cai_por_segundo", "protecao_corta_pela_metade", "possessao_segundos", "exaustao_depois_da_possessao", "espiritos_errantes", "sussurros", "benzedeira"],
+      "properties": {
+        "nome": {"type": "string"},
+        "estagios": {
+          "type": "array", "minItems": 3, "maxItems": 3,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["nome", "a_partir_de_usos", "alcance_da_presenca", "exaustao_perto_de_espirito", "espiritos"],
+            "properties": {
+              "nome": {"type": "string"},
+              "a_partir_de_usos": {"type": "integer", "minimum": 0},
+              "alcance_da_presenca": {"type": "number", "minimum": 0},
+              "exaustao_perto_de_espirito": {"type": "number", "minimum": 0},
+              "espiritos": {"type": "integer", "minimum": 0, "maximum": 10}
+            }
+          }
+        },
+        "sente_naturezas": {"type": "array", "items": {"enum": ["corporea", "espiritual", "hibrida"]}},
+        "exaustao_maxima": {"type": "number", "minimum": 1},
+        "exaustao_por_visao": {"type": "number", "minimum": 0},
+        "exaustao_cai_por_segundo": {"type": "number", "minimum": 0},
+        "protecao_corta_pela_metade": {"type": "string"},
+        "possessao_segundos": {"type": "number", "minimum": 0},
+        "exaustao_depois_da_possessao": {"type": "number", "minimum": 0},
+        "espiritos_errantes": {
+          "type": "object", "additionalProperties": false,
+          "required": ["velocidade", "incomodam_a", "aparecem_a", "medo_por_segundo_perto"],
+          "properties": {"velocidade": {"type": "number", "minimum": 0}, "incomodam_a": {"type": "number", "minimum": 0}, "aparecem_a": {"type": "number", "minimum": 0}, "medo_por_segundo_perto": {"type": "number", "minimum": 0}}
+        },
+        "sussurros": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "benzedeira": {
+          "type": "object", "additionalProperties": false, "required": ["benzer_preco", "benzer_tira"],
+          "properties": {"benzer_preco": {"type": "integer", "minimum": 0}, "benzer_tira": {"type": "number", "minimum": 0}}
+        }
+      }
+    }
+  }
+}

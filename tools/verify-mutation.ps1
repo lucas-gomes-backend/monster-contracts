@@ -184,7 +184,11 @@ $mutants += @(
     @{ name = 'viagem rápida não gasta gasolina'; path = 'game/presentation/cidade/bairro_cena.gd';
        find = '	carro.litros -= float(d["litros"])'; replace = '	pass' },
     @{ name = 'sem teto de habilidades'; path = 'game/core/progressao/habilidades.gd';
-       find = '	if pontos_gastos() >= int(_cfg["teto_de_pontos"]):'; replace = '	if false:' }
+       find = '	if pontos_gastos() >= int(_cfg["teto_de_pontos"]):'; replace = '	if false:' },
+    @{ name = 'duas condições ao mesmo tempo'; path = 'game/core/condicoes/condicao.gd';
+       find = '		return {"ok": false, "motivo": "já é %s: uma condição por vez" % _cfg[id]["nome"]}'; replace = '		pass' },
+    @{ name = 'sensitivo sente corpo'; path = 'game/core/condicoes/condicao.gd';
+       find = 'ficha.get("natureza", "") in _c()["sente_naturezas"] and '; replace = '' }
 )
 
 if ($Somente.Count -gt 0) {

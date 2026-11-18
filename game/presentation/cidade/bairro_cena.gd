@@ -56,6 +56,8 @@ const MotelTela := preload("res://presentation/cidade/motel_tela.gd")
 const ViagemTela := preload("res://presentation/cidade/viagem_tela.gd")
 const Habilidades := preload("res://core/progressao/habilidades.gd")
 const HabilidadesTela := preload("res://presentation/cidade/habilidades_tela.gd")
+const Condicao := preload("res://core/condicoes/condicao.gd")
+const Espiritos3D := preload("res://presentation/cidade/espiritos_3d.gd")
 const MochilaTela := preload("res://presentation/cidade/mochila_tela.gd")
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
@@ -158,6 +160,13 @@ var mapa_geral: Array = []
 ## Habilidades humanas (núcleo) e a tela delas.
 var habilidades: RefCounted
 var habilidades_tela: Control
+## Condição paranormal (uma por vez; no corte vertical, o Sensitivo) e os espíritos errantes.
+var condicao: RefCounted
+var espiritos: Node3D
+var _cfg_condicoes: Dictionary
+var _sentidas: Dictionary = {}  # criaturas cuja presença já foi sentida (conta uso uma vez)
+var _g_sussurro: RandomNumberGenerator
+var _proximo_sussurro := 0.0
 var _cfg_progressao: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
@@ -191,6 +200,11 @@ func _ready() -> void:
 			cacador.bloqueado = true
 		elif argumento.begins_with("--criatura="):
 			trazer_criatura(argumento.trim_prefix("--criatura="))
+		elif argumento == "--sensitivo":
+			condicao.adquirir("sensitivo")
+			_sensitivo(0.0, false, INF)
+			for e in espiritos.espiritos:
+				e.position = cacador.position + (e.position - cacador.position).normalized() * 6.0
 		elif argumento == "--dirigir":
 			entrar_no_carro()
 		elif argumento == "--mapa-de-viagem":
@@ -243,6 +257,9 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	_cfg_progressao = Catalogo.carregar_config_progressao()["dados"]
 	mapa_geral = Catalogo.carregar_mapa_geral()["dados"]["regioes"]
 	habilidades = Habilidades.new(Catalogo.carregar_config_habilidades()["dados"])
+	_cfg_condicoes = Catalogo.carregar_config_condicoes()["dados"]
+	condicao = Condicao.new(_cfg_condicoes)
+	_g_sussurro = Rng.new(semente).stream("sussurros")
 	progresso = Progresso.new(_cfg_progressao)
 	var tamanho: Vector2i = progresso.tamanho_da_mochila()
 	mochila = Grade.new(tamanho.x, tamanho.y, itens)
@@ -459,8 +476,8 @@ func _montar_interface() -> void:
 	minimapa.cena = self
 	camada.add_child(minimapa)
 	hud = Label.new()
-	hud.position = Vector2(8, 420)
-	hud.size = Vector2(300, 36)
+	hud.position = Vector2(8, 366)
+	hud.size = Vector2(300, 90)
 	hud.add_theme_font_size_override("font_size", 12)
 	hud.add_theme_color_override("font_color", Color(0.98, 0.95, 0.85))
 	hud.add_theme_color_override("font_outline_color", Color(0.1, 0.08, 0.05))
@@ -565,6 +582,8 @@ func _unhandled_input(evento: InputEvent) -> void:
 		sair_do_carro()
 		get_viewport().set_input_as_handled()
 	elif evento.is_action_pressed("examinar") and entrar_no_carro():
+		get_viewport().set_input_as_handled()
+	elif evento.is_action_pressed("examinar") and _alvo < 0 and abrir_benzedeira():
 		get_viewport().set_input_as_handled()
 	elif evento.is_action_pressed("examinar") and _alvo < 0 and abrir_motel():
 		get_viewport().set_input_as_handled()
@@ -954,6 +973,61 @@ func dirigir(entrada: Vector2, delta: float) -> void:
 	cacador.position = carro.position + Vector3(0, 0.3, 0)
 
 
+## O Sensitivo: espíritos errantes vêm incomodar (exaustão e medo), a presença da criatura é
+## sentida (só a força e a direção) e, no máximo da exaustão, algo toma o corpo.
+func _sensitivo(segundos: float, protegido: bool, distancia_da_criatura: float) -> void:
+	if not condicao.sensitivo():
+		if espiritos != null:
+			espiritos.visible = false
+		return
+	var c: Dictionary = _cfg_condicoes["sensitivo"]
+	if espiritos == null:
+		espiritos = Espiritos3D.new()
+		espiritos.montar(c["espiritos_errantes"], Rng.new(semente).stream("espiritos"))
+		add_child(espiritos)
+	espiritos.visible = true
+	espiritos.ajustar(int(condicao.estagio()["espiritos"]), cacador.position)
+	var perto: int = espiritos.andar(segundos, cacador.position, circulos)
+	var figa: bool = bolsos.quantidade(str(c["protecao_corta_pela_metade"])) > 0
+	if perto > 0:
+		medo.valor = minf(medo.valor + float(c["espiritos_errantes"]["medo_por_segundo_perto"]) * perto * segundos, 100.0)
+		_proximo_sussurro -= segundos
+		if _proximo_sussurro <= 0.0:
+			var sussurros: Array = c["sussurros"]
+			_avisar(sussurros[_g_sussurro.randi_range(0, sussurros.size() - 1)])
+			_proximo_sussurro = 12.0
+	# Sentir a criatura conta como uso do poder (uma vez por criatura).
+	if criatura != null and criatura.visible and condicao.sente(criatura.ficha, distancia_da_criatura) and not _sentidas.has(criatura.get_instance_id()):
+		_sentidas[criatura.get_instance_id()] = true
+		if condicao.usar_poder(0.0, figa):
+			_avisar("O dom ficou mais forte: %s." % condicao.nome())
+	var antes: bool = condicao.possuido()
+	if condicao.passar(segundos, perto, figa or protegido):
+		cacador.bloqueado = true
+		_avisar("Algo toma o seu corpo. Você não consegue se mexer.")
+	elif antes and not condicao.possuido() and not ferimentos.morto and not _alguma_tela_aberta():
+		cacador.bloqueado = false
+		_avisar("Você volta a si.")
+
+
+func _alguma_tela_aberta() -> bool:
+	return mochila_tela.visible or ritual_tela.visible or conversa_tela.visible or motel_tela.visible or dirigindo
+
+
+## O que o sensitivo sente da criatura: "forte, à frente" (nunca diz o que é). "" se nada.
+func texto_da_presenca() -> String:
+	if criatura == null or not criatura.visible:
+		return ""
+	var d := Vector2(criatura.position.x - cacador.position.x, criatura.position.z - cacador.position.z)
+	if not condicao.sente(criatura.ficha, d.length()):
+		return ""
+	var forca := "forte" if d.length() < float(condicao.estagio()["alcance_da_presenca"]) / 2.0 else "fraca"
+	var frente := Vector2(-sin(cacador.yaw), -cos(cacador.yaw))
+	var angulo := rad_to_deg(frente.angle_to(d.normalized()))
+	var lado := "à frente" if absf(angulo) < 45.0 else ("atrás" if absf(angulo) > 135.0 else ("à direita" if angulo > 0.0 else "à esquerda"))
+	return "Presença %s, %s" % [forca, lado]
+
+
 ## Pratica uma ação (dá experiência na árvore dela) e avisa se ganhou ponto.
 func praticar(acao: String) -> void:
 	if habilidades.praticar(acao):
@@ -1081,7 +1155,28 @@ func fechar_motel() -> void:
 
 
 func titulo_do_motel() -> String:
-	return {"principal": "MOTEL ESTRELA DO PORTO", "suprimentos": "ENCOMENDAS (entregues no motel)", "melhorias": "MELHORIAS"}[menu_do_motel]
+	return {"principal": "MOTEL ESTRELA DO PORTO", "suprimentos": "ENCOMENDAS (entregues no motel)", "melhorias": "MELHORIAS",
+		"benzedeira": "BENZEDEIRA", "benzedeira_aviso": "BENZEDEIRA · PENSE BEM"}[menu_do_motel]
+
+
+## A porta de uma benzedeira por perto, ou Vector2.INF.
+func porta_da_benzedeira() -> Vector2:
+	var aqui := Vector2(cacador.position.x, cacador.position.z)
+	for b in populacoes:
+		for ponto in populacoes[b].pontos_chave:
+			if ponto["tipo"] == "benzedeira" and aqui.distance_to(ponto["porta"]) <= float(_cfg_progressao["motel"]["alcance"]):
+				return ponto["porta"]
+	return Vector2.INF
+
+
+## E na porta de uma benzedeira: abrir os olhos (ficar Sensitivo) ou se benzer.
+func abrir_benzedeira() -> bool:
+	if zona != "rua" or porta_da_benzedeira() == Vector2.INF:
+		return false
+	menu_do_motel = "benzedeira"
+	motel_tela.visible = true
+	cacador.bloqueado = true
+	return true
 
 
 ## As opções do menu atual: [{"texto", "acao", "dado"}].
@@ -1099,6 +1194,14 @@ func opcoes_do_motel() -> Array:
 		"suprimentos":
 			for o in _cfg_progressao["loja"]:
 				lista.append({"texto": "%s · R$ %d" % [o["nome"], int(o["preco"])], "acao": "comprar", "dado": o})
+		"benzedeira":
+			var b: Dictionary = _cfg_condicoes["sensitivo"]["benzedeira"]
+			if not condicao.tem():
+				lista.append({"texto": "Pedir para abrir os olhos (ficar Sensitivo)", "acao": "sensitivo_aviso"})
+			lista.append({"texto": "Ser benzido: tira o cansaço espiritual (R$ %d)" % int(b["benzer_preco"]), "acao": "benzer"})
+		"benzedeira_aviso":
+			lista.append({"texto": "Sim. Quero ver o que os outros não veem.", "acao": "sensitivo"})
+			lista.append({"texto": "Não. Deixa como está.", "acao": "voltar"})
 		"melhorias":
 			for m in _cfg_progressao["melhorias"]:
 				var pode: Dictionary = progresso.pode_comprar(m)
@@ -1145,6 +1248,28 @@ func escolher_no_motel(i: int) -> void:
 				_avisar("Não dá: %s." % r["motivo"])
 		"abastecer":
 			abastecer()
+		"sensitivo_aviso":
+			menu_do_motel = "benzedeira_aviso"
+			_avisar("Você vai ver e ouvir os mortos. E eles vão te ver também.")
+		"voltar":
+			menu_do_motel = "benzedeira"
+		"sensitivo":
+			var r: Dictionary = condicao.adquirir("sensitivo")
+			_avisar("Seus olhos se abriram. Você é Sensitivo." if r["ok"] else "Não dá: %s." % r["motivo"])
+			fechar_motel()
+		"benzer":
+			benzer()
+
+
+## Benzedura: tira o cansaço espiritual do sensitivo.
+func benzer() -> bool:
+	var b: Dictionary = _cfg_condicoes["sensitivo"]["benzedeira"]
+	if not progresso.gastar(int(b["benzer_preco"]), "benzedura"):
+		_avisar("Falta dinheiro.")
+		return false
+	condicao.aliviar(float(b["benzer_tira"]))
+	_avisar("A benzedeira reza baixinho com um ramo de arruda. Você fica leve.")
+	return true
 
 
 ## Dorme no motel: o tempo passa, os ferimentos melhoram um grau, o medo some; paga a diária.
@@ -1161,6 +1286,7 @@ func descansar() -> bool:
 	for parte in ferimentos.gravidade.keys():
 		ferimentos.tratar(parte)
 	medo.valor = 0.0
+	condicao.aliviar(float(_cfg_condicoes["sensitivo"]["exaustao_maxima"]))
 	_avisar("Você dormiu %d horas." % int(cfg["horas_de_sono"]))
 	return true
 
@@ -1481,6 +1607,7 @@ func _corpo_e_medo(segundos: float) -> void:
 		if no.name.begins_with("CirculoDeSal") and not no.get_meta("circulo").ativo():
 			circulos.erase(no.get_meta("circulo"))
 			no.queue_free()
+	_sensitivo(segundos, protegido, distancia)
 	var escuro := zona == "esgoto" or Relogio.new(minuto).eh_noite()
 	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": float(m["medo"]) * habilidades.efeito("medo"),
 		"criatura_metros": distancia, "protegido": protegido})
@@ -1570,6 +1697,11 @@ func texto_do_painel() -> String:
 ## "Espingarda de sal: 2/2" e o estado da criatura, se houver uma no campo.
 func texto_do_hud() -> String:
 	var texto: String = "R$ %d · %s\n" % [progresso.dinheiro, progresso.nivel_de_reputacao()]
+	if condicao.tem():
+		texto += condicao.texto() + "\n"
+		var presenca := texto_da_presenca()
+		if not presenca.is_empty():
+			texto += presenca + "\n"
 	if dirigindo:
 		return texto + "Carro: %.0f km/h · %.1f L" % [absf(carro.velocidade) * 3.6, carro.litros]
 	texto += arsenal.texto()

@@ -17,6 +17,7 @@ const Rotina := preload("res://core/npcs/rotina.gd")
 const Rng := preload("res://core/rng.gd")
 const Catalogo := preload("res://core/dados/catalogo.gd")
 const RegrasDeCampo := preload("res://core/investigacao/regras_de_campo.gd")
+const Psicometria := preload("res://core/condicoes/psicometria.gd")
 const Cartas := preload("res://core/casos/cartas.gd")
 
 var caso: Dictionary
@@ -44,6 +45,9 @@ var _cfg_criaturas: Dictionary
 var _testes_feitos := 0
 ## Para o relatório: primeira visita a cada lugar (minuto) e se os registros foram pesquisados.
 var visitas: Dictionary = {}
+## Condição Sensitivo (docs/12): pode tocar as pistas anotadas (psicometria), uma vez cada.
+var sensitivo := false
+var _tocadas: Dictionary = {}
 var pesquisou := false
 
 
@@ -188,6 +192,25 @@ func examinar_pista(pista_id: String) -> Dictionary:
 		if pista["id"] == pista_id:
 			return {"ok": true, "erro": "", "nova": caderno.anotar_pista(pista)}
 	return {"ok": false, "erro": "essa pista não está aqui (ou já sumiu)", "nova": false}
+
+
+## Psicometria: tocar uma pista anotada dá uma visão vaga do que a deixou. Leva 20 minutos.
+## {"ok", "erro", "visao"}
+func tocar(pista_id: String) -> Dictionary:
+	if not sensitivo:
+		return {"ok": false, "erro": "só um sensitivo tem visões", "visao": ""}
+	var pista: Dictionary = {}
+	for p in caderno.pistas():
+		if p["id"] == pista_id:
+			pista = p
+	if pista.is_empty():
+		return {"ok": false, "erro": "essa pista não está no caderno", "visao": ""}
+	if _tocadas.has(pista_id):
+		return {"ok": false, "erro": "você já tocou nessa", "visao": ""}
+	_tocadas[pista_id] = true
+	minuto += 20
+	var visao := Psicometria.visao(caso, pista, Catalogo.carregar_criaturas()["criaturas"], Catalogo.carregar_config_casos()["dados"])
+	return {"ok": true, "erro": "", "visao": visao}
 
 
 ## Pesquisa boletins e registros antigos (delegacia, cartório, jornal).

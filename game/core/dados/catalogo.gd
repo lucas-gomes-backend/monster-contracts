@@ -143,6 +143,11 @@ static func carregar_itens() -> Dictionary:
 	return {"dados": por_id, "erros": r["erros"]}
 
 
+## Condições paranormais (docs/12, Parte B), validadas.
+static func carregar_config_condicoes() -> Dictionary:
+	return carregar_validado("res://data/config/condicoes.json", "res://data/schemas/condicoes.schema.json")
+
+
 ## Habilidades humanas (docs/12), validadas.
 static func carregar_config_habilidades() -> Dictionary:
 	return carregar_validado("res://data/config/habilidades.json", "res://data/schemas/habilidades.schema.json")
