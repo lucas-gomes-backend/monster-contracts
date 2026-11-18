@@ -60,6 +60,7 @@ const Condicao := preload("res://core/condicoes/condicao.gd")
 const Espiritos3D := preload("res://presentation/cidade/espiritos_3d.gd")
 const Interludio := preload("res://core/progressao/interludio.gd")
 const PausaTela := preload("res://presentation/cidade/pausa_tela.gd")
+const Sons := preload("res://presentation/audio/sons.gd")
 const MochilaTela := preload("res://presentation/cidade/mochila_tela.gd")
 const TEXTO_DO_EFEITO := {"prende": "Pegou: a criatura está contida!", "fere": "Pegou: a criatura está ferida e vulnerável!",
 	"revela": "Pegou: a forma verdadeira apareceu!", "afasta": "Pegou: a criatura recuou!",
@@ -171,6 +172,19 @@ var _g_sussurro: RandomNumberGenerator
 var _proximo_sussurro := 0.0
 ## Menu de pausa (Esc): para o jogo; fica numa camada que roda mesmo pausada.
 var pausa_tela: Control
+## Arte e áudio (docs/09): ciclo de luz, postes acesos perto do caçador, faróis e sons.
+var noite: float = 0.0  # 0 = dia, 1 = noite (janelas, postes, faróis)
+var luzes_dos_postes: Array[OmniLight3D] = []
+var farol: SpotLight3D
+var som_ambiente: AudioStreamPlayer
+var som_passos: AudioStreamPlayer
+var som_tiros: AudioStreamPlayer
+var som_sussurro: AudioStreamPlayer
+var som_motor: AudioStreamPlayer
+var passos_tocados: int = 0
+var _cfg_arte: Dictionary
+var _andado := 0.0
+var _ultima_posicao := Vector3.INF
 var _cfg_progressao: Dictionary
 var _energia_da_lanterna := 1.0
 var ambiente: WorldEnvironment
@@ -204,6 +218,9 @@ func _ready() -> void:
 			cacador.bloqueado = true
 		elif argumento.begins_with("--criatura="):
 			trazer_criatura(argumento.trim_prefix("--criatura="))
+		elif argumento.begins_with("--hora="):
+			minuto = (minuto / 1440) * 1440 + int(argumento.trim_prefix("--hora=")) * 60
+			aplicar_luz()
 		elif argumento == "--sensitivo":
 			condicao.adquirir("sensitivo")
 			_sensitivo(0.0, false, INF)
@@ -317,6 +334,7 @@ func montar(id_bairro: String, semente_do_mundo: int) -> void:
 	cacador.position = bairro.chegada()
 	cacador.virar_para(bairro.giro_chegada)
 	_estacionar_carro()
+	_montar_arte_e_audio()
 	# A aparência feita na criação de personagem (tela inicial), se houver.
 	var escolhida: Dictionary = load("res://ui/inicio.gd").aparencia_escolhida
 	if not escolhida.is_empty():
@@ -446,7 +464,9 @@ func _montar_interface() -> void:
 	ajuda.text = "WASD andar · Shift liga/desliga corrida · F lanterna · E bueiro · I mochila\nBotão direito mirar, esquerdo atirar · R recarregar · 1-3 arma\nQ bolsos · T ritual · N conversar · E carro e motel · H habilidades · Esc pausa"
 	ajuda.position = Vector2(8, 6)
 	ajuda.add_theme_font_size_override("font_size", 11)
-	ajuda.modulate = Color(0.15, 0.13, 0.1, 0.9)
+	ajuda.add_theme_color_override("font_color", Color(0.95, 0.93, 0.88))
+	ajuda.add_theme_color_override("font_outline_color", Color(0.08, 0.07, 0.06))
+	ajuda.add_theme_constant_override("outline_size", 3)
 	camada.add_child(ajuda)
 	var credito := Label.new()
 	credito.text = "© colaboradores do OpenStreetMap"
@@ -471,7 +491,9 @@ func _montar_interface() -> void:
 	relogio.size = Vector2(134, 16)
 	relogio.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	relogio.add_theme_font_size_override("font_size", 11)
-	relogio.add_theme_color_override("font_color", Color(0.12, 0.1, 0.08))
+	relogio.add_theme_color_override("font_color", Color(0.95, 0.93, 0.88))
+	relogio.add_theme_color_override("font_outline_color", Color(0.08, 0.07, 0.06))
+	relogio.add_theme_constant_override("outline_size", 3)
 	camada.add_child(relogio)
 	nome_do_lugar = Label.new()
 	nome_do_lugar.position = Vector2(0, 120)
@@ -572,6 +594,7 @@ func usar_bueiro(i: int) -> void:
 		env.ambient_light_energy = 0.55
 		env.fog_light_color = COR_DA_NEVOA
 		env.fog_density = 0.035
+	aplicar_luz()
 	cacador.velocity = Vector3.ZERO
 	minimapa.queue_redraw()
 
@@ -1002,6 +1025,165 @@ func dirigir(entrada: Vector2, delta: float) -> void:
 	cacador.position = carro.position + Vector3(0, 0.3, 0)
 
 
+## Arte e áudio: os sons (sintetizados em baixa taxa), o reverb, as luzes dos postes e o farol.
+func _montar_arte_e_audio() -> void:
+	_cfg_arte = Catalogo.carregar_config_arte_e_audio()["dados"]
+	var a: Dictionary = _cfg_arte["audio"]
+	Sons.taxa = int(a["taxa"])
+	som_ambiente = _tocador("SomAmbiente", float(a["volume_ambiente"]))
+	som_passos = _tocador("SomPassos", float(a["volume_passos"]))
+	som_passos.stream = Sons.passo()
+	som_tiros = _tocador("SomTiros", float(a["volume_tiros"]))
+	som_sussurro = _tocador("SomSussurro", float(a["volume_sussurro"]))
+	som_sussurro.stream = Sons.sussurro()
+	som_motor = _tocador("SomMotor", float(a["volume_motor"]))
+	som_motor.stream = Sons.motor()
+	# Reverb pesado, no estilo da época (só uma vez no barramento principal).
+	var tem_reverb := false
+	for i in AudioServer.get_bus_effect_count(0):
+		tem_reverb = tem_reverb or AudioServer.get_bus_effect(0, i) is AudioEffectReverb
+	if not tem_reverb:
+		var reverb := AudioEffectReverb.new()
+		reverb.room_size = 0.7
+		reverb.wet = 0.18
+		AudioServer.add_bus_effect(0, reverb)
+	var p: Dictionary = _cfg_arte["postes"]
+	for i in int(p["acesos_perto"]):
+		var luz := OmniLight3D.new()
+		luz.name = "LuzDoPoste%d" % i
+		luz.omni_range = float(p["alcance"])
+		luz.light_energy = float(p["energia"])
+		luz.light_color = Color(str(p["cor"]))
+		luz.visible = false
+		add_child(luz)
+		luzes_dos_postes.append(luz)
+	if carro != null:
+		farol = SpotLight3D.new()
+		farol.name = "Farol"
+		farol.spot_range = float(_cfg_arte["carro"]["farois_alcance"])
+		farol.spot_angle = 32.0
+		farol.light_energy = float(_cfg_arte["carro"]["farois_energia"])
+		farol.position = Vector3(0, 0.8, -2.2)
+		farol.rotation_degrees.x = -8.0
+		farol.visible = false
+		carro.add_child(farol)
+	aplicar_luz()
+
+
+## Toca o som, se a cena estiver na árvore (nos testes ela fica fora; o som só não toca).
+func _tocar(tocador: AudioStreamPlayer) -> void:
+	if tocador.is_inside_tree():
+		tocador.play()
+
+
+func _tocador(nome: String, volume_db: float) -> AudioStreamPlayer:
+	var t := AudioStreamPlayer.new()
+	t.name = nome
+	t.volume_db = volume_db
+	t.autoplay = nome == "SomAmbiente"
+	add_child(t)
+	return t
+
+
+## A luz da hora (config "ciclo"): sol, céu, névoa e ambiente interpolados; à noite, as
+## janelas acendem, os postes perto do caçador e o farol do carro ligam. No esgoto, nada muda.
+func aplicar_luz() -> void:
+	if _cfg_arte.is_empty() or zona != "rua":
+		return
+	var env: Environment = ambiente.environment
+	if not bool(_cfg_arte["ciclo_de_luz"]):
+		_definir_noite(0.0)
+		return
+	var c := luz_da_hora(float(minuto % 1440) / 60.0, _cfg_arte["ciclo"])
+	# De noite, o "sol" vira um luar fraco e azulado.
+	sol.visible = true
+	sol.light_energy = maxf(c["sol"], 0.18)
+	sol.light_color = Color(1.0, 0.97, 0.9).lerp(Color(0.55, 0.65, 1.0), clampf(1.0 - c["sol"] / 0.45, 0.0, 1.0))
+	var elevacao := clampf(sin(PI * (float(minuto % 1440) / 60.0 - 6.0) / 12.0), 0.05, 1.0)
+	sol.rotation_degrees = Vector3(-5.0 - 75.0 * elevacao, 35.0, 0.0)
+	env.ambient_light_color = c["cor_ambiente"]
+	env.ambient_light_energy = c["ambiente"]
+	env.fog_light_color = c["nevoa"]
+	env.background_color = c["nevoa"]
+	env.fog_density = c["densidade"]
+	_definir_noite(clampf(1.0 - c["sol"] / 0.45, 0.0, 1.0))
+
+
+## Interpola o ciclo de luz numa hora fracionária (0 a 24), dando a volta à meia-noite.
+static func luz_da_hora(hora: float, ciclo: Array) -> Dictionary:
+	var antes: Dictionary = ciclo[-1]
+	var depois: Dictionary = ciclo[0]
+	for i in ciclo.size():
+		if float(ciclo[i]["hora"]) <= hora:
+			antes = ciclo[i]
+			depois = ciclo[(i + 1) % ciclo.size()]
+	var h0 := float(antes["hora"])
+	var h1 := float(depois["hora"])
+	if h1 <= h0:
+		h1 += 24.0
+	var h := hora if hora >= h0 else hora + 24.0
+	var t := clampf((h - h0) / maxf(h1 - h0, 0.001), 0.0, 1.0)
+	return {
+		"sol": lerpf(float(antes["sol"]), float(depois["sol"]), t),
+		"ambiente": lerpf(float(antes["ambiente"]), float(depois["ambiente"]), t),
+		"cor_ambiente": Color(str(antes["cor_ambiente"])).lerp(Color(str(depois["cor_ambiente"])), t),
+		"nevoa": Color(str(antes["nevoa"])).lerp(Color(str(depois["nevoa"])), t),
+		"densidade": lerpf(float(antes["densidade"]), float(depois["densidade"]), t),
+	}
+
+
+func _definir_noite(valor: float) -> void:
+	var mudou := (valor > 0.5) != (noite > 0.5) or som_ambiente.stream == null
+	noite = valor
+	Materiais.definir_noite(valor)
+	if farol != null:
+		farol.visible = valor > 0.5
+	acender_postes()
+	if mudou:
+		som_ambiente.stream = Sons.ambiente_noite() if valor > 0.5 else Sons.ambiente_dia()
+		_tocar(som_ambiente)
+
+
+## À noite, as luzes dos postes vão para os postes mais perto do caçador.
+func acender_postes() -> void:
+	var acesos := noite > 0.5 and zona == "rua"
+	var candidatos: Array = []
+	if acesos:
+		var aqui := cacador.position
+		for id in carregados:
+			for p in carregados[id].postes:
+				candidatos.append([p.distance_squared_to(aqui), p])
+		candidatos.sort_custom(func(x, y): return x[0] < y[0])
+	var altura := float(_cfg_arte["postes"]["altura"])
+	for i in luzes_dos_postes.size():
+		var luz: OmniLight3D = luzes_dos_postes[i]
+		luz.visible = acesos and i < candidatos.size()
+		if luz.visible:
+			luz.position = candidatos[i][1] + Vector3(0, altura - 0.3, 0)
+
+
+## Passos no ritmo do andar (pela distância) e o motor no tom da velocidade do carro.
+func _passos_e_motor(_segundos: float) -> void:
+	if dirigindo:
+		if not som_motor.playing and som_motor.is_inside_tree():
+			_tocar(som_motor)
+		som_motor.pitch_scale = 0.6 + absf(carro.velocidade) / float(_cfg_progressao["carro"]["velocidade_maxima"]) * 1.4
+		_ultima_posicao = Vector3.INF
+		return
+	if som_motor.playing:
+		som_motor.stop()
+	var agora := cacador.position
+	if _ultima_posicao != Vector3.INF:
+		_andado += Vector2(agora.x - _ultima_posicao.x, agora.z - _ultima_posicao.z).length()
+		var passo := 1.0 / maxf(float(_cfg_arte["audio"]["passos_por_metro"]), 0.01)
+		if _andado >= passo:
+			_andado = fmod(_andado, passo)
+			passos_tocados += 1
+			som_passos.pitch_scale = 0.92 if passos_tocados % 2 == 0 else 1.06
+			_tocar(som_passos)
+	_ultima_posicao = agora
+
+
 ## Esc: pausa o jogo e mostra o menu (o mouse fica livre para clicar).
 func abrir_pausa() -> void:
 	pausa_tela.mostrar("principal")
@@ -1046,6 +1228,7 @@ func _sensitivo(segundos: float, protegido: bool, distancia_da_criatura: float) 
 		if _proximo_sussurro <= 0.0:
 			var sussurros: Array = c["sussurros"]
 			_avisar(sussurros[_g_sussurro.randi_range(0, sussurros.size() - 1)])
+			_tocar(som_sussurro)
 			_proximo_sussurro = 12.0
 	# Sentir a criatura conta como uso do poder (uma vez por criatura).
 	if criatura != null and criatura.visible and condicao.sente(criatura.ficha, distancia_da_criatura) and not _sentidas.has(criatura.get_instance_id()):
@@ -1569,6 +1752,9 @@ func atirar() -> Dictionary:
 	if not r["ok"]:
 		_avisar("Sem munição: R para recarregar." if r["motivo"] == "sem munição" else "Recarregando...")
 		return r
+	if float(r["barulho"]) > 0.0:
+		som_tiros.stream = Sons.tiro_espingarda() if arsenal.equipada == "espingarda_de_sal" else Sons.tiro_revolver()
+		_tocar(som_tiros)
 	if float(r["barulho"]) > 0.0 and zona == "rua" and alguem_ve_o_cacador(float(r["barulho"])):
 		suspeita.somar(str(bairro.dados["id"]), int(_cfg_armas["suspeita_por_disparo_com_gente_perto"]), "disparo", minuto)
 	if r["acertou"]:
@@ -1700,6 +1886,7 @@ func _corpo_e_medo(segundos: float) -> void:
 			circulos.erase(no.get_meta("circulo"))
 			no.queue_free()
 	_sensitivo(segundos, protegido, distancia)
+	_passos_e_motor(segundos)
 	var escuro := zona == "esgoto" or Relogio.new(minuto).eh_noite()
 	medo.passar(segundos, {"escuro": escuro, "luz": cacador.lanterna.visible, "graves": ferimentos.graves(), "multiplicador": float(m["medo"]) * habilidades.efeito("medo"),
 		"criatura_metros": distancia, "protegido": protegido})
@@ -1720,6 +1907,7 @@ func _corpo_e_medo(segundos: float) -> void:
 ## polícia acompanha o nível e a água das galerias acompanha a maré.
 func _um_minuto() -> void:
 	var id := str(bairro.dados["id"])
+	aplicar_luz()
 	suspeita.passar_minutos(1)
 	if zona == "rua" and suspeita.sujo(minuto) and alguem_ve_o_cacador():
 		# Disfarce (terno de agente): quem vê desconfia menos.

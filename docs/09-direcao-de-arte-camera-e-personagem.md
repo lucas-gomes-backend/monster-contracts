@@ -118,6 +118,8 @@ Tudo o que o jogador veste e carrega **aparece no modelo**:
 
 ## Decisões
 
+- **Primeira passada de arte e áudio (18/11/2026):** tudo gerado por código, sem arte nem som de fora (`config/arte_e_audio.json`). Prédios com fachada de janelas em módulos de 1 andar x 3 m, que acendem à noite; asfalto e calçada portuguesa de ondas; postes a cada 22 m, com as 8 luzes mais perto do caçador acesas à noite; faróis do carro. Ciclo de luz por hora (sol, céu, névoa e ambiente), com luar azulado; a chave `ciclo_de_luz` volta ao dia fixo. Paleta de prédios e névoa por tipo de bairro (Valongo antigo e desbotado, Centro mais variado). Sons sintetizados a 11 kHz com reverb: ambiente de dia e de noite (grilos), passos pela distância, tiros, motor no tom da velocidade e sussurros do sensitivo.
+
 - **Correr e carro no minimapa (18/11/2026, pedido do Lucas):** Shift liga e desliga a corrida (não precisa segurar); parar de andar desliga. O carro aparece no minimapa como um carrinho vermelho virado para onde aponta; longe, fica preso na borda mostrando o caminho, como em GTA. Dirigindo, a seta já é o carro.
 
 - **Menu de pausa (18/11/2026, pedido do Lucas):** Esc na cidade pausa o jogo: continuar, controles, opções (sensibilidade do mouse, volume, tela cheia, guardadas em `user://opcoes.cfg`), menu principal e sair.

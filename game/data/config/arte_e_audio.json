@@ -1,0 +1,33 @@
+{
+  "$comment": "Primeira passada de arte e áudio do corte vertical (docs/09). Tudo é gerado por código, sem arquivos de arte ou som de fora: fachadas com janelas (acesas à noite), asfalto, calçada portuguesa, postes, ciclo de dia e noite, paleta por tipo de bairro e sons sintetizados em baixa taxa (estilo PS1). Horas de 0 a 23; cores em hex; volumes em dB.",
+  "ciclo_de_luz": true,
+  "ciclo": [
+    {"hora": 0, "sol": 0.0, "ambiente": 0.22, "cor_ambiente": "#3a4366", "nevoa": "#0e1018", "densidade": 0.05},
+    {"hora": 5, "sol": 0.0, "ambiente": 0.24, "cor_ambiente": "#3f4766", "nevoa": "#141824", "densidade": 0.05},
+    {"hora": 6, "sol": 0.35, "ambiente": 0.35, "cor_ambiente": "#c9a58c", "nevoa": "#8c8580", "densidade": 0.045},
+    {"hora": 8, "sol": 0.9, "ambiente": 0.55, "cor_ambiente": "#d9dbe0", "nevoa": "#b8babd", "densidade": 0.035},
+    {"hora": 16, "sol": 0.9, "ambiente": 0.55, "cor_ambiente": "#d9dbe0", "nevoa": "#b8babd", "densidade": 0.035},
+    {"hora": 18, "sol": 0.4, "ambiente": 0.35, "cor_ambiente": "#d6a07a", "nevoa": "#8a6f62", "densidade": 0.04},
+    {"hora": 19, "sol": 0.0, "ambiente": 0.25, "cor_ambiente": "#4a4a70", "nevoa": "#1c1c2a", "densidade": 0.048},
+    {"hora": 23, "sol": 0.0, "ambiente": 0.22, "cor_ambiente": "#3a4366", "nevoa": "#0e1018", "densidade": 0.05}
+  ],
+  "noite": {"de": 19, "ate": 6},
+  "paletas": {
+    "antigo_religioso": {"tinta_nevoa": "#9a958c", "cores_predios": ["#a39e92", "#b5ad9a", "#8f8a80", "#c2b8a3", "#9c9384"]},
+    "centro": {"tinta_nevoa": "#a3a7b0", "cores_predios": ["#b8a48a", "#c7c0b0", "#8e9aa3", "#d0b48c", "#a69c8f", "#7f8a80"]},
+    "mata": {"tinta_nevoa": "#7f9480", "cores_predios": ["#8f9a80", "#a39e82"]},
+    "padrao": {"tinta_nevoa": "#b8babd", "cores_predios": ["#a0a0a0", "#b0aca4"]}
+  },
+  "janelas": {"acesas_a_noite": 0.35, "cor_acesa": "#ffcf7a", "brilho": 1.6},
+  "postes": {"espacamento": 22.0, "altura": 4.2, "acesos_perto": 8, "alcance": 14.0, "energia": 4.5, "cor": "#ff9a3c"},
+  "carro": {"farois_energia": 3.0, "farois_alcance": 22.0},
+  "audio": {
+    "taxa": 11025,
+    "volume_ambiente": -14.0,
+    "volume_passos": -18.0,
+    "volume_tiros": -4.0,
+    "volume_motor": -12.0,
+    "volume_sussurro": -10.0,
+    "passos_por_metro": 0.7
+  }
+}

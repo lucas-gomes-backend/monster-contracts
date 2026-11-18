@@ -1,0 +1,46 @@
+{
+  "$comment": "Arte e áudio gerados por código (game/data/config/arte_e_audio.json).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ciclo_de_luz", "ciclo", "noite", "paletas", "janelas", "postes", "carro", "audio"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "ciclo_de_luz": {"$comment": "false = dia nublado fixo (como na Fase 3)", "type": "boolean"},
+    "ciclo": {
+      "type": "array", "minItems": 2,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["hora", "sol", "ambiente", "cor_ambiente", "nevoa", "densidade"],
+        "properties": {
+          "hora": {"type": "integer", "minimum": 0, "maximum": 23},
+          "sol": {"type": "number", "minimum": 0},
+          "ambiente": {"type": "number", "minimum": 0},
+          "cor_ambiente": {"type": "string", "pattern": "^#[0-9a-f]{6}$"},
+          "nevoa": {"type": "string", "pattern": "^#[0-9a-f]{6}$"},
+          "densidade": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "noite": {"type": "object", "additionalProperties": false, "required": ["de", "ate"], "properties": {"de": {"type": "integer", "minimum": 0, "maximum": 23}, "ate": {"type": "integer", "minimum": 0, "maximum": 23}}},
+    "paletas": {"$comment": "tipo de bairro -> {tinta_nevoa, cores_predios}; 'padrao' para os outros", "type": "object", "required": ["padrao"]},
+    "janelas": {
+      "type": "object", "additionalProperties": false, "required": ["acesas_a_noite", "cor_acesa", "brilho"],
+      "properties": {"acesas_a_noite": {"type": "number", "minimum": 0, "maximum": 1}, "cor_acesa": {"type": "string", "pattern": "^#[0-9a-f]{6}$"}, "brilho": {"type": "number", "minimum": 0}}
+    },
+    "postes": {
+      "type": "object", "additionalProperties": false, "required": ["espacamento", "altura", "acesos_perto", "alcance", "energia", "cor"],
+      "properties": {"espacamento": {"type": "number", "minimum": 1}, "altura": {"type": "number", "minimum": 1}, "acesos_perto": {"type": "integer", "minimum": 0, "maximum": 16}, "alcance": {"type": "number", "minimum": 0}, "energia": {"type": "number", "minimum": 0}, "cor": {"type": "string", "pattern": "^#[0-9a-f]{6}$"}}
+    },
+    "carro": {"type": "object", "additionalProperties": false, "required": ["farois_energia", "farois_alcance"], "properties": {"farois_energia": {"type": "number", "minimum": 0}, "farois_alcance": {"type": "number", "minimum": 0}}},
+    "audio": {
+      "type": "object", "additionalProperties": false,
+      "required": ["taxa", "volume_ambiente", "volume_passos", "volume_tiros", "volume_motor", "volume_sussurro", "passos_por_metro"],
+      "properties": {
+        "taxa": {"type": "integer", "minimum": 4000, "maximum": 44100},
+        "volume_ambiente": {"type": "number"}, "volume_passos": {"type": "number"}, "volume_tiros": {"type": "number"},
+        "volume_motor": {"type": "number"}, "volume_sussurro": {"type": "number"},
+        "passos_por_metro": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

@@ -143,6 +143,11 @@ static func carregar_itens() -> Dictionary:
 	return {"dados": por_id, "erros": r["erros"]}
 
 
+## Arte e áudio gerados por código (docs/09), validados.
+static func carregar_config_arte_e_audio() -> Dictionary:
+	return carregar_validado("res://data/config/arte_e_audio.json", "res://data/schemas/arte_e_audio.schema.json")
+
+
 ## Criação de personagem: sliders, pele, cabelo, roupas e disfarces (docs/09), validada.
 static func carregar_config_aparencia() -> Dictionary:
 	return carregar_validado("res://data/config/aparencia.json", "res://data/schemas/aparencia.schema.json")

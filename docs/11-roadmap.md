@@ -147,7 +147,7 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 
 **Personagem e apresentação**
 - [x] Criação de personagem com sliders (corpo, rosto, pele, cabelo) e 1 a 2 roupas por parte, com disfarce de agente: boneco em peças low-poly, tela "Criar o caçador" na tela inicial; o terno de agente corta pela metade a suspeita de quem te vê.
-- [ ] Primeira passada de arte e áudio nos 2 bairros.
+- [x] Primeira passada de arte e áudio nos 2 bairros: tudo gerado por código (fachadas com janelas, asfalto, calçada portuguesa, postes, ciclo de dia e noite, paleta por bairro e sons sintetizados em baixa taxa).
 
 **Introdução**
 - [ ] Caso tutorial com mentor aleatório.

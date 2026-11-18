@@ -12,6 +12,8 @@ const Lotes := preload("res://core/cidade/lotes.gd")
 const Sub := preload("res://core/cidade/subterraneo.gd")
 const Subterraneo3D := preload("res://presentation/cidade/subterraneo_3d.gd")
 const Materiais := preload("res://presentation/ps1/materiais.gd")
+const Texturas := preload("res://presentation/arte/texturas.gd")
+const Predio := preload("res://presentation/arte/predio.gd")
 const Blocos := preload("res://presentation/greybox/blocos.gd")
 
 const ALTURA_ANDAR := 3.0
@@ -38,6 +40,10 @@ const AFIM_DO_CHAO := 0.25
 var dados: Dictionary = {}
 var lotes: Array[Dictionary] = []
 var predios: Array[StaticBody3D] = []
+## Postes de luz ao longo das ruas (a cena acende os mais perto do caçador à noite).
+var postes: Array[Vector3] = []
+var _arte: Dictionary = {}
+var _paleta: Dictionary = {}
 var arvores: MultiMeshInstance3D
 var saidas: Array[Dictionary] = []
 var chao: StaticBody3D
@@ -62,11 +68,17 @@ func montar(id_bairro: String, semente: int, opcoes: Dictionary = {}) -> void:
 	var rng := Rng.new(semente)
 	_rng = rng
 	var cfg: Dictionary = Catalogo.carregar_config_lotes()["dados"]
+	_arte = Catalogo.carregar_config_arte_e_audio()["dados"]
+	var tipo := "padrao"
+	if Catalogo.tem_bairro_abstrato(id_bairro):
+		tipo = str(Catalogo.carregar_bairro(id_bairro)["dados"].get("tipo", "padrao"))
+	_paleta = _arte["paletas"].get(tipo, _arte["paletas"]["padrao"])
 	lotes = Lotes.gerar(dados, cfg, rng)
 	if opcoes.get("chao", true):
 		_montar_chao()
 	for rua in dados["ruas"]:
 		_montar_rua(rua, float(cfg["calcada"]))
+	_montar_postes(float(cfg["calcada"]))
 	for lote in lotes:
 		_montar_lote(lote)
 	_montar_mata(rng.stream("mata:%s" % id_bairro), cfg)
@@ -148,7 +160,7 @@ func _montar_chao() -> void:
 
 
 ## Faixa plana ao longo de uma linha (rua, calçada, caminho, trilho).
-func _faixa(pontos: Array, largura: float, acima: float, cor: Color, nome: String) -> void:
+func _faixa(pontos: Array, largura: float, acima: float, cor: Color, nome: String, textura: Texture2D = null) -> void:
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var meia := largura / 2.0
@@ -168,7 +180,7 @@ func _faixa(pontos: Array, largura: float, acima: float, cor: Color, nome: Strin
 	var visual := MeshInstance3D.new()
 	visual.name = nome
 	visual.mesh = st.commit()
-	visual.material_override = Materiais.objeto(cor, 1.0, AFIM_DO_CHAO)
+	visual.material_override = Materiais.objeto(cor, 1.0, AFIM_DO_CHAO) if textura == null else Materiais.com_textura(cor, textura, 1.0, AFIM_DO_CHAO)
 	add_child(visual)
 
 
@@ -177,8 +189,51 @@ func _montar_rua(rua: Dictionary, calcada: float) -> void:
 	if rua["tipo"] in CAMINHOS:
 		_faixa(rua["pontos"], largura, ACIMA_DO_CHAO_RUA, COR_ESCADA, "Caminho_%d" % int(rua["osm"]))
 		return
-	_faixa(rua["pontos"], largura + calcada * 2.0, ACIMA_DO_CHAO_CALCADA, COR_CALCADA, "Calcada_%d" % int(rua["osm"]))
-	_faixa(rua["pontos"], largura, ACIMA_DO_CHAO_RUA, COR_RUA, "Rua_%d" % int(rua["osm"]))
+	_faixa(rua["pontos"], largura + calcada * 2.0, ACIMA_DO_CHAO_CALCADA, COR_CALCADA, "Calcada_%d" % int(rua["osm"]), Texturas.calcada_portuguesa())
+	_faixa(rua["pontos"], largura, ACIMA_DO_CHAO_RUA, COR_RUA, "Rua_%d" % int(rua["osm"]), Texturas.asfalto())
+
+
+## Postes de luz na beira da calçada, a cada "espacamento" metros, lado a lado alternado.
+## Uma malha só (MultiMesh) para todos; a luz de verdade é a cena que acende perto.
+func _montar_postes(calcada: float) -> void:
+	var cfg: Dictionary = _arte["postes"]
+	var passo := float(cfg["espacamento"])
+	var lado_alterna := 1.0
+	for rua in dados["ruas"]:
+		if rua["tipo"] in CAMINHOS:
+			continue
+		var p := Lotes._pontos(rua["pontos"])
+		var andado := passo / 2.0
+		for i in p.size() - 1:
+			var a: Vector2 = p[i]
+			var b: Vector2 = p[i + 1]
+			var trecho := a.distance_to(b)
+			if trecho < 0.01:
+				continue
+			var dir := (b - a) / trecho
+			var lado := dir.orthogonal() * (float(rua["largura"]) / 2.0 + calcada * 0.8)
+			while andado <= trecho:
+				var q := a + dir * andado + lado * lado_alterna
+				postes.append(Vector3(q.x, 0.0, q.y))
+				lado_alterna = -lado_alterna
+				andado += passo
+			andado -= trecho
+	if postes.is_empty():
+		return
+	var altura := float(cfg["altura"])
+	var malha := BoxMesh.new()
+	malha.size = Vector3(0.14, altura, 0.14)
+	var mm := MultiMesh.new()
+	mm.transform_format = MultiMesh.TRANSFORM_3D
+	mm.mesh = malha
+	mm.instance_count = postes.size()
+	for i in postes.size():
+		mm.set_instance_transform(i, Transform3D(Basis(), postes[i] + Vector3(0, altura / 2.0, 0)))
+	var no := MultiMeshInstance3D.new()
+	no.name = "Postes"
+	no.multimesh = mm
+	no.material_override = Materiais.objeto(Color(0.25, 0.26, 0.27), 1.0)
+	add_child(no)
 
 
 func _montar_lote(lote: Dictionary) -> void:
@@ -186,11 +241,25 @@ func _montar_lote(lote: Dictionary) -> void:
 		return
 	var altura: float = int(lote["andares"]) * ALTURA_ANDAR
 	var centro: Vector2 = lote["centro"]
-	var cor: Color = CORES_PREDIOS[int(lote["id"]) % CORES_PREDIOS.size()]
-	var corpo: Node3D = Blocos.bloco(self, Vector3(lote["frente"], altura, lote["fundo"]),
-		Vector3(centro.x, altura / 2.0, centro.y), cor, 2.0)
+	var cores: Array = _paleta["cores_predios"]
+	var cor := Color(str(cores[int(lote["id"]) % cores.size()]))
+	var tamanho := Vector3(lote["frente"], altura, lote["fundo"])
+	var corpo := StaticBody3D.new()
 	corpo.name = "Predio_%d" % int(lote["id"])
+	corpo.position = Vector3(centro.x, altura / 2.0, centro.y)
 	corpo.rotation.y = float(lote["giro"])
+	var forma := BoxShape3D.new()
+	forma.size = tamanho
+	var colisao := CollisionShape3D.new()
+	colisao.shape = forma
+	corpo.add_child(colisao)
+	var visual := MeshInstance3D.new()
+	visual.mesh = Predio.malha(tamanho, ALTURA_ANDAR)
+	var janelas: Dictionary = _arte["janelas"]
+	visual.set_surface_override_material(0, Materiais.fachada(cor, float(janelas["acesas_a_noite"]), Color(str(janelas["cor_acesa"])), float(janelas["brilho"])))
+	visual.set_surface_override_material(1, Materiais.objeto(cor.darkened(0.35), 1.0))
+	corpo.add_child(visual)
+	add_child(corpo)
 	predios.append(corpo)
 
 
