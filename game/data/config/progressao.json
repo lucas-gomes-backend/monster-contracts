@@ -15,7 +15,13 @@
     "saboo",
     "vila_mathias",
     "vila_nova",
-    "porto"
+    "porto",
+    "gonzaga",
+    "ponta_da_praia",
+    "jose_menino",
+    "boqueirao",
+    "embare",
+    "aparecida"
   ],
   "idade_inicial_anos": 20,
   "interludio": {
@@ -273,6 +279,34 @@
       "item": "facao",
       "quantidade": 1,
       "preco": 90
+    },
+    {
+      "id": "cera_nos_ouvidos",
+      "nome": "Cera para os ouvidos (4)",
+      "item": "cera_nos_ouvidos",
+      "quantidade": 4,
+      "preco": 15
+    },
+    {
+      "id": "oferenda_de_flores",
+      "nome": "Flores brancas (2)",
+      "item": "oferenda_de_flores",
+      "quantidade": 2,
+      "preco": 20
+    },
+    {
+      "id": "rede_benzida",
+      "nome": "Rede benzida",
+      "item": "rede_benzida",
+      "quantidade": 1,
+      "preco": 120
+    },
+    {
+      "id": "pepino",
+      "nome": "Pepinos (3)",
+      "item": "pepino",
+      "quantidade": 3,
+      "preco": 8
     }
   ],
   "melhorias": [

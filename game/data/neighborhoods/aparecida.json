@@ -1,0 +1,57 @@
+{
+  "$comment": "Aparecida, bairro secundário da zona da orla e intermediária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa. A praia e o canal servem de covil para as criaturas da água.",
+  "id": "aparecida",
+  "nome": "Aparecida",
+  "zona": "orla",
+  "tipo": "residencial_denso",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_bartholomeu_de_gusmao",
+    "avenida_almirante_cochrane",
+    "rua_alexandre_martins",
+    "avenida_doutor_epitacio_pessoa"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 2
+    }
+  ],
+  "locais": [
+    {
+      "id": "praia_da_aparecida",
+      "tipo": "praia",
+      "rua": "avenida_bartholomeu_de_gusmao",
+      "nome": "Praia da Aparecida"
+    },
+    {
+      "id": "canal_5",
+      "tipo": "canal",
+      "rua": "avenida_almirante_cochrane",
+      "nome": "Canal 5"
+    },
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "rua_alexandre_martins",
+      "nome": "Praça do bairro"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "avenida_doutor_epitacio_pessoa",
+      "nome": "Padaria Aparecida"
+    },
+    {
+      "id": "galinheiro_1",
+      "tipo": "galinheiro",
+      "rua": "rua_alexandre_martins",
+      "nome": "Galinheiro de um quintal"
+    }
+  ]
+}

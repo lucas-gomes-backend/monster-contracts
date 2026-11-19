@@ -291,5 +291,69 @@
   "morador_que_so_aparece_a_noite": {
     "pista": "Um morador que ninguém vê de dia: só sai depois que escurece.",
     "caracteristica": "Vive como gente, mas só aparece de noite."
+  },
+  "canto_vindo_do_mar": {
+    "pista": "Alguém ouviu um canto bonito vindo do mar, de noitinha.",
+    "caracteristica": "Canta da beira da água para atrair."
+  },
+  "homem_que_voltou_aereo_da_praia": {
+    "pista": "Um homem voltou da praia aéreo, sem lembrar o que houve.",
+    "caracteristica": "Quem escapa do canto volta encantado."
+  },
+  "afogado_sem_sinal_de_luta": {
+    "pista": "Um afogado sem nenhum sinal de luta, de olhos abertos.",
+    "caracteristica": "A vítima entra na água sozinha, encantada."
+  },
+  "escamas_na_areia": {
+    "pista": "Escamas grandes, brilhantes, na areia molhada.",
+    "caracteristica": "Tem cauda de peixe."
+  },
+  "historia_da_moca_do_mar": {
+    "pista": "Os pescadores antigos falam de uma moça que canta no mar.",
+    "caracteristica": "É uma moça das águas."
+  },
+  "pegadas_molhadas_saindo_do_mar": {
+    "pista": "Pegadas molhadas que saem do mar e não voltam.",
+    "caracteristica": "Sai do mar andando."
+  },
+  "marcas_de_dedos_no_tornozelo": {
+    "pista": "Marcas roxas de dedos no tornozelo.",
+    "caracteristica": "Agarra pelo tornozelo e puxa."
+  },
+  "algas_dentro_de_casa": {
+    "pista": "Algas molhadas no chão de uma casa longe da praia.",
+    "caracteristica": "Deixa algas por onde passa."
+  },
+  "vulto_encharcado_na_areia": {
+    "pista": "Um vulto encharcado parado na areia, de madrugada.",
+    "caracteristica": "Aparece como gente encharcada."
+  },
+  "afogamento_sem_corpo_achado": {
+    "pista": "Alguém do bairro se afogou, e o corpo nunca foi achado.",
+    "caracteristica": "Volta quem o mar não devolveu."
+  },
+  "voz_chamando_do_mar": {
+    "pista": "Uma voz chamando nomes, vinda do mar.",
+    "caracteristica": "Chama os vivos pelo nome."
+  },
+  "pegadas_com_membrana_entre_os_dedos": {
+    "pista": "Pegadas pequenas, com membrana entre os dedos.",
+    "caracteristica": "Tem pés de bicho da água."
+  },
+  "pepinos_sumidos_das_bancas": {
+    "pista": "Sumiram pepinos das bancas da feira, só os pepinos.",
+    "caracteristica": "Adora pepino."
+  },
+  "cachorro_puxado_para_o_canal": {
+    "pista": "Um cachorro foi puxado para dentro do canal.",
+    "caracteristica": "Puxa bichos para a água."
+  },
+  "poca_de_agua_no_caminho": {
+    "pista": "Poças de água num caminho seco, uma atrás da outra.",
+    "caracteristica": "Pinga a água do prato da cabeça."
+  },
+  "lenda_do_bicho_do_canal": {
+    "pista": "Os mais velhos da comunidade japonesa falam de um bicho do canal.",
+    "caracteristica": "É um bicho dos rios do Japão."
   }
 }

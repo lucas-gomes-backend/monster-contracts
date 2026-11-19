@@ -1,11 +1,17 @@
 {
-  "$comment": "Zonas da cidade (docs/07, 'Bairros'): quais bairros são principais (marcos e pontos-chave próprios, 30 a 60 moradores) e quais são secundários (só o kit da zona, menos gente). 'pendentes': bairros da zona que ainda não entraram no jogo. O Porto não tem limite no OpenStreetMap e foi traçado à mão (tools/cidade/config.json, limite_manual). A Vila Rica não aparece no OpenStreetMap nem como ponto: falta saber onde fica.",
+  "$comment": "Zonas da cidade (docs/07, 'Bairros'): quais bairros são principais (marcos e pontos-chave próprios, 30 a 60 moradores) e quais são secundários (só o kit da zona, menos gente). 'pendentes': bairros da zona que ainda não entraram no jogo. O Porto não tem limite no OpenStreetMap e foi traçado à mão (tools/cidade/config.json, limite_manual). A Vila Rica e a Pompeia não aparecem no OpenStreetMap: falta saber onde ficam.",
   "zonas": {
     "central_portuaria": {
       "nome": "Central e portuária",
       "principais": ["centro", "valongo", "paqueta", "vila_belmiro", "macuco", "porto"],
       "secundarios": ["campo_grande", "encruzilhada", "estuario", "jabaquara", "marape", "saboo", "vila_mathias", "vila_nova"],
       "pendentes": ["vila_rica"]
+    },
+    "orla": {
+      "nome": "Orla e intermediária",
+      "principais": ["gonzaga", "ponta_da_praia"],
+      "secundarios": ["jose_menino", "boqueirao", "embare", "aparecida"],
+      "pendentes": ["pompeia"]
     }
   }
 }

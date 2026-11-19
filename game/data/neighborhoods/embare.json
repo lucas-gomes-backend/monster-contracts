@@ -1,0 +1,61 @@
+{
+  "$comment": "Embaré, bairro secundário da zona da orla e intermediária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa. A praia e o canal servem de covil para as criaturas da água.",
+  "id": "embare",
+  "nome": "Embaré",
+  "zona": "orla",
+  "tipo": "residencial_denso",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_bartholomeu_de_gusmao",
+    "avenida_almirante_cochrane",
+    "avenida_doutor_pedro_lessa",
+    "rua_professor_torres_homem"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 2
+    },
+    {
+      "id": "arabe",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "praia_do_embare",
+      "tipo": "praia",
+      "rua": "avenida_bartholomeu_de_gusmao",
+      "nome": "Praia do Embaré"
+    },
+    {
+      "id": "canal_5",
+      "tipo": "canal",
+      "rua": "avenida_almirante_cochrane",
+      "nome": "Canal 5"
+    },
+    {
+      "id": "basilica",
+      "tipo": "igreja",
+      "rua": "avenida_bartholomeu_de_gusmao",
+      "nome": "Basílica de Santo Antônio do Embaré"
+    },
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "rua_professor_torres_homem",
+      "nome": "Praça do bairro"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "avenida_doutor_pedro_lessa",
+      "nome": "Bar do Canal 5"
+    }
+  ]
+}

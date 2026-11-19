@@ -197,6 +197,82 @@
           "texto": "Arrancar o cinto de uma vez"
         }
       ]
+    },
+    {
+      "id": "enterro_do_afogado",
+      "nome": "Enterro do afogado",
+      "item": "enterro_do_afogado",
+      "exige_estado": "livre",
+      "materiais": [
+        {
+          "item": "vela",
+          "quantidade": 1
+        },
+        {
+          "item": "oferenda_de_flores",
+          "quantidade": 1
+        }
+      ],
+      "passos": [
+        {
+          "tipo": "segurar",
+          "texto": "Acender a vela na beira da água"
+        },
+        {
+          "tipo": "palavra",
+          "texto": "Chamar o afogado",
+          "opcoes": [
+            "O nome dele, olhando para o mar",
+            "Volta para o fundo!",
+            "O nome de quem o perdeu"
+          ],
+          "certa": 0
+        },
+        {
+          "tipo": "apertar",
+          "texto": "Jogar as flores na onda"
+        },
+        {
+          "tipo": "segurar",
+          "texto": "Rezar até a água baixar"
+        }
+      ]
+    },
+    {
+      "id": "reverencia",
+      "nome": "Reverência ao kappa",
+      "item": "reverencia",
+      "exige_estado": "livre",
+      "materiais": [
+        {
+          "item": "pepino",
+          "quantidade": 1
+        }
+      ],
+      "passos": [
+        {
+          "tipo": "segurar",
+          "texto": "Ficar de frente sem correr"
+        },
+        {
+          "tipo": "apertar",
+          "texto": "Oferecer o pepino"
+        },
+        {
+          "tipo": "palavra",
+          "texto": "Cumprimentar",
+          "opcoes": [
+            "Dar a mão",
+            "Curvar-se fundo, devagar",
+            "Gritar para assustar"
+          ],
+          "certa": 1
+        },
+        {
+          "tipo": "segurar",
+          "texto": "Esperar ele se curvar e a água do prato cair"
+        }
+      ]
     }
   ]
 }

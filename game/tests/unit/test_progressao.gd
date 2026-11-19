@@ -257,6 +257,9 @@ func test_zoom_do_mapa_de_viagem_fica_dentro_do_quadro() -> void:
 	cena.entrar_no_carro()
 	cena.abrir_mapa_de_viagem()
 	var tela: Control = cena.viagem_tela
+	# Só o começo da carreira liberado: "perto" enquadra essas regiões, "longe" a cidade toda.
+	cena.progresso.regioes_liberadas.clear()
+	cena.progresso.regioes_liberadas.append_array(["valongo", "centro", "paqueta"] as Array[String])
 	tela.perto = false
 	var longe: Rect2 = tela.enquadrar()["area"]
 	tela.perto = true

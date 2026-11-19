@@ -165,13 +165,13 @@ Uma fatia **completa e polida** do jogo, que prova a ideia para jogadores de for
 
 - [ ] Zonas de Santos, **uma por vez**. Ordem sugerida:
   1. Central e portuária. *Em andamento:* 14 bairros no jogo, com o Porto traçado à mão (principais e secundários em `config/zonas.json`); falta a Vila Rica, que não aparece no OpenStreetMap.
-  2. Orla e intermediária.
+  2. Orla e intermediária. *Em andamento:* 6 bairros no jogo (Gonzaga e Ponta da Praia principais); falta a Pompeia, que não aparece no OpenStreetMap.
   3. Morros.
   4. Noroeste.
   5. Área continental.
 - [ ] Definir bairros **principais** (com marcos próprios) e **secundários** (só kit da zona).
 - [ ] Kits de módulos por zona.
-- [ ] Bestiário: criaturas típicas de cada tipo de bairro e as coringas, cobrindo as 8 famílias ([03](03-sistema-de-criaturas.md)). *Em andamento:* 11 espécies, com as 8 famílias cobertas (Saci, Strigoi, Lobisomem europeu, Onryō, Boitatá e demônio da encruzilhada entraram na Fase 5).
+- [ ] Bestiário: criaturas típicas de cada tipo de bairro e as coringas, cobrindo as 8 famílias ([03](03-sistema-de-criaturas.md)). *Em andamento:* 14 espécies, com as 8 famílias cobertas (Saci, Strigoi, Lobisomem europeu, Onryō, Boitatá e demônio da encruzilhada entraram na Fase 5; Iara, Afogado e Kappa vieram com a orla).
 - [x] Variantes culturais (lobisomem brasileiro e europeu): espécies separadas, com regras próprias.
 - [x] Estruturas de caso restantes: cliente mentiroso (o cliente é o culpado humano; no fim, expor ou calar) e criatura errada (o Saci leva a culpa só na fofoca).
 - [x] Condições **Vampirismo** e **Licantropia**, com estigma básico ([12](12-habilidades-e-condicoes.md)): pegas por mordida (ferimento grave ou crítico do Strigoi ou do Lobisomem europeu, 35%, com aviso); vampiro enxerga no escuro e o sol fere; lobisomem fareja; quem vê de perto desconfia. Sede de sangue e lua cheia ficam para depois.

@@ -23,9 +23,10 @@ class TestImportar(unittest.TestCase):
 
     def test_area_reduzida_pela_escala(self):
         # Um bairro médio fica com ~280 m de lado no jogo (docs/07): dezenas de milhares de m².
+        # Os maiores (Ponta da Praia, ~205 mil m²) passam um pouco de 200 mil.
         for bid, b in BAIRROS.items():
             self.assertGreater(b["area_m2"], 10000, bid)
-            self.assertLess(b["area_m2"], 200000, bid)
+            self.assertLess(b["area_m2"], 250000, bid)
 
     def test_toda_rua_fica_dentro_do_limite(self):
         for bid, b in BAIRROS.items():
@@ -81,18 +82,18 @@ class TestMapaGeral(unittest.TestCase):
 
     def test_bairros_do_config_usam_o_proprio_id_e_as_outras_regioes_o_nome(self):
         mapa = {"regioes": [
-            {"type": "relation", "id": 1, "tags": {"name": "Gonzaga"},
+            {"type": "relation", "id": 1, "tags": {"name": "Areia Branca"},
              "geometry": [[-23.97, -46.33], [-23.97, -46.32], [-23.96, -46.32], [-23.96, -46.33], [-23.97, -46.33]]},
             {"type": "relation", "id": 18922323, "tags": {"name": "Centro"}, "geometry": [[-23.93, -46.33], [-23.93, -46.32], [-23.92, -46.32]]},
         ]}
         geral = importar.importar_mapa_geral(CONFIG, RECORTE, mapa)
         ids = [r["id"] for r in geral["regioes"]]
-        self.assertIn("gonzaga", ids)
+        self.assertIn("areia_branca", ids)
         for b in CONFIG["bairros"]:
             self.assertIn(b["id"], ids)
         self.assertEqual(ids, sorted(ids))
-        gonzaga = [r for r in geral["regioes"] if r["id"] == "gonzaga"][0]
-        self.assertEqual(len(gonzaga["limite"]), 4, "sem repetir o primeiro ponto")
+        areia = [r for r in geral["regioes"] if r["id"] == "areia_branca"][0]
+        self.assertEqual(len(areia["limite"]), 4, "sem repetir o primeiro ponto")
         centro = [r for r in geral["regioes"] if r["id"] == "centro"][0]
         self.assertEqual(centro["nome"], "Centro")
         self.assertGreater(len(centro["limite"]), 3, "o Centro usa o limite do recorte, não o da lista")

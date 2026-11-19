@@ -1,0 +1,87 @@
+{
+  "$comment": "Ponta da Praia, bairro principal da zona da orla e intermediária (Fase 5). Lugares públicos reais; estabelecimentos e pessoas fictícios. As ruas são as reais do mapa (nome sem acento, em minúsculas): cada lugar vai para um lote na rua dele (core/cidade/lugares_reais.gd). A praia e o canal servem de covil para as criaturas da água.",
+  "id": "ponta_da_praia",
+  "nome": "Ponta da Praia",
+  "zona": "orla",
+  "tipo": "orla",
+  "populacao_alvo": 36,
+  "casas": 14,
+  "ruas": [
+    "avenida_rei_alberto_i",
+    "avenida_doutor_pedro_lessa",
+    "avenida_coronel_joaquim_montenegro",
+    "avenida_general_san_martin",
+    "rua_doutor_egydio_martins",
+    "avenida_bartholomeu_de_gusmao"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 3
+    },
+    {
+      "id": "japonesa",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "praia_da_ponta",
+      "tipo": "praia",
+      "rua": "avenida_bartholomeu_de_gusmao",
+      "nome": "Praia da Ponta da Praia"
+    },
+    {
+      "id": "canal_6",
+      "tipo": "canal",
+      "rua": "avenida_coronel_joaquim_montenegro",
+      "nome": "Canal 6"
+    },
+    {
+      "id": "praca_dos_pescadores",
+      "tipo": "praca",
+      "rua": "avenida_rei_alberto_i",
+      "nome": "Deck do Pescador"
+    },
+    {
+      "id": "igreja_navegantes",
+      "tipo": "igreja",
+      "rua": "avenida_general_san_martin",
+      "nome": "Igreja de Nossa Senhora dos Navegantes"
+    },
+    {
+      "id": "delegacia",
+      "tipo": "delegacia",
+      "rua": "avenida_doutor_pedro_lessa",
+      "nome": "Distrito Policial da Ponta da Praia"
+    },
+    {
+      "id": "armazem",
+      "tipo": "armazem",
+      "rua": "avenida_rei_alberto_i",
+      "nome": "Galpão de pesca fechado"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "rua_doutor_egydio_martins",
+      "nome": "Bar do Pescador"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "avenida_doutor_pedro_lessa",
+      "nome": "Padaria da Balsa"
+    },
+    {
+      "id": "mecanico",
+      "tipo": "mecanico",
+      "rua": "avenida_general_san_martin",
+      "nome": "Oficina de barcos e motores"
+    }
+  ]
+}

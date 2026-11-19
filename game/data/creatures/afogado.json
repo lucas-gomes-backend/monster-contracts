@@ -1,0 +1,133 @@
+{
+  "id": "afogado",
+  "nome": "Afogado",
+  "nomes_alternativos": [
+    "alma de afogado",
+    "alma penada do mar"
+  ],
+  "origem": "brasil",
+  "bairros": [
+    "orla"
+  ],
+  "familia": [
+    "espirito"
+  ],
+  "natureza": "espiritual",
+  "inteligencia": "instintiva",
+  "disposicao": "ressentida",
+  "perigo": 3,
+  "ciclo": {
+    "horario": "noite",
+    "lua": "independe"
+  },
+  "gatilhos": [
+    "corpo_que_o_mar_nao_devolveu"
+  ],
+  "necessidade": {
+    "tipo": "puxar_alguem_para_a_agua",
+    "frequencia": "semanal",
+    "escalada": "de molhar as casas a afogar quem anda sozinho na beira"
+  },
+  "caca": {
+    "vitimas": [
+      "quem_anda_sozinho_na_beira",
+      "banhistas_de_noite"
+    ],
+    "metodo": "agarra pelo tornozelo e puxa para o fundo",
+    "territorio_m": 800
+  },
+  "covil": [
+    "praia",
+    "canal"
+  ],
+  "disfarce": {
+    "tipo": "invisivel",
+    "sinais": [
+      "pegadas_molhadas_saindo_do_mar"
+    ]
+  },
+  "observavel": {
+    "forma": "vulto encharcado, com algas no corpo",
+    "tamanho": "medio",
+    "som": "água pingando",
+    "cheiro": "cheiro de mar parado"
+  },
+  "marcas": [
+    {
+      "tag": "pegadas_molhadas_saindo_do_mar",
+      "onde": "cena",
+      "freq": "sempre",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "marcas_de_dedos_no_tornozelo",
+      "onde": "corpo",
+      "freq": "comum",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "algas_dentro_de_casa",
+      "onde": "cena",
+      "freq": "comum",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "vulto_encharcado_na_areia",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "afogamento_sem_corpo_achado",
+      "onde": "registro",
+      "freq": "sempre",
+      "detectar": "pesquisa",
+      "sobre": "historia"
+    },
+    {
+      "tag": "voz_chamando_do_mar",
+      "onde": "testemunha",
+      "freq": "rara",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    }
+  ],
+  "fraquezas": [
+    {
+      "item": "enterro_do_afogado",
+      "efeito": [
+        "apazigua"
+      ]
+    },
+    {
+      "item": "sal_grosso",
+      "efeito": [
+        "afasta"
+      ]
+    },
+    {
+      "item": "agua_benta",
+      "efeito": [
+        "afasta"
+      ]
+    }
+  ],
+  "tabus": [
+    "so tem paz quando recebe os ritos que o mar nao deixou"
+  ],
+  "resolucoes": [
+    "apaziguar"
+  ],
+  "condicao_transmitida": null,
+  "fontes": [
+    "docs/pesquisa/folclore-corte-vertical.md#12-afogado"
+  ],
+  "invencoes_do_jogo": [
+    "o enterro do afogado como ritual na beira da água",
+    "pegadas molhadas e algas como pistas"
+  ],
+  "a_confirmar": [
+    "uma lenda de afogados própria de Santos (não achada nesta pesquisa)"
+  ]
+}

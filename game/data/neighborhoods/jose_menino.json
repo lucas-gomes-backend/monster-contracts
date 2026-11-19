@@ -1,0 +1,61 @@
+{
+  "$comment": "José Menino, bairro secundário da zona da orla e intermediária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa. A praia e o canal servem de covil para as criaturas da água.",
+  "id": "jose_menino",
+  "nome": "José Menino",
+  "zona": "orla",
+  "tipo": "residencial_denso",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_presidente_wilson",
+    "avenida_senador_pinheiro_machado",
+    "avenida_marechal_floriano_peixoto",
+    "rua_euclides_da_cunha"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 5
+    },
+    {
+      "id": "japonesa",
+      "peso": 2
+    },
+    {
+      "id": "portuguesa",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "praia_do_jose_menino",
+      "tipo": "praia",
+      "rua": "avenida_presidente_wilson",
+      "nome": "Praia do José Menino"
+    },
+    {
+      "id": "canal_1",
+      "tipo": "canal",
+      "rua": "avenida_senador_pinheiro_machado",
+      "nome": "Canal 1"
+    },
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "rua_euclides_da_cunha",
+      "nome": "Praça do bairro"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "avenida_marechal_floriano_peixoto",
+      "nome": "Padaria do Surfista"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "avenida_presidente_wilson",
+      "nome": "Quiosque da praia"
+    }
+  ]
+}

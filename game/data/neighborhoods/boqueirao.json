@@ -1,0 +1,57 @@
+{
+  "$comment": "Boqueirão, bairro secundário da zona da orla e intermediária (Fase 5): menos gente, só o kit da zona. Estabelecimentos e pessoas fictícios; as ruas são as reais do mapa. A praia e o canal servem de covil para as criaturas da água.",
+  "id": "boqueirao",
+  "nome": "Boqueirão",
+  "zona": "orla",
+  "tipo": "residencial_denso",
+  "populacao_alvo": 18,
+  "casas": 8,
+  "ruas": [
+    "avenida_vicente_de_carvalho",
+    "avenida_siqueira_campos",
+    "avenida_conselheiro_nebias",
+    "rua_doutor_oswaldo_cruz"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 2
+    }
+  ],
+  "locais": [
+    {
+      "id": "praia_do_boqueirao",
+      "tipo": "praia",
+      "rua": "avenida_vicente_de_carvalho",
+      "nome": "Praia do Boqueirão"
+    },
+    {
+      "id": "canal_4",
+      "tipo": "canal",
+      "rua": "avenida_siqueira_campos",
+      "nome": "Canal 4"
+    },
+    {
+      "id": "praca",
+      "tipo": "praca",
+      "rua": "rua_doutor_oswaldo_cruz",
+      "nome": "Praça do bairro"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "avenida_conselheiro_nebias",
+      "nome": "Padaria Boqueirão"
+    },
+    {
+      "id": "galinheiro_1",
+      "tipo": "galinheiro",
+      "rua": "rua_doutor_oswaldo_cruz",
+      "nome": "Galinheiro de um quintal"
+    }
+  ]
+}

@@ -352,6 +352,54 @@
       "fragil": false,
       "cor": "#8a8a90",
       "arma": "facao"
+    },
+    {
+      "id": "cera_nos_ouvidos",
+      "nome": "Cera para os ouvidos",
+      "formato": [
+        1,
+        1
+      ],
+      "peso_g": 30,
+      "pilha": 4,
+      "fragil": false,
+      "cor": "#d8c890"
+    },
+    {
+      "id": "oferenda_de_flores",
+      "nome": "Flores brancas",
+      "formato": [
+        1,
+        2
+      ],
+      "peso_g": 200,
+      "pilha": 2,
+      "fragil": true,
+      "cor": "#f0ece0"
+    },
+    {
+      "id": "rede_benzida",
+      "nome": "Rede benzida",
+      "formato": [
+        2,
+        2
+      ],
+      "peso_g": 1500,
+      "pilha": 1,
+      "fragil": false,
+      "cor": "#7a8a6a"
+    },
+    {
+      "id": "pepino",
+      "nome": "Pepinos",
+      "formato": [
+        1,
+        1
+      ],
+      "peso_g": 300,
+      "pilha": 3,
+      "fragil": false,
+      "cor": "#4a8a3a"
     }
   ]
 }

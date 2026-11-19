@@ -18,6 +18,7 @@
     "mata": {"tinta_nevoa": "#7f9480", "cores_predios": ["#8f9a80", "#a39e82"]},
     "industrial": {"tinta_nevoa": "#9aa0a3", "cores_predios": ["#8c8f8a", "#a39a86", "#7d858c", "#b0a48e", "#6f7a73"]},
     "residencial_denso": {"tinta_nevoa": "#aeb0b3", "cores_predios": ["#c9bfae", "#b7c2b4", "#d4c6a8", "#a8b4bd", "#c4a99a", "#bdb7a0"]},
+    "orla": {"tinta_nevoa": "#9fb0c0", "cores_predios": ["#d9d4c4", "#b9c9d2", "#e0cfb4", "#a9bcc4", "#cfc2a8", "#c0d0c8"]},
     "padrao": {"tinta_nevoa": "#b8babd", "cores_predios": ["#a0a0a0", "#b0aca4"]}
   },
   "janelas": {"acesas_a_noite": 0.35, "cor_acesa": "#ffcf7a", "brilho": 1.6},

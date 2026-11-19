@@ -1,0 +1,123 @@
+{
+  "id": "kappa",
+  "nome": "Kappa",
+  "nomes_alternativos": [
+    "kawataro",
+    "bicho do canal"
+  ],
+  "origem": "japao",
+  "bairros": [
+    "orla"
+  ],
+  "familia": [
+    "besta",
+    "trapaceiro"
+  ],
+  "natureza": "corporea",
+  "inteligencia": "astuta",
+  "disposicao": "neutra",
+  "perigo": 3,
+  "ciclo": {
+    "horario": "qualquer",
+    "lua": "independe"
+  },
+  "gatilhos": [
+    "lixo_jogado_no_canal"
+  ],
+  "necessidade": {
+    "tipo": "puxar_bichos_e_gente_para_a_agua",
+    "frequencia": "semanal",
+    "escalada": "de sumir com cachorros na beira do canal a afogar quem se debruca"
+  },
+  "caca": {
+    "vitimas": [
+      "caes",
+      "criancas",
+      "quem_se_debruca_no_canal"
+    ],
+    "metodo": "agarra com bracos fortes e afoga no canal",
+    "territorio_m": 700
+  },
+  "covil": [
+    "canal"
+  ],
+  "disfarce": {
+    "tipo": "animal_ou_objeto",
+    "sinais": [
+      "crianca_esverdeada_na_beira_do_canal"
+    ]
+  },
+  "observavel": {
+    "forma": "bicho verde do tamanho de uma criança, com casco e um prato na cabeça",
+    "tamanho": "pequeno",
+    "som": "chape na água",
+    "cheiro": "cheiro de peixe"
+  },
+  "marcas": [
+    {
+      "tag": "pegadas_com_membrana_entre_os_dedos",
+      "onde": "cena",
+      "freq": "sempre",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "pepinos_sumidos_das_bancas",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "cachorro_puxado_para_o_canal",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "poca_de_agua_no_caminho",
+      "onde": "cena",
+      "freq": "comum",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "lenda_do_bicho_do_canal",
+      "onde": "registro",
+      "freq": "rara",
+      "detectar": "pesquisa",
+      "sobre": "historia"
+    }
+  ],
+  "fraquezas": [
+    {
+      "item": "reverencia",
+      "efeito": [
+        "prende"
+      ]
+    },
+    {
+      "item": "pepino",
+      "efeito": [
+        "distrai",
+        "apazigua"
+      ]
+    }
+  ],
+  "tabus": [
+    "responde a toda reverencia, e a agua do prato cai",
+    "cumpre a promessa que faz"
+  ],
+  "resolucoes": [
+    "prender",
+    "negociar"
+  ],
+  "condicao_transmitida": null,
+  "fontes": [
+    "docs/pesquisa/folclore-corte-vertical.md#13-kappa"
+  ],
+  "invencoes_do_jogo": [
+    "o kappa nos canais de Santos (comunidade japonesa)",
+    "pepinos sumidos das bancas como pista"
+  ],
+  "a_confirmar": []
+}

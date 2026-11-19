@@ -1,0 +1,5957 @@
+{
+ "$comment": "Gerado por tools/cidade/importar.py a partir do OpenStreetMap (© colaboradores do OpenStreetMap, ODbL). Não edite à mão: rode o importador.",
+ "id": "ponta_da_praia",
+ "nome": "Ponta da Praia",
+ "zona": "orla",
+ "escala": 3.0,
+ "area_m2": 205706.0,
+ "caixa": [
+  615.07,
+  1543.75,
+  1199.34,
+  2123.67
+ ],
+ "limite": [
+  [
+   1161.85,
+   1842.34
+  ],
+  [
+   1186.68,
+   1719.54
+  ],
+  [
+   1188.69,
+   1698.34
+  ],
+  [
+   1187.81,
+   1664.82
+  ],
+  [
+   1028.33,
+   1543.75
+  ],
+  [
+   1016.75,
+   1550.64
+  ],
+  [
+   968.74,
+   1589.03
+  ],
+  [
+   615.07,
+   1880.13
+  ],
+  [
+   691.82,
+   1963.45
+  ],
+  [
+   693.59,
+   1979.33
+  ],
+  [
+   704.64,
+   2016.89
+  ],
+  [
+   704.71,
+   2028.55
+  ],
+  [
+   741.66,
+   2080.33
+  ],
+  [
+   753.42,
+   2083.89
+  ],
+  [
+   797.42,
+   2112.36
+  ],
+  [
+   848.39,
+   2122.98
+  ],
+  [
+   860.27,
+   2123.28
+  ],
+  [
+   921.61,
+   2112.17
+  ],
+  [
+   922.72,
+   2109.35
+  ],
+  [
+   953.52,
+   2095.34
+  ],
+  [
+   990.26,
+   2073.98
+  ],
+  [
+   999.24,
+   2071.95
+  ],
+  [
+   1002.24,
+   2066.7
+  ],
+  [
+   1144.55,
+   1982.34
+  ],
+  [
+   1165.19,
+   1967.54
+  ],
+  [
+   1166.33,
+   1958.37
+  ],
+  [
+   1161.15,
+   1949.03
+  ],
+  [
+   1170.47,
+   1928.97
+  ],
+  [
+   1175.5,
+   1926.32
+  ],
+  [
+   1184.94,
+   1926.57
+  ],
+  [
+   1176.02,
+   1915.06
+  ],
+  [
+   1193.92,
+   1881.92
+  ],
+  [
+   1199.34,
+   1863.09
+  ],
+  [
+   1194.79,
+   1855.16
+  ],
+  [
+   1184.17,
+   1847.5
+  ],
+  [
+   1170.79,
+   1844.5
+  ],
+  [
+   1161.16,
+   1845.27
+  ]
+ ],
+ "ruas": [
+  {
+   "osm": 38791145,
+   "nome": "Avenida Dino Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     968.52,
+     1769.31
+    ],
+    [
+     898.28,
+     1902.08
+    ],
+    [
+     880.19,
+     1940.42
+    ]
+   ]
+  },
+  {
+   "osm": 40828661,
+   "nome": "Avenida Professor Aristóteles Menezes",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     987.2,
+     1712.94
+    ],
+    [
+     984.7,
+     1707.77
+    ],
+    [
+     982.95,
+     1676.96
+    ]
+   ]
+  },
+  {
+   "osm": 40828713,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     963.05,
+     1714.44
+    ],
+    [
+     953.5,
+     1729.34
+    ],
+    [
+     951.69,
+     1746.0
+    ],
+    [
+     956.39,
+     1758.3
+    ],
+    [
+     968.52,
+     1769.31
+    ]
+   ]
+  },
+  {
+   "osm": 40828787,
+   "nome": "Avenida Doutor Pedro Lessa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1181.12,
+     1735.41
+    ],
+    [
+     1108.9,
+     1682.78
+    ]
+   ]
+  },
+  {
+   "osm": 41912142,
+   "nome": "Rua Cidade de Santos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     843.43,
+     2050.27
+    ],
+    [
+     875.47,
+     1953.44
+    ]
+   ]
+  },
+  {
+   "osm": 45399265,
+   "nome": "Avenida General San Martin",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     998.77,
+     1932.34
+    ],
+    [
+     993.04,
+     1862.46
+    ]
+   ]
+  },
+  {
+   "osm": 45399422,
+   "nome": "Avenida Senador César Lacerda Vergueiro",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     973.39,
+     1939.74
+    ],
+    [
+     884.83,
+     1942.99
+    ]
+   ]
+  },
+  {
+   "osm": 45399423,
+   "nome": "Rua Comendador Fins Freixo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1034.43,
+     1966.9
+    ],
+    [
+     1053.38,
+     1986.1
+    ]
+   ]
+  },
+  {
+   "osm": 45399424,
+   "nome": "Rua Maestro Heitor Vila Lobos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1034.43,
+     1966.9
+    ],
+    [
+     1017.78,
+     1979.18
+    ],
+    [
+     999.21,
+     1985.03
+    ]
+   ]
+  },
+  {
+   "osm": 45399425,
+   "nome": "Praça Coração de Maria",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     877.93,
+     1953.92
+    ],
+    [
+     882.64,
+     1951.71
+    ],
+    [
+     885.42,
+     1946.44
+    ],
+    [
+     884.83,
+     1942.99
+    ],
+    [
+     880.19,
+     1940.42
+    ]
+   ]
+  },
+  {
+   "osm": 45399428,
+   "nome": "Praça Nossa Senhora do Carmo",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     996.5,
+     1931.31
+    ],
+    [
+     989.34,
+     1932.56
+    ],
+    [
+     986.03,
+     1937.76
+    ],
+    [
+     987.27,
+     1943.77
+    ],
+    [
+     992.13,
+     1947.23
+    ],
+    [
+     997.62,
+     1946.76
+    ],
+    [
+     1002.26,
+     1941.31
+    ],
+    [
+     1001.34,
+     1935.0
+    ],
+    [
+     996.5,
+     1931.31
+    ]
+   ]
+  },
+  {
+   "osm": 45399429,
+   "nome": "Rua Doutor Egydio Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1076.62,
+     1895.3
+    ],
+    [
+     995.16,
+     1900.67
+    ]
+   ]
+  },
+  {
+   "osm": 45399430,
+   "nome": "Rua Doutor Marcelo Ribeiro de Mendonça",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1088.83,
+     1914.31
+    ],
+    [
+     1042.34,
+     1932.57
+    ]
+   ]
+  },
+  {
+   "osm": 48455929,
+   "nome": "Praça Almirante Gago Coutinho",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1144.43,
+     1936.56
+    ],
+    [
+     1157.02,
+     1955.53
+    ],
+    [
+     1157.01,
+     1961.65
+    ]
+   ]
+  },
+  {
+   "osm": 48848052,
+   "nome": "Avenida General San Martin",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     981.86,
+     1772.72
+    ],
+    [
+     987.23,
+     1862.73
+    ]
+   ]
+  },
+  {
+   "osm": 48848053,
+   "nome": "Rua República do Equador",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     944.2,
+     1865.81
+    ],
+    [
+     917.97,
+     1865.88
+    ]
+   ]
+  },
+  {
+   "osm": 48848059,
+   "nome": "Rua Dona Maria Máximo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     991.25,
+     1827.05
+    ],
+    [
+     1034.04,
+     1819.33
+    ],
+    [
+     1082.26,
+     1795.71
+    ],
+    [
+     1115.72,
+     1766.62
+    ],
+    [
+     1151.17,
+     1718.0
+    ]
+   ]
+  },
+  {
+   "osm": 48848060,
+   "nome": "Rua Venâncio José Lisboa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1046.48,
+     1769.86
+    ],
+    [
+     1074.01,
+     1751.59
+    ],
+    [
+     1088.94,
+     1738.31
+    ],
+    [
+     1100.53,
+     1722.78
+    ]
+   ]
+  },
+  {
+   "osm": 48848061,
+   "nome": "Rua Professor Carlos Escobar",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1100.53,
+     1722.78
+    ],
+    [
+     1025.55,
+     1661.45
+    ],
+    [
+     1017.16,
+     1659.45
+    ],
+    [
+     1007.67,
+     1660.5
+    ],
+    [
+     1000.32,
+     1665.27
+    ],
+    [
+     992.46,
+     1675.57
+    ]
+   ]
+  },
+  {
+   "osm": 48848062,
+   "nome": "Rua Cipriano Barata",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1086.89,
+     1711.7
+    ],
+    [
+     1108.9,
+     1682.78
+    ]
+   ]
+  },
+  {
+   "osm": 48848087,
+   "nome": "Rua Dona Maria Máximo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     844.14,
+     1770.77
+    ],
+    [
+     874.89,
+     1794.87
+    ],
+    [
+     913.59,
+     1814.91
+    ],
+    [
+     940.16,
+     1823.53
+    ],
+    [
+     985.22,
+     1827.19
+    ]
+   ]
+  },
+  {
+   "osm": 48848101,
+   "nome": "Avenida Professor Aristóteles Menezes",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     978.73,
+     1592.02
+    ],
+    [
+     974.8,
+     1607.69
+    ],
+    [
+     978.19,
+     1677.08
+    ]
+   ]
+  },
+  {
+   "osm": 48848111,
+   "nome": "Rua Ana Pimentel",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     999.66,
+     1712.61
+    ],
+    [
+     1044.13,
+     1638.45
+    ]
+   ]
+  },
+  {
+   "osm": 48848113,
+   "nome": "Rua André Rebouças",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1016.54,
+     1741.26
+    ],
+    [
+     1021.8,
+     1736.67
+    ]
+   ]
+  },
+  {
+   "osm": 48848124,
+   "nome": "Rua Antônio Guenaga",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1011.88,
+     2052.88
+    ],
+    [
+     1008.0,
+     2020.76
+    ]
+   ]
+  },
+  {
+   "osm": 48848128,
+   "nome": "Avenida General San Martin",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     989.59,
+     1946.09
+    ],
+    [
+     992.53,
+     1959.56
+    ],
+    [
+     995.82,
+     2016.1
+    ]
+   ]
+  },
+  {
+   "osm": 48848170,
+   "nome": "Rua Comendador Alfaia Rodrigues",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     997.01,
+     1570.61
+    ],
+    [
+     1186.05,
+     1707.58
+    ]
+   ]
+  },
+  {
+   "osm": 51103655,
+   "nome": "Rua Vereador Henrique Soler",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     1140.13,
+     1894.53
+    ],
+    [
+     1104.28,
+     1851.99
+    ],
+    [
+     1071.03,
+     1802.73
+    ],
+    [
+     1021.8,
+     1736.67
+    ]
+   ]
+  },
+  {
+   "osm": 51103656,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     982.95,
+     1676.96
+    ],
+    [
+     978.19,
+     1677.08
+    ]
+   ]
+  },
+  {
+   "osm": 51103731,
+   "nome": "Rua República dos Estados Unidos da Venezuela",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     993.91,
+     1985.21
+    ],
+    [
+     977.59,
+     1980.9
+    ],
+    [
+     964.87,
+     1973.7
+    ],
+    [
+     959.95,
+     1969.37
+    ],
+    [
+     952.86,
+     1956.44
+    ],
+    [
+     947.9,
+     1941.05
+    ],
+    [
+     942.66,
+     1840.69
+    ]
+   ]
+  },
+  {
+   "osm": 51103733,
+   "nome": "Rua Tiago Tacão",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     902.95,
+     1970.1
+    ],
+    [
+     899.86,
+     1973.75
+    ]
+   ]
+  },
+  {
+   "osm": 127756946,
+   "nome": "Rua Doutor Egydio Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     749.84,
+     1773.21
+    ],
+    [
+     813.04,
+     1847.86
+    ],
+    [
+     842.74,
+     1869.74
+    ],
+    [
+     898.28,
+     1902.08
+    ],
+    [
+     905.28,
+     1905.34
+    ],
+    [
+     988.99,
+     1901.24
+    ]
+   ]
+  },
+  {
+   "osm": 127815439,
+   "nome": "Rua Dona Amélia Leuchtemberg",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1155.5,
+     1834.98
+    ],
+    [
+     1159.56,
+     1839.8
+    ]
+   ]
+  },
+  {
+   "osm": 127815441,
+   "nome": "Rua Moema",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1064.76,
+     1649.78
+    ],
+    [
+     1101.69,
+     1599.88
+    ]
+   ]
+  },
+  {
+   "osm": 127817609,
+   "nome": "Rua Inglaterra",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     767.25,
+     1867.04
+    ],
+    [
+     714.22,
+     1921.0
+    ]
+   ]
+  },
+  {
+   "osm": 127820431,
+   "nome": "Rua Caramurú",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1020.15,
+     1617.67
+    ],
+    [
+     1033.57,
+     1598.05
+    ]
+   ]
+  },
+  {
+   "osm": 127820433,
+   "nome": "Praça Primeiro de Maio",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     935.57,
+     1621.71
+    ],
+    [
+     946.13,
+     1633.06
+    ],
+    [
+     975.71,
+     1642.26
+    ]
+   ]
+  },
+  {
+   "osm": 127820439,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     975.71,
+     1642.26
+    ],
+    [
+     980.81,
+     1642.1
+    ]
+   ]
+  },
+  {
+   "osm": 127820440,
+   "nome": "Rua Adolfo Lutz",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     776.24,
+     1897.66
+    ],
+    [
+     788.12,
+     1883.25
+    ]
+   ]
+  },
+  {
+   "osm": 127821203,
+   "nome": "Rua Cipriano Barata",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1108.9,
+     1682.78
+    ],
+    [
+     1142.42,
+     1636.65
+    ]
+   ]
+  },
+  {
+   "osm": 127822322,
+   "nome": "Rua Professor Paulo Augusto Bueno Wolf",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1087.66,
+     1965.4
+    ],
+    [
+     1076.9,
+     1943.75
+    ]
+   ]
+  },
+  {
+   "osm": 127823507,
+   "nome": "Avenida Senador César Lacerda Vergueiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1015.88,
+     1936.0
+    ],
+    [
+     999.97,
+     1933.29
+    ]
+   ]
+  },
+  {
+   "osm": 127823509,
+   "nome": "Avenida Senador César Lacerda Vergueiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1001.43,
+     1943.32
+    ],
+    [
+     1015.98,
+     1938.59
+    ]
+   ]
+  },
+  {
+   "osm": 127825928,
+   "nome": "Rua República do Equador",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     1145.11,
+     1788.56
+    ],
+    [
+     1129.16,
+     1805.42
+    ],
+    [
+     1056.63,
+     1863.09
+    ]
+   ]
+  },
+  {
+   "osm": 127829368,
+   "nome": "Rua Miguel Xavier de Morais",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1115.72,
+     1766.62
+    ],
+    [
+     1145.11,
+     1788.56
+    ]
+   ]
+  },
+  {
+   "osm": 128153260,
+   "nome": "Rua Doutor Isidoro José Ribeiro de Campos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     720.61,
+     1967.5
+    ],
+    [
+     778.44,
+     1909.08
+    ]
+   ]
+  },
+  {
+   "osm": 195669625,
+   "nome": "Avenida Bartholomeu de Gusmão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     720.43,
+     2022.15
+    ],
+    [
+     720.61,
+     1967.5
+    ],
+    [
+     714.86,
+     1923.15
+    ],
+    [
+     682.92,
+     1851.81
+    ]
+   ]
+  },
+  {
+   "osm": 195669626,
+   "nome": "Rua Francisco Hayden",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     832.38,
+     2045.95
+    ],
+    [
+     809.91,
+     2093.14
+    ],
+    [
+     805.89,
+     2097.43
+    ],
+    [
+     798.18,
+     2098.16
+    ]
+   ]
+  },
+  {
+   "osm": 195669627,
+   "nome": "Rua República do Peru",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     932.84,
+     1994.12
+    ],
+    [
+     959.95,
+     1969.37
+    ]
+   ]
+  },
+  {
+   "osm": 195669628,
+   "nome": "Rua Professor Afonso Celso de Paula Lima",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     793.45,
+     1989.71
+    ],
+    [
+     733.46,
+     2053.85
+    ]
+   ]
+  },
+  {
+   "osm": 195669630,
+   "nome": "Avenida Governador Mário Covas Júnior",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1177.49,
+     1849.49
+    ],
+    [
+     1166.57,
+     1848.26
+    ],
+    [
+     1163.8,
+     1845.55
+    ]
+   ]
+  },
+  {
+   "osm": 195669633,
+   "nome": "Rua Carlos de Campos",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     720.43,
+     2022.15
+    ],
+    [
+     789.85,
+     1969.98
+    ]
+   ]
+  },
+  {
+   "osm": 195669634,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     734.88,
+     2058.51
+    ],
+    [
+     780.51,
+     2093.26
+    ],
+    [
+     801.01,
+     2102.55
+    ],
+    [
+     823.65,
+     2108.86
+    ],
+    [
+     849.95,
+     2113.49
+    ],
+    [
+     884.24,
+     2114.59
+    ],
+    [
+     907.75,
+     2109.13
+    ],
+    [
+     932.07,
+     2098.56
+    ]
+   ]
+  },
+  {
+   "osm": 195670519,
+   "nome": "Rua Almirante Moraes Rêgo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1099.5,
+     1882.36
+    ],
+    [
+     1110.91,
+     1894.69
+    ],
+    [
+     1128.48,
+     1927.01
+    ]
+   ]
+  },
+  {
+   "osm": 195670521,
+   "nome": "Rua Nelson Guimarães de Toledo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1068.25,
+     1881.94
+    ],
+    [
+     1104.28,
+     1851.99
+    ]
+   ]
+  },
+  {
+   "osm": 195670522,
+   "nome": "Rua Rubens de Ulhoa Cintra",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1045.74,
+     1842.33
+    ],
+    [
+     1080.86,
+     1818.68
+    ]
+   ]
+  },
+  {
+   "osm": 195670892,
+   "nome": "Praça Franklin Delano Roosevelt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     900.78,
+     2017.35
+    ],
+    [
+     919.33,
+     2027.46
+    ]
+   ]
+  },
+  {
+   "osm": 195670893,
+   "nome": "Rua Capitão João Salermo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     922.02,
+     2043.64
+    ],
+    [
+     931.07,
+     2095.69
+    ]
+   ]
+  },
+  {
+   "osm": 195671200,
+   "nome": "Rua Brigadeiro Galvão",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     786.29,
+     1949.91
+    ],
+    [
+     801.21,
+     1948.95
+    ],
+    [
+     814.31,
+     1954.02
+    ],
+    [
+     824.6,
+     1961.9
+    ],
+    [
+     836.51,
+     1977.53
+    ],
+    [
+     850.7,
+     1987.55
+    ],
+    [
+     877.04,
+     1994.05
+    ],
+    [
+     893.61,
+     1991.53
+    ]
+   ]
+  },
+  {
+   "osm": 195671203,
+   "nome": "Rua Imperatriz Leopoldina",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     786.29,
+     1949.91
+    ],
+    [
+     772.42,
+     1954.68
+    ],
+    [
+     737.47,
+     1984.87
+    ],
+    [
+     720.6,
+     1987.79
+    ]
+   ]
+  },
+  {
+   "osm": 195673543,
+   "nome": "Rua Doutor Cyro de Athaíde Carneiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     867.43,
+     1677.48
+    ],
+    [
+     893.04,
+     1704.71
+    ],
+    [
+     939.01,
+     1735.35
+    ]
+   ]
+  },
+  {
+   "osm": 195673545,
+   "nome": "Rua Professor Doutor Olavo de Paula Borges",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     917.97,
+     1865.88
+    ],
+    [
+     867.48,
+     1835.96
+    ],
+    [
+     839.14,
+     1815.01
+    ],
+    [
+     781.45,
+     1746.97
+    ]
+   ]
+  },
+  {
+   "osm": 195716862,
+   "nome": "Rua Irmão José Izidoro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     952.4,
+     1663.5
+    ],
+    [
+     966.59,
+     1677.33
+    ]
+   ]
+  },
+  {
+   "osm": 195718206,
+   "nome": "Rua Dona Áurea Gonzalez Conde",
+   "tipo": "unclassified",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1072.44,
+     1980.01
+    ],
+    [
+     1089.12,
+     2005.94
+    ]
+   ]
+  },
+  {
+   "osm": 195718561,
+   "nome": "Rua Ministro Daniel de Carvalho",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     979.83,
+     2028.25
+    ],
+    [
+     989.14,
+     2064.66
+    ]
+   ]
+  },
+  {
+   "osm": 195726054,
+   "nome": "Rua Dona Maria Máximo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1153.53,
+     1714.94
+    ],
+    [
+     1168.09,
+     1694.71
+    ]
+   ]
+  },
+  {
+   "osm": 195837375,
+   "nome": "Rua Quincio Peirao",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     997.51,
+     1638.67
+    ],
+    [
+     1007.67,
+     1660.5
+    ]
+   ]
+  },
+  {
+   "osm": 195837570,
+   "nome": "Rua Amaral Gurgel",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     961.65,
+     1787.7
+    ],
+    [
+     924.95,
+     1776.64
+    ],
+    [
+     885.09,
+     1753.63
+    ],
+    [
+     867.34,
+     1739.59
+    ]
+   ]
+  },
+  {
+   "osm": 196170243,
+   "nome": "Rua Venâncio José Lisboa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1100.53,
+     1722.78
+    ],
+    [
+     1112.7,
+     1707.3
+    ]
+   ]
+  },
+  {
+   "osm": 198706103,
+   "nome": "Rua Bartolomeu Tadei",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     799.99,
+     1801.63
+    ],
+    [
+     765.62,
+     1760.11
+    ]
+   ]
+  },
+  {
+   "osm": 298358333,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     969.93,
+     2030.66
+    ],
+    [
+     997.6,
+     2023.83
+    ]
+   ]
+  },
+  {
+   "osm": 305931815,
+   "nome": "Rua Dona Amélia Leuchtemberg",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1160.81,
+     1833.76
+    ],
+    [
+     1155.5,
+     1834.98
+    ]
+   ]
+  },
+  {
+   "osm": 305932209,
+   "nome": "Rua Doutor Egydio Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1078.95,
+     1898.73
+    ],
+    [
+     1099.5,
+     1882.36
+    ]
+   ]
+  },
+  {
+   "osm": 305932210,
+   "nome": "Rua Doutor Egydio Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1155.5,
+     1834.98
+    ],
+    [
+     1134.62,
+     1853.73
+    ]
+   ]
+  },
+  {
+   "osm": 305935324,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     801.68,
+     1988.46
+    ],
+    [
+     797.92,
+     1977.65
+    ]
+   ]
+  },
+  {
+   "osm": 306034320,
+   "nome": "Rua Cidade de Cunha",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     872.07,
+     1950.66
+    ],
+    [
+     806.33,
+     1985.38
+    ]
+   ]
+  },
+  {
+   "osm": 306034322,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     797.92,
+     1977.65
+    ],
+    [
+     792.06,
+     1981.92
+    ]
+   ]
+  },
+  {
+   "osm": 306034323,
+   "nome": "Rua André Vidal de Negreiros",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     797.92,
+     1977.65
+    ],
+    [
+     835.68,
+     1921.22
+    ]
+   ]
+  },
+  {
+   "osm": 306034324,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     806.33,
+     1985.38
+    ],
+    [
+     801.48,
+     1984.65
+    ]
+   ]
+  },
+  {
+   "osm": 306034325,
+   "nome": "Rua Cidade Cunha",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     794.34,
+     1993.49
+    ],
+    [
+     801.68,
+     1988.46
+    ]
+   ]
+  },
+  {
+   "osm": 306035216,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     797.92,
+     1977.65
+    ],
+    [
+     790.59,
+     1973.6
+    ]
+   ]
+  },
+  {
+   "osm": 306071171,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     968.71,
+     2023.27
+    ],
+    [
+     932.84,
+     1994.12
+    ]
+   ]
+  },
+  {
+   "osm": 306071173,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     959.09,
+     2033.53
+    ],
+    [
+     968.24,
+     2031.2
+    ]
+   ]
+  },
+  {
+   "osm": 306072000,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     874.47,
+     1942.64
+    ],
+    [
+     863.22,
+     1937.8
+    ],
+    [
+     837.68,
+     1916.78
+    ]
+   ]
+  },
+  {
+   "osm": 306072002,
+   "nome": "",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     1148.13,
+     1897.18
+    ],
+    [
+     1140.13,
+     1894.53
+    ]
+   ]
+  },
+  {
+   "osm": 306072869,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     772.57,
+     1865.1
+    ],
+    [
+     729.11,
+     1790.38
+    ]
+   ]
+  },
+  {
+   "osm": 306072870,
+   "nome": "Rua Antônio Damin",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     811.97,
+     1784.41
+    ],
+    [
+     787.03,
+     1819.34
+    ]
+   ]
+  },
+  {
+   "osm": 306073940,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     755.72,
+     1847.27
+    ],
+    [
+     767.25,
+     1867.04
+    ]
+   ]
+  },
+  {
+   "osm": 306073941,
+   "nome": "Rua Robert Sandall",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     703.34,
+     1895.54
+    ],
+    [
+     755.72,
+     1847.27
+    ]
+   ]
+  },
+  {
+   "osm": 306073942,
+   "nome": "Rua Bassin Nagib Trabulsi",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     747.81,
+     1822.75
+    ],
+    [
+     743.69,
+     1826.06
+    ]
+   ]
+  },
+  {
+   "osm": 306074674,
+   "nome": "Praça Almirante Gago Coutinho",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1148.13,
+     1897.18
+    ],
+    [
+     1141.67,
+     1929.03
+    ]
+   ]
+  },
+  {
+   "osm": 306130712,
+   "nome": "Rua Enguaguaçú",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     788.17,
+     1909.31
+    ],
+    [
+     778.44,
+     1909.08
+    ]
+   ]
+  },
+  {
+   "osm": 306131548,
+   "nome": "Rua Adolfo Lutz",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     970.36,
+     1641.52
+    ],
+    [
+     790.39,
+     1878.93
+    ]
+   ]
+  },
+  {
+   "osm": 306131549,
+   "nome": "Rua Vereador Rocha e Silva",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     790.83,
+     1948.97
+    ],
+    [
+     792.15,
+     1941.7
+    ],
+    [
+     817.35,
+     1905.96
+    ]
+   ]
+  },
+  {
+   "osm": 306131550,
+   "nome": "Rua Vereador Rocha e Silva",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     819.65,
+     1902.18
+    ],
+    [
+     867.48,
+     1835.96
+    ]
+   ]
+  },
+  {
+   "osm": 306191233,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1141.67,
+     1929.03
+    ],
+    [
+     1110.97,
+     1951.13
+    ]
+   ]
+  },
+  {
+   "osm": 306191235,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1145.63,
+     1913.02
+    ],
+    [
+     1141.67,
+     1918.39
+    ],
+    [
+     1128.48,
+     1927.01
+    ]
+   ]
+  },
+  {
+   "osm": 306289852,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     963.61,
+     2027.38
+    ],
+    [
+     959.09,
+     2033.53
+    ]
+   ]
+  },
+  {
+   "osm": 311784806,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     772.57,
+     1865.1
+    ],
+    [
+     773.03,
+     1871.77
+    ]
+   ]
+  },
+  {
+   "osm": 311785832,
+   "nome": "Rua Enguaguaçú",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     780.35,
+     1917.68
+    ],
+    [
+     788.17,
+     1909.31
+    ]
+   ]
+  },
+  {
+   "osm": 311785833,
+   "nome": "Rua Antônio Damin",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     787.03,
+     1819.34
+    ],
+    [
+     763.0,
+     1850.16
+    ]
+   ]
+  },
+  {
+   "osm": 312564082,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     877.93,
+     1953.92
+    ],
+    [
+     899.86,
+     1973.75
+    ]
+   ]
+  },
+  {
+   "osm": 312564083,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     767.25,
+     1867.04
+    ],
+    [
+     773.03,
+     1871.77
+    ]
+   ]
+  },
+  {
+   "osm": 316398705,
+   "nome": "Praça Almirante Gago Coutinho",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1141.67,
+     1929.03
+    ],
+    [
+     1144.43,
+     1936.56
+    ]
+   ]
+  },
+  {
+   "osm": 316427953,
+   "nome": "Avenida Governador Mário Covas Júnior",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1180.11,
+     1739.91
+    ],
+    [
+     1160.81,
+     1833.76
+    ]
+   ]
+  },
+  {
+   "osm": 317686103,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     799.03,
+     2020.36
+    ],
+    [
+     797.98,
+     2027.69
+    ]
+   ]
+  },
+  {
+   "osm": 317687215,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     808.3,
+     2035.69
+    ],
+    [
+     800.75,
+     2029.1
+    ]
+   ]
+  },
+  {
+   "osm": 317687216,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     789.86,
+     2027.78
+    ],
+    [
+     797.7,
+     2031.12
+    ]
+   ]
+  },
+  {
+   "osm": 317687217,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     789.86,
+     2027.78
+    ],
+    [
+     767.79,
+     2017.61
+    ]
+   ]
+  },
+  {
+   "osm": 317695849,
+   "nome": "Praça Amigos da Marinha",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     963.59,
+     2025.97
+    ],
+    [
+     968.24,
+     2031.2
+    ]
+   ]
+  },
+  {
+   "osm": 317698910,
+   "nome": "Rua Coronel Pedro Arbues",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     797.25,
+     1830.63
+    ],
+    [
+     946.13,
+     1633.06
+    ]
+   ]
+  },
+  {
+   "osm": 320464355,
+   "nome": "Rua República do Equador",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     987.23,
+     1862.73
+    ],
+    [
+     944.2,
+     1865.81
+    ]
+   ]
+  },
+  {
+   "osm": 320464357,
+   "nome": "Avenida General San Martin",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     987.23,
+     1862.73
+    ],
+    [
+     989.34,
+     1932.56
+    ]
+   ]
+  },
+  {
+   "osm": 320464359,
+   "nome": "Avenida General San Martin",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     993.04,
+     1862.46
+    ],
+    [
+     988.41,
+     1772.93
+    ]
+   ]
+  },
+  {
+   "osm": 320464360,
+   "nome": "Rua República do Equador",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     993.04,
+     1862.46
+    ],
+    [
+     1038.84,
+     1860.81
+    ]
+   ]
+  },
+  {
+   "osm": 320464361,
+   "nome": "Rua República do Equador",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     1054.15,
+     1858.67
+    ],
+    [
+     1038.84,
+     1860.81
+    ]
+   ]
+  },
+  {
+   "osm": 356877811,
+   "nome": "Praça Almirante Gago Coutinho",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1177.49,
+     1849.49
+    ],
+    [
+     1162.86,
+     1850.5
+    ],
+    [
+     1156.23,
+     1856.89
+    ]
+   ]
+  },
+  {
+   "osm": 356877812,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1144.43,
+     1936.56
+    ],
+    [
+     1146.58,
+     1934.94
+    ]
+   ]
+  },
+  {
+   "osm": 359695923,
+   "nome": "Rua Vitorino Carmilo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1138.22,
+     1736.28
+    ],
+    [
+     1168.14,
+     1758.09
+    ]
+   ]
+  },
+  {
+   "osm": 366164077,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     726.52,
+     1792.48
+    ],
+    [
+     743.69,
+     1826.06
+    ]
+   ]
+  },
+  {
+   "osm": 366164079,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     725.46,
+     1788.54
+    ],
+    [
+     726.11,
+     1790.9
+    ]
+   ]
+  },
+  {
+   "osm": 366172422,
+   "nome": "Praça Ida Trili Gomes dos Santos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     934.72,
+     1834.99
+    ],
+    [
+     940.13,
+     1836.71
+    ],
+    [
+     942.66,
+     1840.69
+    ]
+   ]
+  },
+  {
+   "osm": 366199265,
+   "nome": "Rua André Vidal de Negreiros",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     946.44,
+     1743.36
+    ],
+    [
+     951.69,
+     1746.0
+    ]
+   ]
+  },
+  {
+   "osm": 366199268,
+   "nome": "Praça Engenheiro José Rebouças",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     953.5,
+     1729.34
+    ],
+    [
+     946.83,
+     1738.53
+    ]
+   ]
+  },
+  {
+   "osm": 366207692,
+   "nome": "Praça Nossa Senhora do Carmo",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     987.79,
+     1934.0
+    ],
+    [
+     973.39,
+     1939.74
+    ]
+   ]
+  },
+  {
+   "osm": 366305176,
+   "nome": "Rua República do Equador",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     928.87,
+     1866.74
+    ],
+    [
+     920.2,
+     1861.67
+    ]
+   ]
+  },
+  {
+   "osm": 380498924,
+   "nome": "",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     852.65,
+     1689.31
+    ],
+    [
+     865.81,
+     1705.03
+    ],
+    [
+     872.01,
+     1700.79
+    ]
+   ]
+  },
+  {
+   "osm": 457552229,
+   "nome": "Avenida Doutor Pedro Lessa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     978.73,
+     1592.02
+    ],
+    [
+     1180.11,
+     1739.91
+    ]
+   ]
+  },
+  {
+   "osm": 462455818,
+   "nome": "",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     1134.62,
+     1853.73
+    ],
+    [
+     1106.12,
+     1823.81
+    ]
+   ]
+  },
+  {
+   "osm": 478506989,
+   "nome": "Rua Governador Fernando Costa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1110.97,
+     1951.13
+    ],
+    [
+     1056.63,
+     1863.09
+    ],
+    [
+     1034.04,
+     1819.33
+    ],
+    [
+     1002.07,
+     1769.3
+    ]
+   ]
+  },
+  {
+   "osm": 478506990,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1110.97,
+     1951.13
+    ],
+    [
+     1006.41,
+     2014.09
+    ]
+   ]
+  },
+  {
+   "osm": 478510451,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1001.96,
+     2024.71
+    ],
+    [
+     1008.0,
+     2020.76
+    ]
+   ]
+  },
+  {
+   "osm": 478510452,
+   "nome": "Rua Antônio Guenaga",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1001.96,
+     2024.71
+    ],
+    [
+     1005.41,
+     2056.69
+    ]
+   ]
+  },
+  {
+   "osm": 478510453,
+   "nome": "Avenida General San Martin",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1002.36,
+     2012.13
+    ],
+    [
+     999.21,
+     1985.03
+    ],
+    [
+     999.94,
+     1945.22
+    ]
+   ]
+  },
+  {
+   "osm": 478510454,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     995.26,
+     2018.75
+    ],
+    [
+     970.65,
+     2023.98
+    ]
+   ]
+  },
+  {
+   "osm": 478510455,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1008.23,
+     2020.0
+    ],
+    [
+     1113.32,
+     1954.85
+    ]
+   ]
+  },
+  {
+   "osm": 478829435,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     781.45,
+     1746.97
+    ],
+    [
+     852.65,
+     1689.31
+    ]
+   ]
+  },
+  {
+   "osm": 478952059,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     931.07,
+     2095.69
+    ],
+    [
+     906.79,
+     2106.24
+    ],
+    [
+     883.78,
+     2111.69
+    ],
+    [
+     850.23,
+     2110.86
+    ],
+    [
+     824.09,
+     2106.61
+    ],
+    [
+     781.81,
+     2090.67
+    ],
+    [
+     739.37,
+     2059.83
+    ]
+   ]
+  },
+  {
+   "osm": 478952529,
+   "nome": "Praça Nossa Senhora do Carmo",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     973.39,
+     1939.74
+    ],
+    [
+     988.64,
+     1945.36
+    ]
+   ]
+  },
+  {
+   "osm": 481135854,
+   "nome": "Avenida Doutor Pedro Lessa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     972.04,
+     1586.38
+    ],
+    [
+     974.75,
+     1588.53
+    ]
+   ]
+  },
+  {
+   "osm": 483518653,
+   "nome": "Rua Jurubatuba",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     908.08,
+     1638.9
+    ],
+    [
+     909.42,
+     1640.51
+    ]
+   ]
+  },
+  {
+   "osm": 483518655,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     910.57,
+     1642.04
+    ],
+    [
+     974.75,
+     1588.53
+    ]
+   ]
+  },
+  {
+   "osm": 483518656,
+   "nome": "Praça Engenheiro José Rebouças",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     910.57,
+     1642.04
+    ],
+    [
+     963.05,
+     1714.44
+    ]
+   ]
+  },
+  {
+   "osm": 486253192,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     931.07,
+     2095.69
+    ],
+    [
+     932.07,
+     2098.56
+    ]
+   ]
+  },
+  {
+   "osm": 493361048,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     780.62,
+     1745.92
+    ],
+    [
+     779.33,
+     1744.32
+    ]
+   ]
+  },
+  {
+   "osm": 495047542,
+   "nome": "Rua Almirante Moraes Rêgo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1128.48,
+     1927.01
+    ],
+    [
+     1134.04,
+     1935.83
+    ]
+   ]
+  },
+  {
+   "osm": 496530734,
+   "nome": "Rua República dos Estados Unidos da Venezuela",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     942.66,
+     1840.69
+    ],
+    [
+     941.94,
+     1830.86
+    ],
+    [
+     938.16,
+     1828.17
+    ]
+   ]
+  },
+  {
+   "osm": 496968598,
+   "nome": "Praça Conselheiro Sinimbú",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1143.68,
+     1634.97
+    ],
+    [
+     1185.55,
+     1666.07
+    ]
+   ]
+  },
+  {
+   "osm": 498659305,
+   "nome": "Avenida Bartholomeu de Gusmão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     673.56,
+     1854.51
+    ],
+    [
+     675.92,
+     1877.84
+    ],
+    [
+     708.43,
+     2009.41
+    ]
+   ]
+  },
+  {
+   "osm": 500267229,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     959.09,
+     2033.53
+    ],
+    [
+     863.67,
+     2056.83
+    ],
+    [
+     808.3,
+     2035.69
+    ]
+   ]
+  },
+  {
+   "osm": 500759373,
+   "nome": "Rua Dona Amélia Leuchtemberg",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1155.5,
+     1834.98
+    ],
+    [
+     1129.16,
+     1805.42
+    ],
+    [
+     1013.79,
+     1689.86
+    ]
+   ]
+  },
+  {
+   "osm": 500759374,
+   "nome": "Avenida Governador Mário Covas Júnior",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1160.81,
+     1833.76
+    ],
+    [
+     1156.23,
+     1856.89
+    ]
+   ]
+  },
+  {
+   "osm": 502794639,
+   "nome": "Rua Bassin Nagib Trabulsi",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     743.69,
+     1826.06
+    ],
+    [
+     690.81,
+     1867.04
+    ]
+   ]
+  },
+  {
+   "osm": 502794640,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     743.69,
+     1826.06
+    ],
+    [
+     755.72,
+     1847.27
+    ]
+   ]
+  },
+  {
+   "osm": 502794641,
+   "nome": "Rua Roberto Sandall",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     755.72,
+     1847.27
+    ],
+    [
+     760.02,
+     1844.63
+    ]
+   ]
+  },
+  {
+   "osm": 502794642,
+   "nome": "Rua Enguaguaçú",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     803.55,
+     1888.68
+    ],
+    [
+     800.38,
+     1892.42
+    ]
+   ]
+  },
+  {
+   "osm": 502794643,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     790.39,
+     1878.93
+    ],
+    [
+     772.57,
+     1865.1
+    ]
+   ]
+  },
+  {
+   "osm": 502794644,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     800.38,
+     1892.42
+    ],
+    [
+     835.68,
+     1921.22
+    ]
+   ]
+  },
+  {
+   "osm": 502794645,
+   "nome": "Rua Enguaguaçú",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     800.38,
+     1892.42
+    ],
+    [
+     788.17,
+     1909.31
+    ]
+   ]
+  },
+  {
+   "osm": 502794646,
+   "nome": "Rua André Vidal de Negreiros",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     837.68,
+     1916.78
+    ],
+    [
+     944.29,
+     1744.51
+    ]
+   ]
+  },
+  {
+   "osm": 502794647,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     837.68,
+     1916.78
+    ],
+    [
+     803.55,
+     1888.68
+    ]
+   ]
+  },
+  {
+   "osm": 502794648,
+   "nome": "Rua André Vidal de Negreiros",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     837.68,
+     1916.78
+    ],
+    [
+     835.68,
+     1921.22
+    ]
+   ]
+  },
+  {
+   "osm": 502794649,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     835.68,
+     1921.22
+    ],
+    [
+     871.63,
+     1949.5
+    ]
+   ]
+  },
+  {
+   "osm": 502794774,
+   "nome": "Rua República do Peru",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     882.43,
+     2027.83
+    ],
+    [
+     852.19,
+     2020.45
+    ],
+    [
+     832.99,
+     2019.69
+    ],
+    [
+     823.43,
+     2024.64
+    ],
+    [
+     812.89,
+     2037.42
+    ]
+   ]
+  },
+  {
+   "osm": 502794775,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     929.03,
+     1996.91
+    ],
+    [
+     963.59,
+     2025.97
+    ]
+   ]
+  },
+  {
+   "osm": 502794776,
+   "nome": "Rua República do Peru",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     932.84,
+     1994.12
+    ],
+    [
+     929.03,
+     1996.91
+    ]
+   ]
+  },
+  {
+   "osm": 502794777,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     932.84,
+     1994.12
+    ],
+    [
+     882.64,
+     1951.71
+    ]
+   ]
+  },
+  {
+   "osm": 502794778,
+   "nome": "Rua Tiago Tacão",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     899.86,
+     1973.75
+    ],
+    [
+     871.93,
+     2056.29
+    ]
+   ]
+  },
+  {
+   "osm": 502794779,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     899.86,
+     1973.75
+    ],
+    [
+     929.03,
+     1996.91
+    ]
+   ]
+  },
+  {
+   "osm": 502795034,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     672.77,
+     1836.13
+    ],
+    [
+     724.66,
+     1793.99
+    ]
+   ]
+  },
+  {
+   "osm": 502795308,
+   "nome": "Avenida Professor Aristóteles Menezes",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     982.95,
+     1676.96
+    ],
+    [
+     980.81,
+     1642.1
+    ]
+   ]
+  },
+  {
+   "osm": 502795309,
+   "nome": "Rua Enguaguaçú",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     978.19,
+     1677.08
+    ],
+    [
+     966.59,
+     1677.33
+    ],
+    [
+     949.28,
+     1695.1
+    ],
+    [
+     803.55,
+     1888.68
+    ]
+   ]
+  },
+  {
+   "osm": 502795310,
+   "nome": "Avenida Professor Aristóteles Menezes",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     978.19,
+     1677.08
+    ],
+    [
+     979.62,
+     1703.88
+    ],
+    [
+     977.82,
+     1713.35
+    ]
+   ]
+  },
+  {
+   "osm": 502795311,
+   "nome": "Praça Winston Churchill",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     980.81,
+     1642.1
+    ],
+    [
+     997.51,
+     1638.67
+    ],
+    [
+     1007.16,
+     1634.06
+    ],
+    [
+     1020.15,
+     1617.67
+    ]
+   ]
+  },
+  {
+   "osm": 502795312,
+   "nome": "Avenida Professor Aristóteles Menezes",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     980.81,
+     1642.1
+    ],
+    [
+     979.22,
+     1607.61
+    ],
+    [
+     981.8,
+     1602.29
+    ],
+    [
+     988.91,
+     1598.68
+    ]
+   ]
+  },
+  {
+   "osm": 503282036,
+   "nome": "Praça Engenheiro José Rebouças",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     990.3,
+     1716.08
+    ],
+    [
+     991.88,
+     1743.33
+    ]
+   ]
+  },
+  {
+   "osm": 503282037,
+   "nome": "Praça Engenheiro José Rebouças",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     974.97,
+     1713.52
+    ],
+    [
+     975.41,
+     1722.8
+    ]
+   ]
+  },
+  {
+   "osm": 503282038,
+   "nome": "Praça Engenheiro José Rebouças",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     990.3,
+     1716.08
+    ],
+    [
+     975.17,
+     1716.37
+    ]
+   ]
+  },
+  {
+   "osm": 503282039,
+   "nome": "Praça Engenheiro José Rebouças",
+   "tipo": "living_street",
+   "largura": 6.0,
+   "pontos": [
+    [
+     990.13,
+     1712.84
+    ],
+    [
+     990.3,
+     1716.08
+    ]
+   ]
+  },
+  {
+   "osm": 503286322,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     852.65,
+     1689.31
+    ],
+    [
+     910.57,
+     1642.04
+    ]
+   ]
+  },
+  {
+   "osm": 505903152,
+   "nome": "Rua André Rebouças",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1021.8,
+     1736.67
+    ],
+    [
+     1043.18,
+     1719.34
+    ],
+    [
+     1067.0,
+     1694.78
+    ]
+   ]
+  },
+  {
+   "osm": 505903153,
+   "nome": "Rua Vereador Henrique Soler",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     1021.8,
+     1736.67
+    ],
+    [
+     1013.49,
+     1727.72
+    ]
+   ]
+  },
+  {
+   "osm": 505903154,
+   "nome": "Rua André Vidal de Negreiros",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     944.29,
+     1744.51
+    ],
+    [
+     947.59,
+     1741.8
+    ]
+   ]
+  },
+  {
+   "osm": 505903156,
+   "nome": "Rua Doutor Ciro de Athaíde Carneiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     939.01,
+     1735.35
+    ],
+    [
+     945.97,
+     1740.28
+    ]
+   ]
+  },
+  {
+   "osm": 505903157,
+   "nome": "Rua Doutor Ciro de Athaíde Carneiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     946.83,
+     1738.53
+    ],
+    [
+     939.01,
+     1735.35
+    ]
+   ]
+  },
+  {
+   "osm": 505903158,
+   "nome": "Rua André Vidal de Negreiros",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     947.59,
+     1741.8
+    ],
+    [
+     946.83,
+     1738.53
+    ]
+   ]
+  },
+  {
+   "osm": 505903159,
+   "nome": "Rua Doutor Ciro de Athaíde Carneiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     947.59,
+     1741.8
+    ],
+    [
+     949.31,
+     1743.97
+    ]
+   ]
+  },
+  {
+   "osm": 505903160,
+   "nome": "Rua André Vidal de Negreiros",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     945.97,
+     1740.28
+    ],
+    [
+     944.29,
+     1744.51
+    ]
+   ]
+  },
+  {
+   "osm": 505903161,
+   "nome": "Rua Doutor Ciro de Athaíde Carneiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     945.97,
+     1740.28
+    ],
+    [
+     947.59,
+     1741.8
+    ]
+   ]
+  },
+  {
+   "osm": 665786617,
+   "nome": "Rua Professor Carlos Escobar",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1171.82,
+     1783.42
+    ],
+    [
+     1100.53,
+     1722.78
+    ]
+   ]
+  },
+  {
+   "osm": 692516453,
+   "nome": "Rua República do Peru",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     929.03,
+     1996.91
+    ],
+    [
+     900.78,
+     2017.35
+    ],
+    [
+     884.75,
+     2022.08
+    ]
+   ]
+  },
+  {
+   "osm": 731222280,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     797.17,
+     2028.32
+    ],
+    [
+     789.86,
+     2027.78
+    ]
+   ]
+  },
+  {
+   "osm": 731222281,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     798.28,
+     2031.38
+    ],
+    [
+     808.3,
+     2035.69
+    ]
+   ]
+  },
+  {
+   "osm": 751069191,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1166.07,
+     1965.77
+    ],
+    [
+     1164.69,
+     1964.16
+    ]
+   ]
+  },
+  {
+   "osm": 751307938,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1156.38,
+     1967.38
+    ],
+    [
+     1163.19,
+     1968.9
+    ]
+   ]
+  },
+  {
+   "osm": 751307940,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1163.13,
+     1961.66
+    ],
+    [
+     1159.38,
+     1957.76
+    ]
+   ]
+  },
+  {
+   "osm": 751307943,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1166.76,
+     1920.66
+    ],
+    [
+     1180.96,
+     1902.05
+    ],
+    [
+     1196.4,
+     1867.02
+    ],
+    [
+     1194.31,
+     1858.44
+    ],
+    [
+     1185.54,
+     1851.9
+    ],
+    [
+     1177.49,
+     1849.49
+    ]
+   ]
+  },
+  {
+   "osm": 751307944,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     990.13,
+     2068.25
+    ],
+    [
+     1156.38,
+     1967.38
+    ]
+   ]
+  },
+  {
+   "osm": 752124233,
+   "nome": "Acesso Terminal Pesqueiro Público de Santos",
+   "tipo": "unclassified",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1187.71,
+     1889.08
+    ],
+    [
+     1189.93,
+     1890.23
+    ]
+   ]
+  },
+  {
+   "osm": 752743106,
+   "nome": "",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1170.16,
+     1916.39
+    ],
+    [
+     1173.67,
+     1917.87
+    ]
+   ]
+  },
+  {
+   "osm": 837795358,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     800.52,
+     2028.48
+    ],
+    [
+     799.03,
+     2020.36
+    ]
+   ]
+  },
+  {
+   "osm": 838026148,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     871.63,
+     1949.5
+    ],
+    [
+     875.47,
+     1953.44
+    ]
+   ]
+  },
+  {
+   "osm": 845702265,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1013.49,
+     1727.72
+    ],
+    [
+     1002.45,
+     1713.52
+    ],
+    [
+     987.2,
+     1712.94
+    ]
+   ]
+  },
+  {
+   "osm": 845937407,
+   "nome": "Rua República do Equador",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     988.1,
+     1862.69
+    ],
+    [
+     991.8,
+     1862.48
+    ]
+   ]
+  },
+  {
+   "osm": 847038497,
+   "nome": "Rua Coronel Pedro Arbues",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     772.57,
+     1865.1
+    ],
+    [
+     797.25,
+     1830.63
+    ]
+   ]
+  },
+  {
+   "osm": 864149238,
+   "nome": "Rua Caramurú",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1033.57,
+     1598.05
+    ],
+    [
+     1054.06,
+     1568.73
+    ]
+   ]
+  },
+  {
+   "osm": 868992661,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1015.98,
+     1938.59
+    ],
+    [
+     1015.88,
+     1936.0
+    ]
+   ]
+  },
+  {
+   "osm": 870245884,
+   "nome": "Rua Maestro Heitor Vila Lobos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1038.84,
+     1860.81
+    ],
+    [
+     1040.73,
+     1898.38
+    ]
+   ]
+  },
+  {
+   "osm": 870245885,
+   "nome": "Rua Maestro Heitor Vila Lobos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1042.41,
+     1939.6
+    ],
+    [
+     1041.56,
+     1952.3
+    ],
+    [
+     1034.43,
+     1966.9
+    ]
+   ]
+  },
+  {
+   "osm": 870245886,
+   "nome": "Rua Maestro Heitor Vila Lobos",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1040.73,
+     1898.38
+    ],
+    [
+     1042.41,
+     1939.6
+    ]
+   ]
+  },
+  {
+   "osm": 870245887,
+   "nome": "Rua Vitorino Carmilo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1168.14,
+     1758.09
+    ],
+    [
+     1175.67,
+     1763.52
+    ]
+   ]
+  },
+  {
+   "osm": 872767430,
+   "nome": "Rua Venâncio José Lisboa",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1010.98,
+     1784.33
+    ],
+    [
+     1046.48,
+     1769.86
+    ]
+   ]
+  },
+  {
+   "osm": 872956744,
+   "nome": "Rua República do Equador",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     1179.38,
+     1743.34
+    ],
+    [
+     1145.11,
+     1788.56
+    ]
+   ]
+  },
+  {
+   "osm": 954767953,
+   "nome": "Avenida Governador Mário Covas Júnior",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1181.12,
+     1735.41
+    ],
+    [
+     1180.11,
+     1739.91
+    ]
+   ]
+  },
+  {
+   "osm": 954767954,
+   "nome": "Avenida Doutor Pedro Lessa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1183.21,
+     1738.68
+    ],
+    [
+     1181.12,
+     1735.41
+    ]
+   ]
+  },
+  {
+   "osm": 956980291,
+   "nome": "Rua Moema",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1045.01,
+     1676.5
+    ],
+    [
+     1063.06,
+     1652.35
+    ]
+   ]
+  },
+  {
+   "osm": 957700445,
+   "nome": "Avenida Bartholomeu de Gusmão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     668.06,
+     1837.85
+    ],
+    [
+     670.76,
+     1844.53
+    ]
+   ]
+  },
+  {
+   "osm": 957941370,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     726.52,
+     1792.48
+    ],
+    [
+     729.11,
+     1790.38
+    ]
+   ]
+  },
+  {
+   "osm": 957941371,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     729.11,
+     1790.38
+    ],
+    [
+     731.12,
+     1788.74
+    ]
+   ]
+  },
+  {
+   "osm": 957945954,
+   "nome": "Avenida Senador César Lacerda Vergueiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1015.98,
+     1938.59
+    ],
+    [
+     1042.41,
+     1939.6
+    ]
+   ]
+  },
+  {
+   "osm": 957945955,
+   "nome": "Avenida Senador César Lacerda Vergueiro",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1042.34,
+     1932.57
+    ],
+    [
+     1015.88,
+     1936.0
+    ]
+   ]
+  },
+  {
+   "osm": 957950538,
+   "nome": "Praça Franklin Delano Roosevelt",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     919.33,
+     2027.46
+    ],
+    [
+     923.02,
+     2003.07
+    ]
+   ]
+  },
+  {
+   "osm": 967996787,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     932.07,
+     2098.56
+    ],
+    [
+     990.13,
+     2068.25
+    ]
+   ]
+  },
+  {
+   "osm": 967996788,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1071.33,
+     2017.19
+    ],
+    [
+     1005.41,
+     2056.69
+    ],
+    [
+     931.07,
+     2095.69
+    ]
+   ]
+  },
+  {
+   "osm": 974631206,
+   "nome": "Avenida Governador Mário Covas Júnior",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1185.55,
+     1666.07
+    ],
+    [
+     1186.05,
+     1707.58
+    ],
+    [
+     1181.12,
+     1735.41
+    ]
+   ]
+  },
+  {
+   "osm": 974631207,
+   "nome": "Avenida Affonso Penna",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1042.07,
+     1560.83
+    ],
+    [
+     1140.96,
+     1633.03
+    ]
+   ]
+  },
+  {
+   "osm": 974631208,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     977.61,
+     1586.22
+    ],
+    [
+     1016.27,
+     1555.11
+    ]
+   ]
+  },
+  {
+   "osm": 974631209,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     974.75,
+     1588.53
+    ],
+    [
+     977.61,
+     1586.22
+    ]
+   ]
+  },
+  {
+   "osm": 974631210,
+   "nome": "Avenida Doutor Pedro Lessa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     977.61,
+     1586.22
+    ],
+    [
+     974.72,
+     1584.22
+    ]
+   ]
+  },
+  {
+   "osm": 974631211,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1148.57,
+     1933.71
+    ],
+    [
+     1151.59,
+     1931.44
+    ]
+   ]
+  },
+  {
+   "osm": 974631212,
+   "nome": "Entrada do Terminal de Balsas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1163.78,
+     1960.06
+    ],
+    [
+     1164.5,
+     1957.91
+    ]
+   ]
+  },
+  {
+   "osm": 979561313,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1016.54,
+     1741.26
+    ],
+    [
+     1013.49,
+     1727.72
+    ]
+   ]
+  },
+  {
+   "osm": 979561317,
+   "nome": "Avenida Doutor Pedro Lessa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1020.15,
+     1617.67
+    ],
+    [
+     977.61,
+     1586.22
+    ]
+   ]
+  },
+  {
+   "osm": 979561318,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     987.2,
+     1712.94
+    ],
+    [
+     977.82,
+     1713.35
+    ]
+   ]
+  },
+  {
+   "osm": 979561321,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1113.32,
+     1954.85
+    ],
+    [
+     1144.43,
+     1936.56
+    ]
+   ]
+  },
+  {
+   "osm": 979561322,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1002.07,
+     1769.3
+    ],
+    [
+     1014.49,
+     1753.6
+    ],
+    [
+     1016.54,
+     1741.26
+    ]
+   ]
+  },
+  {
+   "osm": 979561323,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     977.82,
+     1713.35
+    ],
+    [
+     963.05,
+     1714.44
+    ]
+   ]
+  },
+  {
+   "osm": 979561324,
+   "nome": "Avenida Doutor Pedro Lessa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     974.75,
+     1588.53
+    ],
+    [
+     978.73,
+     1592.02
+    ]
+   ]
+  },
+  {
+   "osm": 981570400,
+   "nome": "Avenida Doutor Pedro Lessa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1108.9,
+     1682.78
+    ],
+    [
+     1020.15,
+     1617.67
+    ]
+   ]
+  },
+  {
+   "osm": 1023430457,
+   "nome": "Rua Dona Amélia Leuchtemberg",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1013.79,
+     1689.86
+    ],
+    [
+     992.46,
+     1675.57
+    ]
+   ]
+  },
+  {
+   "osm": 1031714687,
+   "nome": "Rua Professor Carlos Escobar",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     992.46,
+     1675.57
+    ],
+    [
+     982.95,
+     1676.96
+    ]
+   ]
+  },
+  {
+   "osm": 1259056426,
+   "nome": "Rua Doutor Egydio Martins",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1099.5,
+     1882.36
+    ],
+    [
+     1117.21,
+     1867.6
+    ]
+   ]
+  },
+  {
+   "osm": 1285188817,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     880.1,
+     1866.19
+    ],
+    [
+     890.46,
+     1850.26
+    ]
+   ]
+  },
+  {
+   "osm": 1285188819,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     895.04,
+     1868.83
+    ],
+    [
+     903.9,
+     1857.36
+    ]
+   ]
+  },
+  {
+   "osm": 1285188820,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     878.44,
+     1891.09
+    ],
+    [
+     888.69,
+     1877.0
+    ]
+   ]
+  },
+  {
+   "osm": 1285188821,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     890.46,
+     1850.26
+    ],
+    [
+     903.29,
+     1834.68
+    ],
+    [
+     913.48,
+     1843.35
+    ],
+    [
+     904.43,
+     1857.54
+    ]
+   ]
+  },
+  {
+   "osm": 1285188822,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     845.44,
+     1922.71
+    ],
+    [
+     897.99,
+     1854.19
+    ]
+   ]
+  },
+  {
+   "osm": 1285188823,
+   "nome": "",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     852.08,
+     1928.32
+    ],
+    [
+     866.36,
+     1909.71
+    ]
+   ]
+  },
+  {
+   "osm": 1289020931,
+   "nome": "Faixa de Pedestres",
+   "tipo": "footway",
+   "largura": 2.0,
+   "pontos": [
+    [
+     783.54,
+     1946.69
+    ],
+    [
+     785.7,
+     1946.28
+    ]
+   ]
+  },
+  {
+   "osm": 1303394658,
+   "nome": "Saída do Terminal de Balsas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1161.52,
+     1952.85
+    ],
+    [
+     1159.38,
+     1957.76
+    ]
+   ]
+  },
+  {
+   "osm": 1303394659,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1159.38,
+     1957.76
+    ],
+    [
+     1157.01,
+     1961.65
+    ]
+   ]
+  },
+  {
+   "osm": 1351408022,
+   "nome": "Avenida Dino Bueno",
+   "tipo": "tertiary",
+   "largura": 8.0,
+   "pontos": [
+    [
+     880.19,
+     1940.42
+    ],
+    [
+     971.57,
+     1770.69
+    ]
+   ]
+  },
+  {
+   "osm": 1390954440,
+   "nome": "Rua Capitão João Salermo",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     919.33,
+     2027.46
+    ],
+    [
+     922.02,
+     2043.64
+    ]
+   ]
+  },
+  {
+   "osm": 1423676218,
+   "nome": "Avenida Doutor Epitácio Pessoa",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     773.03,
+     1871.77
+    ],
+    [
+     799.03,
+     2020.36
+    ]
+   ]
+  },
+  {
+   "osm": 1423676219,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     773.03,
+     1871.77
+    ],
+    [
+     800.38,
+     1892.42
+    ]
+   ]
+  },
+  {
+   "osm": 1463459143,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     799.59,
+     2031.28
+    ],
+    [
+     800.52,
+     2028.48
+    ],
+    [
+     797.98,
+     2027.69
+    ]
+   ]
+  },
+  {
+   "osm": 1499132797,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1157.01,
+     1961.65
+    ],
+    [
+     1071.33,
+     2017.19
+    ]
+   ]
+  },
+  {
+   "osm": 1499155607,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     797.98,
+     2027.69
+    ],
+    [
+     798.28,
+     2031.38
+    ]
+   ]
+  },
+  {
+   "osm": 1499155609,
+   "nome": "Praça Amigos da Marinha",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     969.93,
+     2030.66
+    ],
+    [
+     970.65,
+     2023.98
+    ],
+    [
+     966.0,
+     2023.33
+    ]
+   ]
+  },
+  {
+   "osm": 1499155611,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1005.27,
+     2013.16
+    ],
+    [
+     1000.74,
+     2012.14
+    ],
+    [
+     996.14,
+     2014.83
+    ],
+    [
+     997.6,
+     2023.83
+    ]
+   ]
+  },
+  {
+   "osm": 1499155612,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     997.6,
+     2023.83
+    ],
+    [
+     1001.96,
+     2024.71
+    ]
+   ]
+  },
+  {
+   "osm": 1499155613,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1008.23,
+     2020.0
+    ],
+    [
+     1006.41,
+     2014.09
+    ]
+   ]
+  },
+  {
+   "osm": 1501512330,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     713.51,
+     2025.62
+    ],
+    [
+     731.92,
+     2055.33
+    ]
+   ]
+  },
+  {
+   "osm": 1501512345,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1146.58,
+     1934.94
+    ],
+    [
+     1148.57,
+     1933.71
+    ]
+   ]
+  },
+  {
+   "osm": 1503167315,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1164.69,
+     1964.16
+    ],
+    [
+     1163.13,
+     1961.66
+    ]
+   ]
+  },
+  {
+   "osm": 1506005506,
+   "nome": "Rua Inglaterra",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     772.57,
+     1865.1
+    ],
+    [
+     767.25,
+     1867.04
+    ]
+   ]
+  },
+  {
+   "osm": 1506005507,
+   "nome": "Avenida dos Bancários",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     803.55,
+     1888.68
+    ],
+    [
+     790.39,
+     1878.93
+    ]
+   ]
+  },
+  {
+   "osm": 1514770564,
+   "nome": "Avenida Bartholomeu de Gusmão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     682.92,
+     1851.81
+    ],
+    [
+     672.77,
+     1836.13
+    ]
+   ]
+  },
+  {
+   "osm": 1514770565,
+   "nome": "Avenida Bartholomeu de Gusmão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     670.76,
+     1844.53
+    ],
+    [
+     673.56,
+     1854.51
+    ]
+   ]
+  },
+  {
+   "osm": 1514770566,
+   "nome": "Avenida Bartholomeu de Gusmão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     708.43,
+     2009.41
+    ],
+    [
+     713.51,
+     2025.62
+    ]
+   ]
+  },
+  {
+   "osm": 1515571819,
+   "nome": "Rua Professor Afonso Celso de Paula Lima",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     733.46,
+     2053.85
+    ],
+    [
+     731.92,
+     2055.33
+    ]
+   ]
+  },
+  {
+   "osm": 1515571820,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     733.46,
+     2053.85
+    ],
+    [
+     723.04,
+     2034.39
+    ],
+    [
+     720.43,
+     2022.15
+    ]
+   ]
+  },
+  {
+   "osm": 1515571821,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     731.92,
+     2055.33
+    ],
+    [
+     734.88,
+     2058.51
+    ]
+   ]
+  },
+  {
+   "osm": 1515571822,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     739.37,
+     2059.83
+    ],
+    [
+     733.46,
+     2053.85
+    ]
+   ]
+  },
+  {
+   "osm": 1515580049,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     724.66,
+     1793.99
+    ],
+    [
+     726.52,
+     1792.48
+    ]
+   ]
+  },
+  {
+   "osm": 1515580056,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     731.12,
+     1788.74
+    ],
+    [
+     781.45,
+     1746.97
+    ]
+   ]
+  },
+  {
+   "osm": 1517223376,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1164.77,
+     1922.32
+    ],
+    [
+     1166.76,
+     1920.66
+    ]
+   ]
+  },
+  {
+   "osm": 1518438217,
+   "nome": "Avenida Rei Pelé",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1156.38,
+     1967.38
+    ],
+    [
+     1163.13,
+     1961.66
+    ]
+   ]
+  },
+  {
+   "osm": 1518438218,
+   "nome": "Saída do Terminal de Balsas",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1181.04,
+     1926.21
+    ],
+    [
+     1173.67,
+     1917.87
+    ],
+    [
+     1174.84,
+     1911.25
+    ]
+   ]
+  },
+  {
+   "osm": 1518438219,
+   "nome": "Avenida Rei Alberto I",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1151.59,
+     1931.44
+    ],
+    [
+     1163.33,
+     1923.32
+    ]
+   ]
+  },
+  {
+   "osm": 1519981326,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1016.27,
+     1555.11
+    ],
+    [
+     1025.39,
+     1550.11
+    ]
+   ]
+  },
+  {
+   "osm": 1519981327,
+   "nome": "Avenida Governador Mário Covas Júnior",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1156.23,
+     1856.89
+    ],
+    [
+     1148.13,
+     1897.18
+    ]
+   ]
+  },
+  {
+   "osm": 1532318309,
+   "nome": "Avenida Governador Mário Covas Júnior",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     1185.5,
+     1662.82
+    ],
+    [
+     1185.55,
+     1666.07
+    ]
+   ]
+  },
+  {
+   "osm": 1533319769,
+   "nome": "Avenida Bartholomeu de Gusmão",
+   "tipo": "primary",
+   "largura": 10.0,
+   "pontos": [
+    [
+     672.77,
+     1836.13
+    ],
+    [
+     670.66,
+     1833.65
+    ]
+   ]
+  },
+  {
+   "osm": 1534708917,
+   "nome": "Avenida Coronel Joaquim Montenegro",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1025.39,
+     1550.11
+    ],
+    [
+     1030.78,
+     1545.44
+    ]
+   ]
+  },
+  {
+   "osm": 1534708918,
+   "nome": "Avenida Affonso Penna",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1025.39,
+     1550.11
+    ],
+    [
+     1042.07,
+     1560.83
+    ]
+   ]
+  },
+  {
+   "osm": 1534708919,
+   "nome": "Avenida Affonso Penna",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1020.06,
+     1548.17
+    ],
+    [
+     1025.39,
+     1550.11
+    ]
+   ]
+  },
+  {
+   "osm": 1540947946,
+   "nome": "Rua Cipriano Barata",
+   "tipo": "residential",
+   "largura": 7.0,
+   "pontos": [
+    [
+     1142.42,
+     1636.65
+    ],
+    [
+     1143.68,
+     1634.97
+    ]
+   ]
+  },
+  {
+   "osm": 1540947947,
+   "nome": "Avenida Affonso Penna",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     1140.96,
+     1633.03
+    ],
+    [
+     1143.68,
+     1634.97
+    ]
+   ]
+  },
+  {
+   "osm": 1549732984,
+   "nome": "Praça Amigos da Marinha",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     966.0,
+     2023.33
+    ],
+    [
+     963.59,
+     2025.97
+    ]
+   ]
+  },
+  {
+   "osm": 1549732985,
+   "nome": "Praça Coração de Maria",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     880.19,
+     1940.42
+    ],
+    [
+     874.47,
+     1942.64
+    ],
+    [
+     871.63,
+     1949.5
+    ]
+   ]
+  },
+  {
+   "osm": 1549732986,
+   "nome": "Praça Coração de Maria",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     875.47,
+     1953.44
+    ],
+    [
+     877.93,
+     1953.92
+    ]
+   ]
+  },
+  {
+   "osm": 1549732987,
+   "nome": "",
+   "tipo": "secondary",
+   "largura": 9.0,
+   "pontos": [
+    [
+     968.52,
+     1769.31
+    ],
+    [
+     988.41,
+     1772.93
+    ],
+    [
+     1002.07,
+     1769.3
+    ]
+   ]
+  }
+ ],
+ "canais": [
+  {
+   "osm": 48848050,
+   "nome": "Canal 7",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     990.05,
+     1860.56
+    ],
+    [
+     990.3,
+     1865.98
+    ]
+   ]
+  },
+  {
+   "osm": 48848117,
+   "nome": "Canal 7",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     993.29,
+     1926.09
+    ],
+    [
+     994.75,
+     1949.57
+    ]
+   ]
+  },
+  {
+   "osm": 48848118,
+   "nome": "Canal 7",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     994.75,
+     1949.57
+    ],
+    [
+     998.0,
+     2009.92
+    ],
+    [
+     1000.3,
+     2014.8
+    ]
+   ]
+  },
+  {
+   "osm": 48848119,
+   "nome": "Canal 7",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     1000.3,
+     2014.8
+    ],
+    [
+     1005.53,
+     2026.23
+    ]
+   ]
+  },
+  {
+   "osm": 48848120,
+   "nome": "Canal 7",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     1005.53,
+     2026.23
+    ],
+    [
+     1008.19,
+     2051.29
+    ]
+   ]
+  },
+  {
+   "osm": 196170235,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     673.16,
+     1831.59
+    ],
+    [
+     661.98,
+     1840.77
+    ]
+   ]
+  },
+  {
+   "osm": 196170236,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     976.42,
+     1582.86
+    ],
+    [
+     968.74,
+     1589.03
+    ]
+   ]
+  },
+  {
+   "osm": 196170239,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     1016.75,
+     1550.64
+    ],
+    [
+     976.42,
+     1582.86
+    ]
+   ]
+  },
+  {
+   "osm": 196170411,
+   "nome": "Canal 7",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     1008.19,
+     2051.29
+    ],
+    [
+     1009.3,
+     2062.62
+    ]
+   ]
+  },
+  {
+   "osm": 312564084,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     654.26,
+     1847.14
+    ],
+    [
+     615.07,
+     1880.13
+    ]
+   ]
+  },
+  {
+   "osm": 368068236,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     719.99,
+     1793.11
+    ],
+    [
+     673.16,
+     1831.59
+    ]
+   ]
+  },
+  {
+   "osm": 368068237,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     728.79,
+     1785.61
+    ],
+    [
+     719.99,
+     1793.11
+    ]
+   ]
+  },
+  {
+   "osm": 482948650,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     1023.98,
+     1545.23
+    ],
+    [
+     1016.75,
+     1550.64
+    ]
+   ]
+  },
+  {
+   "osm": 483518658,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     909.39,
+     1637.87
+    ],
+    [
+     904.97,
+     1641.33
+    ]
+   ]
+  },
+  {
+   "osm": 493282049,
+   "nome": "Canal 7",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     990.3,
+     1865.98
+    ],
+    [
+     993.29,
+     1926.09
+    ]
+   ]
+  },
+  {
+   "osm": 493282050,
+   "nome": "Canal 7",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     985.89,
+     1774.89
+    ],
+    [
+     990.05,
+     1860.56
+    ]
+   ]
+  },
+  {
+   "osm": 493282305,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     775.6,
+     1747.37
+    ],
+    [
+     728.79,
+     1785.61
+    ]
+   ]
+  },
+  {
+   "osm": 1534708924,
+   "nome": "Canal 6",
+   "tipo": "canal",
+   "largura": 4.0,
+   "pontos": [
+    [
+     661.98,
+     1840.77
+    ],
+    [
+     655.68,
+     1845.94
+    ]
+   ]
+  }
+ ],
+ "marcos": [
+  {
+   "osm": "node/13695835200",
+   "nome": "Iemanjá",
+   "tipo": "historic=monument",
+   "posicao": [
+    685.08,
+    1888.74
+   ]
+  },
+  {
+   "osm": "node/13733492357",
+   "nome": "Cruzeiro do Aquário",
+   "tipo": "historic=wayside_cross",
+   "posicao": [
+    692.05,
+    1896.33
+   ]
+  },
+  {
+   "osm": "node/13733492358",
+   "nome": "Amo Santos",
+   "tipo": "historic=monument",
+   "posicao": [
+    708.58,
+    2025.9
+   ]
+  },
+  {
+   "osm": "node/13740304275",
+   "nome": "Canhão do antigo Forte Augusto",
+   "tipo": "historic=monument",
+   "posicao": [
+    759.15,
+    2067.73
+   ]
+  },
+  {
+   "osm": "node/13785644880",
+   "nome": "Padre Anchieta",
+   "tipo": "historic=monument",
+   "posicao": [
+    711.53,
+    2004.83
+   ]
+  },
+  {
+   "osm": "node/2062408750",
+   "nome": "Igreja do Carmo",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    1028.23,
+    1904.02
+   ]
+  },
+  {
+   "osm": "node/2062561595",
+   "nome": "O Pescador",
+   "tipo": "historic=monument",
+   "posicao": [
+    707.09,
+    1968.81
+   ]
+  },
+  {
+   "osm": "node/4695761855",
+   "nome": "José de San Martin",
+   "tipo": "historic=monument",
+   "posicao": [
+    994.73,
+    1934.21
+   ]
+  },
+  {
+   "osm": "node/4704038566",
+   "nome": "Passeio de Escuna",
+   "tipo": "tourism=attraction",
+   "posicao": [
+    886.4,
+    2121.45
+   ]
+  },
+  {
+   "osm": "node/4714062643",
+   "nome": "Marco da Ponta da Praia",
+   "tipo": "historic=monument",
+   "posicao": [
+    722.46,
+    2066.81
+   ]
+  },
+  {
+   "osm": "node/4725937948",
+   "nome": "Museu do Mar",
+   "tipo": "tourism=museum",
+   "posicao": [
+    1072.73,
+    1847.46
+   ]
+  },
+  {
+   "osm": "node/4725941858",
+   "nome": "Museu Marítimo",
+   "tipo": "tourism=museum",
+   "posicao": [
+    1060.83,
+    1863.32
+   ]
+  },
+  {
+   "osm": "node/4934718719",
+   "nome": "",
+   "tipo": "historic=memorial",
+   "posicao": [
+    966.85,
+    2026.96
+   ]
+  },
+  {
+   "osm": "way/1446484365",
+   "nome": "Congregação Cristã no Brasil",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    1120.44,
+    1704.32
+   ]
+  },
+  {
+   "osm": "way/199125660",
+   "nome": "Museu de Pesca",
+   "tipo": "tourism=museum",
+   "posicao": [
+    767.99,
+    2069.95
+   ]
+  },
+  {
+   "osm": "way/234370453",
+   "nome": "Nossa Senhora dos Navegantes",
+   "tipo": "amenity=place_of_worship",
+   "posicao": [
+    997.18,
+    2050.93
+   ]
+  },
+  {
+   "osm": "way/316418211",
+   "nome": "Deck do Pescador",
+   "tipo": "tourism=attraction",
+   "posicao": [
+    747.55,
+    2082.42
+   ]
+  },
+  {
+   "osm": "way/316418212",
+   "nome": "Deck do Pescador",
+   "tipo": "tourism=attraction",
+   "posicao": [
+    744.69,
+    2087.67
+   ]
+  }
+ ],
+ "saidas": [
+  {
+   "rua": "Avenida Bartholomeu de Gusmão",
+   "osm": 1515571828,
+   "posicao": [
+    667.14,
+    1836.54
+   ],
+   "para": "aparecida"
+  },
+  {
+   "rua": "Avenida Bartholomeu de Gusmão",
+   "osm": 1533319769,
+   "posicao": [
+    670.66,
+    1833.65
+   ],
+   "para": "aparecida"
+  },
+  {
+   "rua": "Avenida Doutor Epitácio Pessoa",
+   "osm": 366164079,
+   "posicao": [
+    725.46,
+    1788.54
+   ],
+   "para": "aparecida"
+  },
+  {
+   "rua": "secondary",
+   "osm": 493361048,
+   "posicao": [
+    779.33,
+    1744.32
+   ],
+   "para": "aparecida"
+  },
+  {
+   "rua": "Rua Jurubatuba",
+   "osm": 483518653,
+   "posicao": [
+    908.08,
+    1638.9
+   ],
+   "para": "aparecida"
+  },
+  {
+   "rua": "Avenida Doutor Pedro Lessa",
+   "osm": 481135854,
+   "posicao": [
+    972.04,
+    1586.38
+   ],
+   "para": "aparecida"
+  },
+  {
+   "rua": "Avenida Doutor Pedro Lessa",
+   "osm": 974631210,
+   "posicao": [
+    974.72,
+    1584.22
+   ],
+   "para": "aparecida"
+  },
+  {
+   "rua": "Avenida Affonso Penna",
+   "osm": 1534708919,
+   "posicao": [
+    1020.06,
+    1548.17
+   ],
+   "para": "estuario"
+  },
+  {
+   "rua": "Avenida Coronel Joaquim Montenegro",
+   "osm": 1534708917,
+   "posicao": [
+    1030.78,
+    1545.44
+   ],
+   "para": "estuario"
+  },
+  {
+   "rua": "Rua Moema",
+   "osm": 127815441,
+   "posicao": [
+    1101.69,
+    1599.88
+   ],
+   "para": "estuario"
+  },
+  {
+   "rua": "Saída do Terminal de Balsas",
+   "osm": 751069187,
+   "posicao": [
+    1162.21,
+    1951.11
+   ],
+   "para": ""
+  },
+  {
+   "rua": "secondary",
+   "osm": 751307938,
+   "posicao": [
+    1163.19,
+    1968.9
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Governador Mário Covas Júnior",
+   "osm": 195669630,
+   "posicao": [
+    1163.8,
+    1845.55
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Entrada do Terminal de Balsas",
+   "osm": 311794201,
+   "posicao": [
+    1165.14,
+    1956.28
+   ],
+   "para": ""
+  },
+  {
+   "rua": "secondary",
+   "osm": 751069191,
+   "posicao": [
+    1166.07,
+    1965.77
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Saída do Terminal de Balsas",
+   "osm": 1518438218,
+   "posicao": [
+    1181.04,
+    1926.21
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Doutor Pedro Lessa",
+   "osm": 954767954,
+   "posicao": [
+    1183.21,
+    1738.68
+   ],
+   "para": ""
+  },
+  {
+   "rua": "Avenida Governador Mário Covas Júnior",
+   "osm": 1532318309,
+   "posicao": [
+    1185.5,
+    1662.82
+   ],
+   "para": "estuario"
+  },
+  {
+   "rua": "Acesso Terminal Pesqueiro Público de Santos",
+   "osm": 752124233,
+   "posicao": [
+    1189.93,
+    1890.23
+   ],
+   "para": ""
+  }
+ ]
+}

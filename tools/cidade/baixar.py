@@ -20,7 +20,7 @@ SERVIDORES = [
     "https://overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
 ]
-PEDACOS = 3
+PEDACOS = 5
 CABECALHO = {"User-Agent": "monster-contracts-importador/0.1"}
 
 

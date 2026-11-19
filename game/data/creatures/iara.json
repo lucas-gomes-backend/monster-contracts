@@ -1,0 +1,132 @@
+{
+  "id": "iara",
+  "nome": "Iara",
+  "nomes_alternativos": [
+    "uiara",
+    "mae d'agua",
+    "sereia"
+  ],
+  "origem": "brasil_tupi",
+  "bairros": [
+    "orla"
+  ],
+  "familia": [
+    "natureza",
+    "trapaceiro"
+  ],
+  "natureza": "hibrida",
+  "inteligencia": "astuta",
+  "disposicao": "hostil",
+  "perigo": 3,
+  "ciclo": {
+    "horario": "crepusculo",
+    "lua": "independe"
+  },
+  "gatilhos": [
+    "homem_que_ouviu_o_canto"
+  ],
+  "necessidade": {
+    "tipo": "levar_um_homem_para_o_fundo",
+    "frequencia": "semanal",
+    "escalada": "de encantar quem escuta a afogar quem entra na agua"
+  },
+  "caca": {
+    "vitimas": [
+      "homens_sozinhos_na_praia",
+      "pescadores"
+    ],
+    "metodo": "canta da beira da agua e puxa para o fundo",
+    "territorio_m": 1200
+  },
+  "covil": [
+    "praia"
+  ],
+  "disfarce": {
+    "tipo": "nenhum",
+    "sinais": [
+      "moca_cantando_nas_pedras"
+    ]
+  },
+  "observavel": {
+    "forma": "moça de cabelo comprido com cauda de peixe",
+    "tamanho": "medio",
+    "som": "um canto bonito vindo do mar",
+    "cheiro": "cheiro forte de maresia"
+  },
+  "marcas": [
+    {
+      "tag": "canto_vindo_do_mar",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "homem_que_voltou_aereo_da_praia",
+      "onde": "testemunha",
+      "freq": "comum",
+      "detectar": "entrevista",
+      "sobre": "evento"
+    },
+    {
+      "tag": "afogado_sem_sinal_de_luta",
+      "onde": "corpo",
+      "freq": "sempre",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "escamas_na_areia",
+      "onde": "cena",
+      "freq": "comum",
+      "detectar": "olho_nu"
+    },
+    {
+      "tag": "historia_da_moca_do_mar",
+      "onde": "registro",
+      "freq": "rara",
+      "detectar": "pesquisa",
+      "sobre": "historia"
+    }
+  ],
+  "fraquezas": [
+    {
+      "item": "cera_nos_ouvidos",
+      "efeito": [
+        "afasta"
+      ]
+    },
+    {
+      "item": "oferenda_de_flores",
+      "efeito": [
+        "apazigua"
+      ]
+    },
+    {
+      "item": "rede_benzida",
+      "efeito": [
+        "prende"
+      ]
+    }
+  ],
+  "tabus": [
+    "quem nao escuta o canto nao e levado",
+    "fora da agua perde a forca"
+  ],
+  "resolucoes": [
+    "apaziguar",
+    "prender"
+  ],
+  "condicao_transmitida": null,
+  "fontes": [
+    "docs/pesquisa/folclore-corte-vertical.md#11-iara"
+  ],
+  "invencoes_do_jogo": [
+    "cera nos ouvidos protege do canto (vem das sereias gregas)",
+    "flores jogadas no mar apaziguam",
+    "rede de pesca benzida prende",
+    "a Iara no mar de Santos (a lenda é de rio)"
+  ],
+  "a_confirmar": [
+    "se a sereia que canta é indígena ou europeia (Câmara Cascudo defende a origem europeia)"
+  ]
+}

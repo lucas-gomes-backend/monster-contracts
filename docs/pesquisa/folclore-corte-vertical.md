@@ -210,6 +210,47 @@ Cada criatura tem três blocos:
 - **Resoluções:** banir (queimar o contrato) ou negociar. **Transmite o pacto** (condição).
 - **Cuidado cultural:** no Brasil, a encruzilhada se mistura com tradições afro-brasileiras. O jogo usa **só o Diabo do pacto, da tradição cristã europeia e do sertão**, e **nunca** associa Exu, pombagira ou qualquer entidade de religião afro-brasileira a demônio.
 
+## 11. Iara
+
+### O que as fontes dizem
+
+- **Moça das águas** (do tupi, "senhora das águas") que **canta para atrair os homens** e os leva para o fundo do rio. Eles morrem afogados ou voltam enlouquecidos.
+- **Origem discutida:** Câmara Cascudo defende que a sereia que canta veio da Europa (as mouras encantadas portuguesas, as sereias gregas) e se misturou à Mãe-d'água indígena, que antes era uma serpente que devorava homens.
+
+### No jogo
+
+- **Entidade da natureza** que mora na **praia** (covil): só aparece nos bairros da orla. A lenda é de rio; trazê-la para o mar de Santos é **invenção do jogo**.
+- **Marcas:** canto vindo do mar, homem que voltou aéreo da praia, afogado sem sinal de luta, escamas na areia e a história antiga da moça do mar.
+- **Resoluções:** apaziguar (flores brancas no mar) ou prender (rede de pesca benzida). Cera nos ouvidos afasta: o canto não pega (invenção, vinda das sereias gregas).
+
+## 12. Afogado
+
+### O que as fontes dizem
+
+- Na crença de pescadores do Nordeste, o **afogado cujo corpo o mar não devolve vira alma penada** e vaga pelo mar, até ter paz numa procissão silenciosa dos afogados, na noite de Finados.
+- Os estudos de assombração ligam essas almas à **falta dos ritos fúnebres**, com Câmara Cascudo como referência central.
+- Não foi achada uma lenda de afogados própria de Santos. A praia da Aparecida tem o casco do veleiro **Kestrel**, encalhado há cerca de 130 anos: um marco real, não uma lenda.
+
+### No jogo
+
+- **Espírito ressentido** que mora na praia ou no canal e puxa quem anda sozinho na beira.
+- **Marcas:** pegadas molhadas saindo do mar, marcas de dedos no tornozelo, algas dentro de casa, vulto encharcado na areia, afogamento sem corpo achado e uma voz chamando do mar.
+- **Resolução:** apaziguar com o **enterro do afogado**, ritual na beira da água com vela e flores (invenção do jogo, a partir da procissão de Finados). Sal e água benta afastam.
+
+## 13. Kappa
+
+### O que as fontes dizem
+
+- **Yōkai dos rios do Japão**, do tamanho de uma criança, com casco e um **prato de água na cabeça**: a água é a sua força. Afoga gente e cavalos.
+- É **preso pela etiqueta**: quem faz uma reverência recebe outra de volta, a água do prato cai, e ele fica fraco até enchê-lo de novo. Numa história, preso assim, ele jura parar de afogar gente.
+- **Adora pepino.**
+
+### No jogo
+
+- **Besta trapaceira** que mora nos **canais** da orla (covil), trazida com a comunidade japonesa (invenção do jogo).
+- **Marcas:** pegadas com membrana entre os dedos, pepinos sumidos das bancas, cachorro puxado para o canal, poças de água num caminho seco e a lenda do bicho do canal.
+- **Resoluções:** prender com a **reverência** (ritual: oferecer o pepino e curvar-se) ou negociar a promessa de não afogar mais. O pepino distrai e acalma.
+
 ---
 
 ## Coincidências úteis para o design
@@ -255,3 +296,12 @@ Cada criatura tem três blocos:
 - [Boitatá — InfoEscola](https://www.infoescola.com/folclore/boitata/)
 - [Boitatá — Toda Matéria](https://www.todamateria.com.br/boitata/)
 - [Bode Preto — Portal São Francisco](https://www.portalsaofrancisco.com.br/bode-preto)
+- [Lenda da Iara — Toda Matéria](https://www.todamateria.com.br/lenda-da-iara/)
+- [Lenda da Iara analisada — Cultura Genial](https://www.culturagenial.com/lenda-da-iara-analisada)
+- [Iara — InfoEscola](https://www.infoescola.com/folclore/iara/)
+- [Yara (mythology) — Wikipedia (inglês)](https://en.wikipedia.org/wiki/Yara_(mythology))
+- [Assombrações e almas penadas — Revista Brasileira de História das Religiões (UEM)](https://periodicos.uem.br/ojs/index.php/RbhrAnpuh/article/download/58416/751375153556)
+- [O veleiro Kestrel na praia da Aparecida — São Paulo Secreto](https://saopaulosecreto.com/en/kestrel-sailboat-ghost-ship-santos-coast-sp/)
+- [Kappa — Tofugu](https://www.tofugu.com/japan/kappa/)
+- [Kappa — World History Encyclopedia](https://www.worldhistory.org/kappa/)
+- [Kappa (folklore) — Wikipedia (inglês)](https://en.wikipedia.org/wiki/Kappa_(folklore))

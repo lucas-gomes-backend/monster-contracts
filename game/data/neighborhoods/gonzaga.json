@@ -1,0 +1,91 @@
+{
+  "$comment": "Gonzaga, bairro principal da zona da orla e intermediária (Fase 5). Lugares públicos reais; estabelecimentos e pessoas fictícios. As ruas são as reais do mapa (nome sem acento, em minúsculas): cada lugar vai para um lote na rua dele (core/cidade/lugares_reais.gd). A praia e o canal servem de covil para as criaturas da água.",
+  "id": "gonzaga",
+  "nome": "Gonzaga",
+  "zona": "orla",
+  "tipo": "centro",
+  "populacao_alvo": 36,
+  "casas": 14,
+  "ruas": [
+    "avenida_anna_costa",
+    "avenida_washington_luiz",
+    "avenida_presidente_wilson",
+    "avenida_marechal_deodoro",
+    "avenida_vicente_de_carvalho",
+    "rua_bahia"
+  ],
+  "comunidades": [
+    {
+      "id": "brasileira",
+      "peso": 6
+    },
+    {
+      "id": "portuguesa",
+      "peso": 2
+    },
+    {
+      "id": "arabe",
+      "peso": 1
+    },
+    {
+      "id": "japonesa",
+      "peso": 1
+    }
+  ],
+  "locais": [
+    {
+      "id": "praca_independencia",
+      "tipo": "praca",
+      "rua": "avenida_anna_costa",
+      "nome": "Praça da Independência"
+    },
+    {
+      "id": "praia_do_gonzaga",
+      "tipo": "praia",
+      "rua": "avenida_presidente_wilson",
+      "nome": "Praia do Gonzaga"
+    },
+    {
+      "id": "canal_3",
+      "tipo": "canal",
+      "rua": "avenida_washington_luiz",
+      "nome": "Canal 3"
+    },
+    {
+      "id": "igreja",
+      "tipo": "igreja",
+      "rua": "avenida_marechal_deodoro",
+      "nome": "Capela do bairro"
+    },
+    {
+      "id": "delegacia",
+      "tipo": "delegacia",
+      "rua": "rua_bahia",
+      "nome": "Distrito Policial do Gonzaga"
+    },
+    {
+      "id": "bar",
+      "tipo": "bar",
+      "rua": "avenida_vicente_de_carvalho",
+      "nome": "Bar da Orla"
+    },
+    {
+      "id": "bar_noturno",
+      "tipo": "bar",
+      "rua": "avenida_anna_costa",
+      "nome": "Boate Maré Alta"
+    },
+    {
+      "id": "padaria",
+      "tipo": "padaria",
+      "rua": "rua_bahia",
+      "nome": "Padaria Gonzaguinha"
+    },
+    {
+      "id": "lan_house",
+      "tipo": "lan_house",
+      "rua": "avenida_marechal_deodoro",
+      "nome": "Lan house Onda"
+    }
+  ]
+}
